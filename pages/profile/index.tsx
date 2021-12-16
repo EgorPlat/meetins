@@ -62,7 +62,7 @@ function Profile(): JSX.Element {
                         <div className="col">
                             <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
                         </div>
-                    </div>
+                    </div> 
                     <div className={`row`}>
                         <div className="col">
                             <ImageList images={[]} />
