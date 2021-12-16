@@ -1,0 +1,96 @@
+@font-face {
+	font-family: 'Nunito';
+	font-display: swap;
+	src: url('../public/fonts/Nunito-Bold.woff') format('woff'),
+		url('../public/fonts/Nunito-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	font-display: swap;
+	src: url('../public/fonts/Nunito-ExtraLight.woff') format('woff'),
+		url('../public/fonts/Nunito-ExtraLight.woff2') format('woff2');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	font-display: swap;
+	src: url('../public/fonts/Nunito-Light.woff') format('woff'),
+		url('../public/fonts/Nunito-Light.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	font-display: swap;
+	src: url('../public/fonts/Nunito-Regular.woff') format('woff'),
+		url('../public/fonts/Nunito-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	font-display: swap;
+	src: url('../public/fonts/Nunito-SemiBold.woff') format('woff'),
+		url('../public/fonts/Nunito-SemiBold.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+
+body {
+	font-family: Nunito;
+	overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+}
+._container {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+.btn {
+	width: 245px;
+	height: 70px;
+	background: #3db2ff;
+	border-radius: 90px;
+	font-weight: bold;
+	font-size: 24px;
+	color: #ffffff;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	cursor: pointer;
+	outline: none;
+	border: 0;
+
+	transition: all 0.2s ease;
+}
+
+.btn:hover {
+	background-color: #ffb830;
+	color: black;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}

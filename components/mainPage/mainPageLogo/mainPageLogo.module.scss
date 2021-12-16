@@ -1,0 +1,47 @@
+.logo {
+	&Body {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+	}
+	&Left {
+		margin: 0px 15px 0px 0px;
+	}
+	&Link {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		& img {
+			width: 94px;
+			margin: 0px 20px 0px 0px;
+		}
+	}
+	&Label {
+		font-weight: 600;
+		font-size: 72px;
+		line-height: 108.4%;
+		color: #000000;
+		display: block;
+		margin-left: 20px;
+	}
+	&Text {
+		font-weight: 300;
+		font-size: 72px;
+		line-height: 108.4%;
+		max-width: 750px;
+		padding: 0px 0px 0px 114px;
+	}
+}
+
+.pageLogo {
+	margin: 140px 0px 200px 0px;
+}

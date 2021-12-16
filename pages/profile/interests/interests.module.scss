@@ -1,0 +1,34 @@
+.interest {
+    font-family: Nunito;
+    padding-left: 20px; 
+    padding-right: 20px; 
+    border-radius: 50px;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    height: 45px;
+    color: white;
+    font-size: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    & h3 {
+        justify-content: center;
+    }
+    & .title {
+        display: flex;
+    }
+}
+.button:hover {
+    border: 2px solid green;
+}
+.swim {
+    background-image: url('../../../public/images/swiming.jpg');
+}
+.boks {
+    background-image: url('../../../public/images/boxing.jpg');
+}
+.yoga {
+    background-image: url('../../../public/images/Yoga.jpg');
+}
+.voleyball {
+    background-image: url('../../../public/images/volleyball.jpg');
+}

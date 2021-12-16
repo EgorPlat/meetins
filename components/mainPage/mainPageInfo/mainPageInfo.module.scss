@@ -1,0 +1,32 @@
+.info {
+	&Page {
+		&Row {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			margin: 0px 0px 180px 0px;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			&:last-child {
+				margin: 0px 0px 0px 0px;
+			}
+		}
+		&Title {
+			font-size: 64px;
+			line-height: 136%;
+		}
+		&Text {
+			font-weight: 300;
+			font-size: 36px;
+			line-height: 136%;
+			-webkit-box-flex: 0;
+			-ms-flex: 0 1 700px;
+			flex: 0 1 700px;
+		}
+	}
+}
+
+.pageInfo {
+	margin: 0px 0px 220px 0px;
+}

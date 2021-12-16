@@ -1,0 +1,22 @@
+.main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: calc(100vh - 185px);
+}
+.container {
+	display: grid;
+	grid-template-rows: 120px 1fr 65px;
+}
+.loginPage {
+	background-image: url('../../public/images/background-login.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.registerPage {
+	background-image: url('../../public/images/background-register.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
