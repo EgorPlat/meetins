@@ -22,8 +22,8 @@ sendLogData.use(async (logDetails) => {
 	if(response.status === 200) {
 		localStorage.setItem('isLogged', 'true');
 		console.log(response.data);
-		localStorage.setItem("access-token", response.data.access_token);
-		localStorage.setItem("refrash-token", response.data.resresh_token);
+		localStorage.setItem("access-token", response.data.accessToken);
+		localStorage.setItem("refrash-token", response.data.refreshToken);
 	} else {
 		localStorage.setItem('isLogged', 'false');
 	}
