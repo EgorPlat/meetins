@@ -23,7 +23,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		if(select === 'name') {
 			router.push('profile');
 		}
-	}, [select])
+	}, [select]) 
     return(
         <nav className={s.nav}>
 			<ul>  
