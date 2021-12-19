@@ -21,7 +21,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 			router.push('/profile/settings');
 		}
 		if(select === 'name') {
-			router.push('profile');
+			router.push('/profile');
 		}
 	}, [select]) 
     return(
