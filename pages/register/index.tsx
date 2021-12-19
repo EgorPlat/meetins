@@ -107,7 +107,7 @@ export default function Login(): JSX.Element {
 				<Input
 					icon={phoneIcon}
 					placeholder='Телефон или e-mail'
-					type='text'
+					type='text' 
 					id='phoneOrEmail'
 					style={{ marginTop: '25px' }}
 					className={errors.phone_or_email && s.errorBorder}
