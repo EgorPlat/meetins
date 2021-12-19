@@ -71,10 +71,11 @@ export default function Login(): JSX.Element {
 			)
 				.toISOString()
 				.split('.')[0],
+		}).then( () => {
+			if(localStorage.getItem('isLogged') === 'true') {
+				router.push("/profile");
+			}
 		})
-		if(!!localStorage.getItem('isLogged')) {
-			router.push("/profile");
-		}
 	}
 
 	return (
