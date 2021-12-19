@@ -1,40 +1,39 @@
 import { useStore } from 'effector-react'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import Input from '../../global/helpers/Input/Input'
 import { isEmail, isPhoneNumber } from '../../global/helpers/validate'
 import { $loginDetails, sendLogData, setLoginDetails } from '../../global/store/login_model'
-import { $isLoggedIn } from '../../global/store/store'
 import loginIcon from '../../public/images/login.svg'
 import passIcon from '../../public/images/pass.svg'
 import s from '../../styles/pageStyles/auth.module.scss'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useState } from 'react'
+import vector from '../../public/images/Vector.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Image from 'next/image';
 
 export default function Login(): JSX.Element {
 
 	const { register, handleSubmit, formState: {errors} } = useForm()
-	const isLogged = useStore($isLoggedIn);
 	const [errorMessage, setErrorMessage] = useState<string>("");
-	
+
 	const sendLoginData = (data: {login: string, password: string}) => {
 		const login = data.login;
 		const pass = data.password;
 		setLoginDetails({
-			email: login,
+			emailOrPhone: login,
 			password: pass,
 		})
 		sendLogData({
-			email: login,
+			emailOrPhone: login,
 			password: pass,
 		}).then((res: any) => {
-			if(res.status === 200) {
+			if(!!localStorage.getItem('isLogged')) {
 				Router.push('/profile');
 			}
 		}, (errors) => {
-            setErrorMessage( () => `Ошибка ${errors}. Возможно Вы ввели неправильные данные.`)
+            setErrorMessage( () => `Error`)
 		} 
 		)
 	}
@@ -69,7 +68,15 @@ export default function Login(): JSX.Element {
 						required: true
 					})}
 				/>
-				{ errorMessage !== "" ? <span className={s.errorSpan}>{errorMessage}</span> : null }
+				{ errorMessage !== "" ? 
+				<div className={`row ${s.errorBlock}`}>
+					   <div className={`col-md-2`}>
+						<Image src={vector} height={40} width={40} />
+					   </div>
+					   <div className={`col-md-10`}>
+						Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова.
+					   </div>
+				</div> : null }
 				<button type='submit' className={`${s.submitBtn} btn`} >
 					Войти
 				</button>

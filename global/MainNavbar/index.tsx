@@ -1,8 +1,23 @@
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { useMemo } from "react";
 import s from './mainNavbar.module.scss';
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
+
+	const [select, setSelect] = useState<string>("");
+	const router = useRouter();
+
+	const changeSelect = (value: string) => {
+		setSelect( () => value);
+	}
+	useMemo(() => {
+		if(select === 'logOut') {
+			localStorage.setItem('isLogged', 'false');
+			router.push('/login');
+		}
+	}, [select])
     return(
         <nav className={s.nav}>
 			<ul>  
@@ -40,7 +55,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				  </Link>
 				</li>
 				<li className={s.navlink}>
-				  <select className={s.select}>
+				  <select className={s.select} onChange={(event) => changeSelect(event.target.value)}>
 				      <option className={s.option} value="Дима"><Link href='/profile'>Дима</Link></option>
 					  <option className={s.option} value="logOut">Выход</option>
 				  </select>

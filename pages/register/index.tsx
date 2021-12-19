@@ -22,6 +22,7 @@ import {
 } from '../../global/store/register_model'
 import { useStore } from 'effector-react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 export default function Login(): JSX.Element {
 	const {
@@ -31,7 +32,9 @@ export default function Login(): JSX.Element {
 	} = useForm()
 	const [gender, setGender] = useState<string>('')
 	const [showPassword, setShowPassword] = useState<boolean>(false)
-	const registerDetails = useStore($registerDetails)
+	const registerDetails = useStore($registerDetails);
+	const router = useRouter();
+
 	const sendLoginData = (data: {
 		name: string
 		phone_or_email: string | null
@@ -69,6 +72,9 @@ export default function Login(): JSX.Element {
 				.toISOString()
 				.split('.')[0],
 		})
+		if(!!localStorage.getItem('isLogged')) {
+			router.push("/profile");
+		}
 	}
 
 	return (

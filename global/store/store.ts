@@ -17,11 +17,17 @@ iinstance.interceptors.request.use((config: any) => {
 })
 export const instance = iinstance;
 
-export const setLoggedIn = createEvent<boolean>()
-export const $isLoggedIn = createStore<boolean>(false).on(
-	setLoggedIn,
-	(_, loggedIn) => loggedIn
-)
+
+
+export type User = {
+	firstName: string,
+	lastName: string,
+	phoneNumber: string,
+	email: string,
+	gender: string,
+	userIcon: string,
+	dateRegister: string
+}
 
 export const setUser = createEvent()
 export const $user = createStore(null).on(setUser, (_, userDetails) => {

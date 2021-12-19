@@ -20,11 +20,16 @@ export const $registerDetails = createStore<RegisterDetailsType>(null).on(
 	(_, newRegDetails) => {
 		return newRegDetails
 	}
-)
+) 
 
 sendRegData.use(async (regDetails) => {
 	const data = await instance.post('user/register-user', JSON.stringify(regDetails))
 	console.log(data)
+	if(data.status === 200) {
+		localStorage.setItem('isLogged', 'true');
+	} else {
+		localStorage.setItem('isLogged', 'false');
+	}
 	return data
 })
 

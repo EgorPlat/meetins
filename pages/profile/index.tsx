@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import message from "../../public/images/message.svg";
 import { setCurrentPage } from "../../global/store/store";
@@ -15,7 +15,12 @@ function Profile(): JSX.Element {
 
     useEffect( () => {
         setCurrentPage(route.pathname);
-    }, [route])
+    }, [route]) 
+    useEffect(() => {
+        if(!!!localStorage.getItem('isLogged')) {
+            route.push('/login');
+        }
+    }, [])
     return(
         <div className={s.profile}>
             <div className="row">
