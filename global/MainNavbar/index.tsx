@@ -20,6 +20,9 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		if(select === 'settings') {
 			router.push('/profile/settings');
 		}
+		if(select === 'name') {
+			router.push('profile');
+		}
 	}, [select])
     return(
         <nav className={s.nav}>
@@ -59,7 +62,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				</li>
 				<li className={s.navlink}>
 				  <select className={s.select} onChange={(event) => changeSelect(event.target.value)}>
-				      <option className={s.option} value="Дима"><Link href='/profile'>Дима</Link></option>
+				      <option className={s.option} value="name">Дима</option>
 					  <option className={s.option} value="logOut">Выход</option>
 					  <option className={s.option} value="settings">Настройки</option>
 				  </select>
