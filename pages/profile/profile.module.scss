@@ -1,6 +1,7 @@
 .profile {
     width: 100%;
     background-color: rgb(233, 233, 233);
+    height: 100vh;
 }
 .navCol {
     background-color: white;
@@ -16,7 +17,7 @@
     font-family:'Courier New', Courier, monospace;
     padding-left: 3%;
     padding-top: 3%;
-    & .moreInfo {
+    & .moreInfo { 
         margin-top: 2.5%;
     }
 }
