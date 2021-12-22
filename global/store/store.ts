@@ -16,9 +16,13 @@ instance.interceptors.request.use((config: any) => {
 	return Promise.reject(errors);
 })
 instance.interceptors.response.use((res: any) => {
-	if(res.status === 200) { return res; }
+	setIsTokenUpdated(false);
+	if(res.status === 200) { 
+		setIsTokenUpdated(true); 
+		return res; 
+	}
 }, (errors: any) => {
-	if(errors.response.status === 401 || errors.response.status === 403) { 
+	if(errors.response.status === 401 || errors.response.status === 403) {
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
 				const config = errors.config;
@@ -26,6 +30,7 @@ instance.interceptors.response.use((res: any) => {
 				axios.request(config).then((res) => {
 					if(res.status === 200) {
 						setUser(res.data);
+						setIsTokenUpdated(true);
 					}
 				})
 			}
@@ -45,6 +50,10 @@ export type User = {
 	userIcon: string,
 	dateRegister: string
 }
+export const setIsTokenUpdated = createEvent<boolean>();
+export const isTokenUpdated = createStore<boolean>(false).on(setIsTokenUpdated, (_, tokenUpdated) => {
+	return tokenUpdated;
+})
 
 export const setUser = createEvent<User>()
 export const $user = createStore<User | null>(null).on(setUser, (_, userDetails) => {

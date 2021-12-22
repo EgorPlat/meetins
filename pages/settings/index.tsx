@@ -4,16 +4,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useStore } from "effector-react";
-import { $user } from "../../global/store/store";
+import { $user, isTokenUpdated, setCurrentPage } from "../../global/store/store";
+import Loader from "../../global/Loader/Loader";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Settings(): JSX.Element {
 
     const {register, handleSubmit} = useForm();
     const user = useStore($user);
+    const isLoad = useStore(isTokenUpdated);
+    const router = useRouter();
 
     const onSubmit = (data: any) => {
         console.log(data);
     }
+    useEffect(() => {
+        setCurrentPage(router.pathname)
+    }, [])
     return(
         <div className={`${s.settings}`}>
             <div className="row">
@@ -22,10 +30,10 @@ export default function Settings(): JSX.Element {
                     <div><Link href = ''>Подписка</Link></div>
                 </div>
                 <div className={`col-sm-9 ${s.formAndInfo}`}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className={s.info}>
                         <h5>Информация профиля</h5>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="row">
+                            { isLoad ? <div className="row">
                                 <div className="col-sm-3">
                                     <label htmlFor="name">Имя и Фамилия</label>
                                     <label htmlFor="date">Дата Рождения</label>
@@ -42,12 +50,11 @@ export default function Settings(): JSX.Element {
                                     {...register("phone")}
                                     />
                                 </div>
-                            </div>
-                        </form>
+                            </div> : <Loader/>}
                     </div>
                     <div className={s.management}>
                         <h5>Управление аккаунтом</h5>
-                        <div className="row">
+                        {isLoad ? <div className="row">
                                 <div className="col-sm-3">
                                     <label htmlFor="email">Email</label>
                                     <label htmlFor="password">Пароль</label>
@@ -64,7 +71,7 @@ export default function Settings(): JSX.Element {
                                     {...register("address")}
                                     />
                                 </div>
-                        </div>
+                        </div> : <Loader/>}
                         <button type="submit" className={s.saveButton}>Сохранить</button>
                         <div className="row">
                             <div className={`col ${s.description}`}>
@@ -76,6 +83,7 @@ export default function Settings(): JSX.Element {
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
