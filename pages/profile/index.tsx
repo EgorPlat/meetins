@@ -19,7 +19,7 @@ function Profile(): JSX.Element {
         setCurrentPage(route.pathname);
     }, [route]) 
     useEffect(() => {
-        if(localStorage.getItem('isLogged') === 'false') {
+        if(localStorage.getItem('isLogged') === 'false' || user?.firstName === undefined) {
             route.push('/login');
         }
     }, [])
