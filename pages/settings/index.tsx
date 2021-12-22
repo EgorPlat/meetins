@@ -54,7 +54,8 @@ export default function Settings(): JSX.Element {
                     </div>
                     <div className={s.management}>
                         <h5>Управление аккаунтом</h5>
-                        {isLoad ? <div className="row">
+                        <div className={s.manageAcc}>
+                            {isLoad ? <div className={`row`}>
                                 <div className="col-sm-3">
                                     <label htmlFor="email">Email</label>
                                     <label htmlFor="password">Пароль</label>
@@ -71,7 +72,8 @@ export default function Settings(): JSX.Element {
                                     {...register("address")}
                                     />
                                 </div>
-                        </div> : <Loader/>}
+                            </div> : <Loader/>}
+                        </div>
                         <button type="submit" className={s.saveButton}>Сохранить</button>
                         <div className="row">
                             <div className={`col ${s.description}`}>

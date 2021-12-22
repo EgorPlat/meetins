@@ -1,4 +1,4 @@
-import { instance } from './store'
+import { getUserData, instance, setIsTokenUpdated, setUser } from './store'
 import { createEffect, createEvent, createStore } from 'effector'
 
 type RegisterDetailsType = {
@@ -26,11 +26,10 @@ sendRegData.use(async (regDetails) => {
 	const data = await instance.post('user/register-user', JSON.stringify(regDetails))
 	console.log(data)
 	if(data.status === 200) {
-		localStorage.setItem('isLogged', 'true');
-	} else {
-		localStorage.setItem('isLogged', 'false');
+		localStorage.setItem('access-token', data.data.access_token);
+		localStorage.setItem('refrash-token', data.data.resresh_token);
 	}
-	return data
+	return data;
 })
 
 getUsers.use(async () => {

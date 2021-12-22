@@ -23,6 +23,7 @@ import {
 import { useStore } from 'effector-react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { getUserData, setIsTokenUpdated, setUser } from '../../global/store/store'
 
 export default function Login(): JSX.Element {
 	const {
@@ -72,7 +73,12 @@ export default function Login(): JSX.Element {
 				.toISOString()
 				.split('.')[0],
 		}).then( () => {
-			if(localStorage.getItem('isLogged') === 'true') {
+			getUserData().then((res) => {
+				if(res.status === 200) {
+					setUser(res.data);
+				}
+			})
+			if(localStorage.getItem('access-token') !== '') {
 				router.push("/profile");
 			}
 		})
