@@ -17,12 +17,7 @@ function Profile(): JSX.Element {
 
     useEffect( () => {
         setCurrentPage(route.pathname);
-    }, [route]) 
-    useEffect(() => {
-        if(localStorage.getItem('isLogged') === 'false') {
-            route.push('/login');
-        }
-    }, [])   
+    }, [route])   
     return( 
         <div className={s.profile}>
             <div className="row">

@@ -18,7 +18,7 @@ instance.interceptors.request.use((config: any) => {
 instance.interceptors.response.use((res: any) => {
 	if(res.status === 200) { return res; }
 }, (errors: any) => {
-	if(errors.response.status === 401) { 
+	if(errors.response.status === 401 || errors.response.status === 403) { 
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
 				const config = errors.config;
