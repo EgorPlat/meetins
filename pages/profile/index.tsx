@@ -23,7 +23,7 @@ function Profile(): JSX.Element {
             route.push('/login');
         }
     }, [])
-    return(
+    return( 
         <div className={s.profile}>
             <div className="row">
                 <div className={`col-md-3 ${s.navCol}`}>
