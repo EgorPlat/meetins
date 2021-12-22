@@ -2,7 +2,7 @@ import { useStore } from "effector-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { useMemo } from "react";
+import { useEffect } from "react";
 import { $user, setCurrentPage } from "../store/store";
 import s from './mainNavbar.module.scss';
 
@@ -15,9 +15,11 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	const changeSelect = (value: string) => {
 		setSelect( () => value);
 	}
-	useMemo(() => {
+	useEffect(() => {
 		if(select === 'logOut') {
 			localStorage.setItem('isLogged', 'false');
+			localStorage.setItem('access-token', "");
+			localStorage.setItem('refrash-token', "");
 			router.push('/login');
 		}
 		if(select === 'settings') {
