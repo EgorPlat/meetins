@@ -22,7 +22,7 @@ function Profile(): JSX.Element {
         if(localStorage.getItem('isLogged') === 'false') {
             route.push('/login');
         }
-    }, [])
+    }, []) 
     return( 
         <div className={s.profile}>
             <div className="row">
