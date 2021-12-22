@@ -32,7 +32,10 @@ export default function Header(): JSX.Element {
 				</div>
 			</Link>
 
-			{ currentPage === "/" || currentPage === "/login" || currentPage === "/register" ? <Navbar currentPage={currentPage} /> : <MainNavbar currentPage={currentPage} />}
+			{ currentPage === "/" || currentPage === "/login" || currentPage === "/register" 
+			? <Navbar currentPage={currentPage} /> 
+			: <MainNavbar currentPage={currentPage} />
+			}
 		</header>
 	)
 }

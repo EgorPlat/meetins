@@ -1,0 +1,70 @@
+.settings {
+    width: 100%;
+    height: 100%;
+    color: black;
+    font-family: Nunito;
+    & .menu {
+        height: 570px;
+        font-size: 26px;
+        padding-top: 1%;
+        padding-left: 8%;
+        & a {
+            text-decoration: none;
+            color: black;
+            font-family: Nunito;
+        }
+    }
+    & .formAndInfo {
+        background-color: white;
+        font-size: 20px;
+        padding-top: 1%;
+        padding-left: 8%;
+        font-family: Nunito;
+        height: 570px;
+        overflow-y: scroll;
+        h5 {
+            padding: 5px;
+            background-color: rgb(240, 240, 240);
+        }
+        & .info {
+            & label {
+                display: block;
+                margin-top: 11%;
+                font-size: 16px;
+            }
+            & input {
+                display: block;
+                margin-top: 2.5%;
+                font-size: 18px;
+            }
+        }
+        & .management {
+            margin-top: 5%;
+            & label {
+                display: block;
+                margin-top: 11%;
+                font-size: 16px;
+            }
+            & input {
+                display: block;
+                margin-top: 2.5%;
+                font-size: 18px;
+            }
+            & .description {
+                font-size: 16px;
+                margin-top: 1%;
+            }
+            & .saveButton {
+                margin-top: 1%;
+                border: none;
+                background-color: rgb(108, 154, 238);
+                color: white;
+                padding: 5px;
+            }
+            & .saveButton:hover {
+                border: 2px solid green;
+                transition: 0.5s;
+            }
+        }
+    }
+}

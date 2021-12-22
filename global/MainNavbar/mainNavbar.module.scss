@@ -2,6 +2,7 @@
 	display: flex;
 	justify-content: flex-end;
 	padding-right: 360px;
+	background: #3db2ff;
 	& ul {
 		list-style: none; 
 		display: flex;
@@ -12,7 +13,7 @@
 		margin: 0;
 		& .navLink {
 			font-family: Nunito;
-			font-size: 36px;
+			font-size: 28px;
 			margin-right: 15px; 
 			& a {
 				color: #ffffff;
@@ -74,12 +75,18 @@
 	cursor: pointer;
 }
 .select {
-	color: white;
+	font-family: Nunito;
 	font-size: 20px;
 	margin-left: 10px;
 	background-color: rgba(61, 178, 255, 0.8);
 	outline: none;
 	border: none;
+	color: black;
+	& option {
+		color: black;
+		font-size: 15px;
+		background-color: rgb(221, 221, 221);
+	}
 }
 .select:hover {
 	cursor: pointer;

@@ -1,7 +1,7 @@
 import Router, { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import message from "../../public/images/message.svg";
-import { setCurrentPage } from "../../global/store/store";
+import { $user, setCurrentPage } from "../../global/store/store";
 import s from "./profile.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
@@ -9,9 +9,11 @@ import Image from "next/image";
 import Interests from "./interests/interests";
 import Places from "./places/places";
 import ImageList from "./ImageList/ImageList";
+import { useStore } from "effector-react";
 function Profile(): JSX.Element {
 
     const route = useRouter();
+    const user = useStore($user);
 
     useEffect( () => {
         setCurrentPage(route.pathname);
@@ -34,7 +36,7 @@ function Profile(): JSX.Element {
                     <div className={`row`}>
                         <div className={`col-md-4 ${s.bodyInfo}`}>
                            <img 
-				            src="https://upload.wikimedia.org/wikipedia/commons/8/87/Igor_V._Rybakov_TN.jpg" 
+				            src={'https://api.meetins.ru/' + user?.userIcon}
 					        alt="Аватарка" 
 					        className={`${s.round} ${s.avatar}`}
 			                />
@@ -42,7 +44,7 @@ function Profile(): JSX.Element {
                         <div className={`col-md-8 ${s.userInfo}`}>
                             <div className="row">
                                 <div className={`col ${s.userName}`}>
-                                    Дима Рыбаков
+                                    {user?.firstName + " " + user?.lastName}
                                 </div>
                                 <button className={`col ${s.status}`}>
                                     В поисках друзей
