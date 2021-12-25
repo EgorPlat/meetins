@@ -11,12 +11,12 @@ import { useRouter } from "next/router";
 
 export default function Settings(): JSX.Element {
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const user = useStore($user);
     const isLoad = useStore(isTokenUpdated);
     const router = useRouter();
 
-    const onSubmit = (data: any) => {
+    const onChangeSettings = (data: {name: string, date: Date, phone: string}) => {
         console.log(data);
     }
     useEffect(() => {
@@ -30,7 +30,7 @@ export default function Settings(): JSX.Element {
                     <div><Link href = ''>Подписка</Link></div>
                 </div>
                 <div className={`col-sm-9 ${s.formAndInfo}`}>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onChangeSettings)}>
                     <div className={s.info}> 
                         <h5>Информация профиля</h5>
                             { isLoad ? <div className="row">
@@ -38,18 +38,26 @@ export default function Settings(): JSX.Element {
                                     <label htmlFor="name">Имя и Фамилия</label>
                                     <input type="text" id="name" 
                                     value={user?.firstName + " " + user?.lastName} 
-                                    placeholder="Имя Фамилия" {...register("name")}
+                                    placeholder="Имя Фамилия" {...register("name", {required: true, validate: (value) => 
+			                            /^[a-zа-яё]+ [a-zа-яё]+$/i.test(value) === false
+								        ? 'Пожалуйста следуйте формату: Имя Фамилия'
+								        : true,
+                                    })}
                                     />
+                                    {errors.email ? <span className={s.spanError}>{errors.email.message}</span> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="date">Дата Рождения</label>
-                                    <input type="date" id="date" {...register("date")}/>
+                                    <input type="date" id="date" {...register("date", {required: false, validate: (value) =>
+                                        value.length === 0 ? "Это поле обязательно к заполнению." : true
+                                    })}/>
+                                    {errors.date ? <span className={s.spanError}>{errors.date.message}</span> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="phone">Мобильный телефон</label>
                                     <input type="text" id="phone"
                                     placeholder="7-999-333-22-11"
-                                    {...register("phone")}
+                                    {...register("phone", {required: false})}
                                     />
                                 </div>
                             </div> : <Loader/>}
@@ -62,18 +70,20 @@ export default function Settings(): JSX.Element {
                                     <label htmlFor="email">Email</label>
                                     <input type="text" id="email" 
                                     value={user?.email} 
-                                    placeholder="email@gmail.com" {...register("email")}
+                                    placeholder="email@gmail.com" {...register("email", {required: true, validate: (value) =>
+                                        value.length === 0 ? "Это поле обязательно к заполнению." : true})}
                                     />
+                                    {errors.email ? <span className={s.spanError}>{errors.email.message}</span> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="password">Пароль</label>
-                                    <input type="password" id="password" {...register("password")}/>
+                                    <input type="password" id="password" {...register("password", {required: false})}/>
                                 </div>
                                 <div>
                                     <label htmlFor="address">Адрес аккаунта</label>
                                     <input type="text" id="address"
                                     placeholder="Адрес"
-                                    {...register("address")}
+                                    {...register("address", {required: false})}
                                     />
                                 </div>
                             </div> : <Loader/>}

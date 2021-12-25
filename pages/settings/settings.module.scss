@@ -22,6 +22,10 @@
         font-family: Nunito;
         height: 100vh;
         overflow-y: scroll;
+        & .spanError {
+            color: red;
+            font-size: 12px;
+        }
         h5 {
             padding: 5px;
             background-color: rgb(240, 240, 240);
