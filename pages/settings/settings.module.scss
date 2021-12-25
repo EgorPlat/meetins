@@ -71,6 +71,13 @@
                 color: white;
                 padding: 5px;
             }
+            & .updateSatus {
+                color: green;
+                background-color: rgba(65, 223, 86, 0.3);
+                padding: 5px;
+                width: 50%;
+                margin-top: 1%;
+            }
             & .saveButton:hover {
                 border: 2px solid green;
                 transition: 0.5s;

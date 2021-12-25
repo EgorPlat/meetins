@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./settings.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
@@ -13,12 +13,15 @@ import { isPhoneNumber } from "../../global/helpers/validate";
 export default function Settings(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const [isSettingsUpdated, setIsSettingsUpdated] = useState<boolean>();
     const user = useStore($user);
     const isLoad = useStore(isTokenUpdated);
     const router = useRouter();
-
+    
+    
     const onChangeSettings = (data: {name: string, date: string, phone: string, email: string, password: string, address: string}) => {
-        console.log(data.date);
+        console.log(user);
+        setIsSettingsUpdated(() => false);
         updateUserData({
             firstNameAndLastName: data.name,
             email: data.email,
@@ -26,6 +29,10 @@ export default function Settings(): JSX.Element {
             birthDate: data.date,
             loginUrl: data.address,
             phoneNumber: data.phone
+        }).then((res) => {
+            if(res.status === 200) {
+                setIsSettingsUpdated(() => true);
+            }
         })
     }
     useEffect(() => {
@@ -92,11 +99,15 @@ export default function Settings(): JSX.Element {
                                     <label htmlFor="address">Адрес аккаунта</label>
                                     <input type="text" id="address"
                                     placeholder={user?.loginUrl}
-                                    {...register("address", {required: false})}
+                                    {...register("address", {required: false, validate: (value) => 
+                                        value === user?.loginUrl ? "Новый адрес не может совпадать со старым." : true
+                                    })}
                                     />
+                                    {errors.address ? <span className={s.spanError}>{errors.address.message}</span> : null}
                                 </div>
                             </div> : <Loader/>}
                         </div>
+                        {isSettingsUpdated ? <div className={s.updateSatus}>Ваши данные успешно обновлены!</div> : null}
                         <button type="submit" className={s.saveButton}>Сохранить</button>
                         <div className="row">
                             <div className={`col ${s.description}`}>
