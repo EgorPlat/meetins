@@ -29,7 +29,7 @@ export default function Login(): JSX.Element {
 			emailOrPhone: login,
 			password: pass,
 		}).then((res: any) => {
-			if(!!localStorage.getItem('isLogged')) {
+			if(res.status === 200) {
 				Router.push('/profile');
 			}
 		}, (errors) => {

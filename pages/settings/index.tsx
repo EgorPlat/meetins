@@ -4,10 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useStore } from "effector-react";
-import { $user, isTokenUpdated, setCurrentPage } from "../../global/store/store";
+import { $user, isTokenUpdated, setCurrentPage, updateUserData } from "../../global/store/store";
 import Loader from "../../global/Loader/Loader";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { isPhoneNumber } from "../../global/helpers/validate";
 
 export default function Settings(): JSX.Element {
 
@@ -16,8 +17,16 @@ export default function Settings(): JSX.Element {
     const isLoad = useStore(isTokenUpdated);
     const router = useRouter();
 
-    const onChangeSettings = (data: {name: string, date: Date, phone: string}) => {
-        console.log(data);
+    const onChangeSettings = (data: {name: string, date: string, phone: string, email: string, password: string, address: string}) => {
+        console.log(data.date);
+        updateUserData({
+            firstNameAndLastName: data.name,
+            email: data.email,
+            password: data.password,
+            birthDate: data.date,
+            loginUrl: data.address,
+            phoneNumber: data.phone
+        })
     }
     useEffect(() => {
         setCurrentPage(router.pathname)
@@ -37,27 +46,28 @@ export default function Settings(): JSX.Element {
                                 <div>
                                     <label htmlFor="name">Имя и Фамилия</label>
                                     <input type="text" id="name" 
-                                    value={user?.firstName + " " + user?.lastName} 
-                                    placeholder="Имя Фамилия" {...register("name", {required: true, validate: (value) => 
+                                    placeholder={user?.firstName + " " + user?.lastName} {...register("name", {required: false, validate: (value) => 
 			                            /^[a-zа-яё]+ [a-zа-яё]+$/i.test(value) === false
 								        ? 'Пожалуйста следуйте формату: Имя Фамилия'
 								        : true,
                                     })}
                                     />
-                                    {errors.email ? <span className={s.spanError}>{errors.email.message}</span> : null}
+                                    {errors.name ? <span className={s.spanError}>{errors.name.message}</span> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="date">Дата Рождения</label>
                                     <input type="date" id="date" {...register("date", {required: false, validate: (value) =>
                                         value.length === 0 ? "Это поле обязательно к заполнению." : true
-                                    })}/>
+                                    })} placeholder={user?.birthDate}/>
                                     {errors.date ? <span className={s.spanError}>{errors.date.message}</span> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="phone">Мобильный телефон</label>
                                     <input type="text" id="phone"
-                                    placeholder="7-999-333-22-11"
-                                    {...register("phone", {required: false})}
+                                    placeholder={user?.phoneNumber}
+                                    {...register("phone", {required: false, validate: (value) =>
+                                        isPhoneNumber(value) !== value ? "Введите телефон в формате 79693461718." : true
+                                    })}
                                     />
                                 </div>
                             </div> : <Loader/>}
@@ -69,20 +79,19 @@ export default function Settings(): JSX.Element {
                                 <div>
                                     <label htmlFor="email">Email</label>
                                     <input type="text" id="email" 
-                                    value={user?.email} 
-                                    placeholder="email@gmail.com" {...register("email", {required: true, validate: (value) =>
+                                    placeholder={user?.email} {...register("email", {required: false, validate: (value) =>
                                         value.length === 0 ? "Это поле обязательно к заполнению." : true})}
                                     />
                                     {errors.email ? <span className={s.spanError}>{errors.email.message}</span> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="password">Пароль</label>
-                                    <input type="password" id="password" {...register("password", {required: false})}/>
+                                    <input type="password" id="password" placeholder="******" {...register("password", {required: false})}/>
                                 </div>
                                 <div>
                                     <label htmlFor="address">Адрес аккаунта</label>
                                     <input type="text" id="address"
-                                    placeholder="Адрес"
+                                    placeholder={user?.loginUrl}
                                     {...register("address", {required: false})}
                                     />
                                 </div>

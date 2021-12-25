@@ -17,7 +17,6 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	}
 	useEffect(() => {
 		if(select === 'logOut') {
-			localStorage.setItem('isLogged', 'false');
 			localStorage.setItem('access-token', "");
 			localStorage.setItem('refrash-token', "");
 			router.push('/login');

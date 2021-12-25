@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { createEvent, createStore } from 'effector'
 
+const baseURL = 'https://api.meetins.ru/';
 export const instance = axios.create({
-	baseURL: 'https://api.meetins.ru/',
+	baseURL: baseURL,
 	headers: {
         'Content-Type': 'application/json'
     }
@@ -30,6 +31,10 @@ instance.interceptors.response.use((res: any) => {
 				config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
 				axios.request(config).then((res) => {
 					if(res.status === 200) {
+						console.log(axios.getUri(config));
+						if(axios.getUri(config) === "profile/my-profile") {
+							setUser(res.data)
+						}
 						setIsTokenUpdated(true);
 					}
 				})
@@ -48,7 +53,17 @@ export type User = {
 	email: string,
 	gender: string,
 	userIcon: string,
-	dateRegister: string
+	dateRegister: string,
+	loginUrl: string,
+	birthDate: string
+}
+export type ChangeModelUser = {
+	firstNameAndLastName: string,
+	phoneNumber: string,
+	email: string,
+	password: string,
+	birthDate: string,
+	loginUrl: string
 }
 export const setIsTokenUpdated = createEvent<boolean>();
 export const isTokenUpdated = createStore<boolean>(false).on(setIsTokenUpdated, (_, tokenUpdated) => {
@@ -67,7 +82,7 @@ export const $currentPage = createStore<string>('').on(
 )
 
 export const getUserData = async () => {
-	const response = await instance.get('user/my-profile');
+	const response = await instance.get('profile/my-profile');
 	return response;
 }
 export const updateTokens = async () => {
@@ -75,4 +90,10 @@ export const updateTokens = async () => {
 	localStorage.setItem('access-token', response.data.accessToken);
 	localStorage.setItem('refrash-token', response.data.refreshToken);
 	return response;
+}
+export const updateUserData = async (newUserData: ChangeModelUser) => {
+	const response = await instance.post('account-settings/edit', JSON.stringify(newUserData));
+	if(response.status === 200) {
+		setUser(response.data);
+	}
 }
