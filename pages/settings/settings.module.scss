@@ -28,12 +28,13 @@
         }
         & .info {
             & label {
-                display: block;
-                margin-top: 11%;
+                display: inline-block;
+                width: 200px;
+                margin-top: 2.5%;
                 font-size: 16px;
             }
             & input {
-                display: block;
+                display: inline;
                 margin-top: 2.5%;
                 font-size: 18px;
             }
@@ -42,12 +43,13 @@
             margin-top: 5%;
             & .manageAcc {
                 & label {
-                    display: block;
-                    margin-top: 11%;
+                    display: inline-block;
+                    width: 200px;
+                    margin-top: 2.5%;
                     font-size: 16px;
                 }
                 & input {
-                    display: block;
+                    display: inline;
                     margin-top: 2.5%;
                     font-size: 18px;
                 }
