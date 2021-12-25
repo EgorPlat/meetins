@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 
 	useEffect(() => {
-		if(localStorage.getItem('access-token') !== "") {
+		if(localStorage.getItem('access-token')) {
 			getUserData().then( (res) => {
 				if(res.status === 200) { setUser(res.data); router.push('/profile')}
 			})
