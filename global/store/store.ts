@@ -23,13 +23,13 @@ instance.interceptors.response.use((res: any) => {
 	}
 }, (errors: any) => {
 	if(errors.response.status === 401 || errors.response.status === 403) {
+		setIsTokenUpdated(false);
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
 				const config = errors.config;
 				config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
 				axios.request(config).then((res) => {
 					if(res.status === 200) {
-						setUser(res.data);
 						setIsTokenUpdated(true);
 					}
 				})
