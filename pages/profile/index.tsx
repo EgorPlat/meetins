@@ -24,7 +24,7 @@ function Profile(): JSX.Element {
         <div className={s.profile}>
             <div className="row">
                 <div className={`col-md-3 ${s.navCol}`}>
-                    <ul className={s.ul}>
+                    <ul className={s.ul}>        
                         <li><Link href="">Диалоги</Link></li>
                         <li><Link href="">Встречи</Link></li>
                     </ul>
@@ -49,7 +49,7 @@ function Profile(): JSX.Element {
                             </button>
                         </div>
                         <div className={`${s.text}`}>
-                            Люблю ЗОЖ, различные виды спорта, активных отдых на природе.
+                            Люблю ЗОЖ, а также различные виды спорта, активных отдых на природе.
                         </div>
                         <div className={`${s.actions}`}>
                             <button type="button" className={`${s.actionsBtn}`}>
