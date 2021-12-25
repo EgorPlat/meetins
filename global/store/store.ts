@@ -29,7 +29,6 @@ instance.interceptors.response.use((res: any) => {
 				config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
 				axios.request(config).then((res) => {
 					if(res.status === 200) {
-						setUser(res.data);
 						setIsTokenUpdated(true);
 					}
 				})
