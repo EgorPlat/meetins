@@ -2,8 +2,9 @@ import { useStore } from "effector-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
-import { $user, setCurrentPage } from "../store/store";
+import { $currentPage, $user, setCurrentPage } from "../store/store";
 import s from './mainNavbar.module.scss';
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
@@ -11,9 +12,14 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	const [select, setSelect] = useState<string>("");
 	const user = useStore($user);
 	const router = useRouter();
+	const ref = useRef<any>();
 
 	const changeSelect = (value: string) => {
 		setSelect( () => value);
+	}
+	const avatarNavigation = () => {
+		ref.current.selectedIndex = 0;
+	    setSelect(() => ref.current[0].text);
 	}
 	useEffect(() => {
 		if(select === 'logOut') {
@@ -27,7 +33,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		if(select === 'name') {
 			router.push('/profile');
 		}
-	}, [select]) 
+	}, [select])
     return(
         <nav className={s.nav}>
 			<ul>  
@@ -60,8 +66,9 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				</ul>
 				</span>
 				<li className={s.navlink}>
-				  <Link href='/profile' passHref>
+				  <Link href='/profile'>
 				   <img 
+				    onClick={avatarNavigation}
 				    src={'https://api.meetins.ru/' + user?.userIcon}
 					alt="Аватарка" 
 					className={`${s.round} ${s.avatar}`}
@@ -69,7 +76,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				  </Link> 
 				</li>
 				<li className={s.navlink}>
-				  <select className={s.select} onChange={(event) => changeSelect(event.target.value)}>
+				  <select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
 				      <option className={s.option} value="name">{user?.firstName}</option>
 					  <option className={s.option} value="logOut">Выход</option>
 					  <option className={s.option} value="settings">Настройки</option>
