@@ -27,7 +27,7 @@ function Profile(): JSX.Element {
                     <ul className={s.ul}>        
                         <li><Link href="">Диалоги</Link></li>
                         <li><Link href="">Встречи</Link></li>
-                    </ul>
+                    </ul> 
                 </div>
                 {tokenUpdated 
                 ? <div className={`col-md-7 ${s.bodyCol}`}>

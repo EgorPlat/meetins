@@ -4,8 +4,10 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { $currentPage, $user, setCurrentPage } from "../store/store";
+import { $currentPage, $user, baseURL, setCurrentPage } from "../store/store";
 import s from './mainNavbar.module.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Image from "next/image";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
@@ -35,54 +37,25 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		}
 	}, [select])
     return(
-        <nav className={s.nav}>
-			<ul>  
-				<span className={s.navLinks}>
-				<ul>
-				<li
-					className={
-						props.currentPage === '/peoples'
-							? `${s.navLink} ${s.activeLink}`
-							: `${s.navLink}`
-					}>
-					<Link href=''>Люди</Link>
-				</li>
-				<li
-					className={
-						props.currentPage === '/events'
-							? `${s.navLink} ${s.activeLink}`
-							: `${s.navLink}`
-					}>
-					<Link href=''>События</Link>
-				</li>
-				<li
-					className={
-						props.currentPage === '/interests'
-							? `${s.navLink} ${s.activeLink}`
-							: `${s.navLink}`
-					}>
-					<Link href=''>Интересы</Link>
-				</li>
-				</ul>
-				</span>
-				<li className={s.navlink}>
-				  <Link href='/profile'>
-				   <img 
-				    onClick={avatarNavigation}
-				    src={'https://api.meetins.ru/' + user?.userIcon}
-					alt="Аватарка" 
-					className={`${s.round} ${s.avatar}`}
-				   />
-				  </Link> 
-				</li>
-				<li className={s.navlink}>
-				  <select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
-				      <option className={s.option} value="name">{user?.firstName}</option>
-					  <option className={s.option} value="logOut">Выход</option>
-					  <option className={s.option} value="settings">Настройки</option>
-				  </select>
-				</li>
-			</ul>
-		</nav>
+		<div className={s.navCont}>
+		<div className={s.navBtn}>
+			<div className={s.link}>
+			    <Link href="">Люди</Link>
+			    <Link href="">События</Link>
+			    <Link href="">Встречи</Link>
+			    <Link href="">Интересы</Link>
+			</div>
+		</div>
+		<div className={s.navAvatar}>
+			<div className={s.avSelect}>
+			<img src={baseURL + user?.userIcon} className={s.round} alt="Аватарка" width={70} height={70} />
+			<select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
+				<option className={s.option} value="name">{user?.firstName}</option>
+				<option className={s.option} value="logOut">Выход</option>
+				<option className={s.option} value="settings">Настройки</option>
+			</select>
+			</div>
+		</div>
+	    </div>
     )
 }

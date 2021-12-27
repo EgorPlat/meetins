@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createEvent, createStore } from 'effector'
 
-const baseURL = 'https://api.meetins.ru/';
+export const baseURL = 'https://api.meetins.ru/';
 export const instance = axios.create({
 	baseURL: baseURL,
 	headers: {
@@ -57,12 +57,14 @@ export type User = {
 	loginUrl: string,
 	birthDate: string
 }
-export type ChangeModelUser = {
+export type ProfileData = {
 	firstNameAndLastName: string,
 	phoneNumber: string,
+	birthDate: string
+}
+export type AccountData = {
 	email: string,
 	password: string,
-	birthDate: string,
 	loginUrl: string
 }
 export const setIsTokenUpdated = createEvent<boolean>();
@@ -89,12 +91,5 @@ export const updateTokens = async () => {
 	const response = await instance.post('user/refresh-token', {refreshToken: localStorage.getItem('refrash-token')});
 	localStorage.setItem('access-token', response.data.accessToken);
 	localStorage.setItem('refrash-token', response.data.refreshToken);
-	return response;
-}
-export const updateUserData = async (newUserData: ChangeModelUser) => {
-	const response = await instance.post('account-settings/edit', JSON.stringify(newUserData));
-	if(response.status === 200) {
-		setUser(response.data);
-	}
 	return response;
 }

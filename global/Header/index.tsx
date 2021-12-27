@@ -1,6 +1,6 @@
 import s from './header.module.scss'
 import Image from 'next/image'
-import logo from '../../public/images/logo.svg'
+import logo from '../../public/images/logo-l.svg'
 import Navbar from '../Navbar'
 import Link from 'next/link'
 import { $currentPage } from '../store/store'
@@ -25,10 +25,9 @@ export default function Header(): JSX.Element {
 						className={s.logoImage}
 						src={logo}
 						alt='company logo'
-						width={60}
-				 		height={60}
+						width={380}
+				 		height={120}
 					/>
-					<span className={s.logoText}>M</span>
 				</div>
 			</Link>
 

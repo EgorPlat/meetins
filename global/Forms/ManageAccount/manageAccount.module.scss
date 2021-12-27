@@ -1,0 +1,25 @@
+.manageAcc {
+    & label {
+        display: inline-block;
+        width: 200px;
+        margin-top: 2.5%;
+        font-size: 16px;
+    }
+    & input {
+        display: inline;
+        margin-top: 2.5%;
+        font-size: 18px;
+    }
+    & .saveButton {
+        margin-top: 1%;
+        border: none;
+        background-color: rgb(108, 154, 238);
+        color: white;
+        padding: 5px;
+    }
+    & .spanError {
+        color: red;
+        font-size: 12px;
+    }
+    & input::-webkit-input-placeholder {color:black;}
+}

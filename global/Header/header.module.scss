@@ -2,12 +2,13 @@
 
 .header {
 	display: grid;
-	grid-template-columns: 150px 1fr;
+	grid-template-columns: 300px 1fr;
 	height: 120px;
-	background: #3db2ff;
+	//background: #3db2ff;
+	background-color: white;
 	padding: 0 25px;
 	& .logo {
-		display: flex;
+		//display: flex;
 		align-items: center;
 		justify-content: space-between;
 		cursor: pointer;
@@ -16,7 +17,7 @@
 			font-family: Nunito;
 			font-size: 64px;
 			line-height: 87px;
-
+ 
 			color: #ffffff;
 		}
 	}
@@ -28,6 +29,6 @@
 		background: #000000;
 	}
 	&ProfilePage {
-		background: #3db2ff;
+		background: white;
 	}
 }

@@ -22,54 +22,15 @@
         font-family: Nunito;
         height: 100vh;
         overflow-y: scroll;
-        & .spanError {
-            color: red;
-            font-size: 12px;
-        }
         h5 {
             padding: 5px;
             background-color: rgb(240, 240, 240);
         }
-        & .info {
-            & label {
-                display: inline-block;
-                width: 200px;
-                margin-top: 2.5%;
-                font-size: 16px;
-            }
-            & input {
-                display: inline;
-                margin-top: 2.5%;
-                font-size: 18px;
-            }
-            & input::-webkit-input-placeholder {color:black;}
-        }
         & .management {
             margin-top: 5%;
-            & .manageAcc {
-                & label {
-                    display: inline-block;
-                    width: 200px;
-                    margin-top: 2.5%;
-                    font-size: 16px;
-                }
-                & input {
-                    display: inline;
-                    margin-top: 2.5%;
-                    font-size: 18px;
-                }
-                & input::-webkit-input-placeholder {color:black;}
-            }
             & .description {
                 font-size: 16px;
                 margin-top: 1%;
-            }
-            & .saveButton {
-                margin-top: 1%;
-                border: none;
-                background-color: rgb(108, 154, 238);
-                color: white;
-                padding: 5px;
             }
             & .updateSatus {
                 color: green;
@@ -78,11 +39,15 @@
                 width: 50%;
                 margin-top: 1%;
             }
-            & .saveButton:hover {
-                border: 2px solid green;
-                transition: 0.5s;
-            }
         }
+        & .infoText {
+            margin-top: 2%;
+        }
+    }
+    & .deleteBtn {
+        margin-top: 1%;
+        background-color: red;
+        color: white;
     }
 }
 
