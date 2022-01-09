@@ -16,17 +16,19 @@
 			    text-decoration: none;
 			}
 		}
-	}
+	} 
 	& .navAvatar {
 		background-color: white;
 		& .avSelect {
 			margin-top: 20px;
 		}
 		& select {
+			background-color: white;
 			border: none;
 			outline: none;
 			margin-left: 10px;
 			& option {
+				font-family: Nunito;
 				background-color: rgb(228, 228, 228);
 				font-size: 16px;
 				padding: 5px;

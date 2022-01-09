@@ -18,7 +18,7 @@ export default function Settings(): JSX.Element {
     
 
     useEffect(() => {
-        setCurrentPage(router.pathname)
+        setCurrentPage(router.pathname);
     }, []) 
     return(
         <div className={`${s.settings}`}>

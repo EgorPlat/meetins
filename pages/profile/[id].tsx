@@ -1,7 +1,7 @@
 import Router, { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
-import { $user, isTokenUpdated, setCurrentPage } from "../../global/store/store";
+import { $user, getUserDataByLoginUrl, isTokenUpdated, setCurrentPage, setIsTokenUpdated, User } from "../../global/store/store";
 import s from "./profile.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
@@ -14,11 +14,18 @@ import Loader from "../../global/Loader/Loader";
 function Profile(): JSX.Element {
 
     const route = useRouter();
-    const user = useStore($user);
     const tokenUpdated = useStore(isTokenUpdated);
+    const [user, setUser] = useState<User>();
 
     useEffect( () => {
         setCurrentPage(route.pathname);
+        console.log(route.query.id);
+        getUserDataByLoginUrl(route.query.id).then( (res) => {
+            if(res.status === 200) {
+                setUser(() => res.data);
+                setIsTokenUpdated(true);
+            }
+        })
     }, [route])   
     return( 
         <div className={s.profile}>

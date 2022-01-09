@@ -23,7 +23,7 @@ import {
 import { useStore } from 'effector-react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { getUserData, setIsTokenUpdated, setUser } from '../../global/store/store'
+import { $user, getUserData, setIsTokenUpdated, setUser } from '../../global/store/store'
 
 export default function Login(): JSX.Element {
 	const {
@@ -35,6 +35,7 @@ export default function Login(): JSX.Element {
 	const [showPassword, setShowPassword] = useState<boolean>(false)
 	const registerDetails = useStore($registerDetails);
 	const router = useRouter();
+	const user = useStore($user);
 
 	const sendLoginData = (data: {
 		name: string
@@ -73,13 +74,8 @@ export default function Login(): JSX.Element {
 				.toISOString()
 				.split('.')[0],
 		}).then( () => {
-			getUserData().then((res) => {
-				if(res.status === 200) {
-					setUser(res.data);
-				}
-			})
 			if(localStorage.getItem('access-token') !== '') {
-				router.push("/profile");
+				router.push(`/profile/${user?.loginUrl}`);
 			}
 		})
 	}

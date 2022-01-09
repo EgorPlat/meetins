@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { $currentPage, $user, baseURL, setCurrentPage } from "../store/store";
+import { $currentPage, $user, baseURL, setCurrentPage, setUser } from "../store/store";
 import s from './mainNavbar.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from "next/image";
@@ -20,20 +20,21 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		setSelect( () => value);
 	}
 	const avatarNavigation = () => {
-		ref.current.selectedIndex = 0;
-	    setSelect(() => ref.current[0].text);
+		changeSelect('name');
+		ref.current.selectedIndex = ref.current.options[0];
 	}
 	useEffect(() => {
 		if(select === 'logOut') {
 			localStorage.setItem('access-token', "");
 			localStorage.setItem('refrash-token', "");
+			setUser(null);
 			router.push('/login');
 		}
 		if(select === 'settings') {
 			router.push('/settings');
 		}
 		if(select === 'name') {
-			router.push('/profile');
+			router.push(`/profile/${user?.loginUrl}`);
 		}
 	}, [select])
     return(
@@ -48,7 +49,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		</div>
 		<div className={s.navAvatar}>
 			<div className={s.avSelect}>
-			<img src={baseURL + user?.userIcon} className={s.round} alt="Аватарка" width={70} height={70} />
+			<img src={baseURL + user?.userIcon} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
 			<select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
 				<option className={s.option} value="name">{user?.firstName}</option>
 				<option className={s.option} value="logOut">Выход</option>

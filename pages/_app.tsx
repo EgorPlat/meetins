@@ -4,9 +4,9 @@ import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { $currentPage, getUserData, setIsTokenUpdated, setUser, updateTokens } from '../global/store/store'
+import { getUserData, setIsTokenUpdated } from '../global/store/store'
 import { useRouter } from 'next/router'
-import { useStore } from 'effector-react'
+
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -17,10 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 		if(localStorage.getItem('access-token')) {
 			setIsTokenUpdated(false);
 			getUserData().then( (res) => {
-				if(res.status === 200) { 
-					setUser(res.data); 
+				if(res.status === 200) {  
 					setIsTokenUpdated(true);
-					router.push('/profile'); 
+					router.push(`/profile/${res.data?.loginUrl}`); 
 				}
 			})
 		} else {

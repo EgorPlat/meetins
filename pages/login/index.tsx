@@ -12,11 +12,13 @@ import { useState } from 'react'
 import vector from '../../public/images/Vector.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'next/image';
+import { $user } from '../../global/store/store'
 
 export default function Login(): JSX.Element {
 
 	const { register, handleSubmit, formState: {errors} } = useForm()
 	const [errorMessage, setErrorMessage] = useState<string>("");
+	const user = useStore($user);
 
 	const sendLoginData = (data: {login: string, password: string}) => {
 		const login = data.login;
@@ -30,7 +32,7 @@ export default function Login(): JSX.Element {
 			password: pass,
 		}).then((res: any) => {
 			if(res.status === 200) {
-				Router.push('/profile');
+				Router.push(`/profile/${user?.loginUrl}`);
 			}
 		}, (errors) => {
             setErrorMessage( () => `Error`)

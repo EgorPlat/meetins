@@ -21,5 +21,11 @@
         color: red;
         font-size: 12px;
     }
+    & .successActionDiv {
+        margin-top: 1%;
+        color: green;
+        padding: 5px;
+        background-color: rgba($color: green, $alpha: 0.1);
+    }
     & input::-webkit-input-placeholder {color:black;}
 }
