@@ -24,11 +24,7 @@ instance.interceptors.response.use((res: any) => {
 	}
 }, (errors: any) => {
 	setIsTokenUpdated(false);
-	if(errors.response.status === 415) {
-		axios.getUri(errors.config);
-		setIsTokenUpdated(true);
-	}
-	if(errors.response.status >= 400) {
+	if(errors.response.status === 401) {
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
 				const config = errors.config;
@@ -36,7 +32,7 @@ instance.interceptors.response.use((res: any) => {
 				axios.request(config).then((res) => {
 					if(res.status === 200) {
 						console.log(axios.getUri(config));
-						if(axios.getUri(config) === "profile/my-profile") {
+						if(axios.getUri(config).includes("/profile/")) {
 							setUser(res.data)
 						}
 						setIsTokenUpdated(true);

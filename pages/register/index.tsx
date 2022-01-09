@@ -23,7 +23,7 @@ import {
 import { useStore } from 'effector-react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { $user, getUserData, setIsTokenUpdated, setUser } from '../../global/store/store'
+import { $user } from '../../global/store/store'
 
 export default function Login(): JSX.Element {
 	const {
