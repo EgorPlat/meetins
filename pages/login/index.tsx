@@ -32,7 +32,7 @@ export default function Login(): JSX.Element {
 			password: pass,
 		}).then((res: any) => {
 			if(res.status === 200) {
-				Router.push(`/profile/${user?.loginUrl}`);
+				Router.push(`/profile/${res.data.loginUrl}`);
 			}
 		}, (errors) => {
             setErrorMessage( () => `Error`)

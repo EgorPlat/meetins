@@ -73,9 +73,9 @@ export default function Login(): JSX.Element {
 			)
 				.toISOString()
 				.split('.')[0],
-		}).then( () => {
+		}).then( (res: any) => {
 			if(localStorage.getItem('access-token') !== '') {
-				router.push(`/profile/${user?.loginUrl}`);
+				router.push(`/profile/${res.data.loginUrl}`);
 			}
 		})
 	}
