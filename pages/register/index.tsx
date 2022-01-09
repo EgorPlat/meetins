@@ -15,15 +15,11 @@ import {
 	validateEmailOrPhone,
 } from '../../global/helpers/validate'
 import {
-	$registerDetails,
-	getUsers,
 	sendRegData,
 	setRegisterDetails,
 } from '../../global/store/register_model'
-import { useStore } from 'effector-react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { $user } from '../../global/store/store'
 
 export default function Login(): JSX.Element {
 	const {
@@ -33,9 +29,7 @@ export default function Login(): JSX.Element {
 	} = useForm()
 	const [gender, setGender] = useState<string>('')
 	const [showPassword, setShowPassword] = useState<boolean>(false)
-	const registerDetails = useStore($registerDetails);
 	const router = useRouter();
-	const user = useStore($user);
 
 	const sendLoginData = (data: {
 		name: string
