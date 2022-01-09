@@ -26,7 +26,7 @@ function Profile(): JSX.Element {
                 setIsTokenUpdated(true);
             }
         })
-    }, [route])   
+    }, [])   
     return( 
         <div className={s.profile}>
             <div className="row">
