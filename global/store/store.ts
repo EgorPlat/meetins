@@ -28,7 +28,7 @@ instance.interceptors.response.use((res: any) => {
 		axios.getUri(errors.config);
 		setIsTokenUpdated(true);
 	}
-	if(errors.response.status === 401 || errors.response.status === 403) {
+	if(errors.response.status >= 400) {
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
 				const config = errors.config;
