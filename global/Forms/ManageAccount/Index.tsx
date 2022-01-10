@@ -39,9 +39,11 @@ export default function ManageAccountForm(): JSX.Element {
                 />
                 {errors.loginUrl ? <span className={s.spanError}>{errors.loginUrl.message}</span> : null}
             </div>
-            { isUpdated === true && isUpdated !== null  
+            { isUpdated 
             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 
-            : <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (email, адрес)</div> }
+            : isUpdated !== null 
+            ? <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (email, адрес)</div>
+            : null }
             <button type="submit" className={s.saveButton}>Сохранить</button>
             </form>
         </div>

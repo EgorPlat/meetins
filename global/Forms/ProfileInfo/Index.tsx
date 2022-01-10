@@ -46,9 +46,11 @@ export default function ProfileInfoForm(): JSX.Element {
                     })}/>
                     {errors.phoneNumber ? <span className={s.spanError}>{errors.phoneNumber.message}</span> : null}
             </div>
-            { isUpdated === true && isUpdated !== null 
+            { isUpdated 
             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 
-            : <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (телефон)</div> 
+            : isUpdated !== null 
+            ? <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (телефон)</div>
+            : null 
             }
             <button type="submit" className={s.saveButton}>Сохранить</button>
             </form>
