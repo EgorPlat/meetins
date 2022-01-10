@@ -1,4 +1,4 @@
-import { instance, setUser, User } from './store'
+import { instance, setUser } from './store'
 import { createEffect, createEvent, createStore } from 'effector'
 
 
@@ -16,6 +16,7 @@ export const $loginDetails = createStore<LoginDetailsType>(null).on(
 		return newLogDetails
 	}  
 ) 
+
 
 sendLogData.use(async (logDetails) => {
 	const response = await instance.post('user/login', JSON.stringify(logDetails))

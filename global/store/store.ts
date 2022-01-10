@@ -17,14 +17,14 @@ instance.interceptors.request.use((config: any) => {
 	return Promise.reject(errors);
 })
 instance.interceptors.response.use((res: any) => {
-	setIsTokenUpdated(false);
+	setIsAsyncLoaded(false);
 	if(res.status === 200) { 
-		setIsTokenUpdated(true); 
+		setIsAsyncLoaded(true); 
 		return res; 
 	}
 }, (errors: any) => {
 	if(errors.response.status === 401) {
-		setIsTokenUpdated(false);
+		setIsAsyncLoaded(false);
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
 				const config = errors.config;
@@ -35,7 +35,7 @@ instance.interceptors.response.use((res: any) => {
 						if(axios.getUri(config).includes("/profile/")) {
 							setUser(res.data)
 						}
-						setIsTokenUpdated(true);
+						setIsAsyncLoaded(true);
 					}
 				})
 			}
@@ -68,8 +68,8 @@ export type AccountData = {
 	loginUrl: string
 }
 
-export const setIsTokenUpdated = createEvent<boolean>();
-export const isTokenUpdated = createStore<boolean>(false).on(setIsTokenUpdated, (_, tokenUpdated) => {
+export const setIsAsyncLoaded = createEvent<boolean>();
+export const isAsyncLoaded = createStore<boolean>(false).on(setIsAsyncLoaded, (_, tokenUpdated) => {
 	return tokenUpdated;
 })
 
@@ -92,7 +92,7 @@ export const getUserData = async () => {
 	return response;
 }
 export const getUserDataByLoginUrl = async (loginUrl: string | string[] | undefined) => {
-	setIsTokenUpdated(false);
+	setIsAsyncLoaded(false);
 	const response = await instance.post('profile/by-loginurl', JSON.stringify(loginUrl));
 	return response;
 }

@@ -1,11 +1,10 @@
 .modal {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
     left: 0;
-    justify-content: center;
     & .modalContent {
         padding: 50px;
         border-radius: 50px;
@@ -13,5 +12,42 @@
         width: 33%;
         min-height: 100px;
         background-color: white;
+    }
+    & .manageModal {
+        & button {
+            border-radius: 10px;
+            border: none;
+            color: white;
+            padding: 5px;
+            font-size: 15px;
+            margin: 1%;
+        }
+        & .confirmBtn {
+            width: 25%;
+            min-height: 30px;
+            background-color: rgb(15, 129, 223);
+        }
+        & .cancelBtn {
+            width: 25%;
+            min-height: 30px;
+            background-color: red;
+        }
+    }
+}
+
+@media screen and(max-width: 1100px){
+    .modal {
+        & .modalContent {
+            margin: 30% auto;
+            width: 50%;
+        }
+    }
+}
+@media screen and(max-width: 600px){
+    .modal {
+        & .modalContent {
+            margin: 50% auto;
+            width: 60%;
+        }
     }
 }

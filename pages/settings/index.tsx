@@ -1,25 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./settings.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
 import { useStore } from "effector-react";
-import { isTokenUpdated, setCurrentPage } from "../../global/store/store";
+import { isAsyncLoaded, setCurrentPage } from "../../global/store/store";
 import Loader from "../../global/Loader/Loader";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Modal from "../../global/helpers/Modal/Modal";
 import ProfileInfoForm from "../../global/Forms/ProfileInfo/Index";
 import ManageAccountForm from "../../global/Forms/ManageAccount/Index";
+import { useState } from "react";
 
 export default function Settings(): JSX.Element {
 
-    const isLoad = useStore(isTokenUpdated);
+    const isLoad = useStore(isAsyncLoaded);
     const router = useRouter();
-    
+    const [isModal, setIsModal] = useState<boolean>(false);
 
     useEffect(() => {
         setCurrentPage(router.pathname);
-    }, []) 
+    }, [])
+
+    const changeModal = (status: boolean) => {
+        setIsModal(() => status);
+    }
+    const deleteAccount = (status: boolean) => {
+        setIsModal(() => false);
+        console.log(status);
+    }
     return(
         <div className={`${s.settings}`}>
             <div className="row">
@@ -52,16 +61,12 @@ export default function Settings(): JSX.Element {
                         </div>
                     </div>
                     <div>
-                        <button className={s.deleteBtn}>Удалить аккаунт</button>
+                        <button className={s.deleteBtn} onClick={() => changeModal(true)}>Удалить аккаунт</button>
                     </div>
                 </div>
             </div>
-            <Modal isDisplay={false}>
-                <div>
-                    <h6>Подвердите действие - Удаление аккаунта. </h6>
-                    <button className={s.deleteBtn}>Удалить</button>
-                    <button className={s.closeBtn}>Закрыть</button>
-                </div>
+            <Modal isDisplay={isModal} changeModal={changeModal} actionConfirmed={deleteAccount}>
+                <h6>Подвердите действие - Удаление аккаунта.</h6>
             </Modal>
         </div>
     ) 

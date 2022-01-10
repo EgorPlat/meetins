@@ -1,4 +1,4 @@
-import { getUserData, instance, setIsTokenUpdated, setUser } from './store'
+import { instance, setUser } from './store'
 import { createEffect, createEvent, createStore } from 'effector'
 
 type RegisterDetailsType = {
