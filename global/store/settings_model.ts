@@ -1,8 +1,8 @@
 import { createEvent, createStore } from "effector";
 import { AccountData, instance, ProfileData, setUser } from "./store";
 
-export const setIsProfileUpdated = createEvent<boolean>();
-export const isProfileUpdated = createStore<boolean>(false).on(setIsProfileUpdated, (_, profileUpdated) => {
+export const setIsProfileUpdated = createEvent<boolean | null>();
+export const isProfileUpdated = createStore<boolean | null>(null).on(setIsProfileUpdated, (_, profileUpdated) => {
 	return profileUpdated;
 })
 export const updateUserProfileData = async (newUserData: ProfileData) => {
@@ -14,8 +14,8 @@ export const updateUserProfileData = async (newUserData: ProfileData) => {
 	}
 	return response;
 }
-export const setIsAccountUpdated = createEvent<boolean>();
-export const isAccountUpdated = createStore<boolean>(false).on(setIsAccountUpdated, (_, accountUpdated) => {
+export const setIsAccountUpdated = createEvent<boolean | null>();
+export const isAccountUpdated = createStore<boolean | null>(null).on(setIsAccountUpdated, (_, accountUpdated) => {
 	return accountUpdated;
 })
 export const updateUserAccountData = async (newUserData: AccountData) => {

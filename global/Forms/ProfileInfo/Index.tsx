@@ -10,7 +10,7 @@ import s from "./profileInfo.module.scss";
 export default function ProfileInfoForm(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const isUpdated: boolean = useStore(isProfileUpdated);
+    const isUpdated: boolean | null = useStore(isProfileUpdated);
     const user = useStore($user);
 
     const onChangeProfile = (data: {firstNameAndLastName: string, birthDate: string, phoneNumber: string}) => {
