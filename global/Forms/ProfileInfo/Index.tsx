@@ -14,7 +14,7 @@ export default function ProfileInfoForm(): JSX.Element {
     const user = useStore($user);
 
     const onChangeProfile = (data: {firstNameAndLastName: string, birthDate: string, phoneNumber: string}) => {
-        updateUserProfileData(data);
+        updateUserProfileData(data); 
     }
     return (
         <div className={s.info}>
@@ -46,7 +46,10 @@ export default function ProfileInfoForm(): JSX.Element {
                     })}/>
                     {errors.phoneNumber ? <span className={s.spanError}>{errors.phoneNumber.message}</span> : null}
             </div>
-            { isUpdated ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> : null }
+            { isUpdated 
+            ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 
+            : <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (телефон)</div> 
+            }
             <button type="submit" className={s.saveButton}>Сохранить</button>
             </form>
         </div>

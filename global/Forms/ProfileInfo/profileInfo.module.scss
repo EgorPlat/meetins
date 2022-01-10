@@ -27,5 +27,11 @@
         padding: 5px;
         background-color: rgba($color: green, $alpha: 0.1);
     }
+    & .unSuccessActionDiv {
+        margin-top: 1%;
+        color: red;
+        padding: 5px;
+        background-color: rgba($color: red, $alpha: 0.1);
+    }
     & input::-webkit-input-placeholder {color:black;}
 }
