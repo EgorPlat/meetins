@@ -46,7 +46,7 @@ export default function ProfileInfoForm(): JSX.Element {
                     })}/>
                     {errors.phoneNumber ? <span className={s.spanError}>{errors.phoneNumber.message}</span> : null}
             </div>
-            { isUpdated 
+            { isUpdated === true && isUpdated !== null 
             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 
             : <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (телефон)</div> 
             }
