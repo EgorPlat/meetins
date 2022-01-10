@@ -23,8 +23,8 @@ instance.interceptors.response.use((res: any) => {
 		return res; 
 	}
 }, (errors: any) => {
-	setIsTokenUpdated(false);
 	if(errors.response.status === 401) {
+		setIsTokenUpdated(false);
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
 				const config = errors.config;
