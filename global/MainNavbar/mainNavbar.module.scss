@@ -49,8 +49,21 @@
 	cursor: pointer;
 }
 
-@media screen  and(max-width: 1130px){
-	.avatar {
-		display: none;
+@media screen  and(max-width: 1365px){
+	.navCont {
+		grid-template-columns: 70% 30%;
+	}
+}
+@media screen  and(max-width: 1030px){
+	.navCont {
+		grid-template-columns: 68% 32%;
+		& .navAvatar {
+			& .round {
+				display: none;
+			}
+			& .select {
+				margin-top: 20px;
+			}
+		}
 	}
 }

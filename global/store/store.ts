@@ -23,7 +23,7 @@ instance.interceptors.response.use((res: any) => {
 		return res; 
 	}
 }, (errors: any) => {
-	if(errors.response.status === 401) {
+	if(errors.response.status === 401 || errors.response.status === 401) {
 		setIsAsyncLoaded(false);
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {

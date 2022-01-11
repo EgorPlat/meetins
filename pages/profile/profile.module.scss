@@ -16,6 +16,16 @@
     font-family:'Courier New', Courier, monospace;
     padding-left: 3%;
     padding-top: 3%;
+    & .bodyInfo {
+        & .round {
+            border-radius: 50%; /* Радиус скругления */
+            border: 1px solid white; /* Параметры рамки */
+        }
+        & .avatar {
+            width: 100%;
+            height: 100%;
+        }
+    }
     & .moreInfo { 
         margin-top: 2.5%;
     }
@@ -31,14 +41,6 @@
             margin-left: 5%;
         }
     }
-}
-.round {
-    border-radius: 50%; /* Радиус скругления */
-    border: 1px solid white; /* Параметры рамки */
-}
-.avatar {
-    width: 100%;
-    height: 100%;
 }
 .userInfo {
     font-family: Nunito;
@@ -72,12 +74,19 @@
     }
 }
 
-@media screen and(max-width: 770px) {
+@media screen and(max-width: 767px) {
     .navCol {
         height: 100px;
     }
-    .avatar {
-        width: 50%;
-        height: 100%;
+    .profile {
+        & .bodyCol {
+            & .bodyInfo {
+                & .avatar {
+                    margin-left: 30%;
+                    width: 40%;
+                    height: 100%;
+                }
+            }
+        }
     }
 }

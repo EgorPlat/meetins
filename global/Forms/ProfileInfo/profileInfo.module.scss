@@ -35,3 +35,14 @@
     }
     & input::-webkit-input-placeholder {color:black;}
 }
+
+@media screen and(max-width: 600px){
+    .info {
+        & input {
+            margin-top: 1%;
+        }
+        & .formElem {
+            margin-top: 1%;
+        }
+    }
+}

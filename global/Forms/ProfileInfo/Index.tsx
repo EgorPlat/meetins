@@ -19,32 +19,31 @@ export default function ProfileInfoForm(): JSX.Element {
     return (
         <div className={s.info}>
             <form onSubmit={handleSubmit(onChangeProfile)}>
-            <div>
+            <div className={s.formElem}>
                 <label htmlFor="name">Имя и Фамилия</label>
                 <input type="text" id="name" 
                     placeholder={user?.firstName + " " + user?.lastName} {...register("firstNameAndLastName", {required: false, validate: (value) => 
 			        /^[a-zа-яё]+ [a-zа-яё]+$/i.test(value) === false
 				    ? 'Пожалуйста следуйте формату: Имя Фамилия'
 				    : true,
-                    })}
-                />
+                })}/>
                 {errors.firstNameAndLastName ? <span className={s.spanError}>{errors.firstNameAndLastName.message}</span> : null}
             </div> 
-            <div>
+            <div className={s.formElem}>
                 <label htmlFor="date">Дата Рождения</label>
                 <input type="date" id="date" {...register("birthDate", {required: false, validate: (value) =>
                     value.length === 0 ? "Это поле обязательно к заполнению." : true
-                    })} placeholder={user?.birthDate}/>
-                    {errors.birthDate ? <span className={s.spanError}>{errors.birthDate.message}</span> : null}
+                })} placeholder={user?.birthDate}/>
+                {errors.birthDate ? <span className={s.spanError}>{errors.birthDate.message}</span> : null}
             </div>
-            <div>
+            <div className={s.formElem}>
                 <label htmlFor="phone">Мобильный телефон</label>
                 <input type="text" id="phone"
                     placeholder={user?.phoneNumber}
                     {...register("phoneNumber", {required: false, validate: (value) =>
                     isPhoneNumber(value) !== value ? "Введите телефон в формате 79693461718." : true
-                    })}/>
-                    {errors.phoneNumber ? <span className={s.spanError}>{errors.phoneNumber.message}</span> : null}
+                })}/>
+                {errors.phoneNumber ? <span className={s.spanError}>{errors.phoneNumber.message}</span> : null}
             </div>
             { isUpdated 
             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 

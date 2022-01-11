@@ -19,14 +19,13 @@ function Profile(): JSX.Element {
 
     useEffect( () => {
         setCurrentPage(route.pathname);
-        console.log(route.query.id);
         getUserDataByLoginUrl(route.query.id).then( (res) => {
             if(res.status === 200) {
                 setUser(() => res.data);
                 setIsAsyncLoaded(true);
             }
-        })
-    }, [])   
+        }) 
+    }, [route])   
     return( 
         <div className={s.profile}>
             <div className="row">
@@ -37,7 +36,8 @@ function Profile(): JSX.Element {
                     </ul> 
                 </div>
                 {tokenUpdated 
-                ? <div className={`col-md-7 ${s.bodyCol}`}>
+                ? 
+                <div className={`col-md-8 ${s.bodyCol}`}>
                 <div className={`row`}>
                     <div className={`col-md-4 ${s.bodyInfo}`}>
                        <img 

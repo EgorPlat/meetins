@@ -17,19 +17,19 @@ export default function ManageAccountForm(): JSX.Element {
     return (
         <div className={s.manageAcc}>
             <form onSubmit={handleSubmit(onChangeAccount)}>
-            <div>
-                <label htmlFor="email">Email</label>
+            <div className={s.formElem}> 
+                <label htmlFor="email">Ваш Email</label>
                 <input type="text" id="email" 
                     placeholder={user?.email} {...register("email", {required: false, validate: (value) =>
                     value.length === 0 ? "Это поле обязательно к заполнению." : true})}
                 />
                 {errors.email ? <span className={s.spanError}>{errors.email.message}</span> : null}
             </div>
-            <div>
+            <div className={s.formElem}>
                 <label htmlFor="password">Пароль</label>
                 <input type="password" id="password" placeholder="******" {...register("password", {required: false})}/>
             </div>
-            <div>
+            <div className={s.formElem}>
                 <label htmlFor="address">Адрес аккаунта</label>
                 <input type="text" id="address"
                     placeholder={user?.loginUrl}
