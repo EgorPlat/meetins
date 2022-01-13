@@ -22,6 +22,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	const avatarNavigation = () => {
 		changeSelect('name');
 		ref.current.selectedIndex = ref.current.options[0];
+		router.push(`/profile/${user?.loginUrl}`);
 	}
 	useEffect(() => {
 		if(select === 'logOut') {
@@ -41,7 +42,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		<div className={s.navCont}>
 		<div className={s.navBtn}>
 			<div className={s.link}>
-			    <Link href="">Люди</Link>
+			    <Link href="/peoples">Люди</Link>
 			    <Link href="">События</Link>
 			    <Link href="">Встречи</Link>
 			    <Link href="">Интересы</Link>

@@ -35,10 +35,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<div className={`${s.container} ${backgroundClass}`}>
 				<Header />
 				<main className={s.main}>{children}</main>
-				<Footer
+				{/*<Footer
 					textColor={footerTextColor}
 					backgroundColor={footerBackgroundColor}
-				/>
+				/> */}
 			</div>
 		</>
 	)

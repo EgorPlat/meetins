@@ -11,6 +11,8 @@ import Places from "./places/places";
 import ImageList from "./ImageList/ImageList";
 import { useStore } from "effector-react";
 import Loader from "../../global/Loader/Loader";
+import About from "./About/About";
+import LeftNavMenu from "../../global/LeftNavMenu/LeftNavMenu";
 function Profile(): JSX.Element {
 
     const route = useRouter();
@@ -24,16 +26,13 @@ function Profile(): JSX.Element {
                 setUser(() => res.data);
                 setIsAsyncLoaded(true);
             }
-        }) 
+        })
     }, [route])   
     return( 
         <div className={s.profile}>
             <div className="row">
                 <div className={`col-md-3 ${s.navCol}`}>
-                    <ul className={s.ul}>        
-                        <li><Link href="">Диалоги</Link></li>
-                        <li><Link href="">Встречи</Link></li>
-                    </ul> 
+                    <LeftNavMenu />
                 </div>
                 {tokenUpdated 
                 ? 
@@ -54,9 +53,9 @@ function Profile(): JSX.Element {
                             <button className={`col ${s.status}`}>
                                 В поисках друзей
                             </button>
-                        </div>
+                        </div> 
                         <div className={`${s.text}`}>
-                            Люблю ЗОЖ, а также различные виды спорта, активных отдых на природе.
+                            <About about={'Люблю ЗОЖ, различные виды спорта, активных отдых с друзьями, природу.'}/>
                         </div>
                         <div className={`${s.actions}`}>
                             <button type="button" className={`${s.actionsBtn}`}>

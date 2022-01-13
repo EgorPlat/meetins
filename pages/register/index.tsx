@@ -69,7 +69,7 @@ export default function Login(): JSX.Element {
 				.split('.')[0],
 		}).then( (res: any) => {
 			if(localStorage.getItem('access-token') !== '') {
-				router.push(`/profile/${res.data.loginUrl}`);
+				router.push(`/profile/${res.data.profile.loginUrl}`);
 			}
 		})
 	}
