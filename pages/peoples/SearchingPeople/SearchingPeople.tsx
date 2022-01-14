@@ -1,6 +1,11 @@
-import { FormControl, Input, InputAdornment, InputLabel, OutlinedInput, Slider } from "@mui/material";
-import React from "react";
+import { FormControl, InputAdornment, InputLabel, OutlinedInput, Slider } from "@mui/material";
+import { useStore } from "effector-react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import Loader from "../../../global/Loader/Loader";
+import { isAsyncLoaded, setIsAsyncLoaded } from "../../../global/store/store";
+import { $usersList, getAllRegisteredUsers, IShortUser, setUsersList } from "../../../global/store/users_model";
+import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
 
 export default function SearchingPeople(): JSX.Element {
@@ -9,6 +14,20 @@ export default function SearchingPeople(): JSX.Element {
     const [goals, setGoals] = useState<string[]>(['Новые отношения','Друзей','Новые Интересы','Встречи','События','Общение в сети']);
     const [events, setEvents] = useState<string[]>(['По Москве на автобусе','История любви','"Энканто"','Green DAY']);
     const [popularInterests, setPopularInterests] = useState<string[]>(['Программирование', 'Бизнес', 'Кухня', 'Природа']);
+
+    const userList: IShortUser[] = useStore($usersList);
+    const isListLoaded: boolean = useStore(isAsyncLoaded);
+
+    useEffect(() => {
+        getAllRegisteredUsers().then( (res) => {
+            if(res.status === 200) {
+                setUsersList(res.data);
+                setIsAsyncLoaded(true);
+            }
+        }, (errors) => {
+            console.log(errors);
+        })
+    }, [])
     return(
         <div className={s.searching}>
             <div className={s.params}>
@@ -50,7 +69,7 @@ export default function SearchingPeople(): JSX.Element {
                 </div>
             </div>
             <div className={s.result}>
-                Какое-то содержимое(найденные аккаунты)
+                {isListLoaded ? userList.map( user => <UserList key={user.loginUrl} user={user}/>) : <Loader/>}
             </div>
         </div>
     )

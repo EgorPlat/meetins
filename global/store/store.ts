@@ -31,7 +31,6 @@ instance.interceptors.response.use((res: any) => {
 				config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
 				axios.request(config).then((res) => {
 					if(res.status === 200) {
-						console.log(axios.getUri(config));
 						if(axios.getUri(config).includes("/profile/")) {
 							setUser(res.data)
 						}
@@ -81,7 +80,10 @@ export const $user = createStore<User | null>(null).on(setUser, (_, userDetails)
 export const setCurrentPage = createEvent<string>()
 export const $currentPage = createStore<string>('').on(
 	setCurrentPage,
-	(_, currPage) => currPage
+	(_, currPage) => {
+		localStorage.setItem('previousPage', `${currPage}`);
+		return currPage;
+	}
 )
 
 export const getUserData = async () => {

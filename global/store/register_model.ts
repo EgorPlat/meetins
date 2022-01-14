@@ -10,7 +10,7 @@ type RegisterDetailsType = {
 	gender: string
 	dateRegister: string
 } | null
-
+ 
 export const sendRegData = createEffect()
 export const getUsers = createEffect()
 

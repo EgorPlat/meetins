@@ -13,12 +13,24 @@ import { useStore } from "effector-react";
 import Loader from "../../global/Loader/Loader";
 import About from "./About/About";
 import LeftNavMenu from "../../global/LeftNavMenu/LeftNavMenu";
+import InputFile from "../../global/helpers/InputFile/InputFile";
 function Profile(): JSX.Element {
 
     const route = useRouter();
-    const tokenUpdated = useStore(isAsyncLoaded);
-    const [user, setUser] = useState<User>();
+    const asyncLoaded = useStore(isAsyncLoaded);
 
+    const [user, setUser] = useState<User>();
+    const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
+    const authedUser = useStore($user);
+
+    const changeAddingImageStatus = (status: boolean) => {
+        if(user?.email === authedUser?.email) {
+            setAddingImageStatus(() => status);
+        }
+    }
+    const onChangeInputImage = (file: any) => {
+        console.log(file);
+    }
     useEffect( () => {
         setCurrentPage(route.pathname);
         getUserDataByLoginUrl(route.query.id).then( (res) => {
@@ -34,16 +46,21 @@ function Profile(): JSX.Element {
                 <div className={`col-md-3 ${s.navCol}`}>
                     <LeftNavMenu />
                 </div>
-                {tokenUpdated 
+                {asyncLoaded 
                 ? 
                 <div className={`col-md-8 ${s.bodyCol}`}>
                 <div className={`row`}>
                     <div className={`col-md-4 ${s.bodyInfo}`}>
+                       {!addingImageStatus ?
                        <img 
+                        onMouseEnter={() => changeAddingImageStatus(true)}
                         src={'https://api.meetins.ru/' + user?.userIcon}
                         alt="Аватарка" 
-                        className={`${s.round} ${s.avatar}`}
-                        />
+                        className={`${s.avatar}`}
+                        /> : <InputFile 
+                                onChange={(event) => onChangeInputImage(event)} 
+                                onMouseLeave={() => changeAddingImageStatus(false)}
+                            />}
                     </div>
                     <div className={`col-md-8 ${s.userInfo}`}>
                         <div className="row">
@@ -55,7 +72,7 @@ function Profile(): JSX.Element {
                             </button>
                         </div> 
                         <div className={`${s.text}`}>
-                            <About about={'Люблю ЗОЖ, различные виды спорта, активных отдых с друзьями, природу.'}/>
+                            <About user={user} about={'Люблю ЗОЖ, различные виды спорта, активных отдых с друзьями, природу.'}/>
                         </div>
                         <div className={`${s.actions}`}>
                             <button type="button" className={`${s.actionsBtn}`}>

@@ -17,7 +17,7 @@ export default function Peoples(): JSX.Element {
                 <div className={s.chapters}>
                     <button onClick={() => setCurrentChapter('searching')}>Поиск людей</button>
                     <button onClick={() => setCurrentChapter('list')}>Лента</button>
-                </div>
+                </div> 
                 <div className={s.activeChapter}>
                     {
                         currentChapter === 'searching' ? <SearchingPeople/> :

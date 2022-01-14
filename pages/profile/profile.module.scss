@@ -17,11 +17,9 @@
     padding-left: 3%;
     padding-top: 3%;
     & .bodyInfo {
-        & .round {
+        & .avatar {
             border-radius: 50%; /* Радиус скругления */
             border: 1px solid white; /* Параметры рамки */
-        }
-        & .avatar {
             width: 100%;
             height: 100%;
         }

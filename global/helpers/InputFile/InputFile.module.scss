@@ -1,0 +1,15 @@
+.formGroup{
+    width: 100%;
+    height: 305px;
+    & input {outline:0;opacity:0;pointer-events:none;user-select:none}
+    & .label{
+        width: 100%;
+        height: 100%;
+        border:2px dashed grey;
+        border-radius: 50%;
+        transition:border 300ms ease;
+        cursor:pointer;
+        text-align:center
+    }
+    & .title{color:grey;transition:200ms color; margin-top: 150px;}
+}
