@@ -22,8 +22,7 @@ sendLogData.use(async (logDetails) => {
 	const response = await instance.post('user/login', JSON.stringify(logDetails))
 	if(response.status === 200) {
 		localStorage.setItem("access-token", response.data.authenticateResponse.accessToken);
-		localStorage.setItem("refrash-token", response.data.authenticateResponse.refreshToken);
-		localStorage.setItem("user", response.data.profile);		
+		localStorage.setItem("refrash-token", response.data.authenticateResponse.refreshToken);		
 		setUser(response.data.profile);
 	}
 	return response;

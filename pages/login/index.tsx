@@ -3,11 +3,11 @@ import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 import Input from '../../global/helpers/Input/Input'
 import { isEmail, isPhoneNumber } from '../../global/helpers/validate'
-import { $loginDetails, sendLogData, setLoginDetails } from '../../global/store/login_model'
+import { sendLogData, setLoginDetails } from '../../global/store/login_model'
 import loginIcon from '../../public/images/login.svg'
 import passIcon from '../../public/images/pass.svg'
 import s from '../../styles/pageStyles/auth.module.scss'
-import Router, { useRouter } from 'next/router'
+import Router from 'next/router'
 import { useState } from 'react'
 import vector from '../../public/images/Vector.png';
 import 'bootstrap/dist/css/bootstrap.min.css';

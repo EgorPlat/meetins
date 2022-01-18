@@ -8,4 +8,19 @@
         min-height: 30px;
         resize: none;
     }
+    & button {
+        min-width: 30px;
+        height: 30px;
+        color: white;
+        border: none;
+        outline: none;
+        margin-top: 1%;
+        margin-left: 1%;
+    }
+    & .confirmBtn {
+        background-color: rgb(41, 147, 196);
+    }
+    & .cancelBtn {
+        background-color: rgb(219, 93, 77);
+    }
 }

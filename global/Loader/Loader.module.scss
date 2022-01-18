@@ -2,7 +2,9 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border-bottom: 2px solid blue;
+    border: 3px solid blue;
+    border-left-color: transparent;
+    border-right-color: transparent;
     animation: rotate 1.5s infinite;
     margin-top: 20%;
     margin-left: 35%;

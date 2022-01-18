@@ -22,25 +22,25 @@ instance.interceptors.response.use((res: any) => {
 		setIsAsyncLoaded(true); 
 		return res; 
 	}
-}, (errors: any) => {
-	if(errors.response.status === 401 || errors.response.status === 401) {
+}, (error: any) => {
+	if(error.response.status === 401 || error.response.status === 400) {
 		setIsAsyncLoaded(false);
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
-				const config = errors.config;
-				config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
-				axios.request(config).then((res) => {
+				axios.request(error.config).then((res) => {
 					if(res.status === 200) {
-						if(axios.getUri(config).includes("/profile/")) {
-							setUser(res.data)
+						if(axios.getUri(error.config).includes("/profile/")) {
+							setUser(res.data);
 						}
 						setIsAsyncLoaded(true);
 					}
 				})
 			}
 		})
-		return Promise.reject(errors);
+	} else {
+		axios.request(error.config);
 	}
+	return Promise.reject(error);
 })
 
 
@@ -81,7 +81,6 @@ export const setCurrentPage = createEvent<string>()
 export const $currentPage = createStore<string>('').on(
 	setCurrentPage,
 	(_, currPage) => {
-		localStorage.setItem('previousPage', `${currPage}`);
 		return currPage;
 	}
 )
@@ -93,14 +92,16 @@ export const getUserData = async () => {
 	}
 	return response;
 }
-export const getUserDataByLoginUrl = async (loginUrl: string | string[] | undefined) => {
+export const getUserDataByLoginUrl = async (loginUrl: string) => {
 	setIsAsyncLoaded(false);
-	const response = await instance.post('profile/by-loginurl', JSON.stringify(loginUrl));
+	const response = await instance.post('profile/by-loginurl', loginUrl);
 	return response;
 }
 export const updateTokens = async () => {
 	const response = await instance.post('user/refresh-token', {refreshToken: localStorage.getItem('refrash-token')});
-	localStorage.setItem('access-token', response.data.accessToken);
-	localStorage.setItem('refrash-token', response.data.refreshToken);
+	if(response.status <= 227) {
+		localStorage.setItem('access-token', response.data.accessToken);
+	    localStorage.setItem('refrash-token', response.data.refreshToken);
+	}
 	return response;
 }

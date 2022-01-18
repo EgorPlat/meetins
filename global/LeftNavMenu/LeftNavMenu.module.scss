@@ -10,3 +10,13 @@
         }
     }
 }
+@media screen and(max-width: 767px) {
+    .ul {
+        & li {
+            display: inline;
+            & a {
+                margin-left: 2%;
+            }
+        }
+    }
+}

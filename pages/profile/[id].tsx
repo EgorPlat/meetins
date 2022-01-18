@@ -1,10 +1,9 @@
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
 import { $user, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, User } from "../../global/store/store";
 import s from "./profile.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Link from "next/link";
 import Image from "next/image";
 import Interests from "./interests/interests";
 import Places from "./places/places";
@@ -33,13 +32,15 @@ function Profile(): JSX.Element {
     }
     useEffect( () => {
         setCurrentPage(route.pathname);
-        getUserDataByLoginUrl(route.query.id).then( (res) => {
-            if(res.status === 200) {
-                setUser(() => res.data);
-                setIsAsyncLoaded(true);
-            }
-        })
-    }, [route])   
+        if(route.query.id !== undefined) {
+            getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
+                if(res?.status <= 227) {
+                    setUser(() => res.data);
+                    setIsAsyncLoaded(true);
+                }
+            })
+        }
+    }, [route])
     return( 
         <div className={s.profile}>
             <div className="row">

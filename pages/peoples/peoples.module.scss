@@ -11,7 +11,7 @@
         padding-left: 5%; padding-top: 1%;
         font-size: 24px;
         display: grid;
-        grid-template-rows: 10% 90%;
+        grid-template-rows: 5% 95%;
         & .chapters {
             padding-top: 0.5%;
             & button {
@@ -30,4 +30,16 @@
 }
 .chapterActivated {
     border-bottom: 3px solid rgb(134, 134, 243);
+}
+
+@media screen and(max-width: 767px) {
+    .peoples {
+        grid-template-columns: 100%;
+        & .menu {
+            padding-left: 0%;
+        }
+        & .content {
+            grid-template-rows: 5% 95%;
+        }
+    }
 }

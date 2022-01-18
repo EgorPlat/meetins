@@ -11,6 +11,7 @@ import Modal from "../../global/helpers/Modal/Modal";
 import ProfileInfoForm from "../../global/Forms/ProfileInfo/Index";
 import ManageAccountForm from "../../global/Forms/ManageAccount/Index";
 import { useState } from "react";
+import { setIsAccountUpdated, setIsProfileUpdated } from "../../global/store/settings_model";
 
 export default function Settings(): JSX.Element {
 
@@ -20,6 +21,11 @@ export default function Settings(): JSX.Element {
 
     useEffect(() => {
         setCurrentPage(router.pathname);
+        
+        return () => {
+            setIsAccountUpdated(null);
+            setIsProfileUpdated(null);
+        }
     }, [])
 
     const changeModal = (status: boolean) => {

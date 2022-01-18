@@ -1,6 +1,5 @@
 import { useStore } from "effector-react";
 import React from "react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { isPhoneNumber } from "../../helpers/validate";
 import { isProfileUpdated, updateUserProfileData } from "../../store/settings_model";
@@ -45,11 +44,11 @@ export default function ProfileInfoForm(): JSX.Element {
                 })}/>
                 {errors.phoneNumber ? <span className={s.spanError}>{errors.phoneNumber.message}</span> : null}
             </div>
-            { isUpdated 
+            { 
+            isUpdated === null ? null :
+            isUpdated 
             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 
-            : isUpdated !== null 
-            ? <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (телефон)</div>
-            : null 
+            : <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (телефон)</div> 
             }
             <button type="submit" className={s.saveButton}>Сохранить</button>
             </form>

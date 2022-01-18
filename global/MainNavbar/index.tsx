@@ -4,10 +4,9 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { $currentPage, $user, baseURL, setCurrentPage, setUser } from "../store/store";
+import { $user, baseURL, setUser } from "../store/store";
 import s from './mainNavbar.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from "next/image";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
@@ -50,7 +49,10 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		</div>
 		<div className={s.navAvatar}>
 			<div className={s.avSelect}>
-			<img src={baseURL + user?.userIcon} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
+			{ user?.userIcon !== undefined 
+			?
+			<img src={baseURL + user.userIcon} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
+			: null }
 			<select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
 				<option className={s.option} value="name">{user?.firstName}</option>
 				<option className={s.option} value="logOut">Выход</option>

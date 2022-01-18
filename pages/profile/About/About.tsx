@@ -13,11 +13,16 @@ export default function About(props: {user: User | undefined, about: string}): J
         if(JSON.stringify(props.user) === JSON.stringify(authedUser)) {
             setChangingStatus(() => status);
         }
-    }
+    } 
     return(
         <div className={s.about}>
             {changingStatus
-            ? <textarea autoFocus className={s.textChange}></textarea>
+            ? 
+            <div>
+                <textarea autoFocus className={s.textChange} placeholder="Введите текст..."></textarea>
+                <button className={s.confirmBtn}>ОК</button>
+                <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>Х</button>
+            </div>
             : <p onClick={() => newChangeSatus(true)}>{props.about}</p>
             } 
         </div>

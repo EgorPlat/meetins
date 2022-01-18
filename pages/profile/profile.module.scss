@@ -32,15 +32,15 @@
     font-family: Nunito;
     & .userName {
         color: black;
-        font-size: 30px;
+        font-size: 28px;
     }
     & .status {
-        margin-left: 15%;
         padding-left: 10px;
         color: white;
         background-color: rgb(73, 73, 248);
         border-radius: 10px;
         font-size: 20px;
+        max-height: 60px;
     }
     & .text {
         margin-top: 2.5%;
@@ -62,7 +62,8 @@
 
 @media screen and(max-width: 767px) {
     .navCol {
-        height: 100px;
+        height: 50px;
+        min-height: 50px;
     }
     .profile {
         & .bodyCol {
