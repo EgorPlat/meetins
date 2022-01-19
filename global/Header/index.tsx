@@ -3,7 +3,7 @@ import Image from 'next/image'
 import logo from '../../public/images/logo-l.svg'
 import Navbar from '../Navbar'
 import Link from 'next/link'
-import { $currentPage } from '../store/store'
+import { $currentPage, setCurrentPage } from '../store/store'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 
@@ -17,10 +17,16 @@ export default function Header(): JSX.Element {
 	} else if (currentPage === '/profile') {
 		headerBgClass = s.headerProfilePage
 	}
+	const logOut = () => {
+		localStorage.setItem('access-token', "");
+		localStorage.setItem('refrash-token', "");
+		setCurrentPage('/');
+		localStorage.setItem('previousPage', "/");
+	}
 	return (
 		<header className={`${s.header} ${headerBgClass}`}>
 			<Link href='/' passHref>
-				<div className={s.logo}>
+				<div className={s.logo} onClick={logOut}>
 					<Image
 						className={s.logoImage}
 						src={logo}

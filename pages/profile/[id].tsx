@@ -75,13 +75,15 @@ function Profile(): JSX.Element {
                         <div className={`${s.text}`}>
                             <About user={user} about={'Люблю ЗОЖ, различные виды спорта, активных отдых с друзьями, природу.'}/>
                         </div>
+                        { JSON.stringify(user) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
                             <button type="button" className={`${s.actionsBtn}`}>
                                 Диалог
                                 <Image alt="Сообщение" src={message} width={20} height={20} />
                             </button>
                             <button type="button" className={`${s.actionsBtn}`}>Приглашение +</button>
-                        </div>
+                        </div> : null
+                        }
                     </div>
                 </div>
                 <div className={`row ${s.moreInfo}`}>
