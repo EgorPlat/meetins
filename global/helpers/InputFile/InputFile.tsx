@@ -6,7 +6,7 @@ export default function InputFile(props: { onMouseLeave: () => void, onChange: (
         <div className={s.formGroup} onMouseLeave={props.onMouseLeave}>
             <label className={s.label}>
                 <div className={s.title}>Добавить файл</div>
-                <input type="file" onChange={(event) => props.onChange(event)}/>
+                <input type="file" onChange={(event) => props.onChange(event)} accept=".jpg,.jpeg,.png"/>
             </label>
         </div>
     )

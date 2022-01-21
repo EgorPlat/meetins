@@ -12,9 +12,12 @@ export const $usersList = createStore<IShortUser[]>([] as IShortUser[]).on(
 export const getAllRegisteredUsers = async () => {
 	setIsAsyncLoaded(false);
 	const response = await instance.get('peoples/get-all');
+    if(response.status === 200) {
+        setUsersList(response.data);
+    }
 	return response;
 }
-
+ 
 export interface IShortUser {
     userId: string,
     firstName: string,

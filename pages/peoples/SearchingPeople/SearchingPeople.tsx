@@ -8,6 +8,7 @@ import { $usersList, getAllRegisteredUsers, IShortUser, setUsersList } from "../
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
 
+
 export default function SearchingPeople(): JSX.Element {
 
     const [searchParams, setSearchParams] = useState<ISearchParams>();
@@ -17,17 +18,29 @@ export default function SearchingPeople(): JSX.Element {
 
     const userList: IShortUser[] = useStore($usersList);
     const isListLoaded: boolean = useStore(isAsyncLoaded);
-
+    const [dinamicUsers, setDinamicUsers] = useState<IShortUser[]>([]);
+    
     useEffect(() => {
         getAllRegisteredUsers().then( (res) => {
             if(res.status === 200) {
-                setUsersList(res.data);
                 setIsAsyncLoaded(true);
             }
         }, (errors) => {
             console.log(errors);
         })
     }, [])
+
+    useEffect(() => {
+        const scrollHandler = (event: any) => {
+        if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
+            setDinamicUsers((dinamicUsers) => userList.slice(0, dinamicUsers.length+5));
+        }
+        }
+        document.addEventListener('scroll', scrollHandler);
+        return () => {
+            document.removeEventListener('scroll', scrollHandler);
+        }
+    }, [userList])
     return(
         <div className={s.searching}>
             <div className={s.params}>
@@ -69,7 +82,7 @@ export default function SearchingPeople(): JSX.Element {
                 </div>
             </div>
             <div className={s.result}>
-                {isListLoaded ? userList.map( user => <UserList key={user.loginUrl} user={user}/>) : <Loader/>}
+                {isListLoaded ? dinamicUsers.map( user => <UserList key={user.loginUrl} user={user}/>) : <Loader/>}
             </div>
         </div>
     )

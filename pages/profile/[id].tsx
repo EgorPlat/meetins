@@ -27,8 +27,8 @@ function Profile(): JSX.Element {
             setAddingImageStatus(() => status);
         }
     }
-    const onChangeInputImage = (file: any) => {
-        console.log(file);
+    const onChangeInputImage = (event: any) => {
+        console.log(URL.createObjectURL(event.target.files[0]));
     }
     useEffect( () => {
         setCurrentPage(route.pathname);

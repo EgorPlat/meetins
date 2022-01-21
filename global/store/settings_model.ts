@@ -1,4 +1,4 @@
-import { createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore } from "effector";
 import { AccountData, instance, ProfileData, setUser } from "./store";
 
 export const setIsProfileUpdated = createEvent<boolean | null>();
@@ -27,3 +27,7 @@ export const updateUserAccountData = async (newUserData: AccountData) => {
 	}
 	return response;
 }
+export const updateUserAvatar = createEffect();
+updateUserAvatar.use(async (inputFile) => {
+	const response = await instance.post('profile/update-avatar', inputFile)
+})

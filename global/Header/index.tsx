@@ -23,7 +23,7 @@ export default function Header(): JSX.Element {
 		setCurrentPage('/');
 		localStorage.setItem('previousPage', "/");
 	}
-	return (
+	return ( 
 		<header className={`${s.header} ${headerBgClass}`}>
 			<Link href='/' passHref>
 				<div className={s.logo} onClick={logOut}>
