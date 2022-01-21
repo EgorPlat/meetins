@@ -50,8 +50,9 @@ export type User = {
 	lastName: string,
 	phoneNumber: string,
 	email: string,
+	status: string,
 	gender: string,
-	userIcon: string,
+	avatar: string,
 	dateRegister: string,
 	loginUrl: string,
 	birthDate: string

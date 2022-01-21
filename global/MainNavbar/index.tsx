@@ -49,9 +49,9 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		</div>
 		<div className={s.navAvatar}>
 			<div className={s.avSelect}>
-			{ user?.userIcon !== undefined 
+			{ user?.avatar !== undefined 
 			?
-			<img src={baseURL + user.userIcon} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
+			<img src={baseURL + user.avatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
 			: null }
 			<select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
 				<option className={s.option} value="name">{user?.firstName}</option>

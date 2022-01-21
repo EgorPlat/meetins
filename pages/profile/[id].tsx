@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
-import { $user, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, User } from "../../global/store/store";
+import { $user, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, setUser, User } from "../../global/store/store";
 import s from "./profile.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from "next/image";
@@ -13,29 +13,36 @@ import Loader from "../../global/Loader/Loader";
 import About from "./About/About";
 import LeftNavMenu from "../../global/LeftNavMenu/LeftNavMenu";
 import InputFile from "../../global/helpers/InputFile/InputFile";
+import { updateUserAvatar } from "../../global/store/settings_model";
+
 function Profile(): JSX.Element {
 
     const route = useRouter();
     const asyncLoaded = useStore(isAsyncLoaded);
 
-    const [user, setUser] = useState<User>();
+    const [currentUser, setCurrentUser] = useState<User>();
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
 
     const changeAddingImageStatus = (status: boolean) => {
-        if(user?.email === authedUser?.email) {
+        if(currentUser?.email === authedUser?.email) {
             setAddingImageStatus(() => status);
         }
     }
     const onChangeInputImage = (event: any) => {
-        console.log(URL.createObjectURL(event.target.files[0]));
+        updateUserAvatar(event).then((res: any) => {
+            if(res.status === 200) {
+                setCurrentUser(res.data)
+                setUser(res.data);
+            }
+        })
     }
     useEffect( () => {
         setCurrentPage(route.pathname);
         if(route.query.id !== undefined) {
             getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
                 if(res?.status <= 227) {
-                    setUser(() => res.data);
+                    setCurrentUser(() => res.data);
                     setIsAsyncLoaded(true);
                 }
             })
@@ -55,7 +62,7 @@ function Profile(): JSX.Element {
                        {!addingImageStatus ?
                        <img 
                         onMouseEnter={() => changeAddingImageStatus(true)}
-                        src={'https://api.meetins.ru/' + user?.userIcon}
+                        src={'https://api.meetins.ru/' + currentUser?.avatar}
                         alt="Аватарка" 
                         className={`${s.avatar}`}
                         /> : <InputFile 
@@ -66,16 +73,16 @@ function Profile(): JSX.Element {
                     <div className={`col-md-8 ${s.userInfo}`}>
                         <div className="row">
                             <div className={`col ${s.userName}`}>
-                                {user?.firstName + " " + user?.lastName}
+                                {currentUser?.firstName + " " + currentUser?.lastName}
                             </div>
                             <button className={`col ${s.status}`}>
                                 В поисках друзей
                             </button>
                         </div> 
                         <div className={`${s.text}`}>
-                            <About user={user} about={'Люблю ЗОЖ, различные виды спорта, активных отдых с друзьями, природу.'}/>
+                            <About user={currentUser} about={'Люблю ЗОЖ, различные виды спорта, активных отдых с друзьями, природу.'}/>
                         </div>
-                        { JSON.stringify(user) !== JSON.stringify(authedUser) ?
+                        { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
                             <button type="button" className={`${s.actionsBtn}`}>
                                 Диалог
