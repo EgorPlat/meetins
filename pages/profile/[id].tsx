@@ -1,63 +1,96 @@
-import Router, { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
-import { $user, isTokenUpdated, setCurrentPage } from "../../global/store/store";
+import { $user, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, setUser, User } from "../../global/store/store";
 import s from "./profile.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Link from "next/link";
 import Image from "next/image";
 import Interests from "./interests/interests";
 import Places from "./places/places";
 import ImageList from "./ImageList/ImageList";
 import { useStore } from "effector-react";
 import Loader from "../../global/Loader/Loader";
+import About from "./About/About";
+import LeftNavMenu from "../../global/LeftNavMenu/LeftNavMenu";
+import InputFile from "../../global/helpers/InputFile/InputFile";
+import { updateUserAvatar } from "../../global/store/settings_model";
+
 function Profile(): JSX.Element {
 
     const route = useRouter();
-    const user = useStore($user);
-    const tokenUpdated = useStore(isTokenUpdated);
+    const asyncLoaded = useStore(isAsyncLoaded);
 
+    const [currentUser, setCurrentUser] = useState<User>();
+    const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
+    const authedUser = useStore($user);
+
+    const changeAddingImageStatus = (status: boolean) => {
+        if(currentUser?.email === authedUser?.email) {
+            setAddingImageStatus(() => status);
+        }
+    }
+    const onChangeInputImage = (event: any) => {
+        updateUserAvatar(event).then((res: any) => {
+            if(res.status === 200) {
+                setCurrentUser(res.data)
+                setUser(res.data);
+            }
+        })
+    }
     useEffect( () => {
         setCurrentPage(route.pathname);
-    }, [route])   
+        if(route.query.id !== undefined) {
+            getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
+                if(res?.status <= 227) {
+                    setCurrentUser(() => res.data);
+                    setIsAsyncLoaded(true);
+                }
+            })
+        }
+    }, [route])
     return( 
         <div className={s.profile}>
             <div className="row">
                 <div className={`col-md-3 ${s.navCol}`}>
-                    <ul className={s.ul}>
-                        <li><Link href="">Диалоги</Link></li>
-                        <li><Link href="">Встречи</Link></li>
-                    </ul>
+                    <LeftNavMenu />
                 </div>
-                {tokenUpdated 
-                ? <div className={`col-md-7 ${s.bodyCol}`}>
+                {asyncLoaded 
+                ? 
+                <div className={`col-md-8 ${s.bodyCol}`}>
                 <div className={`row`}>
                     <div className={`col-md-4 ${s.bodyInfo}`}>
+                       {!addingImageStatus ?
                        <img 
-                        src={'https://api.meetins.ru/' + user?.userIcon}
+                        onMouseEnter={() => changeAddingImageStatus(true)}
+                        src={'https://api.meetins.ru/' + currentUser?.avatar}
                         alt="Аватарка" 
-                        className={`${s.round} ${s.avatar}`}
-                        />
+                        className={`${s.avatar}`}
+                        /> : <InputFile 
+                                onChange={(event) => onChangeInputImage(event)} 
+                                onMouseLeave={() => changeAddingImageStatus(false)}
+                            />}
                     </div>
                     <div className={`col-md-8 ${s.userInfo}`}>
                         <div className="row">
                             <div className={`col ${s.userName}`}>
-                                {user?.firstName + " " + user?.lastName}
+                                {currentUser?.firstName + " " + currentUser?.lastName}
                             </div>
                             <button className={`col ${s.status}`}>
                                 В поисках друзей
                             </button>
-                        </div>
+                        </div> 
                         <div className={`${s.text}`}>
-                            Люблю ЗОЖ, различные виды спорта, активных отдых на природе.
+                            <About user={currentUser} about={'Люблю ЗОЖ, различные виды спорта, активных отдых с друзьями, природу.'}/>
                         </div>
+                        { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
                             <button type="button" className={`${s.actionsBtn}`}>
                                 Диалог
                                 <Image alt="Сообщение" src={message} width={20} height={20} />
                             </button>
                             <button type="button" className={`${s.actionsBtn}`}>Приглашение +</button>
-                        </div>
+                        </div> : null
+                        }
                     </div>
                 </div>
                 <div className={`row ${s.moreInfo}`}>

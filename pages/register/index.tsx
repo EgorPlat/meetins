@@ -15,15 +15,11 @@ import {
 	validateEmailOrPhone,
 } from '../../global/helpers/validate'
 import {
-	$registerDetails,
-	getUsers,
 	sendRegData,
 	setRegisterDetails,
 } from '../../global/store/register_model'
-import { useStore } from 'effector-react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { getUserData, setIsTokenUpdated, setUser } from '../../global/store/store'
 
 export default function Login(): JSX.Element {
 	const {
@@ -33,7 +29,6 @@ export default function Login(): JSX.Element {
 	} = useForm()
 	const [gender, setGender] = useState<string>('')
 	const [showPassword, setShowPassword] = useState<boolean>(false)
-	const registerDetails = useStore($registerDetails);
 	const router = useRouter();
 
 	const sendLoginData = (data: {
@@ -72,14 +67,9 @@ export default function Login(): JSX.Element {
 			)
 				.toISOString()
 				.split('.')[0],
-		}).then( () => {
-			getUserData().then((res) => {
-				if(res.status === 200) {
-					setUser(res.data);
-				}
-			})
+		}).then( (res: any) => {
 			if(localStorage.getItem('access-token') !== '') {
-				router.push("/profile");
+				router.push(`/profile/${res.data.profile.loginUrl}`);
 			}
 		})
 	}

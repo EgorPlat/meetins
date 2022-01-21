@@ -1,9 +1,9 @@
 import s from './header.module.scss'
 import Image from 'next/image'
-import logo from '../../public/images/logo.svg'
+import logo from '../../public/images/logo-l.svg'
 import Navbar from '../Navbar'
 import Link from 'next/link'
-import { $currentPage } from '../store/store'
+import { $currentPage, setCurrentPage } from '../store/store'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 
@@ -17,18 +17,23 @@ export default function Header(): JSX.Element {
 	} else if (currentPage === '/profile') {
 		headerBgClass = s.headerProfilePage
 	}
-	return (
+	const logOut = () => {
+		localStorage.setItem('access-token', "");
+		localStorage.setItem('refrash-token', "");
+		setCurrentPage('/');
+		localStorage.setItem('previousPage', "/");
+	}
+	return ( 
 		<header className={`${s.header} ${headerBgClass}`}>
 			<Link href='/' passHref>
-				<div className={s.logo}>
+				<div className={s.logo} onClick={logOut}>
 					<Image
 						className={s.logoImage}
 						src={logo}
 						alt='company logo'
-						width={60}
-				 		height={60}
+						width={380}
+				 		height={120}
 					/>
-					<span className={s.logoText}>M</span>
 				</div>
 			</Link>
 

@@ -1,0 +1,22 @@
+.ul {
+    list-style: none;
+    & li {
+        font-family: Nunito;
+        font-size: 24px;
+        & a {
+            text-decoration: none;
+            color: black;
+            margin-left: 5%;
+        }
+    }
+}
+@media screen and(max-width: 767px) {
+    .ul {
+        & li {
+            display: inline;
+            & a {
+                margin-left: 2%;
+            }
+        }
+    }
+}

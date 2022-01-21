@@ -27,18 +27,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 		footerTextColor = '#515151'
 		footerBackgroundColor = '#e5e5e5'
 	}
-	useEffect(() => {
-		setCurrentPage(route.pathname)
+	useEffect(() => { 
+		if(route.pathname !== '/') {
+			setCurrentPage(route.pathname);
+			localStorage.setItem('previousPage', route.pathname);
+		}
 	}, [route.pathname])
 	return ( 
 		<>
 			<div className={`${s.container} ${backgroundClass}`}>
 				<Header />
 				<main className={s.main}>{children}</main>
-				<Footer
+				{/*<Footer
 					textColor={footerTextColor}
 					backgroundColor={footerBackgroundColor}
-				/>
+				/> */}
 			</div>
 		</>
 	)

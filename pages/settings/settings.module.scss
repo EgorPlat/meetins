@@ -1,6 +1,6 @@
 .settings {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     color: black;
     font-family: Nunito;
     & .menu {
@@ -26,58 +26,39 @@
             padding: 5px;
             background-color: rgb(240, 240, 240);
         }
-        & .info {
-            & label {
-                display: block;
-                margin-top: 11%;
-                font-size: 16px;
-            }
-            & input {
-                display: block;
-                margin-top: 2.5%;
-                font-size: 18px;
-            }
-        }
         & .management {
             margin-top: 5%;
-            & .manageAcc {
-                & label {
-                    display: block;
-                    margin-top: 11%;
-                    font-size: 16px;
-                }
-                & input {
-                    display: block;
-                    margin-top: 2.5%;
-                    font-size: 18px;
-                }
-            }
             & .description {
                 font-size: 16px;
                 margin-top: 1%;
             }
-            & .saveButton {
-                margin-top: 1%;
-                border: none;
-                background-color: rgb(108, 154, 238);
-                color: white;
+            & .updateSatus {
+                color: green;
+                background-color: rgba(65, 223, 86, 0.3);
                 padding: 5px;
-            }
-            & .saveButton:hover {
-                border: 2px solid green;
-                transition: 0.5s;
+                width: 50%;
+                margin-top: 1%;
             }
         }
+        & .infoText {
+            margin-top: 2%;
+        }
+    }
+    & .deleteBtn {
+        margin-top: 1%;
+        background-color: red;
+        color: white;
     }
 }
-
-
+ 
 
 
 
 @media screen and(max-width: 600px) {
     .settings {
         & .menu {
+            width: 100%;
+            min-height: 100px;
             height: 100px;
             font-size: 32px;
             padding-top: 1%;
@@ -95,7 +76,6 @@
                 & input {
                     display: inline;
                     width: 90%;
-                    margin-top: 2.5%;
                     margin-left: 1%;
                     font-size: 18px;
                 }
@@ -112,7 +92,6 @@
                     & input {
                         display: inline;
                         width: 90%;
-                        margin-top: 2.5%;
                         margin-left: 1%;
                         font-size: 18px;
                     } 

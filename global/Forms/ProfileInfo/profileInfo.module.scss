@@ -1,0 +1,48 @@
+.info {
+    & label {
+        display: inline-block;
+        width: 200px;
+        margin-top: 2.5%;
+        font-size: 16px;
+    }
+    & input {
+        display: inline;
+        margin-top: 2.5%;
+        font-size: 18px;
+    }
+    & .saveButton {
+        margin-top: 1%;
+        border: none;
+        background-color: rgb(108, 154, 238);
+        color: white;
+        padding: 5px;
+    }
+    & .spanError {
+        color: red;
+        font-size: 12px;
+    }
+    & .successActionDiv {
+        margin-top: 1%;
+        color: green;
+        padding: 5px;
+        background-color: rgba($color: green, $alpha: 0.1);
+    }
+    & .unSuccessActionDiv {
+        margin-top: 1%;
+        color: red;
+        padding: 5px;
+        background-color: rgba($color: red, $alpha: 0.1);
+    }
+    & input::-webkit-input-placeholder {color:black;}
+}
+
+@media screen and(max-width: 600px){
+    .info {
+        & input {
+            margin-top: 1%;
+        }
+        & .formElem {
+            margin-top: 1%;
+        }
+    }
+}

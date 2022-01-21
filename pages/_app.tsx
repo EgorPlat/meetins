@@ -4,21 +4,24 @@ import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { $currentPage, getUserData, setUser, updateTokens } from '../global/store/store'
+import { getUserData, setIsAsyncLoaded } from '../global/store/store'
 import { useRouter } from 'next/router'
-import { useStore } from 'effector-react'
+
 
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
-	const currentPage = useStore($currentPage);
-
+ 
 	useEffect(() => {
-		if(localStorage.getItem('access-token') !== "") {
+		if(localStorage.getItem('access-token')) {
+			setIsAsyncLoaded(false);
 			getUserData().then( (res) => {
-				if(res.status === 200) { setUser(res.data); router.push(currentPage)}
-			})
+				if(res.status === 200) {  
+					setIsAsyncLoaded(true);
+					router.push(localStorage.getItem('previousPage')!); 
+				}
+			}) 
 		} else {
 			router.push('/login');
 		}

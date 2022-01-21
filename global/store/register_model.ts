@@ -1,4 +1,4 @@
-import { getUserData, instance, setIsTokenUpdated, setUser } from './store'
+import { instance, setUser } from './store'
 import { createEffect, createEvent, createStore } from 'effector'
 
 type RegisterDetailsType = {
@@ -10,7 +10,7 @@ type RegisterDetailsType = {
 	gender: string
 	dateRegister: string
 } | null
-
+ 
 export const sendRegData = createEffect()
 export const getUsers = createEffect()
 
@@ -23,13 +23,13 @@ export const $registerDetails = createStore<RegisterDetailsType>(null).on(
 ) 
 
 sendRegData.use(async (regDetails) => {
-	const data = await instance.post('user/register-user', JSON.stringify(regDetails))
-	console.log(data)
-	if(data.status === 200) {
-		localStorage.setItem('access-token', data.data.access_token);
-		localStorage.setItem('refrash-token', data.data.resresh_token);
+	const response = await instance.post('user/register-user', JSON.stringify(regDetails))
+	if(response.status === 200) {
+		localStorage.setItem('access-token', response.data.authenticateResponse.accessToken);
+		localStorage.setItem('refrash-token', response.data.authenticateResponse.refreshToken);
+		setUser(response.data.profile);
 	}
-	return data;
+	return response;
 })
 
 getUsers.use(async () => {
