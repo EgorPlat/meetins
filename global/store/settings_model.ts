@@ -38,3 +38,9 @@ updateUserAvatar.use(async (event: any) => {
 	const response = await instance.post<User>('profile/update-avatar', formData);
 	return response;
 })
+
+export const updateUserStatus = createEffect();
+updateUserStatus.use( async (userStatus) => {
+	const response = await instance.post<User>('profile/update-status', userStatus);
+	return response;
+})

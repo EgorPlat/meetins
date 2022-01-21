@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
 import { $user, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, setUser, User } from "../../global/store/store";
 import s from "./profile.module.scss";
@@ -13,7 +13,7 @@ import Loader from "../../global/Loader/Loader";
 import About from "./About/About";
 import LeftNavMenu from "../../global/LeftNavMenu/LeftNavMenu";
 import InputFile from "../../global/helpers/InputFile/InputFile";
-import { updateUserAvatar } from "../../global/store/settings_model";
+import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 
 function Profile(): JSX.Element {
 
@@ -37,6 +37,14 @@ function Profile(): JSX.Element {
             }
         })
     }
+    const saveNewStatus = useCallback((userStatus: string) => {
+        updateUserStatus(userStatus).then( (res: any) => {
+            if(res.status === 200) {
+                setUser(res.data);
+                setCurrentUser(res.data);
+            }
+        })
+    }, [])
     useEffect( () => {
         setCurrentPage(route.pathname);
         if(route.query.id !== undefined) {
@@ -80,7 +88,7 @@ function Profile(): JSX.Element {
                             </button>
                         </div> 
                         <div className={`${s.text}`}>
-                            <About user={currentUser} about={'Люблю ЗОЖ, различные виды спорта, активных отдых с друзьями, природу.'}/>
+                            <About saveNewStatus={saveNewStatus} user={currentUser} about={`${currentUser?.status}`}/>
                         </div>
                         { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
