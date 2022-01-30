@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
-import { $user, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, setUser, User } from "../../global/store/store";
+import { $user, baseURL, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, setUser, User } from "../../global/store/store";
 import s from "./profile.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from "next/image";
@@ -15,12 +15,12 @@ import LeftNavMenu from "../../global/LeftNavMenu/LeftNavMenu";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 
-function Profile(): JSX.Element {
+function Profile(props: {currentUser: User}): JSX.Element {
 
     const route = useRouter();
     const asyncLoaded = useStore(isAsyncLoaded);
 
-    const [currentUser, setCurrentUser] = useState<User>();
+    const [currentUser, setCurrentUser] = useState<User>({} as User);
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
 
@@ -44,12 +44,14 @@ function Profile(): JSX.Element {
                 setCurrentUser(res.data);
             }
         })
+        console.log(props.currentUser);
     }, [])
     useEffect( () => {
-        setCurrentPage(route.pathname);
+        setCurrentPage(route.asPath);
+        console.log(route.query.id);
         if(route.query.id !== undefined) {
             getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
-                if(res?.status <= 227) {
+                if(res.status === 200) {
                     setCurrentUser(() => res.data);
                     setIsAsyncLoaded(true);
                 }
@@ -70,13 +72,13 @@ function Profile(): JSX.Element {
                        {!addingImageStatus ?
                        <img 
                         onMouseEnter={() => changeAddingImageStatus(true)}
-                        src={'https://api.meetins.ru/' + currentUser?.avatar}
+                        src={baseURL + currentUser?.avatar}
                         alt="Аватарка" 
                         className={`${s.avatar}`}
                         /> : <InputFile 
-                                onChange={(event) => onChangeInputImage(event)} 
-                                onMouseLeave={() => changeAddingImageStatus(false)}
-                            />}
+                            onChange={(event) => onChangeInputImage(event)} 
+                            onMouseLeave={() => changeAddingImageStatus(false)}
+                        />}
                     </div>
                     <div className={`col-md-8 ${s.userInfo}`}>
                         <div className="row">
@@ -88,7 +90,7 @@ function Profile(): JSX.Element {
                             </button>
                         </div> 
                         <div className={`${s.text}`}>
-                            <About saveNewStatus={saveNewStatus} user={currentUser} about={`${currentUser?.status}`}/>
+                            <About saveNewStatus={saveNewStatus} user={currentUser}/>
                         </div>
                         { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
@@ -121,3 +123,20 @@ function Profile(): JSX.Element {
 }
 
 export default Profile;
+
+/*export async function getServerSideProps(context: any) {
+    console.log(context);
+    
+    getUserDataByLoginUrl(String(context.query.id)).then( (res) => {
+        if(res.status === 200) {
+            setIsAsyncLoaded(true);
+            return {
+                props: {user: res.data}
+            }
+        } else {
+            return {
+                props: {}
+            }
+        }
+    })
+}*/

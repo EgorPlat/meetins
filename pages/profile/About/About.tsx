@@ -5,8 +5,7 @@ import { $user, User } from "../../../global/store/store";
 import s from "./About.module.scss";
 
 export default function About(props: {
-    user: User | undefined, 
-    about: string,
+    user: User,
     saveNewStatus: (userStatus: string) => void
 }): JSX.Element {
 
@@ -23,21 +22,27 @@ export default function About(props: {
     const saveNewStatus = () => {
         props.saveNewStatus(userStatus);
     }
-    return(
-        <div className={s.about}>
-            {authedUser?.status.length! <= 1 && isAuthedProfile
-             ? <p style={{color: "grey"}} onClick={() => newChangeSatus(true)}>Введите Ваш статус...</p>
-             : null
-            }
-            {changingStatus
-             ? 
-            <div>
-                <textarea autoFocus className={s.textChange} placeholder="Введите текст..." onChange={(event) => setUserStatus(event.target.value)}></textarea>
-                <button className={s.confirmBtn} onClick={saveNewStatus}>ОК</button>
-                <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>Х</button>
+    if(props.user && authedUser) {
+        return(
+            <div className={s.about}>
+                {isAuthedProfile && authedUser.status === (null || "")
+                 ? <p style={{color: "grey"}} onClick={() => newChangeSatus(true)}>Введите Ваш статус...</p>
+                 : null
+                }
+                {changingStatus
+                 ? 
+                <div>
+                    <textarea autoFocus className={s.textChange} placeholder="Введите текст..." onChange={(event) => setUserStatus(event.target.value)}></textarea>
+                    <button className={s.confirmBtn} onClick={saveNewStatus}>ОК</button>
+                    <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>Х</button>
+                </div>
+                 : <p onClick={() => newChangeSatus(true)}>{props.user.status}</p>
+                } 
             </div>
-             : <p onClick={() => newChangeSatus(true)}>{props.about}</p>
-            } 
-        </div>
-    )
+        )
+    } else {
+        return(
+            <div>Ошибка соединения.</div>
+        )
+    }
 }

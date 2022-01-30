@@ -77,7 +77,7 @@ export default function Login(): JSX.Element {
 	return (
 		<div className={s.card}>
 			<Head>
-				<title>Регистрация</title>
+				<title>Регистрация</title> 
 			</Head>
 			<h2>Регистрация</h2>
 			<form autoComplete='off' onSubmit={handleSubmit(sendLoginData)}>

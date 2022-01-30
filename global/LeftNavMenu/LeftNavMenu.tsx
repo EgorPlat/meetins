@@ -7,7 +7,7 @@ export default function LeftNavMenu(): JSX.Element {
         <ul className={s.ul}>        
             <li><Link href="">Мессенджер</Link></li>
             <li><Link href="">Приглашения</Link></li>
-            <li><Link href="">Закладки</Link></li>
+            <li><Link href="/marks">Закладки</Link></li>
         </ul> 
     )
 }

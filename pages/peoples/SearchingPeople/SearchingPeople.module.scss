@@ -19,13 +19,13 @@
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
-                border: 1px solid rgb(136, 136, 235);
+                border: 1px solid #3DB2FF;
                 background-color: white;
                 margin-right: 5%;
             }
             & button:hover {
                 cursor: pointer;
-                background-color: rgb(136, 136, 235);
+                background-color: #3DB2FF;
             }
             & .part {
                 margin-bottom: 10%;
@@ -45,7 +45,7 @@
             }
             & .eachGoal:hover {
                 cursor: pointer;
-                background-color: rgb(136, 136, 235);
+                background-color: #3DB2FF;
             }
         }
         & .goal::-webkit-scrollbar { width: 3px;/* ширина scrollbar */}
@@ -67,7 +67,7 @@
             }
             & .eachEvent:hover {
                 cursor: pointer;
-                background-color: rgb(136, 136, 235);
+                background-color: #3DB2FF;
             }
         }
         & .events::-webkit-scrollbar { width: 3px;/* ширина scrollbar */}
@@ -86,12 +86,23 @@
             }
             & .eachPopular:hover {
                 cursor: pointer;
-                background-color: rgb(136, 136, 235);
+                background-color: #3DB2FF;
             }
         }
     }
     & .result {
         padding-top: 5%;
+        & .filterSelect {
+            padding-bottom: 5%;
+            width: 100%;
+            height: 40px;
+            & select {
+                font-weight: 700;
+                outline: none;
+                border: none;
+                font-size: 18px;
+            }
+        }
     }
 }
 @media screen and(max-width: 1105px) {
