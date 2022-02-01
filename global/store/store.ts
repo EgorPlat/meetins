@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createEvent, createStore } from 'effector'
 
-export const baseURL = 'http://api.meetins.ru/';
+export const baseURL = 'https://api.meetins.ru/';
 export const instance = axios.create({
 	baseURL: baseURL,
 	headers: {
