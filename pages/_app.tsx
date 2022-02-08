@@ -3,18 +3,17 @@ import Layout from '../components/layout/Layout'
 import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
-import { useCallback, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getUserData, setIsAsyncLoaded } from '../global/store/store'
 import { useRouter } from 'next/router'
-import { useSignalr } from '@known-as-bmf/react-signalr'
-import { signalrEndpoint } from '../global/store/signalConnect_model'
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr'
 
 
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
-	const { send, on } = useSignalr(signalrEndpoint);
+	const [connection, setConnection] = useState<HubConnection>();
 
 	useEffect(() => {
 		if(localStorage.getItem('access-token')) {
@@ -28,14 +27,25 @@ function MyApp({ Component, pageProps }: AppProps) {
 		} else {
 			router.push('/login');
 		}
+		const newConnection = new HubConnectionBuilder()
+		.withUrl('https://api.meetins.ru/messenger')
+		.withAutomaticReconnect()
+		.build()
+		setConnection(() => newConnection);
 	}, [])
+
 	useEffect(() => {
-		const subConnection = on('myMethod').subscribe();
-		return () => subConnection.unsubscribe();
-	}, [on]);
-	const notify = useCallback(() => {
-		send('remoteMethod', { foo: 'bar' });
-	}, []);
+		if(connection) {
+			connection.start().then(result => {
+				console.log('Connected!');
+
+				connection.on('ReceiveBroadcast', message => {
+					console.log(message);
+				});
+			})
+			.catch(e => console.log('Connection failed: ', e));
+		}
+	}, [connection])
 	
 	return (
 		<Layout>

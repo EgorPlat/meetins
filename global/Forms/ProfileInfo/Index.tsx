@@ -12,21 +12,21 @@ export default function ProfileInfoForm(): JSX.Element {
     const isUpdated: boolean | null = useStore(isProfileUpdated);
     const user = useStore($user);
 
-    const onChangeProfile = (data: {firstNameAndLastName: string, birthDate: string, phoneNumber: string}) => {
+    const onChangeProfile = (data: {name: string, birthDate: string, phoneNumber: string}) => {
         updateUserProfileData(data); 
     }
     return (
         <div className={s.info}>
             <form onSubmit={handleSubmit(onChangeProfile)}>
             <div className={s.formElem}>
-                <label htmlFor="name">Имя и Фамилия</label>
+                <label htmlFor="name">Имя</label>
                 <input type="text" id="name" 
-                    placeholder={user?.firstName + " " + user?.lastName} {...register("firstNameAndLastName", {required: false, validate: (value) => 
-			        /^[a-zа-яё]+ [a-zа-яё]+$/i.test(value) === false
-				    ? 'Пожалуйста следуйте формату: Имя Фамилия'
+                    placeholder={user?.name} {...register("name", {required: false, validate: (value) => 
+			        /^[a-zа-яё]+$/i.test(value) === false
+				    ? 'Пожалуйста следуйте формату: Имя'
 				    : true,
                 })}/>
-                {errors.firstNameAndLastName ? <span className={s.spanError}>{errors.firstNameAndLastName.message}</span> : null}
+                {errors.name ? <span className={s.spanError}>{errors.name.message}</span> : null}
             </div> 
             <div className={s.formElem}>
                 <label htmlFor="date">Дата Рождения</label>

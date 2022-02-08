@@ -11,7 +11,6 @@ import { useState } from 'react'
 import EyeIcon from '../../global/helpers/Icons/EyeIcon'
 import {
 	isEmail,
-	isPhoneNumber,
 	validateEmailOrPhone,
 } from '../../global/helpers/validate'
 import {
@@ -37,39 +36,24 @@ export default function Login(): JSX.Element {
 		pass: string
 		gender: string
 	}) => {
-		const phoneNumber = isPhoneNumber(data.phone_or_email)
 		const email = isEmail(data.phone_or_email)
 		const nameArr = data.name.split(' ')
 
 		setRegisterDetails({
-			firstName: nameArr[0],
-			lastName: nameArr[1],
-			phoneNumber: phoneNumber,
+			name: nameArr[0],
 			email,
 			password: data.pass,
 			gender: data.gender,
-			dateRegister: new Date(
-				new Date().toString().split('GMT')[0] + ' UTC'
-			)
-				.toISOString()
-				.split('.')[0],
 		})
 
 		sendRegData({
-			firstName: nameArr[0],
-			lastName: nameArr[1],
-			phoneNumber: phoneNumber,
+			name: nameArr[0],
 			email,
 			password: data.pass,
 			gender: data.gender,
-			dateRegister: new Date(
-				new Date().toString().split('GMT')[0] + ' UTC'
-			)
-				.toISOString()
-				.split('.')[0],
 		}).then( (res: any) => {
 			if(localStorage.getItem('access-token') !== '') {
-				router.push(`/profile/${res.data.profile.loginUrl}`);
+				router.push(`/profile/${res.data.profile.login}`);
 			}
 		})
 	}
@@ -83,7 +67,7 @@ export default function Login(): JSX.Element {
 			<form autoComplete='off' onSubmit={handleSubmit(sendLoginData)}>
 				<Input
 					icon={loginIcon}
-					placeholder='Имя и фамилия'
+					placeholder='Имя'
 					type='text'
 					id='login'
 					autocomplete={'off'}
@@ -92,8 +76,8 @@ export default function Login(): JSX.Element {
 					register={register('name', {
 						required: true,
 						validate: (value) =>
-							/^[a-zа-яё]+ [a-zа-яё]+$/i.test(value) === false
-								? 'Пожалуйста следуйте формату: Имя Фамилия'
+							/^[a-zа-яё]+$/i.test(value) === false
+								? 'Пожалуйста следуйте формату: Имя'
 								: true,
 					})}
 				/>
@@ -102,7 +86,7 @@ export default function Login(): JSX.Element {
 				)}
 				<Input
 					icon={phoneIcon}
-					placeholder='Телефон или e-mail'
+					placeholder='E-mail'
 					type='text' 
 					id='phoneOrEmail'
 					style={{ marginTop: '25px' }}

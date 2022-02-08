@@ -24,15 +24,15 @@ export default function Login(): JSX.Element {
 		const login = data.login;
 		const pass = data.password;
 		setLoginDetails({
-			emailOrPhone: login,
+			email: login,
 			password: pass,
 		})
 		sendLogData({
-			emailOrPhone: login,
+			email: login,
 			password: pass,
 		}).then((res: any) => {
 			if(res.status <= 200) {
-				Router.push(`/profile/${res.data.profile.loginUrl}`);
+				Router.push(`/profile/${res.data.profile.login}`);
 			}
 		}, (errors) => {
             setErrorMessage( () => `Error`)
@@ -48,7 +48,7 @@ export default function Login(): JSX.Element {
 			<form onSubmit={handleSubmit(sendLoginData)}>
 				<Input
 					icon={loginIcon}
-					placeholder='Логин или телефон'
+					placeholder='Логин'
 					type='text'
 					id='login'
 					style={{ marginTop: '82px' }}

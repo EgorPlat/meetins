@@ -11,7 +11,7 @@ export default function ManageAccountForm(): JSX.Element {
     const user = useStore($user);
     const isUpdated: boolean | null = useStore(isAccountUpdated);
 
-    const onChangeAccount = (data: {email: string, password: string, loginUrl: string}) => {
+    const onChangeAccount = (data: {email: string, password: string, login: string}) => {
         updateUserAccountData(data);
     }
     return (
@@ -32,12 +32,12 @@ export default function ManageAccountForm(): JSX.Element {
             <div className={s.formElem}>
                 <label htmlFor="address">Адрес аккаунта</label>
                 <input type="text" id="address"
-                    placeholder={user?.loginUrl}
-                    {...register("loginUrl", {required: false, validate: (value) => 
-                    value === user?.loginUrl ? "Новый адрес не может совпадать со старым." : true
+                    placeholder={user?.login}
+                    {...register("login", {required: false, validate: (value) => 
+                    value === user?.login ? "Новый адрес не может совпадать со старым." : true
                     })}
                 />
-                {errors.loginUrl ? <span className={s.spanError}>{errors.loginUrl.message}</span> : null}
+                {errors.login ? <span className={s.spanError}>{errors.login.message}</span> : null}
             </div>
             { isUpdated 
             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 

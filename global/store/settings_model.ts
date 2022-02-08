@@ -8,7 +8,7 @@ export const isProfileUpdated = createStore<boolean | null>(null).on(setIsProfil
 })
 export const updateUserProfileData = async (newUserData: ProfileData) => {
 	setIsProfileUpdated(false);
-	const response = await instance.post('settings/edit-profile', JSON.stringify(newUserData));
+	const response = await instance.post('settings/update-profile', JSON.stringify(newUserData));
 	if(response.status === 200) {
 		setUser(response.data);
 		setIsProfileUpdated(true);
@@ -21,7 +21,7 @@ export const isAccountUpdated = createStore<boolean | null>(null).on(setIsAccoun
 })
 export const updateUserAccountData = async (newUserData: AccountData) => {
 	setIsAccountUpdated(false);
-	const response = await instance.post('settings/edit-account', JSON.stringify(newUserData));
+	const response = await instance.post('settings/update-account', JSON.stringify(newUserData));
 	if(response.status === 200) {
 		setUser(response.data);
 		setIsAccountUpdated(true);
@@ -41,6 +41,6 @@ updateUserAvatar.use(async (event: any) => {
 
 export const updateUserStatus = createEffect();
 updateUserStatus.use( async (userStatus) => {
-	const response = await instance.post<User>('profile/update-status', userStatus);
+	const response = await instance.post<User>('profile/update-status', {status: userStatus});
 	return response;
 })

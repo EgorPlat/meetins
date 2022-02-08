@@ -21,7 +21,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	const avatarNavigation = () => {
 		changeSelect('name');
 		ref.current.selectedIndex = ref.current.options[0];
-		router.push(`/profile/${user?.loginUrl}`);
+		router.push(`/profile/${user?.login}`);
 	}
 	useEffect(() => {
 		if(select === 'logOut') {
@@ -34,7 +34,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 			router.push('/settings');
 		}
 		if(select === 'name') {
-			router.push(`/profile/${user?.loginUrl}`);
+			router.push(`/profile/${user?.login}`);
 		}
 	}, [select])
     return(
@@ -54,7 +54,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 			<img src={baseURL + user.avatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
 			: null }
 			<select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
-				<option className={s.option} value="name">{user?.firstName}</option>
+				<option className={s.option} value="name">{user?.name}</option>
 				<option className={s.option} value="logOut">Выход</option>
 				<option className={s.option} value="settings">Настройки</option>
 			</select>

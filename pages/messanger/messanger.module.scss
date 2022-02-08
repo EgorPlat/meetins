@@ -1,0 +1,10 @@
+.messangerContent {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    & .chatList {
+        background-color: aqua;
+    }
+    & .chatZone {
+        background-color: beige;
+    }
+}

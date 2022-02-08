@@ -11,11 +11,11 @@ import ImageList from "./ImageList/ImageList";
 import { useStore } from "effector-react";
 import Loader from "../../global/Loader/Loader";
 import About from "./About/About";
-import LeftNavMenu from "../../global/LeftNavMenu/LeftNavMenu";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
+import PageContainer from "../../components/pageContainer/pageContainer";
 
-function Profile(props: {currentUser: User}): JSX.Element {
+function Profile(): JSX.Element {
 
     const route = useRouter();
     const asyncLoaded = useStore(isAsyncLoaded);
@@ -44,29 +44,29 @@ function Profile(props: {currentUser: User}): JSX.Element {
                 setCurrentUser(res.data);
             }
         })
-        console.log(props.currentUser);
     }, [])
     useEffect( () => {
         setCurrentPage(route.asPath);
-        console.log(route.query.id);
         if(route.query.id !== undefined) {
             getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
                 if(res.status === 200) {
                     setCurrentUser(() => res.data);
                     setIsAsyncLoaded(true);
                 }
-            })
+            }) 
         }
     }, [route])
-    return( 
-        <div className={s.profile}>
+    useEffect( () => {
+        console.log(currentUser);
+        console.log(authedUser);
+    }, [])
+    return(
+        <PageContainer>
+            <div className={s.profile}>
             <div className="row">
-                <div className={`col-md-3 ${s.navCol}`}>
-                    <LeftNavMenu />
-                </div>
                 {asyncLoaded 
                 ? 
-                <div className={`col-md-8 ${s.bodyCol}`}>
+                <div className={`col-md-10 ${s.bodyCol}`}>
                 <div className={`row`}>
                     <div className={`col-md-4 ${s.bodyInfo}`}>
                        {!addingImageStatus ?
@@ -83,7 +83,7 @@ function Profile(props: {currentUser: User}): JSX.Element {
                     <div className={`col-md-8 ${s.userInfo}`}>
                         <div className="row">
                             <div className={`col ${s.userName}`}>
-                                {currentUser?.firstName + " " + currentUser?.lastName}
+                                {currentUser?.name}
                             </div>
                             <button className={`col ${s.status}`}>
                                 В поисках друзей
@@ -119,6 +119,7 @@ function Profile(props: {currentUser: User}): JSX.Element {
             </div> : <Loader/>}
             </div>
         </div>
+        </PageContainer>
     )
 }
 

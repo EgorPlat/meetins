@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { createEvent, createStore } from 'effector'
 
 export const baseURL = 'https://api.meetins.ru/';
@@ -22,17 +22,20 @@ instance.interceptors.response.use((res: any) => {
 		setIsAsyncLoaded(true); 
 		return res; 
 	}
-}, (error: any) => {
-	if(error.response.status === 401 || error.response.status === 400) {
+}, (error: AxiosError) => {
+	const ec: any = error.config;
+	const ers: number | undefined = error.response?.status;
+	if(ers === 401 || ers === 400) {
 		setIsAsyncLoaded(false);
 		updateTokens().then((res: any) => {
 			if(res.status <= 227) {
-				axios.request(error.config).then((res) => {
+				//ec.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
+				axios.request(ec).then((res) => {
 					if(res.status === 200) {
-						if(axios.getUri(error.config).includes("/profile/")) {
+						if(axios.getUri(ec).includes("/profile/")) {
 							setUser(res.data);
+							setIsAsyncLoaded(true);
 						}
-						setIsAsyncLoaded(true);
 					}
 				})
 			}
@@ -46,26 +49,25 @@ instance.interceptors.response.use((res: any) => {
 
 
 export type User = {
-	firstName: string,
-	lastName: string,
+	name: string,
 	phoneNumber: string,
 	email: string,
 	status: string,
 	gender: string,
 	avatar: string,
 	dateRegister: string,
-	loginUrl: string,
+	login: string,
 	birthDate: string
 }
 export type ProfileData = {
-	firstNameAndLastName: string,
+	name: string,
 	phoneNumber: string,
 	birthDate: string
 }
 export type AccountData = {
 	email: string,
 	password: string,
-	loginUrl: string
+	login: string
 }
 
 export const setIsAsyncLoaded = createEvent<boolean>();
@@ -95,11 +97,11 @@ export const getUserData = async () => {
 }
 export const getUserDataByLoginUrl = async (loginUrl: string) => {
 	setIsAsyncLoaded(false);
-	const response = await instance.post('profile/by-loginurl', loginUrl);
+	const response = await instance.post(`profile/by-login`, null, {params: {login: loginUrl}});
 	return response;
 }
 export const updateTokens = async () => {
-	const response = await instance.post('user/refresh-token', {refreshToken: localStorage.getItem('refrash-token')});
+	const response = await instance.post('user/refresh-token', localStorage.getItem('refrash-token'));
 	if(response.status <= 227) {
 		localStorage.setItem('access-token', response.data.accessToken);
 	    localStorage.setItem('refrash-token', response.data.refreshToken);
