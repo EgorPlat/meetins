@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios'
+import axios, { AxiosError } from 'axios'
 import { createEvent, createStore } from 'effector'
 
 export const baseURL = 'https://api.meetins.ru/';
@@ -25,11 +25,10 @@ instance.interceptors.response.use((res: any) => {
 }, (error: AxiosError) => {
 	const ec: any = error.config;
 	const ers: number | undefined = error.response?.status;
-	if(ers === 401 || ers === 400) {
+	if(ers === 401) {
 		setIsAsyncLoaded(false);
 		updateTokens().then((res: any) => {
-			if(res.status <= 227) {
-				//ec.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
+			if(res.status === 200) {
 				axios.request(ec).then((res) => {
 					if(res.status === 200) {
 						if(axios.getUri(ec).includes("/profile/")) {
@@ -102,7 +101,7 @@ export const getUserDataByLoginUrl = async (loginUrl: string) => {
 }
 export const updateTokens = async () => {
 	const response = await instance.post('user/refresh-token', localStorage.getItem('refrash-token'));
-	if(response.status <= 227) {
+	if(response.status === 200) {
 		localStorage.setItem('access-token', response.data.accessToken);
 	    localStorage.setItem('refrash-token', response.data.refreshToken);
 	}

@@ -7,7 +7,7 @@ export const isProfileUpdated = createStore<boolean | null>(null).on(setIsProfil
 	return profileUpdated;
 })
 export const updateUserProfileData = async (newUserData: ProfileData) => {
-	setIsProfileUpdated(false);
+	setIsProfileUpdated(null);
 	const response = await instance.post('settings/update-profile', JSON.stringify(newUserData));
 	if(response.status === 200) {
 		setUser(response.data);
@@ -20,7 +20,7 @@ export const isAccountUpdated = createStore<boolean | null>(null).on(setIsAccoun
 	return accountUpdated;
 })
 export const updateUserAccountData = async (newUserData: AccountData) => {
-	setIsAccountUpdated(false);
+	setIsAccountUpdated(null);
 	const response = await instance.post('settings/update-account', JSON.stringify(newUserData));
 	if(response.status === 200) {
 		setUser(response.data);

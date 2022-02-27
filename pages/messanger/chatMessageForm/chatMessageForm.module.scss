@@ -1,0 +1,17 @@
+.form {
+    font-size: 15px;
+    & input {
+        width: 75%;
+        min-height: 40px;
+        outline: none;
+    }
+    & button {
+        width: 20%;
+        min-height: 40px;
+        outline: none;
+        border: none;
+        padding: 5px;
+        color: white;
+        background-color: rgb(106, 82, 214);
+    }
+}

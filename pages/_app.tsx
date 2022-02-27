@@ -3,17 +3,19 @@ import Layout from '../components/layout/Layout'
 import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { getUserData, setIsAsyncLoaded } from '../global/store/store'
 import { useRouter } from 'next/router'
-import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr'
+import { HubConnectionBuilder } from '@microsoft/signalr'
+import { connection, setNewConnection } from '../global/store/connection_model'
+import { useStore } from 'effector-react'
 
 
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
-	const [connection, setConnection] = useState<HubConnection>();
+	const connection$ = useStore(connection);
 
 	useEffect(() => {
 		if(localStorage.getItem('access-token')) {
@@ -22,6 +24,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 				if(res.status === 200) {  
 					setIsAsyncLoaded(true);
 					router.push(localStorage.getItem('previousPage')!); 
+				} else {
+					router.push('/login');
 				}
 			}) 
 		} else {
@@ -31,21 +35,21 @@ function MyApp({ Component, pageProps }: AppProps) {
 		.withUrl('https://api.meetins.ru/messenger')
 		.withAutomaticReconnect()
 		.build()
-		setConnection(() => newConnection);
+		setNewConnection(newConnection);		
 	}, [])
 
 	useEffect(() => {
-		if(connection) {
-			connection.start().then(result => {
+		if(connection$ && localStorage.getItem('access-token') !== "") {
+			connection$.start().then(result => {
 				console.log('Connected!');
 
-				connection.on('ReceiveBroadcast', message => {
+				connection$.on('ReceiveBroadcast', message => {
 					console.log(message);
 				});
 			})
 			.catch(e => console.log('Connection failed: ', e));
 		}
-	}, [connection])
+	}, [connection$])
 	
 	return (
 		<Layout>
