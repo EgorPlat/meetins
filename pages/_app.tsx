@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			router.push('/login');
 		}
 		const newConnection = new HubConnectionBuilder()
-		.withUrl('https://api.meetins.ru/messenger')
+		.withUrl('https://api.meetins.ru/messenger', { accessTokenFactory: () => String(localStorage.getItem('access-token')) })
 		.withAutomaticReconnect()
 		.build()
 		setNewConnection(newConnection);		
