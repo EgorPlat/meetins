@@ -1,23 +1,24 @@
 import React from "react";
-import { IActiveChat, setActiveChat } from "../../../global/store/chat_model";
+import { IMyDialog, setActiveChat } from "../../../global/store/chat_model";
+import { baseURL } from "../../../global/store/store";
 import s from "./userChatCard.module.scss";
 
-export default function UserChatCard(props: {user: IActiveChat}): JSX.Element {
+export default function UserChatCard(props: {user: IMyDialog}): JSX.Element {
 
     const chooseChat = () => {
-        setActiveChat(props.user)
+        setActiveChat(props.user);
     } 
     return(
         <div className={s.chat} onClick={chooseChat}>
-            <div className={s.avatar} style={{backgroundImage: `url('${props.user?.avatar}')`}}>
+            <div className={s.avatar} style={{backgroundImage: `url('${baseURL + props.user?.userAvatar}')`}}>
                 {/*<div className={s.round}></div>*/}
             </div>
             <div className={s.info}>
                 <div className={s.name}>
-                    {props.user?.name}
+                    {props.user?.userName}
                 </div>
                 <div className={s.message}>
-                    {props.user?.messages[props.user.messages.length-1]?.text}
+                    {props.user?.content}
                 </div>
             </div>
         </div>

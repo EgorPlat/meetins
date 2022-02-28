@@ -45,6 +45,9 @@ function Profile(): JSX.Element {
             }
         })
     }, [])
+    const startNewDialog = () => {
+
+    }
     useEffect( () => {
         setCurrentPage(route.asPath);
         if(route.query.id !== undefined) {
@@ -94,7 +97,7 @@ function Profile(): JSX.Element {
                         </div>
                         { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
-                            <button type="button" className={`${s.actionsBtn}`}>
+                            <button type="button" className={`${s.actionsBtn}`} onClick={startNewDialog}>
                                 Диалог
                                 <Image alt="Сообщение" src={message} width={20} height={20} />
                             </button>

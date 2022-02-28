@@ -1,11 +1,12 @@
 .chat {
     display: grid;
-    grid-template-rows: 15% 85%;
+    //grid-template-rows: 15% 85%;
     min-height: 500px;
     padding-left: 2%;
     & .user {
         display: grid;
         grid-template-columns: 10% 40% 50%;
+        height: 100px;
         & .avatar {
             background-size: 100% 100%;
             border-radius: 50%;
@@ -24,6 +25,8 @@
     }
     & .messages {
         font-size: 15px;
+        height: 400px;
+        overflow-y: scroll;
         & .myMessage {
             display: inline-block;
             margin-left: 50%;
@@ -43,13 +46,7 @@
             background-color: rgba($color: #3b81dd, $alpha: 0.6)
         }
     }
-}
-.noChat {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    & .alert {
-        color: grey;
+    & .form {
+        margin-top: 2%;
     }
 }

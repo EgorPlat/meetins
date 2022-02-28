@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { $user, User } from "../../../global/store/store";
 import s from "./About.module.scss";
@@ -22,6 +22,9 @@ export default function About(props: {
     const saveNewStatus = () => {
         props.saveNewStatus(userStatus);
     }
+    useEffect(() => {
+        console.log('re-render about');
+    })
     if(props.user && authedUser) {
         return(
             <div className={s.about}>
