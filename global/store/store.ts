@@ -1,12 +1,13 @@
-import axios, { AxiosError } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { createEvent, createStore } from 'effector'
 
 export const baseURL = 'https://api.meetins.ru/';
 export const instance = axios.create({
 	baseURL: baseURL,
 	headers: {
-        'Content-Type': 'application/json'
-    }
+        'Content-Type': 'application/json',
+		"Access-Control-Allow-Origin": "*"
+    },
 })
 instance.interceptors.request.use((config: any) => {
 	if(localStorage.getItem('access-token') !== '') {
@@ -16,7 +17,10 @@ instance.interceptors.request.use((config: any) => {
 }, (errors: any) => {
 	return Promise.reject(errors);
 })
-instance.interceptors.response.use((res: any) => {
+instance.interceptors.response.use((res: AxiosResponse) => {
+	res.headers = {
+		"Access-Control-Allow-Origin": "*"
+	}
 	setIsAsyncLoaded(false);
 	if(res.status === 200) { 
 		setIsAsyncLoaded(true); 
