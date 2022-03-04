@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { HubConnectionBuilder } from '@microsoft/signalr'
 import { connection, setNewConnection } from '../global/store/connection_model'
 import { useStore } from 'effector-react'
+import { activeChat, setActiveChat } from '../global/store/chat_model'
 
 
 
@@ -16,6 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
 	const connection$ = useStore(connection);
+	const activeChat$ = useStore(activeChat);
 
 	useEffect(() => {
 		if(localStorage.getItem('access-token')) {
@@ -44,6 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				console.log('Connected!');
 
 				connection$.on('ReceiveBroadcast', message => {
+					console.log(activeChat$?.dialogId);
 					console.log(message);
 				});
 			})

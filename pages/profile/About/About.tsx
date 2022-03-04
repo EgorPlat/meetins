@@ -4,9 +4,9 @@ import { useState } from "react";
 import { $user, User } from "../../../global/store/store";
 import s from "./About.module.scss";
 
-export default function About(props: {
+export default React.memo(function About(props: {
     user: User,
-    saveNewStatus: (userStatus: string) => void
+    saveNewUserStatus: (userStatus: string) => void
 }): JSX.Element {
 
     const [changingStatus, setChangingStatus] = useState<boolean>(false);
@@ -20,7 +20,7 @@ export default function About(props: {
         }
     } 
     const saveNewStatus = () => {
-        props.saveNewStatus(userStatus);
+        props.saveNewUserStatus(userStatus);
     }
     useEffect(() => {
         console.log('re-render about');
@@ -48,4 +48,4 @@ export default function About(props: {
             <div>Ошибка соединения.</div>
         )
     }
-}
+})

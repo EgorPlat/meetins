@@ -11,7 +11,7 @@ import Modal from "../../global/helpers/Modal/Modal";
 import ProfileInfoForm from "../../global/Forms/ProfileInfo/Index";
 import ManageAccountForm from "../../global/Forms/ManageAccount/Index";
 import { useState } from "react";
-import { setIsAccountUpdated, setIsProfileUpdated } from "../../global/store/settings_model";
+import { deleteUserAccount, setIsAccountUpdated, setIsProfileUpdated } from "../../global/store/settings_model";
 
 export default function Settings(): JSX.Element {
 
@@ -32,8 +32,14 @@ export default function Settings(): JSX.Element {
         setIsModal(() => status);
     }
     const deleteAccount = (status: boolean) => {
+        deleteUserAccount().then((response) => {
+            if(response.status === 200) {
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('refrash-token');
+                router.push('/login');
+            }
+        })
         setIsModal(() => false);
-        console.log(status);
     }
     return(
         <div className={`${s.settings}`}>

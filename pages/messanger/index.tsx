@@ -13,11 +13,11 @@ export default function Messanger(): JSX.Element {
     return(
         <PageContainer>
             <div className={s.messangerContent}>
-                <div className={s.chatList}>
+                <div className={`${s.chatList} ${s.block}`}>
                     <ChatList/>
                 </div>
-                <div className={s.chatZone}>
-                    {activeChat$ !== null ? <ChatZone activeChat = {activeChat$}/> : 
+                <div className={`${s.chatZone} ${s.block}`} style={{marginLeft: '1%'}}>
+                    {activeChat$ !== null ? <ChatZone/> : 
                     <div className={s.noChat}>
                         <h3 className={s.alert}>Выберите диалог...</h3>
                     </div>

@@ -6,7 +6,7 @@
     & .user {
         display: grid;
         grid-template-columns: 10% 40% 50%;
-        height: 100px;
+        height: 90px;
         & .avatar {
             background-size: 100% 100%;
             border-radius: 50%;
@@ -45,6 +45,17 @@
             min-height: 20px;
             background-color: rgba($color: #3b81dd, $alpha: 0.6)
         }
+    }
+    & .messages::-webkit-scrollbar {
+        width: 12px;               /* ширина scrollbar */
+    }
+    & .messages::-webkit-scrollbar-track {
+        background: white;        /* цвет дорожки */
+    }
+    & .messages::-webkit-scrollbar-thumb {
+        background-color: grey;    /* цвет плашки */
+        border-radius: 20px;       /* закругления плашки */
+        border: 3px solid white;  /* padding вокруг плашки */
     }
     & .form {
         margin-top: 2%;

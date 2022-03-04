@@ -1,12 +1,11 @@
 import React from "react";
-import { IMyDialog, setActiveChat } from "../../../global/store/chat_model";
+import { getDialogMessages, IMyDialog } from "../../../global/store/chat_model";
 import { baseURL } from "../../../global/store/store";
 import s from "./userChatCard.module.scss";
 
 export default function UserChatCard(props: {user: IMyDialog}): JSX.Element {
-
     const chooseChat = () => {
-        setActiveChat(props.user);
+        getDialogMessages(props.user);
     } 
     return(
         <div className={s.chat} onClick={chooseChat}>

@@ -28,6 +28,10 @@ export const updateUserAccountData = async (newUserData: AccountData) => {
 	}
 	return response;
 }
+export const deleteUserAccount = async () => {
+	const response = await instance.delete('/user/delete-user');
+	return response;
+}
 export const updateUserAvatar = createEffect();
 updateUserAvatar.use(async (event: any) => {
 	

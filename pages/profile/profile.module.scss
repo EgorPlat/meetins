@@ -16,6 +16,10 @@
     font-family:'Courier New', Courier, monospace;
     padding-left: 3%;
     padding-top: 3%;
+    & .block {
+        padding: 2%;
+        box-shadow:  1px 1px 5px rgba(154, 147, 140, 0.3), 1px 1px 5px rgba(154, 147, 140, 0.3);
+    }
     & .bodyInfo {
         & .avatar {
             border-radius: 50%; /* Радиус скругления */
@@ -26,6 +30,9 @@
     }
     & .moreInfo { 
         margin-top: 2.5%;
+        & .places {
+            margin-left: 1%;
+        }
     }
 }
 .userInfo {

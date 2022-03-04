@@ -1,29 +1,30 @@
 import { useStore } from "effector-react";
-import React, { MutableRefObject, useEffect, useRef } from "react";
-import { useLayoutEffect } from "react";
-import { getDialogMessages, IMyDialog, sendMessageInDialog, setActiveChat } from "../../../global/store/chat_model";
+import React, { useEffect, useRef} from "react";
+import { activeChat, sendMessageInDialog, setActiveChat } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
 
-export default function ChatZone(props: {activeChat: IMyDialog}): JSX.Element {
+export default function ChatZone(): JSX.Element {
 
     const authedUser = useStore($user);
-    const messagesEndRef = useRef<any>(null);
-    
+    const messagesEndRef = useRef<HTMLSpanElement>(null);
+    const activeChat$ = useStore(activeChat);
+
     const sendForm = (inputValue: string) => {
-        sendMessageInDialog(
-            {dialogId: props.activeChat?.dialogId, content: inputValue}
-        ).then((response) => {
-            setActiveChat({...props.activeChat, messages: [...response?.data]})
-        })
+        if(activeChat$ !== null) {
+            sendMessageInDialog(
+                {dialogId: activeChat$.dialogId, content: inputValue}
+            ).then((response) => {
+                setActiveChat({...activeChat$, messages: [...response?.data]})
+            })
+        }
     }
-    useLayoutEffect(() => {
+    useEffect(() => {
         messagesEndRef.current?.scrollIntoView({behavior: "smooth"});
-        console.log('rerender chat zone');
+        console.log('is rerender');
     })
     useEffect(() => {
-        getDialogMessages(props.activeChat);
         return () => {
             setActiveChat(null);
         }
@@ -32,17 +33,17 @@ export default function ChatZone(props: {activeChat: IMyDialog}): JSX.Element {
             <div className={s.chat}> 
                 <div className={s.user}>
                     <div className={s.avatar} style={{
-                        backgroundImage: `url('${ props.activeChat?.messages !== undefined ? baseURL + props.activeChat?.messages[0].avatar : null}')`}}>
+                        backgroundImage: `url('${ activeChat$?.messages !== undefined ? baseURL + activeChat$?.messages[0].avatar : null}')`}}>
                     </div>
                     <div className={s.name}>
-                        {props.activeChat?.userName}
+                        {activeChat$?.userName}
                     </div>
-                    <div className={props.activeChat?.status ? s.statusOnline : s.status}>
-                        {props.activeChat?.status ? 'В сети' : 'Не в сети'}
+                    <div className={activeChat$?.status ? s.statusOnline : s.status}>
+                        {activeChat$?.status ? 'В сети' : 'Не в сети'}
                     </div>
                 </div>
                 <div className={s.messages}>
-                    {props.activeChat?.messages?.map(message =>
+                    {activeChat$?.messages?.map(message =>
                     <div className={message.isMine ? s.myMessage : s.notMyMessage} key={message.content}>
                         {message.content}
                     </div>

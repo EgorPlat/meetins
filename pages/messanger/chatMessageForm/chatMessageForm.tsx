@@ -8,7 +8,7 @@ export default function ChatMessageForm(
     }
 ): JSX.Element {
 
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const sendForm = () => {
         inputRef.current?.value !== undefined ? props.onClickForm(inputRef.current?.value) : null;

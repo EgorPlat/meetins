@@ -24,26 +24,26 @@ function Profile(): JSX.Element {
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
 
-    const changeAddingImageStatus = (status: boolean) => {
-        if(currentUser?.email === authedUser?.email) {
+    const changeAddingImageStatus = useCallback((status: boolean) => {
+        if(currentUser.email === authedUser?.email) {
             setAddingImageStatus(() => status);
         }
-    }
-    const onChangeInputImage = (event: any) => {
+    },[])
+    const onChangeInputImage = useCallback((event: any) => {
         updateUserAvatar(event).then((res: any) => {
             if(res.status === 200) {
                 setCurrentUser(res.data)
                 setUser(res.data);
             }
         })
-    }
+    },[])
     const saveNewStatus = useCallback((userStatus: string) => {
         updateUserStatus(userStatus).then( (res: any) => {
             if(res.status === 200) {
                 setUser(res.data);
                 setCurrentUser(res.data);
             }
-        })
+        })  
     }, [])
     const startNewDialog = () => {
 
@@ -59,10 +59,6 @@ function Profile(): JSX.Element {
             }) 
         }
     }, [route])
-    useEffect( () => {
-        console.log(currentUser);
-        console.log(authedUser);
-    }, [])
     return(
         <PageContainer>
             <div className={s.profile}>
@@ -70,12 +66,12 @@ function Profile(): JSX.Element {
                 {asyncLoaded 
                 ? 
                 <div className={`col-md-10 ${s.bodyCol}`}>
-                <div className={`row`}>
+                <div className={`row ${s.block}`}>
                     <div className={`col-md-4 ${s.bodyInfo}`}>
                        {!addingImageStatus ?
                        <img 
                         onMouseEnter={() => changeAddingImageStatus(true)}
-                        src={baseURL + currentUser?.avatar}
+                        src={baseURL + currentUser.avatar}
                         alt="Аватарка" 
                         className={`${s.avatar}`}
                         /> : <InputFile 
@@ -86,14 +82,14 @@ function Profile(): JSX.Element {
                     <div className={`col-md-8 ${s.userInfo}`}>
                         <div className="row">
                             <div className={`col ${s.userName}`}>
-                                {currentUser?.name}
+                                {currentUser.name}
                             </div>
                             <button className={`col ${s.status}`}>
                                 В поисках друзей
                             </button>
                         </div> 
                         <div className={`${s.text}`}>
-                            <About saveNewStatus={saveNewStatus} user={currentUser}/>
+                            <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
                         </div>
                         { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
@@ -107,10 +103,10 @@ function Profile(): JSX.Element {
                     </div>
                 </div>
                 <div className={`row ${s.moreInfo}`}>
-                    <div className="col">
+                    <div className={`col ${s.block} ${s.interests}`}>
                         <Interests interest={['Плавание','Йога','Волейбол','Бокс']}/>
                     </div>
-                    <div className="col">
+                    <div className={`col ${s.block} ${s.places}`}>
                         <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
                     </div>
                 </div> 
