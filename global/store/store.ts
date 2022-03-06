@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { createEvent, createStore } from 'effector'
 
 export const baseURL = 'https://api.meetins.ru/';
@@ -27,20 +27,23 @@ instance.interceptors.response.use((res: AxiosResponse) => {
 		return res; 
 	}
 }, (error: AxiosError) => {
-	const ec: any = error.config;
+	const ec: AxiosRequestConfig = error.config;
 	const ers: number | undefined = error.response?.status;
 	if(ers === 401) {
 		setIsAsyncLoaded(false);
 		updateTokens().then((res: any) => {
 			if(res.status === 200) {
-				axios.request(ec).then((res) => {
+				ec.headers = {
+					'Authorization': 'Bearer ' + localStorage.getItem('access-token')
+				}
+				axios.request(ec)/*.then((res) => {
 					if(res.status === 200) {
 						if(axios.getUri(ec).includes("/profile/")) {
 							setUser(res.data);
 							setIsAsyncLoaded(true);
 						}
 					}
-				})
+				})*/
 			}
 		})
 	} else {
@@ -52,6 +55,7 @@ instance.interceptors.response.use((res: AxiosResponse) => {
 
 
 export type User = {
+	userId: string
 	name: string,
 	phoneNumber: string,
 	email: string,

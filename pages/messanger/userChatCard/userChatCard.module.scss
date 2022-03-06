@@ -28,6 +28,8 @@
         }
         & .message {
             font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 }

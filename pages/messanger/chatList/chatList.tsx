@@ -11,6 +11,7 @@ export default function ChatList(): JSX.Element {
     useEffect(() => {
         getMyDialogs().then((response) => {
             if(response?.status === 200) {
+                console.log('ChatList - getMyDialogs');
                 console.log(response.data);
             }
         })

@@ -1,6 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef} from "react";
-import { activeChat, sendMessageInDialog, setActiveChat } from "../../../global/store/chat_model";
+import { activeChat, sendMessageInDialog, setActiveChat, startNewDialog } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
@@ -13,16 +13,29 @@ export default function ChatZone(): JSX.Element {
 
     const sendForm = (inputValue: string) => {
         if(activeChat$ !== null) {
-            sendMessageInDialog(
-                {dialogId: activeChat$.dialogId, content: inputValue}
-            ).then((response) => {
-                setActiveChat({...activeChat$, messages: [...response?.data]})
-            })
+            if(activeChat$.userId == undefined) {
+                sendMessageInDialog(
+                    {dialogId: activeChat$.dialogId, content: inputValue}
+                ).then((response) => {
+                    setActiveChat({...activeChat$, messages: [...response?.data]})
+                })
+            } else {
+                startNewDialog({userId: activeChat$?.userId, messageContent: inputValue}).then((response) => {
+                    setActiveChat({
+                        dialogId: response?.data.dialogId,
+                        userName: activeChat$.userName,
+                        userAvatar: activeChat$.userAvatar,
+                        isRead: true,
+                        content: inputValue,
+                        messages: response?.data.messages,
+                        status: true
+                    })
+                })
+            }
         }
     }
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({behavior: "smooth"});
-        console.log('is rerender');
     })
     useEffect(() => {
         return () => {
@@ -33,7 +46,7 @@ export default function ChatZone(): JSX.Element {
             <div className={s.chat}> 
                 <div className={s.user}>
                     <div className={s.avatar} style={{
-                        backgroundImage: `url('${ activeChat$?.messages !== undefined ? baseURL + activeChat$?.messages[0].avatar : null}')`}}>
+                        backgroundImage: `url('${ activeChat$?.messages !== undefined ? baseURL + activeChat$?.userAvatar : null}')`}}>
                     </div>
                     <div className={s.name}>
                         {activeChat$?.userName}
@@ -43,11 +56,14 @@ export default function ChatZone(): JSX.Element {
                     </div>
                 </div>
                 <div className={s.messages}>
-                    {activeChat$?.messages?.map(message =>
-                    <div className={message.isMine ? s.myMessage : s.notMyMessage} key={message.content}>
-                        {message.content}
-                    </div>
-                    )}
+                    {activeChat$?.messages?.length !== 0
+                        ? activeChat$?.messages?.map(message =>
+                            <div className={message.senderId === authedUser?.userId ? s.myMessage : s.notMyMessage} key={message.content}>
+                                {message.content}
+                            </div>
+                            )
+                        : <div className={s.defaultText}>{activeChat$?.content}</div>
+                    }
                     <span ref={messagesEndRef}></span>
                 </div>
                 <div className={s.form}>

@@ -3,6 +3,7 @@ import { instance } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog | null>();
 export const activeChat = createStore<IMyDialog | null>(null).on(setActiveChat, (_, newActiveChat) => {
+    console.log('Setter srabotal');
     return newActiveChat;
 })
 export const setMyDialogs = createEvent<IMyDialog[]>();
@@ -83,6 +84,7 @@ export interface IMyDialog {
     userAvatar: string,
     isRead: true,
     content: string,
-    messages?: IMyActiveDialogMessage[],
-    status?: boolean
+    messages: IMyActiveDialogMessage[],
+    status?: boolean,
+    userId?: string
 }

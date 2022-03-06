@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
 import { $user, baseURL, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, setUser, User } from "../../global/store/store";
@@ -14,6 +14,7 @@ import About from "./About/About";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
+import { setActiveChat } from "../../global/store/chat_model";
 
 function Profile(): JSX.Element {
 
@@ -24,11 +25,11 @@ function Profile(): JSX.Element {
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
 
-    const changeAddingImageStatus = useCallback((status: boolean) => {
-        if(currentUser.email === authedUser?.email) {
+    const changeAddingImageStatus = (status: boolean) => {
+        if(currentUser.login === authedUser?.login) {
             setAddingImageStatus(() => status);
         }
-    },[])
+    }
     const onChangeInputImage = useCallback((event: any) => {
         updateUserAvatar(event).then((res: any) => {
             if(res.status === 200) {
@@ -46,7 +47,17 @@ function Profile(): JSX.Element {
         })  
     }, [])
     const startNewDialog = () => {
-
+        setActiveChat({
+            dialogId: "new",
+            userName: currentUser.name,
+            userAvatar: currentUser.avatar,
+            isRead: true,
+            content: "Напишите сообщение...",
+            messages: [],
+            status: true,
+            userId: currentUser.userId
+        });
+        Router.push('/messanger')
     }
     useEffect( () => {
         setCurrentPage(route.asPath);

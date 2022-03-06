@@ -15,7 +15,7 @@ export default function UserChatCard(props: {user: IMyDialog}): JSX.Element {
             <div className={s.info}>
                 <div className={s.name}>
                     {props.user?.userName}
-                </div>
+                </div> 
                 <div className={s.message}>
                     {props.user?.content}
                 </div>
