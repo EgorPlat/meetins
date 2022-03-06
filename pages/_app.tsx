@@ -30,10 +30,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 			connection$.start().then(result => {
 				console.log('Connected!');
 				connection$.on('Notify', (message: IMyActiveDialogMessage) => {
-					if(activeChatRef.current?.dialogId === message.dialogId){
+					if(activeChatRef.current.dialogId === message.dialogId){
 						setActiveChat({
 							...activeChatRef.current, 
-							messages: [...activeChatRef.current?.messages, message],
+							messages: [...activeChatRef.current.messages, message],
 							content: message.content
 						})
 					}

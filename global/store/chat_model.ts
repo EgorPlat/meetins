@@ -1,9 +1,9 @@
 import { createEffect, createEvent, createStore } from "effector";
 import { instance } from "./store";
 
-export const setActiveChat = createEvent<IMyDialog | null>();
-export const activeChat = createStore<IMyDialog | null>(null).on(setActiveChat, (_, newActiveChat) => {
-    console.log('Setter srabotal');
+export const setActiveChat = createEvent<IMyDialog>();
+export const activeChat = createStore<IMyDialog>({} as IMyDialog).on(setActiveChat, (_, newActiveChat) => {
+
     return newActiveChat;
 })
 export const setMyDialogs = createEvent<IMyDialog[]>();
@@ -11,6 +11,30 @@ export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, 
     return newMyDialogs;
 })
 
+export const sendMessageAndUploadActiveChat = createEffect((message: string) => {
+    const actualActiveChat = activeChat.getState();
+    if(actualActiveChat) {
+        if(actualActiveChat.userId == undefined) {
+            sendMessageInDialog(
+                {dialogId: actualActiveChat.dialogId, content: message}
+            ).then((response) => {
+                setActiveChat({...actualActiveChat, messages: [...response?.data]})
+            })
+        } else {
+            startNewDialog({userId: actualActiveChat.userId, messageContent: message}).then((response) => {
+                setActiveChat({
+                    dialogId: response?.data.dialogId,
+                    userName: actualActiveChat.userName,
+                    userAvatar: actualActiveChat.userAvatar,
+                    isRead: true,
+                    content: message,
+                    messages: response?.data.messages,
+                    status: true
+                })
+            })
+        }
+    }
+});
 export const getMyDialogs = async () => {
     try {
         const response = await instance.get('/dialogs/my-dialogs');

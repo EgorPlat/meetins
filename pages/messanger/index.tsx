@@ -17,7 +17,7 @@ export default function Messanger(): JSX.Element {
                     <ChatList/>
                 </div>
                 <div className={`${s.chatZone} ${s.block}`} style={{marginLeft: '1%'}}>
-                    {activeChat$ !== null ? <ChatZone/> : 
+                    {activeChat$.dialogId ? <ChatZone/> : 
                     <div className={s.noChat}>
                         <h3 className={s.alert}>Выберите диалог...</h3>
                     </div>
