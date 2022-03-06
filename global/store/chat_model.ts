@@ -18,7 +18,7 @@ export const sendMessageAndUploadActiveChat = createEffect((message: string) => 
             sendMessageInDialog(
                 {dialogId: actualActiveChat.dialogId, content: message}
             ).then((response) => {
-                setActiveChat({...actualActiveChat, messages: [...response?.data]})
+                setActiveChat({...actualActiveChat, messages: [...response?.data], content: message})
             })
         } else {
             startNewDialog({userId: actualActiveChat.userId, messageContent: message}).then((response) => {
