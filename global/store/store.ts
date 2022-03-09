@@ -9,18 +9,17 @@ export const instance = axios.create({
 		"Access-Control-Allow-Origin": "*"
     },
 })
-instance.interceptors.request.use((config: any) => {
+instance.interceptors.request.use((config: AxiosRequestConfig) => {
 	if(localStorage.getItem('access-token') !== '') {
-		config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
+		config.headers = {
+			'Authorization': 'Bearer ' + localStorage.getItem('access-token')
+		}
 	}
 	return config;
-}, (errors: any) => {
+}, (errors: AxiosError) => {
 	return Promise.reject(errors);
 })
 instance.interceptors.response.use((res: AxiosResponse) => {
-	res.headers = {
-		"Access-Control-Allow-Origin": "*"
-	}
 	setIsAsyncLoaded(false);
 	if(res.status === 200) { 
 		setIsAsyncLoaded(true); 
