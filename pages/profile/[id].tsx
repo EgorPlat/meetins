@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
 import { $user, baseURL, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, setUser, User } from "../../global/store/store";
 import s from "./profile.module.scss";
@@ -30,7 +30,7 @@ function Profile(): JSX.Element {
             setAddingImageStatus(() => status);
         }
     }
-    const onChangeInputImage = useCallback((event: any) => {
+    const onChangeInputImage = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         updateUserAvatar(event).then((res: any) => {
             if(res.status === 200) {
                 setCurrentUser(res.data)
@@ -134,20 +134,3 @@ function Profile(): JSX.Element {
 }
 
 export default Profile;
-
-/*export async function getServerSideProps(context: any) {
-    console.log(context);
-    
-    getUserDataByLoginUrl(String(context.query.id)).then( (res) => {
-        if(res.status === 200) {
-            setIsAsyncLoaded(true);
-            return {
-                props: {user: res.data}
-            }
-        } else {
-            return {
-                props: {}
-            }
-        }
-    })
-}*/

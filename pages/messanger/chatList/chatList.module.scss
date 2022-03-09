@@ -1,4 +1,5 @@
 .chatList {
+    overflow-y: scroll;
     & .menu {
         & button {
             font-size: 18px;
@@ -11,4 +12,15 @@
             border-bottom: 2px solid black;
         }
     }
+}
+.chatList::-webkit-scrollbar {
+    width: 12px;               /* ширина scrollbar */
+}
+.chatList::-webkit-scrollbar-track {
+    background: white;        /* цвет дорожки */
+}
+.chatList::-webkit-scrollbar-thumb {
+    background-color: grey;    /* цвет плашки */
+    border-radius: 20px;       /* закругления плашки */
+    border: 3px solid white;  /* padding вокруг плашки */
 }

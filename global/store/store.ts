@@ -31,19 +31,17 @@ instance.interceptors.response.use((res: AxiosResponse) => {
 	const ers: number | undefined = error.response?.status;
 	if(ers === 401) {
 		setIsAsyncLoaded(false);
-		updateTokens().then((res: any) => {
+		updateTokens().then(async (res: any) => {
 			if(res.status === 200) {
 				ec.headers = {
 					'Authorization': 'Bearer ' + localStorage.getItem('access-token')
 				}
-				axios.request(ec)/*.then((res) => {
-					if(res.status === 200) {
-						if(axios.getUri(ec).includes("/profile/")) {
-							setUser(res.data);
-							setIsAsyncLoaded(true);
-						}
-					}
-				})*/
+				const response = await axios.request(ec);
+				return response;
+			} else {
+				localStorage.removeItem('access-token');
+				localStorage.removeItem('refrash-token');
+				return error.response;
 			}
 		})
 	} else {

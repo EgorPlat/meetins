@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import { createEffect, createEvent, createStore } from "effector";
+import { ChangeEvent } from "react";
 import { AccountData, instance, ProfileData, setUser, User } from "./store";
 
 export const setIsProfileUpdated = createEvent<boolean | null>();

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import s from "./InputFile.module.scss";
 
-export default function InputFile(props: { onMouseLeave: () => void, onChange: (event: any) => void }) {
+export default function InputFile(props: { onMouseLeave: () => void, onChange: (event: ChangeEvent<HTMLInputElement>) => void }) {
 
     return( 
         <div className={s.formGroup} onMouseLeave={props.onMouseLeave}>

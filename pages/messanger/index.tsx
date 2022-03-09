@@ -1,7 +1,8 @@
 import { useStore } from "effector-react";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import { activeChat } from "../../global/store/chat_model";
+import { activeChat, getMyDialogs } from "../../global/store/chat_model";
 import ChatList from "./chatList/chatList";
 import ChatZone from "./chatZone/chatZone";
 import s from "./messanger.module.scss";
