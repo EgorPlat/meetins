@@ -3,7 +3,10 @@ import { createEvent, createStore } from 'effector'
 
 export const baseURL = 'https://api.meetins.ru/';
 export const instance = axios.create({
-	baseURL: baseURL
+	baseURL: baseURL,
+	headers: {
+		'Content-Type': 'application/json'
+	}
 })
 instance.interceptors.request.use((config: AxiosRequestConfig) => {
 	if(localStorage.getItem('access-token') !== '') {
