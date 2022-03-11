@@ -95,9 +95,6 @@ function Profile(): JSX.Element {
                             <div className={`col ${s.userName}`}>
                                 {currentUser.name}
                             </div>
-                            <button className={`col ${s.status}`}>
-                                В поисках друзей
-                            </button>
                         </div> 
                         <div className={`${s.text}`}>
                             <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
