@@ -1,11 +1,17 @@
+import { useStore } from "effector-react";
 import React from "react";
-import { getDialogMessages, IMyDialog, setActiveChat } from "../../../global/store/chat_model";
+import { activeChat, getDialogMessages, IMyDialog, setActiveChat } from "../../../global/store/chat_model";
 import { baseURL } from "../../../global/store/store";
 import s from "./userChatCard.module.scss";
 
 export default function UserChatCard(props: {user: IMyDialog}): JSX.Element {
+
+    const activeChat$ = useStore(activeChat);
+
     const chooseChat = () => {
-        setActiveChat(props.user);
+        if(activeChat$.dialogId !== props.user.dialogId) {
+            setActiveChat(props.user);
+        }
     } 
     return(
         <div className={s.chat} onClick={chooseChat}>
