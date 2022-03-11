@@ -20,8 +20,8 @@ export const connectionStart = createEffect((connection: HubConnection | null) =
 });
 
 connection.watch((connection) => {
-    const activeChat$ = activeChat.getState();
     connection && connection.on('Notify', (message: IMyActiveDialogMessage) => {
+        const activeChat$ = activeChat.getState();
         if(activeChat$.dialogId === message.dialogId){
             setActiveChat({
                 ...activeChat$, 
