@@ -3,15 +3,12 @@ import { createEvent, createStore } from 'effector'
 
 export const baseURL = 'https://api.meetins.ru/';
 export const instance = axios.create({
-	baseURL: baseURL,
-	headers: {
-        'Content-Type': 'application/json',
-		"Access-Control-Allow-Origin": "*"
-    },
+	baseURL: baseURL
 })
 instance.interceptors.request.use((config: AxiosRequestConfig) => {
 	if(localStorage.getItem('access-token') !== '') {
 		config.headers = {
+			'Content-Type': 'application/json',
 			'Authorization': 'Bearer ' + localStorage.getItem('access-token')
 		}
 	}
@@ -33,6 +30,7 @@ instance.interceptors.response.use((res: AxiosResponse) => {
 		updateTokens().then(async (res: any) => {
 			if(res.status === 200) {
 				ec.headers = {
+					'Content-Type': 'application/json',
 					'Authorization': 'Bearer ' + localStorage.getItem('access-token')
 				}
 				const response = await axios.request(ec);

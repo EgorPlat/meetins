@@ -31,8 +31,8 @@ export const sendMessageAndUploadActiveChat = createEffect((message: string) => 
                     messages: response?.data.messages,
                     status: true
                 })
-            })
-        }
+            }) 
+        } 
     }
 });
 export const getMyDialogs = async () => {

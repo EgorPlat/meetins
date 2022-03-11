@@ -22,7 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 					setIsAsyncLoaded(true);
 					router.push(localStorage.getItem('previousPage')!);
 				} else {
-					localStorage.clear();
 					router.push('/login');
 				}
 			}) 

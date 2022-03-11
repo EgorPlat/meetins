@@ -3,8 +3,8 @@ import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Loader from "../../../global/Loader/Loader";
+import { allPeoples, getAllPeoples, IPeople, isPeoplesLoaded } from "../../../global/store/peoples_model";
 import { isAsyncLoaded, setIsAsyncLoaded } from "../../../global/store/store";
-import { $usersList, getAllRegisteredUsers, IShortUser, setUsersList } from "../../../global/store/users_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
 
@@ -16,21 +16,15 @@ export default function SearchingPeople(): JSX.Element {
     const [events, setEvents] = useState<string[]>(['По Москве на автобусе','История любви','"Энканто"','Green DAY']);
     const [popularInterests, setPopularInterests] = useState<string[]>(['Программирование', 'Бизнес', 'Кухня', 'Природа']);
 
-    const userList: IShortUser[] = useStore($usersList);
-    const isListLoaded: boolean = useStore(isAsyncLoaded);
-    const [dinamicUsers, setDinamicUsers] = useState<IShortUser[]>([]);
+    const peoplesList$: IPeople[] = useStore(allPeoples);
+    const isPeoplesLoaded$: boolean = useStore(isPeoplesLoaded);
+    //const [dinamicUsers, setDinamicUsers] = useState<IShortUser[]>([]);
     
     useEffect(() => {
-        getAllRegisteredUsers().then( (res) => {
-            if(res.status === 200) {
-                setIsAsyncLoaded(true);
-            }
-        }, (errors) => {
-            console.log(errors);
-        })
+        //getAllPeoples();
     }, [])
 
-    useEffect(() => {
+    /*useEffect(() => {
         const scrollHandler = (event: any) => {
         if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
             setDinamicUsers((dinamicUsers) => userList.slice(0, dinamicUsers.length+5));
@@ -40,7 +34,7 @@ export default function SearchingPeople(): JSX.Element {
         return () => {
             document.removeEventListener('scroll', scrollHandler);
         }
-    }, [userList])
+    }, [userList])*/
     return(
         <div className={s.searching}>
             <div className={s.params}>
@@ -90,7 +84,7 @@ export default function SearchingPeople(): JSX.Element {
                     </select>
                 </div>
                 <div>
-                    { isListLoaded ? dinamicUsers.map( user => <UserList key={user.loginUrl} user={user}/>) : <Loader/> }
+                    { isPeoplesLoaded$ ? peoplesList$.map( user => <UserList key={user.userId} user={user}/>) : <Loader/> }
                 </div>
             </div>
         </div> 
