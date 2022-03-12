@@ -11,15 +11,14 @@ export const isPeoplesLoaded = createStore<boolean>(false).on(setIsPeoplesLoaded
     return peoplesLoaded;
 });
 
-export const getAllPeoples = createEffect();
-getAllPeoples.use( async () => {
+export const getAllPeoples = createEffect(async () => {
     const response = await instance.get('/people/all');
     if(response.status === 200) {
         setAllPeoples(response.data);
-        return response;
+        return response.data;
     }
-})
-getAllPeoples.doneData(() => {
+});
+getAllPeoples.doneData((peoples: IPeople[]) => {
     setIsPeoplesLoaded(true);
 })
 export interface IPeople {

@@ -60,10 +60,10 @@ function Profile(): JSX.Element {
         Router.push('/messanger')
     }
     useEffect( () => {
-        setCurrentPage(route.asPath);
         if(route.query.id !== undefined) {
             getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
                 if(res.status === 200) {
+                    setCurrentPage(route.asPath);
                     setCurrentUser(() => res.data);
                     setIsAsyncLoaded(true);
                 }

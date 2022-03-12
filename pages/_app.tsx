@@ -4,23 +4,25 @@ import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { getUserData, setIsAsyncLoaded } from '../global/store/store'
+import { $user, getUserData, setIsAsyncLoaded } from '../global/store/store'
 import { useRouter } from 'next/router'
 import { HubConnectionBuilder } from '@microsoft/signalr'
 import { connectionStart, setNewConnection } from '../global/store/connection_model'
+import { useStore } from 'effector-react'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
-
+	const authedUser$ = useStore($user);
+	
 	useEffect(() => {
 		if(localStorage.getItem('access-token')) {
 			setIsAsyncLoaded(false);
 			getUserData().then( (res) => {
 				if(res.status === 200) {  
 					setIsAsyncLoaded(true);
-					router.push(localStorage.getItem('previousPage')!);
+					router.push(`/messanger`);
 				} else {
 					router.push('/login');
 				}

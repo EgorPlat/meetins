@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Loader from "../../../global/Loader/Loader";
 import { allPeoples, getAllPeoples, IPeople, isPeoplesLoaded } from "../../../global/store/peoples_model";
-import { isAsyncLoaded, setIsAsyncLoaded } from "../../../global/store/store";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
 
@@ -18,23 +17,23 @@ export default function SearchingPeople(): JSX.Element {
 
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const isPeoplesLoaded$: boolean = useStore(isPeoplesLoaded);
-    //const [dinamicUsers, setDinamicUsers] = useState<IShortUser[]>([]);
-    
+    const [dinamicUsers, setDinamicUsers] = useState<IPeople[]>([]);
+
     useEffect(() => {
-        //getAllPeoples();
+        getAllPeoples();
     }, [])
 
-    /*useEffect(() => {
+    useEffect(() => {
         const scrollHandler = (event: any) => {
-        if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
-            setDinamicUsers((dinamicUsers) => userList.slice(0, dinamicUsers.length+5));
-        }
+            if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
+                setDinamicUsers((dinamicUsers) => peoplesList$.slice(0, dinamicUsers.length+5));
+            }
         }
         document.addEventListener('scroll', scrollHandler);
         return () => {
             document.removeEventListener('scroll', scrollHandler);
         }
-    }, [userList])*/
+    }, [peoplesList$])
     return(
         <div className={s.searching}>
             <div className={s.params}>

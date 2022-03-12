@@ -36,6 +36,9 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		if(select === 'name') {
 			router.push(`/profile/${user?.login}`);
 		}
+		if(select === 'comeBack') {
+			router.push(`/profile/${user?.login}`);
+		}
 	}, [select])
     return(
 		<div className={s.navCont}>
@@ -57,6 +60,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				<option className={s.option} value="name">{user?.name}</option>
 				<option className={s.option} value="logOut">Выход</option>
 				<option className={s.option} value="settings">Настройки</option>
+				<option className={s.option} value="comeBack">Вернуться</option>
 			</select>
 			</div>
 		</div>
