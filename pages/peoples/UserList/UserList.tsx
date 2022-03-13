@@ -9,7 +9,7 @@ export default function UserList(props: {user: IPeople}): JSX.Element {
     const router = useRouter();
 
     const goToProfile = (user: IPeople) => {
-        //router.push(`profile/${user.loginUrl}`)
+        router.push(`profile/${user.login}`)
     }
     return( 
         <div className={s.user} onClick={() => goToProfile(props.user)}>
@@ -19,7 +19,7 @@ export default function UserList(props: {user: IPeople}): JSX.Element {
                 </div>
             </div>
             <div className={s.name}>
-                <h5>{props.user?.userName}</h5>
+                <h5>{props.user?.userName + ", " + props.user?.age}</h5>
             </div>
         </div>
     )

@@ -9,12 +9,7 @@ export default function ChatList(): JSX.Element {
     const myDialogs$ = useStore(myDialogs);
 
     useEffect(() => {
-        getMyDialogs().then((response) => {
-            if(response?.data === 200) {
-                console.log('ChatList - getMyDialogs');
-                console.log(response.data);
-            }
-        })
+        getMyDialogs();
     },[])
     return(
         <div className={s.chatList}>

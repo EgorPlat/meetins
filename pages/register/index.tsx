@@ -9,6 +9,7 @@ import maleIcon from '../../public/images/male.svg'
 import s from '../../styles/pageStyles/auth.module.scss'
 import { useState } from 'react'
 import EyeIcon from '../../global/helpers/Icons/EyeIcon'
+
 import {
 	isEmail,
 	validateEmailOrPhone,
@@ -35,6 +36,7 @@ export default function Login(): JSX.Element {
 		phone_or_email: string | null
 		pass: string
 		gender: string
+		date: Date
 	}) => {
 		const email = isEmail(data.phone_or_email)
 		const nameArr = data.name.split(' ')
@@ -44,6 +46,7 @@ export default function Login(): JSX.Element {
 			email,
 			password: data.pass,
 			gender: data.gender,
+			date: data.date
 		})
 
 		sendRegData({
@@ -51,6 +54,7 @@ export default function Login(): JSX.Element {
 			email,
 			password: data.pass,
 			gender: data.gender,
+			date: data.date
 		}).then( (res: any) => {
 			if(localStorage.getItem('access-token') !== '') {
 				router.push(`/profile/${res.data.profile.login}`);
@@ -101,11 +105,11 @@ export default function Login(): JSX.Element {
 						{errors.phone_or_email.message}
 					</span>
 				)}
-
+				
 				<Input
 					icon={passIcon}
 					placeholder='Придумайте пароль'
-					type={!showPassword ? 'password' : 'text'}
+					type='password'
 					id='pass'
 					style={{ marginTop: '25px' }}
 					register={register('pass', {
@@ -121,6 +125,18 @@ export default function Login(): JSX.Element {
 					/>
 				</Input>
 
+				<Input
+					icon={phoneIcon}
+					placeholder='Дата Рождения'
+					type='date' 
+					id='date'
+					style={{ marginTop: '25px' }}
+					className={errors.date && s.errorBorder}
+					register={register('date', {
+						required: true,
+					})}
+				/>
+				
 				<div className={s.gender}>
 					<span>Выберите пол:</span>
 					<label

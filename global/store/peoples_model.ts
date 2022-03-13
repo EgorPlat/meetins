@@ -18,11 +18,11 @@ export const getAllPeoples = createEffect(async () => {
         return response.data;
     }
 });
-getAllPeoples.doneData((peoples: IPeople[]) => {
+getAllPeoples.doneData.watch((peoples: IPeople[]) => {
     setIsPeoplesLoaded(true);
 })
 export interface IPeople {
-    userId: string,
+    login: string,
     userName: string,
     userAvatar: string,
     status: string,

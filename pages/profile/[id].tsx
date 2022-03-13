@@ -14,7 +14,7 @@ import About from "./About/About";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import { setActiveChat } from "../../global/store/chat_model";
+import { checkDialog, setActiveChat } from "../../global/store/chat_model";
 
 function Profile(): JSX.Element {
 
@@ -46,17 +46,18 @@ function Profile(): JSX.Element {
             }
         })  
     }, [])
-    const startNewDialog = () => {
+    const startDialog = () => {
         setActiveChat({
-            dialogId: "new",
+            dialogId: '-',
             userName: currentUser.name,
             userAvatar: currentUser.avatar,
             isRead: true,
-            content: "Напишите сообщение...",
+            content: 'Сообщение',
             messages: [],
             status: true,
             userId: currentUser.userId
-        });
+        })
+        checkDialog(currentUser);
         Router.push('/messanger')
     }
     useEffect( () => {
@@ -101,7 +102,7 @@ function Profile(): JSX.Element {
                         </div>
                         { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
-                            <button type="button" className={`${s.actionsBtn}`} onClick={startNewDialog}>
+                            <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
                                 Диалог
                                 <Image alt="Сообщение" src={message} width={20} height={20} />
                             </button>

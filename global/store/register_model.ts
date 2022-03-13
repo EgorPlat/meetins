@@ -6,6 +6,7 @@ type RegisterDetailsType = {
 	email: string | null
 	password: string 
 	gender: string
+	date: Date
 } | null
  
 export const sendRegData = createEffect()

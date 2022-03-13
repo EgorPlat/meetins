@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			getUserData().then( (res) => {
 				if(res.status === 200) {  
 					setIsAsyncLoaded(true);
-					router.push(`/messanger`);
+					router.push(localStorage.getItem('previousPage')!);
 				} else {
 					router.push('/login');
 				}

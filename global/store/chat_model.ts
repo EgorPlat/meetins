@@ -1,9 +1,9 @@
+import { create } from "domain";
 import { createEffect, createEvent, createStore } from "effector";
-import { instance } from "./store";
+import { instance, User } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog>();
 export const activeChat = createStore<IMyDialog>({} as IMyDialog).on(setActiveChat, (_, newActiveChat) => {
-
     return newActiveChat;
 })
 export const setMyDialogs = createEvent<IMyDialog[]>();
@@ -31,33 +31,52 @@ export const sendMessageAndUploadActiveChat = createEffect((message: string) => 
                     messages: response?.data,
                     status: true
                 })
-            }) 
+            });
+            getMyDialogs();
         } 
     }
-});
-export const getMyDialogs = async () => {
+}); 
+export const checkDialog = createEffect(async (user: User) => {
+    const response = await instance.post('/dialogs/private-dialog', user.userId);
+    if(response.status === 200) {
+        setActiveChat({
+            dialogId: response.data[0].dialogId,
+            userName: user.name,
+            userAvatar: user.avatar,
+            isRead: true,
+            content: 'Сообщение',
+            messages: response.data,
+            status: true,
+        });
+    }
+})
+
+export const getMyDialogs = createEffect(async () => {
     try {
         const response = await instance.get('/dialogs/my-dialogs');
         if(response.status === 200) {
             setMyDialogs(response.data);
-            return response;
+            return response.data;
         }
-    } 
+    }  
     catch(error) {
         console.log(error);
     }
-}
+});
+
 export const getDialogMessages = async (chosedDialog: IMyDialog) => {
-    try {
-        const response = await instance.post('/dialogs/messages', chosedDialog.dialogId);
-        if(response.status === 200) {
-            const activeDialogWithMessages: IMyDialog = {...chosedDialog, messages: response.data};
-            setActiveChat(activeDialogWithMessages);
-            return response;
+    if(chosedDialog.dialogId !== '-') {
+        try {
+            const response = await instance.post('/dialogs/messages', chosedDialog.dialogId);
+            if(response.status === 200) {
+                const activeDialogWithMessages: IMyDialog = {...chosedDialog, messages: response.data};
+                setActiveChat(activeDialogWithMessages);
+                return response;
+            }
         }
-    }
-    catch(error) {
-        console.log(error);
+        catch(error) {
+            console.log(error);
+        }
     }
 }
 export const sendMessageInDialog = async (message: IDialogMessage) => {
