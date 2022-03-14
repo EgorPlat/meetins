@@ -59,7 +59,7 @@ function Profile(): JSX.Element {
         })
         checkDialog(currentUser);
         Router.push('/messanger')
-    }
+    } 
     useEffect( () => {
         if(route.query.id !== undefined) {
             getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
@@ -94,11 +94,11 @@ function Profile(): JSX.Element {
                     <div className={`col-md-8 ${s.userInfo}`}>
                         <div className="row">
                             <div className={`col ${s.userName}`}>
-                                {currentUser.name}
+                                {currentUser.name + ', ' + "20"}
                             </div>
-                        </div> 
-                        <div className={`${s.text}`}>
-                            <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
+                        </div>
+                        <div className={s.town}>
+                            г. Санкт-Петербург
                         </div>
                         { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
                         <div className={`${s.actions}`}>
@@ -106,9 +106,14 @@ function Profile(): JSX.Element {
                                 Диалог
                                 <Image alt="Сообщение" src={message} width={20} height={20} />
                             </button>
-                            <button type="button" className={`${s.actionsBtn}`}>Приглашение +</button>
+                            <button type="button" className={`${s.actionsBtn}`}>Пригласить +</button>
                         </div> : null
                         }
+                    </div>
+                </div>
+                <div className={`row ${s.block}`}>
+                    <div className={`${s.text}`}>
+                        <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
                     </div>
                 </div>
                 <div className={`row ${s.moreInfo}`}>

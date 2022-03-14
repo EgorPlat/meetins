@@ -4,11 +4,8 @@
 	display: grid;
 	grid-template-columns: 300px 1fr;
 	height: 120px;
-	//background: #3db2ff;
 	background-color: white;
-	padding: 0 25px;
 	& .logo {
-		//display: flex;
 		align-items: center;
 		justify-content: space-between;
 		cursor: pointer;

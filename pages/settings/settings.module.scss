@@ -1,6 +1,6 @@
 .settings {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     color: black;
     font-family: Nunito;
     & .menu {
@@ -20,8 +20,6 @@
         padding-top: 1%;
         padding-left: 8%;
         font-family: Nunito;
-        height: 100vh;
-        overflow-y: scroll;
         h5 {
             padding: 5px;
             background-color: rgb(240, 240, 240);
@@ -68,14 +66,14 @@
             & .info {
                 & label {
                     display: inline;
-                    width: 90%;
+                    width: 95%;
                     margin-top: 10%;
                     margin-left: 1%;
                     font-size: 20px;
                 }
                 & input {
                     display: inline;
-                    width: 90%;
+                    width: 95%;
                     margin-left: 1%;
                     font-size: 18px;
                 }
@@ -84,14 +82,14 @@
                 & .manageAcc {
                     & label {
                         display: inline;
-                        width: 90%;
+                        width: 95%;
                         margin-top: 10%;
                         margin-left: 1%;
                         font-size: 20px;
                     }
                     & input {
                         display: inline;
-                        width: 90%;
+                        width: 95%;
                         margin-left: 1%;
                         font-size: 18px;
                     } 

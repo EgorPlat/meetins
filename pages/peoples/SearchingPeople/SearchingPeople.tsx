@@ -83,7 +83,7 @@ export default function SearchingPeople(): JSX.Element {
                     </select>
                 </div>
                 <div>
-                    { isPeoplesLoaded$ ? peoplesList$.map( user => <UserList key={user.login} user={user}/>) : <Loader/> }
+                    { isPeoplesLoaded$ ? dinamicUsers.map( user => <UserList key={user.login} user={user}/>) : <Loader/> }
                 </div>
             </div>
         </div> 

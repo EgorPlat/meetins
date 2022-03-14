@@ -27,3 +27,12 @@
         }
     }
 }
+@media screen and(max-width: 1213px) {
+    .chatList {
+        & .menu {
+            & button {
+                font-size: 16px;
+            }
+        }
+    }
+}

@@ -6,7 +6,7 @@ export default function ChatMessageForm(
         placeholder: string,
         onClickForm: (inputValue: string) => void
     }
-): JSX.Element {
+): JSX.Element { 
 
     const inputRef = useRef<HTMLInputElement>(null);
 

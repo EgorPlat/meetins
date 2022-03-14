@@ -1,5 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef, useState} from "react";
+import Loader from "../../../global/Loader/Loader";
 import { activeChat, getDialogMessages, IMyDialog, sendMessageAndUploadActiveChat, sendMessageInDialog, setActiveChat, startNewDialog } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
@@ -46,7 +47,7 @@ export default function ChatZone(): JSX.Element {
                                 {message.content}
                             </div>
                             )
-                        : <div className={s.defaultText}>Выберите диалог...</div>
+                        : <Loader/>
                     }
                     <span ref={messagesEndRef}></span>
                 </div>

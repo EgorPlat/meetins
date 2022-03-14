@@ -14,7 +14,6 @@ import { useStore } from 'effector-react'
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
-	const authedUser$ = useStore($user);
 	
 	useEffect(() => {
 		if(localStorage.getItem('access-token')) {

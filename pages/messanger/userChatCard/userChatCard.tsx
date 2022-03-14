@@ -16,7 +16,6 @@ export default function UserChatCard(props: {user: IMyDialog}): JSX.Element {
     return(
         <div className={s.chat} onClick={chooseChat}>
             <div className={s.avatar} style={{backgroundImage: `url('${baseURL + props.user?.userAvatar}')`}}>
-                {/*<div className={s.round}></div>*/}
             </div>
             <div className={s.info}>
                 <div className={s.name}>

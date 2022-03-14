@@ -28,6 +28,7 @@ export default React.memo(function About(props: {
     if(props.user && authedUser) {
         return(
             <div className={s.about}>
+                <p><b>О себе:</b></p> 
                 {isAuthedProfile && authedUser.status === (null || "")
                  ? <p style={{color: "grey"}} onClick={() => newChangeSatus(true)}>Введите Ваш статус...</p>
                  : null
@@ -45,7 +46,7 @@ export default React.memo(function About(props: {
         )
     } else {
         return(
-            <div>Ошибка соединения.</div>
+            <div>Ошибка. Пожалуйста, обновите страницу.</div>
         )
     }
 })

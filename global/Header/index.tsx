@@ -6,9 +6,12 @@ import Link from 'next/link'
 import { $currentPage, setCurrentPage } from '../store/store'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
+import { useRouter } from 'next/router'
 
 export default function Header(): JSX.Element {
-	const currentPage = useStore($currentPage)
+	const currentPage = useStore($currentPage);
+	const router = useRouter();
+
 	let headerBgClass
 	if (currentPage === '/') {
 		headerBgClass = s.headerMainPage
@@ -37,7 +40,7 @@ export default function Header(): JSX.Element {
 				</div>
 			</Link>
 
-			{ currentPage === "/" || currentPage === "/login" || currentPage === "/register" 
+			{ router.pathname === "/" || currentPage === "/login" || currentPage === "/register" 
 			? <Navbar currentPage={currentPage} /> 
 			: <MainNavbar currentPage={currentPage} />
 			}

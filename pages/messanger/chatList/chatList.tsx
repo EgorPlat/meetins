@@ -10,7 +10,7 @@ export default function ChatList(): JSX.Element {
 
     useEffect(() => {
         getMyDialogs();
-    },[])
+    },[]) 
     return(
         <div className={s.chatList}>
             <h3>Чаты</h3>
