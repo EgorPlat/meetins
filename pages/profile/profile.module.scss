@@ -25,7 +25,7 @@
     & .bodyInfo {
         & .avatar {
             border-radius: 50%; /* Радиус скругления */
-            border: 1px solid white; /* Параметры рамки */
+            border: 1px solid grey; /* Параметры рамки */
             width: 100%;
             height: 100%;
         }
@@ -44,7 +44,7 @@
     }
     & .userName {
         color: black;
-        font-size: 34px;
+        font-size: 36px;
     }
     & .status {
         padding-left: 10px;
@@ -61,14 +61,14 @@
     & .actionsBtn {
         width: 180px;
         height: 45px;
-        margin-left: 10%;
+        margin-left: 1%;
         border: none;
         font-size: 20px;
         border-radius: 20px;
-        margin-top: 10%;
+        margin-top: 5%;
         padding-left: 10px;
         color: white;
-        background: linear-gradient(to right, #63b4e4, #66ebe4);
+        background: #3DB2FF;
     }
 }
 @media screen and(max-width: 1180px) {

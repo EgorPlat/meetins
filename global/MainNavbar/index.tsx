@@ -52,6 +52,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		</div>
 		<div className={s.navAvatar}>
 			<div className={s.avSelect}>
+			<button className={s.inviteBtn}>Пригласить</button>
 			{ user?.avatar !== undefined 
 			?
 			<img src={baseURL + user.avatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>

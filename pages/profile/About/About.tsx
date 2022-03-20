@@ -40,7 +40,7 @@ export default React.memo(function About(props: {
                     <button className={s.confirmBtn} onClick={saveNewStatus}>ОК</button>
                     <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>Х</button>
                 </div>
-                 : <p onClick={() => newChangeSatus(true)}>{props.user.status}</p>
+                 : <p onClick={() => newChangeSatus(true)} className={s.status}>{props.user.status}</p>
                 } 
             </div>
         )

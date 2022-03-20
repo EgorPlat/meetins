@@ -73,13 +73,14 @@ function Profile(): JSX.Element {
     }, [route])
     return(
         <PageContainer>
-            <div className={s.profile}>
+        <div className={s.profile}>
             <div className="row">
                 {asyncLoaded 
                 ? 
                 <div className={`col-md-10 ${s.bodyCol}`}>
+
                 <div className={`row ${s.block}`}>
-                    <div className={`col-md-4 ${s.bodyInfo}`}>
+                    <div className={`col-md-3 ${s.bodyInfo}`}>
                        {!addingImageStatus ?
                        <img 
                         onMouseEnter={() => changeAddingImageStatus(true)}
@@ -111,11 +112,13 @@ function Profile(): JSX.Element {
                         }
                     </div>
                 </div>
+
                 <div className={`row ${s.block}`}>
                     <div className={`${s.text}`}>
                         <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
                     </div>
                 </div>
+
                 <div className={`row ${s.moreInfo}`}>
                     <div className={`col ${s.block} ${s.interests}`}>
                         <Interests interest={['Плавание','Йога','Волейбол','Бокс']}/>
@@ -124,6 +127,7 @@ function Profile(): JSX.Element {
                         <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
                     </div>
                 </div> 
+
                 <div className={`row`}>
                     <div className="col">
                         <ImageList images={[]} />

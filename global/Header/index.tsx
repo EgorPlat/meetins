@@ -34,13 +34,13 @@ export default function Header(): JSX.Element {
 						className={s.logoImage}
 						src={logo}
 						alt='company logo'
-						width={380}
-				 		height={120}
+						width={270}
+				 		height={80}
 					/>
 				</div>
 			</Link>
 
-			{ router.pathname === "/" || currentPage === "/login" || currentPage === "/register" 
+			{ router.pathname === "/" || router.pathname === "/login" || router.pathname === "/register" 
 			? <Navbar currentPage={currentPage} /> 
 			: <MainNavbar currentPage={currentPage} />
 			}

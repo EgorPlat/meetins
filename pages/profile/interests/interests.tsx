@@ -8,7 +8,7 @@ export default function Interests(props: {interest: string[]}): JSX.Element {
     return(
         <div className={s.interests}>
             <div className={s.title}>
-                <h3><Image src={like} width={30} height={30} alt="Сердечко" /><b>Интересы</b></h3>
+                <p><Image src={like} width={20} height={20} alt="Сердечко" /><b>Интересы</b></p>
             </div>
             {props.interest?.length > 0
             ? props.interest?.map((elem) => 
