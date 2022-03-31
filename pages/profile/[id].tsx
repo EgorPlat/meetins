@@ -1,7 +1,7 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
-import { $user, baseURL, getUserDataByLoginUrl, isAsyncLoaded, setCurrentPage, setIsAsyncLoaded, setUser, User } from "../../global/store/store";
+import { $currentProfileUser, $user, baseURL, getDataForProfilePage, isAsyncLoaded, setCurrentPage, setCurrentProfileUser, setUser, User } from "../../global/store/store";
 import s from "./profile.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from "next/image";
@@ -15,13 +15,15 @@ import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
 import { checkDialog, setActiveChat } from "../../global/store/chat_model";
+import { HttpResponse } from "@microsoft/signalr";
+import { AxiosResponse } from "axios";
 
 function Profile(): JSX.Element {
 
     const route = useRouter();
     const asyncLoaded = useStore(isAsyncLoaded);
 
-    const [currentUser, setCurrentUser] = useState<User>({} as User);
+    const currentUser = useStore($currentProfileUser);
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
 
@@ -32,18 +34,14 @@ function Profile(): JSX.Element {
     }
     const onChangeInputImage = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         updateUserAvatar(event).then((res: any) => {
-            if(res.status === 200) {
-                setCurrentUser(res.data)
-                setUser(res.data);
-            }
+            setCurrentProfileUser(res.data)
+            setUser(res.data);
         })
     },[])
     const saveNewStatus = useCallback((userStatus: string) => {
         updateUserStatus(userStatus).then( (res: any) => {
-            if(res.status === 200) {
-                setUser(res.data);
-                setCurrentUser(res.data);
-            }
+            setUser(res.data);
+            setCurrentProfileUser(res.data);
         })  
     }, [])
     const startDialog = () => {
@@ -61,15 +59,10 @@ function Profile(): JSX.Element {
         Router.push('/messanger')
     } 
     useEffect( () => {
-        if(route.query.id !== undefined) {
-            getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
-                if(res.status === 200) {
-                    setCurrentPage(route.asPath);
-                    setCurrentUser(() => res.data);
-                    setIsAsyncLoaded(true);
-                }
-            }) 
-        }
+        getDataForProfilePage(route);
+        setCurrentPage(route.pathname);
+        console.log(currentUser);
+        console.log(authedUser);
     }, [route])
     return(
         <PageContainer>
@@ -101,7 +94,7 @@ function Profile(): JSX.Element {
                         <div className={s.town}>
                             г. Санкт-Петербург
                         </div>
-                        { JSON.stringify(currentUser) !== JSON.stringify(authedUser) ?
+                        { currentUser.login !== authedUser?.login ?
                         <div className={`${s.actions}`}>
                             <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
                                 Диалог

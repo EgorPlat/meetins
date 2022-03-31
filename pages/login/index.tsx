@@ -31,12 +31,13 @@ export default function Login(): JSX.Element {
 			email: login,
 			password: pass,
 		}).then((res: any) => {
-			if(res.status <= 200) {
-				Router.push(`/profile/${res.data.profile.login}`);
+
+			if(res.status <= 201) {
+				Router.push(`/profile/${res.data.profile.user.login}`);
+			} else {
+				setErrorMessage(() => " ")
 			}
-		}, (errors) => {
-            setErrorMessage( () => `Error`)
-		} 
+		}
 		)
 	}
 	return (

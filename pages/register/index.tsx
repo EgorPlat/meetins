@@ -36,7 +36,7 @@ export default function Login(): JSX.Element {
 		phone_or_email: string | null
 		pass: string
 		gender: string
-		date: Date
+		city: string
 	}) => {
 		const email = isEmail(data.phone_or_email)
 		const nameArr = data.name.split(' ')
@@ -46,7 +46,7 @@ export default function Login(): JSX.Element {
 			email,
 			password: data.pass,
 			gender: data.gender,
-			date: data.date
+			city: data.city
 		})
 
 		sendRegData({
@@ -54,7 +54,7 @@ export default function Login(): JSX.Element {
 			email,
 			password: data.pass,
 			gender: data.gender,
-			date: data.date
+			city: data.city
 		}).then( (res: any) => {
 			if(localStorage.getItem('access-token') !== '') {
 				router.push(`/profile/${res.data.profile.login}`);
@@ -127,12 +127,12 @@ export default function Login(): JSX.Element {
 
 				<Input
 					icon={phoneIcon}
-					placeholder='Дата Рождения'
-					type='date' 
-					id='date'
+					placeholder='Ваш город'
+					type='text' 
+					id='city'
 					style={{ marginTop: '25px' }}
 					className={errors.date && s.errorBorder}
-					register={register('date', {
+					register={register('city', {
 						required: true,
 					})}
 				/>

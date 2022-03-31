@@ -6,7 +6,7 @@ type RegisterDetailsType = {
 	email: string | null
 	password: string 
 	gender: string
-	date: Date
+	city: string
 } | null
  
 export const sendRegData = createEffect()
@@ -21,10 +21,10 @@ export const $registerDetails = createStore<RegisterDetailsType>(null).on(
 ) 
 
 sendRegData.use(async (regDetails) => {
-	const response = await instance.post('user/register-user', JSON.stringify(regDetails))
-	if(response.status === 200) {
-		localStorage.setItem('access-token', response.data.auth.accessToken);
-		localStorage.setItem('refrash-token', response.data.auth.refreshToken);
+	const response = await instance.post('auth/registration', JSON.stringify(regDetails))
+	console.log(response);
+	if(response?.status === 201) {
+		localStorage.setItem('access-token', response.data.auth.token);
 		setUser(response.data.profile);
 	}
 	return response;

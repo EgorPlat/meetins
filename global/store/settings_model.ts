@@ -40,12 +40,16 @@ updateUserAvatar.use(async (event: any) => {
 	const formData = new FormData();
 	formData.append('uploadedFile', image);
 
-	const response = await instance.post<User>('profile/update-avatar', formData);
-	return response;
+	const response = await instance.post<User>('settings/update-avatar', formData);
+	if(response.status === 200) {
+		return response.data;
+	}
 })
 
 export const updateUserStatus = createEffect();
 updateUserStatus.use( async (userStatus) => {
 	const response = await instance.post<User>('profile/update-status', {status: userStatus});
-	return response;
+	if(response.status === 200) {
+		return response.data;
+	}
 })

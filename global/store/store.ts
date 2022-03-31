@@ -1,7 +1,9 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { createEvent, createStore } from 'effector'
+import { createEffect, createEvent, createStore } from 'effector'
+import { NextRouter } from 'next/router';
+import { instanseRouter } from './router_model';
 
-export const baseURL = 'https://api.meetins.ru/';
+export const baseURL = 'https://meetins.herokuapp.com/';
 export const instance = axios.create({
 	baseURL: baseURL,
 	headers: {
@@ -50,41 +52,18 @@ instance.interceptors.response.use((res: AxiosResponse) => {
 	return Promise.reject(error);
 })
 
-
-
-export type User = {
-	userId: string
-	name: string,
-	phoneNumber: string,
-	email: string,
-	status: string,
-	gender: string,
-	avatar: string,
-	dateRegister: string,
-	login: string,
-	birthDate: string
-}
-export type ProfileData = {
-	name: string,
-	phoneNumber: string,
-	birthDate: string
-}
-export type AccountData = {
-	email: string,
-	password: string,
-	login: string
-}
-
 export const setIsAsyncLoaded = createEvent<boolean>();
 export const isAsyncLoaded = createStore<boolean>(false).on(setIsAsyncLoaded, (_, tokenUpdated) => {
 	return tokenUpdated;
 })
-
 export const setUser = createEvent<User | null>()
 export const $user = createStore<User | null>(null).on(setUser, (_, userDetails) => {
 	return userDetails
 })
-
+export const setCurrentProfileUser = createEvent<User>();
+export const $currentProfileUser = createStore<User>({} as User).on(setCurrentProfileUser, (_, currentUser) => {
+	return currentUser;
+})
 export const setCurrentPage = createEvent<string>()
 export const $currentPage = createStore<string>('').on(
 	setCurrentPage,
@@ -100,11 +79,38 @@ export const getUserData = async () => {
 	}
 	return response;
 }
-export const getUserDataByLoginUrl = async (loginUrl: string) => {
+export const getInitialUserDataAndCheckAuth = createEffect(() => {
+	const instanseRouter$ = instanseRouter.getState();
+	if(localStorage.getItem('access-token')) {
+		setIsAsyncLoaded(false);
+		getUserData().then( (res) => {
+			if(res.status === 200) {  
+				setIsAsyncLoaded(true);
+				instanseRouter$?.push(localStorage.getItem('previousPage')!);
+			} else {
+				instanseRouter$?.push('/login');
+			}
+		})
+	} else {
+		instanseRouter$?.push('/login');
+	}
+});
+ 
+export const getUserDataByLoginUrl = async (loginUrl: string | number) => {
 	setIsAsyncLoaded(false);
-	const response = await instance.post(`profile/by-login`, null, {params: {login: loginUrl}});
+	const response = await instance.get(`profile/by-login/${loginUrl}`);
 	return response;
 }
+export const getDataForProfilePage = createEffect((route: NextRouter) => {
+	if(route.query.id !== undefined) {
+		getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
+			if(res.status === 200) {
+				setCurrentProfileUser(res.data);
+			}
+			console.log(res);
+		}) 
+	}
+})
 export const updateTokens = async () => {
 	const response = await instance.post('user/refresh-token', localStorage.getItem('refrash-token'));
 	if(response.status === 200) {
@@ -112,4 +118,28 @@ export const updateTokens = async () => {
 	    localStorage.setItem('refrash-token', response.data.refreshToken);
 	}
 	return response;
+}
+
+export type User = {
+	userId: string
+	name: string,
+	phoneNumber: string,
+	email: string,
+	status: string,
+	gender: string,
+	avatar: string,
+	dateRegister: string,
+	login: string,
+	birthDate: string,
+	city: string
+}
+export type ProfileData = {
+	name: string,
+	phoneNumber: string,
+	birthDate: string
+}
+export type AccountData = {
+	email: string,
+	password: string,
+	login: string
 }

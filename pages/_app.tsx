@@ -4,11 +4,11 @@ import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { $user, getUserData, setIsAsyncLoaded } from '../global/store/store'
+import { getInitialUserDataAndCheckAuth } from '../global/store/store'
 import { useRouter } from 'next/router'
 import { HubConnectionBuilder } from '@microsoft/signalr'
 import { connectionStart, setNewConnection } from '../global/store/connection_model'
-import { useStore } from 'effector-react'
+import { setRouter } from '../global/store/router_model'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -16,25 +16,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	
 	useEffect(() => {
-		if(localStorage.getItem('access-token')) {
-			setIsAsyncLoaded(false);
-			getUserData().then( (res) => {
-				if(res.status === 200) {  
-					setIsAsyncLoaded(true);
-					router.push(localStorage.getItem('previousPage')!);
-				} else {
-					router.push('/login');
-				}
-			}) 
-		} else {
-			router.push('/login');
-		}
-		const newConnection = new HubConnectionBuilder()
-		.withUrl('https://api.meetins.ru/messenger', { accessTokenFactory: () => String(localStorage.getItem('access-token')) })
-		.withAutomaticReconnect()
-		.build()
-		setNewConnection(newConnection);
-		connectionStart(newConnection);	
+		setRouter(router);
+		getInitialUserDataAndCheckAuth();
+		//const newConnection = new HubConnectionBuilder()
+		//.withUrl('https://api.meetins.ru/messenger', { accessTokenFactory: () => String(localStorage.getItem('access-token')) })
+		//.withAutomaticReconnect()
+		//.build()
+		//setNewConnection(newConnection);
+		//connectionStart(newConnection);	
 	}, [])
 
 	return (
@@ -49,3 +38,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp
+
