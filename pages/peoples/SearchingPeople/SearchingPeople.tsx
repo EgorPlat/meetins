@@ -6,7 +6,7 @@ import Loader from "../../../global/Loader/Loader";
 import { allPeoples, getAllPeoples, IPeople, isPeoplesLoaded } from "../../../global/store/peoples_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
-
+import {debounce} from '../../../global/hooks/debounce';
 
 export default function SearchingPeople(): JSX.Element {
 
@@ -18,6 +18,12 @@ export default function SearchingPeople(): JSX.Element {
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const isPeoplesLoaded$: boolean = useStore(isPeoplesLoaded);
     const [dinamicUsers, setDinamicUsers] = useState<IPeople[]>([]);
+    
+    function getData(){
+        console.log(1);
+    }
+  
+    const getNewData = debounce(getData, 500); 
 
     useEffect(() => {
         getAllPeoples();
@@ -45,7 +51,7 @@ export default function SearchingPeople(): JSX.Element {
                     </div>
                     <div className={s.part}>
                         <h4>Возвраст</h4>
-                        <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
+                        <Slider onChange={getNewData} defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
                     </div>
                     <div className={s.part}>
                         <h4>Расстояние</h4>
