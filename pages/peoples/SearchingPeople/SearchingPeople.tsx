@@ -23,7 +23,7 @@ export default function SearchingPeople(): JSX.Element {
         console.log(1);
     }
   
-    const getNewData = debounce(getData, 500); 
+    const getNewData = debounce(getData, 500);           
 
     useEffect(() => {
         getAllPeoples();
