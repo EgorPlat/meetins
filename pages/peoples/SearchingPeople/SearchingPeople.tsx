@@ -47,6 +47,7 @@ export default function SearchingPeople(): JSX.Element {
           const response = await instance.post('users/getSortedUsers', JSON.stringify(filterParams.defaultState));
           setDinamicUsers(response.data);
     }
+    /////dfjkgkjdfkgjkfjdg
     useEffect(() => {
         getAllPeoples();
     }, [])
@@ -54,7 +55,7 @@ export default function SearchingPeople(): JSX.Element {
     useEffect(() => {
         const scrollHandler = (event: any) => {
             if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
-                setDinamicUsers((dinamicUsers) => dinamicUsers.slice(0, dinamicUsers.length+5));
+                setDinamicUsers((dinamicUsers) => dinamicUsers.slice(0, dinamicUsers.length+5));          
             }
         }
         document.addEventListener('scroll', scrollHandler);
