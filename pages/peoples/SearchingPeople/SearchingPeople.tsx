@@ -47,7 +47,7 @@ export default function SearchingPeople(): JSX.Element {
           const response = await instance.post('users/getSortedUsers', JSON.stringify(filterParams.defaultState));
           setDinamicUsers(response.data);
     }
-    /////dfjkgkjdfkgjkfjdg
+    
     useEffect(() => {
         getAllPeoples();
     }, [])
