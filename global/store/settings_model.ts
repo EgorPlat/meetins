@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { createEffect, createEvent, createStore } from "effector";
 import { ChangeEvent } from "react";
 import { AccountData, instance, ProfileData, setUser, User } from "./store";
@@ -40,7 +40,7 @@ updateUserAvatar.use(async (event: any) => {
 	const formData = new FormData();
 	formData.append('uploadedFile', image);
 
-	const response = await instance.post<User>('settings/update-avatar', formData);
+	const response = await axios.post<User>('http://localhost:5000/settings/update-avatar', formData);
 	if(response.status === 200) {
 		return response.data;
 	}
@@ -48,7 +48,7 @@ updateUserAvatar.use(async (event: any) => {
 
 export const updateUserStatus = createEffect();
 updateUserStatus.use( async (userStatus) => {
-	const response = await instance.post<User>('profile/update-status', {status: userStatus});
+	const response = await instance.post<User>('settings/update-status', {status: userStatus});
 	if(response.status === 200) {
 		return response.data;
 	}

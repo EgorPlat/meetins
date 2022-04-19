@@ -39,9 +39,9 @@ function Profile(): JSX.Element {
         })
     },[])
     const saveNewStatus = useCallback((userStatus: string) => {
-        updateUserStatus(userStatus).then( (res: any) => {
-            setUser(res.data);
-            setCurrentProfileUser(res.data);
+        updateUserStatus(userStatus).then( (user: any) => {
+            setUser(user);
+            setCurrentProfileUser(user);
         })  
     }, [])
     const startDialog = () => {

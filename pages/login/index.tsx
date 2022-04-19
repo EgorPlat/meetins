@@ -31,11 +31,11 @@ export default function Login(): JSX.Element {
 			email: login,
 			password: pass,
 		}).then((res: any) => {
-
-			if(res.status <= 201) {
+			console.log(res);
+			if(res.status === 200) {
 				Router.push(`/profile/${res.data.profile.user.login}`);
 			} else {
-				setErrorMessage(() => " ")
+				setErrorMessage(() => "Какая-то ошибка.")
 			}
 		}
 		)

@@ -12,7 +12,7 @@ export default React.memo(function About(props: {
     const [changingStatus, setChangingStatus] = useState<boolean>(false);
     const [userStatus, setUserStatus] = useState<string>("");
     const authedUser = useStore($user);
-    const isAuthedProfile = JSON.stringify(props.user) === JSON.stringify(authedUser);
+    const isAuthedProfile = props.user?.login === authedUser?.login;
 
     const newChangeSatus = (status: boolean) => {  
         if(isAuthedProfile) {

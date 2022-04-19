@@ -25,5 +25,6 @@ sendLogData.use(async (logDetails) => {
 		//localStorage.setItem("refrash-token", response.data.auth.refreshToken);		
 		setUser(response.data.profile.user);
 	}
+	console.log(response);
 	return response;
 })
