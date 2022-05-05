@@ -11,9 +11,9 @@ export const connection = createStore<Socket | null>(null).on(
 );
 
 connection.watch((connection) => {
-    const activeChat$ = activeChat.getState();
     if(connection) {
         connection.on('message', (message: any) => {
+            const activeChat$ = activeChat.getState();
             if(message.dialogId === activeChat$.dialogId) {
                 getDialogMessages({...activeChat$, dialogId: message.dialogId});
             }
