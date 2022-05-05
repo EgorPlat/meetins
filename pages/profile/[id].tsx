@@ -14,9 +14,7 @@ import About from "./About/About";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import { checkDialog, setActiveChat } from "../../global/store/chat_model";
-import { HttpResponse } from "@microsoft/signalr";
-import { AxiosResponse } from "axios";
+import { setActiveChat } from "../../global/store/chat_model";
 
 function Profile(): JSX.Element {
 
@@ -55,14 +53,11 @@ function Profile(): JSX.Element {
             status: true,
             userId: currentUser.userId
         })
-        checkDialog(currentUser);
         Router.push('/messanger')
     } 
     useEffect( () => {
         getDataForProfilePage(route);
         setCurrentPage(route.pathname);
-        console.log(currentUser);
-        console.log(authedUser);
     }, [route])
     return(
         <PageContainer>

@@ -1,5 +1,5 @@
-import { create } from "domain";
 import { createEffect, createEvent, createStore } from "effector";
+import { connection } from "./connection_model";
 import { instance, User } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog>();
@@ -10,10 +10,11 @@ export const setMyDialogs = createEvent<IMyDialog[]>();
 export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, (_, newMyDialogs) => {
     return newMyDialogs;
 })
-
+ 
 export const sendMessageAndUploadActiveChat = createEffect((message: string) => {
     const actualActiveChat = activeChat.getState();
-    if(actualActiveChat) {
+    const connection$ = connection.getState();
+    if(actualActiveChat && connection$) {
         if(actualActiveChat.userId == undefined) {
             sendMessageInDialog(
                 {dialogId: actualActiveChat.dialogId, content: message}
@@ -36,24 +37,11 @@ export const sendMessageAndUploadActiveChat = createEffect((message: string) => 
         } 
     }
 }); 
-export const checkDialog = createEffect(async (user: User) => {
-    const response = await instance.post('/dialogs/private-dialog', user.userId);
-    if(response.status === 200) {
-        setActiveChat({
-            dialogId: response.data[0].dialogId,
-            userName: user.name,
-            userAvatar: user.avatar,
-            isRead: true,
-            content: 'Сообщение',
-            messages: response.data,
-            status: true,
-        });
-    }
-})
+
 
 export const getMyDialogs = createEffect(async () => {
     try {
-        const response = await instance.get('/dialogs/my-dialogs');
+        const response = await instance.get('chat/my-dialogs');
         if(response.status === 200) {
             setMyDialogs(response.data);
             return response.data;
@@ -67,7 +55,7 @@ export const getMyDialogs = createEffect(async () => {
 export const getDialogMessages = async (chosedDialog: IMyDialog) => {
     if(chosedDialog.dialogId !== '-') {
         try {
-            const response = await instance.post('/dialogs/messages', chosedDialog.dialogId);
+            const response = await instance.post('chat/messages', JSON.stringify({dialogId: chosedDialog.dialogId}) );
             if(response.status === 200) {
                 const activeDialogWithMessages: IMyDialog = {...chosedDialog, messages: response.data};
                 setActiveChat(activeDialogWithMessages);
@@ -81,7 +69,7 @@ export const getDialogMessages = async (chosedDialog: IMyDialog) => {
 }
 export const sendMessageInDialog = async (message: IDialogMessage) => {
     try {
-        const response = await instance.post('/dialogs/send-message', message);
+        const response = await instance.post('chat/send-message', message);
         if(response.status === 200) {
             return response;
         }
@@ -92,7 +80,7 @@ export const sendMessageInDialog = async (message: IDialogMessage) => {
 }
 export const startNewDialog = async (newDialog: INewDialog) => {
     try {
-        const response = await instance.post('/dialogs/start-dialog', newDialog);
+        const response = await instance.post('chat/start-dialog', newDialog);
         if(response.status === 200) {
             return response;
         }

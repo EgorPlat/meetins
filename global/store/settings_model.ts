@@ -35,12 +35,12 @@ export const deleteUserAccount = async () => {
 }
 export const updateUserAvatar = createEffect();
 updateUserAvatar.use(async (event: any) => {
-	
+	 
 	const image = event.target.files[0];
 	const formData = new FormData();
 	formData.append('uploadedFile', image);
 
-	const response = await axios.post<User>('http://localhost:5000/settings/update-avatar', formData);
+	const response = await instance.post<User>('/settings/update-avatar', formData);
 	if(response.status === 200) {
 		return response.data;
 	}

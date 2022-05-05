@@ -1,33 +1,25 @@
-import { HubConnection } from "@microsoft/signalr";
-import { createEffect, createEvent, createStore } from "effector";
-import { activeChat, IMyActiveDialogMessage, setActiveChat } from "./chat_model";
+import { createEvent, createStore } from "effector";
+import { Socket } from "socket.io-client";
+import { activeChat, getDialogMessages } from "./chat_model";
 
-export const setNewConnection = createEvent<HubConnection>();
-export const connection = createStore<HubConnection | null>(null).on(
+export const setNewConnection = createEvent<Socket>();
+export const connection = createStore<Socket | null>(null).on(
     setNewConnection,
     (_, newConnection) => {
         return newConnection
     }
 );
 
-export const connectionStart = createEffect((connection: HubConnection | null) => {
-    if(connection && localStorage.getItem('access-token') !== "") {
-        connection.start().then(result => {
-            console.log('Connected!');
-        })
-        .catch(e => console.log('Connection failed: ', e));
-    }
-});
-
 connection.watch((connection) => {
-    connection && connection.on('Notify', (message: IMyActiveDialogMessage) => {
-        const activeChat$ = activeChat.getState();
-        if(activeChat$.dialogId === message.dialogId){
-            setActiveChat({
-                ...activeChat$, 
-                messages: [...activeChat$.messages, message],
-                content: message.content
-            })
-        }
-    });
+    const activeChat$ = activeChat.getState();
+    if(connection) {
+        connection.on('message', (message: any) => {
+            if(message.dialogId === activeChat$.dialogId) {
+                getDialogMessages({...activeChat$, dialogId: message.dialogId});
+            }
+        });
+        connection.on('onConnection', (message: string) => {
+            console.log(message);
+        });
+    }
 })

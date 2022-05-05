@@ -6,24 +6,31 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 import { getInitialUserDataAndCheckAuth } from '../global/store/store'
 import { useRouter } from 'next/router'
-import { HubConnectionBuilder } from '@microsoft/signalr'
-import { connectionStart, setNewConnection } from '../global/store/connection_model'
+import { connection, setNewConnection } from '../global/store/connection_model'
 import { setRouter } from '../global/store/router_model'
+import { io } from 'socket.io-client'
+import { useStore } from 'effector-react'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
-	
+	const connection$ = useStore(connection);
+
 	useEffect(() => {
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
-		//const newConnection = new HubConnectionBuilder()
-		//.withUrl('https://api.meetins.ru/messenger', { accessTokenFactory: () => String(localStorage.getItem('access-token')) })
-		//.withAutomaticReconnect()
-		//.build()
-		//setNewConnection(newConnection);
-		//connectionStart(newConnection);	
+		if(localStorage.getItem('access-token') !== '') {
+			const newConnection = io('https://meetins.herokuapp.com', {
+				extraHeaders: {
+					Authorization: String(localStorage.getItem('access-token'))
+				}
+			});
+		    setNewConnection(newConnection)
+		}
+		return () => {
+			connection$?.disconnect();
+		}
 	}, [])
 
 	return (

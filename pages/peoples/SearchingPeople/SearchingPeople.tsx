@@ -44,10 +44,10 @@ export default function SearchingPeople(): JSX.Element {
                 break;
             default: return;
           }
-          const response = await instance.post('users/getSortedUsers', JSON.stringify(filterParams.defaultState));
+          const response = await instance.post('users/getSortedUsers', filterParams.defaultState);
           setDinamicUsers(response.data);
     }
-    ///fgjdfjkgfdjlgdkfgjlkdj
+
     useEffect(() => {
         getAllPeoples();
     }, [])

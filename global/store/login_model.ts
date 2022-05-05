@@ -21,8 +21,7 @@ export const $loginDetails = createStore<LoginDetailsType>(null).on(
 sendLogData.use(async (logDetails) => {
 	const response = await instance.post('auth/login', JSON.stringify(logDetails))
 	if(response.status === 200) {
-		localStorage.setItem("access-token", response.data.auth.token);
-		//localStorage.setItem("refrash-token", response.data.auth.refreshToken);		
+		localStorage.setItem("access-token", response.data.auth.token);	
 		setUser(response.data.profile.user);
 	}
 	console.log(response);
