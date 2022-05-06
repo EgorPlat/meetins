@@ -1,4 +1,4 @@
-import { createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore, forward, sample } from "effector";
 import { Socket } from "socket.io-client";
 import { activeChat, getDialogMessages } from "./chat_model";
 
@@ -9,8 +9,7 @@ export const connection = createStore<Socket | null>(null).on(
         return newConnection
     }
 );
-
-connection.watch((connection) => {
+export const connectionWatcher = createEffect((connection: Socket | null) => {
     if(connection) {
         connection.on('message', (message: any) => {
             const activeChat$ = activeChat.getState();
@@ -23,3 +22,20 @@ connection.watch((connection) => {
         });
     }
 })
+sample({
+    source: connection,
+    target: connectionWatcher
+})
+/*connection.watch((connection) => {
+    if(connection) {
+        connection.on('message', (message: any) => {
+            const activeChat$ = activeChat.getState();
+            if(message.dialogId === activeChat$.dialogId) {
+                getDialogMessages({...activeChat$, dialogId: message.dialogId});
+            }
+        });
+        connection.on('onConnection', (message: string) => {
+            console.log(message);
+        });
+    }
+})*/

@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore, sample } from "effector";
 import { connection } from "./connection_model";
 import { instance, User } from "./store";
 
