@@ -26,16 +26,3 @@ sample({
     source: connection,
     target: connectionWatcher
 })
-/*connection.watch((connection) => {
-    if(connection) {
-        connection.on('message', (message: any) => {
-            const activeChat$ = activeChat.getState();
-            if(message.dialogId === activeChat$.dialogId) {
-                getDialogMessages({...activeChat$, dialogId: message.dialogId});
-            }
-        });
-        connection.on('onConnection', (message: string) => {
-            console.log(message);
-        });
-    }
-})*/

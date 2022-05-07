@@ -1,0 +1,17 @@
+.card {
+    display: flex;  
+    border-radius: 10px;
+    align-items: center;
+    height: 200px;
+    background-color: coral;
+    margin: 1%;
+    color: white; 
+    & h2 {
+        margin-left: 10px;
+    }
+    &:hover {
+        border-color: 1px solid black;
+        cursor: pointer;
+    }    
+}
+////Для коммитаdfjkgdfdgklfdglkjfdlgjfdlkgjfdkjglkdfjgkdfjglkdfjgkjdflkgjdflkgjdlfkgjlfjkgfkdjgfhdgjhfjkdghfkdjghdkfjghkjfdghfkdjghdkjghfkjdghkfjdghkjdfghkdjfgkdjfgkjdfhgkjdfghkdjfghdfkjk
