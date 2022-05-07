@@ -45,7 +45,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		<div className={s.navBtn}>
 			<div className={s.link}>
 			    <Link href="/peoples">Люди</Link>
-			    <Link href="">События</Link>
+			    <Link href="/events">События</Link>
 			    <Link href="">Встречи</Link>
 			    <Link href="">Интересы</Link>
 			</div>

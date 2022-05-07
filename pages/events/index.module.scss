@@ -1,0 +1,19 @@
+.events {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: space-around;
+
+    & .calendar input {
+        width: 50%;
+        font-size: 24px;
+        height: 80px;
+    }
+}
+.mainContent {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    & .div {
+        text-align: center;
+    }
+}
+

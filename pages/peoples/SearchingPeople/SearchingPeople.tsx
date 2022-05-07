@@ -55,7 +55,7 @@ export default function SearchingPeople(): JSX.Element {
     useEffect(() => {
         const scrollHandler = (event: any) => {
             if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
-                setDinamicUsers((dinamicUsers) => dinamicUsers.slice(0, dinamicUsers.length+5));          
+                setDinamicUsers((dinamicUsers) =>  peoplesList$.slice(0, dinamicUsers.length+5));          
             }
         }
         document.addEventListener('scroll', scrollHandler);
