@@ -30,6 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	useEffect(() => { 
 		if(route.pathname !== '/') {
 			setCurrentPage(route.pathname);
+			console.log(route);
 			localStorage.setItem('previousPage', route.pathname);
 		}
 	}, [route.pathname])

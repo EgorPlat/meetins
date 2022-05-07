@@ -5,7 +5,7 @@ export default function CategoryEventInfo(): JSX.Element {
 
     const router = useRouter();
     const { nameCategory } = router.query;
-
+    
     return(
         <PageContainer>
             <div>

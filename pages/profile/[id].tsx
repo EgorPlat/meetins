@@ -57,7 +57,6 @@ function Profile(): JSX.Element {
     } 
     useEffect( () => {
         getDataForProfilePage(route);
-        setCurrentPage(route.pathname);
     }, [route])
     return(
         <PageContainer>
