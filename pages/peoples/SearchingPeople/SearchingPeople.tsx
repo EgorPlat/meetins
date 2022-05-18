@@ -1,10 +1,10 @@
-import { getUserAgentHeader } from "@microsoft/signalr/dist/esm/Utils";
-import { breadcrumbsClasses, FormControl, InputAdornment, InputLabel, OutlinedInput, Slider } from "@mui/material";
+import { FormControl, InputAdornment, InputLabel, OutlinedInput, Slider } from "@mui/material";
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { IPeople } from "../../../global/interfaces";
 import Loader from "../../../global/Loader/Loader";
-import { allPeoples, filterParams, getAllPeoples, IParams, IPeople, isPeoplesLoaded, setFilterParams } from "../../../global/store/peoples_model";
+import { allPeoples, filterParams, getAllPeoples, isPeoplesLoaded, setFilterParams } from "../../../global/store/peoples_model";
 import { instance } from "../../../global/store/store";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";

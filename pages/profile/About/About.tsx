@@ -1,7 +1,8 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { $user, User } from "../../../global/store/store";
+import { User } from "../../../global/interfaces";
+import { $user } from "../../../global/store/store";
 import s from "./About.module.scss";
 
 export default React.memo(function About(props: {

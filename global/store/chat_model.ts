@@ -1,6 +1,7 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
+import { IDialogMessage, IMyDialog, INewDialog } from "../interfaces";
 import { connection } from "./connection_model";
-import { instance, User } from "./store";
+import { instance } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog>();
 export const activeChat = createStore<IMyDialog>({} as IMyDialog).on(setActiveChat, (_, newActiveChat) => {
@@ -88,34 +89,4 @@ export const startNewDialog = async (newDialog: INewDialog) => {
     catch(error) {
         console.log(error);
     }
-}
-export interface INewDialog {
-    userId: string,
-    messageContent: string
-}
-export interface IDialogMessage {
-    dialogId: string,
-    content: string
-}
-export interface IMyActiveDialogMessage {
-    dialogId: string,
-    content: string,
-    messageId: string,
-    sendAt: string,
-    senderId: string,
-    isRead: true,
-    avatar: string,
-    senderName: string,
-    status?: boolean,
-    isMine: boolean
-}
-export interface IMyDialog {
-    dialogId: string,
-    userName: string,
-    userAvatar: string,
-    isRead: true,
-    content: string,
-    messages: IMyActiveDialogMessage[],
-    status?: boolean,
-    userId?: string
 }

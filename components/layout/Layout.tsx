@@ -30,10 +30,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	useEffect(() => { 
 		if(route.pathname !== '/') {
 			setCurrentPage(route.pathname);
-			console.log(route);
-			localStorage.setItem('previousPage', route.pathname);
+			localStorage.setItem('previousPage', route.asPath);
 		}
-	}, [route.pathname])
+	}, [route.asPath])
 	return ( 
 		<>
 			<div className={`${s.container} ${backgroundClass}`}>

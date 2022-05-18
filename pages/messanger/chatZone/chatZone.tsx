@@ -1,7 +1,8 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef, useState} from "react";
+import { IMyDialog } from "../../../global/interfaces";
 import Loader from "../../../global/Loader/Loader";
-import { activeChat, getDialogMessages, IMyDialog, sendMessageAndUploadActiveChat, setActiveChat } from "../../../global/store/chat_model";
+import { activeChat, getDialogMessages, sendMessageAndUploadActiveChat, setActiveChat } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";

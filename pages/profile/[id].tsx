@@ -1,7 +1,7 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import message from "../../public/images/message.svg";
-import { $currentProfileUser, $user, baseURL, getDataForProfilePage, isAsyncLoaded, setCurrentPage, setCurrentProfileUser, setUser, User } from "../../global/store/store";
+import { $currentProfileUser, $user, baseURL, getDataForProfilePage, isAsyncLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import s from "./profile.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from "next/image";
@@ -15,6 +15,7 @@ import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
 import { setActiveChat } from "../../global/store/chat_model";
+import { User } from "../../global/interfaces";
 
 function Profile(): JSX.Element {
 

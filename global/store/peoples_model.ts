@@ -1,4 +1,5 @@
 import { createEffect, createEvent, createStore } from "effector";
+import { IPeople, Params } from "../interfaces";
 import { instance } from "./store";
 
 export const setAllPeoples = createEvent<IPeople[]>();
@@ -23,27 +24,3 @@ export const getAllPeoples = createEffect(async () => {
 getAllPeoples.doneData.watch((peoples: IPeople[]) => {
     setIsPeoplesLoaded(true);
 })
-
-export interface IPeople {
-    login: string,
-    userName: string,
-    userAvatar: string,
-    status: string,
-    age: 0,
-    city: string,
-    gender: string,
-}
-export interface Params {
-    gender: string,
-    age: number,
-    goal: string,
-    events: string[],
-    interests: string[],
-}
-export interface IParams {
-    gender?: string,
-    age?: number,
-    goal?: string,
-    events?: string[],
-    interests?: string[],
-}

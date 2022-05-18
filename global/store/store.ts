@@ -1,14 +1,12 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { createEffect, createEvent, createStore } from 'effector'
 import { NextRouter } from 'next/router';
+import { User } from '../interfaces';
 import { instanseRouter } from './router_model';
 
 export const baseURL = 'https://meetins.herokuapp.com/';
 export const instance = axios.create({
 	baseURL: baseURL,
-	headers: {
-		'Content-Type': 'application/json'
-	}
 })
 instance.interceptors.request.use((config: AxiosRequestConfig) => {
 	if(localStorage.getItem('access-token') !== '') {
@@ -118,28 +116,4 @@ export const updateTokens = async () => {
 	    localStorage.setItem('refrash-token', response.data.refreshToken);
 	}
 	return response;
-}
-
-export type User = {
-	userId: string
-	name: string,
-	phoneNumber: string,
-	email: string,
-	status: string,
-	gender: string,
-	avatar: string,
-	dateRegister: string,
-	login: string,
-	birthDate: string,
-	city: string
-}
-export type ProfileData = {
-	name: string,
-	phoneNumber: string,
-	birthDate: string
-}
-export type AccountData = {
-	email: string,
-	password: string,
-	login: string
 }

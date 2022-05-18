@@ -1,6 +1,7 @@
 import { useStore } from "effector-react";
 import React from "react";
-import { activeChat, getDialogMessages, IMyDialog, setActiveChat } from "../../../global/store/chat_model";
+import { IMyDialog } from "../../../global/interfaces";
+import { activeChat, setActiveChat } from "../../../global/store/chat_model";
 import { baseURL } from "../../../global/store/store";
 import s from "./userChatCard.module.scss";
 

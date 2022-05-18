@@ -1,0 +1,18 @@
+.content {
+    width: 100%;
+    min-height: 600px;
+    display: grid;
+    grid-template-rows: 20% 80%;
+    & .calendar {
+        font-size: 24px;
+    }
+    & .list {
+        font-size: 22px;
+    }
+
+}
+.block {
+    padding: 2%;
+    margin-bottom: 2.5%;
+    box-shadow:  1px 1px 5px rgba(154, 147, 140, 0.3), 1px 1px 5px rgba(154, 147, 140, 0.3);
+}

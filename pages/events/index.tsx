@@ -6,12 +6,10 @@ import s from "./index.module.scss";
 
 export default function Events(): JSX.Element {
 	const [calendarValue, setCalenadarValue] = useState(new Date());
+
 	return (
 		<PageContainer>
 			<div className={s.events}>
-				<div className={s.calendar}>
-				    <input type = "date"/>
-				</div>
 				<div className={s.mainContent}>
 					<Card img_src = "https://cdn.fishki.net/upload/post/2020/05/04/3307156/3cce757e8b8860e9638c2b95c91c2908.jpg" name = "Кино" categoryRoute='cinema'/>
 					<Card img_src = "https://i.ytimg.com/vi/sdkIWcPPkG4/maxresdefault.jpg" name = "Театр" categoryRoute='theater'/>

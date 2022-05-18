@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { IPeople } from "../../../global/store/peoples_model";
+import { IPeople } from "../../../global/interfaces";
 import { baseURL } from "../../../global/store/store";
 import s from "./UserList.module.scss";
 

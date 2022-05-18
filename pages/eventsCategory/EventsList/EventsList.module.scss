@@ -1,0 +1,11 @@
+.content {
+    & .title {
+       color: grey;
+       font-weight: 800; 
+    }
+    & .list {
+        & .eventBody {
+            border: 1px solid black;
+        }
+    }
+}
