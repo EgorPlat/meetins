@@ -1,7 +1,10 @@
 export interface IShortEventInfo {
     id: number,
     title: string,
-    slug: string
+    description: string,
+    price: number,
+    images: any[],
+    age_restriction: number
 }
 export interface IEventInfoCard {
     id: number,

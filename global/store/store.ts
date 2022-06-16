@@ -19,12 +19,8 @@ instance.interceptors.request.use((config: AxiosRequestConfig) => {
 }, (errors: AxiosError) => {
 	return Promise.reject(errors);
 })
-instance.interceptors.response.use((res: AxiosResponse) => {
-	setIsAsyncLoaded(false);
-	if(res.status === 200) { 
-		setIsAsyncLoaded(true); 
-		return res; 
-	}
+instance.interceptors.response.use((response) => {
+	return response;
 }, (error: AxiosError) => {
 	const ec: AxiosRequestConfig = error.config;
 	const ers: number | undefined = error.response?.status;
@@ -44,10 +40,8 @@ instance.interceptors.response.use((res: AxiosResponse) => {
 				return error.response;
 			}
 		})
-	} else {
-		axios.request(error.config);
 	}
-	return Promise.reject(error);
+	return error;
 })
 
 export const setIsAsyncLoaded = createEvent<boolean>();
@@ -70,13 +64,15 @@ export const $currentPage = createStore<string>('').on(
 	}
 )
 
-export const getUserData = async () => {
+export const getUserData = createEffect(async () => {
+	setIsAsyncLoaded(false);
 	const response = await instance.get('profile/my-profile');
 	if(response.status === 200) {
 		setUser(response.data);
+		setIsAsyncLoaded(true);
 	}
 	return response;
-}
+})
 export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const instanseRouter$ = instanseRouter.getState();
 	if(localStorage.getItem('access-token')) {
@@ -84,7 +80,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 		getUserData().then( (res) => {
 			if(res.status === 200) {  
 				setIsAsyncLoaded(true);
-				instanseRouter$?.push(localStorage.getItem('previousPage')!);
+				instanseRouter$?.push('/profile/' + res.data.login);
 			} else {
 				instanseRouter$?.push('/login');
 			}
@@ -94,11 +90,14 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	}
 });
  
-export const getUserDataByLoginUrl = async (loginUrl: string | number) => {
+export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | number) => {
 	setIsAsyncLoaded(false);
 	const response = await instance.get(`profile/by-login/${loginUrl}`);
+	if(response.status <= 202) {
+		setIsAsyncLoaded(true);
+	}
 	return response;
-}
+})
 export const getDataForProfilePage = createEffect((route: NextRouter) => {
 	if(route.query.id !== undefined) {
 		getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
@@ -109,11 +108,11 @@ export const getDataForProfilePage = createEffect((route: NextRouter) => {
 		}) 
 	}
 })
-export const updateTokens = async () => {
+export const updateTokens = createEffect(async () => {
 	const response = await instance.post('user/refresh-token', localStorage.getItem('refrash-token'));
 	if(response.status === 200) {
 		localStorage.setItem('access-token', response.data.accessToken);
 	    localStorage.setItem('refrash-token', response.data.refreshToken);
 	}
 	return response;
-}
+})

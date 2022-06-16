@@ -2,21 +2,12 @@
 
 .header {
 	display: grid;
-	grid-template-columns: 300px 1fr;
-	height: 120px;
+	grid-template-columns: 25% 75%;
+	height: 120px;  
 	background-color: white;
 	box-shadow:  1px 1px 5px rgba(154, 147, 140, 0.3), 1px 1px 5px rgba(154, 147, 140, 0.3);
 	& .logo {
-		align-items: center;
-		justify-content: space-between;
 		cursor: pointer;
-
-		&Text {
-			font-family: Nunito;
-			font-size: 64px;
-			line-height: 87px;
-			color: #ffffff;
-		}
 	}
 
 	&AuthPage {

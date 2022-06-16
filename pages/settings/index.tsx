@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
 import { useStore } from "effector-react";
 import { isAsyncLoaded, setCurrentPage } from "../../global/store/store";
-import Loader from "../../global/Loader/Loader";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Modal from "../../global/helpers/Modal/Modal";
@@ -12,6 +11,7 @@ import ProfileInfoForm from "../../global/Forms/ProfileInfo/Index";
 import ManageAccountForm from "../../global/Forms/ManageAccount/Index";
 import { useState } from "react";
 import { deleteUserAccount, setIsAccountUpdated, setIsProfileUpdated } from "../../global/store/settings_model";
+import Loader from "../../components/Loader/Loader";
 
 export default function Settings(): JSX.Element {
 

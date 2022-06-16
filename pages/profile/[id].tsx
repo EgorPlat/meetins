@@ -9,13 +9,15 @@ import Interests from "./interests/interests";
 import Places from "./places/places";
 import ImageList from "./ImageList/ImageList";
 import { useStore } from "effector-react";
-import Loader from "../../global/Loader/Loader";
 import About from "./About/About";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import { setActiveChat } from "../../global/store/chat_model";
-import { User } from "../../global/interfaces";
+import { activeChat, getDialogMessages, getMyDialogs, myDialogs, setActiveChat } from "../../global/store/chat_model";
+import { IMyDialog, User } from "../../global/interfaces";
+import Modal from "../../global/helpers/Modal/Modal";
+import Loader from "../../components/Loader/Loader";
+import { defaultDialog } from "../../global/mock/defaultDialog";
 
 function Profile(): JSX.Element {
 
@@ -25,37 +27,34 @@ function Profile(): JSX.Element {
     const currentUser = useStore($currentProfileUser);
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
+    const [isModal, setIsModal] = useState(false);
+    const myDialogs$ = useStore(myDialogs);
 
     const changeAddingImageStatus = (status: boolean) => {
         if(currentUser.login === authedUser?.login) {
             setAddingImageStatus(() => status);
         }
     }
-    const onChangeInputImage = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    const onChangeInputImage = (event: ChangeEvent<HTMLInputElement>) => {
         updateUserAvatar(event).then((res: any) => {
             setCurrentProfileUser(res.data)
             setUser(res.data);
         })
-    },[])
+        setIsModal(true);
+    }
     const saveNewStatus = useCallback((userStatus: string) => {
         updateUserStatus(userStatus).then( (user: any) => {
             setUser(user);
             setCurrentProfileUser(user);
-        })  
+        });
     }, [])
     const startDialog = () => {
-        setActiveChat({
-            dialogId: '-',
-            userName: currentUser.name,
-            userAvatar: currentUser.avatar,
-            isRead: true,
-            content: 'Сообщение',
-            messages: [],
-            status: true,
-            userId: currentUser.userId
-        })
+        setActiveChat({...defaultDialog, userName: currentUser.name, userAvatar: currentUser.avatar, userId: currentUser.userId});
         Router.push('/messanger')
     } 
+    const onModalClick = (status: boolean) => {
+        setIsModal(false);
+    }
     useEffect( () => {
         getDataForProfilePage(route);
     }, [route])
@@ -123,6 +122,9 @@ function Profile(): JSX.Element {
                 </div>
             </div> : <Loader/>}
             </div>
+            { isModal ? 
+            <Modal isDisplay={true} changeModal={onModalClick} actionConfirmed={onModalClick}><p>Изменения вступят в силу после перезагрузки вкладки профиль.</p></Modal>
+            : null}
         </div>
         </PageContainer>
     )

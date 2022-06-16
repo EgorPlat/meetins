@@ -2,9 +2,9 @@ import { FormControl, InputAdornment, InputLabel, OutlinedInput, Slider } from "
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import Loader from "../../../components/Loader/Loader";
 import { IPeople } from "../../../global/interfaces";
-import Loader from "../../../global/Loader/Loader";
-import { allPeoples, filterParams, getAllPeoples, isPeoplesLoaded, setFilterParams } from "../../../global/store/peoples_model";
+import { allPeoples, filterParams, getAllPeoples, isPeoplesLoaded, setAllPeoples, setFilterParams } from "../../../global/store/peoples_model";
 import { instance } from "../../../global/store/store";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
@@ -13,7 +13,6 @@ import s from "./SearchingPeople.module.scss";
 
 export default function SearchingPeople(): JSX.Element {
 
-    const [searchParams, setSearchParams] = useState<ISearchParams>();
     const [goals, setGoals] = useState<string[]>(['Новые отношения','Друзей','Новые Интересы','Встречи','События','Общение в сети']);
     const [events, setEvents] = useState<string[]>(['По Москве на автобусе','История любви','"Энканто"','Green DAY']);
     const [popularInterests, setPopularInterests] = useState<string[]>(['Программирование', 'Бизнес', 'Кухня', 'Природа']);
@@ -22,10 +21,8 @@ export default function SearchingPeople(): JSX.Element {
     const isPeoplesLoaded$: boolean = useStore(isPeoplesLoaded);
     const [dinamicUsers, setDinamicUsers] = useState<IPeople[]>([]);
     
-    
 
-
-    const getData = async (param: any, data: any) => {
+    const getData = async (param: string, data: any) => {
           switch (param){
             case 'age': 
                 setFilterParams(filterParams.defaultState.age = data);
@@ -45,7 +42,7 @@ export default function SearchingPeople(): JSX.Element {
             default: return;
           }
           const response = await instance.post('users/getSortedUsers', filterParams.defaultState);
-          setDinamicUsers(response.data);
+          setAllPeoples(response.data);
     }
 
     useEffect(() => {
@@ -118,11 +115,4 @@ export default function SearchingPeople(): JSX.Element {
             </div>
         </div> 
     )
-}
-
-interface ISearchParams {
-    gender: string,
-    goal: string,
-    events: string,
-    interest: string
 }

@@ -13,6 +13,7 @@
 }
 @media screen and(max-width: 1000px) {
     .ul {
+        height: 150px;
         & li {
             display: inline;
             & a {

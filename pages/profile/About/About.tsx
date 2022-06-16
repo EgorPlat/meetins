@@ -20,16 +20,14 @@ export default React.memo(function About(props: {
             setChangingStatus(() => status);
         }
     } 
-    const saveNewStatus = () => {
+    const saveNewStatus = async () => {
         props.saveNewUserStatus(userStatus);
+        newChangeSatus(false);
     }
-    useEffect(() => {
-        console.log('re-render about');
-    })
     if(props.user && authedUser) {
         return(
             <div className={s.about}>
-                <p><b>О себе:</b></p> 
+                {isAuthedProfile && <p><b>О себе:</b><span onClick={() => newChangeSatus(true)} className={s.changeSpan}>изменить</span></p>} 
                 {isAuthedProfile && authedUser.status === (null || "")
                  ? <p style={{color: "grey"}} onClick={() => newChangeSatus(true)}>Введите Ваш статус...</p>
                  : null
@@ -41,7 +39,7 @@ export default React.memo(function About(props: {
                     <button className={s.confirmBtn} onClick={saveNewStatus}>ОК</button>
                     <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>Х</button>
                 </div>
-                 : <p onClick={() => newChangeSatus(true)} className={s.status}>{props.user.status}</p>
+                 : <p className={s.status}>{props.user.status}</p>
                 } 
             </div>
         )

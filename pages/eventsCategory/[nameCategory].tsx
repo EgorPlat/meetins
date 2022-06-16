@@ -1,8 +1,6 @@
-import axios from "axios";
 import { useRouter } from "next/router"
-import { useEffect } from "react";
+import Loader from "../../components/Loader/Loader";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import Loader from "../../global/Loader/Loader";
 import EventsList from "./EventsList/EventsList";
 import s from "./nameCategory.module.scss";
 
@@ -21,7 +19,7 @@ export default function CategoryEventInfo(): JSX.Element {
                     {
                         nameCategory && typeof nameCategory === "string"
                         ? <EventsList category={nameCategory}/>
-                        : 'Сначала выбирите нужную категорию событий.'
+                        : <Loader/>
                     }
                 </div>
             </div>

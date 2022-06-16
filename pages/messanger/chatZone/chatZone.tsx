@@ -1,8 +1,8 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef, useState} from "react";
+import Loader from "../../../components/Loader/Loader";
 import { IMyDialog } from "../../../global/interfaces";
-import Loader from "../../../global/Loader/Loader";
-import { activeChat, getDialogMessages, sendMessageAndUploadActiveChat, setActiveChat } from "../../../global/store/chat_model";
+import { activeChat, createdSendMessageAndUploadActiveChat, getDialogMessages, setActiveChat } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
@@ -15,13 +15,14 @@ export default function ChatZone(): JSX.Element {
  
     const sendForm = (inputValue: string) => {
         if(inputValue.length > 0) {
-            sendMessageAndUploadActiveChat(inputValue);
+            //sendMessageAndUploadActiveChat(inputValue);
+            createdSendMessageAndUploadActiveChat(inputValue);
         }
     }
 
     useEffect(() => {
         getDialogMessages(activeChat$);
-        return () => {
+        return () => { 
             setActiveChat({} as IMyDialog);
         }
     }, [activeChat$.dialogId])

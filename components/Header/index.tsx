@@ -3,10 +3,10 @@ import Image from 'next/image'
 import logo from '../../public/images/logo-l.svg'
 import Navbar from '../Navbar'
 import Link from 'next/link'
-import { $currentPage, setCurrentPage } from '../store/store'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'
+import { $currentPage, setCurrentPage } from '../../global/store/store'
 
 export default function Header(): JSX.Element {
 	const currentPage = useStore($currentPage);
@@ -30,7 +30,7 @@ export default function Header(): JSX.Element {
 		<header className={`${s.header} ${headerBgClass}`}>
 			<Link href='/' passHref>
 				<div className={s.logo} onClick={logOut}>
-					<Image
+					<Image  
 						className={s.logoImage}
 						src={logo}
 						alt='company logo'

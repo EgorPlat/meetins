@@ -1,12 +1,12 @@
-import Header from '../../global/Header'
 import s from './layout.module.scss'
 import backgroundLogin from '../public/images/background-login.jpg'
 import backgroundRegister from '../public/images/background-register.jpg'
 import { useRouter } from 'next/dist/client/router'
-import Footer from '../../global/Footer'
+import Footer from '../Footer'
 import { $currentPage, setCurrentPage } from '../../global/store/store'
 import { useStore } from 'effector-react'
 import { useEffect } from 'react'
+import Header from '../Header'
 export default function Layout({ children }: { children: React.ReactNode }) {
 	const route = useRouter()
 

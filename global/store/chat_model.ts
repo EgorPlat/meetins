@@ -1,6 +1,5 @@
-import { createEffect, createEvent, createStore, sample } from "effector";
+import { attach, createEffect, createEvent, createStore, sample } from "effector";
 import { IDialogMessage, IMyDialog, INewDialog } from "../interfaces";
-import { connection } from "./connection_model";
 import { instance } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog>();
@@ -12,33 +11,40 @@ export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, 
     return newMyDialogs;
 })
  
-export const sendMessageAndUploadActiveChat = createEffect((message: string) => {
-    const actualActiveChat = activeChat.getState();
-    const connection$ = connection.getState();
-    if(actualActiveChat && connection$) {
+export const sendMessageAndUploadActiveChat = createEffect((params: {message: string, dataStore: 
+    {activeChat: IMyDialog}
+}) => {
+    const actualActiveChat = params.dataStore.activeChat;
+    if(actualActiveChat) {
         if(actualActiveChat.userId == undefined) {
             sendMessageInDialog(
-                {dialogId: actualActiveChat.dialogId, content: message}
+                {dialogId: actualActiveChat.dialogId, content: params.message}
             ).then((response) => {
-                setActiveChat({...actualActiveChat, messages: [...response?.data], content: message})
+                setActiveChat({...actualActiveChat, messages: [...response?.data], content: params.message});
             })
         } else {
-            startNewDialog({userId: actualActiveChat.userId, messageContent: message}).then((response) => {
+            startNewDialog({userId: actualActiveChat.userId, messageContent: params.message}).then((response) => {
                 setActiveChat({
                     dialogId: response?.data[0].dialogId,
                     userName: actualActiveChat.userName,
                     userAvatar: actualActiveChat.userAvatar,
                     isRead: true,
-                    content: message,
+                    content: params.message,
                     messages: response?.data,
                     status: true
-                })
+                });
+                getMyDialogs();
             });
-            getMyDialogs();
         } 
     }
 }); 
-
+export const createdSendMessageAndUploadActiveChat = attach({
+    effect: sendMessageAndUploadActiveChat,
+    source: {activeChat: activeChat},
+    mapParams: (message: string, dataStore) => {
+      return {message: message, dataStore: dataStore}
+    },
+  })
 
 export const getMyDialogs = createEffect(async () => {
     try {
@@ -53,7 +59,7 @@ export const getMyDialogs = createEffect(async () => {
     }
 });
 
-export const getDialogMessages = async (chosedDialog: IMyDialog) => {
+export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) => {
     if(chosedDialog.dialogId !== '-') {
         try {
             const response = await instance.post('chat/messages', JSON.stringify({dialogId: chosedDialog.dialogId}) );
@@ -67,8 +73,8 @@ export const getDialogMessages = async (chosedDialog: IMyDialog) => {
             console.log(error);
         }
     }
-}
-export const sendMessageInDialog = async (message: IDialogMessage) => {
+})
+export const sendMessageInDialog = createEffect(async (message: IDialogMessage) => {
     try {
         const response = await instance.post('chat/send-message', message);
         if(response.status === 200) {
@@ -78,8 +84,8 @@ export const sendMessageInDialog = async (message: IDialogMessage) => {
     catch(error) {
         console.log(error);
     }
-}
-export const startNewDialog = async (newDialog: INewDialog) => {
+})
+export const startNewDialog = createEffect(async (newDialog: INewDialog) => {
     try {
         const response = await instance.post('chat/start-dialog', newDialog);
         if(response.status === 200) {
@@ -89,4 +95,4 @@ export const startNewDialog = async (newDialog: INewDialog) => {
     catch(error) {
         console.log(error);
     }
-}
+})

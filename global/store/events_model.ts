@@ -15,7 +15,7 @@ export const getEvents = createEffect(async (info: {categoryName: string, page: 
     const response = await instance.post(
         'event/getEventsCategory', {nameCategory: info.categoryName, page: info.page}
     );
-    if(response.status === 200) {
+    if(response.status === 201) {
         setCurrentEvent(response.data.results);
         setLoadedStatus(true);
     }

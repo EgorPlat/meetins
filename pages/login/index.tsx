@@ -31,7 +31,7 @@ export default function Login(): JSX.Element {
 			email: login,
 			password: pass,
 		}).then((res: any) => {
-			console.log(res);
+			console.log(res); 
 			if(res.status === 200) {
 				Router.push(`/profile/${res.data.profile.user.login}`);
 			} else {

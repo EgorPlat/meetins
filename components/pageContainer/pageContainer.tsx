@@ -1,5 +1,5 @@
 import React, { ReactChild, ReactChildren } from "react";
-import LeftNavMenu from "../../global/LeftNavMenu/LeftNavMenu";
+import LeftNavMenu from "../LeftNavMenu/LeftNavMenu";
 import s from "./pageContainer.module.scss";
 
 export default function PageContainer(props: {children: ReactChild}): JSX.Element {

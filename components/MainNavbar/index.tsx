@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { $user, baseURL, setUser } from "../store/store";
-import s from './mainNavbar.module.scss';
+import s from './mainNavbar.module.scss'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { $user, baseURL, setUser } from "../../global/store/store";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
@@ -48,21 +48,17 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 			    <Link href="/events">События</Link>
 			    <Link href="">Встречи</Link>
 			    <Link href="">Интересы</Link>
-			</div>
-		</div>
-		<div className={s.navAvatar}>
-			<div className={s.avSelect}>
-			<button className={s.inviteBtn}>Пригласить</button>
-			{ user?.avatar !== undefined 
-			?
-			<img src={baseURL + user.avatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
-			: null }
-			<select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
-				<option className={s.option} value="name">{user?.name}</option>
-				<option className={s.option} value="logOut">Выход</option>
-				<option className={s.option} value="settings">Настройки</option>
-				<option className={s.option} value="comeBack">Вернуться</option>
-			</select>
+			    <button className={s.inviteBtn}>Пригласить</button>
+			    { user?.avatar !== undefined 
+			        ?
+			        <img src={baseURL + user.avatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
+			    : null }
+			    <select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
+				    <option className={s.option} value="name">{user?.name}</option>
+				    <option className={s.option} value="logOut">Выход</option>
+				    <option className={s.option} value="settings">Настройки</option>
+				    <option className={s.option} value="comeBack">Вернуться</option>
+			    </select>
 			</div>
 		</div>
 	    </div>
