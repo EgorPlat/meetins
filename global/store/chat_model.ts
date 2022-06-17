@@ -59,7 +59,7 @@ export const getMyDialogs = createEffect(async () => {
         console.log(error);
     }
 });
-// cont
+
 export const checkDialog = createEffect(async (user: User) => {
     try {
         const response = await instance.post('chat/check-dialog', {userId: user.userId});
