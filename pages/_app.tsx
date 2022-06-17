@@ -11,7 +11,6 @@ import { setRouter } from '../global/store/router_model'
 import { io } from 'socket.io-client'
 import { useStore } from 'effector-react'
 
-// commmit
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
