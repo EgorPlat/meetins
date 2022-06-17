@@ -36,3 +36,11 @@
         }
     }
 }
+@media screen and(max-width: 435px) {
+    .chatList {
+        & .list {
+            overflow-y: scroll;
+            height: 390px;
+        }
+    }
+}

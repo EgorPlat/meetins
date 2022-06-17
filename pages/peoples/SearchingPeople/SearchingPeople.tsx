@@ -109,7 +109,7 @@ export default function SearchingPeople(): JSX.Element {
                         <option value="Event">В событиях</option>
                     </select>
                 </div>
-                <div>
+                <div className={s.users}>
                     { isPeoplesLoaded$ ? dinamicUsers.map( user => <UserList key={user.login} user={user}/>) : <Loader/> }
                 </div>
             </div>

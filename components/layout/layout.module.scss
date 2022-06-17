@@ -20,3 +20,8 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+@media screen and(max-width: 470px) {
+	.container {
+		grid-template-rows: 200px 1fr 65px;
+	}
+}

@@ -3,15 +3,7 @@ import s from './navbar.module.scss'
 export default function Navbar(props: { currentPage: string }): JSX.Element {
 	return (
 		<nav className={s.nav}>
-			<ul> 
-				<li
-					className={
-						props.currentPage === '/'
-							? `${s.navLink} ${s.activeLink}`
-							: `${s.navLink}`
-					}>
-					<Link href='/'>О проекте</Link>
-				</li>
+			<ul>  
 				<li
 					className={
 						props.currentPage === '/login'

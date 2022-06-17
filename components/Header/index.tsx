@@ -28,7 +28,7 @@ export default function Header(): JSX.Element {
 	}
 	return ( 
 		<header className={`${s.header} ${headerBgClass}`}>
-			<Link href='/' passHref>
+			{!(router.pathname === "/" || router.pathname === "/login" || router.pathname === "/register") ? <Link href='/' passHref>
 				<div className={s.logo} onClick={logOut}>
 					<Image  
 						className={s.logoImage}
@@ -38,8 +38,7 @@ export default function Header(): JSX.Element {
 				 		height={80}
 					/>
 				</div>
-			</Link>
-
+	        </Link> : null}
 			{ router.pathname === "/" || router.pathname === "/login" || router.pathname === "/register" 
 			? <Navbar currentPage={currentPage} /> 
 			: <MainNavbar currentPage={currentPage} />
