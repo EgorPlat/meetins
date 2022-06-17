@@ -13,7 +13,7 @@ import About from "./About/About";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import { activeChat, getDialogMessages, getMyDialogs, myDialogs, setActiveChat } from "../../global/store/chat_model";
+import { activeChat, checkDialog, getDialogMessages, getMyDialogs, myDialogs, setActiveChat } from "../../global/store/chat_model";
 import { IMyDialog, User } from "../../global/interfaces";
 import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
@@ -29,6 +29,7 @@ function Profile(): JSX.Element {
     const authedUser = useStore($user);
     const [isModal, setIsModal] = useState(false);
     const myDialogs$ = useStore(myDialogs);
+    const activeChat$ = useStore(activeChat);
 
     const changeAddingImageStatus = (status: boolean) => {
         if(currentUser.login === authedUser?.login) {
@@ -49,7 +50,7 @@ function Profile(): JSX.Element {
         });
     }, [])
     const startDialog = () => {
-        setActiveChat({...defaultDialog, userName: currentUser.name, userAvatar: currentUser.avatar, userId: currentUser.userId});
+        checkDialog(currentUser);
         Router.push('/messanger')
     } 
     const onModalClick = (status: boolean) => {

@@ -15,13 +15,13 @@ export default function ChatZone(): JSX.Element {
  
     const sendForm = (inputValue: string) => {
         if(inputValue.length > 0) {
-            //sendMessageAndUploadActiveChat(inputValue);
             createdSendMessageAndUploadActiveChat(inputValue);
         }
     }
 
     useEffect(() => {
         getDialogMessages(activeChat$);
+        console.log(activeChat$.dialogId);
         return () => { 
             setActiveChat({} as IMyDialog);
         }

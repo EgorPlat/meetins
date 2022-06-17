@@ -1,5 +1,6 @@
 import { attach, createEffect, createEvent, createStore, sample } from "effector";
-import { IDialogMessage, IMyDialog, INewDialog } from "../interfaces";
+import { IDialogMessage, IMyDialog, INewDialog, User } from "../interfaces";
+import { defaultDialog } from "../mock/defaultDialog";
 import { instance } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog>();
@@ -35,7 +36,7 @@ export const sendMessageAndUploadActiveChat = createEffect((params: {message: st
                 });
                 getMyDialogs();
             });
-        } 
+        }
     }
 }); 
 export const createdSendMessageAndUploadActiveChat = attach({
@@ -58,6 +59,21 @@ export const getMyDialogs = createEffect(async () => {
         console.log(error);
     }
 });
+export const checkDialog = createEffect(async (user: User) => {
+    try {
+        const response = await instance.post('chat/check-dialog', {userId: user.userId});
+        if(response.status === 200) {
+            setActiveChat({...defaultDialog, dialogId: response.data[0].dialogId, userAvatar: user.avatar, userName: user.name});
+            return response;
+        } else {
+            setActiveChat({...defaultDialog, userName: user.name, userAvatar: user.avatar, userId: user.userId});
+        }
+    }  
+    catch(error) {
+        console.log(error);
+    }
+});
+
 
 export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) => {
     if(chosedDialog.dialogId !== '-') {

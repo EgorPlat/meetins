@@ -8,5 +8,5 @@ export const defaultDialog: IMyDialog = {
     content: 'Сообщение',
     messages: [],
     status: true,
-    userId: '0'
+    userId: undefined
 }

@@ -9,7 +9,7 @@ export default function UserChatCard(props: {user: IMyDialog}): JSX.Element {
 
     const activeChat$ = useStore(activeChat);
 
-    const chooseChat = () => {
+    const chooseChat = () => { 
         if(activeChat$.dialogId !== props.user.dialogId) {
             setActiveChat(props.user);
         }
