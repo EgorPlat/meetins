@@ -1,15 +1,17 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
-import { getMyDialogs, myDialogs } from "../../../global/store/chat_model";
+import Loader from "../../../components/Loader/Loader";
+import { getMyDialogs, isMyDialogsLoaded, myDialogs } from "../../../global/store/chat_model";
 import UserChatCard from "../userChatCard/userChatCard";
 import s from "./chatList.module.scss";
  
 export default function ChatList(): JSX.Element {
 
     const myDialogs$ = useStore(myDialogs);
+    const isLoaded$ = useStore(isMyDialogsLoaded);
 
     useEffect(() => {
-        getMyDialogs();
+        getMyDialogs(); 
     },[]) 
     return( 
         <div className={s.chatList}>
@@ -21,11 +23,11 @@ export default function ChatList(): JSX.Element {
                 <button>Поиск</button>
             </div>
             <div className={s.list}>
-                {myDialogs$ !== null ? myDialogs$.map( user => 
+                {isLoaded$ !== false && myDialogs$ !== null ? myDialogs$.map( user => 
                 <UserChatCard
                     key={user.userAvatar}
                     user={user}
-                />) : null}
+                />) : <Loader/>}
             </div>
         </div>
     )

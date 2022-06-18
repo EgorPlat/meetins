@@ -26,8 +26,8 @@ export default function Header(): JSX.Element {
 		setCurrentPage('/');
 		localStorage.setItem('previousPage', "/");
 	}
-	return (  
-		<header className={`${s.header} ${headerBgClass}`}>
+	return (   
+		<div className={`${s.header} ${headerBgClass}`}>
             <Link href='/' passHref>
 				<div className={s.logo} onClick={logOut}>
 					<Image  
@@ -43,6 +43,6 @@ export default function Header(): JSX.Element {
 			? <Navbar currentPage={currentPage} /> 
 			: <MainNavbar currentPage={currentPage} />
 			}
-		</header>
+		</div>
 	)
 }

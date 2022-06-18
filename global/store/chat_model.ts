@@ -11,6 +11,10 @@ export const setMyDialogs = createEvent<IMyDialog[]>();
 export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, (_, newMyDialogs) => {
     return newMyDialogs;
 })
+export const setIsMyDialogsLoaded = createEvent<boolean>();
+export const isMyDialogsLoaded = createStore<boolean>(false).on(setIsMyDialogsLoaded, (_, newMyDialogs) => {
+    return newMyDialogs;
+})
  
 export const sendMessageAndUploadActiveChat = createEffect((params: {message: string, dataStore: 
     {activeChat: IMyDialog}
@@ -48,10 +52,12 @@ export const createdSendMessageAndUploadActiveChat = attach({
   })
 
 export const getMyDialogs = createEffect(async () => {
+    setIsMyDialogsLoaded(false);
     try {
         const response = await instance.get('chat/my-dialogs');
         if(response.status === 200) {
             setMyDialogs(response.data);
+            setIsMyDialogsLoaded(true);
             return response.data;
         }
     }  
@@ -59,7 +65,7 @@ export const getMyDialogs = createEffect(async () => {
         console.log(error);
     }
 });
-// commit
+
 export const checkDialog = createEffect(async (user: User) => {
     try {
         const response = await instance.post('chat/check-dialog', {userId: user.userId});
