@@ -26,9 +26,9 @@ export default function Header(): JSX.Element {
 		setCurrentPage('/');
 		localStorage.setItem('previousPage', "/");
 	}
-	return ( 
+	return (  
 		<header className={`${s.header} ${headerBgClass}`}>
-			{!(router.pathname === "/" || router.pathname === "/login" || router.pathname === "/register") ? <Link href='/' passHref>
+            <Link href='/' passHref>
 				<div className={s.logo} onClick={logOut}>
 					<Image  
 						className={s.logoImage}
@@ -38,7 +38,7 @@ export default function Header(): JSX.Element {
 				 		height={80}
 					/>
 				</div>
-	        </Link> : null}
+	        </Link>
 			{ router.pathname === "/" || router.pathname === "/login" || router.pathname === "/register" 
 			? <Navbar currentPage={currentPage} /> 
 			: <MainNavbar currentPage={currentPage} />

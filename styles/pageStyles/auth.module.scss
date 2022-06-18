@@ -4,10 +4,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-
+ 
 	background: rgba(0, 0, 0, 0.6);
 	border-radius: 16px;
-	width: 650px;
+	width: 550px;
 
 	padding: 18px 90px 90px 90px;
 
@@ -17,11 +17,11 @@
 	}
 	& .submitBtn {
 		margin-top: 50px;
-		width: 470px;
+		width: 100%;
 		background-color: rgb(75, 125, 235);
 		border-radius: 50px;
 		height: 70px;
-		font-size: 34px;
+		font-size: 30px;
 		color: white;
 	}
 	& .submitBtn:hover {
@@ -83,8 +83,14 @@
 	border: 2px solid red;
 }
 
-@media screen and(max-width: 650px) {
+@media screen  and(max-width: 551px){
 	.card {
-		width: 90%;
-	}	
+		width: 450px;
+	}
 }
+@media screen  and(max-width: 451px){
+	.card {
+		width: 400px;
+	}
+}
+

@@ -11,7 +11,7 @@ export default function ChatList(): JSX.Element {
     useEffect(() => {
         getMyDialogs();
     },[]) 
-    return(
+    return( 
         <div className={s.chatList}>
             <h3>Чаты</h3>
             <div className={s.menu}>

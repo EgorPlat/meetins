@@ -6,17 +6,18 @@
 }
 .container {
 	display: grid;
-	grid-template-rows: 120px 1fr 65px;
+	grid-template-rows: 120px 1fr;
 }
 .loginPage {
 	background-image: url('../../public/images/background-login.jpg');
-	background-position: center;
+	//background-position: center;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	background-size: cover;
 }
 .registerPage {
 	background-image: url('../../public/images/background-register.jpg'); 
-	background-position: center;
+	//background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 }

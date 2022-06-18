@@ -1,12 +1,10 @@
 .nav {
-	display: grid;
-	grid-template-columns: 50% 50%;
 	padding-right: 120px;
 	& ul {
 		list-style: none; 
 		display: flex;
 		align-items: center;
-		width: 425px;
+		//width: 425px;
 		justify-content: space-between;
 		height: 100%;
 		margin: 0;
