@@ -41,7 +41,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		}
 	}, [select])
     return(
-		<div className={s.navCont}>
+		<div className={s.navCont}> 
 		<div className={s.navBtn}>
 			<div className={s.link}>
 			    <Link href="/peoples">Люди</Link>

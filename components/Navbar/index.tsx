@@ -3,7 +3,7 @@ import s from './navbar.module.scss'
 export default function Navbar(props: { currentPage: string }): JSX.Element {
 	return (
 		<nav className={s.nav}>
-			<ul>   
+			<ul>    
 				<li
 					className={
 						props.currentPage === '/login'
