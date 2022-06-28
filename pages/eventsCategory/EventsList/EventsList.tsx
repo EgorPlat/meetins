@@ -13,7 +13,6 @@ export default function EventsList(props: {category: string}): JSX.Element {
     useEffect(() => {
         getEvents({categoryName: props.category, page: 1});
     }, [])
-
     return (
         <div className={s.content}>
             <div className={s.title}>

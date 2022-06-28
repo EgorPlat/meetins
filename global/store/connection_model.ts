@@ -1,5 +1,6 @@
-import { createEffect, createEvent, createStore, forward, sample } from "effector";
+import { attach, createEffect, createEvent, createStore, forward, sample } from "effector";
 import { Socket } from "socket.io-client";
+import { IMyDialog } from "../interfaces";
 import { activeChat, getDialogMessages } from "./chat_model";
 
 export const setNewConnection = createEvent<Socket>();
@@ -9,20 +10,17 @@ export const connection = createStore<Socket | null>(null).on(
         return newConnection
     }
 );
-export const connectionWatcher = createEffect((connection: Socket | null) => {
-    if(connection) {
-        connection.on('message', (message: any) => {
-            const activeChat$ = activeChat.getState();
-            if(message.dialogId === activeChat$.dialogId) {
-                getDialogMessages({...activeChat$, dialogId: message.dialogId});
-            }
+export const connectionWatcher = createEffect((obj: {connection: Socket | null, activeChat: IMyDialog}) => {
+    obj.connection?.on('message', (message: any) => {
+        if(message.dialogId === obj.activeChat.dialogId) {
+            getDialogMessages({...obj.activeChat, dialogId: message.dialogId});
+        }
         });
-        connection.on('onConnection', (message: string) => {
-            console.log(message);
-        });
-    }
+    obj.connection?.on('onConnection', (message: string) => {
+        console.log(message);
+    });
 })
 sample({
-    source: connection,
+    source: {connection: connection, activeChat: activeChat},
     target: connectionWatcher
 })

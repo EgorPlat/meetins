@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { IShortEventInfo } from "../../../../global/interfaces/events";
 import s from './List.module.scss';
 
 export default function List(props: {list: IShortEventInfo[]}): JSX.Element {
+
 
     return (
         <div className={s.list}>
