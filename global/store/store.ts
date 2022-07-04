@@ -19,27 +19,6 @@ instance.interceptors.request.use((config: AxiosRequestConfig) => {
 }, (errors: AxiosError) => {
 	return Promise.reject(errors);
 })
-<<<<<<< HEAD
-instance.interceptors.response.use((res: any) => {
-	setIsTokenUpdated(false);
-	if(res.status === 200) { 
-		setIsTokenUpdated(true); 
-		return res; 
-	}
-}, (errors: any) => {
-	if(errors.response.status === 401 || errors.response.status === 403) {
-		setIsTokenUpdated(false);
-		updateTokens().then((res: any) => {
-			if(res.status <= 227) {
-				const config = errors.config;
-				config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('access-token');
-				axios.request(config).then((res) => {
-					if(res.status === 200) {
-						setIsTokenUpdated(true); 
-					}
-				})
-			} 
-=======
 instance.interceptors.response.use((response) => {
 	return response;
 }, (error: AxiosError) => {
@@ -60,7 +39,6 @@ instance.interceptors.response.use((response) => {
 				localStorage.removeItem('refrash-token');
 				return error.response;
 			}
->>>>>>> dev
 		})
 	}
 	return error;
