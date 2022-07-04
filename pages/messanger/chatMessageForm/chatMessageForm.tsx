@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import Emoji from "../emoji/emoji";
 import s from "./chatMessageForm.module.scss";
 
 export default function ChatMessageForm(
@@ -16,6 +17,7 @@ export default function ChatMessageForm(
     return(
         <div className={s.form}>
             <input type="text" placeholder={props.placeholder} ref={inputRef}/>
+            <Emoji/>
             <button onClick={sendForm}>Отправить</button>
         </div>
     )

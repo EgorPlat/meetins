@@ -1,0 +1,11 @@
+.emoji {
+    text-align: center;
+    width: 37px;
+    height: 37px;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: rgb(126, 192, 230);
+    & .defaultEmoji {
+        margin-top: 5px;
+    }
+}
