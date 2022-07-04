@@ -1,7 +1,12 @@
 .places {
     font-family: Nunito;
-}
-.item {
-    font-size: x-large;
-    float: left;
+    & .title {
+        font-size: 19px;
+    }
+    & .list {
+        font-size: 16px;
+        & .item {
+            float: left;
+        }
+    }
 }

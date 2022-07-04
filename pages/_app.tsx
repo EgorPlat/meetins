@@ -4,24 +4,34 @@ import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { $currentPage, getUserData, setUser, updateTokens } from '../global/store/store'
+import { getInitialUserDataAndCheckAuth } from '../global/store/store'
 import { useRouter } from 'next/router'
+import { connection, setNewConnection } from '../global/store/connection_model'
+import { setRouter } from '../global/store/router_model'
+import { io } from 'socket.io-client'
 import { useStore } from 'effector-react'
-
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
+	const connection$ = useStore(connection);
 
 	useEffect(() => {
-		if(localStorage.getItem('access-token') !== "") {
-			getUserData().then( (res) => {
-				if(res.status === 200) { setUser(res.data); router.push('/profile')}
-			})
-		} else {
-			router.push('/login');
+		setRouter(router);
+		getInitialUserDataAndCheckAuth();
+		if(localStorage.getItem('access-token') !== '') {
+			const newConnection = io('https://meetins.herokuapp.com', {
+				extraHeaders: {
+					Authorization: String(localStorage.getItem('access-token'))
+				}
+			});
+		    setNewConnection(newConnection)
+		}
+		return () => {
+			connection$?.disconnect();
 		}
 	}, [])
+
 	return (
 		<Layout>
 			<Head>
@@ -34,3 +44,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp
+

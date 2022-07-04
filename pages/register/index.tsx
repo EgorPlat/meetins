@@ -9,21 +9,17 @@ import maleIcon from '../../public/images/male.svg'
 import s from '../../styles/pageStyles/auth.module.scss'
 import { useState } from 'react'
 import EyeIcon from '../../global/helpers/Icons/EyeIcon'
+
 import {
 	isEmail,
-	isPhoneNumber,
 	validateEmailOrPhone,
 } from '../../global/helpers/validate'
 import {
-	$registerDetails,
-	getUsers,
 	sendRegData,
 	setRegisterDetails,
 } from '../../global/store/register_model'
-import { useStore } from 'effector-react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { getUserData, setIsTokenUpdated, setUser } from '../../global/store/store'
 
 export default function Login(): JSX.Element {
 	const {
@@ -33,7 +29,6 @@ export default function Login(): JSX.Element {
 	} = useForm()
 	const [gender, setGender] = useState<string>('')
 	const [showPassword, setShowPassword] = useState<boolean>(false)
-	const registerDetails = useStore($registerDetails);
 	const router = useRouter();
 
 	const sendLoginData = (data: {
@@ -41,59 +36,43 @@ export default function Login(): JSX.Element {
 		phone_or_email: string | null
 		pass: string
 		gender: string
+		city: string
 	}) => {
-		const phoneNumber = isPhoneNumber(data.phone_or_email)
 		const email = isEmail(data.phone_or_email)
 		const nameArr = data.name.split(' ')
 
 		setRegisterDetails({
-			firstName: nameArr[0],
-			lastName: nameArr[1],
-			phoneNumber: phoneNumber,
+			name: nameArr[0],
 			email,
 			password: data.pass,
 			gender: data.gender,
-			dateRegister: new Date(
-				new Date().toString().split('GMT')[0] + ' UTC'
-			)
-				.toISOString()
-				.split('.')[0],
+			city: data.city
 		})
 
 		sendRegData({
-			firstName: nameArr[0],
-			lastName: nameArr[1],
-			phoneNumber: phoneNumber,
+			name: nameArr[0],
 			email,
 			password: data.pass,
 			gender: data.gender,
-			dateRegister: new Date(
-				new Date().toString().split('GMT')[0] + ' UTC'
-			)
-				.toISOString()
-				.split('.')[0],
-		}).then( () => {
-			getUserData().then((res) => {
-				if(res.status === 200) {
-					setUser(res.data);
-				}
-			})
+			city: data.city
+		}).then( (res: any) => {
 			if(localStorage.getItem('access-token') !== '') {
-				router.push("/profile");
+				router.push(`/profile/${res.data.profile.login}`);
 			}
+			console.log(res);
 		})
 	}
 
 	return (
 		<div className={s.card}>
 			<Head>
-				<title>Регистрация</title>
+				<title>Регистрация</title> 
 			</Head>
 			<h2>Регистрация</h2>
 			<form autoComplete='off' onSubmit={handleSubmit(sendLoginData)}>
 				<Input
 					icon={loginIcon}
-					placeholder='Имя и фамилия'
+					placeholder='Имя'
 					type='text'
 					id='login'
 					autocomplete={'off'}
@@ -102,8 +81,8 @@ export default function Login(): JSX.Element {
 					register={register('name', {
 						required: true,
 						validate: (value) =>
-							/^[a-zа-яё]+ [a-zа-яё]+$/i.test(value) === false
-								? 'Пожалуйста следуйте формату: Имя Фамилия'
+							/^[a-zа-яё]+$/i.test(value) === false
+								? 'Пожалуйста следуйте формату: Имя'
 								: true,
 					})}
 				/>
@@ -112,7 +91,7 @@ export default function Login(): JSX.Element {
 				)}
 				<Input
 					icon={phoneIcon}
-					placeholder='Телефон или e-mail'
+					placeholder='E-mail'
 					type='text' 
 					id='phoneOrEmail'
 					style={{ marginTop: '25px' }}
@@ -127,11 +106,11 @@ export default function Login(): JSX.Element {
 						{errors.phone_or_email.message}
 					</span>
 				)}
-
+				
 				<Input
 					icon={passIcon}
 					placeholder='Придумайте пароль'
-					type={!showPassword ? 'password' : 'text'}
+					type='password'
 					id='pass'
 					style={{ marginTop: '25px' }}
 					register={register('pass', {
@@ -147,6 +126,18 @@ export default function Login(): JSX.Element {
 					/>
 				</Input>
 
+				<Input
+					icon={phoneIcon}
+					placeholder='Ваш город'
+					type='text' 
+					id='city'
+					style={{ marginTop: '25px' }}
+					className={errors.date && s.errorBorder}
+					register={register('city', {
+						required: true,
+					})}
+				/>
+				
 				<div className={s.gender}>
 					<span>Выберите пол:</span>
 					<label

@@ -1,0 +1,86 @@
+.chat {
+    display: grid;
+    //grid-template-rows: 15% 85%;
+    min-height: 500px;
+    padding-left: 2%;
+    & .user {
+        display: grid;
+        grid-template-columns: 15% 45% 40%;
+        height: 90px;
+        & .avatar {
+            border: 1px solid black;
+            border-radius: 50%;
+            background-size: 100% 100%;
+        }
+    }
+    & .name {
+        margin-left: 4%;
+    }
+    & .status {
+        font-size: 18px;
+        color: grey;
+    }
+    & .statusOnline {
+        color: rgb(100, 100, 255);
+        font-size: 18px;
+    }
+    & .messages {
+        font-size: 15px;
+        height: 400px;
+        overflow-y: scroll;
+        & .defaultText {
+            color: grey;
+            margin-top: 20%;
+            margin-left: 35%;
+        }
+        & .myMessage {
+            display: inline-block;
+            margin-left: 50%;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 1%;
+            width: 50%;
+            min-height: 20px;
+            background-color: rgba($color: #86e020, $alpha: 0.3);
+            word-wrap: break-word;
+        }
+        & .notMyMessage {
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 1%;
+            width: 50%;
+            min-height: 20px;
+            background-color: rgba($color: #3b81dd, $alpha: 0.6);
+            word-wrap: break-word;
+        }
+    }
+    & .messages::-webkit-scrollbar {
+        width: 12px;               /* ширина scrollbar */
+    }
+    & .messages::-webkit-scrollbar-track {
+        background: white;        /* цвет дорожки */
+    }
+    & .messages::-webkit-scrollbar-thumb {
+        background-color: grey;    /* цвет плашки */
+        border-radius: 20px;       /* закругления плашки */
+        border: 3px solid white;  /* padding вокруг плашки */
+    }
+    & .form {
+        margin-top: 2%;
+    }
+}
+
+@media screen and(max-width: 560px) {
+    .chat {
+        & .user {
+            grid-template-columns: 20% 45% 35%;
+        }
+    }
+}
+@media screen and(max-width: 400px) {
+    .chat {
+        & .user {
+            grid-template-columns: 35% 40% 25%;
+        }
+    }
+}

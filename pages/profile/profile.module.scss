@@ -1,74 +1,102 @@
 .profile {
-    width: 100%;
-    background-color: rgb(233, 233, 233);
+    background-color: white;
     height: 100vh;
+    font-family: Nunito;
 }
 .navCol {
     background-color: white;
     color: #000000;
     font-size: 32px;
     height: 570px;
-    min-height: 570px;
     font-family:'Courier New', Courier, monospace;
-    padding-left: 5%; padding-top: 1%;
+    //padding-left: 5%; 
+    padding-top: 1%;
 }
 .bodyCol {
     color: black;
     font-family:'Courier New', Courier, monospace;
-    padding-left: 3%;
+    //padding-left: 3%;
     padding-top: 3%;
-    & .moreInfo { 
-        margin-top: 2.5%;
+    & .block {
+        padding: 2%;
+        margin-bottom: 2.5%;
+        box-shadow:  1px 1px 5px rgba(154, 147, 140, 0.3), 1px 1px 5px rgba(154, 147, 140, 0.3);
     }
-}
-.ul {
-    list-style: none;
-    & li {
-        font-family: Nunito;
-        font-size: 30px;
-        & a {
-            text-decoration: none;
-            color: black;
-            margin-left: 5%;
+    & .bodyInfo {
+        & .avatar {
+            border-radius: 50%; /* Радиус скругления */
+            border: 1px solid grey; /* Параметры рамки */
+            width: 100%;
+            height: 100%;
+        }
+    }
+    & .moreInfo { 
+        & .places {
+            margin-left: 1%;
         }
     }
 }
-.round {
-    border-radius: 50%; /* Радиус скругления */
-    border: 1px solid white; /* Параметры рамки */
-}
-.avatar {
-    width: 100%;
-    height: 100%;
-}
 .userInfo {
     font-family: Nunito;
+    & .town {
+        font-size: 16px;
+        color: grey; 
+    }
     & .userName {
         color: black;
-        font-size: 30px;
+        font-size: 36px;
     }
     & .status {
-        margin-left: 15%;
         padding-left: 10px;
         color: white;
         background-color: rgb(73, 73, 248);
         border-radius: 10px;
         font-size: 20px;
+        max-height: 60px;
     }
     & .text {
         margin-top: 2.5%;
-        font-size: 20px;
+        font-size: 24px;
     }
     & .actionsBtn {
-        width: 200px;
-        height: 35px;
-        margin-left: 10%;
+        width: 180px;
+        height: 45px;
+        margin-left: 1%;
         border: none;
         font-size: 20px;
         border-radius: 20px;
-        margin-top: 10%;
+        margin-top: 5%;
         padding-left: 10px;
         color: white;
-        background-color: rgb(91, 91, 255);
+        background: #3DB2FF;
+    }
+}
+@media screen and(max-width: 1180px) {
+    .userInfo { 
+        & .actionsBtn {
+            margin-top: 5%;
+        }
+    }
+}
+@media screen and(max-width: 767px) {
+    .navCol {
+        min-height: 50px;
+    }
+    .profile {
+        & .bodyCol {
+            & .bodyInfo {
+                & .avatar {
+                    margin-left: 40%;
+                    width: 30%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+    .userInfo {
+        & .actionsBtn {
+            margin-top: 2.5%;
+            margin-left: 20%;
+        }
     }
 }

@@ -52,9 +52,9 @@ a {
 	text-decoration: none;
 }
 ._container {
-	max-width: 1170px;
+	width: 1170px;
 	margin: 0 auto;
-}
+} 
 .btn {
 	width: 245px;
 	height: 70px;
@@ -93,4 +93,8 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
 	-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+* {
+	padding: 0;
+	margin: 0;
 }

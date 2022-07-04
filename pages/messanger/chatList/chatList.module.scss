@@ -1,0 +1,46 @@
+.chatList {
+    & .list { 
+        overflow-y: scroll;
+        height: 480px;
+    }
+    & .list::-webkit-scrollbar {
+        width: 12px;               /* ширина scrollbar */
+    }
+    & .list::-webkit-scrollbar-track {
+        background: white;        /* цвет дорожки */
+    }
+    & .list::-webkit-scrollbar-thumb {
+        background-color: grey;    /* цвет плашки */
+        border-radius: 20px;       /* закругления плашки */
+        border: 3px solid white;  /* padding вокруг плашки */
+    }
+    & .menu {
+        & button {
+            font-size: 18px;
+            background-color: white;
+            border: none;
+            outline: none;
+        }
+        & button:hover {
+            cursor: pointer;
+            border-bottom: 2px solid black;
+        }
+    }
+}
+@media screen and(max-width: 1213px) {
+    .chatList {
+        & .menu {
+            & button {
+                font-size: 16px;
+            }
+        }
+    }
+}
+@media screen and(max-width: 435px) {
+    .chatList {
+        & .list {
+            overflow-y: scroll;
+            height: 290px;
+        }
+    }
+}

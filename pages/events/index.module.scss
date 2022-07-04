@@ -1,0 +1,13 @@
+.events {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: space-around;
+}
+.mainContent {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    & .div {
+        text-align: center;
+    }
+}
+

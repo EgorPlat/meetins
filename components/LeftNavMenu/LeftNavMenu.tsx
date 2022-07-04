@@ -1,0 +1,13 @@
+import Link from "next/link";
+import React from "react";
+import s from "./LeftNavMenu.module.scss";
+
+export default function LeftNavMenu(): JSX.Element {
+    return(
+        <ul className={s.ul}>        
+            <li><Link href="/messanger">Мессенджер</Link></li>
+            <li><Link href="">Приглашения</Link></li>
+            <li><Link href="/marks">Закладки</Link></li>
+        </ul> 
+    )
+}

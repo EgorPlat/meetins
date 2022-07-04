@@ -1,0 +1,38 @@
+.about {
+    width: 100%;
+    height: 100%;
+    font-size: 19px;
+    font-family: Nunito;
+    & .changeSpan {
+        color: grey;
+        font-size: 16px;
+        margin-left: 20px;
+    }
+    & .changeSpan:hover {
+        cursor: pointer;
+    }
+    & .textChange {
+        width: 100%;
+        min-height: 30px;
+        resize: none;
+    }
+    & .status {
+        font-size: 16px;
+        cursor: pointer;
+    }
+    & button {
+        min-width: 30px;
+        height: 30px;
+        color: white;
+        border: none;
+        outline: none;
+        margin-top: 1%;
+        margin-left: 1%;
+    }
+    & .confirmBtn {
+        background-color: rgb(41, 147, 196);
+    }
+    & .cancelBtn {
+        background-color: rgb(219, 93, 77);
+    }
+}

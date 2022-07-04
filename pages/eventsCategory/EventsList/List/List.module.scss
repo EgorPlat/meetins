@@ -1,0 +1,12 @@
+.list {
+    width: 100%;
+    height: 100%;
+    & .eventBody {
+        width: 99%;
+        min-height: 350px;
+        border: 1px solid black;
+        margin-top: 20px;
+        margin-left: 1%;
+        float: left;
+    }
+}
