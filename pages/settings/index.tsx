@@ -44,11 +44,11 @@ export default function Settings(): JSX.Element {
     return(
         <div className={`${s.settings}`}>
             <div className="row">
-                <div className={`col-sm-3 ${s.menu}`}>
+                <div className={`col-sm-2 ${s.menu}`}>
                     <div><Link href = ''>Аккаунт</Link></div>
                     <div><Link href = ''>Подписка</Link></div>
                 </div>
-                <div className={`col-sm-9 ${s.formAndInfo}`}>
+                <div className={`col-sm-8 ${s.formAndInfo}`}>
                     <div className={s.info}> 
                         <h5>Информация профиля</h5>
                             { isLoad ? <div className="row">

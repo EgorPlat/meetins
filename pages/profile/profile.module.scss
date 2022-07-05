@@ -15,8 +15,8 @@
 .bodyCol {
     color: black;
     font-family:'Courier New', Courier, monospace;
-    //padding-left: 3%;
-    padding-top: 3%;
+    margin-left: 5%;
+    //padding-top: 3%;
     & .block {
         padding: 2%;
         margin-bottom: 2.5%;
@@ -84,6 +84,7 @@
     }
     .profile {
         & .bodyCol {
+            margin-left: 0%;
             & .bodyInfo {
                 & .avatar {
                     margin-left: 40%;

@@ -1,5 +1,5 @@
 .navCont {
-	font-size: 18px;
+	font-size: 22px;
 	font-family: Nunito;
 	& .navBtn {
 		background-color: white;
@@ -63,5 +63,21 @@
 				margin-top: 20px;
 			}
 		}
+	}
+}
+
+@media screen  and(max-width: 440px){
+	.navCont {
+		font-size: 21px;
+	}
+}
+@media screen  and(max-width: 400px){
+	.navCont {
+		font-size: 20px;
+	}
+}
+@media screen  and(max-width: 380px){
+	.navCont {
+		font-size: 19px;
 	}
 }

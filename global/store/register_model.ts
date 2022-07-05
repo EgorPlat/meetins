@@ -19,7 +19,6 @@ export const $registerDetails = createStore<RegisterDetailsType>(null).on(
 		return newRegDetails
 	}
 ) 
-
 sendRegData.use(async (regDetails) => {
 	const response = await instance.post('auth/registration', regDetails)
 	if(response.status === 201) {

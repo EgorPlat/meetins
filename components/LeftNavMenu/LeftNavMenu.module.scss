@@ -2,7 +2,7 @@
     list-style: none;
     & li {
         font-family: Nunito;
-        font-size: 18px;
+        font-size: 22px;
         margin-top: 5px;
         & a {
             text-decoration: none;
@@ -19,6 +19,34 @@
             & a {
                 margin-left: 2%;
             }
+        }
+    }
+}
+@media screen and(max-width: 440px) {
+    .ul {
+        & li {
+            font-size: 21px;
+        }
+    }
+}
+@media screen and(max-width: 400px) {
+    .ul {
+        & li {
+            font-size: 20px;
+        }
+    }
+}
+@media screen and(max-width: 380px) {
+    .ul {
+        & li {
+            font-size: 19px;
+        }
+    }
+}
+@media screen and(max-width: 360px) {
+    .ul {
+        & li {
+            font-size: 18px;
         }
     }
 }
