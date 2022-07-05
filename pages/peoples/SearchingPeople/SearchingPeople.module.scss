@@ -90,6 +90,12 @@
     }
     & .result {
         padding-top: 5%;
+        & .showAllBtn {
+            border: none;
+            background-color: #3DB2FF;
+            color: white;
+            border-radius: 10px;
+        }
         & .filterSelect {
             padding-bottom: 5%;
             width: 100%;

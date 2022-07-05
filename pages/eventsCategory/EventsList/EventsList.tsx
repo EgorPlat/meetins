@@ -19,7 +19,8 @@ export default function EventsList(props: {category: string}): JSX.Element {
                 {props.category}
             </div>
             <div className={s.list}>
-               {loadedStatus$ ? <List list={currentEvents$}/> : <Loader/>} 
+               {loadedStatus$ ? <List list={currentEvents$}/> : <h4>Загрузка...</h4>}
+               {loadedStatus$ && currentEvents$.length === 0 ? <h4>В данной категории пока что нет запланированных мероприятий.</h4> : null}
             </div>
         </div>
     )

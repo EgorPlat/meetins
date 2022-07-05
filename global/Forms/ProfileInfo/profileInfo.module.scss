@@ -9,10 +9,18 @@
         display: inline;
         margin-top: 2.5%;
         font-size: 18px;
+        width: 95%;
+        height: 50px;
+        width: 250px;
+        border-radius: 10px;
+        border: 1px solid gray;
     }
     & .saveButton {
-        margin-top: 1%;
+        margin-top: 2%;
         border: none;
+        width: 150px;
+        height: 40px;
+        border-radius: 10px;
         background-color: rgb(108, 154, 238);
         color: white;
         padding: 5px;

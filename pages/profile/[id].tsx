@@ -87,7 +87,7 @@ function Profile(): JSX.Element {
                             </div>
                         </div>
                         <div className={s.town}>
-                            г. Санкт-Петербург
+                            г. {currentUser.city}
                         </div>
                         { currentUser.login !== authedUser?.login ?
                         <div className={`${s.actions}`}>

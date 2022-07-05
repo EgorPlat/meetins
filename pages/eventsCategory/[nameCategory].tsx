@@ -18,8 +18,7 @@ export default function CategoryEventInfo(): JSX.Element {
                 <div className={`${s.list} ${s.block}`}>
                     {
                         nameCategory && typeof nameCategory === "string"
-                        ? <EventsList category={nameCategory}/>
-                        : <Loader/>
+                        ? <EventsList category={nameCategory}/> : null
                     }
                 </div>
             </div>

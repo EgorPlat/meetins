@@ -3,6 +3,7 @@
     min-height: 100%;
     color: black;
     font-family: Nunito;
+    font-size: 18px;
     & .menu {
         height: 570px;
         font-size: 26px;
@@ -48,8 +49,6 @@
         color: white;
     }
 }
- 
-
 
 
 @media screen and(max-width: 600px) {

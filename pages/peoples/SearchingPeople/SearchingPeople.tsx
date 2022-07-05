@@ -43,13 +43,17 @@ export default function SearchingPeople(): JSX.Element {
           }
           const response = await instance.post('users/getSortedUsers', filterParams.defaultState);
           setAllPeoples(response.data);
+          if(response.data.length === 0) {
+            setDinamicUsers(() => [])
+          }
     }
 
     useEffect(() => {
         getAllPeoples();
+        setDinamicUsers((dinamicUsers) =>  peoplesList$.slice(0, dinamicUsers.length+5)); 
     }, [])
 
-    useEffect(() => {
+    useEffect(() => {  
         const scrollHandler = (event: any) => {
             if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
                 setDinamicUsers((dinamicUsers) =>  peoplesList$.slice(0, dinamicUsers.length+5));          
@@ -111,6 +115,12 @@ export default function SearchingPeople(): JSX.Element {
                 </div>
                 <div className={s.users}>
                     { isPeoplesLoaded$ ? dinamicUsers.map( user => <UserList key={user.login} user={user}/>) : <Loader/> }
+                    { dinamicUsers.length === 0 ? 
+                    <div>
+                        <h4>По Вашему запросу никого не найдено.</h4>
+                        <button onClick={() => getAllPeoples()} className={s.showAllBtn}>Показать всех</button>
+                    </div>
+                     : null }
                 </div>
             </div>
         </div> 
