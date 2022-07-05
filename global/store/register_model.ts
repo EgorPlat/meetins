@@ -24,7 +24,7 @@ sendRegData.use(async (regDetails) => {
 	const response = await instance.post('auth/registration', regDetails)
 	if(response.status === 201) {
 		localStorage.setItem('access-token', response.data.auth.token);
-		setUser(response.data.profile);
+		setUser(response.data.profile.user);
 	}
 	return response;
 })
