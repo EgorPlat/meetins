@@ -37,7 +37,7 @@ export default function Login(): JSX.Element {
 		pass: string
 		gender: string
 		city: string
-	}) => {
+	} | any) => {
 		const email = isEmail(data.phone_or_email)
 		const nameArr = data.name.split(' ')
 
