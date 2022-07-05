@@ -57,9 +57,8 @@ export default function Login(): JSX.Element {
 			city: data.city
 		}).then( (res: any) => {
 			if(localStorage.getItem('access-token') !== '') {
-				router.push(`/profile/${res.data.profile.login}`);
-			}
-			console.log(res);
+				router.push(`/profile/${res.data.profile.user.login}`);
+			}			
 		})
 	}
 
