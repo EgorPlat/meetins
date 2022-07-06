@@ -1,8 +1,13 @@
+import { useStore } from "effector-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { $currentPage } from "../../global/store/store";
 import s from "./LeftNavMenu.module.scss";
 
 export default function LeftNavMenu(): JSX.Element {
+
+    const currentPage = useStore($currentPage)
+
     return(
         <ul className={s.ul}>        
             <li><Link href="/messanger">Мессенджер</Link></li>

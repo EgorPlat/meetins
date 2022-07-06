@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	}
 	useEffect(() => { 
 		if(route.pathname !== '/') {
-			setCurrentPage(route.pathname);
+			setCurrentPage(route.asPath);
 			localStorage.setItem('previousPage', route.asPath);
 		}
 	}, [route.asPath])

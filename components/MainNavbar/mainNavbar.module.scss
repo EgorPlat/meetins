@@ -25,10 +25,12 @@
 				border: none;
 				outline: none;
 				margin-left: 10px;
+				cursor: pointer;
 				& option {
+					cursor: pointer;
 					font-family: Nunito;
-					background-color: rgb(228, 228, 228);
-					font-size: 16px;
+					background-color: rgb(255, 255, 255);
+					font-size: 18px;
 					padding: 5px;
 				}
 		}
@@ -79,5 +81,15 @@
 @media screen  and(max-width: 380px){
 	.navCont {
 		font-size: 19px;
+	}
+}
+@media screen  and(max-width: 360px){
+	.navCont {
+		font-size: 18px;
+	}
+}
+@media screen  and(max-width: 350px){
+	.navCont {
+		font-size: 17px;
 	}
 }

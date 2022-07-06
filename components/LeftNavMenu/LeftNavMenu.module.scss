@@ -7,9 +7,16 @@
         & a {
             text-decoration: none;
             color: black;
-            margin-left: 5%;
+        }
+        & a:hover {
+            border-bottom: 2px solid black;
         }
     }
+}
+.active {
+    text-align:left;
+    float:left;
+    border-bottom: 2px solid rgb(74, 106, 248)
 }
 @media screen and(max-width: 1000px) {
     .ul {
@@ -33,6 +40,10 @@
     .ul {
         & li {
             font-size: 20px;
+            & a {
+                margin-left: 0%;
+                margin-right: 2%;
+            }
         }
     }
 }
@@ -47,6 +58,13 @@
     .ul {
         & li {
             font-size: 18px;
+        }
+    }
+}
+@media screen and(max-width: 350px) {
+    .ul {
+        & li {
+            font-size: 17px;
         }
     }
 }

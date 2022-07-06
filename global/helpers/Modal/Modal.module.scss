@@ -31,7 +31,7 @@
         & .cancelBtn {
             width: 25%;
             min-height: 30px;
-            background-color: red;
+            background-color: rgb(65, 65, 65);
         }
     }
 }
@@ -48,7 +48,15 @@
     .modal {
         & .modalContent {
             margin: 50% auto;
-            width: 60%;
+            width: 80%;
+        }
+        & .manageModal {
+            & .confirmBtn {
+                width: 47%;
+            }
+            & .cancelBtn {
+                width: 47%;
+            }
         }
     }
 }

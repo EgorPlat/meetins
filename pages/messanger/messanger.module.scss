@@ -26,6 +26,12 @@
 @media screen and(max-width: 850px){
     .messangerContent {
         grid-template-columns: 100%;
+        & .chatList {
+            margin-top: 1%;
+        }
+        & .chatZone {
+            margin-top: 1%;
+        }
     }
 }
 @media screen and(max-width: 435px){
