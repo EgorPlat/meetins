@@ -18,7 +18,7 @@ export default function ChatZone(): JSX.Element {
             createdSendMessageAndUploadActiveChat(inputValue);
         }
     }
-
+ 
     useEffect(() => {
         getDialogMessages(activeChat$);
         console.log(activeChat$.dialogId);
@@ -30,7 +30,7 @@ export default function ChatZone(): JSX.Element {
         messagesEndRef.current?.scrollIntoView({behavior: "smooth"});
     })
         return(
-            <div className={s.chat}> 
+            <div className={s.chat}>  
                 <div className={s.user}>
                     <div className={s.avatar} style={{
                         backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`}}>

@@ -2,13 +2,16 @@
 	font-size: 22px;
 	font-family: Nunito;
 	& .navBtn {
-		background-color: white;
+		background-color: rgb(251, 254, 255);
 		& .link {
 			& a {
 				margin-top: 40px;
 			    margin-left: 5%;
 		     	color: black;
 			    text-decoration: none;
+			}
+			& a:hover {
+				border-bottom: 2px solid black;
 			}
 			margin-top: 20px;
 				& .inviteBtn {
@@ -21,7 +24,7 @@
 				}
 			}
 			& select {
-				background-color: white;
+				background-color: rgb(251, 254, 255);
 				border: none;
 				outline: none;
 				margin-left: 10px;

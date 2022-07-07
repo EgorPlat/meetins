@@ -1,8 +1,8 @@
 .messangerContent {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 80%;
     & .chatList {
-        height: 570px;
+        height: 145px;
         background-color: white;
     }
     & .chatZone {
@@ -11,7 +11,7 @@
     }
 }
 .block {
-    padding: 2%;
+    padding: 0.5%;
     box-shadow:  1px 1px 5px rgba(154, 147, 140, 0.3), 1px 1px 5px rgba(154, 147, 140, 0.3);
 }
 .noChat {
@@ -31,14 +31,6 @@
         }
         & .chatZone {
             margin-top: 1%;
-        }
-    }
-}
-@media screen and(max-width: 435px){
-    .messangerContent {
-        padding-top: 1%;
-        & .chatList {
-            height: 390px;
         }
     }
 }

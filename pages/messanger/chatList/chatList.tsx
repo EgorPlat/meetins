@@ -13,9 +13,8 @@ export default function ChatList(): JSX.Element {
     useEffect(() => {
         getMyDialogs(); 
     },[]) 
-    return( 
+    return(  
         <div className={s.chatList}>
-            <h3>Чаты</h3>
             <div className={s.menu}>
                 <button>Все</button>
                 <button>Онлайн</button>
@@ -27,7 +26,7 @@ export default function ChatList(): JSX.Element {
                 <UserChatCard
                     key={user.userAvatar}
                     user={user}
-                />) : <Loader/>}
+                />) : <div className={s.loader}></div>}
             </div>
         </div>
     )

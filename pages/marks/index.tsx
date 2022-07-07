@@ -5,7 +5,7 @@ import s from "./marks.module.scss";
 export default function Marks(): JSX.Element {
     return(
         <PageContainer>
-            <div>
+            <div className={s.content}>
             <div className={s.types}>
                    <button>Все</button>
                    <button>Люди</button>

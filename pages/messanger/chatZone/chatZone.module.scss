@@ -1,11 +1,10 @@
 .chat {
     display: grid;
-    //grid-template-rows: 15% 85%;
+    grid-template-rows: 15% 75% 10%;
     min-height: 500px;
-    padding-left: 2%;
     & .user {
         display: grid;
-        grid-template-columns: 15% 45% 40%;
+        grid-template-columns: 10% 50% 40%;
         height: 90px;
         & .avatar {
             border: 1px solid black;
@@ -27,6 +26,7 @@
     & .messages {
         font-size: 15px;
         height: 400px;
+        margin-top: 1%;
         overflow-y: scroll;
         & .defaultText {
             color: grey;
@@ -36,19 +36,19 @@
         & .myMessage {
             display: inline-block;
             margin-left: 50%;
-            border-radius: 5px;
+            border-radius: 10px;
             padding: 10px;
             margin-top: 1%;
-            width: 50%;
+            width: 40%;
             min-height: 20px;
             background-color: rgba($color: #86e020, $alpha: 0.3);
             word-wrap: break-word;
         }
         & .notMyMessage {
-            border-radius: 5px;
+            border-radius: 10px;
             padding: 10px;
             margin-top: 1%;
-            width: 50%;
+            width: 40%;
             min-height: 20px;
             background-color: rgba($color: #3b81dd, $alpha: 0.6);
             word-wrap: break-word;
@@ -66,7 +66,7 @@
         border: 3px solid white;  /* padding вокруг плашки */
     }
     & .form {
-        margin-top: 2%;
+        margin-top: 1%;
     }
 }
 
@@ -77,10 +77,15 @@
         }
     }
 }
-@media screen and(max-width: 400px) {
+@media screen and(max-width: 480px) {
     .chat {
-        & .user {
-            grid-template-columns: 35% 40% 25%;
+        & .messages {
+            & .myMessage {
+                width: 50%;
+            }
+            & .notMyMessage {
+                width: 50%;
+            }
         }
     }
 }

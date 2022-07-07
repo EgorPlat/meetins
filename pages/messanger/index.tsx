@@ -12,12 +12,12 @@ export default function Messanger(): JSX.Element {
     const activeChat$ = useStore(activeChat);
 
     return(
-        <PageContainer>
+        <PageContainer> 
             <div className={s.messangerContent}>
                 <div className={`${s.chatList} ${s.block}`}>
                     <ChatList/>
                 </div>
-                <div className={`${s.chatZone} ${s.block}`} style={{marginLeft: '1%'}}>
+                <div className={`${s.chatZone} ${s.block}`}>
                     {activeChat$.dialogId ? <ChatZone/> : 
                     <div className={s.noChat}>
                         <h3 className={s.alert}>Выберите диалог...</h3>

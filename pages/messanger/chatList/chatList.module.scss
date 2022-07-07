@@ -1,8 +1,10 @@
 .chatList {
-    & .list { 
-        overflow-y: scroll;
-        height: 480px;
-    }
+    & .list {
+        width: 100vw;
+        height: 105px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    } 
     & .list::-webkit-scrollbar {
         width: 12px;               /* ширина scrollbar */
     }
@@ -16,7 +18,7 @@
     }
     & .menu {
         & button {
-            font-size: 18px;
+            font-size: 14px;
             background-color: white;
             border: none;
             outline: none;
@@ -27,20 +29,31 @@
         }
     }
 }
+.loader {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgb(0, 153, 255);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 1.5s infinite;
+    margin-left: 40%;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+
+
 @media screen and(max-width: 1213px) {
     .chatList {
         & .menu {
             & button {
                 font-size: 16px;
             }
-        }
-    }
-}
-@media screen and(max-width: 435px) {
-    .chatList {
-        & .list {
-            overflow-y: scroll;
-            height: 290px;
         }
     }
 }
