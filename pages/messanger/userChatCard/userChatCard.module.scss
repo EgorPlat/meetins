@@ -2,8 +2,9 @@
     width: 65px;
     height: 85px;
     margin-top: 0.5%;
-    float: left;
-    margin-right: 2%;
+    //float: left;
+    display: inline-block;
+    margin-right: 3%;
     & .avatar {
         & .round {
             width: 15px;
