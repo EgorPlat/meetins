@@ -26,6 +26,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 				}
 			});
 		    setNewConnection(newConnection)
+		} else {
+			router.push('/login')
 		}
 		return () => {
 			connection$?.disconnect();
