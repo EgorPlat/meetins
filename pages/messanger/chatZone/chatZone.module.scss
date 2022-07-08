@@ -53,6 +53,11 @@
             background-color: rgba($color: #3b81dd, $alpha: 0.6);
             word-wrap: break-word;
         }
+        & .messageTime {
+            margin-left: 90%;
+            font-size: 10px;
+            color: grey;
+        }
     }
     & .messages::-webkit-scrollbar {
         width: 12px;               /* ширина scrollbar */

@@ -1,6 +1,7 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef, useState} from "react";
 import Loader from "../../../components/Loader/Loader";
+import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
 import { IMyDialog } from "../../../global/interfaces";
 import { activeChat, createdSendMessageAndUploadActiveChat, getDialogMessages, setActiveChat } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
@@ -47,6 +48,9 @@ export default function ChatZone(): JSX.Element {
                         ? activeChat$.messages.map(message =>
                             <div className={message.senderId === authedUser?.userId ? s.myMessage : s.notMyMessage} key={message.content}>
                                 {message.content}
+                                <div className={s.messageTime}>
+                                    {getMinutesAndHoursFromString(message.sendAt)}
+                                </div>
                             </div>
                             )
                         : <Loader/>

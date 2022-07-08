@@ -9,7 +9,8 @@ export type User = {
 	dateRegister: string,
 	login: string,
 	birthDate: string,
-	city: string
+	city: string,
+    age: number
 }
 export type ProfileData = {
 	name: string,

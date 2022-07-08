@@ -83,7 +83,7 @@ function Profile(): JSX.Element {
                     <div className={`col-md-8 ${s.userInfo}`}>
                         <div className="row">
                             <div className={`col ${s.userName}`}>
-                                {currentUser.name + ', ' + "20"}
+                                {currentUser.name + ', ' + currentUser.age}
                             </div>
                         </div>
                         <div className={s.town}>
