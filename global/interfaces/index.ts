@@ -75,3 +75,7 @@ export interface IMyDialog {
     status?: boolean,
     userId?: string
 }
+export interface SortedMessagesOnDays {
+    data: string,
+    messages: IMyActiveDialogMessage[]
+}

@@ -1,8 +1,9 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef, useState} from "react";
 import Loader from "../../../components/Loader/Loader";
+import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
 import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
-import { IMyDialog } from "../../../global/interfaces";
+import { IMyDialog, SortedMessagesOnDays } from "../../../global/interfaces";
 import { activeChat, createdSendMessageAndUploadActiveChat, getDialogMessages, setActiveChat } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
@@ -13,7 +14,7 @@ export default function ChatZone(): JSX.Element {
     const authedUser = useStore($user);
     const messagesEndRef = useRef<HTMLSpanElement>(null);
     const activeChat$ = useStore(activeChat);
- 
+
     const sendForm = (inputValue: string) => {
         if(inputValue.length > 0) {
             createdSendMessageAndUploadActiveChat(inputValue);
@@ -22,7 +23,6 @@ export default function ChatZone(): JSX.Element {
  
     useEffect(() => {
         getDialogMessages(activeChat$);
-        console.log(activeChat$.dialogId);
         return () => { 
             setActiveChat({} as IMyDialog);
         }
@@ -46,10 +46,13 @@ export default function ChatZone(): JSX.Element {
                 <div className={s.messages}>
                     {activeChat$.messages
                         ? activeChat$.messages.map(message =>
-                            <div className={message.senderId === authedUser?.userId ? s.myMessage : s.notMyMessage} key={message.content}>
-                                {message.content}
-                                <div className={s.messageTime}>
-                                    {getMinutesAndHoursFromString(message.sendAt)}
+                            <div key={message.sendAt}>
+                                <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div>
+                                <div className={message.senderId === authedUser?.userId ? s.myMessage : s.notMyMessage} key={message.content}>
+                                    {message.content}
+                                    <div className={s.messageTime}>
+                                        {getMinutesAndHoursFromString(message.sendAt)}
+                                    </div>
                                 </div>
                             </div>
                             )
