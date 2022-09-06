@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { useState } from "react";
 import Loader from "../../../components/Loader/Loader";
 import { IEventInfoCard } from "../../../global/interfaces/events";
 import s from "./eventBlock.module.scss";
