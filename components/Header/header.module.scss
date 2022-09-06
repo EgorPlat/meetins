@@ -21,14 +21,14 @@
 		background: white;
 	}
 }
-@media screen and(max-width: 650px) {
+@media screen  and (max-width: 650px) {
 	.header {
 		grid-template-columns: 100%;
 		height: 200px;
 		border-bottom: 1px solid grey;
 	}
 }
-@media screen and(max-width: 400px) {
+@media screen  and (max-width: 400px) {
 	.header {
 		& .logo {
 			margin-left: 5%;
