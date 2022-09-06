@@ -24,3 +24,12 @@
         }
     }
 }
+
+@media screen and(max-width: 420px) {
+    .nav {
+        & .menu {
+            margin-left: 0%;
+            padding-left: 0%;
+        }
+    }
+}

@@ -54,6 +54,9 @@ function Profile(): JSX.Element {
         Router.push('/messanger')
     } 
     const onModalClick = (status: boolean) => {
+        if (status) {
+            window.location.reload();
+        }
         setIsModal(false);
     }
     useEffect( () => {
