@@ -109,14 +109,14 @@
         }
     }
 }
-@media screen and(max-width: 1105px) {
+@media screen and (max-width: 1105px) {
     .searching {
         & .params {
             grid-template-columns: 50% 50%;
         }
     }
 }
-@media screen and(max-width: 505px) {
+@media screen and (max-width: 505px) {
     .searching {
         & .params {
             font-size: 15px;

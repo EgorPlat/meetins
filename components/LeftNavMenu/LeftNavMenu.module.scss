@@ -18,7 +18,7 @@
     float:left;
     border-bottom: 2px solid rgb(74, 106, 248)
 }
-@media screen and(max-width: 1000px) {
+@media screen and (max-width: 1000px) {
     .ul {
         height: 150px;
         & li {
@@ -29,7 +29,7 @@
         }
     }
 }
-@media screen and(max-width: 440px) {
+@media screen and (max-width: 440px) {
     .ul {
         & li {
             font-size: 21px;
@@ -39,7 +39,7 @@
         }
     }
 }
-@media screen and(max-width: 400px) {
+@media screen and (max-width: 400px) {
     .ul {
         & li {
             font-size: 20px;
@@ -50,21 +50,21 @@
         }
     }
 }
-@media screen and(max-width: 380px) {
+@media screen and (max-width: 380px) {
     .ul {
         & li {
             font-size: 19px;
         }
     }
 }
-@media screen and(max-width: 360px) {
+@media screen and (max-width: 360px) {
     .ul {
         & li {
             font-size: 18px;
         }
     }
 }
-@media screen and(max-width: 350px) {
+@media screen and (max-width: 350px) {
     .ul {
         & li {
             font-size: 17px;

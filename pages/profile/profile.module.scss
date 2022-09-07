@@ -71,14 +71,14 @@
         background: #3DB2FF;
     }
 }
-@media screen and(max-width: 1180px) {
+@media screen and (max-width: 1180px) {
     .userInfo { 
         & .actionsBtn {
             margin-top: 5%;
         }
     }
 }
-@media screen and(max-width: 767px) {
+@media screen and (max-width: 767px) {
     .navCol {
         min-height: 50px;
     }

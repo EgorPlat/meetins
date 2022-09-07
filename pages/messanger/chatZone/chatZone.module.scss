@@ -80,7 +80,7 @@
     }
 }
 
-@media screen and(max-width: 750px) {
+@media screen and (max-width: 750px) {
     .chat {
         & .messages {
             & .messageTime {
@@ -89,14 +89,14 @@
         }
     }
 }
-@media screen and(max-width: 560px) {
+@media screen and (max-width: 560px) {
     .chat {
         & .user {
             grid-template-columns: 20% 45% 35%;
         }
     }
 }
-@media screen and(max-width: 480px) {
+@media screen and (max-width: 480px) {
     .chat {
         & .messages {
             & .myMessage {
