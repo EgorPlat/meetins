@@ -5,7 +5,6 @@ import Loader from "../../components/Loader/Loader";
 import PageContainer from "../../components/pageContainer/pageContainer";
 import { currentEventById, getEventById } from "../../global/store/events_model";
 import EventBlock from "./EventBlock";
-import s from "./eventInfo.module.scss";
 
 
 export default function EventInfo(): JSX.Element {
