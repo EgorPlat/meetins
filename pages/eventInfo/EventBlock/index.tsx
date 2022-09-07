@@ -5,7 +5,7 @@ import s from "./eventBlock.module.scss";
 
 export default function EventBlock(props: {
     currentEventById: IEventInfoCard
-}): JSX.Element {
+}): JSX.Element { 
     const event = props.currentEventById;
 	if (event) {
         return(
