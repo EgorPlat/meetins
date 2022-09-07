@@ -15,6 +15,20 @@
         & .help {
             font-size: 18px;
             margin-top: 15px;
+            & .actions {
+                button {
+                    background-color: #3DB2FF;
+                    color: white;
+                    width: 49%;
+                    margin-right: 0.5%;
+                    border: none;
+                    border-radius: 5px;
+                }
+                button:hover {
+                    background-color: rgb(255, 197, 88);
+                    color: black;
+                }
+            }
         }
     }
 }

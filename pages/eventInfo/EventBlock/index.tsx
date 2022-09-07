@@ -18,6 +18,10 @@ export default function EventBlock(props: {
                     <div className={s.help}>
                         <div>{event.title}, {event.age_restriction}+</div>
                         <div dangerouslySetInnerHTML={{ __html: event.description }} />
+                        <div className={s.actions}>
+                            <button>Я пойду!</button>
+                            <button>Понравилось!</button>
+                        </div>
                     </div>
                 </div>
             </div>
