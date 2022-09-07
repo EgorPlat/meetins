@@ -21,3 +21,12 @@
         margin-bottom: 1%;
     }
 }
+
+@media screen and (max-width: 425px){
+    .form {
+        font-size: 13px;
+        & button {
+            font-size: 13px;
+        }
+    }
+}
