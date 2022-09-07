@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
 	const connection$ = useStore(connection);
-
+ 
 	useEffect(() => {
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
