@@ -10,6 +10,12 @@
         & button:hover {
             border-bottom: 2px solid black;
         }
+        & .active {
+            border-bottom: 2px solid black;
+        }
+        & .inactive {
+            border-bottom: none;
+        }
     }
     & .result {
                 

@@ -1,0 +1,11 @@
+.markedEvents {
+    text-align: center;
+}
+
+@media screen and (max-width: 470px) {
+    .markedEvents {
+        display: grid;
+        grid-template-columns: 100%;
+        justify-items: center;
+    }
+}

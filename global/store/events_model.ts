@@ -27,6 +27,12 @@ export const getEventById = createEffect(async (id: string) => {
     );
     return response;
 })
+export const addUserEvent = createEffect(async (id: number) => {
+    const response = await instance.post(
+        'users/addUserEvent', {eventId: String(id)}
+    );
+    return response;
+})
 sample({ 
     clock: getEventById.doneData, 
     filter: response => response.status === 201, 

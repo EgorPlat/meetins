@@ -1,0 +1,60 @@
+.markedEventInfo {
+    float: left;
+    min-width: 300px;
+    min-height: 300px;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-top: 15px;
+    & .markedEventInfoContent {
+        & .image {
+            padding: 5px;
+        }
+        & .image>img:hover {
+            width: 280px;
+            height: 280px;
+            transition: 0.5s;
+        }
+        & .name {
+            font-size: 13px;
+        }
+        & .actions {
+            button {
+                font-size: 13px;
+                background-color: #3DB2FF;
+                color: white;
+                width: 49%;
+                margin-right: 0.5%;
+                border: none;
+                border-radius: 5px;
+            }
+            button:hover {
+                background-color: rgb(255, 197, 88);
+                color: black;
+            }
+        }
+    }
+    & .markedEventInfoContent:hover {
+        cursor: pointer;
+    }
+}
+.loader {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgb(0, 153, 255);
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+    animation: rotateMini 1.5s infinite;
+    margin-top: 40%;
+    margin-left: 40%;
+}
+
+@keyframes rotateMini {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+        border-bottom-color: rgb(0, 153, 255);
+    }
+}

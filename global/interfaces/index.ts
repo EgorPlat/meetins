@@ -10,7 +10,8 @@ export type User = {
 	login: string,
 	birthDate: string,
 	city: string,
-    age: number
+    age: number,
+    events: string[]
 }
 export type ProfileData = {
 	name: string,

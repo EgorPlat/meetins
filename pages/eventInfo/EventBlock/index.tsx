@@ -4,7 +4,8 @@ import s from "./eventBlock.module.scss";
 
 
 export default function EventBlock(props: {
-    currentEventById: IEventInfoCard
+    currentEventById: IEventInfoCard,
+    addUserEvent: (id: number) => void,
 }): JSX.Element {
     const event = props.currentEventById;
 	if (event) {
@@ -19,7 +20,7 @@ export default function EventBlock(props: {
                         <div>{event.title}, {event.age_restriction}+</div>
                         <div dangerouslySetInnerHTML={{ __html: event.description }} />
                         <div className={s.actions}>
-                            <button>Я пойду!</button>
+                            <button onClick={() => props.addUserEvent(event.id)}>Я пойду!</button>
                             <button>Понравилось!</button>
                         </div>
                     </div>
