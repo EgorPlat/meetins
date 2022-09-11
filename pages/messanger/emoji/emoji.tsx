@@ -4,7 +4,7 @@ import EmojiList from './emojiList/emojiList'
 
 export default function Emoji(props: {addSmileHandler: (emoji) => void}): JSX.Element {
 
-    const [isEmojiListOpen, setIsEmojiListOpen] = useState<boolean>(true);
+    const [isEmojiListOpen, setIsEmojiListOpen] = useState<boolean>(false);
     const onAddSmile = (emoji) => {
         props.addSmileHandler(emoji);
     }
