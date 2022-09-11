@@ -1,0 +1,31 @@
+.emojiList {
+    width: 250px;
+    height: 120px;
+    background-color: rgb(243, 243, 243);
+    overflow-y: scroll;
+    border-radius: 2px;
+    & .defaultEmojiInList:hover {
+        cursor: pointer;
+    }
+    & .defaultEmojiInList {
+        font-size: 22px;
+        float: left;
+    }
+}
+.emojiList::-webkit-scrollbar {
+    width: 12px;               /* ширина scrollbar */
+}
+.emojiList::-webkit-scrollbar-track {
+    background: white;        /* цвет дорожки */
+}
+.emojiList::-webkit-scrollbar-thumb {
+    background-color: grey;    /* цвет плашки */
+    border-radius: 20px;       /* закругления плашки */
+    border: 3px solid white;  /* padding вокруг плашки */
+}
+
+@media screen and (max-width: 600px) {
+    .emojiList { 
+        float: right;
+    }
+}

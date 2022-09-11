@@ -9,15 +9,18 @@ export default function ChatMessageForm(
     }
 ): JSX.Element { 
 
-    const inputRef = useRef<HTMLInputElement>(null);
+    const messageRef = useRef<HTMLInputElement>();
 
     const sendForm = () => {
-        inputRef.current?.value !== undefined ? props.onClickForm(inputRef.current?.value) : null;
+        props.onClickForm(messageRef.current.value);
+    }
+    const addSmileHandler = (emoji) => {
+        messageRef.current.value = messageRef.current.value + emoji;
     }
     return(
         <div className={s.form}>
-            <input type="text" placeholder={props.placeholder} ref={inputRef}/>
-            <Emoji/>
+            <input ref={messageRef} type="text" placeholder={props.placeholder}/>
+            <Emoji addSmileHandler={addSmileHandler} />
             <button onClick={sendForm}>Отправить</button>
         </div>
     )
