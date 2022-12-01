@@ -13,11 +13,12 @@ import About from "./About/About";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import { activeChat, checkDialog, getDialogMessages, getMyDialogs, myDialogs, setActiveChat } from "../../global/store/chat_model";
+import { activeChat, checkDialog, createdSendFileAndUploadActiveChat, getDialogMessages, getMyDialogs, myDialogs, setActiveChat } from "../../global/store/chat_model";
 import { IMyDialog, User } from "../../global/interfaces";
 import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
 import { defaultDialog } from "../../global/mock/defaultDialog";
+import axios from "axios";
 
 function Profile(): JSX.Element {
 

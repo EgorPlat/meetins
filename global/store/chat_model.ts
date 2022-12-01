@@ -15,7 +15,26 @@ export const setIsMyDialogsLoaded = createEvent<boolean>();
 export const isMyDialogsLoaded = createStore<boolean>(false).on(setIsMyDialogsLoaded, (_, newMyDialogs) => {
     return newMyDialogs;
 })
- 
+
+export const sendFileAndUploadActiveChat = createEffect((params: { file: any, dataStore: {activeChat: IMyDialog } }) => {
+    const actualActiveChat = params.dataStore.activeChat;
+    if(actualActiveChat) {
+        if(actualActiveChat.userId == undefined) {
+            const file = params.file;
+            const formData = new FormData();
+            formData.append('uploadedFile', file);
+            formData.append('dialogId', actualActiveChat.dialogId);
+
+            sendFileInDialog(
+                formData
+            ).then(res => {
+                if (res.data) {
+                    setActiveChat({...actualActiveChat, messages: [...res.data], content: res.data[res.data.length - 1]});
+                }
+            })
+        }
+    }
+})
 export const sendMessageAndUploadActiveChat = createEffect((params: {message: string, dataStore: 
     {activeChat: IMyDialog}
 }) => {
@@ -48,6 +67,14 @@ export const createdSendMessageAndUploadActiveChat = attach({
     source: {activeChat: activeChat},
     mapParams: (message: string, dataStore) => {
       return {message: message, dataStore: dataStore}
+    },
+  })
+
+export const createdSendFileAndUploadActiveChat = attach({
+    effect: sendFileAndUploadActiveChat,
+    source: {activeChat: activeChat},
+    mapParams: (file: any, dataStore) => {
+      return {file: file, dataStore: dataStore}
     },
   })
 
@@ -97,6 +124,19 @@ export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) =>
         }
     }
 })
+
+export const sendFileInDialog = createEffect(async (message: FormData) => {
+    try {
+        const response = await instance.post('chat/send-file-to-chat', message);
+        if(response.status === 200) {
+            return response;
+        }
+    }
+    catch(error) {
+        console.log(error);
+    }
+})
+
 export const sendMessageInDialog = createEffect(async (message: IDialogMessage) => {
     try {
         const response = await instance.post('chat/send-message', message);

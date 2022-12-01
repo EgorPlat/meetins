@@ -49,7 +49,7 @@ export default function ChatZone(): JSX.Element {
                             <div key={message.sendAt}>
                                 <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div>
                                 <div className={message.senderId === authedUser?.userId ? s.myMessage : s.notMyMessage} key={message.content}>
-                                    {message.content}
+                                    {!message.isFile ? message.content : <a href={`${baseURL + message.content}`}>{message.content}</a>}
                                     <div className={s.messageTime}>
                                         {getMinutesAndHoursFromString(message.sendAt)}
                                     </div>

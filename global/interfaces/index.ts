@@ -64,7 +64,8 @@ export interface IMyActiveDialogMessage {
     avatar: string,
     senderName: string,
     status?: boolean,
-    isMine: boolean
+    isMine: boolean,
+    isFile?: boolean
 }
 export interface IMyDialog {
     dialogId: string,
