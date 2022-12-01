@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import s from './emoji.module.scss'
 import EmojiList from './emojiList/emojiList'
 

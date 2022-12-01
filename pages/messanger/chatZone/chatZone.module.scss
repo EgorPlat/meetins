@@ -1,11 +1,13 @@
 .chat {
     display: grid;
-    grid-template-rows: 15% 75% 10%;
-    min-height: 500px;
+    grid-template-rows: 15% 70% 15%;
+    height: 572px;
+    & .block {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
     & .user {
         display: grid;
         grid-template-columns: 10% 50% 40%;
-        height: 90px;
         & .avatar {
             border: 1px solid black;
             border-radius: 50%;
@@ -25,7 +27,6 @@
     }
     & .messages {
         font-size: 15px;
-        height: 400px;
         margin-top: 1%;
         overflow-y: scroll;
         & .defaultText {
@@ -36,7 +37,7 @@
         & .myMessage {
             display: inline-block;
             margin-left: 50%;
-            border-radius: 10px;
+            border-radius: 5px;
             padding: 10px;
             margin-top: 1%;
             width: 40%;
@@ -64,6 +65,10 @@
             color: grey;
         }
     }
+    & .form {
+        display: grid;
+        align-items: center;
+    }
     & .messages::-webkit-scrollbar {
         width: 12px;               /* ширина scrollbar */
     }
@@ -75,8 +80,50 @@
         border-radius: 20px;       /* закругления плашки */
         border: 3px solid white;  /* padding вокруг плашки */
     }
-    & .form {
-        margin-top: 1%;
+}
+
+@media screen and (max-width: 1200px) {
+    .chat {
+        & .user {
+            display: grid;
+            grid-template-columns: 14% 48% 38%;
+        }
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .chat {
+        & .user {
+            display: grid;
+            grid-template-columns: 16% 47% 37%;
+        }
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .chat {
+        & .user {
+            display: grid;
+            grid-template-columns: 18% 46% 36%;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chat {
+        & .user {
+            display: grid;
+            grid-template-columns: 20% 45% 35%;
+        }
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .chat {
+        & .user {
+            display: grid;
+            grid-template-columns: 22% 44% 34%;
+        }
     }
 }
 
@@ -85,25 +132,6 @@
         & .messages {
             & .messageTime {
                 margin-left: 80%;
-            }
-        }
-    }
-}
-@media screen and (max-width: 560px) {
-    .chat {
-        & .user {
-            grid-template-columns: 20% 45% 35%;
-        }
-    }
-}
-@media screen and (max-width: 480px) {
-    .chat {
-        & .messages {
-            & .myMessage {
-                width: 50%;
-            }
-            & .notMyMessage {
-                width: 50%;
             }
         }
     }

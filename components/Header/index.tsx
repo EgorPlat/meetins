@@ -1,6 +1,6 @@
 import s from './header.module.scss'
 import Image from 'next/image'
-import logo from '../../public/images/logo-l.svg'
+import logo from '../../public/images/new-logo.svg'
 import Navbar from '../Navbar'
 import Link from 'next/link'
 import { useStore } from 'effector-react'
@@ -35,7 +35,7 @@ export default function Header(): JSX.Element {
 						src={logo}
 						alt='company logo'
 						width={270}
-				 		height={80}
+				 		height={120}
 					/>
 				</div>
 	        </Link>

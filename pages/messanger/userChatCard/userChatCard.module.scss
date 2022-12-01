@@ -1,10 +1,12 @@
 .chat {
-    width: 65px;
-    height: 85px;
+    width: 105px;
+    height: 105px;
     margin-top: 0.5%;
-    //float: left;
-    display: inline-block;
-    margin-right: 3%;
+    display: grid;
+    grid-template-rows: 80% 20%;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
     & .avatar {
         & .round {
             width: 15px;
@@ -17,8 +19,8 @@
         }
         border: 1px solid black;
         border-radius: 50%;
-        width: 65px;
-        height: 65px;
+        width: 85px;
+        height: 85px;
         background-size: 100% 100%;
     }
     & .name {

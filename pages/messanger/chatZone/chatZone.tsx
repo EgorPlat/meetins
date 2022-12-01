@@ -32,7 +32,7 @@ export default function ChatZone(): JSX.Element {
     })
         return(
             <div className={s.chat}>  
-                <div className={s.user}>
+                <div className={`${s.user} ${s.block}`}>
                     <div className={s.avatar} style={{
                         backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`}}>
                     </div>
@@ -60,7 +60,7 @@ export default function ChatZone(): JSX.Element {
                     }
                     <span ref={messagesEndRef}></span>
                 </div>
-                <div className={s.form}>
+                <div className={`${s.form} ${s.block}`}>
                     <ChatMessageForm placeholder="Введите сообщение..." onClickForm={(inputValue) => sendForm(inputValue)}/>
                 </div>
             </div>

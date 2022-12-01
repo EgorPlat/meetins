@@ -1,43 +1,42 @@
-.navCont {
+.link {
 	font-size: 22px;
 	font-family: Nunito;
-	& .navBtn {
+	background-color: rgb(251, 254, 255);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	justify-items: center;
+	& a {
+		margin-left: 3.5%;
+		color: black;
+		text-decoration: none;
+	}
+	& a:hover {
+		border-bottom: 2px solid black;
+	}
+	& .inviteBtn {
+		margin-right: 20px;
+		margin-left: 3.5%;
+		border: 0.7px solid solid rgb(204, 204, 204);
+		background-color: white;
+		outline: none;
+		border-radius: 100px;
+	}
+	& select {
 		background-color: rgb(251, 254, 255);
-		& .link {
-			& a {
-				margin-top: 40px;
-			    margin-left: 5%;
-		     	color: black;
-			    text-decoration: none;
-			}
-			& a:hover {
-				border-bottom: 2px solid black;
-			}
-			margin-top: 20px;
-				& .inviteBtn {
-					margin-right: 20px;
-					margin-left: 5%;
-					border: 0.7px solid solid rgb(204, 204, 204);
-					background-color: white;
-					outline: none;
-					border-radius: 100px;
-				}
-			}
-			& select {
-				background-color: rgb(251, 254, 255);
-				border: none;
-				outline: none;
-				margin-left: 10px;
-				cursor: pointer;
-				& option {
-					cursor: pointer;
-					font-family: Nunito;
-					background-color: rgb(255, 255, 255);
-					font-size: 18px;
-					padding: 5px;
-				}
+		border: none;
+		outline: none;
+		margin-left: 10px;
+		cursor: pointer;
+		& option {
+			cursor: pointer;
+			font-family: Nunito;
+			background-color: rgb(255, 255, 255);
+			font-size: 18px;
+			padding: 5px;
 		}
-	} 
+	}
 }
 .round {
 	border-radius: 100px; /* Радиус скругления */
@@ -53,12 +52,12 @@
 }
 
 @media screen  and (max-width: 1365px){
-	.navCont {
+	.link {
 		grid-template-columns: 70% 30%;
 	}
 }
 @media screen  and (max-width: 1030px){
-	.navCont {
+	.link {
 		grid-template-columns: 68% 32%;
 		& .navAvatar {
 			& .round {
@@ -72,27 +71,27 @@
 }
 
 @media screen  and (max-width: 440px){
-	.navCont {
+	.link {
 		font-size: 21px;
 	}
 }
 @media screen  and (max-width: 400px){
-	.navCont {
+	.link {
 		font-size: 20px;
 	}
 }
 @media screen  and (max-width: 380px){
-	.navCont {
+	.link {
 		font-size: 19px;
 	}
 }
 @media screen  and (max-width: 360px){
-	.navCont {
+	.link {
 		font-size: 18px;
 	}
 }
 @media screen  and (max-width: 350px){
-	.navCont {
+	.link {
 		font-size: 17px;
 	}
 }

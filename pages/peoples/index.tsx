@@ -10,11 +10,11 @@ export default function Peoples(): JSX.Element {
     const [currentChapter, setCurrentChapter] = useState<string>('searching');
     return(
         <PageContainer>
-            <div className={s.content}>
-            {/*<div className={s.chapters}>
+            <div className={s.peoples}>
+            <div className={s.chapters}>
                     <button onClick={() => setCurrentChapter('searching')}>Поиск людей</button>
                     <button onClick={() => setCurrentChapter('list')}>Лента</button>
-            </div>*/}
+            </div>
             <div className={s.activeChapter}>
                 {
                     currentChapter === 'searching' ? <SearchingPeople/> :

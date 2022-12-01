@@ -3,7 +3,6 @@
     & li {
         font-family: Nunito;
         font-size: 22px;
-        margin-top: 5px;
         & a {
             text-decoration: none;
             color: black;
@@ -20,7 +19,7 @@
 }
 @media screen and (max-width: 1000px) {
     .ul {
-        height: 150px;
+        height: 100px;
         & li {
             display: inline;
             & a {
@@ -29,13 +28,20 @@
         }
     }
 }
+
+@media screen and (max-width: 650px) {
+    .ul {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        column-gap: 15px;
+    }
+}
+
 @media screen and (max-width: 440px) {
     .ul {
         & li {
             font-size: 21px;
-            & a {
-                margin-left: 0%;
-            }
         }
     }
 }
@@ -43,10 +49,6 @@
     .ul {
         & li {
             font-size: 20px;
-            & a {
-                margin-left: 0%;
-                margin-right: 2%;
-            }
         }
     }
 }

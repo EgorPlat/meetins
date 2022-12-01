@@ -41,9 +41,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		}
 	}, [select])
     return(
-		<div className={s.navCont}> 
-		<div className={s.navBtn}>
-			<div className={s.link}>
+		<div className={s.link}>
 			    <Link href="/peoples">Люди</Link>
 			    <Link href="/events">События</Link>
 			    <Link href="">Встречи</Link>
@@ -59,8 +57,6 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				    <option className={s.option} value="settings">Настройки</option>
 				    <option className={s.option} value="comeBack">Вернуться</option>
 			    </select>
-			</div>
 		</div>
-	    </div>
     )
 }
