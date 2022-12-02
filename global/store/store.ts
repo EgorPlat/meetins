@@ -4,6 +4,7 @@ import { NextRouter } from 'next/router';
 import { User } from '../interfaces';
 import { instanseRouter } from './router_model';
 
+// test
 export const baseURL = 'https://meetins.egorplat.amvera.io/';
 export const instance = axios.create({
 	baseURL: baseURL,
