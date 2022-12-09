@@ -30,8 +30,9 @@
 @media screen and (max-width: 1000px) {
     .ul {
         display: flex;
-        justify-content: space-between;
         margin: 0;
+        margin-left: 20px;
+        column-gap: 15px;
         padding: 0;
         & li {
             display: flex;
