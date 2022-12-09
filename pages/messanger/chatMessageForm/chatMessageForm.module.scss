@@ -12,15 +12,15 @@
         outline: none;
     }
     & .fileInput {
-        width: 35px;
-        height: 35px;
+        width: 45px;
+        height: 45px;
         border-radius: 5px;
         background-image: url('../../../public/images/inputFile.png');
-        background-size: 35px 35px;
+        background-size: 45px 45px;
         margin-right: 5px;
         & input[type='file'] {
-            width: 35px;
-            height: 35px;
+            width: 45px;
+            height: 45px;
             opacity: 0;
         }
     }
