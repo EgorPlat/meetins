@@ -1,5 +1,15 @@
 .ul {
     list-style: none;
+    & .count {
+        display: inline-block;
+        text-align: center;
+        margin-left: 1px;
+        font-size: 15px;
+        background-color: rgba(0, 140, 255, 0.445);
+        width: 40px;
+        color: white;
+        border-radius: 10%;
+    }
     & li {
         font-family: Nunito;
         font-size: 22px;

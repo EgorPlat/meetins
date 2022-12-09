@@ -11,6 +11,10 @@ export const setMyDialogs = createEvent<IMyDialog[]>();
 export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, (_, newMyDialogs) => {
     return newMyDialogs;
 })
+export const setCountUreadMessages = createEvent<number>();
+export const countUreadMessages = createStore<number>(0).on(setCountUreadMessages, (_, newCount) => {
+    return newCount;
+})
 export const setIsMyDialogsLoaded = createEvent<boolean>();
 export const isMyDialogsLoaded = createStore<boolean>(false).on(setIsMyDialogsLoaded, (_, newMyDialogs) => {
     return newMyDialogs;
@@ -158,4 +162,19 @@ export const startNewDialog = createEffect(async (newDialog: INewDialog) => {
     catch(error) {
         console.log(error);
     }
+})
+
+const myDialogsWatcher = createEffect(( params: { myDialogs: IMyDialog[] }) => {
+    const count = params.myDialogs.reduce((prev, curr) => {
+        let dialogUnReadMessages = 0;
+        curr.messages.map(message => {
+            if (!message.isRead) dialogUnReadMessages += 1;
+        })
+        return prev += dialogUnReadMessages;
+    }, 0);
+    if (count) setCountUreadMessages(count);
+})
+sample({
+    source: { myDialogs: myDialogs },
+    target: myDialogsWatcher
 })

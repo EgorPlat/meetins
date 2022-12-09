@@ -24,6 +24,7 @@ export type AccountData = {
 	login: string
 }
 export interface IPeople {
+    email: string,
     login: string,
     userName: string,
     userAvatar: string,

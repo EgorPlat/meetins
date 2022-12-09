@@ -4,7 +4,7 @@ import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { getInitialUserDataAndCheckAuth } from '../global/store/store'
+import { baseURL, getInitialUserDataAndCheckAuth } from '../global/store/store'
 import { useRouter } from 'next/router'
 import { connection, setNewConnection } from '../global/store/connection_model'
 import { setRouter } from '../global/store/router_model'
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
 		if(localStorage.getItem('access-token') !== '') {
-			const newConnection = io('https://meetins.herokuapp.com', {
+			const newConnection = io(baseURL, {
 				extraHeaders: {
 					Authorization: String(localStorage.getItem('access-token'))
 				}

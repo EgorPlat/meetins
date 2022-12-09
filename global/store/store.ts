@@ -5,7 +5,8 @@ import { User } from '../interfaces';
 import { instanseRouter } from './router_model';
 
 // test
-export const baseURL = 'https://meetins.egorplat.amvera.io/';
+// export const baseURL = 'https://meetins.egorplat.amvera.io/';
+export const baseURL = 'http://localhost:5000/';
 export const instance = axios.create({
 	baseURL: baseURL,
 })
@@ -51,7 +52,11 @@ export const isAsyncLoaded = createStore<boolean>(false).on(setIsAsyncLoaded, (_
 })
 export const setUser = createEvent<User | null>()
 export const $user = createStore<User | null>(null).on(setUser, (_, userDetails) => {
-	return userDetails
+	return userDetails;
+})
+export const setOnlineUsers = createEvent<string[]>()
+export const $onlineUsers = createStore<string[]>([]).on(setOnlineUsers, (_, onlineUserList) => {
+	return onlineUserList;
 })
 export const setCurrentProfileUser = createEvent<User>();
 export const $currentProfileUser = createStore<User>({} as User).on(setCurrentProfileUser, (_, currentUser) => {
