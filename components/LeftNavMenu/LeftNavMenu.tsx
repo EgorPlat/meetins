@@ -15,7 +15,7 @@ export default function LeftNavMenu(): JSX.Element {
     }, [unreadMessages])
     return(
         <ul className={s.ul}>        
-            <li><Link href="/messanger">{`Мессенджер`}</Link><div className={s.count}>{unreadMessages}</div></li>
+            <li><Link href="/messanger">{`Мессенджер`}</Link><span className={s.count}>{unreadMessages}</span></li>
             <li><Link href="">Приглашения</Link></li>
             <li><Link href="/marks">Закладки</Link></li>
         </ul> 

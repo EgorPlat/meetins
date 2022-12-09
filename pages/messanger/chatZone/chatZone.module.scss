@@ -8,6 +8,7 @@
     & .user {
         display: grid;
         grid-template-columns: 10% 50% 40%;
+        padding: 10px;
         & .avatar {
             border: 1px solid black;
             border-radius: 50%;
