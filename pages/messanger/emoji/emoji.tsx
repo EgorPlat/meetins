@@ -14,7 +14,7 @@ export default function Emoji(props: {addSmileHandler: (emoji) => void}): JSX.El
     }
     return (
         <div className={s.emoji}>
-            <p className={s.defaultEmoji} onClick={onWrapperClick}>&#9786;</p>
+            <div className={s.defaultEmoji} onClick={onWrapperClick}>&#9786;</div>
             { isEmojiListOpen && <EmojiList onAddSmile={onAddSmile}/> }
         </div>
     )

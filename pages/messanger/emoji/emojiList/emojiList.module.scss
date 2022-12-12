@@ -1,7 +1,8 @@
 .emojiList {
     width: 250px;
     height: 120px;
-    background-color: rgb(243, 243, 243);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: aliceblue;
     overflow-y: scroll;
     border-radius: 2px;
     & .defaultEmojiInList:hover {
@@ -16,12 +17,12 @@
     width: 12px;               /* ширина scrollbar */
 }
 .emojiList::-webkit-scrollbar-track {
-    background: white;        /* цвет дорожки */
+    background: aliceblue;        /* цвет дорожки */
 }
 .emojiList::-webkit-scrollbar-thumb {
     background-color: grey;    /* цвет плашки */
     border-radius: 20px;       /* закругления плашки */
-    border: 3px solid white;  /* padding вокруг плашки */
+    border: 3px solid aliceblue;  /* padding вокруг плашки */
 }
 
 @media screen and (max-width: 600px) {

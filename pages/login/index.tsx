@@ -73,10 +73,7 @@ export default function Login(): JSX.Element {
 				/>
 				{ errorMessage !== "" ? 
 				<div className={`row ${s.errorBlock}`}>
-					   <div className={`col-md-2`}>
-						<Image src={vector} height={40} width={40} />
-					   </div>
-					   <div className={`col-md-10`}>
+					   <div className={`col-md-12`}>
 						Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова.
 					   </div>
 				</div> : null }

@@ -8,3 +8,12 @@ export const isPhoneNumber = (value: string | null) => {
 export const isEmail = (value: string | null) => {
 	return value && /\w+@\w+\.\w{2,3}/.test(value) ? value : null
 }
+export const isTypeOfFileAreImage = (value: string) => {
+	if (!value) return;
+	const validTypes = ['jpg', 'jpeg', 'png']
+	const type = value.split('.')[1];
+	if (validTypes.includes(type)) {
+		return true;
+	}
+	return false;
+}

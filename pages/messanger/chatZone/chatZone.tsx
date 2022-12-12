@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState} from "react";
 import Loader from "../../../components/Loader/Loader";
 import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
 import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
+import { isTypeOfFileAreImage } from "../../../global/helpers/validate";
 import { IMyDialog, SortedMessagesOnDays } from "../../../global/interfaces";
 import { activeChat, createdSendMessageAndUploadActiveChat, getDialogMessages, setActiveChat } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
@@ -49,7 +50,25 @@ export default function ChatZone(): JSX.Element {
                             <div key={message.sendAt}>
                                 <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div>
                                 <div className={message.senderId === authedUser?.userId ? s.myMessage : s.notMyMessage} key={message.content}>
-                                    {!message.isFile ? message.content : <a href={`${baseURL + message.content}`}>{message.content}</a>}
+                                    {
+                                        message.isFile && isTypeOfFileAreImage(message.content) 
+                                        && 
+                                        <div className={s.messageWithFile}>
+                                            <img 
+                                                src={baseURL + message.content} 
+                                                width="100px" 
+                                                height="100px"
+                                            />
+                                            <a href={baseURL + message.content} target="_blank">Открыть полностью</a>
+                                        </div>
+                                    }
+                                    {
+                                        message.isFile && !isTypeOfFileAreImage(message.content) 
+                                        && <a href={`${baseURL + message.content}`}>{message.content}</a>
+                                    }
+                                    {
+                                        !message.isFile && message.content
+                                    }
                                     <div className={s.messageTime}>
                                         {getMinutesAndHoursFromString(message.sendAt)}
                                     </div>
