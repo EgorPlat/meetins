@@ -5,7 +5,7 @@ import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
 import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
 import { isTypeOfFileAreImage } from "../../../global/helpers/validate";
 import { IMyDialog, SortedMessagesOnDays } from "../../../global/interfaces";
-import { activeChat, createdSendMessageAndUploadActiveChat, getDialogMessages, setActiveChat } from "../../../global/store/chat_model";
+import { activeChat, createdSendMessageAndUploadActiveChat, getDialogMessages, isMessageWithFileLoaded, setActiveChat } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
@@ -15,6 +15,7 @@ export default function ChatZone(): JSX.Element {
     const authedUser = useStore($user);
     const messagesEndRef = useRef<HTMLSpanElement>(null);
     const activeChat$ = useStore(activeChat);
+    const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
 
     const sendForm = (inputValue: string) => {
         if(inputValue.length > 0) {
@@ -80,7 +81,7 @@ export default function ChatZone(): JSX.Element {
                     <span ref={messagesEndRef}></span>
                 </div>
                 <div className={`${s.form} ${s.block}`}>
-                    <ChatMessageForm placeholder="Введите сообщение..." onClickForm={(inputValue) => sendForm(inputValue)}/>
+                    <ChatMessageForm isLoaded={isMessageWithFileLoaded$} placeholder="Введите сообщение..." onClickForm={(inputValue) => sendForm(inputValue)}/>
                 </div>
             </div>
         )

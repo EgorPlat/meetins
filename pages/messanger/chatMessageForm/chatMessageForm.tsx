@@ -6,7 +6,8 @@ import s from "./chatMessageForm.module.scss";
 export default function ChatMessageForm(
     props: {
         placeholder: string,
-        onClickForm: (inputValue: string) => void
+        onClickForm: (inputValue: string) => void,
+        isLoaded: boolean,
     }
 ): JSX.Element { 
 
@@ -22,6 +23,11 @@ export default function ChatMessageForm(
         const file = event.target.files[0];
         createdSendFileAndUploadActiveChat(file);
     }
+    const Loader = () => {
+        return (
+            <div className={s.loader}></div>
+        )
+    }
     return(
         <div className={s.form}>
             <input ref={messageRef} type="text" placeholder={props.placeholder}/>
@@ -29,7 +35,7 @@ export default function ChatMessageForm(
             <div className={s.fileInput}>
                 <input type="file" onChange={(e) => onSendNewFile(e)}/>
             </div>
-            <button onClick={sendForm}>Отправить</button>
+            <button onClick={sendForm} disabled={!props.isLoaded}>{props.isLoaded ? 'Отправить' : Loader()}</button>
         </div>
     )
 }

@@ -19,8 +19,13 @@ export const setIsMyDialogsLoaded = createEvent<boolean>();
 export const isMyDialogsLoaded = createStore<boolean>(false).on(setIsMyDialogsLoaded, (_, newMyDialogs) => {
     return newMyDialogs;
 })
+export const setIsMessageWithFileLoaded = createEvent<boolean>();
+export const isMessageWithFileLoaded = createStore<boolean>(true).on(setIsMessageWithFileLoaded, (_, isMessageLoaded) => {
+    return isMessageLoaded;
+})
 
 export const sendFileAndUploadActiveChat = createEffect((params: { file: any, dataStore: {activeChat: IMyDialog } }) => {
+    setIsMessageWithFileLoaded(false);
     const actualActiveChat = params.dataStore.activeChat;
     if(actualActiveChat) {
         if(actualActiveChat.userId == undefined) {
@@ -35,6 +40,7 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
                 if (res.data) {
                     setActiveChat({...actualActiveChat, messages: [...res.data], content: res.data[res.data.length - 1]});
                 }
+                setIsMessageWithFileLoaded(true);
             })
         }
     }

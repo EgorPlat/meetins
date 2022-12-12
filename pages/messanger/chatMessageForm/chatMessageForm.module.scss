@@ -25,6 +25,10 @@
         }
     }
     & button {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
         width: 20%;
         height: 40px;
         outline: none;
@@ -34,6 +38,27 @@
         background-color: #3DB2FF;
         border-radius: 5px;
     }
+    & button:disabled {
+        background-color: #56667043;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid rgb(244, 244, 244);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 1.5s infinite;
 }
 
 @media screen and (max-width: 425px){
