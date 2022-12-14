@@ -5,8 +5,8 @@ import { User } from '../interfaces';
 import { instanseRouter } from './router_model';
 
 // test
-export const baseURL = 'http://localhost:5000/';
-//export const baseURL = 'https://meetins-egorplat.amvera.io/';
+//export const baseURL = 'http://localhost:5000/';
+export const baseURL = 'https://meetins-egorplat.amvera.io/';
 export const instance = axios.create({
 	baseURL: baseURL,
 })
