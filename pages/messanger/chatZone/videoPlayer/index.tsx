@@ -1,6 +1,6 @@
 import ReactPlayer from "react-player"
 import { baseURL } from "../../../../global/store/store";
-import s from './VideoPlayer.module.scss';
+import s from './videoPlayer.module.scss';
 
 export default function VideoPlayer (props: { width: string, height: string, url: string }) {
     return (
