@@ -1,3 +1,10 @@
+export type Post = {
+    date: string,
+    images: string[],
+    description: string,
+    title: string
+}
+
 export type User = {
 	userId: string
 	name: string,
@@ -11,8 +18,10 @@ export type User = {
 	birthDate: string,
 	city: string,
     age: number,
-    events: string[]
+    events: string[],
+    posts: Post[]
 }
+
 export type ProfileData = {
 	name: string,
 	phoneNumber: string,

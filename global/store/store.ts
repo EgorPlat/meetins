@@ -5,8 +5,8 @@ import { User } from '../interfaces';
 import { instanseRouter } from './router_model';
 
 // test
-// export const baseURL = 'https://meetins.egorplat.amvera.io/';
-export const baseURL = 'https://meetins-egorplat.amvera.io/';
+export const baseURL = 'http://localhost:5000/';
+//export const baseURL = 'https://meetins-egorplat.amvera.io/';
 export const instance = axios.create({
 	baseURL: baseURL,
 })
@@ -119,6 +119,15 @@ export const updateTokens = createEffect(async () => {
 	if(response.status === 200) {
 		localStorage.setItem('access-token', response.data.accessToken);
 	    localStorage.setItem('refrash-token', response.data.refreshToken);
+	}
+	return response;
+})
+
+export const sendNewUserPost = createEffect(async (formData: FormData) => {
+	const response = await instance.post('users/addUserPost', formData);
+	if(response.status === 200) {
+		console.log(response.data);
+		setUser(response.data);
 	}
 	return response;
 })

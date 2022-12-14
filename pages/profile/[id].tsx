@@ -19,6 +19,7 @@ import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
 import { defaultDialog } from "../../global/mock/defaultDialog";
 import axios from "axios";
+import AddingPosts from "./AddingPosts/AddingPosts";
 
 function Profile(): JSX.Element {
 
@@ -120,9 +121,17 @@ function Profile(): JSX.Element {
                     </div>
                 </div> 
 
+                {
+                    currentUser.login === authedUser?.login &&
+                    <div className={`row`}>
+                        <div className="col">
+                            <AddingPosts />
+                        </div>
+                    </div>
+                }
                 <div className={`row`}>
                     <div className="col">
-                        <ImageList images={[]} />
+                        { authedUser && <ImageList posts={currentUser.posts} /> }
                     </div>
                 </div>
             </div> : <Loader/>}

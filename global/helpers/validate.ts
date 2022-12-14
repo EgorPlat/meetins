@@ -17,3 +17,12 @@ export const isTypeOfFileAreImage = (value: string) => {
 	}
 	return false;
 }
+export const isTypeOfFileAreVideo = (value: string) => {
+	if (!value) return;
+	const validTypes = ['mp4']
+	const type = value.split('.')[1];
+	if (validTypes.includes(type)) {
+		return true;
+	}
+	return false;
+}
