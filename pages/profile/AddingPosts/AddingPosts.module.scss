@@ -56,3 +56,22 @@
         }
     }
 }
+
+@media screen and (max-width: 1280px) {
+    .addingPosts {
+        min-height: 160px;
+        & .addingPostsForm {
+            grid-template-rows: 40% 60%;
+            & .addingPostsFormDescription { 
+                & button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 520px) {
+    .addingPosts {
+        min-height: 180px;
+    }
+}

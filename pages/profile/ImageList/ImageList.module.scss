@@ -5,7 +5,7 @@
     grid-template-columns: 1fr;
     font-family: Nunito;
     & .post {
-        max-width: 50%;
+        width: 50%;
         display: grid;
         grid-template-columns: 1fr;
         & .postTitle {
@@ -29,5 +29,13 @@
         padding: 2%;
         margin-bottom: 2.5%;
         box-shadow:  1px 1px 5px rgba(154, 147, 140, 0.3), 1px 1px 5px rgba(154, 147, 140, 0.3);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .postsList {
+        & .post {
+            width: 80%;
+        }
     }
 }
