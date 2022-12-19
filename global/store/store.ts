@@ -130,8 +130,8 @@ export const updateTokens = createEffect(async () => {
 export const sendNewUserPost = createEffect(async (formData: FormData) => {
 	const response = await instance.post('users/addUserPost', formData);
 	if(response.status === 200) {
-		console.log(response.data);
 		setUser(response.data);
+		window.location.reload();
 	}
 	return response;
 })
