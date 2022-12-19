@@ -1,5 +1,6 @@
 import { useStore } from "effector-react";
-import { isMyDialogsLoaded, myDialogs } from "../../../global/store/chat_model";
+import { useEffect } from "react";
+import { getMyDialogs, isMyDialogsLoaded, myDialogs } from "../../../global/store/chat_model";
 import UserChatCard from "../userChatCard/userChatCard";
 import s from "./mobileChatList.module.scss";
 
@@ -8,6 +9,9 @@ export default function MobileChatList(): JSX.Element {
     const myDialogs$ = useStore(myDialogs);
     const isLoaded$ = useStore(isMyDialogsLoaded);
 
+    useEffect(() => {
+        getMyDialogs(); 
+    },[]);
     return(
         <div className={s.mobileChatList}>
             {isLoaded$ !== false && myDialogs$ !== null 
