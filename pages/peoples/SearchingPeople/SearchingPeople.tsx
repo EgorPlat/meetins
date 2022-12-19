@@ -116,13 +116,19 @@ export default function SearchingPeople(): JSX.Element {
                     </select>
                 </div>
                 <div className={s.users}>
-                    { isPeoplesLoaded$ ? dinamicUsers.map( user => <UserList key={user.login} user={user}/>) : <Loader/> }
+                    { isPeoplesLoaded$ 
+                    ?
+                    <div className={s.usersList}>
+                        {dinamicUsers.map( user => <UserList key={user.login} user={user}/>)}
+                    </div> : <Loader/> 
+                    }
                     { dinamicUsers.length === 0 ? 
                     <div>
                         <h4>По Вашему запросу никого не найдено.</h4>
                         <button onClick={() => getAllPeoples()} className={s.showAllBtn}>Показать всех</button>
                     </div>
-                     : null }
+                     : null 
+                    }
                 </div>
             </div>
         </div> 
