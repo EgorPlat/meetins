@@ -1,5 +1,4 @@
 import { useRouter } from "next/router"
-import Loader from "../../components/Loader/Loader";
 import PageContainer from "../../components/pageContainer/pageContainer";
 import EventsList from "./EventsList/EventsList";
 import s from "./nameCategory.module.scss";

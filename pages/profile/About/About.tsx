@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { User } from "../../../global/interfaces";
 import { $user } from "../../../global/store/store";

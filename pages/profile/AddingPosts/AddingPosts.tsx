@@ -1,13 +1,9 @@
 import React, { useRef, useState } from "react";
 import s from "./AddingPosts.module.scss";
-import Image from "next/image";
-import like from "../../../public/images/interesting.svg";
-import { useStore } from "effector-react";
-import { $currentProfileUser, sendNewUserPost } from "../../../global/store/store";
+import { sendNewUserPost } from "../../../global/store/store";
 
 export default function AddingPosts(): JSX.Element {
     
-    const currentUser = useStore($currentProfileUser);
     const ref = useRef(null);
     
     const [addMode, setAddMode] = useState(true);

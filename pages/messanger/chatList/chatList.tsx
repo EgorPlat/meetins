@@ -1,6 +1,5 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
-import Loader from "../../../components/Loader/Loader";
 import { getMyDialogs, isMyDialogsLoaded, myDialogs } from "../../../global/store/chat_model";
 import UserChatCard from "../userChatCard/userChatCard";
 import s from "./chatList.module.scss";

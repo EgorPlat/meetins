@@ -1,15 +1,14 @@
 import { useStore } from "effector-react";
-import React, { useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef } from "react";
 import Loader from "../../../components/Loader/Loader";
 import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
 import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
 import { isTypeOfFileAreImage, isTypeOfFileAreVideo } from "../../../global/helpers/validate";
-import { IMyDialog, SortedMessagesOnDays } from "../../../global/interfaces";
+import { IMyDialog } from "../../../global/interfaces";
 import { activeChat, createdSendMessageAndUploadActiveChat, getDialogMessages, isMessageWithFileLoaded, setActiveChat } from "../../../global/store/chat_model";
 import { $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
-import { VideoPlayer } from "./videoPlayer";
 
 export default function ChatZone(): JSX.Element {
 

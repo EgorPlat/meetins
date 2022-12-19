@@ -13,12 +13,9 @@ import About from "./About/About";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import { activeChat, checkDialog, createdSendFileAndUploadActiveChat, getDialogMessages, getMyDialogs, myDialogs, setActiveChat } from "../../global/store/chat_model";
-import { IMyDialog, User } from "../../global/interfaces";
+import { checkDialog, } from "../../global/store/chat_model";
 import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
-import { defaultDialog } from "../../global/mock/defaultDialog";
-import axios from "axios";
 import AddingPosts from "./AddingPosts/AddingPosts";
 
 function Profile(): JSX.Element {
@@ -30,8 +27,6 @@ function Profile(): JSX.Element {
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
     const [isModal, setIsModal] = useState(false);
-    const myDialogs$ = useStore(myDialogs);
-    const activeChat$ = useStore(activeChat);
 
     const changeAddingImageStatus = (status: boolean) => {
         if(currentUser.login === authedUser?.login) {

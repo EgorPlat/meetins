@@ -1,6 +1,6 @@
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Loader from "../../components/Loader/Loader";
 import PageContainer from "../../components/pageContainer/pageContainer";
 import { addUserEvent, currentEventById, getEventById, setCurrentEventById } from "../../global/store/events_model";
