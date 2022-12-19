@@ -36,7 +36,7 @@ export default function AddingPosts(): JSX.Element {
                             onChange={(e) => setPostFormData({ ...postFormData, title: e.target.value })}
                         />
                         <a className={s.addingPostsFormMainFile} onClick={chooseFile}>
-                            Нажмите чтобы добавить изображение к вашей публикации 
+                            Добавить изображение к публикации 
                             (Загружено {postFormData.currentFile ? 1 : 0} / 1)
                             <input 
                                 ref={ref} 

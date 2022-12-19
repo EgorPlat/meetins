@@ -1,0 +1,26 @@
+.mobileChatList {
+    box-shadow: rgba(146, 146, 146, 0.2) 0px 2px 8px 0px;
+    border-radius: 5px;
+    display: grid;
+    padding: 5px;
+    grid-template-columns: 1fr;
+    height: 510px;
+    overflow-y: scroll;
+    & .mobileUserChatCard {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+        background-color: rgba(126, 126, 126, 0.06);
+        margin-top: 5px;
+        & .mobileUserChatCardLastMessage {
+            font-size: 16px;
+            display: grid;
+            align-items: center;
+            & .mobileLastMessage {
+                width: 200px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow-x: hidden;
+            }
+        }
+    }
+}

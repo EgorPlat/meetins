@@ -17,6 +17,17 @@
     }
 }
 
+.mobileMessangerContent {
+    height: 520px;
+    & .mobileChatZone {
+        display: grid;
+        grid-template-rows: 5% 95%;
+        & .mobileChatZoneBack {
+            color: grey;
+            font-size: 18px;
+        }
+    }
+}
 @media screen and (max-width: 810px) {
     .messangerContent {
         grid-template-columns: 1fr;

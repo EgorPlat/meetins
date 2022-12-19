@@ -4,7 +4,7 @@ import '../styles/app.css'
 import '../node_modules/reseter.css/css/reseter.min.css'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { baseURL, getInitialUserDataAndCheckAuth } from '../global/store/store'
+import { baseURL, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store'
 import { useRouter } from 'next/router'
 import { connection, setNewConnection } from '../global/store/connection_model'
 import { setRouter } from '../global/store/router_model'
@@ -16,6 +16,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	const connection$ = useStore(connection);
  
+	const handleResize = () => {
+		if (window.innerWidth <= 810) {
+			setIsMobile(true);
+		} else {
+			setIsMobile(false);
+		}
+	}
+
 	useEffect(() => {
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
@@ -25,7 +33,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 					Authorization: String(localStorage.getItem('access-token'))
 				}
 			});
-		    setNewConnection(newConnection)
+		    setNewConnection(newConnection);
+			handleResize();
 		} else {
 			router.push('/login')
 		}
@@ -33,7 +42,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 			connection$?.disconnect();
 		}
 	}, [])
-
+	useEffect(() => {
+        window.addEventListener("resize", handleResize);
+    })
 	return (
 		<Layout>
 			<Head>

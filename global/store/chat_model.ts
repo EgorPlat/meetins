@@ -3,8 +3,8 @@ import { IDialogMessage, IMyDialog, INewDialog, User } from "../interfaces";
 import { defaultDialog } from "../mock/defaultDialog";
 import { instance } from "./store";
 
-export const setActiveChat = createEvent<IMyDialog>();
-export const activeChat = createStore<IMyDialog>({} as IMyDialog).on(setActiveChat, (_, newActiveChat) => {
+export const setActiveChat = createEvent<IMyDialog | {}>();
+export const activeChat = createStore<IMyDialog | {}>({} as IMyDialog).on(setActiveChat, (_, newActiveChat) => {
     return newActiveChat;
 })
 export const setMyDialogs = createEvent<IMyDialog[]>();

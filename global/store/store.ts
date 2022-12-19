@@ -46,6 +46,10 @@ instance.interceptors.response.use((response) => {
 	return error;
 })
 
+export const setIsMobile = createEvent<boolean>();
+export const isMobile = createStore<boolean>(false).on(setIsMobile, (_, isMobile) => {
+	return isMobile;
+})
 export const setIsAsyncLoaded = createEvent<boolean>();
 export const isAsyncLoaded = createStore<boolean>(false).on(setIsAsyncLoaded, (_, tokenUpdated) => {
 	return tokenUpdated;
