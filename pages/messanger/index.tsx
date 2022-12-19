@@ -2,6 +2,7 @@ import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import PageContainer from "../../components/pageContainer/pageContainer";
+import { IMyDialog } from "../../global/interfaces";
 import { activeChat, getMyDialogs, setActiveChat } from "../../global/store/chat_model";
 import { isMobile } from "../../global/store/store";
 import ChatList from "./chatList/chatList";
@@ -15,7 +16,7 @@ export default function Messanger(): JSX.Element {
     const isMobile$ = useStore(isMobile);
 
     const handleBack = () => {
-        setActiveChat({});
+        setActiveChat({} as IMyDialog);
     }
     return(
         <PageContainer> 
