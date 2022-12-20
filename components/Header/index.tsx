@@ -6,11 +6,12 @@ import Link from 'next/link'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'
-import { $currentPage, setCurrentPage } from '../../global/store/store'
+import { $currentPage, isMobile, setCurrentPage } from '../../global/store/store'
 
 export default function Header(): JSX.Element {
 	const currentPage = useStore($currentPage);
 	const router = useRouter();
+	const isMobile$ = useStore(isMobile);
 
 	let headerBgClass
 	if (currentPage === '/') {
@@ -29,7 +30,7 @@ export default function Header(): JSX.Element {
 	return (   
 		<div className={`${s.header} ${headerBgClass}`}>
             <Link href='/' passHref>
-				<div className={s.logo} onClick={logOut}>
+				<div className={s.logo} onClick={logOut} style={{backgroundColor: isMobile$ ? 'black' : 'white'}}>
 					<Image  
 						className={s.logoImage}
 						src={logo}
