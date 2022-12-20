@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import s from "./AddingPosts.module.scss";
 import { sendNewUserPost } from "../../../global/store/store";
+import { validatePost } from "../../../global/helpers/validate";
 
 export default function AddingPosts(): JSX.Element {
     
@@ -13,12 +14,13 @@ export default function AddingPosts(): JSX.Element {
         ref.current.click();
     }
     const sendNewPost = () => {
-        const formData = new FormData();
-        formData.append('title', postFormData.title);
-        formData.append('description', postFormData.description);
-        formData.append('uploadedFile', postFormData.currentFile);
-
-        sendNewUserPost(formData);
+        if (validatePost(postFormData)) {
+            const formData = new FormData();
+            formData.append('title', postFormData.title);
+            formData.append('description', postFormData.description);
+            formData.append('uploadedFile', postFormData.currentFile);
+            sendNewUserPost(formData);
+        }
     }
     return(
         <div className={s.addingPosts}>

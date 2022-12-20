@@ -114,7 +114,6 @@ export const getDataForProfilePage = createEffect((route: NextRouter) => {
 			if(res.status === 200) {
 				setCurrentProfileUser(res.data);
 			}
-			console.log(res);
 		}) 
 	}
 })

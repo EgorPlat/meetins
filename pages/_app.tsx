@@ -10,6 +10,7 @@ import { connection, setNewConnection } from '../global/store/connection_model'
 import { setRouter } from '../global/store/router_model'
 import { io } from 'socket.io-client'
 import { useStore } from 'effector-react'
+import ErrorBlock from '../components/ErrorBlock/errorBlock'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -52,6 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
 			<Component {...pageProps} />
+			<ErrorBlock />
 		</Layout>
 	)
 }

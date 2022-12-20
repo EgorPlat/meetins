@@ -9,8 +9,12 @@
         display: grid;
         grid-template-columns: 1fr;
         & .postTitle {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
             font-weight: 600;
             & .date {
+                text-align: right;
+                font-weight: 400;
                 font-size: 18px;
                 color: grey;
             }

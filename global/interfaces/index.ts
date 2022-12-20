@@ -19,7 +19,8 @@ export type User = {
 	city: string,
     age: number,
     events: string[],
-    posts: Post[]
+    posts: Post[],
+    isOnline: boolean,
 }
 
 export type ProfileData = {
