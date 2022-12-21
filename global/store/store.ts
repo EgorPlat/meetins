@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { createEffect, createEvent, createStore } from 'effector'
 import { NextRouter } from 'next/router';
 import { User } from '../interfaces';
+import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 
 // test
@@ -130,6 +131,7 @@ export const sendNewUserPost = createEffect(async (formData: FormData) => {
 	const response = await instance.post('users/addUserPost', formData);
 	if(response.status === 200) {
 		setUser(response.data);
+		addNewError({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000 })
 		window.location.reload();
 	}
 	return response;
