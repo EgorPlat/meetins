@@ -11,10 +11,16 @@ export const setMyDialogs = createEvent<IMyDialog[]>();
 export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, (_, newMyDialogs) => {
     return newMyDialogs;
 })
+
 export const setCountUreadMessages = createEvent<number>();
+export const addOneUreadMessages = createEvent<number>();
 export const countUreadMessages = createStore<number>(0).on(setCountUreadMessages, (_, newCount) => {
     return newCount;
 })
+countUreadMessages.on(addOneUreadMessages, (count, newCount) => {
+    return count += newCount;
+})
+
 export const setIsMyDialogsLoaded = createEvent<boolean>();
 export const isMyDialogsLoaded = createStore<boolean>(false).on(setIsMyDialogsLoaded, (_, newMyDialogs) => {
     return newMyDialogs;
