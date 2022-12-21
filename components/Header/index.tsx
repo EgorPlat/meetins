@@ -30,7 +30,7 @@ export default function Header(): JSX.Element {
 	return (   
 		<div className={`${s.header} ${headerBgClass}`}>
             <Link href='/' passHref>
-				<div className={s.logo} onClick={logOut} style={{backgroundColor: isMobile$ ? 'black' : 'white'}}>
+				<div className={s.logo} onClick={logOut}>
 					<Image  
 						className={s.logoImage}
 						src={logo}

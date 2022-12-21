@@ -4,6 +4,10 @@
     color: black;
     font-family: Nunito;
     font-size: 18px;
+    & .settingsMenus {
+        display: grid;
+        grid-template-columns: 20% 80%;
+    }
     & .menu {
         height: 570px;
         font-size: 26px;
@@ -54,6 +58,9 @@
 
 @media screen and (max-width: 600px) {
     .settings {
+        & .settingsMenus {
+            grid-template-columns: 100%;
+        }
         & .menu {
             width: 100%;
             min-height: 100px;

@@ -23,7 +23,10 @@ export default function MobileChatList(): JSX.Element {
                             user={user}
                         />
                         <div className={s.mobileUserChatCardLastMessage}>
-                            <div className={s.mobileLastMessage}>{user.messages[user.messages.length - 1].content}</div>
+                            <div className={s.mobileLastMessage}>
+                                {!user.messages[user.messages.length - 1].isRead && <div className={s.mobileChatRound}></div>}
+                                {user.messages[user.messages.length - 1].content}
+                            </div>
                         </div>
                     </div>
                 ) 

@@ -9,17 +9,27 @@
     & .mobileUserChatCard {
         display: grid;
         grid-template-columns: 2fr 5fr;
-        background-color: rgba(126, 126, 126, 0.06);
+        border-bottom: 0.5px solid rgb(193, 193, 193);
         margin-top: 5px;
         & .mobileUserChatCardLastMessage {
             font-size: 16px;
             display: grid;
             align-items: center;
             & .mobileLastMessage {
+                display: flex;
                 width: 200px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow-x: hidden;
+                & .mobileChatRound {
+                    width: 10px;
+                    height: 10px;
+                    background-color: rgba(0, 145, 255, 0.581);
+                    border-radius: 50%;
+                    margin-right: 15px;
+                    margin-left: 15px;
+                    margin-top: 5px;
+                }
             }
         }
     }
