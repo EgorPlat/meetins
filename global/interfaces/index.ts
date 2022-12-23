@@ -2,7 +2,9 @@ export type Post = {
     date: string,
     images: string[],
     description: string,
-    title: string
+    title: string,
+    likes: number,
+    id: string,
 }
 
 export type User = {

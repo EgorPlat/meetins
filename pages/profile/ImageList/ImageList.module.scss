@@ -28,6 +28,25 @@
         & .postDescription {
             font-size: 20px;
         }
+        & .postActions {
+            display: flex;
+            column-gap: 15px;
+            align-items: center;
+            & .postActionsLikes {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                justify-items: center;
+            }
+            & .postActionsComments {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                justify-items: center;
+            }
+        }
     }
     & .block {
         padding: 2%;
@@ -36,10 +55,23 @@
     }
 }
 
+.commentsModalContent {
+    width: 495px;
+}
 @media screen and (max-width: 600px) {
     .postsList {
         & .post {
             width: 100%;
         }
+    }
+}
+@media screen and (max-width: 600px) {
+    .commentsModalContent {
+        width: 425px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .commentsModalContent {
+        width: 325px;
     }
 }

@@ -1,0 +1,82 @@
+.customModal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & .customModalContent {
+        display: grid;
+        grid-template-rows: 25px 290px 45px;
+        font-size: 24px;
+        padding: 20px;
+        border-radius: 10px;
+        height: 400px;
+        width: 600px;
+        background-color: white;
+        & .cistomModalTitle {
+            font-size: 18px;
+            min-height: 20px;
+        }
+        & .customModalChildrenContent {
+            max-height: 400px;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        & .customModalChildrenContent::-webkit-scrollbar {
+            width: 5px;               /* ширина scrollbar */
+        }
+        & .customModalChildrenContent::-webkit-scrollbar-track {
+            background: transparent;        /* цвет дорожки */
+        }
+        & .customModalChildrenContent::-webkit-scrollbar-thumb {
+            background-color: rgba(44, 44, 44, 0.537);    /* цвет плашки */
+        }
+    }
+    & .manageCustomModal {
+        & button {
+            border-radius: 5px;
+            border: none;
+            color: white;
+            padding: 5px;
+            font-size: 15px;
+            margin: 1%;
+        }
+        & .confirmBtn {
+            width: 25%;
+            min-height: 30px;
+            background-color: rgb(15, 129, 223);
+        }
+        & .cancelBtn {
+            width: 25%;
+            min-height: 30px;
+            background-color: rgb(65, 65, 65);
+        }
+    }
+}
+
+@media screen and(max-width: 600px) {
+    .customModal {
+        & .customModalContent {
+            width: 500px;
+        }
+    }
+}
+@media screen and(max-width: 500px) {
+    .customModal {
+        & .customModalContent {
+            width: 400px;
+        }
+    }
+}
+@media screen and(max-width: 300px) {
+    .customModal {
+        & .customModalContent {
+            width: 300px;
+        }
+    }
+}

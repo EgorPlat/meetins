@@ -100,7 +100,14 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 		instanseRouter$?.push('/login');
 	}
 });
- 
+
+export const getUserDataByUserId = createEffect(async (userId: string | number) => {
+	const response = await instance.post(`users/getUserByUserId`);
+	if(response.data) {
+		return response.data;
+	}
+})
+
 export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | number) => {
 	setIsAsyncLoaded(false);
 	const response = await instance.get(`profile/by-login/${loginUrl}`);

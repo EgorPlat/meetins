@@ -126,7 +126,7 @@ function Profile(): JSX.Element {
                 }
                 <div className={`row`}>
                     <div className="col">
-                        { authedUser && <ImageList posts={currentUser.posts} /> }
+                        { authedUser && <ImageList currentUser={currentUser} authedUser={authedUser} /> }
                     </div>
                 </div>
             </div> : <Loader/>}
