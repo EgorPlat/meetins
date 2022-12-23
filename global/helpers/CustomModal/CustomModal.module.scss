@@ -59,21 +59,21 @@
     }
 }
 
-@media screen and(max-width: 600px) {
+@media screen and (max-width: 600px) {
     .customModal {
         & .customModalContent {
             width: 500px;
         }
     }
 }
-@media screen and(max-width: 500px) {
+@media screen and (max-width: 500px) {
     .customModal {
         & .customModalContent {
             width: 400px;
         }
     }
 }
-@media screen and(max-width: 300px) {
+@media screen and (max-width: 300px) {
     .customModal {
         & .customModalContent {
             width: 300px;
