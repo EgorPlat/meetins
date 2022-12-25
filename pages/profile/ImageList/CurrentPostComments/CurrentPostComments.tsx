@@ -1,13 +1,15 @@
 import { useStore } from 'effector-react';
 import { useEffect } from 'react';
+import Loader from '../../../../components/Loader/Loader';
 import { Post } from '../../../../global/interfaces';
-import { currentPostComments, getCurrentPostsComments } from '../../../../global/store/comments_model';
+import { currentPostComments, getCurrentPostsComments, isCurrentPostCommentsLoaded } from '../../../../global/store/comments_model';
 import { baseURL } from '../../../../global/store/store';
 import s from './CurrentPostComments.module.scss';
 
 export default function CurrentPostComments (props: {post: Post}) {
 
     const currentPostComments$ = useStore(currentPostComments);
+    const isCurrentPostCommentsLoaded$ = useStore(isCurrentPostCommentsLoaded);
 
     useEffect(() => {
         getCurrentPostsComments(props.post.id);
@@ -15,6 +17,9 @@ export default function CurrentPostComments (props: {post: Post}) {
 
     if (!props.post) {
         return null;
+    }
+    if (!isCurrentPostCommentsLoaded$) {
+        return <Loader />
     }
     return (
         <div className={s.commentsList}>

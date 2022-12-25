@@ -6,4 +6,5 @@ export interface PostComment {
     postOwnerId: string,
     commentOwnerAvatar: string,
     commentOwnerName: string,
+    date: string
 }

@@ -52,7 +52,7 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                     <div className={s.postActions}>
                       <div className={s.postActionsLikes}>
                         <Image src={like} width="30px" height="30px" />
-                        <b>{el.likes}</b>
+                        {el.likes}
                       </div>
                       <div className={s.postActionsComments} onClick={() => handleComments(el)}>
                         <Image src={comment} width="30px" height="30px" />
@@ -68,9 +68,12 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                 changeModal={handleModalAction}
                 actionConfirmed={handleModalAction}
                 title={`Комментарии к посту - ${currentPost.title}`}
+                typeOfActions="custom"
+                actionsComponent={
+                 <PostCommentForm onSubmitComment={handleSubmitComment}/>
+                }
               >
                 <div className={s.commentsModalContent}>
-                  <PostCommentForm onSubmitComment={handleSubmitComment}/>
                   <CurrentPostComments post={currentPost} />
                 </div>
               </CustomModal>
