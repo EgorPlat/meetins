@@ -1,7 +1,7 @@
 import { attach, createEffect, createEvent, createStore, sample } from "effector";
 import { IDialogMessage, IMyDialog, INewDialog, User } from "../interfaces";
 import { defaultDialog } from "../mock/defaultDialog";
-import { instance } from "./store";
+import { $user, instance } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog>();
 export const activeChat = createStore<IMyDialog>({} as IMyDialog).on(setActiveChat, (_, newActiveChat) => {
@@ -141,6 +141,16 @@ export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) =>
     }
 })
 
+export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId: string) => {
+    try {
+        const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
+        if(response.status === 200) {
+            return response;
+        }
+    } catch(error) {
+        console.log(error);
+    }
+})
 export const sendFileInDialog = createEffect(async (message: FormData) => {
     try {
         const response = await instance.post('chat/send-file-to-chat', message);
@@ -176,17 +186,17 @@ export const startNewDialog = createEffect(async (newDialog: INewDialog) => {
     }
 })
 
-const myDialogsWatcher = createEffect(( params: { myDialogs: IMyDialog[] }) => {
+const myDialogsWatcher = createEffect(( params: { myDialogs: IMyDialog[], authedUser: User }) => {
     const count = params.myDialogs.reduce((prev, curr) => {
         let dialogUnReadMessages = 0;
         curr.messages.map(message => {
-            if (!message.isRead) dialogUnReadMessages += 1;
+            if (!message.isRead && params.authedUser.userId !== message.senderId) dialogUnReadMessages += 1;
         })
         return prev += dialogUnReadMessages;
     }, 0);
     if (count) setCountUreadMessages(count);
 })
 sample({
-    source: { myDialogs: myDialogs },
+    source: { myDialogs: myDialogs, authedUser: $user },
     target: myDialogsWatcher
 })

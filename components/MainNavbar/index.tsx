@@ -6,12 +6,14 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import s from './mainNavbar.module.scss'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { $user, baseURL, setUser } from "../../global/store/store";
+import { $user, baseURL, isMobile, setUser } from "../../global/store/store";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
 	const [select, setSelect] = useState<string>("");
 	const user = useStore($user);
+	const isMobile$ = useStore(isMobile);
+	const userAvatar = user?.avatar || 'no-avatar.jpg';
 	const router = useRouter();
 	const ref = useRef<any>();
 
@@ -42,15 +44,12 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	}, [select])
     return(
 		<div className={s.link}>
-			    <Link href="/peoples">Люди</Link>
-			    <Link href="/events">События</Link>
-			    <Link href="">Встречи</Link>
-			    <Link href="">Интересы</Link>
+				<Link href="/peoples">Люди</Link>
+				<Link href="/events">События</Link>
+				<Link href="">Встречи</Link>
+				<Link href="">Интересы</Link>
 			    <button className={s.inviteBtn}>Пригласить</button>
-			    { user?.avatar !== undefined 
-			        ?
-			        <img src={baseURL + user.avatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
-			    : null }
+			    <img src={baseURL + userAvatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
 			    <select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
 				    <option className={s.option} value="name">{user?.name}</option>
 				    <option className={s.option} value="logOut">Выход</option>

@@ -10,9 +10,6 @@ export default function LeftNavMenu(): JSX.Element {
     const currentPage = useStore($currentPage);
     const unreadMessages = useStore(countUreadMessages);
 
-    useEffect(() => {
-        console.log(unreadMessages);
-    }, [unreadMessages])
     return(
         <ul className={s.ul}>        
             <li><Link href="/messanger">{`Мессенджер`}</Link><span className={s.count}>{unreadMessages}</span></li>

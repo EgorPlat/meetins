@@ -5,7 +5,14 @@ import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
 import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
 import { isTypeOfFileAreImage, isTypeOfFileAreVideo } from "../../../global/helpers/validate";
 import { IMyDialog } from "../../../global/interfaces";
-import { activeChat, createdSendMessageAndUploadActiveChat, getDialogMessages, isMessageWithFileLoaded, setActiveChat } from "../../../global/store/chat_model";
+import { 
+    activeChat, 
+    createdSendMessageAndUploadActiveChat,
+    getDialogMessages,
+    isMessageWithFileLoaded,
+    setActiveChat,
+    updatedIsReadMessagesInActiveDialog
+} from "../../../global/store/chat_model";
 import { $onlineUsers, $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
@@ -26,6 +33,7 @@ export default function ChatZone(): JSX.Element {
     }
  
     useEffect(() => {
+        updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
         getDialogMessages(activeChat$);
         return () => { 
             setActiveChat({} as IMyDialog);
