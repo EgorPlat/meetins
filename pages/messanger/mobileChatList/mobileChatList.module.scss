@@ -9,6 +9,7 @@
     & .mobileUserChatCard {
         display: grid;
         grid-template-columns: 2fr 5fr;
+        max-height: 110px;
         border-bottom: 0.5px solid rgb(193, 193, 193);
         margin-top: 5px;
         & .mobileUserChatCardLastMessage {
