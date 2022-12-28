@@ -1,5 +1,7 @@
 .errorBlock {
     text-align: center;
+    transform-style: flat;
+    perspective: 200px;
     width: 400px;
     height: 40px;
     position: fixed;

@@ -1,4 +1,12 @@
+@keyframes rotate {
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
 .interests {
+    perspective: 200px;
+    transform-style: flat;
     font-family: Nunito;
     font-size: 16px;
     border: none;
@@ -12,6 +20,6 @@
         margin-right: 3%;
         margin-top: 1%;
         background-color: white;
+        animation: rotate 1s;
     }
-    
 }

@@ -1,3 +1,8 @@
+@keyframes rotate {
+    100% {
+        transform: rotateX(360deg);
+    }
+}
 .eachError {
     display: flex;
     align-items: center;
@@ -8,4 +13,5 @@
     width: 100%;
     min-height: 40px;
     border-radius: 5px;
+    animation: rotate 1s;
 }
