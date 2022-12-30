@@ -75,6 +75,29 @@ export const $currentPage = createStore<string>('').on(
 	}
 )
 
+export const getUserInterests = createEffect(async (userInterests) => {
+	const response = await instance.post('interests/get-ineterests-by-id', JSON.stringify({ interests: userInterests}));
+	if(response.status <= 217) {
+		return response.data;
+	}
+})
+
+export const updateInterests = createEffect(async (interests: string[]) => {
+	const response = await instance.post('users/updateUserInterest', JSON.stringify({ interests: interests }));
+	if(response.status <= 217) {
+		setUser(response.data);
+		return response;
+	}
+})
+
+export const getInterests = createEffect(async () => {
+	const response = await instance.get('interests/get-interests');
+	if(response.status <= 217) {
+		return response.data;
+	}
+	return response;
+})
+
 export const getUserData = createEffect(async () => {
 	setIsAsyncLoaded(false);
 	const response = await instance.get('profile/my-profile');

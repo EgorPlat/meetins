@@ -17,6 +17,7 @@ import { checkDialog, } from "../../global/store/chat_model";
 import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
 import AddingPosts from "./AddingPosts/AddingPosts";
+import { log } from "console";
 
 function Profile(): JSX.Element {
 
@@ -55,6 +56,9 @@ function Profile(): JSX.Element {
             window.location.reload();
         }
         setIsModal(false);
+    }
+    const handleUpdateUser = (user) => {
+        setCurrentProfileUser(user);
     }
     useEffect( () => {
         getDataForProfilePage(route);
@@ -109,7 +113,7 @@ function Profile(): JSX.Element {
 
                 <div className={`row ${s.moreInfo}`}>
                     <div className={`col ${s.block} ${s.interests}`}>
-                        <Interests interest={['Плавание','Йога','Волейбол','Бокс']}/>
+                        <Interests user={currentUser} authedUser={authedUser} handleUpdateUser={handleUpdateUser} />
                     </div>
                     <div className={`col ${s.block} ${s.places}`}>
                         <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>

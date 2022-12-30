@@ -75,3 +75,25 @@
         width: 325px;
     }
 }
+@media screen and (max-width: 410px) {
+    .postsList {
+        & .post {
+            & .postTitle {
+                & .date {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 350px) {
+    .postsList {
+        & .post {
+            & .postTitle {
+                & .date {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}

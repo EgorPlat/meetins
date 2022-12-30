@@ -75,3 +75,14 @@
         min-height: 180px;
     }
 }
+@media screen and (max-width: 410px) {
+    .addingPosts {
+        & .addingPostsForm {
+            & .addingPostsFormMain {
+                & .addingPostsFormMainFile {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}

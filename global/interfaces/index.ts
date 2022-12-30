@@ -23,6 +23,7 @@ export type User = {
     events: string[],
     posts: Post[],
     isOnline: boolean,
+    interests: string[]
 }
 
 export type ProfileData = {

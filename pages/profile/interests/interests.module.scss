@@ -12,14 +12,29 @@
     border: none;
     & .title {
         font-size: 19px; 
+        & .changeMode {
+            cursor: pointer;
+            color: grey;
+            font-size: 14px;
+        }
+    }
+    & .interest {
+        border: 2px solid rgb(44, 142, 255);
     }
     button {
-        border: 2px solid rgb(44, 142, 255);
         outline: none;
         cursor: pointer;
         margin-right: 3%;
         margin-top: 1%;
         background-color: white;
         animation: rotate 1s;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .interests {
+        & .title {
+            font-size: 17px;
+        }
     }
 }
