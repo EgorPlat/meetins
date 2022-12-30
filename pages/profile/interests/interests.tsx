@@ -35,9 +35,6 @@ export default function Interests(props: {
     useEffect(() => {
         getUserInterests(props.user?.interests).then(res => setCurrentUserInterests(res));
     }, [props.user])
-    useEffect(() => {
-        getUserInterests(props.authedUser?.interests).then(res => setCurrentUserInterests(res));
-    }, [props.authedUser])
     return(
         <>
             <div className={s.interests}>

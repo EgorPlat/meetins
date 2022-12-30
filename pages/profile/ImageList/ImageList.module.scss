@@ -33,15 +33,19 @@
             column-gap: 15px;
             align-items: center;
             & .postActionsLikes {
+                font-size: 18px;
                 cursor: pointer;
                 display: flex;
+                column-gap: 5px;
                 align-items: center;
                 justify-content: center;
                 justify-items: center;
             }
             & .postActionsComments {
+                font-size: 18px;
                 cursor: pointer;
                 display: flex;
+                column-gap: 5px;
                 align-items: center;
                 justify-content: center;
                 justify-items: center;
