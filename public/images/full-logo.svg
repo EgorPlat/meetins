@@ -1,4 +1,4 @@
-<svg width="330" height="55" xmlns="http://www.w3.org/2000/svg">
+<svg width="330" height="60" xmlns="http://www.w3.org/2000/svg">
  <mask height="52" width="196" y="1" x="70" maskUnits="userSpaceOnUse" id="mask0_414_401">
   <path id="svg_1" fill="white" d="m89.1814,13.7548c3.498,0 6.3337,-2.8553 6.3337,-6.3774c0,-3.52215 -2.8357,-6.3774 -6.3337,-6.3774c-3.498,0 -6.3337,2.85525 -6.3337,6.3774c0,3.5221 2.8357,6.3774 6.3337,6.3774z"/>
   <path id="svg_2" fill="white" d="m114.601,13.7548c3.498,0 6.334,-2.8553 6.334,-6.3774c0,-3.52215 -2.836,-6.3774 -6.334,-6.3774c-3.498,0 -6.333,2.85525 -6.333,6.3774c0,3.5221 2.835,6.3774 6.333,6.3774z"/>
@@ -19,12 +19,12 @@
  </defs>
  <g>
   <title>background</title>
-  <rect fill="none" id="canvas_background" height="57" width="332" y="-1" x="-1"/>
+  <rect fill="none" id="canvas_background" height="62" width="332" y="-1" x="-1"/>
  </g>
  <g>
   <title>Layer 1</title>
   <g stroke="null" id="svg_10" mask="url(#mask0_414_401)">
-   <rect stroke="null" id="svg_11" fill="url(#paint0_linear_414_401)" height="49.999998" width="264.000002" y="1" x="23"/>
+   <rect stroke="null" id="svg_11" fill="url(#paint0_linear_414_401)" height="51.999997" width="266.000063" y="1" x="28.999969"/>
   </g>
  </g>
 </svg>

@@ -56,7 +56,7 @@ export default function SearchingPeople(): JSX.Element {
         } else {
             setDinamicUsers((dinamicUsers) =>  peoplesList$.slice(0, dinamicUsers.length+5));
         }
-        const scrollHandler = (event: any) => {
+        /*const scrollHandler = (event: any) => {
             if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
                 setDinamicUsers((dinamicUsers) =>  peoplesList$.slice(0, dinamicUsers.length+5));          
             }
@@ -64,7 +64,7 @@ export default function SearchingPeople(): JSX.Element {
         document.addEventListener('scroll', scrollHandler);
         return () => {
             document.removeEventListener('scroll', scrollHandler);
-        }
+        }*/
     }, [peoplesList$])
     return(
     
@@ -119,7 +119,7 @@ export default function SearchingPeople(): JSX.Element {
                     { isPeoplesLoaded$ 
                     ?
                     <div className={s.usersList}>
-                        {dinamicUsers.map( user => <UserList key={user.login} user={user}/>)}
+                        {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
                     </div> : <Loader/> 
                     }
                     { dinamicUsers.length === 0 ? 

@@ -3,9 +3,11 @@
 .header {
 	display: grid;
 	grid-template-columns: 20% 80%;
-	height: 120px;  
+	align-items: center;
+	height: 100%;  
 	justify-content: space-between;
 	& .logo {
+		height: 60px;
 		display: flex;
 		justify-content: center;
 		justify-items: center;
@@ -31,6 +33,5 @@
 @media screen  and (max-width: 650px) {
 	.header {
 		grid-template-columns: 100%;
-		height: 200px;
 	}
 }

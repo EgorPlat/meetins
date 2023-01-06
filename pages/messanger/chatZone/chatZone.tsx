@@ -39,9 +39,9 @@ export default function ChatZone(): JSX.Element {
             setActiveChat({} as IMyDialog);
         }
     }, [activeChat$.dialogId])
-    useEffect(() => {
+    /*useEffect(() => {
         messagesEndRef.current?.scrollIntoView({behavior: "smooth"});
-    })
+    })*/
         return(
             <div className={s.chat}>  
                 <div className={`${s.user} ${s.block}`}>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from "./interests.module.scss";
 import Image from "next/image";
 import like from "../../../public/images/interesting.svg";
-import { getUserInterests, updateInterests } from "../../../global/store/store";
+import { getUserInterests, setCurrentProfileUser, updateInterests } from "../../../global/store/store";
 import { User } from "../../../global/interfaces";
 import ChangingInterests from "./ChangingInterests/ChangingInterests";
 
@@ -32,6 +32,11 @@ export default function Interests(props: {
         setIsChangeMode(false);       
     }
 
+    useEffect(() => {
+        return () => {
+            setCurrentProfileUser({} as User);
+        }
+    }, [])
     useEffect(() => {
         getUserInterests(props.user?.interests).then(res => setCurrentUserInterests(res));
     }, [props.user])
