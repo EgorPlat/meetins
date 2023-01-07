@@ -6,8 +6,8 @@ import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 
 // test
-//export const baseURL = 'http://localhost:5000/';
-export const baseURL = 'https://meetins-egorplat.amvera.io/';
+export const baseURL = 'http://localhost:5000/';
+//export const baseURL = 'https://meetins-egorplat.amvera.io/';
 export const instance = axios.create({
 	baseURL: baseURL,
 })
@@ -86,6 +86,7 @@ export const updateInterests = createEffect(async (interests: string[]) => {
 	const response = await instance.post('users/updateUserInterest', JSON.stringify({ interests: interests }));
 	if(response.status <= 217) {
 		setUser(response.data);
+		setCurrentProfileUser(response.data);
 		return response;
 	}
 })

@@ -4,9 +4,9 @@
         height: 500px;
         overflow-x: auto;
         display: grid;
-        align-items: center;
         justify-content: center;
         justify-items: center;
+        align-items: center
     } 
     & .list::-webkit-scrollbar {
         width: 12px;               /* ширина scrollbar */
@@ -57,18 +57,6 @@
             & button {
                 font-size: 14px;
             }
-        }
-    }
-}
-
-@media screen and (max-width: 810px) {
-    .chatList {
-        & .list {
-            height: 128px;
-            display: flex;
-            overflow-x: scroll;
-            overflow-y: scroll;
-            flex-wrap: wrap;
         }
     }
 }

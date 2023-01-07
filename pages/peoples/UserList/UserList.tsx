@@ -9,7 +9,7 @@ import s from "./UserList.module.scss";
 export default function UserList(props: {user: IPeople}): JSX.Element {
 
     const router = useRouter();
-    const userOnlineList = useDebounce(useStore($onlineUsers), 1000);
+    const userOnlineList = useDebounce(useStore($onlineUsers), 3000);
 
     const goToProfile = (user: IPeople) => {
         router.push(`profile/${user.login}`)

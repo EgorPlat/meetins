@@ -17,7 +17,6 @@ import { checkDialog, } from "../../global/store/chat_model";
 import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
 import AddingPosts from "./AddingPosts/AddingPosts";
-import { log } from "console";
 
 function Profile(): JSX.Element {
 
@@ -113,7 +112,7 @@ function Profile(): JSX.Element {
 
                 <div className={`row ${s.moreInfo}`}>
                     <div className={`col ${s.block} ${s.interests}`}>
-                        <Interests user={currentUser} authedUser={authedUser} handleUpdateUser={handleUpdateUser} />
+                        <Interests user={currentUser} authedUser={authedUser} />
                     </div>
                     <div className={`col ${s.block} ${s.places}`}>
                         <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
@@ -136,7 +135,12 @@ function Profile(): JSX.Element {
             </div> : <Loader/>}
             </div>
             { isModal ? 
-            <Modal isDisplay={true} changeModal={onModalClick} actionConfirmed={onModalClick}><p>Изменения вступят в силу после перезагрузки вкладки профиль.</p></Modal>
+                <Modal 
+                    isDisplay={true} 
+                    changeModal={onModalClick} 
+                    actionConfirmed={onModalClick}>
+                        <p>Изменения вступят в силу после перезагрузки вкладки профиль.</p>
+                </Modal>
             : null}
         </div>
         </PageContainer>

@@ -37,8 +37,10 @@ export default function Interests(props: {
             setCurrentProfileUser({} as User);
         }
     }, [])
-    useEffect(() => {
-        getUserInterests(props.user?.interests).then(res => setCurrentUserInterests(res));
+    useEffect(() => {  
+        getUserInterests(props.user?.interests).then(res => {
+            setCurrentUserInterests(res);
+        });
     }, [props.user])
     return(
         <>
