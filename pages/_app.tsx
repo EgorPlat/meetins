@@ -11,6 +11,7 @@ import { setRouter } from '../global/store/router_model'
 import { io } from 'socket.io-client'
 import { useStore } from 'effector-react'
 import ErrorBlock from '../components/ErrorBlock/errorBlock'
+import { getMyDialogs } from '../global/store/chat_model'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
+		getMyDialogs();
 		if(localStorage.getItem('access-token') !== '') {
 			const newConnection = io(baseURL, {
 				extraHeaders: {

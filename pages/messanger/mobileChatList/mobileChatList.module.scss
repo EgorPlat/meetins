@@ -4,7 +4,7 @@
     display: grid;
     padding: 5px;
     grid-template-columns: 1fr;
-    height: 510px;
+    height: calc(100vh - 280px);
     overflow-y: scroll;
     & .mobileUserChatCard {
         display: grid;
@@ -22,10 +22,19 @@
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow-x: hidden;
-                & .mobileChatRound {
+                & .mobileNotMyChatRound {
                     width: 10px;
                     height: 10px;
                     background-color: rgba(0, 145, 255, 0.581);
+                    border-radius: 50%;
+                    margin-right: 15px;
+                    margin-left: 15px;
+                    margin-top: 5px;
+                }
+                & .mobileMyChatRound {
+                    width: 10px;
+                    height: 10px;
+                    background-color: rgba(68, 255, 93, 0.581);
                     border-radius: 50%;
                     margin-right: 15px;
                     margin-left: 15px;

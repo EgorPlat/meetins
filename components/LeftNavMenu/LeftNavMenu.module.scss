@@ -2,13 +2,11 @@
     list-style: none;
     & .count {
         display: inline-block;
-        text-align: center;
-        margin-left: 1px;
-        font-size: 15px;
-        background-color: rgba(0, 140, 255, 0.445);
-        width: 40px;
-        color: white;
-        border-radius: 10%;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(0, 140, 255, 0.941);
+        margin-left: 5px;
     }
     & li {
         font-family: Nunito;
@@ -40,16 +38,6 @@
             & a {
                 margin-left: 2%;
             }
-        }
-    }
-}
-
-@media screen and (max-width: 650px) {
-    .ul {
-        & .count {
-            font-size: 14px;
-            width: 29px;
-            margin-left: 5px;
         }
     }
 }
