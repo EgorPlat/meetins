@@ -24,6 +24,10 @@
         & .commentContent {
             & .commentTitle {
                 font-size: 16px;
+                & .commentDate {
+                    font-size: 12px;
+                    color: grey;
+                }
             }
             & .commentText {
                 font-size: 14px;

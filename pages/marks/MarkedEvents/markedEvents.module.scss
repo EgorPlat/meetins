@@ -1,5 +1,7 @@
 .markedEvents {
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 @media screen and (max-width: 470px) {

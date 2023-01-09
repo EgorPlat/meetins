@@ -31,7 +31,7 @@
         margin: 0;
         margin-left: 20px;
         column-gap: 15px;
-        padding: 0;
+        padding-left: 0;
         & li {
             display: flex;
             align-items: center;
@@ -44,36 +44,45 @@
 
 @media screen and (max-width: 440px) {
     .ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        margin-left: 0;
+        column-gap: 6px;
+        font-size: 18px;
         & li {
-            font-size: 21px;
+            & a {
+                margin-left: 0%;
+            }
         }
     }
 }
 @media screen and (max-width: 400px) {
     .ul {
         & li {
-            font-size: 20px;
+            font-size: 18px;
         }
     }
 }
 @media screen and (max-width: 380px) {
     .ul {
         & li {
-            font-size: 19px;
+            font-size: 17px;
         }
     }
 }
 @media screen and (max-width: 360px) {
     .ul {
         & li {
-            font-size: 18px;
+            font-size: 16px;
         }
     }
 }
 @media screen and (max-width: 350px) {
     .ul {
         & li {
-            font-size: 17px;
+            font-size: 15px;
         }
     }
 }

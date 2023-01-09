@@ -14,7 +14,7 @@ export default function MarkedEvents(): JSX.Element {
     }
     return(
         <div className={s.markedEvents}>            
-            { user.events.filter(event => typeof event === 'string' && event.length > 0).map(event => <MarkedEventInfo eventId={event} />) }
+            { user.events.map(event => <MarkedEventInfo eventId={event} />) }
         </div>
     )
 }

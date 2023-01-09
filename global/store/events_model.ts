@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore } from "effector";
 import { IShortEventInfo, IEventInfoCard } from "../interfaces/events";
-import { instance } from "./store";
+import { instance, setUser } from "./store";
 import { sample } from 'effector';
 
 export const setCurrentEvents = createEvent<IShortEventInfo[]>();
@@ -32,6 +32,24 @@ export const addUserEvent = createEffect(async (id: number) => {
         'users/addUserEvent', {eventId: String(id)}
     );
     return response;
+})
+export const deleteUserEvent = createEffect(async (id: number) => {
+    const response = await instance.post(
+        'users/deleteUserEvent', {eventId: String(id)}
+    );
+    return response;
+})
+sample({ 
+    clock: addUserEvent.doneData, 
+    filter: response => response.status === 201, 
+    fn: response => response.data, 
+    target: setUser
+})
+sample({ 
+    clock: deleteUserEvent.doneData, 
+    filter: response => response.status === 201, 
+    fn: response => response.data, 
+    target: setUser
 })
 sample({ 
     clock: getEventById.doneData, 

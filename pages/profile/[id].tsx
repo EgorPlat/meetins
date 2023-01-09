@@ -65,75 +65,69 @@ function Profile(): JSX.Element {
     return(
         <PageContainer>
         <div className={s.profile}>
-            <div className="row">
-                {asyncLoaded 
+        {asyncLoaded 
                 ? 
-                <div className={`col-md-10 ${s.bodyCol}`}>
+                <div className={`${s.bodyCol}`}>
 
-                <div className={`row ${s.block}`}>
-                    <div className={`col-md-3 ${s.bodyInfo}`}>
-                       {!addingImageStatus ?
-                       <img 
-                        onMouseEnter={() => changeAddingImageStatus(true)}
-                        src={baseURL + currentUser.avatar}
-                        alt="Аватарка" 
-                        className={`${s.avatar}`}
-                        /> : <InputFile 
-                            onChange={(event) => onChangeInputImage(event)} 
-                            onMouseLeave={() => changeAddingImageStatus(false)}
-                        />}
-                    </div>
-                    <div className={`col-md-8 ${s.userInfo}`}>
-                        <div className="row">
-                            <div className={`col ${s.userName}`}>
-                                {currentUser.name + ', ' + currentUser.age}
+                    <div className={`${s.block} ${s.mainBlock}`}>
+                        <div className={`${s.bodyInfo}`}>
+                            {!addingImageStatus ?
+                            <img 
+                                onMouseEnter={() => changeAddingImageStatus(true)}
+                                src={baseURL + currentUser.avatar}
+                                alt="Аватарка" 
+                                className={`${s.avatar}`}
+                                /> : <InputFile 
+                                    onChange={(event) => onChangeInputImage(event)} 
+                                    onMouseLeave={() => changeAddingImageStatus(false)}
+                            />}
+                        </div>
+                        <div className={`${s.userInfo}`}>
+                            <div>
+                                <div className={`${s.userName}`}>
+                                    {currentUser.name + ', ' + currentUser.age}
+                                </div>
+                                <div className={s.town}>
+                                    г. {currentUser.city}
+                                </div>
                             </div>
+                            { currentUser.login !== authedUser?.login ?
+                            <div className={`${s.actions}`}>
+                                <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
+                                    Диалог
+                                    <Image alt="Сообщение" src={message} width={20} height={20} />
+                                </button>
+                                <button type="button" className={`${s.actionsBtn}`}>Пригласить +</button>
+                            </div> : null
+                            }
                         </div>
-                        <div className={s.town}>
-                            г. {currentUser.city}
+                    </div>
+
+                    <div className={`${s.block}`}>
+                        <div className={`${s.text}`}>
+                            <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
                         </div>
-                        { currentUser.login !== authedUser?.login ?
-                        <div className={`${s.actions}`}>
-                            <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
-                                Диалог
-                                <Image alt="Сообщение" src={message} width={20} height={20} />
-                            </button>
-                            <button type="button" className={`${s.actionsBtn}`}>Пригласить +</button>
-                        </div> : null
-                        }
                     </div>
-                </div>
 
-                <div className={`row ${s.block}`}>
-                    <div className={`${s.text}`}>
-                        <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
-                    </div>
-                </div>
+                    <div className={`${s.moreInfo}`}>
+                        <div className={`${s.block} ${s.interests}`}>
+                            <Interests user={currentUser} authedUser={authedUser} />
+                        </div>
+                        <div className={`${s.block} ${s.places}`}>
+                            <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
+                        </div>
+                    </div> 
 
-                <div className={`row ${s.moreInfo}`}>
-                    <div className={`col ${s.block} ${s.interests}`}>
-                        <Interests user={currentUser} authedUser={authedUser} />
-                    </div>
-                    <div className={`col ${s.block} ${s.places}`}>
-                        <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
-                    </div>
-                </div> 
-
-                {
-                    currentUser.login === authedUser?.login &&
-                    <div className={`row`}>
-                        <div className="col">
+                    {
+                        currentUser.login === authedUser?.login &&
+                        <div className={s.addingPosts}>
                             <AddingPosts />
                         </div>
-                    </div>
-                }
-                <div className={`row`}>
-                    <div className="col">
+                    }
+                    <div className={s.postsList}>
                         { authedUser && <ImageList currentUser={currentUser} authedUser={authedUser} /> }
                     </div>
-                </div>
-            </div> : <Loader/>}
-            </div>
+                </div> : <Loader/>}
             { isModal ? 
                 <Modal 
                     isDisplay={true} 

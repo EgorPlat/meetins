@@ -51,19 +51,19 @@ export default function Settings(): JSX.Element {
                 <div className={`${s.formAndInfo}`}>
                     <div className={s.info}> 
                         <h5>Информация профиля</h5>
-                            { isLoad ? <div className="row">
+                            { isLoad ? <div className={s.profileForm}>
                                <ProfileInfoForm /> 
                             </div> : <Loader/>}
                     </div>
                     <div className={s.management}>
                         <h5>Управление аккаунтом</h5>
                         <div className={s.manageAcc}>
-                            {isLoad ? <div className={`row`}>
+                            {isLoad ? <div className={s.accountForm}>
                                 <ManageAccountForm />
                             </div> : <Loader/>}
                         </div>
-                        <div className={`row ${s.infoText}`}>
-                            <div className={`col ${s.description}`}>
+                        <div className={`${s.infoText}`}>
+                            <div className={`${s.description}`}>
                                 Вы можете изменить адрес аккаунта на более привлекательный.<br />
                                 Другие пользователи смогут найти Вас по адресу <b>meetins.ru/ВашАдрес</b><br />
                                 <b>Отключение</b><br/>

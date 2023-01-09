@@ -30,7 +30,6 @@
         & .addingPostsFormDescription {
             display: grid;
             grid-template-columns: 80% 20%;
-            grid-column-gap: 15px;
             & textarea {
                 font-size: 18px;
                 border: 1px solid rgb(189, 189, 189);
