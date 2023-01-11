@@ -9,6 +9,7 @@
         height: 40px;
         margin-right: 1%;
         border-radius: 5px;
+        border: 1px solid #3DB2FF;
         outline: none;
     }
     & .fileInput {
@@ -66,6 +67,15 @@
         font-size: 13px;
         & button {
             font-size: 13px;
+        }
+    }
+}
+
+@media screen and (max-width: 365px){
+    .form {
+        font-size: 13px;
+        & button {
+            font-size: 12px;
         }
     }
 }

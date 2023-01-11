@@ -6,8 +6,8 @@ import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 
 // test
-//export const baseURL = 'http://localhost:5000/';
-export const baseURL = 'https://meetins-egorplat.amvera.io/';
+export const baseURL = 'http://localhost:5000/';
+//export const baseURL = 'https://meetins-egorplat.amvera.io/';
 export const instance = axios.create({
 	baseURL: baseURL,
 })
@@ -59,8 +59,8 @@ export const setUser = createEvent<User | null>()
 export const $user = createStore<User | null>(null).on(setUser, (_, userDetails) => {
 	return userDetails;
 })
-export const setOnlineUsers = createEvent<string[]>()
-export const $onlineUsers = createStore<string[]>([]).on(setOnlineUsers, (_, onlineUserList) => {
+export const setOnlineUsers = createEvent<any[]>()
+export const $onlineUsers = createStore<any[]>([]).on(setOnlineUsers, (_, onlineUserList) => {
 	return onlineUserList;
 })
 export const setCurrentProfileUser = createEvent<User>();

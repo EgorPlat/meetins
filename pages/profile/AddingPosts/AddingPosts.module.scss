@@ -5,11 +5,11 @@
     font-family: Nunito;
     & .addingPostsForm {
         display: grid;
-        grid-template-rows: 30% 70%;
-        grid-row-gap: 15px;
+        grid-template-rows: 1fr;
+        grid-row-gap: 5px;
         & .addingPostsFormMain {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             grid-column-gap: 15px;
             & input[type="text"] {
                 font-size: 18px;
@@ -18,6 +18,8 @@
                 padding-left: 15px;
                 outline: none;
             }
+        }
+        & .addingPostsUploadFiles {
             & .addingPostsFormMainFile {
                 cursor: pointer;
                 font-size: 13px;
@@ -29,22 +31,24 @@
         }
         & .addingPostsFormDescription {
             display: grid;
-            grid-template-columns: 80% 20%;
+            grid-template-columns: 1fr;
+            grid-row-gap: 5px;
             & textarea {
                 font-size: 18px;
                 border: 1px solid rgb(189, 189, 189);
                 width: 100%;
+                height: 160px;
                 border-radius: 3px;
                 padding-left: 15px;
                 resize: none;
             }
             & button {
                 font-size: 14px;
-                width: 50%;
-                height: 50%;
+                width: 100%;
+                height: 40px;
                 outline: none;
                 border: none;
-                background-color: rgba(49, 128, 255, 0.756);
+                background-color: rgb(40, 176, 255);
                 color: white;
                 border-radius: 3px;
             }
@@ -59,14 +63,6 @@
 @media screen and (max-width: 1280px) {
     .addingPosts {
         min-height: 160px;
-        & .addingPostsForm {
-            grid-template-rows: 40% 60%;
-            & .addingPostsFormDescription { 
-                & button {
-                    width: 100%;
-                }
-            }
-        }
     }
 }
 @media screen and (max-width: 520px) {

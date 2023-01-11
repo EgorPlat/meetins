@@ -17,6 +17,7 @@ import { checkDialog, } from "../../global/store/chat_model";
 import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
 import AddingPosts from "./AddingPosts/AddingPosts";
+import CustomModal from "../../global/helpers/CustomModal/CustomModal";
 
 function Profile(): JSX.Element {
 
@@ -27,6 +28,7 @@ function Profile(): JSX.Element {
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
     const [isModal, setIsModal] = useState(false);
+    const [isAddPostModal, setIsAddPostModal] = useState(false);
 
     const changeAddingImageStatus = (status: boolean) => {
         if(currentUser.login === authedUser?.login) {
@@ -56,8 +58,8 @@ function Profile(): JSX.Element {
         }
         setIsModal(false);
     }
-    const handleUpdateUser = (user) => {
-        setCurrentProfileUser(user);
+    const onAddingModalClick = () => {
+        setIsAddPostModal(false);
     }
     useEffect( () => {
         getDataForProfilePage(route);
@@ -121,7 +123,7 @@ function Profile(): JSX.Element {
                     {
                         currentUser.login === authedUser?.login &&
                         <div className={s.addingPosts}>
-                            <AddingPosts />
+                            <button onClick={() => setIsAddPostModal(true)}>Добавить новую запись</button>
                         </div>
                     }
                     <div className={s.postsList}>
@@ -135,6 +137,17 @@ function Profile(): JSX.Element {
                     actionConfirmed={onModalClick}>
                         <p>Изменения вступят в силу после перезагрузки вкладки профиль.</p>
                 </Modal>
+            : null}
+            { isAddPostModal ? 
+                <CustomModal 
+                    isDisplay={true} 
+                    changeModal={onAddingModalClick} 
+                    actionConfirmed={onAddingModalClick}
+                    title="Добавить новую запись"
+                    typeOfActions="none"
+                >
+                    <AddingPosts />
+                </CustomModal>
             : null}
         </div>
         </PageContainer>

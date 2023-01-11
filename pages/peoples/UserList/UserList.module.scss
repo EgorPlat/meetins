@@ -1,7 +1,9 @@
 .user {
-    width: 200px;
+    width: 98%;
     height: 200px;
-    display: inline-block;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    column-gap: 10px;
     & .image {
         width: 90%;
         height: 90%;
@@ -26,21 +28,56 @@
         border-radius: 50%;
     }
     & .name {
-        text-align: center;
+        text-align: left;
+        padding-left: 20px;
+        & .town {
+            color: grey;
+        }
     }
 }
 .user:hover {
     cursor: pointer;
 }
 
-@media screen and (max-width: 421px) {
+@media screen and (max-width: 875px) {
     .user {
-        width: 170px;
-        height: 170px;
         & .image {
+            width: 160px;
+            height: 160px;
             & .round {
-                margin-left: 120px;
-                margin-top: 120px;
+                margin-left: 130px;
+                margin-top: 130px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 875px) {
+    .user {
+        height: 160px;
+        & .image {
+            width: 160px;
+            height: 160px;
+            & .round {
+                margin-left: 130px;
+                margin-top: 130px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .user {
+        h5 {
+            font-size: 15px;
+        }
+        grid-template-columns: 1fr 4fr;
+        height: 80px;
+        & .image {
+            width: 80px;
+            height: 80px;
+            & .round {
+                margin-left: 60px;
+                margin-top: 60px;
             }
         }
     }

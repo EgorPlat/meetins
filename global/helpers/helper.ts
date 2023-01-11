@@ -13,8 +13,8 @@ export default function calculateCountOfUnredMessageInDialog (messages: IMyActiv
 
 export function customizeDateToYYYYMMDDFormat (date: string) {
     let newDate = new Date(date);
-    let day = String(newDate.getDate() + 1);
-    let month = String(newDate.getMonth());
+    let day = String(newDate.getDate());
+    let month = String(newDate.getMonth() + 1);
     let year = String(newDate.getFullYear());
     if (+day < 10) {
         day = '0' + `${day}`
@@ -23,4 +23,11 @@ export function customizeDateToYYYYMMDDFormat (date: string) {
         month = '0' + `${month}`
     }
     return `${year}-${month}-${day}`
+}
+
+export function findUserInOnlineList( email: string, onlineList: any[] ) {
+    if (onlineList.length < 1 || !onlineList) return;
+    console.log(onlineList.filter(el => el.email === email));
+    
+    return onlineList.filter(el => el.email === email).length > 0;
 }

@@ -10,6 +10,7 @@ import CurrentPostComments  from "./CurrentPostComments/CurrentPostComments";
 import PostCommentForm from "./PostCommentForm/PostCommentForm";
 import { NewComment } from "../../../global/interfaces/newComment";
 import { addNewCommentToCurrentPost } from "../../../global/store/comments_model";
+import { customizeDateToYYYYMMDDFormat } from "../../../global/helpers/helper";
 
 export default function ImageList(props: {currentUser: User, authedUser: User}): JSX.Element {
 
@@ -37,11 +38,10 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
         <div className={s.postsList}>
             {
               props.currentUser?.posts?.map(el => {
-                const date = new Date(el.date);
                 return (
                   <div className={`${s.post} ${s.block}`}>
                     <div className={s.postTitle}>
-                      {el.title} <span className={s.date}>{date.getFullYear()}-{date.getMonth()}-{date.getDate() + 1}</span>
+                      {el.title} <span className={s.date}>{customizeDateToYYYYMMDDFormat(el.date)}</span>
                     </div>
                     <div className={s.postImage}>
                       <img src={baseURL + el.images[0]} />

@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { getMyDialogs, isMyDialogsLoaded, myDialogs } from "../../../global/store/chat_model";
 import { $user } from "../../../global/store/store";
 import UserChatCard from "../userChatCard/userChatCard";
@@ -10,12 +10,16 @@ export default function MobileChatList(): JSX.Element {
     const myDialogs$ = useStore(myDialogs);
     const isLoaded$ = useStore(isMyDialogsLoaded);
     const authedUser$ = useStore($user);
+    const ref = useRef(null);
 
     useEffect(() => {
-        getMyDialogs(); 
+        getMyDialogs();
+        if (ref.current && window.screen.height <= 670) {
+            ref.current.scrollIntoView({ behaviour: "smooth" });
+        }
     },[]);
     return(
-        <div className={s.mobileChatList}>
+        <div className={s.mobileChatList} ref={ref}>
             {isLoaded$ !== false && myDialogs$ !== null 
                 ? 
                 myDialogs$.map( dialog => {

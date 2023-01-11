@@ -111,6 +111,9 @@
         }
         & .users {
             & .usersList {
+                display: flex;
+                flex-direction: column;
+                row-gap: 5px;
                 text-align: center;
             }
         }

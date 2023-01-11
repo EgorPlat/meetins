@@ -40,6 +40,11 @@ const CustomModal = (props: {
                         &&
                         {...props.actionsComponent}
                     }
+                    {
+                        props.typeOfActions === 'none'
+                        &&
+                        null
+                    }
                 </div>
             </div>
         </div>

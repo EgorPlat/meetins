@@ -83,8 +83,18 @@
         }
     }
     & .addingPosts {
-        display: grid;
-        grid-template-columns: 1fr;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        & button {
+            font-family: Nunito;
+            font-size: 15px;
+            height: 40px;
+            background-color: #3DB2FF;
+            outline: none;
+            border: none;
+            color: white;
+            font-weight: 700;
+        }
     }
     & .postsList {
         display: grid;
@@ -121,6 +131,12 @@
         & .actionsBtn {
             margin-top: 2.5%;
             margin-left: 25%;
+        }
+        & .actions {
+            display: grid;
+            flex-direction: column;
+            justify-content: center;
+            justify-items: center;
         }
     }
 }

@@ -33,6 +33,8 @@ export default function AddingPosts(): JSX.Element {
                             placeholder="Название поста" 
                             onChange={(e) => setPostFormData({ ...postFormData, title: e.target.value })}
                         />
+                    </div>
+                    <div className={s.addingPostsUploadFiles}>
                         <a className={s.addingPostsFormMainFile} onClick={chooseFile}>
                             Добавить изображение к публикации 
                             (Загружено {postFormData.currentFile ? 1 : 0} / 1)

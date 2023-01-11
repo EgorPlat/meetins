@@ -37,26 +37,31 @@
             margin-top: 20%;
             margin-left: 35%;
         }
-        & .myMessage {
-            display: inline-block;
-            margin-left: 55%;
-            border-radius: 10px;
-            padding: 10px;
-            margin-top: 1%;
-            width: 40%;
-            min-height: 20px;
-            background-color: rgba($color: #86e020, $alpha: 0.3);
-            word-wrap: break-word;
+        & .myMessageBlock {
+            & .myMessage {
+                display: inline-block;
+                margin-left: 45%;
+                border-radius: 10px;
+                padding: 10px;
+                margin-top: 1%;
+                margin-right: 10px;
+                width: 50%;
+                min-height: 20px;
+                background-color: rgba($color: #86e020, $alpha: 0.3);
+                word-wrap: break-word;
+            }
         }
-        & .notMyMessage {
-            border-radius: 10px;
-            padding: 10px;
-            margin-top: 1%;
-            margin-left: 5%;
-            width: 40%;
-            min-height: 20px;
-            background-color: rgba($color: #3b81dd, $alpha: 0.6);
-            word-wrap: break-word;
+        & .notMyMessageBlock {
+            & .notMyMessage {
+                border-radius: 10px;
+                padding: 10px;
+                margin-top: 1%;
+                margin-left: 5%;
+                width: 50%;
+                min-height: 20px;
+                background-color: rgba($color: #3DB2FF, $alpha: 0.6);
+                word-wrap: break-word;
+            }
         }
         & .messageTime {
             margin-left: 90%;
