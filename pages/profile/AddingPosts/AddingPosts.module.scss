@@ -23,6 +23,7 @@
             & .addingPostsFormMainFile {
                 cursor: pointer;
                 font-size: 13px;
+                white-space: nowrap;
                 & input[type="file"] {
                     width: 5px;
                     opacity: 0;
@@ -73,9 +74,9 @@
 @media screen and (max-width: 410px) {
     .addingPosts {
         & .addingPostsForm {
-            & .addingPostsFormMain {
+            & .addingPostsUploadFiles {
                 & .addingPostsFormMainFile {
-                    font-size: 10px;
+                    font-size: 12px;
                 }
             }
         }

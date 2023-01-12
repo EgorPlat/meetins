@@ -117,8 +117,10 @@
             & .mainBlock {
                 grid-template-columns: 1fr;
                 & .bodyInfo {
+                    display: grid;
+                    justify-content: center;
+                    justify-items: center;
                     & .avatar {
-                        margin-left: 40%;
                         width: 100px;
                         height: 100px;
                     }

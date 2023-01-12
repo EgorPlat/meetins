@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import s from "./AddingPosts.module.scss";
-import { sendNewUserPost } from "../../../global/store/store";
+import { isMobile, sendNewUserPost } from "../../../global/store/store";
 import { validatePost } from "../../../global/helpers/validate";
+import { useStore } from "effector-react";
 
 export default function AddingPosts(): JSX.Element {
     
@@ -9,6 +10,7 @@ export default function AddingPosts(): JSX.Element {
     
     const [addMode, setAddMode] = useState(true);
     const [postFormData, setPostFormData] = useState({ title: "", description: "", currentFile: null });
+    const isMobile$ = useStore(isMobile);
 
     const chooseFile = () => {
         ref.current.click();
@@ -36,7 +38,7 @@ export default function AddingPosts(): JSX.Element {
                     </div>
                     <div className={s.addingPostsUploadFiles}>
                         <a className={s.addingPostsFormMainFile} onClick={chooseFile}>
-                            Добавить изображение к публикации 
+                            {!isMobile$ ? 'Добавить изображение к публикации ' : 'Добавить изображение '}
                             (Загружено {postFormData.currentFile ? 1 : 0} / 1)
                             <input 
                                 ref={ref} 

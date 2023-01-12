@@ -12,10 +12,8 @@
     border: none;
     & .title {
         font-size: 19px; 
-        & .changeMode {
+        & img {
             cursor: pointer;
-            color: grey;
-            font-size: 14px;
         }
     }
     & .interest {
@@ -31,10 +29,13 @@
     }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 380px) {
     .interests {
-        & .title {
-            font-size: 17px;
-        }
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 380px) {
+    .interests {
+        font-size: 14px;
     }
 }

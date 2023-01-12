@@ -3,6 +3,7 @@
     height: 200px;
     display: grid;
     grid-template-columns: 200px 1fr;
+    align-items: center;
     column-gap: 10px;
     & .image {
         width: 90%;
@@ -37,6 +38,7 @@
 }
 .user:hover {
     cursor: pointer;
+    background-color: rgba(215, 215, 215, 0.301);
 }
 
 @media screen and (max-width: 875px) {

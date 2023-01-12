@@ -93,10 +93,10 @@
         }
     }
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
     .customModal {
         & .customModalContent {
-            width: 300px;
+            width: 90%;
         }
     }
 }

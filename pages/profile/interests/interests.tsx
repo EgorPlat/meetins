@@ -5,6 +5,7 @@ import like from "../../../public/images/interesting.svg";
 import { getUserInterests, setCurrentProfileUser, updateInterests } from "../../../global/store/store";
 import { User } from "../../../global/interfaces";
 import ChangingInterests from "./ChangingInterests/ChangingInterests";
+import edit from '../../../public/images/edit.jpg';
 
 export default function Interests(props: {
     user: User, 
@@ -48,7 +49,9 @@ export default function Interests(props: {
                 <div className={s.title}>
                     <p><Image src={like} width={20} height={20} alt="Сердечко" />
                         <b>Интересы </b> 
-                        {isAuthedUserAreCurrentUser && <span className={s.changeMode} onClick={openChangeInterests}> изменить</span>}
+                        {isAuthedUserAreCurrentUser && 
+                            <Image width={25} height={25} src={edit} onClick={openChangeInterests} />
+                        }
                     </p>
                 </div>
                 {
