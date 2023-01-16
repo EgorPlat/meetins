@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { addNewError } from '../../../../global/store/errors_model';
 import s from './PostCommentForm.module.scss';
 
@@ -7,9 +8,10 @@ export default function PostCommentForm(props: {
 }) {
 
     const [commentText, setCommentText] = useState("");
+    const { t } = useTranslation();
     
     const handleSubmit = () => {
-        if (commentText.length < 5) {
+        if (commentText?.length < 5) {
             addNewError({ text: "Длина комментария минимум 5 символов", color: "orange", time: 3000 });
             return;
         }
@@ -19,7 +21,7 @@ export default function PostCommentForm(props: {
         <div className={s.postCommentForm}>
             <input 
                 type="text" 
-                placeholder='Введите текст комментария...' 
+                placeholder={t('Введите текст комментария')} 
                 onChange={(e) => setCommentText(e.target.value)} 
             />
             <button onClick={handleSubmit}>{`>`}</button>

@@ -1,6 +1,10 @@
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 import s from './navbar.module.scss'
 export default function Navbar(props: { currentPage: string }): JSX.Element {
+
+	const { t } = useTranslation();
+
 	return (
 		<nav className={s.nav}>
 			<ul>    
@@ -10,7 +14,7 @@ export default function Navbar(props: { currentPage: string }): JSX.Element {
 							? `${s.navLink} ${s.activeLink}`
 							: `${s.navLink}`
 					}>
-					<Link href='/login'>Вход</Link>
+					<Link href='/login'>{t('Вход')}</Link>
 				</li>
 				<li
 					className={
@@ -18,7 +22,7 @@ export default function Navbar(props: { currentPage: string }): JSX.Element {
 							? `${s.navLink} ${s.activeLink}`
 							: `${s.navLink}`
 					}>
-					<Link href='/register'>Регистрация</Link>
+					<Link href='/register'>{t('Регистрация')}</Link>
 				</li>
 			</ul>
 		</nav>

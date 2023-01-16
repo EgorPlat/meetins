@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { createdSendFileAndUploadActiveChat } from "../../../global/store/chat_model";
 import Emoji from "../emoji/emoji";
 import s from "./chatMessageForm.module.scss";
@@ -12,6 +13,7 @@ export default function ChatMessageForm(
 ): JSX.Element { 
 
     const messageRef = useRef<HTMLInputElement>();
+    const { t } = useTranslation();
 
     const sendForm = () => {
         props.onClickForm(messageRef.current.value);
@@ -30,12 +32,12 @@ export default function ChatMessageForm(
     }
     return(
         <div className={s.form}>
-            <input ref={messageRef} type="text" placeholder={props.placeholder}/>
+            <input ref={messageRef} type="text" placeholder={t(props.placeholder)}/>
             <Emoji addSmileHandler={addSmileHandler} />
             <div className={s.fileInput}>
                 <input type="file" onChange={(e) => onSendNewFile(e)}/>
             </div>
-            <button onClick={sendForm} disabled={!props.isLoaded}>{props.isLoaded ? 'Отправить' : Loader()}</button>
+            <button onClick={sendForm} disabled={!props.isLoaded}>{props.isLoaded ? t('Отправить') : Loader()}</button>
         </div>
     )
 }

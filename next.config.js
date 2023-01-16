@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 module.exports = {
   reactStrictMode: true,
   typescript: {
@@ -6,5 +7,10 @@ module.exports = {
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  i18n: {
+    locales: ['en', 'ru'],
+    defaultLocale: 'en',
+    localeDetection: true
   },
 }

@@ -18,12 +18,13 @@ import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
 import AddingPosts from "./AddingPosts/AddingPosts";
 import CustomModal from "../../global/helpers/CustomModal/CustomModal";
+import { useTranslation } from "react-i18next";
 
 function Profile(): JSX.Element {
 
     const route = useRouter();
     const asyncLoaded = useStore(isAsyncLoaded);
-
+    const { t } = useTranslation();
     const currentUser = useStore($currentProfileUser);
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
@@ -96,10 +97,10 @@ function Profile(): JSX.Element {
                             { currentUser.login !== authedUser?.login ?
                             <div className={`${s.actions}`}>
                                 <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
-                                    Диалог
+                                    {t('Диалог')}
                                     <Image alt="Сообщение" src={message} width={20} height={20} />
                                 </button>
-                                <button type="button" className={`${s.actionsBtn}`}>Пригласить +</button>
+                                <button type="button" className={`${s.actionsBtn}`}>{t('Пригласить')} +</button>
                             </div> : null
                             }
                         </div>
@@ -123,7 +124,7 @@ function Profile(): JSX.Element {
                     {
                         currentUser.login === authedUser?.login &&
                         <div className={s.addingPosts}>
-                            <button onClick={() => setIsAddPostModal(true)}>Добавить новую запись</button>
+                            <button onClick={() => setIsAddPostModal(true)}>{t('Добавить новую запись')}</button>
                         </div>
                     }
                     <div className={s.postsList}>
@@ -135,7 +136,7 @@ function Profile(): JSX.Element {
                     isDisplay={true} 
                     changeModal={onModalClick} 
                     actionConfirmed={onModalClick}>
-                        <p>Изменения вступят в силу после перезагрузки вкладки профиль.</p>
+                        <p>{t('Изменения вступят в силу после перезагрузки вкладки профиль')}.</p>
                 </Modal>
             : null}
             { isAddPostModal ? 
@@ -143,7 +144,7 @@ function Profile(): JSX.Element {
                     isDisplay={true} 
                     changeModal={onAddingModalClick} 
                     actionConfirmed={onAddingModalClick}
-                    title="Добавить новую запись"
+                    title={t('Добавить новую запись')}
                     typeOfActions="none"
                 >
                     <AddingPosts />

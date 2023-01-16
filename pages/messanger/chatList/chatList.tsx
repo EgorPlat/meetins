@@ -1,5 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { getMyDialogs, isMyDialogsLoaded, myDialogs } from "../../../global/store/chat_model";
 import { $user } from "../../../global/store/store";
 import UserChatCard from "../userChatCard/userChatCard";
@@ -10,6 +11,7 @@ export default function ChatList(): JSX.Element {
     const myDialogs$ = useStore(myDialogs);
     const isLoaded$ = useStore(isMyDialogsLoaded);
     const authedUser$ = useStore($user);
+    const { t } = useTranslation();
     
     useEffect(() => {
         getMyDialogs(); 
@@ -17,10 +19,10 @@ export default function ChatList(): JSX.Element {
     return(  
         <div className={s.chatList}>
             <div className={s.menu}>
-                <button>Все</button>
-                <button>Онлайн</button>
-                <button>Важные</button>
-                <button>Поиск</button>
+                <button>{t('Все')}</button>
+                <button>{t('Онлайн')}</button>
+                <button>{t('Важные')}</button>
+                <button>{t('Поиск')}</button>
             </div>
             <div className={s.list}>
                 {isLoaded$ !== false && myDialogs$ !== null ? myDialogs$.map( dialog => 

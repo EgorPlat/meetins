@@ -1,5 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import Loader from "../../../components/Loader/Loader";
 import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
 import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
@@ -26,6 +27,7 @@ export default function ChatZone(): JSX.Element {
     const isUserOnline = onlineUsers.filter(el => el.userId !== activeChat$.userId).length > 0;
     const ref = useRef(null);
     const messagesEndRef = useRef<HTMLSpanElement>(null);
+    const { t } = useTranslation();
 
     const sendForm = (inputValue: string) => {
         if(inputValue.length > 0) {
@@ -53,7 +55,7 @@ export default function ChatZone(): JSX.Element {
                         {activeChat$.userName}
                     </div>
                     <div className={!isUserOnline ? s.statusOnline : s.status}>
-                        {!isUserOnline ? 'В сети' : 'Не в сети'}
+                        {!isUserOnline ? t('В сети') : t('Не в сети')}
                     </div>
                 </div>
                 <div className={s.messages}>
@@ -76,14 +78,14 @@ export default function ChatZone(): JSX.Element {
                                                     width="100px" 
                                                     height="100px"
                                                 />
-                                                <a href={baseURL + message.content} target="_blank">Открыть полностью</a>
+                                                <a href={baseURL + message.content} target="_blank">{t('Открыть полностью')}</a>
                                             </div>
                                         }
                                         {
                                             message.isFile && isTypeOfFileAreVideo(message.content)
                                             && 
                                             <div className={s.messageWithVideo}>
-                                                <a href={baseURL + message.content} target="_blank">Видео - {message.content}</a>
+                                                <a href={baseURL + message.content} target="_blank">{t('Видео')} - {message.content}</a>
                                             </div>
                                         }
                                         {
@@ -105,7 +107,11 @@ export default function ChatZone(): JSX.Element {
                     <span ref={messagesEndRef}></span>
                 </div>
                 <div className={`${s.form} ${s.block}`}>
-                    <ChatMessageForm isLoaded={isMessageWithFileLoaded$} placeholder="Введите сообщение..." onClickForm={(inputValue) => sendForm(inputValue)}/>
+                    <ChatMessageForm 
+                        isLoaded={isMessageWithFileLoaded$} 
+                        placeholder="Введите сообщение" 
+                        onClickForm={(inputValue) => sendForm(inputValue)}
+                    />
                 </div>
             </div>
         )

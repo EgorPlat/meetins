@@ -6,12 +6,14 @@ import { getUserInterests, setCurrentProfileUser, updateInterests } from "../../
 import { User } from "../../../global/interfaces";
 import ChangingInterests from "./ChangingInterests/ChangingInterests";
 import edit from '../../../public/images/edit.jpg';
+import { useTranslation } from "react-i18next";
 
 export default function Interests(props: {
     user: User, 
     authedUser: User
 }): JSX.Element {
     
+    const { t } = useTranslation();
     const [currentUserInterests, setCurrentUserInterests] = useState([]);
     const [isChangeMode, setIsChangeMode] = useState(false);
     const isAuthedUserAreCurrentUser = props.authedUser?.userId === props.user?.userId;
@@ -48,7 +50,7 @@ export default function Interests(props: {
             <div className={s.interests}>
                 <div className={s.title}>
                     <p><Image src={like} width={20} height={20} alt="Сердечко" />
-                        <b>Интересы </b> 
+                        <b>{t('Интересы')}</b> 
                         {isAuthedUserAreCurrentUser && 
                             <Image width={25} height={25} src={edit} onClick={openChangeInterests} />
                         }
@@ -61,7 +63,7 @@ export default function Interests(props: {
                     ? currentUserInterests.map((elem) => 
                         <button type="button" className={`${s.interest}`} key={elem.title}>{elem.title}</button> 
                     )
-                    : <p>Хобби пока-что нет.</p>
+                    : <p>{t('Хобби пока нет')}.</p>
                 }
             </div>
         </>

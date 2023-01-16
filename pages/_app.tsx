@@ -12,6 +12,9 @@ import { io } from 'socket.io-client'
 import { useStore } from 'effector-react'
 import ErrorBlock from '../components/ErrorBlock/errorBlock'
 import { getMyDialogs } from '../global/store/chat_model'
+import '../i18n';
+import { detectUserLanguage } from '../global/helpers/helper'
+import i18n from '../i18n'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -27,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}
 
 	useEffect(() => {
+		i18n.changeLanguage(detectUserLanguage());
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
 		getMyDialogs();
@@ -45,9 +49,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 			connection$?.disconnect();
 		}
 	}, [])
-	useEffect(() => {
-        window.addEventListener("resize", handleResize);
-    })
 	return (
 		<Layout>
 			<Head>
@@ -60,5 +61,5 @@ function MyApp({ Component, pageProps }: AppProps) {
 	)
 }
 
-export default MyApp
+export default MyApp;
 

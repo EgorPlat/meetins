@@ -20,6 +20,7 @@ import {
 } from '../../global/store/register_model'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 
 export default function Login(): JSX.Element {
 	const {
@@ -30,6 +31,7 @@ export default function Login(): JSX.Element {
 	const [gender, setGender] = useState<string>('')
 	const [showPassword, setShowPassword] = useState<boolean>(false)
 	const router = useRouter();
+	const { t } = useTranslation();
 
 	const sendLoginData = (data: {
 		name: string
@@ -65,13 +67,13 @@ export default function Login(): JSX.Element {
 	return (
 		<div className={s.card}>
 			<Head>
-				<title>Регистрация</title> 
+				<title>{t('Регистрация')}</title> 
 			</Head>
-			<h2>Регистрация</h2>
+			<h2>{t('Регистрация')}</h2>
 			<form autoComplete='off' onSubmit={handleSubmit(sendLoginData)}>
 				<Input
 					icon={loginIcon}
-					placeholder='Имя'
+					placeholder={t('Имя')}
 					type='text'
 					id='login'
 					autocomplete={'off'}
@@ -90,7 +92,7 @@ export default function Login(): JSX.Element {
 				)}
 				<Input
 					icon={phoneIcon}
-					placeholder='E-mail'
+					placeholder={t('Email')}
 					type='text' 
 					id='phoneOrEmail'
 					style={{ marginTop: '25px' }}
@@ -108,7 +110,7 @@ export default function Login(): JSX.Element {
 				
 				<Input
 					icon={passIcon}
-					placeholder='Придумайте пароль'
+					placeholder={t('Пароль')}
 					type='password'
 					id='pass'
 					style={{ marginTop: '25px' }}
@@ -127,7 +129,7 @@ export default function Login(): JSX.Element {
 
 				<Input
 					icon={phoneIcon}
-					placeholder='Ваш город'
+					placeholder={t('City')}
 					type='text' 
 					id='city'
 					style={{ marginTop: '25px' }}
@@ -175,10 +177,10 @@ export default function Login(): JSX.Element {
 					/>
 				</div>
 				{errors.gender && (
-					<span className={s.errorSpan}>Пожалуйста укажите пол</span>
+					<span className={s.errorSpan}>{t('Пожалуйста укажите пол')}</span>
 				)}
 				<button type='submit' className={` btn ${s.submitBtn}`}>
-					Зарегистрироваться
+					{t('Регистрация')}
 				</button>
 			</form>
 		</div>

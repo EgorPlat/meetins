@@ -29,8 +29,22 @@
             padding: 5px;
             background-color: rgb(240, 240, 240);
         }
+        & .locale {
+            cursor: pointer;
+            & .locales {
+                display: flex;
+                column-gap: 15px;
+                & .localeImg {
+                    width: 60px;
+                    height: 50px;
+                }
+            }
+        }
+        & .info {
+            margin-top: 3%;
+        }
         & .management {
-            margin-top: 5%;
+            margin-top: 3%;
             & .description {
                 font-size: 16px;
                 margin-top: 1%;

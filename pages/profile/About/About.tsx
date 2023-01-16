@@ -1,6 +1,7 @@
 import { useStore } from "effector-react";
 import React from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { User } from "../../../global/interfaces";
 import { $user } from "../../../global/store/store";
 import s from "./About.module.scss";
@@ -10,6 +11,7 @@ export default React.memo(function About(props: {
     saveNewUserStatus: (userStatus: string) => void
 }): JSX.Element {
 
+    const { t } = useTranslation();
     const [changingStatus, setChangingStatus] = useState<boolean>(false);
     const [userStatus, setUserStatus] = useState<string>("");
     const authedUser = useStore($user);
@@ -27,15 +29,15 @@ export default React.memo(function About(props: {
     if(props.user && authedUser) {
         return(
             <div className={s.about}>
-                {isAuthedProfile && <p><b>О себе:</b><span onClick={() => newChangeSatus(true)} className={s.changeSpan}>изменить</span></p>} 
+                {isAuthedProfile && <p><b>{t('О себе')}:</b><span onClick={() => newChangeSatus(true)} className={s.changeSpan}>{t('Изменить')}</span></p>} 
                 {isAuthedProfile && authedUser.status === (null || "")
-                 ? <p style={{color: "grey"}} onClick={() => newChangeSatus(true)}>Введите Ваш статус...</p>
+                 ? <p style={{color: "grey"}} onClick={() => newChangeSatus(true)}>{t('Введите ваш статус')}...</p>
                  : null
                 }
                 {changingStatus
                  ? 
                 <div>
-                    <textarea autoFocus className={s.textChange} placeholder="Введите текст..." onChange={(event) => setUserStatus(event.target.value)}></textarea>
+                    <textarea autoFocus className={s.textChange} placeholder={t('Введите текст')} onChange={(event) => setUserStatus(event.target.value)}></textarea>
                     <button className={s.confirmBtn} onClick={saveNewStatus}>ОК</button>
                     <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>Х</button>
                 </div>

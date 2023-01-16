@@ -2,9 +2,21 @@ import { FormControl, InputAdornment, InputLabel, OutlinedInput, Slider } from "
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Loader from "../../../components/Loader/Loader";
+import { useTranslation } from "react-i18next";
+import { useScrollInfo } from "../../../global/hooks/useScrollInfo";
 import { IPeople } from "../../../global/interfaces";
-import { allPeoples, filterParams, getAllPeoples, isPeoplesLoaded, setAllPeoples, setFilterParams } from "../../../global/store/peoples_model";
+import { 
+    allPeoples, 
+    filterParams, 
+    fullUpdatePeoples, 
+    getAllPeoples, 
+    getAllPeoplesByPageNumber, 
+    isPeoplesLoaded, 
+    maxPageOfPeople, 
+    setAllPeoples, 
+    setFilterParams, 
+    setMaxPageOfPeople
+} from "../../../global/store/peoples_model";
 import { instance } from "../../../global/store/store";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
@@ -17,11 +29,25 @@ export default function SearchingPeople(): JSX.Element {
     const [events, setEvents] = useState<string[]>(['По Москве на автобусе','История любви','"Энканто"','Green DAY']);
     const [popularInterests, setPopularInterests] = useState<string[]>(['Программирование', 'Бизнес', 'Кухня', 'Природа']);
     
+    const maxPage$ = useStore(maxPageOfPeople);
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const isPeoplesLoaded$: boolean = useStore(isPeoplesLoaded);
-    const [dinamicUsers, setDinamicUsers] = useState<IPeople[]>([]);
-    
 
+    const { t } = useTranslation();
+    const [clearScrollData, setClearScrollData] = useState<boolean>(false);
+
+    const isUpdatedScroll = () => {
+        setClearScrollData(false);
+    }
+    const scrollData = useScrollInfo(maxPage$, clearScrollData, isUpdatedScroll);
+
+    const showAllPeoples = () => {
+        setClearScrollData(true);
+        let defaultAge: any = 0;
+        let defaultGender: any = 'all';
+        setFilterParams(filterParams.defaultState.age = defaultAge);
+        setFilterParams(filterParams.defaultState.gender = defaultGender);
+    }
     const getData = async (param: string, data: any) => {
           switch (param){
             case 'age': 
@@ -30,42 +56,25 @@ export default function SearchingPeople(): JSX.Element {
             case 'gender':
                 setFilterParams(filterParams.defaultState.gender = data);
                 break;
-            case 'goal':
-                setFilterParams(filterParams.defaultState.goal = data);
-                break;
-            case 'event':
-                setFilterParams(filterParams.defaultState.events = data);
-                break;
-            case 'interests':
-                setFilterParams(filterParams.defaultState.interests = data);
-                break;
             default: return;
           }
-          const response = await instance.post('users/getSortedUsers', filterParams.defaultState);
-          setAllPeoples(response.data);
+          fullUpdatePeoples([]);
+          setMaxPageOfPeople(0);
+          setClearScrollData(true);
     }
+    useEffect(() => {
+        if (scrollData > 0) {
+            getAllPeoplesByPageNumber({
+                pageNumber: scrollData,
+                pageSize: 10, 
+                filters: { age: filterParams.defaultState.age, gender: filterParams.defaultState.gender }
+            });
+        }
+    }, [scrollData])
 
     useEffect(() => {
-        getAllPeoples();
-        setDinamicUsers((dinamicUsers) =>  peoplesList$.slice(0, dinamicUsers.length+5)); 
+        fullUpdatePeoples([]);
     }, [])
-
-    useEffect(() => {
-        if(peoplesList$.length === 0) {
-            setDinamicUsers(() => [])
-        } else {
-            setDinamicUsers((dinamicUsers) =>  peoplesList$.slice(0, dinamicUsers.length+5));
-        }
-        /*const scrollHandler = (event: any) => {
-            if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight)<100) {
-                setDinamicUsers((dinamicUsers) =>  peoplesList$.slice(0, dinamicUsers.length+5));          
-            }
-        }
-        document.addEventListener('scroll', scrollHandler);
-        return () => {
-            document.removeEventListener('scroll', scrollHandler);
-        }*/
-    }, [peoplesList$])
     return(
     
         <div className={s.searching}>
@@ -116,16 +125,13 @@ export default function SearchingPeople(): JSX.Element {
                     </select>
                 </div>
                 <div className={s.users}>
-                    { isPeoplesLoaded$ 
-                    ?
                     <div className={s.usersList}>
                         {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
-                    </div> : <Loader/> 
-                    }
-                    { dinamicUsers.length === 0 ? 
+                    </div>
+                    { peoplesList$.length === 0 ? 
                     <div>
                         <h4>По Вашему запросу никого не найдено.</h4>
-                        <button onClick={() => getAllPeoples()} className={s.showAllBtn}>Показать всех</button>
+                        <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
                     </div>
                      : null 
                     }

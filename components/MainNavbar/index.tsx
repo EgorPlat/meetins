@@ -7,8 +7,11 @@ import { useEffect } from "react";
 import s from './mainNavbar.module.scss'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { $user, baseURL, isMobile, setUser } from "../../global/store/store";
+import { useTranslation } from "react-i18next";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
+
+	const { t, i18n } = useTranslation();
 
 	const [select, setSelect] = useState<string>("");
 	const user = useStore($user);
@@ -44,17 +47,17 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	}, [select])
     return(
 		<div className={s.link}>
-				<Link href="/peoples">Люди</Link>
-				<Link href="/events">События</Link>
-				<Link href="">Встречи</Link>
-				<Link href="">Интересы</Link>
-			    <button className={s.inviteBtn}>Пригласить</button>
+				<Link href="/peoples">{t('Люди')}</Link>
+				<Link href="/events">{t('События')}</Link>
+				<Link href="">{t('Встречи')}</Link>
+				<Link href="">{t('Интересы')}</Link>
+			    <button className={s.inviteBtn}>{t('Пригласить')}</button>
 			    <img src={baseURL + userAvatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
 			    <select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
 				    <option className={s.option} value="name">{user?.name}</option>
-				    <option className={s.option} value="logOut">Выход</option>
-				    <option className={s.option} value="settings">Настройки</option>
-				    <option className={s.option} value="comeBack">Вернуться</option>
+				    <option className={s.option} value="logOut">{t('Выход')}</option>
+				    <option className={s.option} value="settings">{t('Настройки')}</option>
+				    <option className={s.option} value="comeBack">{t('Вернуться')}</option>
 			    </select>
 		</div>
     )

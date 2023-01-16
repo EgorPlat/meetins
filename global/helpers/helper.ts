@@ -27,7 +27,10 @@ export function customizeDateToYYYYMMDDFormat (date: string) {
 
 export function findUserInOnlineList( email: string, onlineList: any[] ) {
     if (onlineList.length < 1 || !onlineList) return;
-    console.log(onlineList.filter(el => el.email === email));
-    
     return onlineList.filter(el => el.email === email).length > 0;
+}
+
+export function detectUserLanguage() {
+    if (window.navigator.language === 'ru') return 'ru';
+    return 'en';
 }

@@ -11,12 +11,14 @@ import PostCommentForm from "./PostCommentForm/PostCommentForm";
 import { NewComment } from "../../../global/interfaces/newComment";
 import { addNewCommentToCurrentPost } from "../../../global/store/comments_model";
 import { customizeDateToYYYYMMDDFormat } from "../../../global/helpers/helper";
+import { useTranslation } from "react-i18next";
 
 export default function ImageList(props: {currentUser: User, authedUser: User}): JSX.Element {
 
     const [isCommentsOpen, setIsCommentsOpen] = useState(false);
     const [currentPost, setCurrentPost] = useState(null);
-
+    const { t } = useTranslation();
+    
     const handleComments = (el: Post) => {
       setCurrentPost(el);
       setIsCommentsOpen(true);
@@ -56,7 +58,7 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                       </div>
                       <div className={s.postActionsComments} onClick={() => handleComments(el)}>
                         <Image src={comment} width="30px" height="30px" />
-                        Комментарии
+                        {t('Комментарии')}
                       </div>
                     </div>
                   </div>
@@ -68,7 +70,7 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                 isDisplay={isCommentsOpen} 
                 changeModal={handleModalAction}
                 actionConfirmed={handleModalAction}
-                title={`Комментарии к посту - ${currentPost.title}`}
+                title={`${t('Комментарии к посту')} - ${currentPost.title}`}
                 typeOfActions="custom"
                 actionsComponent={
                  <PostCommentForm onSubmitComment={handleSubmitComment}/>

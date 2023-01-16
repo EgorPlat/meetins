@@ -3,11 +3,12 @@ import s from "./AddingPosts.module.scss";
 import { isMobile, sendNewUserPost } from "../../../global/store/store";
 import { validatePost } from "../../../global/helpers/validate";
 import { useStore } from "effector-react";
+import { useTranslation } from "react-i18next";
 
 export default function AddingPosts(): JSX.Element {
     
     const ref = useRef(null);
-    
+    const { t } = useTranslation();
     const [addMode, setAddMode] = useState(true);
     const [postFormData, setPostFormData] = useState({ title: "", description: "", currentFile: null });
     const isMobile$ = useStore(isMobile);
@@ -32,13 +33,13 @@ export default function AddingPosts(): JSX.Element {
                     <div className={s.addingPostsFormMain}>
                         <input 
                             type="text" 
-                            placeholder="Название поста" 
+                            placeholder={t("Название поста")}
                             onChange={(e) => setPostFormData({ ...postFormData, title: e.target.value })}
                         />
                     </div>
                     <div className={s.addingPostsUploadFiles}>
                         <a className={s.addingPostsFormMainFile} onClick={chooseFile}>
-                            {!isMobile$ ? 'Добавить изображение к публикации ' : 'Добавить изображение '}
+                            {!isMobile$ ? t('Добавить изображение к публикации') : t('Добавить изображение')}
                             (Загружено {postFormData.currentFile ? 1 : 0} / 1)
                             <input 
                                 ref={ref} 
@@ -49,10 +50,10 @@ export default function AddingPosts(): JSX.Element {
                     </div>
                     <div className={s.addingPostsFormDescription}>
                         <textarea 
-                            placeholder="Введите описание к посту"
+                            placeholder={t('Введите описание к посту')}
                             onChange={(e) => setPostFormData({ ...postFormData, description: e.target.value })}
                         />
-                        <button onClick={sendNewPost}>Добавить</button>
+                        <button onClick={sendNewPost}>{t('Добавить')}</button>
                     </div>
                 </div>
             } 

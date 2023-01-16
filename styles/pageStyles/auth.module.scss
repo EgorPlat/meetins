@@ -93,4 +93,14 @@
 		width: 400px;
 	}
 }
+@media screen  and (max-width: 400px){
+	.card {
+		width: 380px;
+	}
+}
+@media screen  and (max-width: 380px){
+	.card {
+		width: 360px;
+	}
+}
 

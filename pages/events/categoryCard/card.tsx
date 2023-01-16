@@ -9,6 +9,7 @@ interface ICardProps {
 export default function Card(props: ICardProps): JSX.Element {
 
 	const router = useRouter();
+
 	const pushToCategory = () => {
 		router.push(`eventsCategory/${props.categoryRoute}`);
 	}

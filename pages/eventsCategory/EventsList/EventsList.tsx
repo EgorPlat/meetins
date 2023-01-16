@@ -1,6 +1,5 @@
 import { useStore } from "effector-react";
 import { useEffect } from "react";
-import { Loader } from "semantic-ui-react";
 import { currentEvents, getEvents, loadedStatus } from "../../../global/store/events_model";
 import { getCategoryName } from "../../../global/helpers/utils/getCategoryName";
 import s from "./EventsList.module.scss";
