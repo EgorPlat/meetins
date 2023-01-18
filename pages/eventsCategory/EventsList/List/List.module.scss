@@ -1,26 +1,39 @@
 .list {
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
     & .eventBody {
-        width: 99%;
-        min-height: 350px;
-        border: 1px solid black;
+        display: grid;
+        grid-template-columns: 4fr 8fr;
+        min-height: 150px;
         margin-top: 20px;
         margin-left: 1%;
         float: left;
-        border-radius: 15px;
-        & .eventTitle {
-            text-align: center;
-            border-radius: 15px;
-            color: white;
+        & .eventViewZone {
             font-weight: 700;
-            font-size: 24px;
-            background-color: black ;
+            text-align: center;
         }
         & .eventDescription {
-            color: white;
+            text-align: center;
+            & .free {
+                border: none;
+                background-color: rgba(43, 255, 43, 0.697);
+            }
+            & .notFree {
+                border: none;
+                background-color: rgba(59, 160, 255, 0.825);
+            }
         }
     }
     & .eventBody:hover {
         cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .list {
+        & .eventBody {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
     }
 }

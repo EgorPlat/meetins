@@ -18,8 +18,8 @@
 }
 
 .mobileMessangerContent {
-    height: 100vh;
     width: 98%;
+    min-height: 600px;
     & .mobileChatZone {
         display: grid;
         grid-template-rows: 5% 95%;

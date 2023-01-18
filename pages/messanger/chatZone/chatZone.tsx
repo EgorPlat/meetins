@@ -38,9 +38,7 @@ export default function ChatZone(): JSX.Element {
     useEffect(() => {
         updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
         getDialogMessages(activeChat$);
-        if (ref.current && window.screen.height <= 670) {
-            ref.current.scrollIntoView({behavior: "smooth"});
-        }
+        ref.current.scrollIntoView({behavior: "smooth"});
         return () => { 
             setActiveChat({} as IMyDialog);
         }
