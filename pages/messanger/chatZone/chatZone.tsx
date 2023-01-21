@@ -61,40 +61,44 @@ export default function ChatZone(): JSX.Element {
                         ? activeChat$.messages.map(message => {
                             const isMyMessage = message.senderId === authedUser?.userId;
                             return (
-                                <div key={message.sendAt} className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
-                                    <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div>
-                                        <div 
-                                            className={isMyMessage ? s.myMessage : s.notMyMessage}
-                                            key={message.content}
-                                        >
-                                        {
-                                            message.isFile && isTypeOfFileAreImage(message.content) 
-                                            && 
-                                            <div className={s.messageWithFile}>
-                                                <img 
-                                                    src={baseURL + message.content} 
-                                                    width="100px" 
-                                                    height="100px"
-                                                />
-                                                <a href={baseURL + message.content} target="_blank">{t('Открыть полностью')}</a>
+                                <div className={s.messageWrapper}>
+                                    <div className={s.messageDateWrapper}>
+                                        <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div>
+                                    </div>
+                                    <div key={message.sendAt} className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
+                                            <div 
+                                                className={isMyMessage ? s.myMessage : s.notMyMessage}
+                                                key={message.content}
+                                            >
+                                            {
+                                                message.isFile && isTypeOfFileAreImage(message.content) 
+                                                && 
+                                                <div className={s.messageWithFile}>
+                                                    <img 
+                                                        src={baseURL + message.content} 
+                                                        width="100px" 
+                                                        height="100px"
+                                                    />
+                                                    <a href={baseURL + message.content} target="_blank">{t('Открыть полностью')}</a>
+                                                </div>
+                                            }
+                                            {
+                                                message.isFile && isTypeOfFileAreVideo(message.content)
+                                                && 
+                                                <div className={s.messageWithVideo}>
+                                                    <a href={baseURL + message.content} target="_blank">{t('Видео')} - {message.content}</a>
+                                                </div>
+                                            }
+                                            {
+                                                message.isFile && !isTypeOfFileAreImage(message.content) && !isTypeOfFileAreVideo(message.content)
+                                                && <a href={`${baseURL + message.content}`}>{message.content}</a>
+                                            }
+                                            {
+                                                !message.isFile && message.content
+                                            }
+                                            <div className={s.messageTime}>
+                                                {getMinutesAndHoursFromString(message.sendAt)}
                                             </div>
-                                        }
-                                        {
-                                            message.isFile && isTypeOfFileAreVideo(message.content)
-                                            && 
-                                            <div className={s.messageWithVideo}>
-                                                <a href={baseURL + message.content} target="_blank">{t('Видео')} - {message.content}</a>
-                                            </div>
-                                        }
-                                        {
-                                            message.isFile && !isTypeOfFileAreImage(message.content) && !isTypeOfFileAreVideo(message.content)
-                                            && <a href={`${baseURL + message.content}`}>{message.content}</a>
-                                        }
-                                        {
-                                            !message.isFile && message.content
-                                        }
-                                        <div className={s.messageTime}>
-                                            {getMinutesAndHoursFromString(message.sendAt)}
                                         </div>
                                     </div>
                                 </div>

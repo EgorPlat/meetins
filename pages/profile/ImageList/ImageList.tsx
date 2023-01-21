@@ -70,7 +70,7 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                 isDisplay={isCommentsOpen} 
                 changeModal={handleModalAction}
                 actionConfirmed={handleModalAction}
-                title={`${t('Комментарии к посту')} - ${currentPost.title}`}
+                title={`${t('Комментарии к ')} - ${currentPost.title}`}
                 typeOfActions="custom"
                 actionsComponent={
                  <PostCommentForm onSubmitComment={handleSubmitComment}/>

@@ -37,50 +37,61 @@
             margin-top: 20%;
             margin-left: 35%;
         }
-        & .myMessageBlock {
-            & .myMessage {
-                display: inline-block;
-                margin-left: 45%;
-                border-radius: 10px;
-                padding: 10px;
-                margin-top: 1%;
-                margin-right: 10px;
-                width: 50%;
-                min-height: 20px;
-                background-color: rgba($color: #86e020, $alpha: 0.3);
-                word-wrap: break-word;
+        & .messageWrapper {
+            & .myMessageBlock {
+                display: grid;
+                justify-items: right;
+                justify-content: right;
+                & .myMessage {
+                    display: inline;
+                    max-width: 400px;
+                    border-radius: 10px;
+                    padding: 10px;
+                    margin-top: 1%;
+                    margin-right: 10px;
+                    min-height: 20px;
+                    background-color: rgba($color: #86e020, $alpha: 0.3);
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                }
             }
-        }
-        & .notMyMessageBlock {
-            & .notMyMessage {
-                border-radius: 10px;
-                padding: 10px;
-                margin-top: 1%;
-                margin-left: 5%;
+            & .notMyMessageBlock {
                 width: 50%;
-                min-height: 20px;
-                background-color: rgba($color: #3DB2FF, $alpha: 0.6);
-                word-wrap: break-word;
+                & .notMyMessage {
+                    display: inline-block;
+                    border-radius: 10px;
+                    padding: 10px;
+                    margin-top: 1%;
+                    margin-left: 5%;
+                    min-height: 20px;
+                    background-color: rgba($color: #3DB2FF, $alpha: 0.6);
+                    word-wrap: break-word;
+                }
             }
-        }
-        & .messageTime {
-            margin-left: 90%;
-            font-size: 10px;
-            color: grey;
-        }
-        & .messageDate{
-            margin-left: 45%;
-            font-size: 10px;
-            color: grey;
-        }
-        & .messageWithFile {
-            display: grid;
-            grid-template-columns: 1fr;
+            & .messageDateWrapper {
+                display: flex;
+                justify-content: center;
+                justify-items: center;
+                & .messageDate{
+                    font-size: 10px;
+                    color: grey;
+                }
+            }
+            & .messageTime {
+                font-size: 10px;
+                color: grey;
+            }
+            & .messageWithFile {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
         }
     }
     & .form {
         display: grid;
         align-items: center;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     & .messages::-webkit-scrollbar {
         width: 12px;               /* ширина scrollbar */
@@ -142,17 +153,44 @@
 
 @media screen and (max-width: 750px) {
     .chat {
+        grid-template-rows: 15% 80% 15%;
         & .messages {
-            & .messageTime {
-                margin-left: 77%;
+            & .messageWrapper {
+                & .myMessageBlock {
+                    & .myMessage {
+                        max-width: 350px;
+                    }
+                }
             }
         }
     }
 }
-
-@media screen and (max-width: 750px) and (min-height: 780px) {
+@media screen and (max-width: 500px) {
     .chat {
         grid-template-rows: 15% 80% 15%;
+        & .messages {
+            & .messageWrapper {
+                & .myMessageBlock {
+                    & .myMessage {
+                        max-width: 250px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .chat {
+        grid-template-rows: 15% 80% 15%;
+        & .messages {
+            & .messageWrapper {
+                & .myMessageBlock {
+                    & .myMessage {
+                        max-width: 200px;
+                    }
+                }
+            }
+        }
     }
 }
 
