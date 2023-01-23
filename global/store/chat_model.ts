@@ -15,11 +15,14 @@ const myDialogsWatcher = createEffect(( params: { myDialogs: IMyDialog[], authed
     const count = params.myDialogs.reduce((prev, curr) => {
         let dialogUnReadMessages = 0;
         curr.messages.map(message => {
-            if (!message.isRead && params.authedUser.userId !== message.senderId) dialogUnReadMessages += 1;
+            if (!message.isRead && params.authedUser.userId !== message.senderId) {
+                dialogUnReadMessages += 1;
+            }
         })
         return prev += dialogUnReadMessages;
     }, 0);
     if (count) setCountUreadMessages(count);
+    if (!count) setCountUreadMessages(0);
 })
 sample({
     source: { myDialogs: myDialogs, authedUser: $user, activeChat: activeChat },
@@ -65,9 +68,7 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
         }
     }
 })
-export const sendMessageAndUploadActiveChat = createEffect((params: {message: string, dataStore: 
-    {activeChat: IMyDialog}
-}) => {
+export const sendMessageAndUploadActiveChat = createEffect((params: { message: string, dataStore: {activeChat: IMyDialog} }) => {
     const actualActiveChat = params.dataStore.activeChat;
     if(actualActiveChat) {
         if(actualActiveChat.userId == undefined) {
@@ -108,13 +109,17 @@ export const createdSendFileAndUploadActiveChat = attach({
     },
   })
 
+
+
+
+
 export const getMyDialogs = createEffect(async () => {
-    setIsMyDialogsLoaded(false);
+    //setIsMyDialogsLoaded(false);
     try {
         const response = await instance.get('chat/my-dialogs');
         if(response.status === 200) {
             setMyDialogs(response.data);
-            setIsMyDialogsLoaded(true);
+            //setIsMyDialogsLoaded(true);
             return response.data;
         }
     }  
@@ -159,6 +164,7 @@ export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId:
     try {
         const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
         if(response.status === 200) {
+            getMyDialogs();
             return response;
         }
     } catch(error) {
