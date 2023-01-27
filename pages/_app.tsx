@@ -33,7 +33,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 		i18n.changeLanguage(detectUserLanguage());
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
-		getMyDialogs();
 		if(localStorage.getItem('access-token') !== '') {
 			const newConnection = io(baseURL, {
 				extraHeaders: {

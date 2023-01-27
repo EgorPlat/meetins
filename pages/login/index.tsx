@@ -40,6 +40,7 @@ export default function Login(): JSX.Element {
 		<div className={s.card}>
 			<Head> 
 				<title>{t('Вход')}</title>
+				<meta name="keywords" content="meetins, meetin-s, Meetins, Meetin-s, знакомства, meetings, meet" />
 			</Head>
 			<h2>{t('Вход')}</h2>
 			<form onSubmit={handleSubmit(sendLoginData)}>
