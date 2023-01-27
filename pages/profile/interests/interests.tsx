@@ -49,12 +49,11 @@ export default function Interests(props: {
         <>
             <div className={s.interests}>
                 <div className={s.title}>
-                    <p><Image src={like} width={20} height={20} alt="Сердечко" />
-                        <b>{t('Интересы')}</b> 
-                        {isAuthedUserAreCurrentUser && 
-                            <Image width={25} height={25} src={edit} onClick={openChangeInterests} />
-                        }
-                    </p>
+                    <Image src={like} width={20} height={20} alt="Сердечко" />
+                    <b>{t('Интересы')}</b> 
+                    {isAuthedUserAreCurrentUser && 
+                        <Image width={25} height={25} src={edit} onClick={openChangeInterests} />
+                    }
                 </div>
                 {
                     isChangeMode 

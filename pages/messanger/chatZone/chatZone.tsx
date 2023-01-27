@@ -36,9 +36,11 @@ export default function ChatZone(): JSX.Element {
     }
 
     useEffect(() => {
-        updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
-        getDialogMessages(activeChat$);
-        ref.current.scrollIntoView({behavior: "smooth"});
+        if (activeChat$.dialogId !== '-') {
+            updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
+            getDialogMessages(activeChat$);
+            ref.current.scrollIntoView({behavior: "smooth"});
+        }
         return () => { 
             setActiveChat({} as IMyDialog);
         }
@@ -113,6 +115,7 @@ export default function ChatZone(): JSX.Element {
                         isLoaded={isMessageWithFileLoaded$} 
                         placeholder="Введите сообщение" 
                         onClickForm={(inputValue) => sendForm(inputValue)}
+                        isChatExists={!!activeChat$.userId}
                     />
                 </div>
             </div>

@@ -71,7 +71,7 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
 export const sendMessageAndUploadActiveChat = createEffect((params: { message: string, dataStore: {activeChat: IMyDialog} }) => {
     const actualActiveChat = params.dataStore.activeChat;
     if(actualActiveChat) {
-        if(actualActiveChat.userId == undefined) {
+        if(actualActiveChat.dialogId !== '-') {
             sendMessageInDialog(
                 {dialogId: actualActiveChat.dialogId, content: params.message}
             ).then((response) => {
@@ -88,9 +88,9 @@ export const sendMessageAndUploadActiveChat = createEffect((params: { message: s
                     messages: response?.data,
                     status: true
                 });
-                getMyDialogs();
             });
         }
+        getMyDialogs(false);
     }
 }); 
 export const createdSendMessageAndUploadActiveChat = attach({
@@ -113,13 +113,13 @@ export const createdSendFileAndUploadActiveChat = attach({
 
 
 
-export const getMyDialogs = createEffect(async () => {
-    //setIsMyDialogsLoaded(false);
+export const getMyDialogs = createEffect(async (isFirstGetDialogs: boolean) => {
+    if (isFirstGetDialogs) setIsMyDialogsLoaded(false);
     try {
         const response = await instance.get('chat/my-dialogs');
         if(response.status === 200) {
             setMyDialogs(response.data);
-            //setIsMyDialogsLoaded(true);
+            if (isFirstGetDialogs) setIsMyDialogsLoaded(true);
             return response.data;
         }
     }  
@@ -164,7 +164,7 @@ export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId:
     try {
         const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
         if(response.status === 200) {
-            getMyDialogs();
+            getMyDialogs(true);
             return response;
         }
     } catch(error) {

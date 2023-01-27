@@ -9,6 +9,7 @@ export default function ChatMessageForm(
         placeholder: string,
         onClickForm: (inputValue: string) => void,
         isLoaded: boolean,
+        isChatExists: boolean
     }
 ): JSX.Element { 
 
@@ -22,8 +23,10 @@ export default function ChatMessageForm(
         messageRef.current.value = messageRef.current.value + emoji;
     }
     const onSendNewFile = async (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files[0];
-        createdSendFileAndUploadActiveChat(file);
+        if (props.isChatExists) {
+            const file = event.target.files[0];
+            createdSendFileAndUploadActiveChat(file);
+        }
     }
     const Loader = () => {
         return (
@@ -34,7 +37,7 @@ export default function ChatMessageForm(
         <div className={s.form}>
             <input ref={messageRef} type="text" placeholder={t(props.placeholder)}/>
             <Emoji addSmileHandler={addSmileHandler} />
-            <div className={s.fileInput}>
+            <div className={props.isChatExists ? s.fileInputBlocked : s.fileInput}>
                 <input type="file" onChange={(e) => onSendNewFile(e)}/>
             </div>
             <button onClick={sendForm} disabled={!props.isLoaded}>{props.isLoaded ? t('Отправить') : Loader()}</button>

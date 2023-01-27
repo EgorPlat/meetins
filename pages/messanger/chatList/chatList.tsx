@@ -1,7 +1,7 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { getMyDialogs, isMyDialogsLoaded, myDialogs } from "../../../global/store/chat_model";
+import { getMyDialogs, isMyDialogsLoaded, myDialogs, setMyDialogs } from "../../../global/store/chat_model";
 import { $user } from "../../../global/store/store";
 import UserChatCard from "../userChatCard/userChatCard";
 import s from "./chatList.module.scss";
@@ -14,8 +14,12 @@ export default function ChatList(): JSX.Element {
     const { t } = useTranslation();
     
     useEffect(() => {
-        getMyDialogs(); 
-    },[]) 
+        getMyDialogs(true);
+        return () => {
+            setMyDialogs([]);
+        }
+    },[])
+
     return(  
         <div className={s.chatList}>
             <div className={s.menu}>

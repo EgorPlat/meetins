@@ -167,7 +167,6 @@
 }
 @media screen and (max-width: 500px) {
     .chat {
-        grid-template-rows: 15% 80% 15%;
         & .messages {
             & .messageWrapper {
                 & .myMessageBlock {
@@ -181,7 +180,6 @@
 }
 @media screen and (max-width: 400px) {
     .chat {
-        grid-template-rows: 15% 80% 15%;
         & .messages {
             & .messageWrapper {
                 & .myMessageBlock {

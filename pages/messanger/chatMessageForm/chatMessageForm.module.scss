@@ -25,6 +25,20 @@
             opacity: 0;
         }
     }
+    & .fileInputBlocked {
+        width: 45px;
+        height: 45px;
+        border-radius: 5px;
+        background-image: url('../../../public/images/inputFile.png');
+        background-size: 45px 45px;
+        margin-right: 5px;
+        opacity: 0.4;
+        & input[type='file'] {
+            width: 45px;
+            height: 45px;
+            opacity: 0;
+        }
+    }
     & button {
         display: flex;
         justify-content: center;

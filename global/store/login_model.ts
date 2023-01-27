@@ -1,7 +1,5 @@
 import { instance, setUser } from './store'
 import { createEffect, createEvent, createStore, sample } from 'effector'
-import { responseSymbol } from 'next/dist/server/web/spec-compliant/fetch-event'
-import { User } from '../interfaces'
 
 
 type LoginDetailsType = {
