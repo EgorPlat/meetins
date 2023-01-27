@@ -68,22 +68,24 @@ function Profile(): JSX.Element {
     return(
         <PageContainer>
         <div className={s.profile}>
-        {asyncLoaded 
-                ? 
+            {   
+                asyncLoaded ? 
                 <div className={`${s.bodyCol}`}>
 
                     <div className={`${s.block} ${s.mainBlock}`}>
                         <div className={`${s.bodyInfo}`}>
-                            {!addingImageStatus ?
-                            <img 
-                                onMouseEnter={() => changeAddingImageStatus(true)}
-                                src={baseURL + currentUser.avatar}
-                                alt="Аватарка" 
-                                className={`${s.avatar}`}
-                                /> : <InputFile 
-                                    onChange={(event) => onChangeInputImage(event)} 
-                                    onMouseLeave={() => changeAddingImageStatus(false)}
-                            />}
+                            {
+                                !addingImageStatus ?
+                                <img 
+                                    onMouseEnter={() => changeAddingImageStatus(true)}
+                                    src={baseURL + currentUser.avatar}
+                                    alt="Аватарка" 
+                                    className={`${s.avatar}`}
+                                    /> : <InputFile 
+                                        onChange={(event) => onChangeInputImage(event)} 
+                                        onMouseLeave={() => changeAddingImageStatus(false)}
+                                />
+                            }
                         </div>
                         <div className={`${s.userInfo}`}>
                             <div>
@@ -94,14 +96,15 @@ function Profile(): JSX.Element {
                                     г. {currentUser.city}
                                 </div>
                             </div>
-                            { currentUser.login !== authedUser?.login ?
-                            <div className={`${s.actions}`}>
-                                <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
-                                    {t('Диалог')}
-                                    <Image alt="Сообщение" src={message} width={20} height={20} />
-                                </button>
-                                <button type="button" className={`${s.actionsBtn}`}>{t('Пригласить')} +</button>
-                            </div> : null
+                            { 
+                                currentUser.login !== authedUser?.login ?
+                                <div className={`${s.actions}`}>
+                                    <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
+                                        {t('Диалог')}
+                                        <Image alt="Сообщение" src={message} width={20} height={20} />
+                                    </button>
+                                    <button type="button" className={`${s.actionsBtn}`}>{t('Пригласить')} +</button>
+                                </div> : null
                             }
                         </div>
                     </div>
@@ -130,7 +133,8 @@ function Profile(): JSX.Element {
                     <div className={s.postsList}>
                         { authedUser && <ImageList currentUser={currentUser} authedUser={authedUser} /> }
                     </div>
-                </div> : <Loader/>}
+                </div> : <Loader/>
+            }
             { isModal ? 
                 <Modal 
                     isDisplay={true} 

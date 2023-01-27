@@ -20,8 +20,10 @@ export const setIsPeoplesLoaded = createEvent<boolean>();
 export const isPeoplesLoaded = createStore<boolean>(false).on(setIsPeoplesLoaded, (_, peoplesLoaded) => {
     return peoplesLoaded;
 });
-export const setFilterParams = createEvent();
-export const filterParams = createStore<Params | any>({gender: "all", age: 0});
+export const setFilterParams = createEvent<Params>();
+export const filterParams = createStore<Params>({gender: "all", age: 0}).on(setFilterParams, (_, newFilterParams) => {
+    return newFilterParams;
+});
 
 export const getAllPeoplesByPageNumber = createEffect(async (data: { pageNumber: number, pageSize: number, filters: any }) => {
     setIsPeoplesLoaded(false);

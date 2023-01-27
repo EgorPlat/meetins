@@ -49,9 +49,6 @@ export interface IPeople {
 export interface Params {
     gender: string,
     age: number,
-    goal: string,
-    events: string[],
-    interests: string[],
 }
 export interface IParams {
     gender?: string,

@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 
-export const useScrollInfo = (maxPage: number, isClearNeeded: boolean, isUpdated: () => void) => {
+export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handleIsCleared: () => void) => {
 
-    const [lastScrollFromTopValue, setLastScrollFromTopValue] = useState(0);
+    const [currentPageNumber, setCurrentPageNumber] = useState(0);
     const [arrayHeights, setArrayHeights] = useState([]);
 
     const handleScroll = () => {
         const isScrollEnded = (window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight;
-        const isPageAlreadyExists = !arrayHeights.includes(document.body.offsetHeight);
+        const isPageDoesntExists = !arrayHeights.includes(document.body.offsetHeight);
         const isNewPageAreMoreThenMax = arrayHeights.length < maxPage || maxPage === 0;
 
-        if (isScrollEnded && isPageAlreadyExists && isNewPageAreMoreThenMax) {
+        if (isScrollEnded && isPageDoesntExists && isNewPageAreMoreThenMax) {
             setArrayHeights((lastValue) => [...lastValue, document.body.offsetHeight]);
-            setLastScrollFromTopValue((lastValue) => lastValue + 1);
+            setCurrentPageNumber((lastValue) => lastValue + 1);
         }
     }
 
     useEffect(() => {
         if (isClearNeeded) {
             setArrayHeights(() => []);
-            setLastScrollFromTopValue(() => 0);
-            isUpdated();
+            setCurrentPageNumber(() => 0);
+            handleIsCleared();
         }
     }, [isClearNeeded]);
 
@@ -31,5 +31,5 @@ export const useScrollInfo = (maxPage: number, isClearNeeded: boolean, isUpdated
         }
     }, [arrayHeights]);
 
-    return lastScrollFromTopValue;
+    if (currentPageNumber !== 0) return currentPageNumber;
 }

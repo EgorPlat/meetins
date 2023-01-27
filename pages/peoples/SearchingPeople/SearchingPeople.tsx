@@ -3,11 +3,11 @@ import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useScrollInfo } from "../../../global/hooks/useScrollInfo";
-import { IPeople } from "../../../global/interfaces";
+import { useScrollDownInfo } from "../../../global/hooks/useScrollInfo";
+import { IPeople, Params } from "../../../global/interfaces";
 import { 
     allPeoples, 
-    filterParams, 
+    filterParams,
     fullUpdatePeoples, 
     getAllPeoples, 
     getAllPeoplesByPageNumber, 
@@ -31,45 +31,33 @@ export default function SearchingPeople(): JSX.Element {
     
     const maxPage$ = useStore(maxPageOfPeople);
     const peoplesList$: IPeople[] = useStore(allPeoples);
-    const isPeoplesLoaded$: boolean = useStore(isPeoplesLoaded);
+    const filterParams$: Params = useStore(filterParams);
 
     const { t } = useTranslation();
-    const [clearScrollData, setClearScrollData] = useState<boolean>(false);
 
-    const isUpdatedScroll = () => {
+    const [clearScrollData, setClearScrollData] = useState<boolean>(false);
+    const handleClearedScroll = () => {
         setClearScrollData(false);
     }
-    const scrollData = useScrollInfo(maxPage$, clearScrollData, isUpdatedScroll);
+    const scrollData = useScrollDownInfo(maxPage$, clearScrollData, handleClearedScroll);
 
     const showAllPeoples = () => {
         setClearScrollData(true);
-        let defaultAge: any = 0;
-        let defaultGender: any = 'all';
-        setFilterParams(filterParams.defaultState.age = defaultAge);
-        setFilterParams(filterParams.defaultState.gender = defaultGender);
+        setFilterParams({ gender: 'all', age: 0 });
     }
-    const getData = async (param: string, data: any) => {
-          switch (param){
-            case 'age': 
-                setFilterParams(filterParams.defaultState.age = data);
-                break;
-            case 'gender':
-                setFilterParams(filterParams.defaultState.gender = data);
-                break;
-            default: return;
-          }
-          fullUpdatePeoples([]);
-          setMaxPageOfPeople(0);
-          setClearScrollData(true);
+    const updateFilters = async (param: string, data: any) => {
+        if (param === 'age') setFilterParams({ ...filterParams$, age: data });
+        if (param === 'gender') setFilterParams({ ...filterParams$, gender: data });
+        fullUpdatePeoples([]);
+        setMaxPageOfPeople(0);
+        setClearScrollData(true);
     }
     useEffect(() => {
-        if (scrollData > 0) {
-            getAllPeoplesByPageNumber({
-                pageNumber: scrollData,
-                pageSize: 10, 
-                filters: { age: filterParams.defaultState.age, gender: filterParams.defaultState.gender }
-            });
-        }
+        getAllPeoplesByPageNumber({
+            pageNumber: scrollData,
+            pageSize: 10, 
+            filters: { age: filterParams$.age, gender: filterParams$.gender }
+        });
     }, [scrollData])
 
     useEffect(() => {
@@ -82,12 +70,17 @@ export default function SearchingPeople(): JSX.Element {
                 <div className={s.gender}>
                     <div className={s.part}>
                         <h4>Пол</h4>
-                        <button onClick={() => getData("gender", "male")}>М</button>
-                        <button onClick={() => getData("gender", "female")}>Ж</button>
+                        <button onClick={() => updateFilters("gender", "male")}>М</button>
+                        <button onClick={() => updateFilters("gender", "female")}>Ж</button>
                     </div>
                     <div className={s.part}>
                         <h4>Возвраст</h4>
-                        <Slider onChangeCommitted={(event, newValue) => getData("age", newValue)} defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
+                        <Slider 
+                            onChangeCommitted={(event, newValue) => updateFilters("age", newValue)} 
+                            defaultValue={50} 
+                            aria-label="Default" 
+                            valueLabelDisplay="auto" 
+                        />
                     </div>
                     <div className={s.part}>
                         <h4>Расстояние</h4>
@@ -96,12 +89,12 @@ export default function SearchingPeople(): JSX.Element {
                 </div>
                 <div className={s.goal}>
                     <h4>Цель</h4>
-                    { goals.map((goal) => <div onClick={() => getData("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>)}
+                    { goals.map((goal) => <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>)}
                 </div>
                 <div className={s.events}>
                     <h4>В событиях</h4>
                     <h6>Предстоящие</h6>
-                    { events.map((event) => <div onClick={() => getData("event", event)} className={s.eachEvent} key={event}>{event}</div>)}
+                    { events.map((event) => <div onClick={() => updateFilters("event", event)} className={s.eachEvent} key={event}>{event}</div>)}
                 </div>
                 <div className={s.interests}>
                     <h4>По интересам</h4>
@@ -113,7 +106,11 @@ export default function SearchingPeople(): JSX.Element {
                         label="Amount"
                     />
                     </FormControl>
-                    {popularInterests.map((popular) => <div onClick={() => getData("interests", popular)} className={s.eachPopular} key={popular}>{popular}</div>)}
+                    { 
+                        popularInterests.map((popular) => (
+                            <div onClick={() => updateFilters("interests", popular)} className={s.eachPopular} key={popular}>{popular}</div>
+                        ))
+                    }
                 </div>
             </div>
             <div className={s.result}>
@@ -128,12 +125,13 @@ export default function SearchingPeople(): JSX.Element {
                     <div className={s.usersList}>
                         {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
                     </div>
-                    { peoplesList$.length === 0 ? 
-                    <div>
-                        <h4>По Вашему запросу никого не найдено.</h4>
-                        <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
-                    </div>
-                     : null 
+                    { 
+                        peoplesList$.length === 0 ? 
+                        <div>
+                            <h4>По Вашему запросу никого не найдено.</h4>
+                            <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
+                        </div>
+                        : null 
                     }
                 </div>
             </div>
