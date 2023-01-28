@@ -38,6 +38,7 @@
             margin-left: 35%;
         }
         & .messageWrapper {
+            margin-top: 1%;
             & .myMessageBlock {
                 display: grid;
                 justify-items: right;
@@ -47,7 +48,6 @@
                     max-width: 400px;
                     border-radius: 10px;
                     padding: 10px;
-                    margin-top: 1%;
                     margin-right: 10px;
                     min-height: 20px;
                     background-color: rgba($color: #86e020, $alpha: 0.3);
@@ -72,7 +72,11 @@
                 display: flex;
                 justify-content: center;
                 justify-items: center;
-                & .messageDate{
+                & .messageDate {
+                    padding: 5px;
+                    background-color: #d0ecff81;
+                    border-radius: 100px;
+                    border: 1px solid grey;
                     font-size: 10px;
                     color: grey;
                 }

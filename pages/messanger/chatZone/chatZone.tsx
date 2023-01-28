@@ -60,12 +60,16 @@ export default function ChatZone(): JSX.Element {
                 </div>
                 <div className={s.messages}>
                     {activeChat$.messages
-                        ? activeChat$.messages.map(message => {
+                        ? activeChat$.messages.map((message, index) => {
                             const isMyMessage = message.senderId === authedUser?.userId;
+                            const isDateAlreadyExist = 
+                                getDateInDMFormat(message.sendAt) !== getDateInDMFormat(activeChat$.messages[index - 1]?.sendAt);
                             return (
                                 <div className={s.messageWrapper}>
                                     <div className={s.messageDateWrapper}>
-                                        <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div>
+                                        { isDateAlreadyExist && 
+                                            <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div> 
+                                        }
                                     </div>
                                     <div key={message.sendAt} className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
                                             <div 
@@ -99,7 +103,7 @@ export default function ChatZone(): JSX.Element {
                                                 !message.isFile && message.content
                                             }
                                             <div className={s.messageTime}>
-                                                {getMinutesAndHoursFromString(message.sendAt)}
+                                                { getMinutesAndHoursFromString(message.sendAt) }
                                             </div>
                                         </div>
                                     </div>

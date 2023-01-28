@@ -14,7 +14,9 @@ export default function ManageAccountForm(): JSX.Element {
     const { t } = useTranslation();
 
     const onChangeAccount = (data: {email: string, password: string, login: string}) => {
-        updateUserAccountData(data);
+        if (data.password.length !== 0 && data.login.length !== 0) {
+            updateUserAccountData(data);
+        }
     }
     return (
         <div className={s.manageAcc}>
@@ -46,7 +48,7 @@ export default function ManageAccountForm(): JSX.Element {
             : isUpdated !== null 
             ? <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (email, адрес)</div>
             : null }
-            <button type="submit" className={s.saveButton}>{t('Сохранить')}</button>
+                <button type="submit" className={s.saveButton}>{t('Сохранить')}</button>
             </form>
         </div>
     )
