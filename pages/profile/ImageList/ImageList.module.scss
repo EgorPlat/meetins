@@ -10,7 +10,7 @@
         grid-template-columns: 1fr;
         & .postTitle {
             display: grid;
-            grid-template-columns: 3fr 1fr;
+            grid-template-columns: 65% 35%;
             font-weight: 600;
             & .date {
                 text-align: right;
@@ -83,6 +83,7 @@
     .postsList {
         & .post {
             & .postTitle {
+                font-size: 20px;
                 & .date {
                     font-size: 14px;
                 }
@@ -94,8 +95,17 @@
     .postsList {
         & .post {
             & .postTitle {
+                font-size: 18px;
                 & .date {
                     font-size: 13px;
+                }
+            }
+            & .postActions {
+                & .postActionsLikes {
+                    font-size: 16px;
+                }
+                & .postActionsComments {
+                    font-size: 16px;
                 }
             }
         }
