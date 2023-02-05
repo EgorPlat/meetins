@@ -13,23 +13,23 @@ import About from "./About/About";
 import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import PageContainer from "../../components/pageContainer/pageContainer";
-import { activeChat, checkDialog, getDialogMessages, getMyDialogs, myDialogs, setActiveChat } from "../../global/store/chat_model";
-import { IMyDialog, User } from "../../global/interfaces";
+import { checkDialog, } from "../../global/store/chat_model";
 import Modal from "../../global/helpers/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
-import { defaultDialog } from "../../global/mock/defaultDialog";
+import AddingPosts from "./AddingPosts/AddingPosts";
+import CustomModal from "../../global/helpers/CustomModal/CustomModal";
+import { useTranslation } from "react-i18next";
 
 function Profile(): JSX.Element {
 
     const route = useRouter();
     const asyncLoaded = useStore(isAsyncLoaded);
-
+    const { t } = useTranslation();
     const currentUser = useStore($currentProfileUser);
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
     const [isModal, setIsModal] = useState(false);
-    const myDialogs$ = useStore(myDialogs);
-    const activeChat$ = useStore(activeChat);
+    const [isAddPostModal, setIsAddPostModal] = useState(false);
 
     const changeAddingImageStatus = (status: boolean) => {
         if(currentUser.login === authedUser?.login) {
@@ -54,7 +54,13 @@ function Profile(): JSX.Element {
         Router.push('/messanger')
     } 
     const onModalClick = (status: boolean) => {
+        if (status) {
+            window.location.reload();
+        }
         setIsModal(false);
+    }
+    const onAddingModalClick = () => {
+        setIsAddPostModal(false);
     }
     useEffect( () => {
         getDataForProfilePage(route);
@@ -62,69 +68,91 @@ function Profile(): JSX.Element {
     return(
         <PageContainer>
         <div className={s.profile}>
-            <div className="row">
-                {asyncLoaded 
-                ? 
-                <div className={`col-md-10 ${s.bodyCol}`}>
+            {   
+                asyncLoaded ? 
+                <div className={`${s.bodyCol}`}>
 
-                <div className={`row ${s.block}`}>
-                    <div className={`col-md-3 ${s.bodyInfo}`}>
-                       {!addingImageStatus ?
-                       <img 
-                        onMouseEnter={() => changeAddingImageStatus(true)}
-                        src={baseURL + currentUser.avatar}
-                        alt="Аватарка" 
-                        className={`${s.avatar}`}
-                        /> : <InputFile 
-                            onChange={(event) => onChangeInputImage(event)} 
-                            onMouseLeave={() => changeAddingImageStatus(false)}
-                        />}
-                    </div>
-                    <div className={`col-md-8 ${s.userInfo}`}>
-                        <div className="row">
-                            <div className={`col ${s.userName}`}>
-                                {currentUser.name + ', ' + "20"}
+                    <div className={`${s.block} ${s.mainBlock}`}>
+                        <div className={`${s.bodyInfo}`}>
+                            {
+                                !addingImageStatus ?
+                                <img 
+                                    onMouseEnter={() => changeAddingImageStatus(true)}
+                                    src={baseURL + currentUser.avatar}
+                                    alt="Аватарка" 
+                                    className={`${s.avatar}`}
+                                    /> : <InputFile 
+                                        onChange={(event) => onChangeInputImage(event)} 
+                                        onMouseLeave={() => changeAddingImageStatus(false)}
+                                />
+                            }
+                        </div>
+                        <div className={`${s.userInfo}`}>
+                            <div>
+                                <div className={`${s.userName}`}>
+                                    {currentUser.name + ', ' + currentUser.age}
+                                </div>
+                                <div className={s.town}>
+                                    г. {currentUser.city}
+                                </div>
                             </div>
+                            { 
+                                currentUser.login !== authedUser?.login ?
+                                <div className={`${s.actions}`}>
+                                    <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
+                                        {t('Диалог')}
+                                        <Image alt="Сообщение" src={message} width={20} height={20} />
+                                    </button>
+                                    <button type="button" className={`${s.actionsBtn}`}>{t('Пригласить')} +</button>
+                                </div> : null
+                            }
                         </div>
-                        <div className={s.town}>
-                            г. Санкт-Петербург
+                    </div>
+
+                    <div className={`${s.block}`}>
+                        <div className={`${s.text}`}>
+                            <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
                         </div>
-                        { currentUser.login !== authedUser?.login ?
-                        <div className={`${s.actions}`}>
-                            <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
-                                Диалог
-                                <Image alt="Сообщение" src={message} width={20} height={20} />
-                            </button>
-                            <button type="button" className={`${s.actionsBtn}`}>Пригласить +</button>
-                        </div> : null
-                        }
                     </div>
-                </div>
 
-                <div className={`row ${s.block}`}>
-                    <div className={`${s.text}`}>
-                        <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
-                    </div>
-                </div>
+                    <div className={`${s.moreInfo}`}>
+                        <div className={`${s.block} ${s.interests}`}>
+                            <Interests user={currentUser} authedUser={authedUser} />
+                        </div>
+                        <div className={`${s.block} ${s.places}`}>
+                            <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
+                        </div>
+                    </div> 
 
-                <div className={`row ${s.moreInfo}`}>
-                    <div className={`col ${s.block} ${s.interests}`}>
-                        <Interests interest={['Плавание','Йога','Волейбол','Бокс']}/>
+                    {
+                        currentUser.login === authedUser?.login &&
+                        <div className={s.addingPosts}>
+                            <button onClick={() => setIsAddPostModal(true)}>{t('Добавить новую запись')}</button>
+                        </div>
+                    }
+                    <div className={s.postsList}>
+                        { authedUser && <ImageList currentUser={currentUser} authedUser={authedUser} /> }
                     </div>
-                    <div className={`col ${s.block} ${s.places}`}>
-                        <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
-                    </div>
-                </div> 
-
-                <div className={`row`}>
-                    <div className="col">
-                        <ImageList images={[]} />
-                    </div>
-                </div>
-            </div> : <Loader/>}
-            </div>
+                </div> : <Loader/>
+            }
             { isModal ? 
-            <Modal isDisplay={true} changeModal={onModalClick} actionConfirmed={onModalClick}><p>Изменения вступят в силу после перезагрузки вкладки профиль.</p></Modal>
+                <Modal 
+                    isDisplay={true} 
+                    changeModal={onModalClick} 
+                    actionConfirmed={onModalClick}>
+                        <p>{t('Изменения вступят в силу после перезагрузки вкладки профиль')}.</p>
+                </Modal>
+            : null}
+            { isAddPostModal ? 
+                <CustomModal 
+                    isDisplay={true} 
+                    changeModal={onAddingModalClick} 
+                    actionConfirmed={onAddingModalClick}
+                    title={t('Добавить новую запись')}
+                    typeOfActions="none"
+                >
+                    <AddingPosts />
+                </CustomModal>
             : null}
         </div>
         </PageContainer>

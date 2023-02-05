@@ -16,26 +16,24 @@
     "bootstrap": "^5.1.3",
     "effector": "^22.3.0",
     "effector-react": "^22.0.5",
-    "next": "12.0.5",
+    "i18next": "^22.4.9",
+    "next": "^12.2.5",
+    "npm-check": "^6.0.1",
     "react": "17.0.2",
-    "react-bootstrap": "^2.4.0",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.32.2",
+    "react-i18next": "^12.1.4",
+    "react-player": "^2.11.0",
     "reseter.css": "^2.0.0",
     "rxjs": "^7.5.5",
     "sass": "^1.52.3",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.1.3",
     "socket.io-client": "^4.5.1",
-    "universal-cookie": "^4.0.4",
+    "typescript": "^4.8.2",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/node": "^16.11.41",
-    "@types/react": "^17.0.47",
-    "eslint": "7",
-    "eslint-config-next": "12.0.4",
-    "typescript": "^4.7.4"
+    "@types/react": "^18.0.18"
   },
   "resolutions": {
     "react-dom": "17.0.2",

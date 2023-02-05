@@ -1,14 +1,23 @@
-.types {
-    & button {
-        margin-right: 2%;
-        border: none;
-        background-color: white;
-        outline: none;
+.content {
+    margin: 2%;
+    & .types {
+        & button {
+            margin-right: 2%;
+            border: none;
+            background-color: white;
+            outline: none;
+        }
+        & button:hover {
+            border-bottom: 2px solid black;
+        }
+        & .active {
+            border-bottom: 2px solid black;
+        }
+        & .inactive {
+            border-bottom: none;
+        }
     }
-    & button:hover {
-        border-bottom: 2px solid black;
+    & .result {
+                
     }
-}
-.result {
-            
 }

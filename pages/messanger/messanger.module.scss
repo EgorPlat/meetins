@@ -1,38 +1,38 @@
 .messangerContent {
     display: grid;
-    grid-template-columns: 30% 70%;
-    & .chatList {
-        height: 570px;
-        background-color: white;
-    }
+    grid-template-columns: 15% 70%;
+    height: 500px;
     & .chatZone {
-        height: 570px;
-        background-color: white;
-    }
-}
-.block {
-    padding: 2%;
-    box-shadow:  1px 1px 5px rgba(154, 147, 140, 0.3), 1px 1px 5px rgba(154, 147, 140, 0.3);
-}
-.noChat {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    & .alert {
-        color: grey;
-    }
-}
-@media screen and(max-width: 850px){
-    .messangerContent {
-        grid-template-columns: 100%;
-    }
-}
-@media screen and(max-width: 435px){
-    .messangerContent {
-        padding-top: 1%;
-        & .chatList {
-            height: 390px;
+        & .noChat {
+            display: grid;
+            grid-template-columns: 1fr;
+            height: 500px;
+            align-items: center;
+            justify-content: center;
+            justify-items: center;
         }
+    }
+    & .block {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+}
+
+.mobileMessangerContent {
+    width: 98%;
+    min-height: 600px;
+    & .mobileChatZone {
+        display: grid;
+        grid-template-rows: 5% 95%;
+        & .mobileChatZoneBack {
+            color: grey;
+            font-size: 18px;
+        }
+    }
+}
+@media screen and (max-width: 810px) {
+    .messangerContent {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 3fr;
+        grid-row-gap: 10px;
     }
 }

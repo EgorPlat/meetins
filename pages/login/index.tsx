@@ -1,4 +1,3 @@
-import { useStore } from 'effector-react'
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 import Input from '../../global/helpers/Input/Input'
@@ -9,16 +8,14 @@ import passIcon from '../../public/images/pass.svg'
 import s from '../../styles/pageStyles/auth.module.scss'
 import Router from 'next/router'
 import { useState } from 'react'
-import vector from '../../public/images/Vector.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from 'next/image';
-import { $user } from '../../global/store/store'
+import { useTranslation } from 'react-i18next'
 
 export default function Login(): JSX.Element {
 
 	const { register, handleSubmit, formState: {errors} } = useForm()
 	const [errorMessage, setErrorMessage] = useState<string>("");
-	const user = useStore($user);
+	const { t } = useTranslation();
 
 	const sendLoginData = (data: {login: string, password: string}) => {
 		const login = data.login;
@@ -31,7 +28,6 @@ export default function Login(): JSX.Element {
 			email: login,
 			password: pass,
 		}).then((res: any) => {
-			console.log(res); 
 			if(res.status === 200) {
 				Router.push(`/profile/${res.data.profile.user.login}`);
 			} else {
@@ -43,27 +39,27 @@ export default function Login(): JSX.Element {
 	return (
 		<div className={s.card}>
 			<Head> 
-				<title>Авторизация</title>
+				<title>{t('Вход')}</title>
+				<meta name="keywords" content="meetins, meetin-s, Meetins, Meetin-s, знакомства, meetings, meet" />
 			</Head>
-			<h2>Вход</h2>
+			<h2>{t('Вход')}</h2>
 			<form onSubmit={handleSubmit(sendLoginData)}>
 				<Input
 					icon={loginIcon}
-					placeholder='Логин'
+					placeholder={t('Логин')}
 					type='text'
 					id='login'
 					style={{ marginTop: '82px' }}
 					register={register('login', {
 						required: true,
 						validate: (value) =>
-							isPhoneNumber(value) === value 
-							? true : isEmail(value) === value ? true : 'Введите корректный e-mail или номер телефона в формате 79699999999',
+							isEmail(value) === value ? true : t('Введите корректный e-mail в формате *@gmail.com'),
 					})}
 				/>
 				{ errors.login && <span className={s.errorSpan}>{errors.login.message}</span> }
 				<Input
 					icon={passIcon}
-					placeholder='Пароль'
+					placeholder={t('Пароль')}
 					type='password'
 					id='pass'
 					style={{ marginTop: '25px' }}
@@ -73,15 +69,12 @@ export default function Login(): JSX.Element {
 				/>
 				{ errorMessage !== "" ? 
 				<div className={`row ${s.errorBlock}`}>
-					   <div className={`col-md-2`}>
-						<Image src={vector} height={40} width={40} />
-					   </div>
-					   <div className={`col-md-10`}>
-						Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова.
+					   <div className={`col-md-12`}>
+							{t('Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова')}
 					   </div>
 				</div> : null }
 				<button type='submit' className={`${s.submitBtn} btn`} >
-					Войти
+					{t('Войти')}
 				</button>
 			</form>
 		</div>

@@ -1,5 +1,5 @@
 import { instance, setUser } from './store'
-import { createEffect, createEvent, createStore } from 'effector'
+import { createEffect, createEvent, createStore, sample } from 'effector'
 
 type RegisterDetailsType = {
 	name: string
@@ -9,8 +9,10 @@ type RegisterDetailsType = {
 	city: string
 } | null
  
-export const sendRegData = createEffect()
-export const getUsers = createEffect()
+export const sendRegData = createEffect(async (regDetails: RegisterDetailsType) => {
+	const response = await instance.post('auth/registration', regDetails)
+	return response;
+})
 
 export const setRegisterDetails = createEvent<RegisterDetailsType>()
 export const $registerDetails = createStore<RegisterDetailsType>(null).on(
@@ -19,18 +21,14 @@ export const $registerDetails = createStore<RegisterDetailsType>(null).on(
 		return newRegDetails
 	}
 ) 
-
-sendRegData.use(async (regDetails) => {
-	const response = await instance.post('auth/registration', regDetails)
-	if(response.status === 201) {
-		localStorage.setItem('access-token', response.data.auth.token);
-		setUser(response.data.profile);
-	}
-	return response;
+const saveDataAfterRegsiter = createEffect((data: any) => {
+	localStorage.setItem('access-token', data.auth.token);
+	setUser(data.profile.user);
 })
 
-getUsers.use(async () => {
-	const data = await instance.get('user/get-users')
-	console.log(data)
-	return data
+sample({
+	clock: sendRegData.doneData,
+	filter: response => response.status === 201,
+	fn: response => response.data,
+	target: saveDataAfterRegsiter
 })

@@ -8,7 +8,7 @@ import {
 
 export default function MainPageInfo(): JSX.Element {
 	useEffect(() => {
-		getMainPageInfo()
+		getMainPageInfo();
 	}, [])
 
 	const mainPageInfo = useStore($mainPageInfo)

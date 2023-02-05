@@ -1,7 +1,7 @@
 import { attach, createEffect, createEvent, createStore, sample } from "effector";
 import { IDialogMessage, IMyDialog, INewDialog, User } from "../interfaces";
 import { defaultDialog } from "../mock/defaultDialog";
-import { instance } from "./store";
+import { $user, instance } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog>();
 export const activeChat = createStore<IMyDialog>({} as IMyDialog).on(setActiveChat, (_, newActiveChat) => {
@@ -11,17 +11,67 @@ export const setMyDialogs = createEvent<IMyDialog[]>();
 export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, (_, newMyDialogs) => {
     return newMyDialogs;
 })
+const myDialogsWatcher = createEffect(( params: { myDialogs: IMyDialog[], authedUser: User, activeChat: IMyDialog }) => {
+    const count = params.myDialogs.reduce((prev, curr) => {
+        let dialogUnReadMessages = 0;
+        curr.messages.map(message => {
+            if (!message.isRead && params.authedUser.userId !== message.senderId) {
+                dialogUnReadMessages += 1;
+            }
+        })
+        return prev += dialogUnReadMessages;
+    }, 0);
+    if (count) setCountUreadMessages(count);
+    if (!count) setCountUreadMessages(0);
+})
+sample({
+    source: { myDialogs: myDialogs, authedUser: $user, activeChat: activeChat },
+    target: myDialogsWatcher
+})
+
+export const setCountUreadMessages = createEvent<number>();
+export const addOneUreadMessages = createEvent<number>();
+export const countUreadMessages = createStore<number>(0).on(setCountUreadMessages, (_, newCount) => {
+    return newCount;
+})
+countUreadMessages.on(addOneUreadMessages, (count, newCount) => {
+    return count += newCount;
+})
+
 export const setIsMyDialogsLoaded = createEvent<boolean>();
 export const isMyDialogsLoaded = createStore<boolean>(false).on(setIsMyDialogsLoaded, (_, newMyDialogs) => {
     return newMyDialogs;
 })
- 
-export const sendMessageAndUploadActiveChat = createEffect((params: {message: string, dataStore: 
-    {activeChat: IMyDialog}
-}) => {
+export const setIsMessageWithFileLoaded = createEvent<boolean>();
+export const isMessageWithFileLoaded = createStore<boolean>(true).on(setIsMessageWithFileLoaded, (_, isMessageLoaded) => {
+    return isMessageLoaded;
+})
+
+export const sendFileAndUploadActiveChat = createEffect((params: { file: any, dataStore: {activeChat: IMyDialog } }) => {
+    setIsMessageWithFileLoaded(false);
     const actualActiveChat = params.dataStore.activeChat;
     if(actualActiveChat) {
         if(actualActiveChat.userId == undefined) {
+            const file = params.file;
+            const formData = new FormData();
+            formData.append('uploadedFile', file);
+            formData.append('dialogId', actualActiveChat.dialogId);
+
+            sendFileInDialog(
+                formData
+            ).then(res => {
+                if (res.data) {
+                    setActiveChat({...actualActiveChat, messages: [...res.data], content: res.data[res.data.length - 1]});
+                }
+                setIsMessageWithFileLoaded(true);
+            })
+        }
+    }
+})
+export const sendMessageAndUploadActiveChat = createEffect((params: { message: string, dataStore: {activeChat: IMyDialog} }) => {
+    const actualActiveChat = params.dataStore.activeChat;
+    if(actualActiveChat) {
+        if(actualActiveChat.dialogId !== '-') {
             sendMessageInDialog(
                 {dialogId: actualActiveChat.dialogId, content: params.message}
             ).then((response) => {
@@ -38,9 +88,9 @@ export const sendMessageAndUploadActiveChat = createEffect((params: {message: st
                     messages: response?.data,
                     status: true
                 });
-                getMyDialogs();
             });
         }
+        getMyDialogs(false);
     }
 }); 
 export const createdSendMessageAndUploadActiveChat = attach({
@@ -51,13 +101,25 @@ export const createdSendMessageAndUploadActiveChat = attach({
     },
   })
 
-export const getMyDialogs = createEffect(async () => {
-    setIsMyDialogsLoaded(false);
+export const createdSendFileAndUploadActiveChat = attach({
+    effect: sendFileAndUploadActiveChat,
+    source: {activeChat: activeChat},
+    mapParams: (file: any, dataStore) => {
+      return {file: file, dataStore: dataStore}
+    },
+  })
+
+
+
+
+
+export const getMyDialogs = createEffect(async (isFirstGetDialogs: boolean) => {
+    if (isFirstGetDialogs) setIsMyDialogsLoaded(false);
     try {
         const response = await instance.get('chat/my-dialogs');
         if(response.status === 200) {
             setMyDialogs(response.data);
-            setIsMyDialogsLoaded(true);
+            if (isFirstGetDialogs) setIsMyDialogsLoaded(true);
             return response.data;
         }
     }  
@@ -97,6 +159,30 @@ export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) =>
         }
     }
 })
+
+export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId: string) => {
+    try {
+        const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
+        if(response.status === 200) {
+            getMyDialogs(true);
+            return response;
+        }
+    } catch(error) {
+        console.log(error);
+    }
+})
+export const sendFileInDialog = createEffect(async (message: FormData) => {
+    try {
+        const response = await instance.post('chat/send-file-to-chat', message);
+        if(response.status === 200) {
+            return response;
+        }
+    }
+    catch(error) {
+        console.log(error);
+    }
+})
+
 export const sendMessageInDialog = createEffect(async (message: IDialogMessage) => {
     try {
         const response = await instance.post('chat/send-message', message);

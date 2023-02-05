@@ -1,16 +1,41 @@
+@keyframes rotate {
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
 .interests {
+    perspective: 200px;
+    transform-style: flat;
     font-family: Nunito;
     font-size: 16px;
     border: none;
     & .title {
-        font-size: 19px; 
+        font-size: 19px;
+        & img {
+            cursor: pointer;
+        }
+    }
+    & .interest {
+        border: 2px solid rgb(44, 142, 255);
     }
     button {
-        border: 2px solid rgb(44, 142, 255);
         outline: none;
         cursor: pointer;
         margin-right: 3%;
+        margin-top: 1%;
         background-color: white;
+        animation: rotate 1s;
     }
-    
+}
+
+@media screen and (max-width: 380px) {
+    .interests {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 380px) {
+    .interests {
+        font-size: 14px;
+    }
 }

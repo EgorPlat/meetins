@@ -1,11 +1,19 @@
 .emoji {
-    text-align: center;
-    width: 37px;
-    height: 37px;
+    width: 40px;
+    height: 40px;
     border-radius: 5px;
-    margin: 5px;
-    background-color: rgb(126, 192, 230);
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #3DB2FF;
+    cursor: pointer;
     & .defaultEmoji {
-        margin-top: 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        font-size: 28px;
+        color: white;
     }
 }

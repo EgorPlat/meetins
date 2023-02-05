@@ -1,19 +1,95 @@
 .form {
     font-size: 15px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
     & input {
         width: 65%;
-        min-height: 40px;
+        height: 40px;
         margin-right: 1%;
+        border-radius: 5px;
+        border: 1px solid #3DB2FF;
         outline: none;
     }
+    & .fileInput {
+        width: 45px;
+        height: 45px;
+        border-radius: 5px;
+        background-image: url('../../../public/images/inputFile.png');
+        background-size: 45px 45px;
+        margin-right: 5px;
+        & input[type='file'] {
+            width: 45px;
+            height: 45px;
+            opacity: 0;
+        }
+    }
+    & .fileInputBlocked {
+        width: 45px;
+        height: 45px;
+        border-radius: 5px;
+        background-image: url('../../../public/images/inputFile.png');
+        background-size: 45px 45px;
+        margin-right: 5px;
+        opacity: 0.4;
+        & input[type='file'] {
+            width: 45px;
+            height: 45px;
+            opacity: 0;
+        }
+    }
     & button {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
         width: 20%;
-        min-height: 40px;
+        height: 40px;
         outline: none;
         border: none;
         padding: 5px;
         color: white;
-        background-color: rgb(106, 82, 214);
+        background-color: #3DB2FF;
+        border-radius: 5px;
+    }
+    & button:disabled {
+        background-color: #56667043;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid rgb(244, 244, 244);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: rotate 1.5s infinite;
+}
+
+@media screen and (max-width: 425px){
+    .form {
+        font-size: 13px;
+        & button {
+            font-size: 13px;
+        }
+    }
+}
+
+@media screen and (max-width: 365px){
+    .form {
+        font-size: 13px;
+        & button {
+            font-size: 12px;
+        }
     }
 }

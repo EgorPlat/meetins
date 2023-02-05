@@ -2,9 +2,13 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { createEffect, createEvent, createStore } from 'effector'
 import { NextRouter } from 'next/router';
 import { User } from '../interfaces';
+import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 
-export const baseURL = 'https://meetins.herokuapp.com/';
+// test
+//export const baseURL = 'http://localhost:5000/';
+export const baseURL = 'https://meetin-s.onrender.com/';
+
 export const instance = axios.create({
 	baseURL: baseURL,
 })
@@ -44,13 +48,21 @@ instance.interceptors.response.use((response) => {
 	return error;
 })
 
+export const setIsMobile = createEvent<boolean>();
+export const isMobile = createStore<boolean>(false).on(setIsMobile, (_, isMobile) => {
+	return isMobile;
+})
 export const setIsAsyncLoaded = createEvent<boolean>();
 export const isAsyncLoaded = createStore<boolean>(false).on(setIsAsyncLoaded, (_, tokenUpdated) => {
 	return tokenUpdated;
 })
 export const setUser = createEvent<User | null>()
 export const $user = createStore<User | null>(null).on(setUser, (_, userDetails) => {
-	return userDetails
+	return userDetails;
+})
+export const setOnlineUsers = createEvent<any[]>()
+export const $onlineUsers = createStore<any[]>([]).on(setOnlineUsers, (_, onlineUserList) => {
+	return onlineUserList;
 })
 export const setCurrentProfileUser = createEvent<User>();
 export const $currentProfileUser = createStore<User>({} as User).on(setCurrentProfileUser, (_, currentUser) => {
@@ -63,6 +75,30 @@ export const $currentPage = createStore<string>('').on(
 		return currPage;
 	}
 )
+
+export const getUserInterests = createEffect(async (userInterests) => {
+	const response = await instance.post('interests/get-ineterests-by-id', JSON.stringify({ interests: userInterests}));
+	if(response.status <= 217) {
+		return response.data;
+	}
+})
+
+export const updateInterests = createEffect(async (interests: string[]) => {
+	const response = await instance.post('users/updateUserInterest', JSON.stringify({ interests: interests }));
+	if(response.status <= 217) {
+		setUser(response.data);
+		setCurrentProfileUser(response.data);
+		return response;
+	}
+})
+
+export const getInterests = createEffect(async () => {
+	const response = await instance.get('interests/get-interests');
+	if(response.status <= 217) {
+		return response.data;
+	}
+	return response;
+})
 
 export const getUserData = createEffect(async () => {
 	setIsAsyncLoaded(false);
@@ -89,7 +125,14 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 		instanseRouter$?.push('/login');
 	}
 });
- 
+
+export const getUserDataByUserId = createEffect(async (userId: string | number) => {
+	const response = await instance.post(`users/getUserByUserId`);
+	if(response.data) {
+		return response.data;
+	}
+})
+
 export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | number) => {
 	setIsAsyncLoaded(false);
 	const response = await instance.get(`profile/by-login/${loginUrl}`);
@@ -104,7 +147,6 @@ export const getDataForProfilePage = createEffect((route: NextRouter) => {
 			if(res.status === 200) {
 				setCurrentProfileUser(res.data);
 			}
-			console.log(res);
 		}) 
 	}
 })
@@ -113,6 +155,16 @@ export const updateTokens = createEffect(async () => {
 	if(response.status === 200) {
 		localStorage.setItem('access-token', response.data.accessToken);
 	    localStorage.setItem('refrash-token', response.data.refreshToken);
+	}
+	return response;
+})
+
+export const sendNewUserPost = createEffect(async (formData: FormData) => {
+	const response = await instance.post('users/addUserPost', formData);
+	if(response.status === 200) {
+		setUser(response.data);
+		addNewError({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000 })
+		window.location.reload();
 	}
 	return response;
 })

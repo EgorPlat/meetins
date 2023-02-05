@@ -12,12 +12,17 @@ import ManageAccountForm from "../../global/Forms/ManageAccount/Index";
 import { useState } from "react";
 import { deleteUserAccount, setIsAccountUpdated, setIsProfileUpdated } from "../../global/store/settings_model";
 import Loader from "../../components/Loader/Loader";
+import { useTranslation } from "react-i18next";
+import ru from '../../public/images/ru.png';
+import us from '../../public/images/us.png';
+import Image from "next/image";
 
 export default function Settings(): JSX.Element {
 
     const isLoad = useStore(isAsyncLoaded);
     const router = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         setCurrentPage(router.pathname);
@@ -31,6 +36,9 @@ export default function Settings(): JSX.Element {
     const changeModal = (status: boolean) => {
         setIsModal(() => status);
     }
+    const handleChangeLocale = (local: string) => {
+        i18n.changeLanguage(local);
+    }
     const deleteAccount = (status: boolean) => {
         deleteUserAccount().then((response) => {
             if(response.status === 200) {
@@ -43,37 +51,48 @@ export default function Settings(): JSX.Element {
     }
     return(
         <div className={`${s.settings}`}>
-            <div className="row">
-                <div className={`col-sm-3 ${s.menu}`}>
-                    <div><Link href = ''>Аккаунт</Link></div>
-                    <div><Link href = ''>Подписка</Link></div>
+            <div className={`${s.settingsMenus}`}>
+                <div className={`${s.menu}`}>
+                    <div><Link href = ''>{t("Аккаунт")}</Link></div>
+                    <div><Link href = ''>{t("Подписка")}</Link></div>
                 </div>
-                <div className={`col-sm-9 ${s.formAndInfo}`}>
+                <div className={`${s.formAndInfo}`}>
+                    <div className={s.locale}>
+                        <h5>{t("Выбрать язык")}</h5>
+                        <div className={s.locales}>
+                            <div className={s.localeImg}>
+                                <Image src={us} width="62px" height="50px" onClick={() => handleChangeLocale('en')}/>
+                            </div>
+                            <div className={s.localeImg}>
+                                <Image src={ru} width="62px" height="50px" onClick={() => handleChangeLocale('ru')}/>
+                            </div>
+                        </div>
+                    </div>
                     <div className={s.info}> 
-                        <h5>Информация профиля</h5>
-                            { isLoad ? <div className="row">
+                        <h5>{t("Информация профиля")}</h5>
+                            { isLoad ? <div className={s.profileForm}>
                                <ProfileInfoForm /> 
                             </div> : <Loader/>}
                     </div>
                     <div className={s.management}>
-                        <h5>Управление аккаунтом</h5>
+                        <h5>{t("Управление аккаунтом")}</h5>
                         <div className={s.manageAcc}>
-                            {isLoad ? <div className={`row`}>
+                            {isLoad ? <div className={s.accountForm}>
                                 <ManageAccountForm />
                             </div> : <Loader/>}
                         </div>
-                        <div className={`row ${s.infoText}`}>
-                            <div className={`col ${s.description}`}>
-                                Вы можете изменить адрес аккаунта на более привлекательный.<br />
-                                Другие пользователи смогут найти Вас по адресу <b>meetins.ru/ВашАдрес</b><br />
+                        <div className={`${s.infoText}`}>
+                            <div className={`${s.description}`}>
+                                {t('Вы можете изменить адрес аккаунта на более привлекательный')}.<br />
+                                {t('Другие пользователи смогут найти Вас по адресу')} <b>meetins.ru/ВашАдрес</b><br />
                                 <b>Отключение</b><br/>
-                                Вы можете удалить свой аккаунт, тогда другие пользователи больше не смогут<br />
-                                Вас найти на нашем сайте.
+                                {t('Вы можете удалить свой аккаунт, тогда другие пользователи больше не смогут')}<br />
+                                {t('Вас найти на нашем сайте')}.
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button className={s.deleteBtn} onClick={() => changeModal(true)}>Удалить аккаунт</button>
+                        <button className={s.deleteBtn} onClick={() => changeModal(true)}>{t("Удалить аккаунт")}</button>
                     </div>
                 </div>
             </div>

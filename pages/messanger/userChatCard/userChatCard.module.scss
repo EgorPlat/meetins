@@ -1,9 +1,12 @@
 .chat {
-    width: 100%;
-    min-height: 90px;
-    margin-top: 2.5%;
+    width: 105px;
+    max-height: 105px;
+    margin-top: 0.5%;
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-rows: 80% 20%;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
     & .avatar {
         & .round {
             width: 15px;
@@ -16,25 +19,49 @@
         }
         border: 1px solid black;
         border-radius: 50%;
+        width: 85px;
+        height: 85px;
         background-size: 100% 100%;
     }
-    & .info {
-        display: grid;
-        grid-template-rows: 35% 65%;
-        padding-left: 10px;
-        & .name {
-            font-weight: 700;
-            font-size: 20px;
+    & .name {
+        text-align: center;
+        font-weight: 400;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        & .unreadMessagesCounter {
+            width: 20px;
+            height: 20px;
+            background-color: rgb(41, 152, 255);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            justify-items: center;
+            font-size: 10px;
+            border-radius: 50%;
         }
-        & .message {
-            font-size: 16px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    }
+    & .message {
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 .chat:hover {
     cursor: pointer;
     background-color: rgba($color: grey, $alpha: 0.1);
+}
+
+@media screen and (max-width: 405px) {
+    .chat {
+        margin-right: 2%;
+    }
+}
+@media screen and (max-width: 405px) {
+    .chat {
+        margin-right: 1.5%;
+    }
 }

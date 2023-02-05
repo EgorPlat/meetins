@@ -3,16 +3,41 @@ import { IPeople, Params } from "../interfaces";
 import { instance } from "./store";
 
 export const setAllPeoples = createEvent<IPeople[]>();
-export const allPeoples = createStore<IPeople[]>([]).on(setAllPeoples, (_, peoples) => {
-    return peoples;
+export const fullUpdatePeoples = createEvent<[]>();
+export const allPeoples = createStore<IPeople[]>([]).on(setAllPeoples, (currentPeoples, peoples) => {
+    return [...currentPeoples, ...peoples];
+});
+allPeoples.on(fullUpdatePeoples, (_, fullUpdatePeoples) => {
+    return fullUpdatePeoples;
+});
+
+export const setMaxPageOfPeople = createEvent<number>();
+export const maxPageOfPeople = createStore<number>(0).on(setMaxPageOfPeople, (_, maxPageOfPeople) => {
+    return maxPageOfPeople;
 });
 
 export const setIsPeoplesLoaded = createEvent<boolean>();
 export const isPeoplesLoaded = createStore<boolean>(false).on(setIsPeoplesLoaded, (_, peoplesLoaded) => {
     return peoplesLoaded;
 });
-export const setFilterParams = createEvent();
-export const filterParams = createStore<Params>({gender: "1", age: 50, goal: '1', events: ["1"], interests:["1"]});
+export const setFilterParams = createEvent<Params>();
+export const filterParams = createStore<Params>({gender: "all", age: 0}).on(setFilterParams, (_, newFilterParams) => {
+    return newFilterParams;
+});
+
+export const getAllPeoplesByPageNumber = createEffect(async (data: { pageNumber: number, pageSize: number, filters: any }) => {
+    setIsPeoplesLoaded(false);
+    const response = await instance.post('/users/getUserListByPageNumber', {
+        pageNumber: data.pageNumber,
+        pageSize: data.pageSize,
+        filters: data.filters
+    });
+    if(response.status === 201) {
+        setAllPeoples(response.data.peoples);
+        setMaxPageOfPeople(response.data.maxPage)
+        return response.data;
+    }
+});
 
 export const getAllPeoples = createEffect(async () => {
     const response = await instance.get('/users/getUserList');
@@ -22,5 +47,8 @@ export const getAllPeoples = createEffect(async () => {
     }
 });
 getAllPeoples.doneData.watch((peoples: IPeople[]) => {
+    setIsPeoplesLoaded(true);
+})
+getAllPeoplesByPageNumber.doneData.watch(() => {
     setIsPeoplesLoaded(true);
 })

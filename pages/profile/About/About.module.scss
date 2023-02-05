@@ -28,11 +28,14 @@
         outline: none;
         margin-top: 1%;
         margin-left: 1%;
+        border-radius: 5px;
     }
     & .confirmBtn {
-        background-color: rgb(41, 147, 196);
+        width: 80px;
+        background-color: rgb(29, 142, 255);
     }
     & .cancelBtn {
-        background-color: rgb(219, 93, 77);
+        width: 80px;
+        background-color: rgb(64, 80, 81);
     }
 }

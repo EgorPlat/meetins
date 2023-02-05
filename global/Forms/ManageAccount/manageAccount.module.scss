@@ -9,12 +9,20 @@
         display: inline;
         margin-top: 2.5%;
         font-size: 18px;
+        width: 95%;
+        height: 50px;
+        width: 250px;
+        border-radius: 5px;
+        border: 1px solid gray;
     }
     & .saveButton {
         margin-top: 1%;
         border: none;
         background-color: rgb(108, 154, 238);
         color: white;
+        width: 150px;
+        height: 40px;
+        border-radius: 5px;
         padding: 5px;
     }
     & .spanError {
@@ -36,7 +44,7 @@
     & input::-webkit-input-placeholder {color:black;}
 }
 
-@media screen and(max-width: 600px){
+@media screen and (max-width: 600px){
     .manageAcc {
         & input {
             margin-top: 1%;

@@ -8,7 +8,7 @@
     & .modalContent {
         font-size: 24px;
         padding: 50px;
-        border-radius: 50px;
+        border-radius: 5px;
         margin: 15% auto;
         width: 33%;
         min-height: 100px;
@@ -31,12 +31,12 @@
         & .cancelBtn {
             width: 25%;
             min-height: 30px;
-            background-color: red;
+            background-color: rgb(65, 65, 65);
         }
     }
 }
 
-@media screen and(max-width: 1100px){
+@media screen and (max-width: 1100px){
     .modal {
         & .modalContent {
             margin: 30% auto;
@@ -44,11 +44,19 @@
         }
     }
 }
-@media screen and(max-width: 600px){
+@media screen and (max-width: 600px){
     .modal {
         & .modalContent {
             margin: 50% auto;
-            width: 60%;
+            width: 80%;
+        }
+        & .manageModal {
+            & .confirmBtn {
+                width: 47%;
+            }
+            & .cancelBtn {
+                width: 47%;
+            }
         }
     }
 }

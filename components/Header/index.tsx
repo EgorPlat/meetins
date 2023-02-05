@@ -6,11 +6,12 @@ import Link from 'next/link'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'
-import { $currentPage, setCurrentPage } from '../../global/store/store'
+import { $currentPage, isMobile, setCurrentPage } from '../../global/store/store'
 
 export default function Header(): JSX.Element {
 	const currentPage = useStore($currentPage);
 	const router = useRouter();
+	const isMobile$ = useStore(isMobile);
 
 	let headerBgClass
 	if (currentPage === '/') {
@@ -34,8 +35,8 @@ export default function Header(): JSX.Element {
 						className={s.logoImage}
 						src={logo}
 						alt='company logo'
-						width={270}
-				 		height={80}
+						width={330}
+				 		height={60}
 					/>
 				</div>
 	        </Link>

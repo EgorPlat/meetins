@@ -2,7 +2,7 @@ export interface IShortEventInfo {
     id: number,
     title: string,
     description: string,
-    price: number,
+    price: string,
     images: any[],
     age_restriction: number
 }

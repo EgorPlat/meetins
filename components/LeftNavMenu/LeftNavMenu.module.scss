@@ -1,24 +1,88 @@
 .ul {
     list-style: none;
+    & .count {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(0, 140, 255, 0.941);
+        margin-left: 5px;
+    }
     & li {
         font-family: Nunito;
-        font-size: 18px;
-        margin-top: 5px;
+        font-size: 22px;
         & a {
             text-decoration: none;
             color: black;
-            margin-left: 5%;
+        }
+        & a:hover {
+            border-bottom: 2px solid black;
         }
     }
 }
-@media screen and(max-width: 1000px) {
+.active {
+    text-align:left;
+    float:left;
+    border-bottom: 2px solid rgb(74, 106, 248)
+}
+@media screen and (max-width: 1000px) {
     .ul {
-        height: 150px;
+        display: flex;
+        margin: 0;
+        margin-left: 20px;
+        column-gap: 15px;
+        padding-left: 0;
         & li {
-            display: inline;
+            display: flex;
+            align-items: center;
             & a {
                 margin-left: 2%;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        margin-left: 0;
+        column-gap: 6px;
+        font-size: 18px;
+        & li {
+            & a {
+                margin-left: 0%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .ul {
+        & li {
+            font-size: 21px;
+        }
+    }
+}
+@media screen and (max-width: 380px) {
+    .ul {
+        & li {
+            font-size: 20px;
+        }
+    }
+}
+@media screen and (max-width: 360px) {
+    .ul {
+        & li {
+            font-size: 19px;
+        }
+    }
+}
+@media screen and (max-width: 350px) {
+    .ul {
+        & li {
+            font-size: 18px;
         }
     }
 }

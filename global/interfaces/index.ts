@@ -1,3 +1,12 @@
+export type Post = {
+    date: string,
+    images: string[],
+    description: string,
+    title: string,
+    likes: number,
+    id: string,
+}
+
 export type User = {
 	userId: string
 	name: string,
@@ -9,8 +18,14 @@ export type User = {
 	dateRegister: string,
 	login: string,
 	birthDate: string,
-	city: string
+	city: string,
+    age: number,
+    events: string[],
+    posts: Post[],
+    isOnline: boolean,
+    interests: string[]
 }
+
 export type ProfileData = {
 	name: string,
 	phoneNumber: string,
@@ -22,6 +37,7 @@ export type AccountData = {
 	login: string
 }
 export interface IPeople {
+    email: string,
     login: string,
     userName: string,
     userAvatar: string,
@@ -33,9 +49,6 @@ export interface IPeople {
 export interface Params {
     gender: string,
     age: number,
-    goal: string,
-    events: string[],
-    interests: string[],
 }
 export interface IParams {
     gender?: string,
@@ -62,7 +75,8 @@ export interface IMyActiveDialogMessage {
     avatar: string,
     senderName: string,
     status?: boolean,
-    isMine: boolean
+    isMine: boolean,
+    isFile?: boolean
 }
 export interface IMyDialog {
     dialogId: string,
@@ -73,4 +87,8 @@ export interface IMyDialog {
     messages: IMyActiveDialogMessage[],
     status?: boolean,
     userId?: string
+}
+export interface SortedMessagesOnDays {
+    data: string,
+    messages: IMyActiveDialogMessage[]
 }
