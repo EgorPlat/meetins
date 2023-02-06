@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore, sample } from "effector";
 import { IPeople, Params } from "../interfaces";
 import { instance } from "./store";
 
@@ -25,6 +25,11 @@ export const filterParams = createStore<Params>({gender: "all", age: 0}).on(setF
     return newFilterParams;
 });
 
+export const setIsPagePending = createEvent<boolean>();
+export const isPagePending = createStore<boolean>(false).on(setIsPagePending, (_, status) => {
+    return status;
+});;
+
 export const getAllPeoplesByPageNumber = createEffect(async (data: { pageNumber: number, pageSize: number, filters: any }) => {
     setIsPeoplesLoaded(false);
     const response = await instance.post('/users/getUserListByPageNumber', {
@@ -38,6 +43,16 @@ export const getAllPeoplesByPageNumber = createEffect(async (data: { pageNumber:
         return response.data;
     }
 });
+sample({
+    clock: getAllPeoplesByPageNumber.pending,
+    fn: () => true,
+    target: isPagePending
+})
+sample({
+    clock: getAllPeoplesByPageNumber.doneData,
+    fn: () => false,
+    target: isPagePending
+})
 
 export const getAllPeoples = createEffect(async () => {
     const response = await instance.get('/users/getUserList');

@@ -11,6 +11,7 @@ import {
     fullUpdatePeoples, 
     getAllPeoples, 
     getAllPeoplesByPageNumber, 
+    isPagePending, 
     isPeoplesLoaded, 
     maxPageOfPeople, 
     setAllPeoples, 
@@ -32,6 +33,7 @@ export default function SearchingPeople(): JSX.Element {
     const maxPage$ = useStore(maxPageOfPeople);
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const filterParams$: Params = useStore(filterParams);
+    const pending: boolean = useStore(isPagePending);
 
     const { t } = useTranslation();
 
@@ -126,12 +128,15 @@ export default function SearchingPeople(): JSX.Element {
                         {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
                     </div>
                     { 
-                        peoplesList$.length === 0 ? 
+                        peoplesList$.length === 0 && !pending ? 
                         <div>
                             <h4>По Вашему запросу никого не найдено.</h4>
                             <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
                         </div>
                         : null 
+                    }
+                    {
+                        pending && <div>Загрузка...</div>
                     }
                 </div>
             </div>
