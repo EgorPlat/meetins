@@ -1,7 +1,7 @@
 import { IMyDialog } from "../interfaces";
 
 export const defaultDialog: IMyDialog = {
-    dialogId: '-', 
+    dialogId: null, 
     userName: '',
     userAvatar: '',
     isRead: true,

@@ -1,3 +1,4 @@
+import { log } from "console";
 import { useStore } from "effector-react";
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
@@ -36,7 +37,7 @@ export default function ChatZone(): JSX.Element {
     }
 
     useEffect(() => {
-        if (activeChat$.dialogId !== '-') {
+        if (activeChat$.dialogId) {
             updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
             getDialogMessages(activeChat$);
             ref.current.scrollIntoView({behavior: "smooth"});
@@ -119,7 +120,7 @@ export default function ChatZone(): JSX.Element {
                         isLoaded={isMessageWithFileLoaded$} 
                         placeholder="Введите сообщение" 
                         onClickForm={(inputValue) => sendForm(inputValue)}
-                        isChatExists={!!activeChat$.userId}
+                        isChatExists={!activeChat$.userId}
                     />
                 </div>
             </div>

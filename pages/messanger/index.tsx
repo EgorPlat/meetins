@@ -17,6 +17,9 @@ export default function Messanger(): JSX.Element {
     const handleBack = () => {
         setActiveChat({} as IMyDialog);
     }
+
+    const isChatNeededToShow = activeChat$.dialogId === null || Boolean(activeChat$.dialogId);
+
     return(
         <PageContainer> 
            { !isMobile$ 
@@ -26,7 +29,7 @@ export default function Messanger(): JSX.Element {
                     <ChatList/>
                 </div>
                 <div className={`${s.chatZone} ${s.block}`}>
-                    {activeChat$.dialogId ? <ChatZone/> : 
+                    {isChatNeededToShow ? <ChatZone/> : 
                     <div className={s.noChat}>
                         <h3 className={s.alert}>Выберите диалог...</h3>
                     </div>
@@ -36,7 +39,7 @@ export default function Messanger(): JSX.Element {
             :
             <div className={s.mobileMessangerContent}>
                 {
-                    !activeChat$.dialogId 
+                    !Boolean(activeChat$.dialogId) 
                     ? <MobileChatList /> 
                     : 
                     <div className={`${s.mobileChatZone}`}>

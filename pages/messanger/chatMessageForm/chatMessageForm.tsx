@@ -1,3 +1,4 @@
+import { log } from "console";
 import React, { ChangeEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { createdSendFileAndUploadActiveChat } from "../../../global/store/chat_model";
@@ -37,7 +38,7 @@ export default function ChatMessageForm(
         <div className={s.form}>
             <input ref={messageRef} type="text" placeholder={t(props.placeholder)}/>
             <Emoji addSmileHandler={addSmileHandler} />
-            <div className={props.isChatExists ? s.fileInputBlocked : s.fileInput}>
+            <div className={props.isChatExists ? s.fileInput : s.fileInputBlocked}>
                 <input type="file" onChange={(e) => onSendNewFile(e)}/>
             </div>
             <button onClick={sendForm} disabled={!props.isLoaded}>{props.isLoaded ? t('Отправить') : Loader()}</button>

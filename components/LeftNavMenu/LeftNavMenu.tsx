@@ -11,8 +11,6 @@ export default function LeftNavMenu(): JSX.Element {
     const currentPage = useStore($currentPage);
     const { t } = useTranslation();
     const unreadMessages = useStore(countUreadMessages);
-
-    console.log(unreadMessages);
     
     return(
         <ul className={s.ul}>        

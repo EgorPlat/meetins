@@ -12,7 +12,7 @@ export const isEmail = (value: string | null) => {
 }
 export const isTypeOfFileAreImage = (value: string) => {
 	if (!value) return;
-	const validTypes = ['jpg', 'jpeg', 'png']
+	const validTypes = ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
 	const type = value.split('.')[1];
 	if (validTypes.includes(type)) {
 		return true;

@@ -13,11 +13,11 @@ export default function MobileChatList(): JSX.Element {
     const ref = useRef(null);
 
     useEffect(() => {
-        getMyDialogs();
+        getMyDialogs(false);
         if (ref.current && window.screen.height <= 670) {
             ref.current.scrollIntoView({ behaviour: "smooth" });
         }
-    },[]);
+    }, []);
     return(
         <div className={s.mobileChatList} ref={ref}>
             {isLoaded$ !== false && myDialogs$ !== null 
