@@ -19,6 +19,8 @@ import Loader from "../../components/Loader/Loader";
 import AddingPosts from "./AddingPosts/AddingPosts";
 import CustomModal from "../../global/helpers/CustomModal/CustomModal";
 import { useTranslation } from "react-i18next";
+import { sendInviteToUser } from "../../global/store/events_model";
+import ChoosingEvents from "./choosingEvents/choosingEvents";
 
 function Profile(): JSX.Element {
 
@@ -26,16 +28,20 @@ function Profile(): JSX.Element {
     const asyncLoaded = useStore(isAsyncLoaded);
     const { t } = useTranslation();
     const currentUser = useStore($currentProfileUser);
-    const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const authedUser = useStore($user);
+
+    const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const [isModal, setIsModal] = useState(false);
     const [isAddPostModal, setIsAddPostModal] = useState(false);
+    const [isInviteModal, setIsInviteModal] = useState(false);
+    const [choosedEventForInvite, setChoosedEventForInvite] = useState<number>();
 
     const changeAddingImageStatus = (status: boolean) => {
         if(currentUser.login === authedUser?.login) {
             setAddingImageStatus(() => status);
         }
     }
+
     const onChangeInputImage = (event: ChangeEvent<HTMLInputElement>) => {
         updateUserAvatar(event).then((res: any) => {
             setCurrentProfileUser(res.data)
@@ -43,12 +49,14 @@ function Profile(): JSX.Element {
         })
         setIsModal(true);
     }
+
     const saveNewStatus = useCallback((userStatus: string) => {
         updateUserStatus(userStatus).then( (user: any) => {
             setUser(user);
             setCurrentProfileUser(user);
         });
     }, [])
+
     const startDialog = () => {
         checkDialog(currentUser);
         Router.push('/messanger')
@@ -59,12 +67,19 @@ function Profile(): JSX.Element {
         }
         setIsModal(false);
     }
+
     const onAddingModalClick = () => {
         setIsAddPostModal(false);
+    }
+
+    const sendInvite = () => {
+        sendInviteToUser({ userToId: currentUser.userId, eventId: choosedEventForInvite });
+        setIsInviteModal(false);
     }
     useEffect( () => {
         getDataForProfilePage(route);
     }, [route])
+
     return(
         <PageContainer>
         <div className={s.profile}>
@@ -103,7 +118,9 @@ function Profile(): JSX.Element {
                                         {t('Диалог')}
                                         <Image alt="Сообщение" src={message} width={20} height={20} />
                                     </button>
-                                    <button type="button" className={`${s.actionsBtn}`}>{t('Пригласить')} +</button>
+                                    <button type="button" className={`${s.actionsBtn}`} onClick={() => setIsInviteModal(true)}>
+                                        {t('Пригласить')} +
+                                    </button>
                                 </div> : null
                             }
                         </div>
@@ -135,25 +152,31 @@ function Profile(): JSX.Element {
                     </div>
                 </div> : <Loader/>
             }
-            { isModal ? 
-                <Modal 
-                    isDisplay={true} 
-                    changeModal={onModalClick} 
-                    actionConfirmed={onModalClick}>
-                        <p>{t('Изменения вступят в силу после перезагрузки вкладки профиль')}.</p>
-                </Modal>
-            : null}
-            { isAddPostModal ? 
-                <CustomModal 
-                    isDisplay={true} 
-                    changeModal={onAddingModalClick} 
-                    actionConfirmed={onAddingModalClick}
-                    title={t('Добавить новую запись')}
-                    typeOfActions="none"
-                >
-                    <AddingPosts />
-                </CustomModal>
-            : null}
+            <Modal 
+                isDisplay={isModal} 
+                changeModal={onModalClick} 
+                actionConfirmed={onModalClick}
+            >
+                <p>{t('Изменения вступят в силу после перезагрузки вкладки профиль')}.</p>
+            </Modal>
+            <CustomModal 
+                isDisplay={isAddPostModal} 
+                changeModal={onAddingModalClick} 
+                actionConfirmed={onAddingModalClick}
+                title={t('Добавить новую запись')}
+                typeOfActions="none"
+            >
+                <AddingPosts />
+            </CustomModal>
+            <CustomModal 
+                isDisplay={isInviteModal} 
+                changeModal={setIsInviteModal} 
+                actionConfirmed={sendInvite}
+                title={t('Выберите событие')}
+                typeOfActions="default"
+            >
+                <ChoosingEvents choosedEvent={setChoosedEventForInvite} />
+            </CustomModal>
         </div>
         </PageContainer>
     )

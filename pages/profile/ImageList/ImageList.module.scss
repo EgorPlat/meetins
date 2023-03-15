@@ -59,24 +59,12 @@
     }
 }
 
-.commentsModalContent {
-    width: 495px;
-}
+
 @media screen and (max-width: 600px) {
     .postsList {
         & .post {
             width: 100%;
         }
-    }
-}
-@media screen and (max-width: 600px) {
-    .commentsModalContent {
-        width: 425px;
-    }
-}
-@media screen and (max-width: 500px) {
-    .commentsModalContent {
-        width: 325px;
     }
 }
 @media screen and (max-width: 450px) {

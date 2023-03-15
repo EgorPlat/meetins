@@ -8,6 +8,7 @@ import s from './mainNavbar.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { $user, baseURL, isMobile, setUser } from "../../global/store/store";
 import { useTranslation } from "react-i18next";
+import ButtonWithHint from "../../global/helpers/Hint/buttonWithHint";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
@@ -51,7 +52,13 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				<Link href="/events">{t('События')}</Link>
 				<Link href="">{t('Встречи')}</Link>
 				<Link href="">{t('Интересы')}</Link>
-			    <button className={s.inviteBtn}>{t('Пригласить')}</button>
+			    <ButtonWithHint 
+					title={t('Пригласить')} 
+					hintTitle={
+						`Вы можете приглашать пользователей на мерпориятия которые есть в ваших закладках,
+						для этого перейдите к ним в профиль и нажмите кнопку "Пригласить"`
+					} 
+				/>
 			    <img src={baseURL + userAvatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
 			    <select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
 				    <option className={s.option} value="name">{user?.name}</option>

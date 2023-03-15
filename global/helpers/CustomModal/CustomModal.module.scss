@@ -15,7 +15,7 @@
         font-size: 24px;
         padding: 20px;
         border-radius: 5px;
-        height: 400px;
+        max-height: 400px;
         width: 600px;
         background-color: white;
         & .cistomModalTitle {
@@ -42,7 +42,7 @@
             }
         }
         & .customModalChildrenContent {
-            max-height: 400px;
+            max-height: 450px;
             width: 100%;
             overflow-y: scroll;
             overflow-x: hidden;
@@ -79,10 +79,35 @@
     }
 }
 
+@media screen and (max-width: 1920px) {
+    .customModal {
+        & .customModalContent {
+            width: 700px;
+            max-height: 600px;
+            font-size: 34px;
+            grid-template-rows: 45px 450px 65px;
+            & .cistomModalTitle {
+                font-size: 26px;
+                & .customModalClose {
+                    text-align: right;
+                    & button {
+                        width: 25px;
+                        height: 25px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 600px) {
     .customModal {
         & .customModalContent {
             width: 500px;
+            & .cistomModalTitle {
+                font-size: 21px;
+            }
         }
     }
 }
