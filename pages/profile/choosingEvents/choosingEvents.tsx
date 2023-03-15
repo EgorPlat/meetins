@@ -29,7 +29,6 @@ export default function ChoosingEvents(props: {
         <div className={s.choosingEvents}>
             <table>
                 <tr>
-                    <td>Номер</td>
                     <td>Название</td>
                     <td>Возрастное ограничение</td>
                     <td>Цена</td>
@@ -38,7 +37,6 @@ export default function ChoosingEvents(props: {
                 {
                     userEvents.map(el => (
                         <tr>
-                            <td>{el.id}</td>
                             <td>{el.title}</td>
                             <td>{el.age_restriction}+</td>
                             <td>{+el.price === 0 ? 'Бесплатно' : el.price + "+"}</td>
