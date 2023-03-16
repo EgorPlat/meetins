@@ -1,0 +1,26 @@
+.actions {
+    display: flex;
+    column-gap: 10px;
+    & .confirm {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(44, 100, 255, 0.81);
+        color: white;
+        font-size: 18px;
+    }
+    & .cancel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(255, 71, 71, 0.721);
+        color: white;
+        font-size: 18px;
+    }
+}
