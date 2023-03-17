@@ -7,8 +7,16 @@
         overflow-x: hidden;
         & .eachInnerInvite {
             font-size: 14px;
-            display: flex;
-            column-gap: 15px;
+            display: grid;
+            grid-template-columns: 1fr;
+            & .senderInfo {
+                display: flex;
+                column-gap: 10px;
+                & .date {
+                    color: gray;
+                    font-size: 12px;
+                }
+            }
         }
     }
     & .outerInvites {
@@ -19,7 +27,11 @@
         & .eachOuterInvite {
             & .userLists {
                 display: flex;
-                column-gap: 15px;
+                column-gap: 10px;
+                & .date {
+                    color: gray;
+                    font-size: 12px;
+                }
             }
         }
     }

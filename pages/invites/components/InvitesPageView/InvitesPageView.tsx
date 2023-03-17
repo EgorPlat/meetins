@@ -17,15 +17,19 @@ export default function InvitesPageView({ authedUser }: IInvitesPageView) {
                         authedUser.innerInvites.length !== 0
                         ? authedUser.innerInvites.map(invite => (
                             <div className={s.eachInnerInvite}>
-                                <div>{invite.eventId}</div>
-                                <div className={s.avatar}>
-                                    <img src={baseURL + invite.avatar} width="50px" height="50px" />
+                                <div className={s.eventInfoZone}>
+                                    <div>{invite.eventId}</div>
                                 </div>
-                                <div className={s.name}>{invite.name}</div>
-                                <div className={s.date}>{customizeDateToYYYYMMDDFormat(invite.dateOfSending)}</div>
-                                <div className={s.status}>{invite.status ? "Принято" : "Пока не принято"}</div>
-                                <div className={s.actions}>
-                                    <ConfirmAndCancelActions />
+                                <div className={s.senderInfo}>
+                                    <div className={s.avatar}>
+                                        <img src={baseURL + invite.avatar} width="50px" height="50px" />
+                                    </div>
+                                    <div className={s.name}>{invite.name}</div>
+                                    <div className={s.date}>{customizeDateToYYYYMMDDFormat(invite.dateOfSending)}</div>
+                                    <div className={s.status}>{invite.status ? "Принято" : "Пока не принято"}</div>
+                                    <div className={s.actions}>
+                                        <ConfirmAndCancelActions />
+                                    </div>
                                 </div>
                             </div>
                         ))

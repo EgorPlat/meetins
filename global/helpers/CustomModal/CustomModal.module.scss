@@ -18,7 +18,7 @@
         max-height: 400px;
         width: 600px;
         background-color: white;
-        & .cistomModalTitle {
+        & .customModalTitle {
             display: grid;
             grid-template-columns: 10fr 1fr;
             font-size: 16px;
@@ -86,7 +86,7 @@
             max-height: 600px;
             font-size: 34px;
             grid-template-rows: 45px 450px 65px;
-            & .cistomModalTitle {
+            & .customModalTitle {
                 font-size: 26px;
                 & .customModalClose {
                     text-align: right;
@@ -105,8 +105,18 @@
     .customModal {
         & .customModalContent {
             width: 500px;
-            & .cistomModalTitle {
+            & .customModalTitle {
                 font-size: 21px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 500px) {
+    .customModal {
+        & .customModalContent {
+            width: 500px;
+            & .customModalTitle {
+                font-size: 18px;
             }
         }
     }

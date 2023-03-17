@@ -35,3 +35,11 @@
         }
     }
 }
+
+@media screen and (max-width: 500px) {
+    .commentsList {
+        & .comment {
+            grid-template-columns: 15% 85%;
+        }
+    }
+}
