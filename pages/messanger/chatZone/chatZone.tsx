@@ -1,4 +1,3 @@
-import { log } from "console";
 import { useStore } from "effector-react";
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";

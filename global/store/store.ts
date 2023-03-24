@@ -117,11 +117,16 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 				setIsAsyncLoaded(true);
 				instanseRouter$?.push('/profile/' + res.data.login);
 			} else {
-				instanseRouter$?.push('/login');
+				if (instanseRouter$?.asPath !== '/confirmation') {
+					instanseRouter$?.push('/login');
+				}
 			}
 		})
 	} else {
-		instanseRouter$?.push('/login');
+		console.log(instanseRouter$?.asPath);
+		if (instanseRouter$?.asPath !== '/confirmation') {
+			instanseRouter$?.push('/login');
+		}
 	}
 });
 

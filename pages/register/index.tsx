@@ -16,6 +16,7 @@ import {
 } from '../../global/helpers/validate'
 import {
 	sendRegData,
+	setEmailForConfirmation,
 	setRegisterDetails,
 } from '../../global/store/register_model'
 import Head from 'next/head'
@@ -58,9 +59,10 @@ export default function Login(): JSX.Element {
 			gender: data.gender,
 			city: data.city
 		}).then( (res: any) => {
-			if(localStorage.getItem('access-token') !== '') {
-				router.push(`/profile/${res.data.profile.user.login}`);
-			}			
+			if(res.data.statusCode <= 217) {
+				setEmailForConfirmation(email);
+				router.push(`/confirmation`);
+			}
 		})
 	}
 

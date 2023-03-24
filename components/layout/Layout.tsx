@@ -36,7 +36,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return ( 
 		<>
 			<div className={`${s.container} ${backgroundClass}`}>
-				<Header />
+				{ route.asPath !== '/confirmation' && <Header /> }
 				<main className={s.main}>{children}</main>
 				{/*<Footer
 					textColor={footerTextColor}

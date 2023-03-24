@@ -42,7 +42,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 		    setNewConnection(newConnection);
 			handleResize();
 		} else {
-			router.push('/login')
+			if (router.asPath !== '/confirmation') {
+				router.push('/register');
+			}
 		}
 		return () => {
 			connection$?.disconnect();
