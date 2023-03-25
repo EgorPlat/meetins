@@ -14,7 +14,7 @@ export default function ConfirmationView({ sendConfirmationCode }: IConfirmation
         <div className={s.confirmation}>
             <div className={s.description}>
                 Пожалуйста, для успешной процедуры подтверждения не перезагружайте страницу.
-                На указанную Вами при регистрации почту был выслан код подветрждения.
+                На указанную Вами при регистрации почту был выслан код подтверждения.
                 Пожалуйста впишите его в поле и нажмите "Отправить"
             </div>
             <div className={s.title}>

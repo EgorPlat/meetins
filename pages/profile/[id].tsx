@@ -31,9 +31,9 @@ function Profile(): JSX.Element {
     const authedUser = useStore($user);
 
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
-    const [isModal, setIsModal] = useState(false);
-    const [isAddPostModal, setIsAddPostModal] = useState(false);
-    const [isInviteModal, setIsInviteModal] = useState(false);
+    const [isModal, setIsModal] = useState<boolean>(false);
+    const [isAddPostModal, setIsAddPostModal] = useState<boolean>(false);
+    const [isInviteModal, setIsInviteModal] = useState<boolean>(false);
     const [choosedEventForInvite, setChoosedEventForInvite] = useState<number>();
 
     const changeAddingImageStatus = (status: boolean) => {

@@ -1,17 +1,17 @@
 .chat {
     display: grid;
     grid-template-rows: 15% 70% 15%;
-    height: 572px;
+    height: 772px;
     & .block {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
     & .user {
         display: grid;
-        grid-template-columns: 10% 50% 40%;
+        grid-template-columns: 15% 45% 40%;
         padding: 10px;
         & .avatar {
-            width: 65px;
-            height: 65px;
+            width: 100px;
+            height: 100px;
             border: 1px solid black;
             border-radius: 50%;
             background-size: 100% 100%;
@@ -19,7 +19,7 @@
     }
     & .name {
         margin-left: 4%;
-        font-size: 18px;
+        font-size: 24px;
     }
     & .status {
         font-size: 18px;
@@ -30,7 +30,7 @@
         font-size: 18px;
     }
     & .messages {
-        font-size: 15px;
+        font-size: 20px;
         margin-top: 1%;
         overflow-y: scroll;
         & .defaultText {
@@ -77,12 +77,12 @@
                     padding: 5px;
                     background-color: #d0ecff81;
                     border-radius: 100px;
-                    font-size: 10px;
+                    font-size: 15px;
                     color: grey;
                 }
             }
             & .messageTime {
-                font-size: 10px;
+                font-size: 15px;
                 color: grey;
             }
             & .messageWithFile {
@@ -107,6 +107,63 @@
         background-color: grey;    /* цвет плашки */
         border-radius: 20px;       /* закругления плашки */
         border: 3px solid white;  /* padding вокруг плашки */
+    }
+}
+
+@media screen and (max-height: 940px){
+    .chat {
+        height: 672px;
+        & .messages {
+            font-size: 18px;
+            & .messageWrapper {
+                & .messageDateWrapper {
+                    & .messageDate {
+                        font-size: 13px;
+                    }
+                }
+                & .messageTime {
+                    font-size: 13px;
+                }
+            }
+        }
+        & .user {
+            grid-template-columns: 12% 48% 40%;
+            & .avatar {
+                width: 85px;
+                height: 85px;
+            }
+        }
+        & .name {
+            font-size: 21px;
+        }
+    }
+}
+@media screen and (max-height: 840px){
+    .chat {
+        height: 572px;
+        & .messages {
+            font-size: 15px;
+            & .messageWrapper {
+                & .messageDateWrapper {
+                    & .messageDate {
+                        font-size: 10px;
+                    }
+                }
+                & .messageTime {
+                    font-size: 10px;
+                }
+            }
+        }
+        & .user {
+            grid-template-columns: 10% 50% 40%;
+            & .avatar {
+                width: 65px;
+                height: 65px;
+            }
+        }
+        & .name {
+            font-size: 18px;
+        }
     }
 }
 
