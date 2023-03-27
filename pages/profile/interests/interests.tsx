@@ -41,10 +41,12 @@ export default function Interests(props: {
         }
     }, [])
     useEffect(() => {  
-        getUserInterests(props.user?.interests).then(res => {
-            setCurrentUserInterests(res);
-        });
-    }, [props.user])
+        if (props.user?.interests) {
+            getUserInterests(props.user.interests).then(res => {
+                setCurrentUserInterests(res);
+            });
+        }
+    }, [props.user?.interests])
     return(
         <>
             <div className={s.interests}>

@@ -8,17 +8,13 @@ import { IPeople, Params } from "../../../global/interfaces";
 import { 
     allPeoples, 
     filterParams,
-    fullUpdatePeoples, 
-    getAllPeoples, 
+    fullUpdatePeoples,
     getAllPeoplesByPageNumber, 
     isPagePending, 
-    isPeoplesLoaded, 
     maxPageOfPeople, 
-    setAllPeoples, 
     setFilterParams, 
     setMaxPageOfPeople
 } from "../../../global/store/peoples_model";
-import { instance } from "../../../global/store/store";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
 
@@ -26,6 +22,7 @@ import s from "./SearchingPeople.module.scss";
 
 export default function SearchingPeople(): JSX.Element {
 
+    const { t } = useTranslation();
     const [goals, setGoals] = useState<string[]>(['Новые отношения','Друзей','Новые Интересы','Встречи','События','Общение в сети']);
     const [events, setEvents] = useState<string[]>(['По Москве на автобусе','История любви','"Энканто"','Green DAY']);
     const [popularInterests, setPopularInterests] = useState<string[]>(['Программирование', 'Бизнес', 'Кухня', 'Природа']);
@@ -34,8 +31,6 @@ export default function SearchingPeople(): JSX.Element {
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const filterParams$: Params = useStore(filterParams);
     const pending: boolean = useStore(isPagePending);
-
-    const { t } = useTranslation();
 
     const [clearScrollData, setClearScrollData] = useState<boolean>(false);
     const handleClearedScroll = () => {

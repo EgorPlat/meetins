@@ -76,6 +76,7 @@ function Profile(): JSX.Element {
         sendInviteToUser({ userToId: currentUser.userId, eventId: choosedEventForInvite });
         setIsInviteModal(false);
     }
+
     useEffect( () => {
         getDataForProfilePage(route);
     }, [route])

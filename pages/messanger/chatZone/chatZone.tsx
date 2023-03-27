@@ -38,13 +38,15 @@ export default function ChatZone(): JSX.Element {
     useEffect(() => {
         if (activeChat$.dialogId) {
             updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
-            getDialogMessages(activeChat$);
             ref.current.scrollIntoView({behavior: "smooth"});
         }
+    }, [activeChat$.dialogId]);
+
+    useEffect(() => {
         return () => { 
             setActiveChat({} as IMyDialog);
         }
-    }, [activeChat$.dialogId])
+    }, []);
         return(
             <div className={s.chat} ref={ref}>  
                 <div className={`${s.user} ${s.block}`}>

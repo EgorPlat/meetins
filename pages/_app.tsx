@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
 	const connection$ = useStore(connection);
- 
+
 	const handleResize = () => {
 		if (window.innerWidth <= 810) {
 			setIsMobile(true);
@@ -40,6 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				}
 			});
 		    setNewConnection(newConnection);
+			getMyDialogs(true);
 			handleResize();
 		} else {
 			if (router.asPath !== '/confirmation') {

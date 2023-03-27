@@ -5,9 +5,9 @@ import { User } from '../interfaces';
 import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 
-//export const baseURL = 'http://localhost:5000/';
+export const baseURL = 'http://localhost:5000/';
 
-export const baseURL = 'https://meetins-egorplat.amvera.io/';
+//export const baseURL = 'https://meetins-egorplat.amvera.io/';
 
 export const instance = axios.create({
 	baseURL: baseURL,
@@ -111,12 +111,14 @@ export const getUserData = createEffect(async () => {
 })
 export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const instanseRouter$ = instanseRouter.getState();
+	const savedRoute = localStorage.getItem("previousPage");
+
 	if(localStorage.getItem('access-token')) {
 		setIsAsyncLoaded(false);
 		getUserData().then( (res) => {
 			if(res.status === 200) {  
 				setIsAsyncLoaded(true);
-				instanseRouter$?.push('/profile/' + res.data.login);
+				instanseRouter$?.push(savedRoute);
 			} else {
 				if (instanseRouter$?.asPath !== '/confirmation') {
 					instanseRouter$?.push('/login');
@@ -124,7 +126,6 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 			}
 		})
 	} else {
-		console.log(instanseRouter$?.asPath);
 		if (instanseRouter$?.asPath !== '/confirmation') {
 			instanseRouter$?.push('/login');
 		}

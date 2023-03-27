@@ -21,6 +21,7 @@ const myDialogsWatcher = createEffect(( params: { myDialogs: IMyDialog[], authed
         })
         return prev += dialogUnReadMessages;
     }, 0);
+    
     if (count) setCountUreadMessages(count);
     if (!count) setCountUreadMessages(0);
 })

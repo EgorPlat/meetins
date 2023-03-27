@@ -25,8 +25,6 @@ export default function Settings(): JSX.Element {
     const { t, i18n } = useTranslation();
 
     useEffect(() => {
-        setCurrentPage(router.pathname);
-        
         return () => {
             setIsAccountUpdated(null);
             setIsProfileUpdated(null);
@@ -58,7 +56,7 @@ export default function Settings(): JSX.Element {
                 </div>
                 <div className={`${s.formAndInfo}`}>
                     <div className={s.locale}>
-                        <h5>{t("Выбрать язык")}</h5>
+                        <h4>{t("Выбрать язык")}</h4>
                         <div className={s.locales}>
                             <div className={s.localeImg}>
                                 <Image src={us} width="62px" height="50px" onClick={() => handleChangeLocale('en')}/>
@@ -69,13 +67,13 @@ export default function Settings(): JSX.Element {
                         </div>
                     </div>
                     <div className={s.info}> 
-                        <h5>{t("Информация профиля")}</h5>
+                        <h4>{t("Информация профиля")}</h4>
                             { isLoad ? <div className={s.profileForm}>
                                <ProfileInfoForm /> 
                             </div> : <Loader/>}
                     </div>
                     <div className={s.management}>
-                        <h5>{t("Управление аккаунтом")}</h5>
+                        <h4>{t("Управление аккаунтом")}</h4>
                         <div className={s.manageAcc}>
                             {isLoad ? <div className={s.accountForm}>
                                 <ManageAccountForm />
