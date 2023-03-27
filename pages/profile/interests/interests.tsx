@@ -41,10 +41,12 @@ export default function Interests(props: {
         }
     }, [])
     useEffect(() => {  
-        getUserInterests(props.user?.interests).then(res => {
-            setCurrentUserInterests(res);
-        });
-    }, [props.user])
+        if (props.user?.interests) {
+            getUserInterests(props.user.interests).then(res => {
+                setCurrentUserInterests(res);
+            });
+        }
+    }, [props.user?.interests])
     return(
         <>
             <div className={s.interests}>
@@ -52,7 +54,7 @@ export default function Interests(props: {
                     <Image src={like} width={20} height={20} alt="Сердечко" />
                     <b>{t('Интересы')}</b> 
                     {isAuthedUserAreCurrentUser && 
-                        <Image width={25} height={25} src={edit} onClick={openChangeInterests} />
+                        <Image width={15} height={15} src={edit} onClick={openChangeInterests} />
                     }
                 </div>
                 {

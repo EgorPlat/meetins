@@ -21,6 +21,7 @@ const myDialogsWatcher = createEffect(( params: { myDialogs: IMyDialog[], authed
         })
         return prev += dialogUnReadMessages;
     }, 0);
+    
     if (count) setCountUreadMessages(count);
     if (!count) setCountUreadMessages(0);
 })
@@ -71,7 +72,7 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
 export const sendMessageAndUploadActiveChat = createEffect((params: { message: string, dataStore: {activeChat: IMyDialog} }) => {
     const actualActiveChat = params.dataStore.activeChat;
     if(actualActiveChat) {
-        if(actualActiveChat.dialogId !== '-') {
+        if(actualActiveChat.dialogId) {
             sendMessageInDialog(
                 {dialogId: actualActiveChat.dialogId, content: params.message}
             ).then((response) => {
@@ -164,7 +165,7 @@ export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId:
     try {
         const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
         if(response.status === 200) {
-            getMyDialogs(true);
+            getMyDialogs(false);
             return response;
         }
     } catch(error) {

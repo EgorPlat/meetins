@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
-import Loader from "../../../../components/Loader/Loader";
 import { IEventInfoCard } from "../../../../global/interfaces/events";
 import { deleteUserEvent, getEventById, setCurrentEventById } from "../../../../global/store/events_model";
 import s from "./markedEventInfo.module.scss";

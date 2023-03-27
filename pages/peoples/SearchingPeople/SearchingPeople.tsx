@@ -8,16 +8,13 @@ import { IPeople, Params } from "../../../global/interfaces";
 import { 
     allPeoples, 
     filterParams,
-    fullUpdatePeoples, 
-    getAllPeoples, 
+    fullUpdatePeoples,
     getAllPeoplesByPageNumber, 
-    isPeoplesLoaded, 
+    isPagePending, 
     maxPageOfPeople, 
-    setAllPeoples, 
     setFilterParams, 
     setMaxPageOfPeople
 } from "../../../global/store/peoples_model";
-import { instance } from "../../../global/store/store";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
 
@@ -25,6 +22,7 @@ import s from "./SearchingPeople.module.scss";
 
 export default function SearchingPeople(): JSX.Element {
 
+    const { t } = useTranslation();
     const [goals, setGoals] = useState<string[]>(['Новые отношения','Друзей','Новые Интересы','Встречи','События','Общение в сети']);
     const [events, setEvents] = useState<string[]>(['По Москве на автобусе','История любви','"Энканто"','Green DAY']);
     const [popularInterests, setPopularInterests] = useState<string[]>(['Программирование', 'Бизнес', 'Кухня', 'Природа']);
@@ -32,8 +30,7 @@ export default function SearchingPeople(): JSX.Element {
     const maxPage$ = useStore(maxPageOfPeople);
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const filterParams$: Params = useStore(filterParams);
-
-    const { t } = useTranslation();
+    const pending: boolean = useStore(isPagePending);
 
     const [clearScrollData, setClearScrollData] = useState<boolean>(false);
     const handleClearedScroll = () => {
@@ -126,12 +123,15 @@ export default function SearchingPeople(): JSX.Element {
                         {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
                     </div>
                     { 
-                        peoplesList$.length === 0 ? 
+                        peoplesList$.length === 0 && !pending ? 
                         <div>
                             <h4>По Вашему запросу никого не найдено.</h4>
                             <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
                         </div>
                         : null 
+                    }
+                    {
+                        pending && <div>Загрузка...</div>
                     }
                 </div>
             </div>

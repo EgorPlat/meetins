@@ -1,0 +1,47 @@
+.confirmation {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    column-gap: 10px;
+    row-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    & .description {
+        max-width: 400px;
+        text-align: center;
+    }
+    & .title {
+        
+    }
+    & .content {
+        & input {
+            text-align: center;
+            width: 200px;
+            height: 40px;
+            border-radius: 100px;
+            border: none;
+            outline: none;
+            padding: 5px;
+            border: 1px solid gray;
+        }
+    }
+    & .actions {
+        & button {
+            width: 200px;
+            height: 40px;
+            border-radius: 100px;
+            border: none;
+            outline: none;
+            padding: 5px;
+            background-color: rgb(44, 171, 255);
+            color: white;
+        }
+        & button:hover {
+            background-color: rgb(255, 220, 44);
+            color: black;
+        }
+    }
+}

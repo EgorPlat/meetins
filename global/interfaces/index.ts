@@ -6,6 +6,27 @@ export type Post = {
     likes: number,
     id: string,
 }
+export interface IOuterInvites {
+    invitedUsers: IInvitedUsers[],
+    eventId: string
+}
+
+export interface IInvitedUsers {
+    userId: string,
+    status: boolean,
+    dateOfSending: string,
+    avatar: string,
+    name: string
+}
+
+export interface IInnerInvites {
+    fromUserId: string,
+    eventId: string,
+    dateOfSending: string,
+    status: boolean,
+    avatar: string,
+    name: string
+}
 
 export type User = {
 	userId: string
@@ -23,7 +44,9 @@ export type User = {
     events: string[],
     posts: Post[],
     isOnline: boolean,
-    interests: string[]
+    interests: string[],
+    innerInvites: IInnerInvites[]
+    outerInvites: IOuterInvites[]
 }
 
 export type ProfileData = {

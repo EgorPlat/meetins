@@ -8,10 +8,10 @@
     perspective: 200px;
     transform-style: flat;
     font-family: Nunito;
-    font-size: 16px;
+    font-size: 21px;
     border: none;
     & .title {
-        font-size: 19px;
+        font-size: 24px;
         & img {
             cursor: pointer;
         }
@@ -28,14 +28,24 @@
         animation: rotate 1s;
     }
 }
-
+@media screen and (max-width: 1720px) {
+    .interests {
+        font-size: 16px;
+        & .title {
+            font-size: 19px;
+        }
+    }
+}
 @media screen and (max-width: 380px) {
     .interests {
         font-size: 15px;
     }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 350px) {
     .interests {
-        font-size: 14px;
+        & .title {
+            font-size: 16px;
+        }
+        font-size: 12px;
     }
 }

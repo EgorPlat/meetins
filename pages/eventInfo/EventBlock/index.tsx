@@ -10,7 +10,7 @@ export default function EventBlock(props: {
 }): JSX.Element {
     const event = props.currentEventById;
     const { t } = useTranslation();
-
+    
 	if (event) {
         return(
             <div className={s.eventBlockContent}>

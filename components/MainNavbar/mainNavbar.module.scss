@@ -1,5 +1,5 @@
 .link {
-	font-size: 22px;
+	font-size: 32px;
 	font-family: Nunito;
 	background-color: rgb(251, 254, 255);
 	display: flex;
@@ -51,6 +51,21 @@
 	cursor: pointer;
 }
 
+@media screen  and (max-width: 1720px){
+	.link {
+		font-size: 26px;
+	}
+}
+@media screen  and (max-width: 1340px){
+	.link {
+		font-size: 24px;
+	}
+}
+@media screen  and (max-width: 1210px){
+	.link {
+		font-size: 22px;
+	}
+}
 @media screen  and (max-width: 1365px){
 	.link {
 		grid-template-columns: 70% 30%;

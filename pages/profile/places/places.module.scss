@@ -1,18 +1,45 @@
 .places {
     font-family: Nunito;
     & .title {
-        font-size: 19px;
+        font-size: 24px;
     }
     & .list {
-        font-size: 16px;
+        font-size: 21px;
         & .item {
             float: left;
         }
     }
 }
+@media screen and (max-width: 1720px) {
+    .places {
+        & .title {
+            font-size: 19px;
+        }
+        & .list {
+            font-size: 16px;
+        }
+    }
+}
 
+@media screen and (max-width: 380px) {
+    .places {
+        & .list {
+            font-size: 15px;
+        }
+    }
+}
+@media screen and (max-width: 380px) {
+    .places {
+        & .list {
+            font-size: 14px;
+        }
+    }
+}
 @media screen and (max-width: 350px) {
     .places {
+        & .list {
+            font-size: 12px;
+        }
         & .title {
             font-size: 17px;
         }
