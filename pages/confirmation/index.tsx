@@ -18,6 +18,7 @@ export default function Confirmation() {
             }
         });
     }
+    
     return (
         <ConfirmationView sendConfirmationCode={sendConfirmationCode} />
     )
