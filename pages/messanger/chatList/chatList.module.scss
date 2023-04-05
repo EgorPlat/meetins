@@ -1,7 +1,8 @@
 .chatList {
+    height: calc(100vh - 25px);
     & .list {
         width: 100%;
-        height: 700px;
+        height: calc(100vh - 97px);
         overflow-x: auto;
         display: grid;
         justify-content: center;
@@ -51,26 +52,30 @@
 }
 
 
-@media screen and (max-width: 1213px) {
+@media screen and (max-width: 1430px) {
+    .chatList {
+        & .menu {
+            & button {
+                font-size: 18px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 1300px) {
+    .chatList {
+        & .menu {
+            & button {
+                font-size: 16px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 1180px) {
     .chatList {
         & .menu {
             & button {
                 font-size: 14px;
             }
-        }
-    }
-}
-@media screen and (max-height: 940px) {
-    .chatList {
-        & .list {
-            height: 600px;
-        }
-    }
-}
-@media screen and (max-height: 840px) {
-    .chatList {
-        & .list {
-            height: 500px;
         }
     }
 }

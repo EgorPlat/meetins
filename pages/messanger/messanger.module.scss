@@ -19,10 +19,9 @@
 
 .mobileMessangerContent {
     width: 98%;
-    min-height: 600px;
     & .mobileChatZone {
-        display: grid;
-        grid-template-rows: 5% 95%;
+        display: flex;
+        flex-direction: column;
         & .mobileChatZoneBack {
             color: grey;
             font-size: 18px;

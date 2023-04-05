@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore } from "effector";
-import { IShortEventInfo, IEventInfoCard } from "../interfaces/events";
+import { IShortEventInfo, IEventInfoCard, IUnitedInvitesEvent, IInnerInviteEvent, IOuterInviteEvent } from "../interfaces/events";
 import { instance, setUser } from "./store";
 import { sample } from 'effector';
 
@@ -15,6 +15,20 @@ export const setLoadedStatus = createEvent<boolean>();
 export const loadedStatus = createStore<boolean>(false).on(setLoadedStatus, (_, newStatus) => {
     return newStatus;
 });
+
+export const setUnitedInnerInviteEvents = createEvent<IInnerInviteEvent[]>();
+export const setUnitedOuterInviteEvents = createEvent<IOuterInviteEvent[]>();
+export const unitedInviteEvents = createStore<IUnitedInvitesEvent>({
+    innerInvites: [] as IInnerInviteEvent[],
+    outerInvites: [] as IOuterInviteEvent[]
+});
+
+unitedInviteEvents.on(setUnitedInnerInviteEvents, (prev, innerInvites) => {
+    return {...prev, innerInvites: innerInvites}
+});
+unitedInviteEvents.on(setUnitedOuterInviteEvents, (prev, outerInvites) => {
+    return {...prev, outerInvites: outerInvites}
+})
 
 export const sendInviteToUser = createEffect(async (data: {userToId: string | number, eventId: string | number}) => {
     const response = await instance.post(
@@ -37,6 +51,18 @@ export const getEventById = createEffect(async (id: string) => {
 export const getUserEventsInfo = createEffect(async () => {
     const response = await instance.get(
         'event/getUserEventsInfo'
+    );
+    return response;
+})
+export const getUserInnerInvitesEventInfo = createEffect(async () => {
+    const response = await instance.get(
+        'event/getUserInnerInvitesEventInfo'
+    );
+    return response;
+})
+export const getUserOuterInvitesEventInfo = createEffect(async () => {
+    const response = await instance.get(
+        'event/getUserOuterInvitesEventInfo'
     );
     return response;
 })
@@ -82,6 +108,22 @@ sample({
     fn: response => response.data, 
     target: currentEvents
 })
+
+sample({
+    clock: getUserOuterInvitesEventInfo.doneData, 
+    filter: response => response.status <= 217, 
+    fn: response => response.data, 
+    target: setUnitedOuterInviteEvents
+})
+sample({ 
+    clock: getUserInnerInvitesEventInfo.doneData, 
+    filter: response => response.status <= 217, 
+    fn: response => response.data, 
+    target: setUnitedInnerInviteEvents
+})
+
+
+
 sample({
     clock: getEvents.pending,
     fn: () => false,

@@ -1,0 +1,44 @@
+.wrapper {
+    max-width: 600px;
+    min-height: 300px;
+    & .wrapperBlur {
+        max-width: 600px;
+        min-height: 300px;
+        background-color: rgba(128, 128, 128, 0.311);
+        color: white;
+        padding: 10px;
+        & .wrapperTopContent {
+            display: flex;
+            column-gap: 15px;
+        }
+        & .wrapperMainContent {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 5px;
+            & .title {
+                & .name {
+                    font-weight: 600;
+                    color: rgba(0, 119, 255, 0.742);
+                }
+                text-align: center;
+                word-wrap: break-word;
+            }
+            & .actions {
+                display: flex;
+                justify-content: center;
+                justify-items: center;
+                align-items: center;
+            }
+        }
+    }
+    & .wrapperBlur:hover {
+        background-color: rgba(128, 128, 128, 0.477);
+        transition: 0.5s;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .wrapper {
+        width: calc(100vw - 15px);
+    }
+}

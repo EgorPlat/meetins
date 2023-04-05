@@ -1,7 +1,7 @@
 .chat {
+    height: calc(100vh - 25px);
     display: grid;
-    grid-template-rows: 15% 70% 15%;
-    height: 772px;
+    grid-template-rows: 12% 76% 12%;
     & .block {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
@@ -112,7 +112,6 @@
 
 @media screen and (max-height: 940px){
     .chat {
-        height: 672px;
         & .messages {
             font-size: 18px;
             & .messageWrapper {
@@ -140,7 +139,6 @@
 }
 @media screen and (max-height: 840px){
     .chat {
-        height: 572px;
         & .messages {
             font-size: 15px;
             & .messageWrapper {
@@ -214,7 +212,6 @@
 
 @media screen and (max-width: 750px) {
     .chat {
-        grid-template-rows: 15% 80% 15%;
         & .messages {
             & .messageWrapper {
                 & .myMessageBlock {
@@ -250,11 +247,5 @@
                 }
             }
         }
-    }
-}
-
-@media screen and (max-width: 750px) and (min-height: 830px) {
-    .chat {
-        grid-template-rows: 15% 100% 15%;
     }
 }

@@ -1,3 +1,5 @@
+import { IInnerInvites, IInvitedUsers, IOuterInvites } from "."
+
 export interface IShortEventInfo {
     id: number,
     title: string,
@@ -60,4 +62,15 @@ export interface IEventInfoCard {
         }
       }
     ]
+}
+
+export interface IOuterInviteEvent extends IEventInfoCard {
+  inviteInfo: IOuterInvites
+}
+export interface IInnerInviteEvent extends IEventInfoCard {
+  inviteInfo: IInnerInvites
+}
+export interface IUnitedInvitesEvent {
+  innerInvites: IInnerInviteEvent[],
+  outerInvites: IOuterInviteEvent[]
 }
