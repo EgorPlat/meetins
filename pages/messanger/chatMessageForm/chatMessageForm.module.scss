@@ -1,42 +1,46 @@
 .form {
     font-size: 20px;
     display: flex;
+    column-gap: 5px;
     align-items: center;
     justify-content: center;
     justify-items: center;
-    & input {
-        width: 65%;
-        height: 40px;
-        margin-right: 1%;
-        border-radius: 5px;
+    & .formInput {
+        display: flex;
+        align-items: center;
+        width: 75%;
         border: 1px solid #3DB2FF;
-        outline: none;
-    }
-    & .fileInput {
-        width: 45px;
-        height: 45px;
+        height: 50px;
         border-radius: 5px;
-        background-image: url('../../../public/images/inputFile.png');
-        background-size: 45px 45px;
-        margin-right: 5px;
-        & input[type='file'] {
-            width: 45px;
-            height: 45px;
-            opacity: 0;
+        & input {
+            width: 100%;
+            border: none;
+            outline: none;
         }
-    }
-    & .fileInputBlocked {
-        width: 45px;
-        height: 45px;
-        border-radius: 5px;
-        background-image: url('../../../public/images/inputFile.png');
-        background-size: 45px 45px;
-        margin-right: 5px;
-        opacity: 0.4;
-        & input[type='file'] {
-            width: 45px;
-            height: 45px;
-            opacity: 0;
+        & .fileInput {
+            width: 35px;
+            height: 35px;
+            background-image: url('../../../public/images/inputFile.png');
+            background-size: 35px 35px;
+            & input[type='file'] {
+                width: 45px;
+                height: 45px;
+                opacity: 0;
+            }
+        }
+        & .fileInputBlocked {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            background-image: url('../../../public/images/inputFile.png');
+            background-size: 35px 35px;
+            margin-right: 5px;
+            opacity: 0.4;
+            & input[type='file'] {
+                width: 35px;
+                height: 35px;
+                opacity: 0;
+            }
         }
     }
     & button {

@@ -28,6 +28,10 @@
         }
     }
 }
+
+.notificationModalText {
+    font-size: 15px;
+}
 @media screen and (max-width: 810px) {
     .messangerContent {
         grid-template-columns: 1fr;

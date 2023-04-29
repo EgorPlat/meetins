@@ -168,7 +168,7 @@ export const sendNewUserPost = createEffect(async (formData: FormData) => {
 	const response = await instance.post('users/addUserPost', formData);
 	if(response.status === 200) {
 		setUser(response.data);
-		addNewError({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000 })
+		addNewError({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000, textColor: "white" })
 		window.location.reload();
 	}
 	return response;

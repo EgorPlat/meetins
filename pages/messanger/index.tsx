@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React from "react";
+import React, { useState } from "react";
 import PageContainer from "../../components/pageContainer/pageContainer";
 import { IMyDialog } from "../../global/interfaces";
 import { activeChat, setActiveChat } from "../../global/store/chat_model";
@@ -13,13 +13,14 @@ export default function Messanger(): JSX.Element {
     
     const activeChat$ = useStore(activeChat);
     const isMobile$ = useStore(isMobile);
-
+    const [notificationModal, setNotificationModal] = useState<boolean>(true);
+     
     const handleBack = () => {
         setActiveChat({} as IMyDialog);
     }
 
     const isChatNeededToShow = activeChat$.dialogId === null || Boolean(activeChat$.dialogId);
-
+    
     return(
         <PageContainer> 
            { !isMobile$ 

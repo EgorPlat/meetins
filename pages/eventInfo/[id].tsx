@@ -18,7 +18,7 @@ export default function EventInfo(): JSX.Element {
 
     const addUserEventHandler = (id: number) => {
         if (authedUser$.events.includes(String(currentEventById$.id))) {
-            addNewError({ text: "Уже есть в вашем списке", time: 3000, color: 'orange' });
+            addNewError({ text: "Уже есть в вашем списке", time: 3000, color: 'orange', textColor: "black" });
             return;
         }
         addUserEvent(id);
@@ -36,7 +36,13 @@ export default function EventInfo(): JSX.Element {
     }, [])
 	return(
         <PageContainer>
-            {currentEventById$ ? <EventBlock addUserEvent={addUserEventHandler} currentEventById={currentEventById$} /> : <Loader />}
+            {currentEventById$ 
+            ? 
+                <EventBlock 
+                    addUserEvent={addUserEventHandler} 
+                    currentEventById={currentEventById$}
+                /> 
+            : <Loader />}
         </PageContainer>
     )
 };

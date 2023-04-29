@@ -18,7 +18,7 @@ export const Error = (props: { error: IError }) => {
 
     return (
         visible && 
-            <div className={s.eachError} style={{backgroundColor: error.color, opacity: 0.7}}>
+            <div className={s.eachError} style={{backgroundColor: error.color, opacity: 0.7, color: props.error.textColor}}>
                 {error.text}
             </div>
     )

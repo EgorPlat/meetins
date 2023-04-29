@@ -13,9 +13,9 @@ export default function CategoryEventInfo(): JSX.Element {
     return(
         <PageContainer>
             <div className={s.content}>
-                <div className={`${s.calendar} ${s.block}`}>
+                {/*<div className={`${s.calendar} ${s.block}`}>
 				    {t('Введите желаемую дату события')}: <input type = "date"/>
-			    </div>
+                </div>*/}
                 <div className={`${s.list} ${s.block}`}>
                     {
                         nameCategory && typeof nameCategory === "string"

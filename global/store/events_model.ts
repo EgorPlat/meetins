@@ -2,6 +2,7 @@ import { createEffect, createEvent, createStore } from "effector";
 import { IShortEventInfo, IEventInfoCard, IUnitedInvitesEvent, IInnerInviteEvent, IOuterInviteEvent } from "../interfaces/events";
 import { instance, setUser } from "./store";
 import { sample } from 'effector';
+import { addNewError } from "./errors_model";
 
 export const setCurrentEvents = createEvent<IShortEventInfo[]>();
 export const currentEvents = createStore<IShortEventInfo[]>([]).on(setCurrentEvents, (_, newEvents) => {
@@ -121,7 +122,14 @@ sample({
     fn: response => response.data, 
     target: setUnitedInnerInviteEvents
 })
-
+sample({ 
+    clock: addUserEvent.doneData, 
+    filter: response => response.status <= 217, 
+    fn: (response) => {
+        return { text: "Успешно добавлено в 'Закладки'", time: 3000, color: "green", textColor: "white" }
+    }, 
+    target: addNewError
+})
 
 
 sample({

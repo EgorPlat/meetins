@@ -32,19 +32,19 @@ export const isTypeOfFileAreVideo = (value: string) => {
 
 export const validatePost = (post) => {
 	if (post.title.length < 5) {
-		addNewError({ text: 'Минимальное название темы - 5 символов', time: 3000, color: 'orange' });
+		addNewError({ text: 'Минимальное название темы - 5 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
 	}
 	if (post.description.length < 15) {
-		addNewError({ text: 'Минимальная длина описания - 15 символов', time: 3000, color: 'orange' });
+		addNewError({ text: 'Минимальная длина описания - 15 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
 	}
     if (post.description.length > 100) {
-        addNewError({ text: 'Максимальная длина описания - 100 символов', time: 3000, color: 'orange' });
+        addNewError({ text: 'Максимальная длина описания - 100 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
     }
     if (post.title.length > 20) {
-        addNewError({ text: 'Максимальное название темы - 20 символов', time: 3000, color: 'orange' });
+        addNewError({ text: 'Максимальное название темы - 20 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
     }
     return true;
