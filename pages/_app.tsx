@@ -1,25 +1,28 @@
-import type { AppProps } from 'next/app'
-import Layout from '../components/layout/Layout'
-import '../styles/app.css'
-import '../node_modules/reseter.css/css/reseter.min.css'
-import Head from 'next/head'
-import { useEffect } from 'react'
-import { baseURL, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store'
-import { useRouter } from 'next/router'
-import { connection, setNewConnection } from '../global/store/connection_model'
-import { setRouter } from '../global/store/router_model'
-import { io } from 'socket.io-client'
-import { useStore } from 'effector-react'
-import ErrorBlock from '../components/ErrorBlock/errorBlock'
+import 'regenerator-runtime/runtime';
+import type { AppProps } from 'next/app';
+import { useEffect } from 'react';
+import { baseURL, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
+import { useRouter } from 'next/router';
+import { connection, setNewConnection } from '../global/store/connection_model';
+import { setRouter } from '../global/store/router_model';
+import { io } from 'socket.io-client';
+import { useStore } from 'effector-react';
 import { getMyDialogs } from '../global/store/chat_model'
+import { detectUserLanguage } from '../global/helpers/helper';
+import { useWebSpeach } from '../global/hooks/useWebSpeach';
+import Layout from '../components/layout/Layout';
+import '../styles/app.css';
+import '../node_modules/reseter.css/css/reseter.min.css';
+import Head from 'next/head';
+import ErrorBlock from '../components/ErrorBlock/errorBlock';
 import '../i18n';
-import { detectUserLanguage } from '../global/helpers/helper'
-import i18n from '../i18n'
+import i18n from '../i18n';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
 	const connection$ = useStore(connection);
+	const speachDetecting = useWebSpeach();
 
 	const handleResize = () => {
 		if (window.innerWidth <= 810) {
@@ -30,6 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}
 
 	useEffect(() => {
+		handleResize();
 		i18n.changeLanguage(detectUserLanguage());
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
@@ -41,7 +45,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 			});
 		    setNewConnection(newConnection);
 			getMyDialogs(true);
-			handleResize();
 		} else {
 			if (router.asPath !== '/confirmation') {
 				router.push('/register');

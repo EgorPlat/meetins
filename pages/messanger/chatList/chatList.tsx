@@ -31,7 +31,7 @@ export default function ChatList(): JSX.Element {
             <div className={s.list}>
                 {isLoaded$ !== false && myDialogs$ !== null ? myDialogs$.map( dialog => 
                 <UserChatCard
-                    key={dialog.userAvatar}
+                    key={dialog.dialogId}
                     dialog={dialog}
                     authedUser={authedUser$}
                 />) : <div className={s.loader}></div>}

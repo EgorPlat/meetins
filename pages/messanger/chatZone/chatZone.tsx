@@ -24,9 +24,8 @@ export default function ChatZone(): JSX.Element {
     const activeChat$ = useStore(activeChat);
     const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
     const onlineUsers = useStore($onlineUsers);
-    const isUserOnline = onlineUsers.filter(el => el.userId !== activeChat$.userId).length > 0;
-    const ref = useRef(null);
-    const messagesEndRef = useRef<HTMLSpanElement>(null);
+    const isUserOnline = false;
+    const messagesEndRef = useRef<HTMLDivElement>(null);
     const { t } = useTranslation();
 
     const sendForm = (inputValue: string) => {
@@ -34,13 +33,12 @@ export default function ChatZone(): JSX.Element {
             createdSendMessageAndUploadActiveChat(inputValue);
         }
     }
-
     useEffect(() => {
         if (activeChat$.dialogId) {
             updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
-            ref.current.scrollIntoView({behavior: "smooth"});
+            messagesEndRef.current.scrollIntoView({behavior: "smooth"});
         }
-    }, [activeChat$.dialogId]);
+    }, [activeChat$.messages]);
 
     useEffect(() => {
         return () => { 
@@ -48,7 +46,7 @@ export default function ChatZone(): JSX.Element {
         }
     }, []);
         return(
-            <div className={s.chat} ref={ref}>  
+            <div className={s.chat}>  
                 <div className={`${s.user} ${s.block}`}>
                     <div className={s.avatar} style={{
                         backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`}}>
@@ -114,7 +112,7 @@ export default function ChatZone(): JSX.Element {
                         })
                         : <Loader/>
                     }
-                    <span ref={messagesEndRef}></span>
+                    <div ref={messagesEndRef}>.</div>
                 </div>
                 <div className={`${s.form} ${s.block}`}>
                     <ChatMessageForm 

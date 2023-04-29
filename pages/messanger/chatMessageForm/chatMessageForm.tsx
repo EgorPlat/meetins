@@ -19,6 +19,7 @@ export default function ChatMessageForm(
 
     const sendForm = () => {
         props.onClickForm(messageRef.current.value);
+        messageRef.current.value = "";
     }
     const addSmileHandler = (emoji) => {
         messageRef.current.value = messageRef.current.value + emoji;
