@@ -59,14 +59,14 @@ export default function ChatZone(): JSX.Element {
                         {!isUserOnline ? t('В сети') : t('Не в сети')}
                     </div>
                 </div>
-                <div className={s.messages}>
+                <div className={`${s.messages} ${s.block}`}>
                     {activeChat$.messages
                         ? activeChat$.messages.map((message, index) => {
                             const isMyMessage = message.senderId === authedUser?.userId;
                             const isDateAlreadyExist = 
                                 getDateInDMFormat(message.sendAt) !== getDateInDMFormat(activeChat$.messages[index - 1]?.sendAt);
                             return (
-                                <div className={s.messageWrapper}>
+                                <div className={s.messageWrapper} key={message.sendAt}>
                                     <div className={s.messageDateWrapper}>
                                         { isDateAlreadyExist && 
                                             <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div> 

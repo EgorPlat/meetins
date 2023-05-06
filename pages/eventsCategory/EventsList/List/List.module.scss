@@ -2,25 +2,31 @@
     display: grid;
     grid-template-columns: 1fr;
     & .eventBody {
+        background-color: rgba(192, 192, 192, 0.177);
+        padding: 5px;
         display: grid;
         grid-template-columns: 4fr 8fr;
         min-height: 150px;
-        margin-top: 20px;
+        margin-top: 10px;
         margin-left: 1%;
         float: left;
         & .eventViewZone {
-            font-weight: 700;
             text-align: center;
+            background-size: 100% 150px;
         }
         & .eventDescription {
             text-align: center;
             & .free {
+                font-size: 15px;
                 border: none;
                 background-color: rgba(43, 255, 43, 0.697);
+                border-radius: 100px;
             }
             & .notFree {
+                font-size: 15px;
                 border: none;
-                background-color: rgba(59, 160, 255, 0.825);
+                background-color: rgba(59, 160, 255, 0.538);
+                border-radius: 100px;
             }
         }
     }
@@ -34,6 +40,12 @@
         & .eventBody {
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 1fr;
+            & .eventDescription {
+                font-size: 15px;
+            }
+            & .eventViewZone {
+                background-size: 100% 100px;
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ export default function MobileChatList(): JSX.Element {
                     const lastMessage = dialog.messages[dialog.messages.length - 1];
                     const isUnreadMessageMy = lastMessage.senderId === authedUser$.userId;
                     return (
-                        <div className={s.mobileUserChatCard}>
+                        <div className={s.mobileUserChatCard} key={dialog.dialogId}>
                             <UserChatCard
                                 key={dialog.userAvatar}
                                 dialog={dialog}
