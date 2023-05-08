@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
 	const connection$ = useStore(connection);
-	const speachDetecting = useWebSpeach();
+	//const speachDetecting = useWebSpeach();
 
 	const handleResize = () => {
 		if (window.innerWidth <= 810) {
