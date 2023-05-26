@@ -1,15 +1,14 @@
 import 'regenerator-runtime/runtime';
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
-import { baseURL, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
-import { useRouter } from 'next/router';
+import { setIsMobile } from '../global/store/store';
 import { connection, setNewConnection } from '../global/store/connection_model';
-import { setRouter } from '../global/store/router_model';
-import { io } from 'socket.io-client';
 import { useStore } from 'effector-react';
 import { getMyDialogs } from '../global/store/chat_model'
 import { detectUserLanguage } from '../global/helpers/helper';
 import { useWebSpeach } from '../global/hooks/useWebSpeach';
+import { useResize } from '../global/hooks/useResize';
+import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 import Layout from '../components/layout/Layout';
 import '../styles/app.css';
 import '../node_modules/reseter.css/css/reseter.min.css';
@@ -20,40 +19,29 @@ import i18n from '../i18n';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-	const router = useRouter();
 	const connection$ = useStore(connection);
+	const isMobile = useResize();
+	const newConnection = useAuthAndInithialSocket();
 	//const speachDetecting = useWebSpeach();
 
-	const handleResize = () => {
-		if (window.innerWidth <= 810) {
-			setIsMobile(true);
-		} else {
-			setIsMobile(false);
-		}
-	}
-
 	useEffect(() => {
-		handleResize();
 		i18n.changeLanguage(detectUserLanguage());
-		setRouter(router);
-		getInitialUserDataAndCheckAuth();
-		if(localStorage.getItem('access-token') !== '') {
-			const newConnection = io(baseURL, {
-				extraHeaders: {
-					Authorization: String(localStorage.getItem('access-token'))
-				}
-			});
-		    setNewConnection(newConnection);
-			getMyDialogs(true);
-		} else {
-			if (router.asPath !== '/confirmation') {
-				router.push('/register');
-			}
-		}
 		return () => {
 			connection$?.disconnect();
 		}
-	}, [])
+	}, []);
+
+	useEffect(() => {
+		if(newConnection) {
+			setNewConnection(newConnection);
+			getMyDialogs(true);
+		}
+	}, [newConnection]);
+
+	useEffect(() => {
+		setIsMobile(isMobile);
+	}, [isMobile]);
+
 	return (
 		<Layout>
 			<Head>
