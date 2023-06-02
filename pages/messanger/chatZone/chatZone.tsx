@@ -11,8 +11,7 @@ import {
     createdSendMessageAndUploadActiveChat,
     getDialogMessages,
     isMessageWithFileLoaded,
-    setActiveChat,
-    updatedIsReadMessagesInActiveDialog
+    setActiveChat
 } from "../../../global/store/chat_model";
 import { $onlineUsers, $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
@@ -35,7 +34,6 @@ export default function ChatZone(): JSX.Element {
     }
     useEffect(() => {
         if (activeChat$.dialogId) {
-            updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
             getDialogMessages(activeChat$);
             messagesEndRef.current.scrollIntoView({behavior: "smooth"});
         }

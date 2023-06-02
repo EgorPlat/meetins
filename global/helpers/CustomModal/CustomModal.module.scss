@@ -83,7 +83,7 @@
         & .customModalContent {
             width: 700px;
             max-height: 600px;
-            font-size: 34px;
+            font-size: 22px;
             //grid-template-rows: 45px 450px 65px;
             & .customModalTitle {
                 font-size: 26px;
@@ -95,6 +95,17 @@
                         font-size: 16px;
                     }
                 }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1536px) {
+    .customModal {
+        & .customModalContent {
+            width: 500px;
+            font-size: 16px;
+            & .customModalTitle {
+                font-size: 18px;
             }
         }
     }

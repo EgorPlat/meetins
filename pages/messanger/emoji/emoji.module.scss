@@ -7,6 +7,7 @@
     background-color: #3db1ffec;
     font-weight: 300;
     cursor: pointer;
+    position: relative;
     & .defaultEmoji {
         width: 30px;
         height: 30px;
@@ -16,5 +17,31 @@
         justify-items: center;
         font-size: 22px;
         color: white;
+    }
+    & .emojiListWrapper {
+        position: absolute;
+        top: -130px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .emoji {
+        & .emojiListWrapper {
+            left: -30px;
+        }
+    }
+}
+@media screen and (max-width: 545px) {
+    .emoji {
+        & .emojiListWrapper {
+            left: -60px;
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .emoji {
+        & .emojiListWrapper {
+            left: -80px;
+        }
     }
 }

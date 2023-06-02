@@ -40,7 +40,7 @@ export default function Messanger(): JSX.Element {
             :
             <div className={s.mobileMessangerContent}>
                 {
-                    !Boolean(activeChat$.dialogId) 
+                    !isChatNeededToShow 
                     ? <MobileChatList /> 
                     : 
                     <div className={`${s.mobileChatZone}`}>

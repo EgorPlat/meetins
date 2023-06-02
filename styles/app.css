@@ -47,10 +47,18 @@ body {
 	font-family: Nunito;
 	overflow-x: hidden;
 }
-
 a {
 	text-decoration: none;
+	color: black;
 }
+select {
+	color: black;
+}
+option {
+	color: black;
+}
+
+
 ._container {
 	width: 1170px;
 	margin: 0 auto;

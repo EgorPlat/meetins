@@ -6,7 +6,6 @@ import { connection, setNewConnection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { getMyDialogs } from '../global/store/chat_model'
 import { detectUserLanguage } from '../global/helpers/helper';
-import { useWebSpeach } from '../global/hooks/useWebSpeach';
 import { useResize } from '../global/hooks/useResize';
 import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 import Layout from '../components/layout/Layout';
@@ -22,7 +21,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const connection$ = useStore(connection);
 	const isMobile = useResize();
 	const newConnection = useAuthAndInithialSocket();
-	//const speachDetecting = useWebSpeach();
 
 	useEffect(() => {
 		i18n.changeLanguage(detectUserLanguage());

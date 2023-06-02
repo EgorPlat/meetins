@@ -1,7 +1,7 @@
 .link {
 	font-size: 32px;
 	font-family: Nunito;
-	background-color: rgb(251, 254, 255);
+	//background-color: rgb(251, 254, 255);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -9,7 +9,6 @@
 	justify-items: center;
 	& a {
 		margin-left: 3.5%;
-		color: black;
 		text-decoration: none;
 	}
 	& a:hover {
@@ -19,12 +18,11 @@
 		margin-right: 20px;
 		margin-left: 3.5%;
 		border: 0.7px solid solid rgb(204, 204, 204);
-		background-color: white;
 		outline: none;
 		border-radius: 100px;
 	}
 	& select {
-		background-color: rgb(251, 254, 255);
+		background-color: transparent;
 		border: none;
 		outline: none;
 		margin-left: 10px;
@@ -32,7 +30,7 @@
 		& option {
 			cursor: pointer;
 			font-family: Nunito;
-			background-color: rgb(255, 255, 255);
+			background-color: transparent;
 			font-size: 18px;
 			padding: 5px;
 		}

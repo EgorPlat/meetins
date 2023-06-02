@@ -24,8 +24,6 @@ export default function EventInfo(): JSX.Element {
         addUserEvent(id);
     }
     
-    console.log(currentEventById$?.images);
-    
     useEffect(() => {
         if (query.id) {
             getEventById(String(query.id));
