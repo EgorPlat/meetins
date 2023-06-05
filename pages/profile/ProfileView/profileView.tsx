@@ -7,13 +7,13 @@ import InputFile from '../../../global/helpers/InputFile/InputFile';
 import Image from "next/image";
 import About from '../About/About';
 import Interests from '../interests/interests';
-import Places from '../Places/places';
 import ImageList from '../ImageList/ImageList';
 import Loader from '../../../components/Loader/Loader';
 import Modal from '../../../global/helpers/Modal/Modal';
 import CustomModal from '../../../global/helpers/CustomModal/CustomModal';
 import AddingPosts from '../AddingPosts/AddingPosts';
 import ChoosingEvents from '../СhoosingEvents/choosingEvents';
+import Places from '../Places/places';
  
 export default function ProfileView(props: {
     asyncLoaded: boolean,
