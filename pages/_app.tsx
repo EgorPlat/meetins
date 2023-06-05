@@ -1,6 +1,6 @@
 import 'regenerator-runtime/runtime';
 import type { AppProps } from 'next/app';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { setIsMobile } from '../global/store/store';
 import { connection, setNewConnection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
@@ -15,11 +15,13 @@ import Head from 'next/head';
 import ErrorBlock from '../components/ErrorBlock/errorBlock';
 import '../i18n';
 import i18n from '../i18n';
+import CustomModal from '../global/helpers/CustomModal/CustomModal';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const connection$ = useStore(connection);
-	const isMobile = useResize();
+	const [isMobile, isUnAdaptive] = useResize();
+	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
 	const newConnection = useAuthAndInithialSocket();
 
 	useEffect(() => {
@@ -38,7 +40,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
 		setIsMobile(isMobile);
-	}, [isMobile]);
+		setIsNotifyAdaptive(isUnAdaptive);
+	}, [isMobile, isUnAdaptive]);
 
 	return (
 		<Layout>
@@ -48,6 +51,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 			</Head>
 			<Component {...pageProps} />
 			<ErrorBlock />
+			<CustomModal
+				isDisplay={isNotifyAdaptive}
+				changeModal={setIsNotifyAdaptive}
+				actionConfirmed={(status) => setIsNotifyAdaptive(false)}
+				title='Уведомление'
+				typeOfActions='default'
+			>
+				Внимание, возможно параметры Вашего экрана отличаются от ожидаемых.
+				Отображение страниц сайта может быть некорректным.
+			</CustomModal>
 		</Layout>
 	)
 }

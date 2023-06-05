@@ -3,8 +3,12 @@ import { useEffect, useState } from "react"
 export const useResize = () => {
 
     const [isMobile, setIsMobile] = useState<boolean>(false);
-    
+    const [isUnAdaptive, setIsUnAdaptive] = useState<boolean>(false);
+
     const handleResize = () => {
+		if (window.innerWidth > 1600) {
+			setIsUnAdaptive(true);
+		}
 		if (window.innerWidth <= 810) {
 			setIsMobile(true);
 		} else {
@@ -19,5 +23,5 @@ export const useResize = () => {
 		};  
     }, []);
 
-    return isMobile;
+    return [isMobile, isUnAdaptive];
 }
