@@ -5,13 +5,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: center;
     font-family: Nunito;
     & .customModalContent {
-        display: grid;
-        grid-template-rows: 25px 290px 45px;
         font-size: 24px;
         padding: 20px;
         border-radius: 5px;
@@ -20,25 +18,26 @@
         background-color: white;
         & .customModalTitle {
             display: grid;
-            grid-template-columns: 10fr 1fr;
+            grid-template-columns: 95% 5%;
             font-size: 16px;
             min-height: 20px;
             & .customModalClose {
-                text-align: right;
-                & button {
-                    font-size: 10px;
-                    width: 20px;
-                    height: 20px;
-                    background-color: rgba(0, 166, 255, 0.9);
-                    color: white;
-                    border-radius: 50%;
-                    font-weight: 600;
-                    border: none;
-                }
-                & button:hover {
-                    background-color: rgba(255, 200, 0, 0.956);
-                    color: black;
-                }
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                width: 25px;
+                height: 25px;
+                background-color: rgba(0, 166, 255, 0.9);
+                color: white;
+                border-radius: 50%;
+                font-weight: 600;
+                border: none;
+            }
+            & .customModalClose:hover {
+                cursor: pointer;
+                background-color: rgba(255, 200, 0, 0.956);
+                color: black;
             }
         }
         & .customModalChildrenContent {
@@ -67,12 +66,12 @@
             margin: 1%;
         }
         & .confirmBtn {
-            width: 25%;
+            width: 110px;
             min-height: 30px;
             background-color: rgb(15, 129, 223);
         }
         & .cancelBtn {
-            width: 25%;
+            width: 110px;
             min-height: 30px;
             background-color: rgb(65, 65, 65);
         }
@@ -84,8 +83,8 @@
         & .customModalContent {
             width: 700px;
             max-height: 600px;
-            font-size: 34px;
-            grid-template-rows: 45px 450px 65px;
+            font-size: 22px;
+            //grid-template-rows: 45px 450px 65px;
             & .customModalTitle {
                 font-size: 26px;
                 & .customModalClose {
@@ -96,6 +95,17 @@
                         font-size: 16px;
                     }
                 }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1536px) {
+    .customModal {
+        & .customModalContent {
+            width: 500px;
+            font-size: 16px;
+            & .customModalTitle {
+                font-size: 18px;
             }
         }
     }
@@ -131,7 +141,7 @@
 @media screen and (max-width: 400px) {
     .customModal {
         & .customModalContent {
-            width: 90%;
+            width: 350px
         }
     }
 }

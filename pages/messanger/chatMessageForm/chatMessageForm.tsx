@@ -19,6 +19,7 @@ export default function ChatMessageForm(
 
     const sendForm = () => {
         props.onClickForm(messageRef.current.value);
+        messageRef.current.value = "";
     }
     const addSmileHandler = (emoji) => {
         messageRef.current.value = messageRef.current.value + emoji;
@@ -36,10 +37,12 @@ export default function ChatMessageForm(
     }
     return(
         <div className={s.form}>
-            <input ref={messageRef} type="text" placeholder={t(props.placeholder)}/>
-            <Emoji addSmileHandler={addSmileHandler} />
-            <div className={props.isChatExists ? s.fileInput : s.fileInputBlocked}>
-                <input type="file" onChange={(e) => onSendNewFile(e)}/>
+            <div className={s.formInput}>
+                <input ref={messageRef} type="text" placeholder={t(props.placeholder)}/>
+                <Emoji addSmileHandler={addSmileHandler} />
+                <div className={props.isChatExists ? s.fileInput : s.fileInputBlocked}>
+                    <input type="file" onChange={(e) => onSendNewFile(e)}/>
+                </div>
             </div>
             <button onClick={sendForm} disabled={!props.isLoaded}>{props.isLoaded ? t('Отправить') : Loader()}</button>
         </div>

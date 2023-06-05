@@ -49,12 +49,13 @@ export default function SearchingPeople(): JSX.Element {
         setMaxPageOfPeople(0);
         setClearScrollData(true);
     }
+
     useEffect(() => {
         getAllPeoplesByPageNumber({
             pageNumber: scrollData,
             pageSize: 10, 
             filters: { age: filterParams$.age, gender: filterParams$.gender }
-        });
+        });        
     }, [scrollData])
 
     useEffect(() => {

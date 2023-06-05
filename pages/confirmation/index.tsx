@@ -14,7 +14,7 @@ export default function Confirmation() {
             if (res.status <= 217) {
                 router.push(`/profile/${res.data.profile.user.login}`);
             } else {
-                addNewError({ text: "Неверный код", time: 3000, color: "orange" });
+                addNewError({ text: "Неверный код", time: 3000, color: "orange", textColor: "black" });
             }
         });
     }

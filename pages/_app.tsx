@@ -1,56 +1,48 @@
-import type { AppProps } from 'next/app'
-import Layout from '../components/layout/Layout'
-import '../styles/app.css'
-import '../node_modules/reseter.css/css/reseter.min.css'
-import Head from 'next/head'
-import { useEffect } from 'react'
-import { baseURL, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store'
-import { useRouter } from 'next/router'
-import { connection, setNewConnection } from '../global/store/connection_model'
-import { setRouter } from '../global/store/router_model'
-import { io } from 'socket.io-client'
-import { useStore } from 'effector-react'
-import ErrorBlock from '../components/ErrorBlock/errorBlock'
+import 'regenerator-runtime/runtime';
+import type { AppProps } from 'next/app';
+import { useEffect, useState } from 'react';
+import { setIsMobile } from '../global/store/store';
+import { connection, setNewConnection } from '../global/store/connection_model';
+import { useStore } from 'effector-react';
 import { getMyDialogs } from '../global/store/chat_model'
+import { detectUserLanguage } from '../global/helpers/helper';
+import { useResize } from '../global/hooks/useResize';
+import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
+import Layout from '../components/layout/Layout';
+import '../styles/app.css';
+import '../node_modules/reseter.css/css/reseter.min.css';
+import Head from 'next/head';
+import ErrorBlock from '../components/ErrorBlock/errorBlock';
 import '../i18n';
-import { detectUserLanguage } from '../global/helpers/helper'
-import i18n from '../i18n'
+import i18n from '../i18n';
+import CustomModal from '../global/helpers/CustomModal/CustomModal';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-	const router = useRouter();
 	const connection$ = useStore(connection);
-
-	const handleResize = () => {
-		if (window.innerWidth <= 810) {
-			setIsMobile(true);
-		} else {
-			setIsMobile(false);
-		}
-	}
+	const [isMobile, isUnAdaptive] = useResize();
+	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
+	const newConnection = useAuthAndInithialSocket();
 
 	useEffect(() => {
 		i18n.changeLanguage(detectUserLanguage());
-		setRouter(router);
-		getInitialUserDataAndCheckAuth();
-		if(localStorage.getItem('access-token') !== '') {
-			const newConnection = io(baseURL, {
-				extraHeaders: {
-					Authorization: String(localStorage.getItem('access-token'))
-				}
-			});
-		    setNewConnection(newConnection);
-			getMyDialogs(true);
-			handleResize();
-		} else {
-			if (router.asPath !== '/confirmation') {
-				router.push('/register');
-			}
-		}
 		return () => {
 			connection$?.disconnect();
 		}
-	}, [])
+	}, []);
+
+	useEffect(() => {
+		if(newConnection) {
+			setNewConnection(newConnection);
+			getMyDialogs(true);
+		}
+	}, [newConnection]);
+
+	useEffect(() => {
+		setIsMobile(isMobile);
+		setIsNotifyAdaptive(isUnAdaptive);
+	}, [isMobile, isUnAdaptive]);
+
 	return (
 		<Layout>
 			<Head>
@@ -59,6 +51,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 			</Head>
 			<Component {...pageProps} />
 			<ErrorBlock />
+			<CustomModal
+				isDisplay={isNotifyAdaptive}
+				changeModal={setIsNotifyAdaptive}
+				actionConfirmed={(status) => setIsNotifyAdaptive(false)}
+				title='Уведомление'
+				typeOfActions='default'
+			>
+				Внимание, возможно параметры Вашего экрана отличаются от ожидаемых.
+				Отображение страниц сайта может быть некорректным.
+			</CustomModal>
 		</Layout>
 	)
 }

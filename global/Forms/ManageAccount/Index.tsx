@@ -47,7 +47,8 @@ export default function ManageAccountForm(): JSX.Element {
             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 
             : isUpdated !== null 
             ? <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (email, адрес)</div>
-            : null }
+            : null 
+            }
                 <button type="submit" className={s.saveButton}>{t('Сохранить')}</button>
             </form>
         </div>

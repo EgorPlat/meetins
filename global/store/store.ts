@@ -5,9 +5,8 @@ import { User } from '../interfaces';
 import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 
-export const baseURL = 'http://localhost:5000/';
-
-//export const baseURL = 'https://meetins-egorplat.amvera.io/';
+//export const baseURL = 'http://localhost:5000/';
+export const baseURL = 'https://meetins-egorplat.amvera.io/';
 
 export const instance = axios.create({
 	baseURL: baseURL,
@@ -118,6 +117,8 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 		getUserData().then( (res) => {
 			if(res.status === 200) {  
 				setIsAsyncLoaded(true);
+				console.log(instanseRouter$);
+				
 				instanseRouter$?.push(savedRoute);
 			} else {
 				if (instanseRouter$?.asPath !== '/confirmation') {
@@ -169,7 +170,7 @@ export const sendNewUserPost = createEffect(async (formData: FormData) => {
 	const response = await instance.post('users/addUserPost', formData);
 	if(response.status === 200) {
 		setUser(response.data);
-		addNewError({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000 })
+		addNewError({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000, textColor: "white" })
 		window.location.reload();
 	}
 	return response;

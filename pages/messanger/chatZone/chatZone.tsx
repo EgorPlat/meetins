@@ -11,8 +11,7 @@ import {
     createdSendMessageAndUploadActiveChat,
     getDialogMessages,
     isMessageWithFileLoaded,
-    setActiveChat,
-    updatedIsReadMessagesInActiveDialog
+    setActiveChat
 } from "../../../global/store/chat_model";
 import { $onlineUsers, $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
@@ -24,9 +23,8 @@ export default function ChatZone(): JSX.Element {
     const activeChat$ = useStore(activeChat);
     const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
     const onlineUsers = useStore($onlineUsers);
-    const isUserOnline = onlineUsers.filter(el => el.userId !== activeChat$.userId).length > 0;
-    const ref = useRef(null);
-    const messagesEndRef = useRef<HTMLSpanElement>(null);
+    const isUserOnline = false;
+    const messagesEndRef = useRef<HTMLDivElement>(null);
     const { t } = useTranslation();
 
     const sendForm = (inputValue: string) => {
@@ -34,11 +32,10 @@ export default function ChatZone(): JSX.Element {
             createdSendMessageAndUploadActiveChat(inputValue);
         }
     }
-
     useEffect(() => {
         if (activeChat$.dialogId) {
-            updatedIsReadMessagesInActiveDialog(activeChat$.dialogId);
-            ref.current.scrollIntoView({behavior: "smooth"});
+            getDialogMessages(activeChat$);
+            messagesEndRef.current.scrollIntoView({behavior: "smooth"});
         }
     }, [activeChat$.dialogId]);
 
@@ -48,7 +45,7 @@ export default function ChatZone(): JSX.Element {
         }
     }, []);
         return(
-            <div className={s.chat} ref={ref}>  
+            <div className={s.chat}>  
                 <div className={`${s.user} ${s.block}`}>
                     <div className={s.avatar} style={{
                         backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`}}>
@@ -60,14 +57,14 @@ export default function ChatZone(): JSX.Element {
                         {!isUserOnline ? t('В сети') : t('Не в сети')}
                     </div>
                 </div>
-                <div className={s.messages}>
+                <div className={`${s.messages} ${s.block}`}>
                     {activeChat$.messages
                         ? activeChat$.messages.map((message, index) => {
                             const isMyMessage = message.senderId === authedUser?.userId;
                             const isDateAlreadyExist = 
                                 getDateInDMFormat(message.sendAt) !== getDateInDMFormat(activeChat$.messages[index - 1]?.sendAt);
                             return (
-                                <div className={s.messageWrapper}>
+                                <div className={s.messageWrapper} key={message.sendAt}>
                                     <div className={s.messageDateWrapper}>
                                         { isDateAlreadyExist && 
                                             <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div> 
@@ -114,7 +111,7 @@ export default function ChatZone(): JSX.Element {
                         })
                         : <Loader/>
                     }
-                    <span ref={messagesEndRef}></span>
+                    <div ref={messagesEndRef}>.</div>
                 </div>
                 <div className={`${s.form} ${s.block}`}>
                     <ChatMessageForm 

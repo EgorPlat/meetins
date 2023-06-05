@@ -118,11 +118,8 @@ export const getMyDialogs = createEffect(async (isFirstGetDialogs: boolean) => {
     if (isFirstGetDialogs) setIsMyDialogsLoaded(false);
     try {
         const response = await instance.get('chat/my-dialogs');
-        if(response.status === 200) {
-            setMyDialogs(response.data);
-            if (isFirstGetDialogs) setIsMyDialogsLoaded(true);
-            return response.data;
-        }
+        if (isFirstGetDialogs) setIsMyDialogsLoaded(true);
+        return response;
     }  
     catch(error) {
         console.log(error);
@@ -164,10 +161,7 @@ export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) =>
 export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId: string) => {
     try {
         const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
-        if(response.status === 200) {
-            getMyDialogs(false);
-            return response;
-        }
+        return response;
     } catch(error) {
         console.log(error);
     }
@@ -205,4 +199,23 @@ export const startNewDialog = createEffect(async (newDialog: INewDialog) => {
     catch(error) {
         console.log(error);
     }
+})
+
+sample({
+	clock: getDialogMessages.doneData,
+	filter: response => response.status === 200,
+	fn: response => response.data[0].dialogId,
+	target: updatedIsReadMessagesInActiveDialog
+})
+sample({
+	clock: updatedIsReadMessagesInActiveDialog.doneData,
+	filter: response => response.status === 200,
+	fn: response => false,
+	target: getMyDialogs
+})
+sample({
+	clock: getMyDialogs.doneData,
+	filter: response => response.status === 200,
+	fn: response => response.data,
+	target: setMyDialogs
 })

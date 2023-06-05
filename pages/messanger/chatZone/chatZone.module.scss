@@ -1,7 +1,7 @@
 .chat {
+    height: calc(100vh - 25px);
     display: grid;
-    grid-template-rows: 15% 70% 15%;
-    height: 772px;
+    grid-template-rows: 12% 76% 12%;
     & .block {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
@@ -12,7 +12,7 @@
         & .avatar {
             width: 100px;
             height: 100px;
-            border: 1px solid black;
+            border: 1px solid gray;
             border-radius: 50%;
             background-size: 100% 100%;
         }
@@ -47,6 +47,7 @@
                 & .myMessage {
                     display: inline;
                     max-width: 400px;
+                    min-width: 60px;
                     border-radius: 10px;
                     padding: 10px;
                     margin-right: 10px;
@@ -112,7 +113,6 @@
 
 @media screen and (max-height: 940px){
     .chat {
-        height: 672px;
         & .messages {
             font-size: 18px;
             & .messageWrapper {
@@ -138,9 +138,8 @@
         }
     }
 }
-@media screen and (max-height: 840px){
+@media screen and (max-height: 860px){
     .chat {
-        height: 572px;
         & .messages {
             font-size: 15px;
             & .messageWrapper {
@@ -163,6 +162,20 @@
         }
         & .name {
             font-size: 18px;
+        }
+    }
+}
+@media screen and (max-height: 740px){
+    .chat {
+        & .user {
+            grid-template-columns: 8% 54% 38%;
+            & .avatar {
+                width: 45px;
+                height: 45px;
+            }
+        }
+        & .name {
+            font-size: 16px;
         }
     }
 }
@@ -214,7 +227,6 @@
 
 @media screen and (max-width: 750px) {
     .chat {
-        grid-template-rows: 15% 80% 15%;
         & .messages {
             & .messageWrapper {
                 & .myMessageBlock {
@@ -250,11 +262,5 @@
                 }
             }
         }
-    }
-}
-
-@media screen and (max-width: 750px) and (min-height: 830px) {
-    .chat {
-        grid-template-rows: 15% 100% 15%;
     }
 }

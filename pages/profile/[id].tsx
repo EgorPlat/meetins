@@ -1,32 +1,18 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
-import message from "../../public/images/message.svg";
-import { $currentProfileUser, $user, baseURL, getDataForProfilePage, isAsyncLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
-import s from "./profile.module.scss";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from "next/image";
-import Interests from "./interests/interests";
-import Places from "./places/places";
-import ImageList from "./ImageList/ImageList";
+import { $currentProfileUser, $user, getDataForProfilePage, isAsyncLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
-import About from "./About/About";
-import InputFile from "../../global/helpers/InputFile/InputFile";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
-import PageContainer from "../../components/pageContainer/pageContainer";
 import { checkDialog, } from "../../global/store/chat_model";
-import Modal from "../../global/helpers/Modal/Modal";
-import Loader from "../../components/Loader/Loader";
-import AddingPosts from "./AddingPosts/AddingPosts";
-import CustomModal from "../../global/helpers/CustomModal/CustomModal";
-import { useTranslation } from "react-i18next";
 import { sendInviteToUser } from "../../global/store/events_model";
-import ChoosingEvents from "./choosingEvents/choosingEvents";
+import { User } from "../../global/interfaces";
+import ProfileView from "./ProfileView/profileView";
+import PageContainer from "../../components/pageContainer/pageContainer";
 
 function Profile(): JSX.Element {
 
     const route = useRouter();
     const asyncLoaded = useStore(isAsyncLoaded);
-    const { t } = useTranslation();
     const currentUser = useStore($currentProfileUser);
     const authedUser = useStore($user);
 
@@ -43,25 +29,25 @@ function Profile(): JSX.Element {
     }
 
     const onChangeInputImage = (event: ChangeEvent<HTMLInputElement>) => {
-        updateUserAvatar(event).then((res: any) => {
+        updateUserAvatar(event).then((res: { data: User }) => {
             setCurrentProfileUser(res.data)
             setUser(res.data);
         })
         setIsModal(true);
     }
 
-    const saveNewStatus = useCallback((userStatus: string) => {
-        updateUserStatus(userStatus).then( (user: any) => {
+    const handleSaveNewStatus = useCallback((userStatus: string) => {
+        updateUserStatus(userStatus).then( (user: User) => {
             setUser(user);
             setCurrentProfileUser(user);
         });
     }, [])
 
-    const startDialog = () => {
+    const handleStartDialog = () => {
         checkDialog(currentUser);
         Router.push('/messanger')
     } 
-    const onModalClick = (status: boolean) => {
+    const onImageModalClick = (status: boolean) => {
         if (status) {
             window.location.reload();
         }
@@ -72,7 +58,7 @@ function Profile(): JSX.Element {
         setIsAddPostModal(false);
     }
 
-    const sendInvite = () => {
+    const handleSendInvite = () => {
         sendInviteToUser({ userToId: currentUser.userId, eventId: choosedEventForInvite });
         setIsInviteModal(false);
     }
@@ -83,102 +69,25 @@ function Profile(): JSX.Element {
 
     return(
         <PageContainer>
-        <div className={s.profile}>
-            {   
-                asyncLoaded ? 
-                <div className={`${s.bodyCol}`}>
-
-                    <div className={`${s.block} ${s.mainBlock}`}>
-                        <div className={`${s.bodyInfo}`}>
-                            {
-                                !addingImageStatus ?
-                                <img 
-                                    onMouseEnter={() => changeAddingImageStatus(true)}
-                                    src={baseURL + currentUser.avatar}
-                                    alt="Аватарка" 
-                                    className={`${s.avatar}`}
-                                    /> : <InputFile 
-                                        onChange={(event) => onChangeInputImage(event)} 
-                                        onMouseLeave={() => changeAddingImageStatus(false)}
-                                />
-                            }
-                        </div>
-                        <div className={`${s.userInfo}`}>
-                            <div>
-                                <div className={`${s.userName}`}>
-                                    {currentUser.name + ', ' + currentUser.age}
-                                </div>
-                                <div className={s.town}>
-                                    г. {currentUser.city}
-                                </div>
-                            </div>
-                            { 
-                                currentUser.login !== authedUser?.login ?
-                                <div className={`${s.actions}`}>
-                                    <button type="button" className={`${s.actionsBtn}`} onClick={startDialog}>
-                                        {t('Диалог')}
-                                        <Image alt="Сообщение" src={message} width={20} height={20} />
-                                    </button>
-                                    <button type="button" className={`${s.actionsBtn}`} onClick={() => setIsInviteModal(true)}>
-                                        {t('Пригласить')} +
-                                    </button>
-                                </div> : null
-                            }
-                        </div>
-                    </div>
-
-                    <div className={`${s.block}`}>
-                        <div className={`${s.text}`}>
-                            <About saveNewUserStatus={saveNewStatus} user={currentUser}/>
-                        </div>
-                    </div>
-
-                    <div className={`${s.moreInfo}`}>
-                        <div className={`${s.block} ${s.interests}`}>
-                            <Interests user={currentUser} authedUser={authedUser} />
-                        </div>
-                        <div className={`${s.block} ${s.places}`}>
-                            <Places places={['Дворец спорта','Наполи','Манеж','Химик']}/>
-                        </div>
-                    </div> 
-
-                    {
-                        currentUser.login === authedUser?.login &&
-                        <div className={s.addingPosts}>
-                            <button onClick={() => setIsAddPostModal(true)}>{t('Добавить новую запись')}</button>
-                        </div>
-                    }
-                    <div className={s.postsList}>
-                        { authedUser && <ImageList currentUser={currentUser} authedUser={authedUser} /> }
-                    </div>
-                </div> : <Loader/>
-            }
-            <Modal 
-                isDisplay={isModal} 
-                changeModal={onModalClick} 
-                actionConfirmed={onModalClick}
-            >
-                <p>{t('Изменения вступят в силу после перезагрузки вкладки профиль')}.</p>
-            </Modal>
-            <CustomModal 
-                isDisplay={isAddPostModal} 
-                changeModal={onAddingModalClick} 
-                actionConfirmed={onAddingModalClick}
-                title={t('Добавить новую запись')}
-                typeOfActions="none"
-            >
-                <AddingPosts />
-            </CustomModal>
-            <CustomModal 
-                isDisplay={isInviteModal} 
-                changeModal={setIsInviteModal} 
-                actionConfirmed={sendInvite}
-                title={t('Выберите событие')}
-                typeOfActions="default"
-            >
-                <ChoosingEvents choosedEvent={setChoosedEventForInvite} />
-            </CustomModal>
-        </div>
+            <ProfileView
+                asyncLoaded={asyncLoaded}
+                addingImageStatus={addingImageStatus}
+                currentUser={currentUser}
+                authedUser={authedUser}
+                isAddPostModal={isAddPostModal}
+                isImageModal={isModal}
+                isInviteModal={isInviteModal}
+                handleSendInvite={handleSendInvite}
+                setChoosedEventForInvite={setChoosedEventForInvite}
+                setIsAddPostModal={setIsAddPostModal}
+                setIsInviteModal={setIsInviteModal}
+                handleStartDialog={handleStartDialog}
+                onChangeInputImage={onChangeInputImage}
+                handleSaveNewStatus={handleSaveNewStatus}
+                changeAddingImageStatus={changeAddingImageStatus}
+                onAddingModalClick={onAddingModalClick}
+                onImageModalClick={onImageModalClick}
+            />
         </PageContainer>
     )
 }
