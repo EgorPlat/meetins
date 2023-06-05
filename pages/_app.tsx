@@ -20,7 +20,7 @@ import CustomModal from '../global/helpers/CustomModal/CustomModal';
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const connection$ = useStore(connection);
-	const [isMobile, isUnAdaptive] = useResize();
+	const {isMobile, isUnAdaptive} = useResize();
 	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
 	const newConnection = useAuthAndInithialSocket();
 
@@ -39,6 +39,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}, [newConnection]);
 
 	useEffect(() => {
+		console.log(isMobile);
+		
 		setIsMobile(isMobile);
 		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);
