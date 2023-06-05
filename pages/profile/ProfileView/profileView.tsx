@@ -14,7 +14,7 @@ import CustomModal from '../../../global/helpers/CustomModal/CustomModal';
 import AddingPosts from '../AddingPosts/AddingPosts';
 import ChoosingEvents from '../СhoosingEvents/choosingEvents';
 import Places from '../Places/places';
- 
+
 export default function ProfileView(props: {
     asyncLoaded: boolean,
     addingImageStatus: boolean,
