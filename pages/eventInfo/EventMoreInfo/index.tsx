@@ -11,7 +11,7 @@ export default function EventMoreInfo(props: {
             <div className={s.eventMoreInfoData}>
                 <div className={s.block}>Записалось: {props.favoritesCount}</div>
                 <div className={s.block}>
-                    Цена: {props.price.length > 0 ? props.price : 'Бесплатно'}
+                    Цена: {props.price?.length > 0 ? props.price : 'Бесплатно'}
                 </div>
                 <div className={s.block}>
                     <a href={props.siteUrl} target="_blank">Перейти на сайт организатора</a>
@@ -19,7 +19,7 @@ export default function EventMoreInfo(props: {
             </div>
             <div className={s.eventMoreInfoTags}>
                 {
-                    props.tags.map(el => (
+                    props.tags?.map(el => (
                         <div className={s.tag}>{el.split(' ')[0]}</div>
                     ))
                 }
