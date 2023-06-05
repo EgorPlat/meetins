@@ -13,7 +13,9 @@ import Modal from '../../../global/helpers/Modal/Modal';
 import CustomModal from '../../../global/helpers/CustomModal/CustomModal';
 import AddingPosts from '../AddingPosts/AddingPosts';
 import ChoosingEvents from '../СhoosingEvents/choosingEvents';
-import Places from '../Places/places';
+import Places from '../places/places';
+
+// test 
 
 export default function ProfileView(props: {
     asyncLoaded: boolean,
