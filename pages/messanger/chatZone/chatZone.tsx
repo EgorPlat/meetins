@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Loader from "../../../components/Loader/Loader";
 import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
@@ -25,6 +25,7 @@ export default function ChatZone(): JSX.Element {
     const onlineUsers = useStore($onlineUsers);
     const isUserOnline = false;
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const [moreActionForUserModal, setMoreActionUserForModal] = useState<boolean>(false);
     const { t } = useTranslation();
 
     const sendForm = (inputValue: string) => {
@@ -50,11 +51,26 @@ export default function ChatZone(): JSX.Element {
                     <div className={s.avatar} style={{
                         backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`}}>
                     </div>
-                    <div className={s.name}>
-                        {activeChat$.userName}
-                    </div>
-                    <div className={!isUserOnline ? s.statusOnline : s.status}>
-                        {!isUserOnline ? t('В сети') : t('Не в сети')}
+                    <div className={s.userTextInfo}>
+                        <div className={s.name}>
+                            {activeChat$.userName}
+                        </div>
+                        <div className={!isUserOnline ? s.statusOnline : s.status}>
+                            {!isUserOnline ? t('В сети') : t('Не в сети')}
+                        </div>
+                        <div className={s.userMoreActions} onClick={() => setMoreActionUserForModal(!moreActionForUserModal)}>
+                            <div className={s.userMoreActionsLine}></div>
+                            <div className={s.userMoreActionsLine}></div>
+                            <div className={s.userMoreActionsLine}></div>
+                            {
+                                moreActionForUserModal && 
+                                <div className={s.userActionsList}>
+                                    <div className={s.userActionsListElement}>Профиль</div>
+                                    <div className={s.userActionsListElement}>Очистить чат</div>
+                                    <div className={s.userActionsListElement}>Пригласить</div>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className={`${s.messages} ${s.block}`}>
