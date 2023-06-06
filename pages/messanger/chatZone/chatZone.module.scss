@@ -7,7 +7,7 @@
     }
     & .user {
         display: grid;
-        grid-template-columns: 100px calc(100% - 100px);
+        grid-template-columns: 90px calc(100% - 90px);
         padding: 10px;
         & .avatar {
             width: 100%;
