@@ -39,8 +39,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}, [newConnection]);
 
 	useEffect(() => {
-		console.log(isMobile);
-		
 		setIsMobile(isMobile);
 		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);

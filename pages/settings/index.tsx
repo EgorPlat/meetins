@@ -1,18 +1,18 @@
-import React from "react";
-import s from "./settings.module.scss";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Link from "next/link";
 import { useStore } from "effector-react";
 import { isAsyncLoaded, setCurrentPage } from "../../global/store/store";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { deleteUserAccount, setIsAccountUpdated, setIsProfileUpdated } from "../../global/store/settings_model";
+import { useTranslation } from "react-i18next";
+import React from "react";
+import s from "./settings.module.scss";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Link from "next/link";
 import Modal from "../../global/helpers/Modal/Modal";
 import ProfileInfoForm from "../../global/Forms/ProfileInfo/Index";
 import ManageAccountForm from "../../global/Forms/ManageAccount/Index";
-import { useState } from "react";
-import { deleteUserAccount, setIsAccountUpdated, setIsProfileUpdated } from "../../global/store/settings_model";
 import Loader from "../../components/Loader/Loader";
-import { useTranslation } from "react-i18next";
 import ru from '../../public/images/ru.png';
 import us from '../../public/images/us.png';
 import Image from "next/image";
@@ -52,7 +52,7 @@ export default function Settings(): JSX.Element {
             <div className={`${s.settingsMenus}`}>
                 <div className={`${s.menu}`}>
                     <div><Link href = ''>{t("Аккаунт")}</Link></div>
-                    <div><Link href = ''>{t("Подписка")}</Link></div>
+                    <div><Link href = '/tariffs'>{t("Подписка")}</Link></div>
                 </div>
                 <div className={`${s.formAndInfo}`}>
                     <div className={s.locale}>
