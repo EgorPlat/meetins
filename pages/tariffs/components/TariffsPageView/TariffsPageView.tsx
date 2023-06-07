@@ -9,7 +9,7 @@ export default function TariffsPageView(props: {
         <div className={s.tariffsPageView}>
             <div className={s.tarrifsList}>
                 {
-                    props.tariffsData.map(tariff => (
+                    props.tariffsData?.map(tariff => (
                         <div className={s.tariffView}>
                             <div className={s.title}>
                                 {tariff.title}
@@ -20,7 +20,7 @@ export default function TariffsPageView(props: {
                             <div className={s.oppotunitiesList}>
                                 Преимущества:
                                 {
-                                    tariff.opportunities.map(oppotunity => (
+                                    tariff.opportunities?.map(oppotunity => (
                                         <div className={s.oppotunity}>
                                             <div className={s.title}>
                                                 {oppotunity.title}
