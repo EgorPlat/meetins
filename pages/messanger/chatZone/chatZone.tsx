@@ -23,7 +23,7 @@ export default function ChatZone(): JSX.Element {
     const activeChat$ = useStore(activeChat);
     const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
     const onlineUsers = useStore($onlineUsers);
-    const isUserOnline = false;
+    const isUserOnline = onlineUsers.filter(el => el.userId !== activeChat$.userId).length > 0;
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const [moreActionForUserModal, setMoreActionUserForModal] = useState<boolean>(false);
     const { t } = useTranslation();

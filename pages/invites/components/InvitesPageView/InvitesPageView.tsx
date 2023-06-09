@@ -1,3 +1,4 @@
+import CustomLoader from '../../../../components/CustomLoader/CustomLoader';
 import Loader from '../../../../components/Loader/Loader';
 import ConfirmAndCancelActions from '../../../../global/helpers/ConfirmAndCancelActions/ConfirmAndCancelActions';
 import { customizeDateToYYYYMMDDFormat } from '../../../../global/helpers/helper';
@@ -13,7 +14,7 @@ interface IInvitesPageView {
     unitedEventsInfo: IUnitedInvitesEvent
 }
 export default function InvitesPageView({ authedUser, unitedEventsInfo }: IInvitesPageView) {
-    if (unitedEventsInfo) {
+    if (unitedEventsInfo.innerInvites.length !== 0) {
         return (
             <div className={s.invitesPageView}>
                 {
@@ -25,6 +26,6 @@ export default function InvitesPageView({ authedUser, unitedEventsInfo }: IInvit
             </div>
         )
     } else {
-        return <span>Загрузка...</span>;
+        return <CustomLoader marginTop={250} />
     }
 }

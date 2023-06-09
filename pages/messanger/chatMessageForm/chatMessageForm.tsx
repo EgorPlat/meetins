@@ -43,8 +43,8 @@ export default function ChatMessageForm(
                 <div className={props.isChatExists ? s.fileInput : s.fileInputBlocked}>
                     <input type="file" onChange={(e) => onSendNewFile(e)}/>
                 </div>
+                <button onClick={sendForm} disabled={!props.isLoaded}>{props.isLoaded ? t('Отправить') : Loader()}</button>
             </div>
-            <button onClick={sendForm} disabled={!props.isLoaded}>{props.isLoaded ? t('Отправить') : Loader()}</button>
         </div>
     )
 }
