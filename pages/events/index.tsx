@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import PageContainer from "../../components/pageContainer/pageContainer";
 import Card from "./categoryCard/card";
 import s from "./index.module.scss";
+import Head from "next/head";
 
 
 export default function Events(): JSX.Element {
@@ -12,6 +13,15 @@ export default function Events(): JSX.Element {
 	return (
 		<PageContainer>
 			<div className={s.events}>
+				<Head>
+					<title>Meetins-{t('Events')}</title>
+					<meta name="description" content="Meetins - события" key="desc" />
+					<meta property="og:title" content="Ищите события и приглашайте на них своих друзей!" />
+					<meta
+						property="og:description"
+						content="Приглашайте своих новых друзей куда угодно!"
+					/>
+				</Head>
 				<div className={s.mainContent}>
 					<Card 
 						img_src = "https://cdn.fishki.net/upload/post/2020/05/04/3307156/3cce757e8b8860e9638c2b95c91c2908.jpg" 

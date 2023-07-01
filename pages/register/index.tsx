@@ -69,7 +69,13 @@ export default function Login(): JSX.Element {
 	return (
 		<div className={s.card}>
 			<Head>
-				<title>{t('Регистрация')}</title> 
+				<title>Meetins-{t('Регистрация')}</title>
+				<meta name="description" content="Meetins - регистрация" key="desc" />
+				<meta property="og:title" content="Зарегестрируйтесь в Meetins и начните знакомится!" />
+				<meta
+                	property="og:description"
+                    content="Регистрируйтесь и общайтесь!"
+                />
 			</Head>
 			<h2>{t('Регистрация')}</h2>
 			<form autoComplete='off' onSubmit={handleSubmit(sendLoginData)}>

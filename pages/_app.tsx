@@ -48,6 +48,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<Head>
 				<title>Meetins</title>
 				<link rel='icon' href='/favicon.svg' />
+				<meta name="description" content="Checkout our service" key="desc" />
+				<meta property="og:title" content="Social Media Meetins for cool persons" />
+				<meta
+				property="og:description"
+				content="Join us and get a lot of fun and new friends"
+				/>
 			</Head>
 			<Component {...pageProps} />
 			<ErrorBlock />

@@ -3,12 +3,14 @@ import backgroundLogin from '../public/images/background-login.jpg'
 import backgroundRegister from '../public/images/background-register.jpg'
 import { useRouter } from 'next/dist/client/router'
 import Footer from '../Footer'
-import { $currentPage, setCurrentPage } from '../../global/store/store'
+import { $currentPage, isMobile, setCurrentPage } from '../../global/store/store'
 import { useStore } from 'effector-react'
 import { useEffect } from 'react'
 import Header from '../Header'
 export default function Layout({ children }: { children: React.ReactNode }) {
-	const route = useRouter()
+
+	const route = useRouter();
+	const isMobile$ = useStore(isMobile);
 
 	const currentPage = useStore($currentPage)
 	let backgroundClass = ''
@@ -38,10 +40,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<div className={`${s.container} ${backgroundClass}`}>
 				{ route.asPath !== '/confirmation' && <Header /> }
 				<main className={s.main}>{children}</main>
-				{/*<Footer
-					textColor={footerTextColor}
-					backgroundColor={footerBackgroundColor}
-				/> */}
 			</div>
 		</>
 	)
