@@ -14,7 +14,7 @@ interface IInvitesPageView {
     unitedEventsInfo: IUnitedInvitesEvent
 }
 export default function InvitesPageView({ authedUser, unitedEventsInfo }: IInvitesPageView) {
-    if (unitedEventsInfo.innerInvites.length !== 0) {
+    if (unitedEventsInfo && unitedEventsInfo.innerInvites.length !== 0) {
         return (
             <div className={s.invitesPageView}>
                 {
