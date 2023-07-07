@@ -7,7 +7,7 @@ import { checkDialog, } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
 import ProfileView from "./ProfileView/profileView";
-import PageContainer from "../../components/pageContainer/pageContainer";
+import PageContainer from "../../components/PageContainer/pageContainer";
 
 function Profile(): JSX.Element {
 

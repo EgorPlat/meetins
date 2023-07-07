@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import PageContainer from "../../components/pageContainer/pageContainer";
+import PageContainer from "../../components/PageContainer/pageContainer";
 import LentaList from "./LentaList/LentaList";
 import s from "./peoples.module.scss";
 import SearchingPeople from "./SearchingPeople/SearchingPeople";

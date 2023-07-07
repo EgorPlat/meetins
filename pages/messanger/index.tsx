@@ -1,6 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useState } from "react";
-import PageContainer from "../../components/pageContainer/pageContainer";
+import PageContainer from "../../components/PageContainer/pageContainer";
 import { IMyDialog } from "../../global/interfaces";
 import { activeChat, setActiveChat } from "../../global/store/chat_model";
 import { isMobile } from "../../global/store/store";

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next";
-import PageContainer from "../../components/pageContainer/pageContainer";
+import PageContainer from "../../components/PageContainer/pageContainer";
 import EventsList from "./EventsList/EventsList";
 import s from "./nameCategory.module.scss";
 import { useState } from "react";

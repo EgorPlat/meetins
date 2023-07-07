@@ -11,7 +11,7 @@ export const useResize = () => {
 		} else {
 			setIsMobile(false);
 		}
-		if (window.innerWidth > 1600) {
+		if (window.innerWidth > 1900) {
 			setIsUnAdaptive(true);
 		}
 	};

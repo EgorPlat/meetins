@@ -8,7 +8,7 @@ import { getMyDialogs } from '../global/store/chat_model'
 import { detectUserLanguage } from '../global/helpers/helper';
 import { useResize } from '../global/hooks/useResize';
 import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
-import Layout from '../components/layout/Layout';
+import Layout from '../components/Layout/Layout';
 import '../styles/app.css';
 import '../node_modules/reseter.css/css/reseter.min.css';
 import Head from 'next/head';
