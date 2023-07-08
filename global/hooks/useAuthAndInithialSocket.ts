@@ -21,7 +21,7 @@ export const useAuthAndInithialSocket = () => {
 		    setSocketConnection(newConnection);
 		} else {
 			if (router.asPath !== '/confirmation') {
-				router.push('/register');
+				router.push('/login');
 			}
 		}
     }, []);

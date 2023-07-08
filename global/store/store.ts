@@ -40,6 +40,7 @@ instance.interceptors.response.use((response) => {
 			} else {
 				localStorage.removeItem('access-token');
 				localStorage.removeItem('refrash-token');
+				window.location.reload();
 				return error.response;
 			}
 		})
