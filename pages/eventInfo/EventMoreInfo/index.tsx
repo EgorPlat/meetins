@@ -20,7 +20,7 @@ export default function EventMoreInfo(props: {
             <div className={s.eventMoreInfoTags}>
                 {
                     props.tags?.map(el => (
-                        <div className={s.tag}>{el.split(' ')[0]}</div>
+                        <div className={s.tag} key={el}>{el.split(' ')[0]}</div>
                     ))
                 }
             </div>

@@ -41,7 +41,7 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
             {
               props.currentUser?.posts?.map(el => {
                 return (
-                  <div className={`${s.post} ${s.block}`}>
+                  <div className={`${s.post} ${s.block}`} key={el.title}>
                     <div className={s.postTitle}>
                       {el.title} <span className={s.date}>{customizeDateToYYYYMMDDFormat(el.date)}</span>
                     </div>

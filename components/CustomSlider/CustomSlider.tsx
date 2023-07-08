@@ -49,10 +49,11 @@ export default function CustomSlider({ images }: ICustomSliderProps) {
                 {
                     images.map((el, index) => (
                         <div 
-                        className={
-                            index === activeImageId ? s.customSliderRoundActive : s.customSliderRoundInactive
-                        }
-                        onClick={() => updateActiveImage(index)}
+                            className={
+                                index === activeImageId ? s.customSliderRoundActive : s.customSliderRoundInactive
+                            }
+                            onClick={() => updateActiveImage(index)}
+                            key={index}
                         ></div>
                     ))
                 }
