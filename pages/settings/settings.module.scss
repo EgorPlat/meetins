@@ -24,6 +24,7 @@
         font-family: Nunito;
         h4 {
             padding: 5px;
+            width: 95%;
         }
         & .locale {
             cursor: pointer;
@@ -36,29 +37,41 @@
                 }
             }
         }
+        & .themes {
+            margin-top: 10px;
+            cursor: pointer;
+            & .swipeTheme {
+                background-color: transparent;
+                border-radius: 5px;
+                margin-right: 5px;
+            }
+            & .swipeTheme:hover {
+                background-color: rgb(255, 208, 0);
+            }
+        }
         & .info {
-            margin-top: 3%;
+            margin-top: 10px;
         }
         & .management {
-            margin-top: 3%;
+            margin-top: 10px;
             & .description {
                 font-size: 16px;
-                margin-top: 1%;
+                margin-top: 2px;
             }
             & .updateSatus {
                 color: green;
                 background-color: rgba(65, 223, 86, 0.3);
                 padding: 5px;
                 width: 50%;
-                margin-top: 1%;
+                margin-top: 2px;
             }
         }
         & .infoText {
-            margin-top: 2%;
+            margin-top: 5px;
         }
     }
     & .deleteBtn {
-        margin-top: 1%;
+        margin-top: 2px;
         background-color: rgb(46, 52, 53);
         border-radius: 5px;
         color: white;
@@ -80,11 +93,7 @@
             padding-left: 8%;
         }
         & .formAndInfo {
-            & .locale {
-                width: 95%;
-            }
             & .info {
-                width: 95%;
                 & label {
                     display: inline;
                     width: 95%;
@@ -100,7 +109,6 @@
                 }
             }
             & .management {
-                width: 95%;
                 & .manageAcc {
                     & label {
                         display: inline;

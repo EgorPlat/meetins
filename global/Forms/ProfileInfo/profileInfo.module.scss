@@ -2,12 +2,12 @@
     & label {
         display: inline-block;
         width: 200px;
-        margin-top: 2.5%;
+        margin-top: 10px;
         font-size: 20px;
     }
     & input {
         display: inline;
-        margin-top: 2.5%;
+        margin-top: 10px;
         font-size: 18px;
         width: 95%;
         height: 50px;
@@ -16,7 +16,7 @@
         border: 1px solid gray;
     }
     & .saveButton {
-        margin-top: 2%;
+        margin-top: 5px;
         border: none;
         width: 150px;
         height: 40px;
@@ -30,13 +30,13 @@
         font-size: 14px;
     }
     & .successActionDiv {
-        margin-top: 1%;
+        margin-top: 5px;
         color: green;
         padding: 5px;
         background-color: rgba($color: green, $alpha: 0.1);
     }
     & .unSuccessActionDiv {
-        margin-top: 1%;
+        margin-top: 5px;
         color: red;
         padding: 5px;
         background-color: rgba($color: red, $alpha: 0.1);
@@ -46,10 +46,10 @@
 @media screen and (max-width: 600px){
     .info {
         & input {
-            margin-top: 1%;
+            margin-top: 5px;
         }
         & .formElem {
-            margin-top: 1%;
+            margin-top: 5px;
         }
     }
 }

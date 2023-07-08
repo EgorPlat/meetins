@@ -10,6 +10,7 @@ import { useResize } from '../global/hooks/useResize';
 import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 import Layout from '../components/Layout/Layout';
 import '../styles/app.css';
+import '../styles/themes.css';
 import '../node_modules/reseter.css/css/reseter.min.css';
 import Head from 'next/head';
 import ErrorBlock from '../components/ErrorBlock/errorBlock';
@@ -25,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const newConnection = useAuthAndInithialSocket();
 
 	useEffect(() => {
+		document.documentElement.setAttribute("data-theme", localStorage.getItem('data-theme') || 'white');
 		i18n.changeLanguage(detectUserLanguage());
 		return () => {
 			connection$?.disconnect();

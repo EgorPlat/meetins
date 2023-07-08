@@ -57,7 +57,7 @@
                     min-height: 30px;
                     box-shadow: 0px 0px 1px 1px rgba(200, 200, 200, 0.459);
                     & .userActionsListElement {
-                        background-color: white;
+                        background-color: transparent;
                     }
                     & .userActionsListElement:hover {
                         background-color: rgba(203, 202, 202, 0.374);
@@ -120,7 +120,7 @@
             }
             & .messageTime {
                 font-size: 15px;
-                color: black;
+                text-align: right;
             }
             & .messageWithFile {
                 display: grid;

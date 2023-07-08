@@ -13,7 +13,7 @@ const Modal = (props: {
     }
     return(
         <div className={s.modal}>
-            <div className={s.modalContent}>
+            <div className={`${s.modalContent} modalContent`}>
                 <h5>Информация:</h5>
                 {props.children}
                 <div className={s.manageModal}>

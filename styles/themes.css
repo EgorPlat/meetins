@@ -1,0 +1,59 @@
+body {
+	background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+[data-theme="white"] {
+    --bg-color: white;
+    --text-color: black;
+	--h4BG-color: rgba(176, 176, 176, 0.326);
+}
+  
+[data-theme="black"] {
+    --bg-color: #1C1E22;
+    --text-color: #d6dce5;
+	--h4BG-color: rgba(231, 231, 231, 0.181);
+}
+
+.customModal {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.modalContent {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+input {
+	outline: none;
+	color: gray;
+	background-color: transparent;
+}
+input[type=date]::-webkit-calendar-picker-indicator {
+	opacity: 0;
+}
+textarea {
+	outline: none;
+	color: var(--text-color);
+	background-color: transparent;
+}
+button {
+	color: var(--text-color);;
+}
+h4 {
+	color: var(--text-color);
+	background-color: var(--h4BG-color);
+}
+a {
+	text-decoration: none;
+	color: var(--text-color);;
+}
+select {
+	color: var(--text-color);;
+	background: transparent;
+	background-color: transparent;
+}
+option {
+	color: var(--text-color);;
+	background: transparent;
+	background-color: transparent;
+}

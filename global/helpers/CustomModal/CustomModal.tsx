@@ -16,7 +16,7 @@ const CustomModal = (props: {
     }
     return(
         <div className={s.customModal}>
-            <div className={s.customModalContent}>
+            <div className={`${s.customModalContent} customModal`}>
                 <div className={s.customModalTitle}>
                     <p>{props.title}</p>
                     <div className={s.customModalClose} onClick={() => props.changeModal(false)}>

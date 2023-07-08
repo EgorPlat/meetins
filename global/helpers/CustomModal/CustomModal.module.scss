@@ -1,7 +1,7 @@
 .customModal {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.885);
     position: fixed;
     top: 0;
     left: 0;
@@ -15,8 +15,6 @@
         border-radius: 5px;
         max-height: 400px;
         width: 600px;
-        //background-color: rgb(37, 37, 37);
-        background-color: white;
         & .customModalTitle {
             display: grid;
             grid-template-columns: 95% 5%;

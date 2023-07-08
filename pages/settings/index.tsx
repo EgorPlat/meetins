@@ -33,19 +33,26 @@ export default function Settings(): JSX.Element {
 
     const changeModal = (status: boolean) => {
         setIsModal(() => status);
-    }
+    };
+
     const handleChangeLocale = (local: string) => {
         i18n.changeLanguage(local);
-    }
+    };
+
     const deleteAccount = (status: boolean) => {
-        deleteUserAccount().then((response) => {
+        /*deleteUserAccount().then((response) => {
             if(response.status === 200) {
                 localStorage.removeItem('access-token');
                 localStorage.removeItem('refrash-token');
                 router.push('/login');
             }
-        })
+        })*/
         setIsModal(() => false);
+    };
+
+    const handleSwipeTheme = (theme: string) => {
+        localStorage.setItem('data-theme', theme);
+        document.documentElement.setAttribute("data-theme", theme);
     }
     return(
         <div className={`${s.settings}`}>
@@ -65,6 +72,11 @@ export default function Settings(): JSX.Element {
                                 <Image src={ru} width="62px" height="50px" onClick={() => handleChangeLocale('ru')}/>
                             </div>
                         </div>
+                    </div>
+                    <div className={s.themes}> 
+                        <h4>{t("Темы")}</h4>
+                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme('black')}>Черная</button>
+                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme('white')}>Белая</button>
                     </div>
                     <div className={s.info}> 
                         <h4>{t("Информация профиля")}</h4>

@@ -54,7 +54,7 @@ export default function Interests(props: {
                     <Image src={like} width={20} height={20} alt="Сердечко" />
                     <b>{t('Интересы')}</b> 
                     {isAuthedUserAreCurrentUser && 
-                        <Image width={15} height={15} src={edit} onClick={openChangeInterests} />
+                        <span className={s.changeStatus} onClick={openChangeInterests}> (изм.)</span>
                     }
                 </div>
                 {

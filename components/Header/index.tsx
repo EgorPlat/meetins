@@ -22,10 +22,7 @@ export default function Header(): JSX.Element {
 		headerBgClass = s.headerProfilePage
 	}
 	const logOut = () => {
-		localStorage.setItem('access-token', "");
-		localStorage.setItem('refrash-token', "");
-		setCurrentPage('/');
-		localStorage.setItem('previousPage', "/");
+		window.location.reload();
 	}
 	return (   
 		<div className={`${s.header} ${headerBgClass}`}>
@@ -35,8 +32,8 @@ export default function Header(): JSX.Element {
 						className={s.logoImage}
 						src={logo}
 						alt='company logo'
-						width={330}
-				 		height={60}
+						width={isMobile$ ? 260 : 330}
+				 		height={isMobile$ ? 40 : 60}
 					/>
 				</div>
 	        </Link>
