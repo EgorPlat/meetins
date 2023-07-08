@@ -4,9 +4,12 @@
     align-items: center;
     text-align: center;
     border: 1px solid grey;
-    width: 100%;
+    width: 190px;
     height: 190px;
     border-radius: 50%;
+    & .inputFileTitle {
+        margin-left: 45px
+    }
     & .inputTypeFile {
         width: 190px;
         height: 190px;
