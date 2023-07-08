@@ -1,0 +1,28 @@
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	min-height: 100vh;
+}
+.container {
+	display: grid;
+	grid-template-rows: 120px 1fr;
+}
+.loginPage {
+	background-image: url('../../public/images/background-login.jpg');
+	//background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.registerPage {
+	background-image: url('../../public/images/background-login.jpg');
+	//background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+@media screen  and (max-width: 650px) {
+	.container {
+		grid-template-rows: 230px 1fr;
+	}
+}
