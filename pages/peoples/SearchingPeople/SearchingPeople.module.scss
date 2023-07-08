@@ -18,7 +18,7 @@
                 height: 50px;
                 border-radius: 50%;
                 border: 1px solid #3DB2FF;
-                background-color: white;
+                background-color: transparent;
                 margin-right: 5%;
             }
             & button:hover {
@@ -49,7 +49,7 @@
             }
         }
         & .goal::-webkit-scrollbar { width: 3px;/* ширина scrollbar */}
-        & .goal::-webkit-scrollbar-track { background: white;/* цвет дорожки */}
+        & .goal::-webkit-scrollbar-track { background: transparent;/* цвет дорожки */}
         & .goal::-webkit-scrollbar-thumb { background-color: rgb(187, 187, 187); }
 
         & .events {
@@ -71,7 +71,7 @@
             }
         }
         & .events::-webkit-scrollbar { width: 3px;/* ширина scrollbar */}
-        & .events::-webkit-scrollbar-track { background: white;/* цвет дорожки */}
+        & .events::-webkit-scrollbar-track { background: transparent;/* цвет дорожки */}
         & .events::-webkit-scrollbar-thumb { background-color: rgb(187, 187, 187); }
 
         & .interests {
@@ -95,7 +95,6 @@
         & .showAllBtn {
             border: none;
             background-color: #3DB2FF;
-            color: white;
             border-radius: 10px;
         }
         & .filterSelect {

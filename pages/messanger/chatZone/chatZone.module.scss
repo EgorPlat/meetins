@@ -116,12 +116,11 @@
                     background-color: #d0ecff81;
                     border-radius: 100px;
                     font-size: 15px;
-                    color: grey;
                 }
             }
             & .messageTime {
                 font-size: 15px;
-                color: grey;
+                color: black;
             }
             & .messageWithFile {
                 display: grid;
@@ -139,12 +138,12 @@
         width: 12px;               /* ширина scrollbar */
     }
     & .messages::-webkit-scrollbar-track {
-        background: white;        /* цвет дорожки */
+        background: transparent;        /* цвет дорожки */
     }
     & .messages::-webkit-scrollbar-thumb {
         background-color: grey;    /* цвет плашки */
         border-radius: 20px;       /* закругления плашки */
-        border: 3px solid white;  /* padding вокруг плашки */
+        //border: 3px solid white;  /* padding вокруг плашки */
     }
 }
 

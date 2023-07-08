@@ -13,23 +13,22 @@
         width: 12px;               /* ширина scrollbar */
     }
     & .list::-webkit-scrollbar-track {
-        background: white;        /* цвет дорожки */
+        background: transparent;        /* цвет дорожки */
     }
     & .list::-webkit-scrollbar-thumb {
         background-color: grey;    /* цвет плашки */
         border-radius: 20px;       /* закругления плашки */
-        border: 3px solid white;  /* padding вокруг плашки */
+        //border: 3px solid white;  /* padding вокруг плашки */
     }
     & .menu {
         & button {
             font-size: 20px;
-            background-color: white;
+            background-color: transparent;
             border: none;
             outline: none;
         }
         & button:hover {
             cursor: pointer;
-            border-bottom: 2px solid black;
         }
     }
 }

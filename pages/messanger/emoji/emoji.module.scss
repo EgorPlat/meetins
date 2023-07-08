@@ -24,24 +24,24 @@
     }
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 810px) {
     .emoji {
         & .emojiListWrapper {
             left: -30px;
         }
     }
 }
-@media screen and (max-width: 545px) {
+@media screen and (max-width: 770px) {
     .emoji {
         & .emojiListWrapper {
             left: -60px;
         }
     }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     .emoji {
         & .emojiListWrapper {
-            left: -80px;
+            left: -100px;
         }
     }
 }

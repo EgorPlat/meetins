@@ -5,7 +5,6 @@
     border: 1px solid rgba(128, 128, 128, 0.374);
     overflow-y: scroll;
     border-radius: 2px;
-    background-color: white;
     & .defaultEmojiInList:hover {
         cursor: pointer;
     }
@@ -18,7 +17,7 @@
     width: 12px;               /* ширина scrollbar */
 }
 .emojiList::-webkit-scrollbar-track {
-    background: aliceblue;        /* цвет дорожки */
+    background: transparent;        /* цвет дорожки */
 }
 .emojiList::-webkit-scrollbar-thumb {
     background-color: grey;    /* цвет плашки */

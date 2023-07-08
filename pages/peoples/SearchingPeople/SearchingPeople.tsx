@@ -67,12 +67,12 @@ export default function SearchingPeople(): JSX.Element {
             <div className={s.params}>
                 <div className={s.gender}>
                     <div className={s.part}>
-                        <h4>Пол</h4>
+                        <h3>Пол</h3>
                         <button onClick={() => updateFilters("gender", "male")}>М</button>
                         <button onClick={() => updateFilters("gender", "female")}>Ж</button>
                     </div>
                     <div className={s.part}>
-                        <h4>Возвраст</h4>
+                        <h3>Возраст</h3>
                         <Slider 
                             onChangeCommitted={(event, newValue) => updateFilters("age", newValue)} 
                             defaultValue={50} 
@@ -81,21 +81,21 @@ export default function SearchingPeople(): JSX.Element {
                         />
                     </div>
                     <div className={s.part}>
-                        <h4>Расстояние</h4>
+                        <h3>Расстояние</h3>
                         <Slider defaultValue={10} max={150} aria-label="Default" valueLabelDisplay="auto" />
                     </div>
                 </div>
                 <div className={s.goal}>
-                    <h4>Цель</h4>
+                    <h3>Цель</h3>
                     { goals.map((goal) => <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>)}
                 </div>
                 <div className={s.events}>
-                    <h4>В событиях</h4>
+                    <h3>События</h3>    
                     <h6>Предстоящие</h6>
                     { events.map((event) => <div onClick={() => updateFilters("event", event)} className={s.eachEvent} key={event}>{event}</div>)}
                 </div>
                 <div className={s.interests}>
-                    <h4>По интересам</h4>
+                    <h3>Интересы</h3>
                     <FormControl>
                     <InputLabel htmlFor="outlined-adornment-amount">Найдите</InputLabel>
                     <OutlinedInput
@@ -126,7 +126,7 @@ export default function SearchingPeople(): JSX.Element {
                     { 
                         peoplesList$.length === 0 && !pending ? 
                         <div>
-                            <h4>По Вашему запросу никого не найдено.</h4>
+                            <h3>Никого не найдено.</h3>
                             <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
                         </div>
                         : null 

@@ -9,19 +9,18 @@
     }
     & .list {
         min-height: 1000px;
-        overflow-y: scroll;
         font-size: 22px;
     }
     & .list::-webkit-scrollbar {
         width: 12px;               /* ширина scrollbar */
     }
     & .list::-webkit-scrollbar-track {
-        background: white;        /* цвет дорожки */
+        background: transparent;        /* цвет дорожки */
     }
     & .list::-webkit-scrollbar-thumb {
         background-color: rgb(138, 138, 138);    /* цвет плашки */
         border-radius: 20px;       /* закругления плашки */
-        border: 3px solid white;  /* padding вокруг плашки */
+        //border: 3px solid white;  /* padding вокруг плашки */
     }
 }
 .block {

@@ -53,11 +53,9 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                     </div>
                     <div className={s.postActions}>
                       <div className={s.postActionsLikes}>
-                        <Image src={like} width="25px" height="25px" />
-                        {el.likes}
+                        {t('Лайки')}  {el.likes}
                       </div>
                       <div className={s.postActionsComments} onClick={() => handleComments(el)}>
-                        <Image src={comment} width="25px" height="25px" />
                         {t('Комментарии')}
                       </div>
                     </div>
