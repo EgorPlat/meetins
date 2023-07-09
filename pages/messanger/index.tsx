@@ -13,7 +13,6 @@ export default function Messanger(): JSX.Element {
     
     const activeChat$ = useStore(activeChat);
     const isMobile$ = useStore(isMobile);
-    const [notificationModal, setNotificationModal] = useState<boolean>(true);
      
     const handleBack = () => {
         setActiveChat({} as IMyDialog);
@@ -29,7 +28,7 @@ export default function Messanger(): JSX.Element {
                 <div className={`${s.chatList} ${s.block}`}>
                     <ChatList/>
                 </div>
-                <div className={`${s.chatZone} ${s.block}`}>
+                <div className={`${s.chatZone}`}>
                     {isChatNeededToShow ? <ChatZone/> : 
                     <div className={s.noChat}>
                         <h3 className={s.alert}>Выберите диалог...</h3>

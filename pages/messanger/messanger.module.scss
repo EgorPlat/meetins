@@ -1,7 +1,7 @@
 .messangerContent {
     display: grid;
     grid-template-columns: 15% 70%;
-    height: 500px;
+    min-height: 500px;
     & .chatZone {
         & .noChat {
             display: grid;
@@ -13,7 +13,8 @@
         }
     }
     & .block {
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        margin-right: 5px;
+        box-shadow:  0px 0px 1px 1px rgba(154, 147, 140, 0.3);
     }
 }
 

@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const newConnection = useAuthAndInithialSocket();
 
 	useEffect(() => {
-		document.documentElement.setAttribute("data-theme", localStorage.getItem('data-theme') || 'white');
+		document.documentElement.setAttribute("data-theme", localStorage.getItem('data-theme') || 'black');
 		i18n.changeLanguage(detectUserLanguage());
 		return () => {
 			connection$?.disconnect();

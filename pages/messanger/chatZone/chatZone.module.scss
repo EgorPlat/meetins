@@ -1,9 +1,10 @@
 .chat {
     height: calc(100vh - 25px);
     display: grid;
-    grid-template-rows: 100px calc(100% - 200px) 100px;
+    grid-template-rows: 95px calc(100% - 200px) 95px;
+    row-gap: 5px;
     & .block {
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        box-shadow:  0px 0px 1px 1px rgba(154, 147, 140, 0.3);
     }
     & .user {
         display: grid;
@@ -68,7 +69,6 @@
     }
     & .messages {
         font-size: 20px;
-        margin-top: 1%;
         overflow-y: scroll;
         & .defaultText {
             color: grey;

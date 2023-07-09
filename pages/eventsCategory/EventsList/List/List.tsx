@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { IShortEventInfo } from "../../../../global/interfaces/events";
+import Image from "next/image";
 import s from './List.module.scss';
 
 export default function List(props: {list: IShortEventInfo[]}): JSX.Element {

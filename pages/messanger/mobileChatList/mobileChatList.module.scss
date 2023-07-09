@@ -1,5 +1,5 @@
 .mobileChatList {
-    box-shadow: rgba(146, 146, 146, 0.2) 0px 2px 8px 0px;
+    box-shadow:  0px 0px 1px 1px rgba(154, 147, 140, 0.3);
     border-radius: 5px;
     display: grid;
     padding: 5px;
@@ -10,7 +10,7 @@
         display: grid;
         grid-template-columns: 2fr 5fr;
         max-height: 110px;
-        border-bottom: 0.5px solid rgb(193, 193, 193);
+        border-bottom: 1px solid rgba(154, 147, 140, 0.3);
         margin-top: 5px;
         & .mobileUserChatCardLastMessage {
             font-size: 16px;

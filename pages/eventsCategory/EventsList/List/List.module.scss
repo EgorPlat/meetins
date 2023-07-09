@@ -2,10 +2,10 @@
     display: grid;
     grid-template-columns: 1fr;
     & .eventBody {
-        background-color: rgba(192, 192, 192, 0.177);
+        background-color: rgba(155, 155, 155, 0.166);
         padding: 5px;
         display: grid;
-        grid-template-columns: 4fr 8fr;
+        grid-template-columns: 1fr 2fr;
         min-height: 150px;
         margin-top: 10px;
         margin-left: 1%;
@@ -39,12 +39,12 @@
     .list {
         & .eventBody {
             grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr;
+            & .eventViewZone {
+                height: 200px;
+                background-size: 100% 100%;
+            }
             & .eventDescription {
                 font-size: 15px;
-            }
-            & .eventViewZone {
-                background-size: 100% 100px;
             }
         }
     }

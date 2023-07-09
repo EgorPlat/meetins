@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from 'next/image';
 import s from './CustomSlider.module.scss';
 
 interface ICustomSliderProps {

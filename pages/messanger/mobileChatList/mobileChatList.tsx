@@ -44,6 +44,9 @@ export default function MobileChatList(): JSX.Element {
                 }) 
                 : <div className={s.loader}></div>
             }
+            {
+                myDialogs$.length === 0 && <div>Вы еще ни с кем не начали диалог.</div>
+            }
         </div>
     )
 }
