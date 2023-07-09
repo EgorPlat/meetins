@@ -24,7 +24,7 @@ export const connectionWatcher = createEffect((obj: {connection: Socket | null, 
         setOnlineUsers(message.users);
     });
     obj.connection?.on('onConnection', (message: string) => {
-        console.log(message);
+        console.log(1);
     });
 })
 sample({

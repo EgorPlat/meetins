@@ -118,8 +118,6 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 		getUserData().then( (res) => {
 			if(res.status === 200) {  
 				setIsAsyncLoaded(true);
-				console.log(instanseRouter$);
-				
 				instanseRouter$?.push(savedRoute);
 			} else {
 				if (instanseRouter$?.asPath !== '/confirmation') {
