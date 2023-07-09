@@ -120,9 +120,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 				setIsAsyncLoaded(true);
 				instanseRouter$?.push(savedRoute);
 			} else {
-				if (instanseRouter$?.asPath !== '/confirmation') {
-					instanseRouter$?.push('/login');
-				}
+				instanseRouter$?.push('/login');
 			}
 		})
 	} else {

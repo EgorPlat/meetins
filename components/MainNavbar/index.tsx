@@ -16,20 +16,12 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
 	const [select, setSelect] = useState<string>("");
 	const user = useStore($user);
-	const isMobile$ = useStore(isMobile);
-	const userAvatar = user?.avatar || 'no-avatar.jpg';
 	const router = useRouter();
 	const ref = useRef<any>();
+	const userAvatar = user?.avatar || 'no-avatar.jpg';
 
-	const changeSelect = (value: string) => {
-		setSelect( () => value);
-	}
-	const avatarNavigation = () => {
-		changeSelect('name');
-		ref.current.selectedIndex = ref.current.options[0];
-		router.push(`/profile/${user?.login}`);
-	}
 	useEffect(() => {
+		ref.current.selectedIndex = ref.current.options[0];
 		if(select === 'logOut') {
 			router.push('/login');
 			localStorage.setItem('access-token', "");
@@ -44,7 +36,8 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		if(select === 'comeBack') {
 			router.push(`/profile/${user?.login}`);
 		}
-	}, [select])
+	}, [select]);
+
     return(
 		<div className={s.link}>
 				<Link href="/peoples">{t('Люди')}</Link>
@@ -58,8 +51,15 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 						для этого перейдите к ним в профиль и нажмите кнопку "Пригласить"`
 					} 
 				/>
-			    <img src={baseURL + userAvatar} className={s.round} alt="Аватарка" width={70} height={70} onClick={avatarNavigation}/>
-			    <select ref={ref} className={s.select} onChange={(event) => changeSelect(event.target.value)}>
+			    <img 
+					src={baseURL + userAvatar} 
+					className={s.round} 
+					alt="Аватарка" 
+					width={70} 
+					height={70} 
+					onClick={() => setSelect('name')}
+				/>
+			    <select ref={ref} className={s.select} onChange={(event) => setSelect(event.target.value)}>
 				    <option className={s.option} value="name">{user?.name}</option>
 				    <option className={s.option} value="logOut">{t('Выход')}</option>
 				    <option className={s.option} value="settings">{t('Настройки')}</option>
