@@ -20,7 +20,7 @@ export default function InputFile(props: { onMouseLeave: () => void, onChange: (
                     ref={ref} 
                     type="file" 
                     className={s.inputTypeFile} 
-                    onChange={(event) => props.onChange(event)} accept=".jpg,.jpeg,.png,.gif"
+                    onChange={(event) => props.onChange(event)} accept=".jpg,.jpeg,.png"
                 />
             </label>
         </div>
