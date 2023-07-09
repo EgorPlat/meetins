@@ -64,6 +64,10 @@ export default function ProfileView(props: {
                             <div>
                                 <div className={`${s.userName}`}>
                                     {props.currentUser.name + ', ' + props.currentUser.age}
+                                    <span 
+                                        className={s.userTag}
+                                        style={{backgroundColor: `${props.currentUser.tag?.color}`}}
+                                    >{props.currentUser.tag?.title}</span>
                                 </div>
                                 <div className={s.town}>
                                     г. {props.currentUser.city}

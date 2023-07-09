@@ -46,7 +46,9 @@ export type User = {
     isOnline: boolean,
     interests: string[],
     innerInvites: IInnerInvites[]
-    outerInvites: IOuterInvites[]
+    outerInvites: IOuterInvites[],
+    tag: { color: string, title: string },
+    purchasedOpportunities: number[]
 }
 
 export type ProfileData = {
