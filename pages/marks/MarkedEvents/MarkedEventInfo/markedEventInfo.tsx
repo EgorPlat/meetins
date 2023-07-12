@@ -14,7 +14,7 @@ export default function MarkedEventInfo(props: {eventId: string}): JSX.Element {
         router.push(`eventInfo/${props.eventId}`);
     }
     const handleDeleteUserEvent = () => {
-        deleteUserEvent(currentEvent.id);
+        deleteUserEvent(+props.eventId);
     }
     useEffect(() => {
         if (!currentEvent) {
@@ -23,7 +23,8 @@ export default function MarkedEventInfo(props: {eventId: string}): JSX.Element {
                 setCurrentEvent(res.data);
             });
         }
-    }, [currentEvent])
+    }, [currentEvent]);
+
     return(
         <div className={s.markedEventInfo}>
             {!currentEvent && <div className={s.loader}></div>}           

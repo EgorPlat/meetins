@@ -8,7 +8,7 @@ import s from "./markedEvents.module.scss";
 export default function MarkedEvents(): JSX.Element {
 
     const user = useStore($user);
-
+    
     if (user === null) {
         return <Loader />
     }

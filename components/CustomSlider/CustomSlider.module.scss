@@ -4,6 +4,15 @@
     justify-content: center;
     justify-items: center;
     align-items: center;
+    & .customSliderSlides {
+        display: flex;
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+        & .customSliderCurrentImage {
+            transition: all 0.5s;
+        }
+    }
     & .customSliderState {
         display: flex;
         column-gap: 5px;

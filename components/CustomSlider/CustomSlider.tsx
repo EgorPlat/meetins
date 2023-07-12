@@ -37,15 +37,25 @@ export default function CustomSlider({ images }: ICustomSliderProps) {
 
     return (
         <div className={s.customSlider}>
-            <img 
-                className={s.customSliderCurrentImage}
-                src={images[activeImageId].image} 
-                width={300} 
-                height={300} 
-                alt="Главное изображение" 
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-            />
+            <div className={s.customSliderSlides}>
+                {
+                    images.map(el => (
+                        <div 
+                            className={s.customSliderCurrentImage}
+                            style={{ transform: `translateX(-${activeImageId * 100}%)` }}
+                        >
+                            <img 
+                                src={el.image} 
+                                width={300} 
+                                height={300} 
+                                alt="Главное изображение" 
+                                onTouchStart={handleTouchStart}
+                                onTouchEnd={handleTouchEnd}
+                            />
+                        </div>
+                    ))
+                }
+            </div>
             <div className={s.customSliderState}>
                 {
                     images.map((el, index) => (
