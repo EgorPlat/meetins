@@ -19,7 +19,11 @@ export default function EventBlock(props: {
                 <div className={s.eventBlockTitle}>{t('Информация про')} {event.title}</div>
                 <div className={s.eventBlockMainInfo}>
                     <div className={s.eventInfo}>
-                        <CustomSlider images={props.currentEventById.images} />
+                        <CustomSlider 
+                            images={props.currentEventById.images}
+                            width="300px"
+                            height="300px"
+                        />
                     </div>
                     <div className={s.help}>
                         <div>{event.title}, {event.age_restriction}+</div>

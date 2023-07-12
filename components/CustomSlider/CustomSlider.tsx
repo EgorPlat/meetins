@@ -3,10 +3,12 @@ import Image from 'next/image';
 import s from './CustomSlider.module.scss';
 
 interface ICustomSliderProps {
-    images: any[]
+    images: any[],
+    width: string,
+    height: string
 }
 
-export default function CustomSlider({ images }: ICustomSliderProps) {
+export default function CustomSlider({ images, width, height }: ICustomSliderProps) {
 
     const [activeImageId, setActiveImageId] = useState<number>(0);
     const [touchXData, setTouchXData] = useState<number>(0);
@@ -37,7 +39,9 @@ export default function CustomSlider({ images }: ICustomSliderProps) {
 
     return (
         <div className={s.customSlider}>
-            <div className={s.customSliderSlides}>
+            <div className={s.customSliderSlides}
+                style={{ width, height }}
+            >
                 {
                     images.map(el => (
                         <div 
