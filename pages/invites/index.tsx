@@ -16,7 +16,7 @@ export default function Invites() {
 
     useEffect(() => {
         getUserInnerInvitesEventInfo();
-        getUserOuterInvitesEventInfo();
+        //getUserOuterInvitesEventInfo();
     }, [])
 
     return (

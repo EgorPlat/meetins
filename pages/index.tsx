@@ -1,9 +1,9 @@
-import MainPageLogo from '../components/mainPage/mainPageLogo/MainPageLogo';
+import CustomLoader from '../components/CustomLoader/CustomLoader';
 
 const Home = () => {
 
 	return (
-		<MainPageLogo />
+		<CustomLoader />
 	)
 }
 

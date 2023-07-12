@@ -1,6 +1,8 @@
 import s from './InterestsPageView.module.scss';
 
-export default function InterestsPageView () {
+export default function InterestsPageView ({ handleSendForm }: {
+    handleSendForm: () => void
+}) {
     return (
         <div className={s.interests}>
             <div className={s.block}>
@@ -27,7 +29,10 @@ export default function InterestsPageView () {
                         placeholder='В чем заключается ваш интерес?' 
                         className={s.description}
                     ></textarea>
-                    <button className={s.submit}>Отправить</button>
+                    <button 
+                        className={s.submit}
+                        onClick={handleSendForm}
+                    >Отправить</button>
                 </div>
             </div>
         </div>

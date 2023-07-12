@@ -1,12 +1,15 @@
 .ul {
     list-style: none;
-    & .count {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: rgba(0, 140, 255, 0.941);
-        margin-left: 5px;
+    & .messangerLink {
+        display: flex;
+        align-items: center;
+        & .count {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 140, 255, 0.941);
+            margin-left: 5px;
+        }
     }
     & li {
         font-family: Nunito;

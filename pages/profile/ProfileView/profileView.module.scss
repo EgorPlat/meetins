@@ -64,17 +64,19 @@
                 margin-top: 2.5%;
                 font-size: 24px;
             }
-            & .actionsBtn {
-                width: 180px;
-                height: 45px;
-                margin-left: 1%;
-                border: none;
-                font-size: 20px;
-                border-radius: 20px;
-                margin-top: 5%;
-                padding-left: 10px;
-                background: #3DB2FF;
-                color: white;
+            & .actions {
+                & .actionsBtn {
+                    width: 180px;
+                    height: 45px;
+                    margin-left: 1%;
+                    border: none;
+                    font-size: 20px;
+                    border-radius: 20px;
+                    margin-top: 5%;
+                    padding-left: 10px;
+                    background: #3DB2FF;
+                    color: white;
+                }
             }
         }
     }
@@ -109,13 +111,6 @@
     }
 }
 
-@media screen and (max-width: 1180px) {
-    .userInfo { 
-        & .actionsBtn {
-            margin-top: 5%;
-        }
-    }
-}
 @media screen and (max-width: 767px) {
     .navCol {
         min-height: 50px;
@@ -133,20 +128,19 @@
                         height: 100px;
                     }
                 } 
+                & .userInfo {
+                    & .actionsBtn {
+                        width: 150px;
+                        height: 30px;
+                    }
+                    & .actions {
+                        display: grid;
+                        flex-direction: column;
+                        justify-content: center;
+                        justify-items: center;
+                    }
+                }
             }
-            
-        }
-    }
-    .userInfo {
-        & .actionsBtn {
-            margin-top: 2.5%;
-            margin-left: 25%;
-        }
-        & .actions {
-            display: grid;
-            flex-direction: column;
-            justify-content: center;
-            justify-items: center;
         }
     }
 }

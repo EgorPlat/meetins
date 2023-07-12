@@ -131,6 +131,14 @@ sample({
     target: addNewError
 })
 
+sample({ 
+    clock: getUserInnerInvitesEventInfo.doneData, 
+    filter: response => response.status <= 217 && response.data.length === 0, 
+    fn: (response) => {
+        return { text: "Возможно у вас пока нет приглашений!", time: 3000, color: "blue", textColor: "white" }
+    }, 
+    target: addNewError
+})
 
 sample({
     clock: getEvents.pending,
