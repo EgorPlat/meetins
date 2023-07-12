@@ -22,21 +22,19 @@ export default function Header(): JSX.Element {
 		headerBgClass = s.headerProfilePage
 	}
 	const logOut = () => {
-		window.location.reload();
+		//window.location.reload();
 	}
 	return (   
 		<div className={`${s.header} ${headerBgClass}`}>
-			<Link href='/settings' passHref>
-				<div className={s.logo} onClick={logOut}>
-					<Image  
-						className={s.logoImage}
-						src={logo}
-						alt='company logo'
-						width={isMobile$ ? 260 : 330}
-				 		height={isMobile$ ? 40 : 60}
-					/>
-				</div>
-	        </Link>
+			<div className={s.logo} onClick={logOut}>
+				<Image  
+					className={s.logoImage}
+					src={logo}
+					alt='company logo'
+					width={isMobile$ ? 260 : 330}
+				 	height={isMobile$ ? 40 : 60}
+				/>
+			</div>
 			{ router.pathname === "/" || router.pathname === "/login" || router.pathname === "/register" 
 			? <Navbar currentPage={currentPage} /> 
 			: <MainNavbar currentPage={currentPage} />
