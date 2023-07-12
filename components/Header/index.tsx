@@ -26,7 +26,7 @@ export default function Header(): JSX.Element {
 	}
 	return (   
 		<div className={`${s.header} ${headerBgClass}`}>
-			<Link href='/' passHref>
+			<Link href='/settings' passHref>
 				<div className={s.logo} onClick={logOut}>
 					<Image  
 						className={s.logoImage}
