@@ -23,6 +23,7 @@
 }
 @media screen  and (max-width: 650px) {
 	.container {
-		grid-template-rows: 230px 1fr;
+		padding-top: 15px;
+		grid-template-rows: 1fr;
 	}
 }

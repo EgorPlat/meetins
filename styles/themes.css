@@ -7,12 +7,14 @@ body {
     --bg-color: white;
     --text-color: black;
 	--h4BG-color: rgba(176, 176, 176, 0.326);
+	--inp-text-color: black;
 }
   
 [data-theme="black"] {
     --bg-color: #1C1E22;
     --text-color: #d6dce5;
 	--h4BG-color: rgba(231, 231, 231, 0.181);
+	--inp-text-color: gray;
 }
 
 .customModal {
@@ -25,7 +27,7 @@ body {
 }
 input {
 	outline: none;
-	color: gray;
+	color: var(--inp-text-color);
 	background-color: transparent;
 }
 input[type=date]::-webkit-calendar-picker-indicator {
@@ -33,7 +35,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 textarea {
 	outline: none;
-	color: var(--text-color);
+	color: var(--inp-text-color);
 	background-color: transparent;
 }
 button {

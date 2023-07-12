@@ -35,7 +35,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return ( 
 		<>
 			<div className={`${s.container} ${backgroundClass}`}>
-				{ route.asPath !== '/confirmation' && <Header /> }
+				{ route.asPath !== '/confirmation' && 
+					<Header />
+				}
 				<main className={s.main}>{children}</main>
 			</div>
 		</>

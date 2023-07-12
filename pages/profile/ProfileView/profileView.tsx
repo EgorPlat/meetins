@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { User } from '../../../global/interfaces';
 import { baseURL } from '../../../global/store/store';
+import { getDateInDMYFormat, getIsUserMale } from '../../../global/functions/getDateInDMFormat';
 import message from "../../../public/images/message.svg";
 import s from './profileView.module.scss';
 import InputFile from '../../../global/helpers/InputFile/InputFile';
@@ -34,7 +35,7 @@ export default function ProfileView(props: {
     setChoosedEventForInvite: (eventId: number) => void,
     onImageModalClick: (status: boolean) => void,
     onAddingModalClick: (status: boolean) => void,
-    handleSendInvite: () => void
+    handleSendInvite: () => void,
 }) {
     
     const { t } = useTranslation();
@@ -71,6 +72,16 @@ export default function ProfileView(props: {
                                 </div>
                                 <div className={s.town}>
                                     г. {props.currentUser.city}
+                                </div>
+                                <div className={s.dateRegister}>
+                                    <span>
+                                        {
+                                        getIsUserMale(props.currentUser.gender) 
+                                            ? 'зарегистрирован: ' 
+                                            : 'зарегистрирована: '
+                                        }
+                                    </span>
+                                    {getDateInDMYFormat(props.currentUser.dateRegister)}
                                 </div>
                             </div>
                             { 

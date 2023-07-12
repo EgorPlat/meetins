@@ -1,0 +1,77 @@
+.interests {
+    width: 98%;
+    font-size: 18px;
+    & .block {
+        padding: 10px;
+        box-shadow: 0px 0px 1px 1px rgba(128, 128, 128, 0.344);
+        & .example {
+            margin-top: 10px;
+            & .interestExample {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                outline: none;
+                background-color: transparent;
+                border: 2px solid rgb(44, 142, 255);
+            }
+        }
+    }
+    & .formInterest {
+        margin-top: 15px;
+        display: grid;
+        justify-items: center;
+        justify-content: center;
+        align-items: center;
+        row-gap: 10px;
+        & .wrapper {
+            background-color: rgba(152, 152, 152, 0.101);
+            padding: 10px;
+            border-radius: 10px;
+            width: 550px;
+            display: grid;
+            row-gap: 5px;
+            justify-items: center;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            & .title {
+                width: 300px;
+                height: 40px;
+                border-radius: 5px;
+                padding: 5px;
+            }
+            & .text {
+                font-size: 12px;
+                color: gray;
+            }
+            & .description {
+                width: 300px;
+                padding: 5px;
+                border-radius: 5px;
+                height: 80px;
+                resize: none;
+            }
+            & .submit {
+                color: white;
+                width: 300px;
+                height: 35px;
+                border-radius: 5px;
+                background-color: rgb(70, 171, 243);
+                border: none;
+            }
+            & .submit:hover {
+                color: black;
+                background-color: rgb(243, 206, 70);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .interests {
+        & .formInterest {
+            & .wrapper {
+                width: 100%;
+            }
+        }
+    }
+}

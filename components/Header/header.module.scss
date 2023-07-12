@@ -3,7 +3,6 @@
 .header {
 	display: grid;
 	align-items: center;
-	height: 100%;
 	grid-template-columns: 1fr 4fr;
 	& .logo {
 		max-height: 60px;

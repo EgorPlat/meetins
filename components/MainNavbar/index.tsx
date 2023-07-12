@@ -20,8 +20,13 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	const ref = useRef<any>();
 	const userAvatar = user?.avatar || 'no-avatar.jpg';
 
-	useEffect(() => {
+	const handleAvatarClick = () => {
+		setSelect('name');
 		ref.current.selectedIndex = ref.current.options[0];
+		router.push(`/profile/${user?.login}`);
+	};
+
+	useEffect(() => {
 		if(select === 'logOut') {
 			router.push('/login');
 			localStorage.setItem('access-token', "");
@@ -36,14 +41,15 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		if(select === 'comeBack') {
 			router.push(`/profile/${user?.login}`);
 		}
+		//ref.current.selectedIndex = ref.current.options[0];
 	}, [select]);
 
     return(
 		<div className={s.link}>
 				<Link href="/peoples">{t('Люди')}</Link>
 				<Link href="/events">{t('События')}</Link>
+				<Link href="/interests">{t('Интересы')}</Link>
 				<Link href="">{t('Встречи')}</Link>
-				<Link href="">{t('Интересы')}</Link>
 			    <ButtonWithHint 
 					title={t('Пригласить')} 
 					hintTitle={
@@ -57,7 +63,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 					alt="Аватарка" 
 					width={70} 
 					height={70} 
-					onClick={() => setSelect('name')}
+					onClick={handleAvatarClick}
 				/>
 			    <select ref={ref} className={s.select} onChange={(event) => setSelect(event.target.value)}>
 				    <option className={s.option} value="name">{user?.name}</option>
