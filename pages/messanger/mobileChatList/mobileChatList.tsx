@@ -1,6 +1,10 @@
 import { useStore } from "effector-react";
 import { useEffect, useRef } from "react";
-import { getMyDialogs, isMyDialogsLoaded, myDialogs } from "../../../global/store/chat_model";
+import { 
+    getMyDialogs, 
+    isMyDialogsLoaded, 
+    myDialogs 
+} from "../../../global/store/chat_model";
 import { $user } from "../../../global/store/store";
 import UserChatCard from "../userChatCard/userChatCard";
 import s from "./mobileChatList.module.scss";
