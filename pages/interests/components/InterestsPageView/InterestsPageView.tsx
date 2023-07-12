@@ -1,6 +1,6 @@
 import s from './InterestsPageView.module.scss';
 
-export const InterestsPageView = () => {
+export default function InterestsPageView () {
     return (
         <div className={s.interests}>
             <div className={s.block}>
