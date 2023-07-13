@@ -16,6 +16,7 @@ export default function Peoples(): JSX.Element {
                     <title>Mettins - Люди</title>
                     <meta name="description" content="Ищите новые знакомства!" key="desc" />
                     <meta property="og:title" content="Только у нас Вы сможете найти себе хороших друзей и пообщаться!" />
+                    <meta name="keywords" content="meetins, meetin-s, Meetins, Meetin-s, знакомства, meetings, meet, люди, вход, регистрация" />
                     <meta
                     property="og:description"
                     content="Присоединяйтесь прямо сейчас, ищите людей."
