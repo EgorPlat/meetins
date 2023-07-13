@@ -1,22 +1,22 @@
-import { useEffect } from "react";
-import { getTariffsData, tariffs } from "../../global/store/tariffs_model";
-import { useStore } from "effector-react";
 import PageContainer from "../../components/PageContainer/pageContainer";
 import TariffsPageView from "./components/TariffsPageView/TariffsPageView";
+import { baseURL } from "../../global/store/store";
 
-export default function Tariffs() {
-
-    const tariffsData$ = useStore(tariffs);
-
-    useEffect(() => {
-        getTariffsData();
-    }, []);
+export default function Tariffs({ tarrifs }) {
 
     return (
         <PageContainer>
             <TariffsPageView
-                tariffsData={tariffsData$}
+                tariffsData={tarrifs}
             />
         </PageContainer>
     )
+}
+
+export const getServerSideProps = async () => {
+    const response = await fetch(baseURL + 'tariffs/getTariffsInfo');
+    const tarrifs = await response.json();
+    return {
+        props: { tarrifs: tarrifs }
+    }
 }

@@ -21,7 +21,7 @@ export default function TariffsPageView(props: {
                                 Преимущества:
                                 {
                                     tariff.opportunities?.map(oppotunity => (
-                                        <div className={s.oppotunity}>
+                                        <div className={s.oppotunity} key={oppotunity.title}>
                                             <div className={s.title}>
                                                 {oppotunity.title}
                                             </div>

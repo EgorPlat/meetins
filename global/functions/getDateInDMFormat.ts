@@ -20,7 +20,3 @@ export const getDateInDMYFormat = (dateString: string): string => {
     month = strArray[Number(month)]
     return day + " " +  month + " " + year;
 }
-
-export const getIsUserMale = (gender: string) => {
-    return gender === 'М' || gender === 'male'
-}

@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { User } from '../../../global/interfaces';
 import { baseURL } from '../../../global/store/store';
-import { getDateInDMYFormat, getIsUserMale } from '../../../global/functions/getDateInDMFormat';
+import { getDateInDMYFormat } from '../../../global/functions/getDateInDMFormat';
+import { getIsUserMale } from '../../../global/functions/getIsUserMale';
 import message from "../../../public/images/message.svg";
 import s from './profileView.module.scss';
 import InputFile from '../../../global/helpers/InputFile/InputFile';
