@@ -47,6 +47,7 @@ export default function CustomSlider({ images, width, height }: ICustomSliderPro
                         <div 
                             className={s.customSliderCurrentImage}
                             style={{ transform: `translateX(-${activeImageId * 100}%)` }}
+                            key={el.image}
                         >
                             <img 
                                 src={el.image} 

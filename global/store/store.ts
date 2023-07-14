@@ -5,8 +5,8 @@ import { User } from '../interfaces';
 import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 
-//export const baseURL = 'http://localhost:5000/';
-export const baseURL = 'https://meetins-egorplat.amvera.io/';
+export const baseURL = 'http://localhost:5000/';
+//export const baseURL = 'https://meetins-egorplat.amvera.io/';
 
 export const instance = axios.create({
 	baseURL: baseURL,
@@ -27,7 +27,18 @@ instance.interceptors.response.use((response) => {
 }, (error: AxiosError) => {
 	const ec: AxiosRequestConfig = error.config;
 	const ers: number | undefined = error.response?.status;
-	if(ers === 401) {
+	if (ers === 400) {
+		const { message } = error.response.data;
+		if (message) {
+			addNewError({
+				text: message,
+				color: "orange",
+				textColor: "black",
+				time: 3000
+			});
+		}
+	}
+	if (ers === 401) {
 		setIsAsyncLoaded(false);
 		updateTokens().then(async (res: any) => {
 			if(res.status === 200) {

@@ -8,6 +8,10 @@ export const setCurrentEvents = createEvent<IShortEventInfo[]>();
 export const currentEvents = createStore<IShortEventInfo[]>([]).on(setCurrentEvents, (_, newEvents) => {
     return newEvents;
 });
+export const setUserEvents = createEvent<IShortEventInfo[]>();
+export const userEvents = createStore<IShortEventInfo[]>([]).on(setUserEvents, (_, newUserEvents) => {
+    return newUserEvents;
+});
 export const setCurrentEventById = createEvent<IEventInfoCard>();
 export const currentEventById = createStore<IEventInfoCard | null>(null).on(setCurrentEventById, (_, currentEvent) => {
     return currentEvent;
@@ -83,7 +87,7 @@ sample({
     clock: getUserEventsInfo.doneData, 
     filter: response => response.status <= 201, 
     fn: response => response.data, 
-    target: setCurrentEvents
+    target: setUserEvents
 })
 sample({ 
     clock: addUserEvent.doneData, 
