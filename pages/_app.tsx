@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<Layout>
 			<Head>
 				<title>Meetins</title>
-				<link rel='icon' href='/favicon.svg' />
+				<link rel='icon' href='/images/logo.svg' />
 				<meta name="description" content="Checkout our service" key="desc" />
 				<meta property="og:title" content="Social Media Meetins for cool persons" />
 				<meta
