@@ -49,3 +49,13 @@ export const validatePost = (post) => {
     }
     return true;
 }
+
+export const isPassword = (password: string) => {
+	if (password.length < 6) {
+		return false;
+	}
+	if (password.length > 12) {
+		return false;
+	}
+	return true;
+}

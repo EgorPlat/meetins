@@ -16,6 +16,7 @@ import CustomModal from '../../../global/helpers/CustomModal/CustomModal';
 import AddingPosts from '../AddingPosts/AddingPosts';
 import ChoosingEvents from '../СhoosingEvents/choosingEvents';
 import Places from '../places/places';
+import CustomEditMenu from '../../../global/helpers/CustomEditMenu/CustomEditMenu';
 
 // test 
 
@@ -48,6 +49,15 @@ export default function ProfileView(props: {
                 <div className={`${s.bodyCol}`}>
 
                     <div className={`${s.block} ${s.mainBlock}`}>
+                        {
+                            props.currentUser.login !== props.authedUser.login &&
+                            <CustomEditMenu
+                                data={[
+                                    { menuTitle: "Пометить важным", menuFunction: () => console.log(1) },
+                                    { menuTitle: "Не получать уведомления", menuFunction: () => console.log(2) }
+                                ]}
+                            />
+                        }
                         <div className={`${s.bodyInfo}`}>
                             {
                                 !props.addingImageStatus ?

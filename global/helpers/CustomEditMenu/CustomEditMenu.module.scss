@@ -1,0 +1,29 @@
+.customEditMenu {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 10px;
+    display: grid;
+    row-gap: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: Nunito;
+    & .round {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: gray;
+    }
+    & .content {
+        border: 1px solid gray;
+        padding: 5px;
+        position: absolute;
+        top: 38px;
+        right: 0px;
+        width: 120px;
+        min-height: 30px;
+        & .menuElement:hover {
+            background-color: rgba(222, 222, 222, 0.455);
+        }
+    }
+}

@@ -76,7 +76,6 @@ export default function ChatZone(): JSX.Element {
                                     onClick={handleClickProfile}
                                 >Профиль</div>
                                 <div className={s.userActionsListElement}>Очистить чат</div>
-                                <div className={s.userActionsListElement}>Пригласить</div>
                             </div>
                         }
                     </div>
@@ -120,8 +119,10 @@ export default function ChatZone(): JSX.Element {
                                             </div>
                                         }
                                         {
-                                            message.isFile && !isTypeOfFileAreImage(message.content) && !isTypeOfFileAreVideo(message.content)
-                                            && <a href={`${baseURL + message.content}`}>{message.content}</a>
+                                            message.isFile && 
+                                            !isTypeOfFileAreImage(message.content) && 
+                                            !isTypeOfFileAreVideo(message.content) &&
+                                            <a href={`${baseURL + message.content}`}>{message.content}</a>
                                         }
                                         {
                                             !message.isFile && message.content

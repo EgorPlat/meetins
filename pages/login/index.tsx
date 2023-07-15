@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 import Input from '../../global/helpers/Input/Input'
-import { isEmail, isPhoneNumber } from '../../global/helpers/validate'
+import { isEmail, isPassword, isPhoneNumber } from '../../global/helpers/validate'
 import { sendLogData, setLoginDetails } from '../../global/store/login_model'
 import loginIcon from '../../public/images/login.svg'
 import passIcon from '../../public/images/pass.svg'
@@ -64,9 +64,12 @@ export default function Login(): JSX.Element {
 					id='pass'
 					style={{ marginTop: '25px' }}
 					register={register('password', {
-						required: true
+						required: true,
+						validate: (value) =>
+							isPassword(value) ? true : t('Не менее 6-ми символов, не более 12 символов'),
 					})}
 				/>
+				{ errors.password && <span className={s.errorSpan}>{errors.password.message}</span> }
 				{ errorMessage !== "" ? 
 				<div className={`row ${s.errorBlock}`}>
 					   <div className={`col-md-12`}>

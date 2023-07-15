@@ -19,6 +19,7 @@
         box-shadow:  0px 0px 1px 1px rgba(154, 147, 140, 0.3);
     }
     & .mainBlock {
+        position: relative;
         display: grid;
         grid-template-columns: 30% 70%;
         & .bodyInfo {
