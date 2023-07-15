@@ -12,7 +12,6 @@ export const connection = createStore<Socket | null>(null).on(
     }
 );
 export const connectionWatcher = createEffect((obj: {connection: Socket | null, activeChat: IMyDialog}) => {
-    obj.connection?.removeAllListeners();
     obj.connection?.on('message', (message: any) => {
         if(message.dialogId === obj.activeChat.dialogId) {
             getDialogMessages({...obj.activeChat, dialogId: message.dialogId});
