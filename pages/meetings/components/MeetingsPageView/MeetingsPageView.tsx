@@ -1,5 +1,5 @@
+import { MeetingsContent } from '../../../../global/constants';
 import MeetingsContentView from '../MeetingsContentView/MeetingsContentView';
-import MeetingsContent from './constants';
 import s from './MeetingsPageView.module.scss';
 
 export default function MeetingsPageView(props: {
