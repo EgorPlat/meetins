@@ -1,4 +1,4 @@
-export const MeetingsContent = {
+const MeetingsContent = {
     title: "Встречи",
     subTitle: "Встречайся с другими людьми и посещай мероприятия",
     description: `
@@ -8,3 +8,5 @@ export const MeetingsContent = {
         а так-же обсудить ее в специальной чат-комнате к которой будет доступ только у тех кто записался на Вашу встречу.
     `
 }
+
+export default MeetingsContent;
