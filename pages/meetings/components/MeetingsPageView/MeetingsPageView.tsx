@@ -1,6 +1,6 @@
 import MeetingsContentView from '../MeetingsContentView/MeetingsContentView';
-import MeetingsContent from '../constants';
-import s from './MeetingsPageView.module.scss';
+import MeetingsContent from './constants';
+import s from './MeetingsPage.module.scss';
 
 export default function MeetingsPageView(props: {
     currentMenu: number,
