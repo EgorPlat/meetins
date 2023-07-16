@@ -21,7 +21,7 @@
         width: 150px;
         height: 40px;
         border-radius: 5px;
-        background-color: rgb(108, 154, 238);
+        background-color: rgb(76, 174, 255);
         color: white;
         padding: 5px;
     }
@@ -30,10 +30,14 @@
         font-size: 14px;
     }
     & .successActionDiv {
+        text-align: center;
         margin-top: 5px;
+        margin-left: 5px;
         color: green;
         padding: 5px;
-        background-color: rgba($color: green, $alpha: 0.1);
+        width: 94%;
+        border-radius: 5px;
+        background-color: rgba($color: green, $alpha: 0.3);
     }
     & .unSuccessActionDiv {
         margin-top: 5px;

@@ -49,7 +49,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				<Link href="/peoples">{t('Люди')}</Link>
 				<Link href="/events">{t('События')}</Link>
 				<Link href="/interests">{t('Интересы')}</Link>
-				<Link href="">{t('Встречи')}</Link>
+				<Link href="/meetings">{t('Встречи')}</Link>
 			    <ButtonWithHint 
 					title={t('Пригласить')} 
 					hintTitle={

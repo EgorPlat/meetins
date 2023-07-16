@@ -23,8 +23,8 @@ export const connectionWatcher = createEffect((obj: {connection: Socket | null, 
     obj.connection?.on('updateUsers', (message: any) => {
         setOnlineUsers(message.users);
     });
-    obj.connection?.on('onConnection', (message: string) => {
-        console.log(1);
+    obj.connection?.on('connect', () => {
+        console.log('connect');
     });
 })
 sample({

@@ -1,0 +1,54 @@
+.meetings {
+    width: 98%;
+    text-align: justify;
+    display: grid;
+    row-gap: 10px;
+    & .title {
+
+    }
+    & .subTitle {
+        font-size: 16px;
+    }
+    & .description {
+        font-size: 15px;
+    }
+    & .actions {
+        display: flex;
+        column-gap: 15px;
+        font-size: 15px;
+        & .actionMenu {
+            border-bottom: 1px solid gray;
+            padding: 5px;
+            cursor: pointer;
+        }
+        & .activeActionMenu {
+            @extend .actionMenu;
+            border-bottom: 1px solid rgb(38, 161, 255);
+        }
+        & .actionMenu:hover {
+            border-bottom: 1px solid rgb(38, 161, 255);
+            color: white;
+        }
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .meetings {
+        & .subTitle {
+            font-size: 15px;
+        }
+        & .description {
+            font-size: 14px;
+        }
+        & .actions  {
+            font-size: 13px;
+        }
+    }
+}
+@media screen and (max-width: 340px) {
+    .meetings {
+        & .actions  {
+            font-size: 12px;
+        }
+    }
+}
