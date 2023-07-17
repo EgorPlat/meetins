@@ -96,7 +96,7 @@ export default function ProfileView(props: {
                                 </div>
                             </div>
                             { 
-                                props.currentUser.login !== props.authedUser.login ?
+                                props.currentUser?.login !== props.authedUser?.login ?
                                 <div className={`${s.actions}`}>
                                     <button type="button" className={`${s.actionsBtn}`} onClick={props.handleStartDialog}>
                                         {t('Диалог')}
