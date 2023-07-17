@@ -27,12 +27,12 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	};
 
 	useEffect(() => {
-		if(select === 'logOut') {
+		if( select === 'logOut' ) {
 			router.push('/login');
 			localStorage.setItem('access-token', "");
 			localStorage.setItem('refrash-token', "");
 		}
-		if(select === 'settings') {
+		if( select === 'settings' ) {
 			router.push('/settings');
 		}
 		if(select === 'name') {

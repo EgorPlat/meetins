@@ -3,11 +3,12 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { $currentProfileUser, $user, getDataForProfilePage, isAsyncLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
-import { checkDialog, } from "../../global/store/chat_model";
+import { checkDialog, getMyDialogs, } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
 import ProfileView from "./ProfileView/profileView";
 import PageContainer from "../../components/PageContainer/pageContainer";
+import { useAuthAndInithialSocket } from "../../global/hooks/useAuthAndInithialSocket";
 
 function Profile(): JSX.Element {
 
@@ -15,7 +16,7 @@ function Profile(): JSX.Element {
     const asyncLoaded = useStore(isAsyncLoaded);
     const currentUser = useStore($currentProfileUser);
     const authedUser = useStore($user);
-
+    
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isAddPostModal, setIsAddPostModal] = useState<boolean>(false);
@@ -65,7 +66,7 @@ function Profile(): JSX.Element {
 
     useEffect( () => {
         getDataForProfilePage(route);
-    }, [route])
+    }, [route]);
 
     return(
         <PageContainer>

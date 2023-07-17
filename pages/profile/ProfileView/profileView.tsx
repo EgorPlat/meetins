@@ -60,7 +60,7 @@ export default function ProfileView(props: {
                         }
                         <div className={`${s.bodyInfo}`}>
                             {
-                                !props.addingImageStatus ?
+                                !props.addingImageStatus && props.currentUser.avatar ?
                                 <img 
                                     onMouseEnter={() => props.changeAddingImageStatus(true)}
                                     src={baseURL + props.currentUser.avatar}

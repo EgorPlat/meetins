@@ -13,13 +13,15 @@ export default function Peoples(): JSX.Element {
         <PageContainer>
             <div className={s.peoples}>
                 <Head>
-                    <title>Mettins - Люди</title>
+                    <title>Meetins - Люди</title>
                     <meta name="description" content="Ищите новые знакомства!" key="desc" />
                     <meta property="og:title" content="Только у нас Вы сможете найти себе хороших друзей и пообщаться!" />
-                    <meta name="keywords" content="meetins, meetin-s, Meetins, Meetin-s, знакомства, meetings, meet, люди, вход, регистрация" />
+                    <meta 
+                        name="keywords" 
+                        content="meetins, meetin-s, Meetins, Meetin-s, знакомства, meetings, meet, люди, peoples, meetins seven peoples" />
                     <meta
-                    property="og:description"
-                    content="Присоединяйтесь прямо сейчас, ищите людей."
+                        property="og:description"
+                        content="Присоединяйтесь прямо сейчас, ищите людей."
                     />
                 </Head>
                 <div className={s.chapters}>

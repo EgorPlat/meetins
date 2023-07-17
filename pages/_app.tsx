@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react';
 import { setIsMobile } from '../global/store/store';
 import { connection, setNewConnection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
-import { getMyDialogs } from '../global/store/chat_model'
 import { detectUserLanguage } from '../global/helpers/helper';
 import { useResize } from '../global/hooks/useResize';
-import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 import Layout from '../components/Layout/Layout';
 import '../styles/app.css';
 import '../styles/themes.css';
@@ -17,13 +15,15 @@ import ErrorBlock from '../components/ErrorBlock/errorBlock';
 import '../i18n';
 import i18n from '../i18n';
 import CustomModal from '../global/helpers/CustomModal/CustomModal';
+import { getMyDialogs } from '../global/store/chat_model';
+import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const connection$ = useStore(connection);
 	const {isMobile, isUnAdaptive} = useResize();
 	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
-	const newConnection = useAuthAndInithialSocket();
+	const isConnected = useAuthAndInithialSocket();
 
 	useEffect(() => {
 		document.documentElement.setAttribute("data-theme", localStorage.getItem('data-theme') || 'black');
@@ -34,17 +34,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}, []);
 
 	useEffect(() => {
-		if(newConnection) {
-			setNewConnection(newConnection);
-			getMyDialogs(true);
-		}
-	}, [newConnection]);
-
-	useEffect(() => {
 		setIsMobile(isMobile);
 		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);
 
+	useEffect(() => {
+		if(isConnected) {
+			getMyDialogs(true);
+		}
+	}, [isConnected]);
+	
 	return (
 		<Layout>
 			<Head>

@@ -123,11 +123,11 @@ export const getUserData = createEffect(async () => {
 export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const instanseRouter$ = instanseRouter.getState();
 	const savedRoute = localStorage.getItem("previousPage");
-
+	
 	if(localStorage.getItem('access-token')) {
 		setIsAsyncLoaded(false);
 		getUserData().then( (res) => {
-			if(res.status === 200) {  
+			if(res.status === 200) {
 				setIsAsyncLoaded(true);
 				instanseRouter$?.push(savedRoute);
 			} else {
@@ -135,9 +135,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 			}
 		})
 	} else {
-		if (instanseRouter$?.asPath !== '/confirmation') {
-			instanseRouter$?.push('/login');
-		}
+		instanseRouter$?.push('/login');
 	}
 });
 
