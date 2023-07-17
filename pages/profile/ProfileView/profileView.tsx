@@ -45,7 +45,7 @@ export default function ProfileView(props: {
     return (
         <div className={s.profile}>
             {   
-                props.asyncLoaded ? 
+                props.asyncLoaded && props.currentUser && props.authedUser ? 
                 <div className={`${s.bodyCol}`}>
 
                     <div className={`${s.block} ${s.mainBlock}`}>
@@ -96,7 +96,7 @@ export default function ProfileView(props: {
                                 </div>
                             </div>
                             { 
-                                props.currentUser?.login !== props.authedUser?.login ?
+                                props.currentUser.login !== props.authedUser.login ?
                                 <div className={`${s.actions}`}>
                                     <button type="button" className={`${s.actionsBtn}`} onClick={props.handleStartDialog}>
                                         {t('Диалог')}
