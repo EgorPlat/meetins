@@ -12,7 +12,7 @@
         height: 570px;
         font-size: 26px;
         padding-top: 1%;
-        padding-left: 8%;
+        padding-left: 10%;
         & a {
             text-decoration: none;
             font-family: Nunito;
@@ -21,11 +21,10 @@
     & .formAndInfo {
         font-size: 20px;
         padding-top: 1%;
-        padding-left: 1%;
         font-family: Nunito;
         h4 {
             padding: 5px;
-            width: 95%;
+            width: 96%;
         }
         & .locale {
             cursor: pointer;
@@ -86,14 +85,14 @@
             grid-template-columns: 100%;
         }
         & .menu {
-            width: 100%;
-            min-height: 100px;
-            height: 100px;
-            font-size: 32px;
-            padding-top: 1%;
-            padding-left: 8%;
+            padding-left: 3%;
+            display: flex;
+            column-gap: 15px;
+            height: 50px;
+            font-size: 24px;
         }
         & .formAndInfo {
+            padding-left: 3%;
             & .info {
                 & label {
                     display: inline;
