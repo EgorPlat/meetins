@@ -1,31 +1,35 @@
 import 'regenerator-runtime/runtime';
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { setIsMobile } from '../global/store/store';
+import { getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
 import { connection, setNewConnection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';
 import { useResize } from '../global/hooks/useResize';
-import Layout from '../components/Layout/Layout';
-import '../styles/app.css';
-import '../styles/themes.css';
 import '../node_modules/reseter.css/css/reseter.min.css';
 import Head from 'next/head';
-import ErrorBlock from '../components/ErrorBlock/errorBlock';
 import '../i18n';
 import i18n from '../i18n';
-import CustomModal from '../global/helpers/CustomModal/CustomModal';
 import { getMyDialogs } from '../global/store/chat_model';
 import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
+import Layout from '../global/components/Layout/Layout';
+import ErrorBlock from '../global/components/ErrorBlock/errorBlock';
+import CustomModal from '../components-ui/CustomModal/CustomModal';
+import '../styles/app.css';
+import '../styles/themes.css';
+import { setRouter } from '../global/store/router_model';
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const connection$ = useStore(connection);
 	const {isMobile, isUnAdaptive} = useResize();
 	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
-	const isConnected = useAuthAndInithialSocket();
+	const router = useRouter();
 
 	useEffect(() => {
+		setRouter(router);
+		getInitialUserDataAndCheckAuth();
 		document.documentElement.setAttribute("data-theme", localStorage.getItem('data-theme') || 'black');
 		i18n.changeLanguage(detectUserLanguage());
 		return () => {
@@ -38,11 +42,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);
 
-	useEffect(() => {
-		if(isConnected) {
-			getMyDialogs(true);
-		}
-	}, [isConnected]);
 	
 	return (
 		<Layout>

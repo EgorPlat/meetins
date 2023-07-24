@@ -1,4 +1,4 @@
-import CustomLoader from '../components/CustomLoader/CustomLoader';
+import CustomLoader from "../components-ui/CustomLoader/CustomLoader"
 
 const Home = () => {
 

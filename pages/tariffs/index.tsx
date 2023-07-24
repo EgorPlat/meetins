@@ -1,4 +1,4 @@
-import PageContainer from "../../components/PageContainer/pageContainer";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 import TariffsPageView from "./components/TariffsPageView/TariffsPageView";
 import { baseURL } from "../../global/store/store";
 

@@ -1,7 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Loader from "../../../components/Loader/Loader";
 import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
 import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
 import { isTypeOfFileAreImage, isTypeOfFileAreVideo } from "../../../global/helpers/validate";
@@ -17,6 +16,7 @@ import { $onlineUsers, $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
 import { useRouter } from "next/router";
+import Loader from "../../../components-ui/Loader/Loader";
 
 export default function ChatZone(): JSX.Element {
 

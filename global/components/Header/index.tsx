@@ -1,12 +1,12 @@
 import s from './header.module.scss'
 import Image from 'next/image'
-import logo from '../../public/images/logo-l.svg'
+import logo from '../../../public/images/logo-l.svg'
 import Navbar from '../Navbar'
 import Link from 'next/link'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'
-import { $currentPage, isMobile, setCurrentPage } from '../../global/store/store'
+import { $currentPage, isMobile, setCurrentPage } from '../../../global/store/store'
 
 export default function Header(): JSX.Element {
 	const currentPage = useStore($currentPage);

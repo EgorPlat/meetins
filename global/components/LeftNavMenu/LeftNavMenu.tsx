@@ -2,8 +2,8 @@ import { useStore } from "effector-react";
 import Link from "next/link";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { countUreadMessages } from "../../global/store/chat_model";
-import { $currentPage } from "../../global/store/store";
+import { countUreadMessages } from "../../../global/store/chat_model";
+import { $currentPage } from "../../../global/store/store";
 import s from "./LeftNavMenu.module.scss";
 
 export default function LeftNavMenu(): JSX.Element {

@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { currentErrors } from '../../global/store/errors_model';
+import { currentErrors } from '../../store/errors_model';
 import { Error } from './Error/error';
 import s from './errorBlock.module.scss';
 

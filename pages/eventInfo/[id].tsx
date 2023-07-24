@@ -1,12 +1,12 @@
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Loader from "../../components/Loader/Loader";
-import PageContainer from "../../components/PageContainer/pageContainer";
 import { addNewError } from "../../global/store/errors_model";
 import { addUserEvent, currentEventById, getEventById, setCurrentEventById } from "../../global/store/events_model";
 import { $user } from "../../global/store/store";
 import EventBlock from "./EventBlock";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
+import Loader from "../../components-ui/Loader/Loader";
 
 
 export default function EventInfo(): JSX.Element {

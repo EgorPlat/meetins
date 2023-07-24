@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageContainer from "../../components/PageContainer/pageContainer";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MeetingsPageView from "./components/MeetingsPageView/MeetingsPageView";
 
 export default function Meetings() {

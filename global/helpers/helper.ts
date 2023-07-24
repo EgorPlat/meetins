@@ -30,6 +30,9 @@ export function findUserInOnlineList( email: string, onlineList: any[] ) {
     return onlineList.filter(el => el.email === email).length > 0;
 }
 
+export function customizeDateToInputFormatFromDBFormat(date: string) {
+    return date.slice(0, 10);
+}
 export function detectUserLanguage() {
     if (window.navigator.language === 'ru') return 'ru';
     return 'en';

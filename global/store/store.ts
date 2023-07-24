@@ -128,6 +128,8 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 		setIsAsyncLoaded(false);
 		getUserData().then( (res) => {
 			if(res.status === 200) {
+				console.log(instanseRouter$);
+				
 				setIsAsyncLoaded(true);
 				instanseRouter$?.push(savedRoute);
 			} else {

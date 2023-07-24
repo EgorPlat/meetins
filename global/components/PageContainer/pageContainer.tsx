@@ -1,9 +1,8 @@
 import { useStore } from "effector-react";
-import React, { ReactChild, ReactChildren } from "react";
-import { isMobile } from "../../global/store/store";
+import React, { ReactChild } from "react";
+import { isMobile } from "../../../global/store/store";
 import LeftNavMenu from "../LeftNavMenu/LeftNavMenu";
 import s from "./pageContainer.module.scss";
-import BottomMobileNavMenu from "../BottomMobileNavMenu/BottomMobileNavMenu";
 
 export default function PageContainer(props: {children: ReactChild}): JSX.Element {
 

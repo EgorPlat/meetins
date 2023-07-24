@@ -1,5 +1,4 @@
-import Image from "next/image";
-import ConfirmAndCancelActions from "../../../../global/helpers/ConfirmAndCancelActions/ConfirmAndCancelActions";
+import ConfirmAndCancelActions from "../../../../components-ui/ConfirmAndCancelActions/ConfirmAndCancelActions";
 import { customizeDateToYYYYMMDDFormat } from "../../../../global/helpers/helper";
 import { IInnerInviteEvent } from "../../../../global/interfaces/events";
 import { baseURL } from "../../../../global/store/store";

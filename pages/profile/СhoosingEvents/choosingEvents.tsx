@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useStore } from "effector-react";
 import { $user } from "../../../global/store/store";
 import { getUserEventsInfo, loadedStatus, setUserEvents, userEvents } from "../../../global/store/events_model";
-import Loader from "../../../components/Loader/Loader";
+import CustomLoader from "../../../components-ui/CustomLoader/CustomLoader";
 
 export default function ChoosingEvents(props: {
     choosedEvent: (eventId: number) => void
@@ -28,35 +28,39 @@ export default function ChoosingEvents(props: {
         setSelectedEvent(eventId);
         props.choosedEvent(eventId);
     }
-    return (
-        <div className={s.choosingEvents}>
-            <table>
-                <tr>
-                    <td>Название</td>
-                    <td>Цена</td>
-                    <td>Выбрать</td>
-                </tr>
-                {
-                    userEvents$.map(el => (
-                        <tr key={el.title}>
-                            <td>{el.title}</td>
-                            <td>{+el.price === 0 ? 'Бесплатно' : el.price + "+"}</td>
-                            <td>
-                                <input 
-                                    type="checkbox" 
-                                    checked={selectedEvent === el.id} 
-                                    onChange={() => updateInvitingEvent(el.id)} 
-                                />
-                            </td>
-                        </tr>
-                    ))
-                }
-            </table>
-            { !userEventsLoaded && 
-                <div className={s.loaderWrapper}>
-                    <Loader />
-                </div>
-            }
-        </div>
-    )
+
+    if (!userEventsLoaded) {
+        return (
+            <div className={s.loaderWrapper}>
+                <CustomLoader />
+            </div>
+        )
+    } else {
+        return (
+            <div className={s.choosingEvents}>
+                <table>
+                    <tr>
+                        <td>Название</td>
+                        <td>Цена</td>
+                        <td>Выбрать</td>
+                    </tr>
+                    {
+                        userEvents$.map(el => (
+                            <tr key={el.title}>
+                                <td>{el.title}</td>
+                                <td>{+el.price === 0 ? 'Бесплатно' : el.price + "+"}</td>
+                                <td>
+                                    <input 
+                                        type="checkbox" 
+                                        checked={selectedEvent === el.id} 
+                                        onChange={() => updateInvitingEvent(el.id)} 
+                                    />
+                                </td>
+                            </tr>
+                        ))
+                    }
+                </table>
+            </div>
+        )
+    }
 } 

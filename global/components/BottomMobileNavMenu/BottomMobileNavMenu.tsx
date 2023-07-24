@@ -1,9 +1,7 @@
 import { useStore } from "effector-react";
-import Link from "next/link";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { countUreadMessages } from "../../global/store/chat_model";
-import { $currentPage, $user } from "../../global/store/store";
+import { $user } from "../../store/store";
 import s from "./BottomMobileNavMenu.module.scss";
 import Image from 'next/image';
 import { useRouter } from "next/router";

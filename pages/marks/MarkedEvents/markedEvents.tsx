@@ -1,9 +1,9 @@
 import { useStore } from "effector-react";
 import React from "react";
-import Loader from "../../../components/Loader/Loader";
 import { $user } from "../../../global/store/store";
 import MarkedEventInfo from "./MarkedEventInfo/markedEventInfo";
 import s from "./markedEvents.module.scss";
+import Loader from "../../../components-ui/Loader/Loader";
 
 export default function MarkedEvents(): JSX.Element {
 
@@ -14,7 +14,7 @@ export default function MarkedEvents(): JSX.Element {
     }
     return(
         <div className={s.markedEvents}>            
-            { user.events.map(event => <MarkedEventInfo eventId={event} />) }
+            { user.events.map(event => <MarkedEventInfo eventId={event} key={event} />) }
         </div>
     )
 }

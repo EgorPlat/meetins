@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
-import Input from '../../global/helpers/Input/Input'
 import loginIcon from '../../public/images/login.svg'
 import passIcon from '../../public/images/pass.svg'
 import phoneIcon from '../../public/images/phone.svg'
@@ -22,6 +21,7 @@ import {
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
+import Input from '../../components-ui/Input/Input'
 
 export default function Login(): JSX.Element {
 	const {

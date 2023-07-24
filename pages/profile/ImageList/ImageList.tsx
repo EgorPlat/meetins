@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import s from "./ImageList.module.scss";
 import { Post, User } from "../../../global/interfaces";
 import { baseURL } from "../../../global/store/store";
-import like from "../../../public/images/like.jpg";
-import comment from "../../../public/images/comment.jpg";
-import Image from "next/image";
-import CustomModal from "../../../global/helpers/CustomModal/CustomModal";
 import CurrentPostComments  from "./CurrentPostComments/CurrentPostComments";
 import PostCommentForm from "./PostCommentForm/PostCommentForm";
 import { NewComment } from "../../../global/interfaces/newComment";
 import { addNewCommentToCurrentPost } from "../../../global/store/comments_model";
 import { customizeDateToYYYYMMDDFormat } from "../../../global/helpers/helper";
 import { useTranslation } from "react-i18next";
+import CustomModal from "../../../components-ui/CustomModal/CustomModal";
 
 export default function ImageList(props: {currentUser: User, authedUser: User}): JSX.Element {
 

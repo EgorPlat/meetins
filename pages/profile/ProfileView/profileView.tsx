@@ -5,18 +5,18 @@ import { getDateInDMYFormat } from '../../../global/functions/getDateInDMFormat'
 import { getIsUserMale } from '../../../global/functions/getIsUserMale';
 import message from "../../../public/images/message.svg";
 import s from './profileView.module.scss';
-import InputFile from '../../../global/helpers/InputFile/InputFile';
 import Image from "next/image";
 import About from '../About/About';
 import Interests from '../interests/interests';
 import ImageList from '../ImageList/ImageList';
-import Loader from '../../../components/Loader/Loader';
-import Modal from '../../../global/helpers/Modal/Modal';
-import CustomModal from '../../../global/helpers/CustomModal/CustomModal';
 import AddingPosts from '../AddingPosts/AddingPosts';
 import ChoosingEvents from '../СhoosingEvents/choosingEvents';
 import Places from '../places/places';
-import CustomEditMenu from '../../../global/helpers/CustomEditMenu/CustomEditMenu';
+import CustomEditMenu from '../../../components-ui/CustomEditMenu/CustomEditMenu';
+import InputFile from '../../../components-ui/InputFile/InputFile';
+import Loader from '../../../components-ui/Loader/Loader';
+import Modal from '../../../components-ui/Modal/Modal';
+import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 
 // test 
 

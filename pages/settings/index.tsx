@@ -9,13 +9,14 @@ import React from "react";
 import s from "./settings.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
-import Modal from "../../global/helpers/Modal/Modal";
 import ProfileInfoForm from "../../global/Forms/ProfileInfo/Index";
 import ManageAccountForm from "../../global/Forms/ManageAccount/Index";
-import Loader from "../../components/Loader/Loader";
 import ru from '../../public/images/ru.png';
 import us from '../../public/images/us.png';
 import Image from "next/image";
+import Loader from "../../components-ui/Loader/Loader";
+import Modal from "../../components-ui/Modal/Modal";
+import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
 
 export default function Settings(): JSX.Element {
 
@@ -82,14 +83,14 @@ export default function Settings(): JSX.Element {
                         <h4>{t("Информация профиля")}</h4>
                             { isLoad ? <div className={s.profileForm}>
                                <ProfileInfoForm /> 
-                            </div> : <Loader/>}
+                            </div> : <CustomLoader />}
                     </div>
                     <div className={s.management}>
                         <h4>{t("Управление аккаунтом")}</h4>
                         <div className={s.manageAcc}>
                             {isLoad ? <div className={s.accountForm}>
                                 <ManageAccountForm />
-                            </div> : <Loader/>}
+                            </div> : <CustomLoader />}
                         </div>
                         <div className={`${s.infoText}`}>
                             <div className={`${s.description}`}>

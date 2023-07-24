@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
-import Input from '../../global/helpers/Input/Input'
 import { isEmail, isPassword, isPhoneNumber } from '../../global/helpers/validate'
 import { sendLogData, setLoginDetails } from '../../global/store/login_model'
 import loginIcon from '../../public/images/login.svg'
@@ -10,6 +9,7 @@ import Router from 'next/router'
 import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useTranslation } from 'react-i18next'
+import Input from '../../components-ui/Input/Input'
 
 export default function Login(): JSX.Element {
 

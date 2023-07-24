@@ -6,6 +6,7 @@ import { isPhoneNumber } from "../../helpers/validate";
 import { isProfileUpdated, updateUserProfileData } from "../../store/settings_model";
 import { $user } from "../../store/store";
 import s from "./profileInfo.module.scss";
+import { customizeDateToInputFormatFromDBFormat } from "../../helpers/helper";
  
 export default function ProfileInfoForm(): JSX.Element {
 
@@ -14,6 +15,8 @@ export default function ProfileInfoForm(): JSX.Element {
     const user = useStore($user);
     const { t } = useTranslation();
 
+    console.log(customizeDateToInputFormatFromDBFormat(user?.birthDate));
+    
     const onChangeProfile = (data: {name: string, birthDate: string, phoneNumber: string}) => {
         updateUserProfileData(data); 
     }
@@ -22,7 +25,8 @@ export default function ProfileInfoForm(): JSX.Element {
             <form onSubmit={handleSubmit(onChangeProfile)}>
             <div className={s.formElem}>
                 <label htmlFor="name">{t("Имя")}</label>
-                <input type="text" id="name" 
+                <input type="text" id="name"
+                    defaultValue={user?.name}
                     placeholder={user?.name} {...register("name", {required: false, validate: (value) => 
 			        /^[a-zа-яё]+$/i.test(value) === false
 				    ? 'Пожалуйста следуйте формату: Имя'
@@ -32,15 +36,22 @@ export default function ProfileInfoForm(): JSX.Element {
             </div> 
             <div className={s.formElem}>
                 <label htmlFor="date">{t("Дата рождения")}</label>
-                <input type="date" id="date" {...register("birthDate", {required: false, validate: (value) =>
-                    value.length === 0 ? "Это поле обязательно к заполнению." : true
-                })} placeholder={user?.birthDate}/>
+                <input 
+                    type="date" 
+                    id="date" 
+                    {...register("birthDate", {required: false, validate: (value) =>
+                        value.length === 0 ? "Это поле обязательно к заполнению." : true
+                    })} 
+                    placeholder={user?.birthDate}
+                    defaultValue={customizeDateToInputFormatFromDBFormat(user?.birthDate)}
+                />
                 {errors.birthDate ? <span className={s.spanError}>{errors.birthDate.message}</span> : null}
             </div>
             <div className={s.formElem}>
                 <label htmlFor="phone">{t("Мобильный телефон")}</label>
                 <input type="text" id="phone"
                     placeholder={user?.phoneNumber}
+                    defaultValue={user?.phoneNumber}
                     {...register("phoneNumber", {required: false, validate: (value) =>
                     isPhoneNumber(value) !== value ? "Введите телефон в формате 79693461718." : true
                 })}/>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IError } from '../../../global/interfaces/error';
+import { IError } from '../../../interfaces/error';
 import s from './error.module.scss';
 
 export const Error = (props: { error: IError }) => {

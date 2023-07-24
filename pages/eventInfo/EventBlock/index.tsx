@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import Loader from "../../../components/Loader/Loader";
 import { IEventInfoCard } from "../../../global/interfaces/events";
 import s from "./eventBlock.module.scss";
-import CustomSlider from "../../../components/CustomSlider/CustomSlider";
 import EventMoreInfo from "../EventMoreInfo";
+import CustomSlider from "../../../components-ui/CustomSlider/CustomSlider";
+import Loader from "../../../components-ui/Loader/Loader";
 
 
 export default function EventBlock(props: {

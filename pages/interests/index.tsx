@@ -1,5 +1,5 @@
 import InterestsPageView from "./components/InterestsPageView/InterestsPageView";
-import PageContainer from "../../components/PageContainer/pageContainer";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { addNewError } from "../../global/store/errors_model";
 
 export default function Interests() {

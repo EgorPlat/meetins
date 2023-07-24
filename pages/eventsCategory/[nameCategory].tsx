@@ -1,10 +1,10 @@
 import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next";
-import PageContainer from "../../components/PageContainer/pageContainer";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 import EventsList from "./EventsList/EventsList";
 import s from "./nameCategory.module.scss";
 import { useState } from "react";
-import CustomModal from "../../global/helpers/CustomModal/CustomModal";
+import CustomModal from "../../components-ui/CustomModal/CustomModal";
 
 export default function CategoryEventInfo(): JSX.Element {
 

@@ -6,7 +6,7 @@ import {
     getUserOuterInvitesEventInfo 
 } from "../../global/store/events_model";
 import { $user } from "../../global/store/store";
-import PageContainer from "../../components/PageContainer/pageContainer";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 import InvitesPageView from "./components/InvitesPageView/InvitesPageView";
 
 export default function Invites() {

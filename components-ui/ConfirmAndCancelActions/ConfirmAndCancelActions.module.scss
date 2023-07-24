@@ -1,38 +1,31 @@
-.confirm {
+.defaultAction {
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     justify-items: center;
     height: 30px;
-    background-color: rgba(44, 100, 255, 0.81);
     color: white;
     font-size: 18px;
+    padding: 5px;
+    border-radius: 5px
+}
+
+.confirm {
+    @extend .defaultAction;
+    background-color: rgba(44, 100, 255, 0.81);
 }
 
 .cancel {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    height: 30px;
+    @extend .defaultAction;
     background-color: rgba(255, 71, 71, 0.721);
-    color: white;
-    font-size: 18px;
 }
 
 .info {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    height: 30px;
+    @extend .defaultAction;
     background-color: rgba(71, 255, 166, 0.721);
-    color: white;
-    font-size: 18px;
 }
+
 
 .horizontal {
     display: flex;

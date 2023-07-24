@@ -7,7 +7,7 @@ import { PostComment } from '../../../../global/interfaces/comment';
 import { currentPostComments, getCurrentPostsComments, isCurrentPostCommentsLoaded } from '../../../../global/store/comments_model';
 import { baseURL } from '../../../../global/store/store';
 import s from './CurrentPostComments.module.scss';
-import CustomLoader from '../../../../components/CustomLoader/CustomLoader';
+import CustomLoader from '../../../../components-ui/CustomLoader/CustomLoader';
 
 export default function CurrentPostComments (props: {post: Post}) {
 
@@ -31,7 +31,7 @@ export default function CurrentPostComments (props: {post: Post}) {
     return (
         <div className={s.commentsList}>
             {currentPostComments$.map(comment => (
-                <div className={s.comment} onClick={() => handleCommentAvatarClick(comment)}>
+                <div className={s.comment} onClick={() => handleCommentAvatarClick(comment)} key={comment.commentId} >
                     <div className={s.commentAvatar}>
                         <img src = {baseURL + comment.commentOwnerAvatar} />
                     </div>

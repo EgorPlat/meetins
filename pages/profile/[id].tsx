@@ -3,12 +3,13 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { $currentProfileUser, $user, getDataForProfilePage, isAsyncLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
-import { checkDialog, getMyDialogs, } from "../../global/store/chat_model";
+import { checkDialog, getMyDialogs } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
 import ProfileView from "./ProfileView/profileView";
-import PageContainer from "../../components/PageContainer/pageContainer";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { useAuthAndInithialSocket } from "../../global/hooks/useAuthAndInithialSocket";
+import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
 
 function Profile(): JSX.Element {
 
@@ -16,7 +17,8 @@ function Profile(): JSX.Element {
     const asyncLoaded = useStore(isAsyncLoaded);
     const currentUser = useStore($currentProfileUser);
     const authedUser = useStore($user);
-    
+    const isConnected = useAuthAndInithialSocket();
+
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isAddPostModal, setIsAddPostModal] = useState<boolean>(false);
@@ -64,33 +66,45 @@ function Profile(): JSX.Element {
         setIsInviteModal(false);
     }
 
+    useEffect(() => {
+        if (isConnected) {
+            getMyDialogs(true);
+        }
+    }, [isConnected]);
+
     useEffect( () => {
         getDataForProfilePage(route);
     }, [route]);
 
-    return(
-        <PageContainer>
-            <ProfileView
-                asyncLoaded={asyncLoaded}
-                addingImageStatus={addingImageStatus}
-                currentUser={currentUser}
-                authedUser={authedUser}
-                isAddPostModal={isAddPostModal}
-                isImageModal={isModal}
-                isInviteModal={isInviteModal}
-                handleSendInvite={handleSendInvite}
-                setChoosedEventForInvite={setChoosedEventForInvite}
-                setIsAddPostModal={setIsAddPostModal}
-                setIsInviteModal={setIsInviteModal}
-                handleStartDialog={handleStartDialog}
-                onChangeInputImage={onChangeInputImage}
-                handleSaveNewStatus={handleSaveNewStatus}
-                changeAddingImageStatus={changeAddingImageStatus}
-                onAddingModalClick={onAddingModalClick}
-                onImageModalClick={onImageModalClick}
-            />
-        </PageContainer>
-    )
+    if (isConnected) {
+        return(
+            <PageContainer>
+                <ProfileView
+                    asyncLoaded={asyncLoaded}
+                    addingImageStatus={addingImageStatus}
+                    currentUser={currentUser}
+                    authedUser={authedUser}
+                    isAddPostModal={isAddPostModal}
+                    isImageModal={isModal}
+                    isInviteModal={isInviteModal}
+                    handleSendInvite={handleSendInvite}
+                    setChoosedEventForInvite={setChoosedEventForInvite}
+                    setIsAddPostModal={setIsAddPostModal}
+                    setIsInviteModal={setIsInviteModal}
+                    handleStartDialog={handleStartDialog}
+                    onChangeInputImage={onChangeInputImage}
+                    handleSaveNewStatus={handleSaveNewStatus}
+                    changeAddingImageStatus={changeAddingImageStatus}
+                    onAddingModalClick={onAddingModalClick}
+                    onImageModalClick={onImageModalClick}
+                />
+            </PageContainer>
+        )
+    } else {
+        return (
+            <CustomLoader />
+        )
+    }
 }
 
 export default Profile;

@@ -6,9 +6,10 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import s from './mainNavbar.module.scss'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { $user, baseURL, isMobile, setUser } from "../../global/store/store";
+import { $user, baseURL } from "../../../global/store/store";
 import { useTranslation } from "react-i18next";
-import ButtonWithHint from "../../global/helpers/Hint/buttonWithHint";
+import ButtonWithHint from "../../../global/helpers/Hint/buttonWithHint";
+import { setNewConnection } from "../../store/connection_model";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
@@ -31,6 +32,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 			router.push('/login');
 			localStorage.setItem('access-token', "");
 			localStorage.setItem('refrash-token', "");
+			setNewConnection(null);	
 		}
 		if( select === 'settings' ) {
 			router.push('/settings');

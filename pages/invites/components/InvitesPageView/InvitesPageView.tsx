@@ -1,10 +1,6 @@
-import CustomLoader from '../../../../components/CustomLoader/CustomLoader';
-import Loader from '../../../../components/Loader/Loader';
-import ConfirmAndCancelActions from '../../../../global/helpers/ConfirmAndCancelActions/ConfirmAndCancelActions';
-import { customizeDateToYYYYMMDDFormat } from '../../../../global/helpers/helper';
+import CustomLoader from '../../../../components-ui/CustomLoader/CustomLoader';
 import { User } from '../../../../global/interfaces';
 import { IUnitedInvitesEvent } from '../../../../global/interfaces/events';
-import { baseURL } from '../../../../global/store/store';
 import InnerInviteWrapper from '../InnerInviteWrapper/InnerInviteWrapper';
 import OuterInviteWrapper from '../OuterInviteWrapper/OuterInviteWrapper';
 import s from './InvitesPageView.module.scss';
@@ -18,10 +14,10 @@ export default function InvitesPageView({ authedUser, unitedEventsInfo }: IInvit
         return (
             <div className={s.invitesPageView}>
                 {
-                    unitedEventsInfo.innerInvites.map((invite) => <InnerInviteWrapper invite={invite} />)
+                    unitedEventsInfo.innerInvites.map((invite) => <InnerInviteWrapper invite={invite} key={invite.id} />)
                 }
                 {
-                    unitedEventsInfo.outerInvites.map((invite) => <OuterInviteWrapper invite={invite} />)
+                    unitedEventsInfo.outerInvites.map((invite) => <OuterInviteWrapper invite={invite} key={invite.id} />)
                 }
             </div>
         )

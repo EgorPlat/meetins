@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PageContainer from "../../components/PageContainer/pageContainer";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MarkedEvents from "./MarkedEvents/markedEvents";
 import s from "./marks.module.scss";
 

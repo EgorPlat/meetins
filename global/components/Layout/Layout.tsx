@@ -1,9 +1,10 @@
 import s from './layout.module.scss'
 import { useRouter } from 'next/dist/client/router'
-import { $currentPage, isMobile, setCurrentPage } from '../../global/store/store'
+import { $currentPage, isMobile, setCurrentPage } from '../../../global/store/store'
 import { useStore } from 'effector-react'
 import { useEffect } from 'react'
 import Header from '../Header'
+
 export default function Layout({ children }: { children: React.ReactNode }) {
 
 	const route = useRouter();

@@ -23,7 +23,8 @@ export default function ManageAccountForm(): JSX.Element {
             <form onSubmit={handleSubmit(onChangeAccount)}>
             <div className={s.formElem}> 
                 <label htmlFor="email">{t('Ваш Email')}</label>
-                <input type="text" id="email" 
+                <input type="text" id="email"
+                    defaultValue={user?.email}
                     placeholder={user?.email} {...register("email", {required: false, validate: (value) =>
                     value.length === 0 ? "Это поле обязательно к заполнению." : true})}
                 />
@@ -31,11 +32,18 @@ export default function ManageAccountForm(): JSX.Element {
             </div>
             <div className={s.formElem}>
                 <label htmlFor="password">{t('Пароль')}</label>
-                <input type="password" id="password" placeholder="******" {...register("password", {required: false})}/>
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="******" {...register("password", {required: false, validate: (value) =>
+                    value.length === 0 ? "Это поле обязательно к заполнению." : true})} 
+                />
+                {errors.password ? <span className={s.spanError}>{errors.password.message}</span> : null}
             </div>
             <div className={s.formElem}>
                 <label htmlFor="address">{t('Адрес аккаунта')}</label>
                 <input type="text" id="address"
+                    defaultValue={user?.login}
                     placeholder={user?.login}
                     {...register("login", {required: false, validate: (value) => 
                     value === user?.login ? "Новый адрес не может совпадать со старым." : true
