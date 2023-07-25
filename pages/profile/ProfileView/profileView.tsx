@@ -41,7 +41,7 @@ export default function ProfileView(props: {
 }) {
     
     const { t } = useTranslation();
-    
+
     return (
         <div className={s.profile}>
             {   

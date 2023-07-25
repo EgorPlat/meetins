@@ -7,18 +7,16 @@ import { instanseRouter } from './router_model';
 import { handleLogOut } from './login_model';
 
 //export const baseURL = 'http://localhost:5000/';
-export const baseWS = 'ws://localhost:5000/';
 export const baseURL = 'https://meetins-egorplat.amvera.io/';
 
 export const instance = axios.create({
 	baseURL: baseURL,
-	withCredentials: true
+	withCredentials: true,
 })
 instance.interceptors.request.use((config: AxiosRequestConfig) => {
 	if(localStorage.getItem('access-token') !== '') {
 		config.headers = {
 			'Content-Type': 'application/json',
-			//'Authorization': 'Bearer ' + localStorage.getItem('access-token')
 		}
 	}
 	return config;
@@ -42,23 +40,8 @@ instance.interceptors.response.use((response) => {
 		}
 	}
 	if (ers === 401) {
-		setIsAsyncLoaded(false);
+		setIsAsyncLoaded(true);
 		handleLogOut();
-		/*updateTokens().then(async (res: any) => {
-			if(res.status === 200) {
-				ec.headers = {
-					'Content-Type': 'application/json',
-					'Authorization': 'Bearer ' + localStorage.getItem('access-token')
-				}
-				const response = await axios.request(ec);
-				return response;
-			} else {
-				localStorage.removeItem('access-token');
-				localStorage.removeItem('refrash-token');
-				window.location.reload();
-				return error.response;
-			}
-		})*/
 	}
 	return error;
 })
@@ -133,6 +116,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 			setIsAsyncLoaded(true);
 			instanseRouter$?.push(savedRoute);
 		} else {
+			setIsAsyncLoaded(true);
 			instanseRouter$?.push('/login');
 		}
 	})
