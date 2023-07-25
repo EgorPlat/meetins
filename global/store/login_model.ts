@@ -10,7 +10,11 @@ type LoginDetailsType = {
 export const sendLogData = createEffect((async (logDetails: LoginDetailsType) => {
 	const response = await instance.post('auth/login', logDetails)
 	return response;
-}))
+}));
+export const handleLogOut = createEffect((async () => {
+	const response = await instance.get('auth/logout')
+	return response;
+}));
 
 export const setLoginDetails = createEvent<LoginDetailsType>()
 export const $loginDetails = createStore<LoginDetailsType>(null).on(
@@ -20,12 +24,11 @@ export const $loginDetails = createStore<LoginDetailsType>(null).on(
 	}  
 ) 
 export const saveDataAfterLogin = createEffect((data: any) => {
-	localStorage.setItem('access-token', data.auth.token);
 	setUser(data.profile.user);
 })
 sample({
 	clock: sendLogData.doneData,
-	filter: response => response.status === 200,
+	filter: response => response.status <= 201,
 	fn: response => response.data,
 	target: saveDataAfterLogin
 })

@@ -9,8 +9,8 @@ export default function TariffsPageView(props: {
         <div className={s.tariffsPageView}>
             <div className={s.tarrifsList}>
                 {
-                    props.tariffsData?.map(tariff => (
-                        <div className={s.tariffView}>
+                    props.tariffsData?.map((tariff) => (
+                        <div className={s.tariffView} key={tariff.title} >
                             <div className={s.title}>
                                 {tariff.title}
                             </div>

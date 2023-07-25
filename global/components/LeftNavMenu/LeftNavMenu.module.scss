@@ -4,7 +4,7 @@
         display: flex;
         align-items: center;
         & .count {
-            width: 10px;
+            min-width: 10px;
             height: 10px;
             border-radius: 50%;
             background-color: rgba(0, 140, 255, 0.941);

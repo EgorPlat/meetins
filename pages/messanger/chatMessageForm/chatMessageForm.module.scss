@@ -91,6 +91,14 @@
     }
 }
 
+@media screen and (max-width: 555px){
+    .form {
+        & button {
+            font-size: 14px;
+        }
+    }
+}
+
 @media screen and (max-width: 425px){
     .form {
         font-size: 13px;

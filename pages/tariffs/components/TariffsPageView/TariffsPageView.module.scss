@@ -66,7 +66,10 @@
 @media screen and (max-width: 800px) {
     .tariffsPageView {
         & .tarrifsList {
+            width: 98%;
             display: grid;
+            justify-content: center;
+            justify-items: center;
             grid-template-columns: 1fr;
             & .tariffView {
                 min-height: 200px;

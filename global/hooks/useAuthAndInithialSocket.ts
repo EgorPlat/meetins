@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { io } from "socket.io-client";
-import { baseURL } from "../store/store";
+import { baseURL, baseWS } from "../store/store";
 import { useRouter } from "next/router";
 import { useStore } from "effector-react";
 import { connection, setNewConnection } from "../store/connection_model";
@@ -12,14 +12,15 @@ export const useAuthAndInithialSocket = () => {
 
 	useEffect(() => {
 		if (socketConnection === null) {
-			if(localStorage.getItem('access-token') !== '') {
+			try {
 				const newConnection = io(baseURL, {
 					extraHeaders: {
-						Authorization: String(localStorage.getItem('access-token'))
-					}
+						Authorization: String(localStorage.getItem('access-token')),
+					},
+					transports: ['websocket', 'polling']
 				});
 				setNewConnection(newConnection);
-			} else {
+			} catch (err) {
 				setNewConnection(null);
 			}
 		}

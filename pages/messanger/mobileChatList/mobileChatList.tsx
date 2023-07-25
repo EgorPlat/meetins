@@ -49,7 +49,14 @@ export default function MobileChatList(): JSX.Element {
                 : <div className={s.loader}></div>
             }
             {
-                myDialogs$ && myDialogs$.length === 0 && <div>Вы еще ни с кем не начали диалог.</div>
+                isLoaded$ !== false && myDialogs$.length === 0 && 
+                <div className={s.notify}>
+                    Вы еще ни с кем не начали диалог.
+                    <div className={s.notifyDesc}>
+                        Чтобы начать перейдите в "Люди" затем выберите пользователя кликнув на Аватар, после этого
+                        Вы перейдете к нему в профиль и можете нажать "Диалог"
+                    </div>
+                </div>
             }
         </div>
     )

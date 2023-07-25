@@ -4,18 +4,21 @@ import { NextRouter } from 'next/router';
 import { User } from '../interfaces';
 import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
+import { handleLogOut } from './login_model';
 
 //export const baseURL = 'http://localhost:5000/';
+export const baseWS = 'ws://localhost:5000/';
 export const baseURL = 'https://meetins-egorplat.amvera.io/';
 
 export const instance = axios.create({
 	baseURL: baseURL,
+	withCredentials: true
 })
 instance.interceptors.request.use((config: AxiosRequestConfig) => {
 	if(localStorage.getItem('access-token') !== '') {
 		config.headers = {
 			'Content-Type': 'application/json',
-			'Authorization': 'Bearer ' + localStorage.getItem('access-token')
+			//'Authorization': 'Bearer ' + localStorage.getItem('access-token')
 		}
 	}
 	return config;
@@ -40,7 +43,8 @@ instance.interceptors.response.use((response) => {
 	}
 	if (ers === 401) {
 		setIsAsyncLoaded(false);
-		updateTokens().then(async (res: any) => {
+		handleLogOut();
+		/*updateTokens().then(async (res: any) => {
 			if(res.status === 200) {
 				ec.headers = {
 					'Content-Type': 'application/json',
@@ -54,7 +58,7 @@ instance.interceptors.response.use((response) => {
 				window.location.reload();
 				return error.response;
 			}
-		})
+		})*/
 	}
 	return error;
 })
@@ -123,22 +127,15 @@ export const getUserData = createEffect(async () => {
 export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const instanseRouter$ = instanseRouter.getState();
 	const savedRoute = localStorage.getItem("previousPage");
-	
-	if(localStorage.getItem('access-token')) {
-		setIsAsyncLoaded(false);
-		getUserData().then( (res) => {
-			if(res.status === 200) {
-				console.log(instanseRouter$);
-				
-				setIsAsyncLoaded(true);
-				instanseRouter$?.push(savedRoute);
-			} else {
-				instanseRouter$?.push('/login');
-			}
-		})
-	} else {
-		instanseRouter$?.push('/login');
-	}
+	setIsAsyncLoaded(false);
+	getUserData().then( (res) => {
+		if(res.status === 200) {
+			setIsAsyncLoaded(true);
+			instanseRouter$?.push(savedRoute);
+		} else {
+			instanseRouter$?.push('/login');
+		}
+	})
 });
 
 export const getUserDataByUserId = createEffect(async (userId: string | number) => {

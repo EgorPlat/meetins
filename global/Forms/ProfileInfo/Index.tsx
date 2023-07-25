@@ -14,8 +14,6 @@ export default function ProfileInfoForm(): JSX.Element {
     const isUpdated: boolean | null = useStore(isProfileUpdated);
     const user = useStore($user);
     const { t } = useTranslation();
-
-    console.log(customizeDateToInputFormatFromDBFormat(user?.birthDate));
     
     const onChangeProfile = (data: {name: string, birthDate: string, phoneNumber: string}) => {
         updateUserProfileData(data); 

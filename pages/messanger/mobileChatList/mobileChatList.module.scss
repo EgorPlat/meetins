@@ -43,6 +43,13 @@
             }
         }
     }
+    & .notify {
+        text-align: center;
+        & .notifyDesc {
+            font-size: 14px;
+            color: gray;
+        }
+    }
 }
 .loader {
     width: 40px;

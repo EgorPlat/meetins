@@ -9,7 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { $user, baseURL } from "../../../global/store/store";
 import { useTranslation } from "react-i18next";
 import ButtonWithHint from "../../../global/helpers/Hint/buttonWithHint";
-import { setNewConnection } from "../../store/connection_model";
+import { connection, setNewConnection } from "../../store/connection_model";
+import { handleLogOut } from "../../store/login_model";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
@@ -20,6 +21,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	const router = useRouter();
 	const ref = useRef<any>();
 	const userAvatar = user?.avatar || 'no-avatar.jpg';
+	const connection$ = useStore(connection);
 
 	const handleAvatarClick = () => {
 		setSelect('name');
@@ -29,9 +31,9 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
 	useEffect(() => {
 		if( select === 'logOut' ) {
+			handleLogOut();
+			connection$.disconnect();
 			router.push('/login');
-			localStorage.setItem('access-token', "");
-			localStorage.setItem('refrash-token', "");
 			setNewConnection(null);	
 		}
 		if( select === 'settings' ) {

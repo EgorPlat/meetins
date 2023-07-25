@@ -11,19 +11,19 @@ export const connection = createStore<Socket | null>(null).on(
         return newConnection
     }
 );
-export const connectionWatcher = createEffect((obj: {connection: Socket | null, activeChat: IMyDialog}) => {
-    obj.connection?.removeAllListeners();
-    obj.connection?.on('message', (message: any) => {
+export const connectionWatcher = createEffect((obj: {connection: Socket, activeChat: IMyDialog}) => {
+    obj.connection.removeAllListeners();
+    obj.connection.on('message', (message: any) => {
         if(message.dialogId === obj.activeChat.dialogId) {
             getDialogMessages({...obj.activeChat, dialogId: message.dialogId});
         } else {
             addOneUreadMessages(1);
         }
     });
-    obj.connection?.on('updateUsers', (message: any) => {
+    obj.connection.on('updateUsers', (message: any) => {
         setOnlineUsers(message.users);
     });
-    obj.connection?.on('connect', () => {
+    obj.connection.on('connect', () => {
         console.log('connect');
     });
 })

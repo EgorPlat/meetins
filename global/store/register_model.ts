@@ -41,7 +41,6 @@ export const sendConfirmationCodeForAccept = createEffect(async (confirmationDat
 })
 
 const saveDataAfterRegsiter = createEffect((data: any) => {
-	localStorage.setItem('access-token', data.auth.token);
 	setUser(data.profile.user);
 })
 
