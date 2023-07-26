@@ -14,9 +14,6 @@ export const useAuthAndInithialSocket = () => {
 		if (socketConnection === null) {
 			try {
 				const newConnection = io(baseURL, {
-					extraHeaders: {
-						Authorization: String(localStorage.getItem('access-token')),
-					},
 					transports: ['websocket', 'polling']
 				});
 				setNewConnection(newConnection);

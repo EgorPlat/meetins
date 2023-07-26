@@ -36,7 +36,7 @@ export default function Header(): JSX.Element {
 				 	height={isMobile$ ? 40 : 60}
 				/>
 			</div>
-			{ router.pathname.includes("/login" || "/register") || router.pathname === '/'
+			{ router.pathname.includes("/login") || router.pathname.includes("/register")  || router.pathname === '/'
 				? <Navbar currentPage={currentPage} /> 
 			 	: <MainNavbar currentPage={currentPage} />
 			}
