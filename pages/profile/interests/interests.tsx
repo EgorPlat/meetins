@@ -5,7 +5,7 @@ import like from "../../../public/images/interesting.svg";
 import { getUserInterests, setCurrentProfileUser, updateInterests } from "../../../global/store/store";
 import { User } from "../../../global/interfaces";
 import ChangingInterests from "./ChangingInterests/ChangingInterests";
-import edit from '../../../public/images/edit.jpg';
+import { MdInterests } from 'react-icons/md';
 import { useTranslation } from "react-i18next";
 
 export default function Interests(props: {
@@ -51,7 +51,7 @@ export default function Interests(props: {
         <>
             <div className={s.interests}>
                 <div className={s.title}>
-                    <Image src={like} width={20} height={20} alt="Сердечко" />
+                    <MdInterests fontSize={34}/>
                     <b>{t('Интересы')}</b> 
                     {isAuthedUserAreCurrentUser && 
                         <span className={s.changeStatus} onClick={openChangeInterests}> (изм.)</span>

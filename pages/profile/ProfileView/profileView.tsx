@@ -66,9 +66,10 @@ export default function ProfileView(props: {
                                     src={baseURL + props.currentUser.avatar}
                                     alt="Аватарка" 
                                     className={`${s.avatar}`}
-                                    /> : <InputFile 
-                                        onChange={(event) => props.onChangeInputImage(event)} 
-                                        onMouseLeave={() => props.changeAddingImageStatus(false)}
+                                    /> : 
+                                <InputFile 
+                                    onChange={(event) => props.onChangeInputImage(event)} 
+                                    onMouseLeave={() => props.changeAddingImageStatus(false)}
                                 />
                             }
                         </div>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import place from "../../../public/images/map.svg";
 import s from "./places.module.scss";
 import { useTranslation } from "react-i18next";
+import { GiModernCity } from 'react-icons/gi';
 
 export default function Places(props: {places: string[]}): JSX.Element {
 
@@ -10,7 +11,8 @@ export default function Places(props: {places: string[]}): JSX.Element {
     return (
         <div className={s.places}>
             <div className={s.title}>
-                <p><Image src={place} width={20} height={20} alt="Метка" /><b>{t("Места")}</b></p>
+                <GiModernCity fontSize={32} />
+                <b>{t("Места")}</b>
             </div>
             <div className={s.list}>
             { props.places !== undefined ? props.places.map((elem, index) => 

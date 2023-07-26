@@ -8,10 +8,12 @@
     perspective: 200px;
     transform-style: flat;
     font-family: Nunito;
-    font-size: 21px;
+    font-size: 19px;
     border: none;
     & .title {
-        font-size: 24px;
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
         & .changeStatus {
             cursor: pointer;
             font-size: 16px;
@@ -32,22 +34,22 @@
 }
 @media screen and (max-width: 1720px) {
     .interests {
-        font-size: 16px;
-        & .title {
-            font-size: 19px;
+        & .interest {
+            font-size: 16px;
         }
     }
 }
 @media screen and (max-width: 380px) {
     .interests {
-        font-size: 15px;
+        & .interest {
+            font-size: 15px;
+        }
     }
 }
 @media screen and (max-width: 350px) {
     .interests {
-        & .title {
-            font-size: 16px;
+        & .interest {
+            font-size: 12px;
         }
-        font-size: 12px;
     }
 }
