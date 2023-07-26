@@ -31,7 +31,7 @@ export default function Login(): JSX.Element {
 			if(res.status <= 201) {
 				Router.push(`/profile/${res.data.profile.user.login}`);
 			} else {
-				setErrorMessage(() => "Какая-то ошибка.")
+				setErrorMessage(() => "Error.")
 			}
 		}
 		)

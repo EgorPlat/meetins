@@ -3,8 +3,12 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { $user } from "../../store/store";
 import s from "./BottomMobileNavMenu.module.scss";
-import Image from 'next/image';
 import { useRouter } from "next/router";
+import { FiSettings } from "react-icons/fi";
+import { BiLogOut } from "react-icons/bi";
+import { CgMoreO } from "react-icons/cg";
+import { BsPeople } from "react-icons/bs";
+import { AiOutlineMenu } from "react-icons/ai";
 
 export default function BottomMobileNavMenu(): JSX.Element {
 
@@ -17,55 +21,28 @@ export default function BottomMobileNavMenu(): JSX.Element {
     };
 
     return(
-        <div className={s.nav}>        
-            <Image 
-                src='/images/marks.png' 
-                width="60px" 
-                height="60px" 
-                alt='test' 
-                onClick={() => handleMenuClick('/marks')}
-            />
-            <Image 
-                src='/images/invites.png' 
-                width="60px" 
-                height="60px" 
-                alt='test' 
-                onClick={() => handleMenuClick('/invites')}
-            />
-            <Image 
-                src='/images/messanger.png' 
-                width="60px" 
-                height="60px" 
-                alt='test' 
-                onClick={() => handleMenuClick('/messanger')}
-            />
-            <Image 
-                src='/images/event.png' 
-                width="60px" 
-                height="60px" 
-                alt='test' 
-                onClick={() => handleMenuClick('/events')}
-            />
-            <Image 
-                src='/images/settings.png' 
-                width="60px" 
-                height="60px" 
-                alt='test' 
+        <div className={s.navMenuMobile}>
+            <AiOutlineMenu
+                color="gray"
+                fontSize={34}
+            />      
+            <FiSettings
+                color="gray"
+                fontSize={34}
                 onClick={() => handleMenuClick('/settings')}
             />
-            <Image 
-                src='/images/peoples.png' 
-                width="60px" 
-                height="60px" 
-                alt='test' 
+            <BsPeople
+                color="gray"
+                fontSize={34}
                 onClick={() => handleMenuClick('/peoples')}
             />
-            <Image 
-                src='/images/profile.png' 
-                width="60px" 
-                height="60px" 
-                alt='test' 
-                onClick={() => handleMenuClick(`/profile/${authedUser$.login}`)}
+            <CgMoreO 
+                color="gray"
+                fontSize={34}
+            />
+            <BiLogOut
+                color="gray"
+                fontSize={34}
             />
         </div> 
     )

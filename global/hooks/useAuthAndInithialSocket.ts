@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { io } from "socket.io-client";
-import { baseURL, baseWS } from "../store/store";
+import { baseURL } from "../store/store";
 import { useRouter } from "next/router";
 import { useStore } from "effector-react";
 import { connection, setNewConnection } from "../store/connection_model";

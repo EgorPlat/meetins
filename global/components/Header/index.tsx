@@ -2,11 +2,12 @@ import s from './header.module.scss'
 import Image from 'next/image'
 import logo from '../../../public/images/logo-l.svg'
 import Navbar from '../Navbar'
-import Link from 'next/link'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'
-import { $currentPage, isMobile, setCurrentPage } from '../../../global/store/store'
+import { $currentPage, isMobile } from '../../../global/store/store'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import BottomMobileNavMenu from '../BottomMobileNavMenu/BottomMobileNavMenu'
 
 export default function Header(): JSX.Element {
 	const currentPage = useStore($currentPage);
@@ -35,9 +36,9 @@ export default function Header(): JSX.Element {
 				 	height={isMobile$ ? 40 : 60}
 				/>
 			</div>
-			{ router.pathname === "/" || router.pathname === "/login" || router.pathname === "/register" 
-			? <Navbar currentPage={currentPage} /> 
-			: <MainNavbar currentPage={currentPage} />
+			{ router.pathname.includes("/login" || "/register") || router.pathname === '/'
+				? <Navbar currentPage={currentPage} /> 
+			 	: <MainNavbar currentPage={currentPage} />
 			}
 		</div>
 	)

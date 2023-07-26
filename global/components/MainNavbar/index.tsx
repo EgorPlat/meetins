@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import s from './mainNavbar.module.scss'; 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { $user, baseURL } from "../../../global/store/store";
 import { useTranslation } from "react-i18next";
 import ButtonWithHint from "../../../global/helpers/Hint/buttonWithHint";

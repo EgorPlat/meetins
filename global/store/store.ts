@@ -14,10 +14,8 @@ export const instance = axios.create({
 	withCredentials: true,
 })
 instance.interceptors.request.use((config: AxiosRequestConfig) => {
-	if(localStorage.getItem('access-token') !== '') {
-		config.headers = {
-			'Content-Type': 'application/json',
-		}
+	config.headers = {
+		'Content-Type': 'application/json',
 	}
 	return config;
 }, (errors: AxiosError) => {
