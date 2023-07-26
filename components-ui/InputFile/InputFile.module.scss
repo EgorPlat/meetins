@@ -9,7 +9,7 @@
     justify-content: center;
     justify-items: center;
     & .inputFileTitle {
-        margin-top: 40%;
+        margin-top: 30%;
         font-size: 18px;
     }
     & .inputTypeFile {
@@ -31,6 +31,9 @@
         & .inputTypeFile {
             width: 100px;
             height: 100px;
+        }
+        & .inputFileTitle {
+            font-size: 12px;
         }
     }
 }

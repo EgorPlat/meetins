@@ -55,7 +55,6 @@ select {
 	background-color: transparent;
 }
 option {
-	color: var(--text-color);;
-	background: transparent;
-	background-color: transparent;
+	color: black;
+	background-color: black;
 }

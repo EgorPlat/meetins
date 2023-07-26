@@ -61,6 +61,7 @@ export default function Settings(): JSX.Element {
                 <div className={`${s.menu}`}>
                     <div><Link href = ''>{t("Аккаунт")}</Link></div>
                     <div><Link href = '/tariffs'>{t("Подписка")}</Link></div>
+                    <div><Link href = ''>{t("Другое")}</Link></div>
                 </div>
                 <div className={`${s.formAndInfo}`}>
                     <div className={s.locale}>

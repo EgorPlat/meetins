@@ -65,6 +65,13 @@
                 margin-top: 2.5%;
                 font-size: 24px;
             }
+            & .activityInfo {
+                height: 50px;
+                display: flex;
+                align-items: center;
+                column-gap: 5px;
+                font-size: 16px;
+            }
             & .actions {
                 & .actionsBtn {
                     width: 180px;

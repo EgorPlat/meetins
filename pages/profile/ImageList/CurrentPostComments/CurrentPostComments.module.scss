@@ -21,8 +21,16 @@
         & .commentContent {
             width: 100%;
             & .commentTitle {
+                display: flex;
+                align-items: center;
                 font-size: 16px;
+                position: relative;
+                & .commentOwnerName {
+
+                }
                 & .commentDate {
+                    position: absolute;
+                    right: 20px;
                     font-size: 12px;
                     color: grey;
                 }

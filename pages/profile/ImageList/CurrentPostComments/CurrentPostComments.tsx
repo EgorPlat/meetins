@@ -37,7 +37,7 @@ export default function CurrentPostComments (props: {post: Post}) {
                     </div>
                     <div className={s.commentContent}>
                         <div className={s.commentTitle}>
-                            {comment.commentOwnerName}-
+                            <span className={s.commentOwnerName}>{comment.commentOwnerName}</span>
                             <span className={s.commentDate}>{customizeDateToYYYYMMDDFormat(comment.date)}</span>
                         </div>
                         <div className={s.commentText}>

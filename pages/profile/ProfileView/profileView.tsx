@@ -54,7 +54,8 @@ export default function ProfileView(props: {
                             <CustomEditMenu
                                 data={[
                                     { menuTitle: "Пометить важным", menuFunction: () => console.log(1) },
-                                    { menuTitle: "Не получать уведомления", menuFunction: () => console.log(2) }
+                                    { menuTitle: "Не получать уведомления", menuFunction: () => console.log(2) },
+                                    { menuTitle: "Посмотреть статистику", menuFunction: () => console.log(3) }
                                 ]}
                             />
                         }
