@@ -10,7 +10,7 @@ export default function ErrorBlock() {
     return (
         <div className={s.errorBlock}>
             {
-                currentErrors$.map((error) => <Error error={error} />)
+                currentErrors$.map((error, index) => <Error error={error} key={error.text + `${index}`} />)
             }
         </div>
     )

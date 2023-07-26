@@ -8,6 +8,7 @@ import maleIcon from '../../public/images/male.svg'
 import s from '../../styles/pageStyles/auth.module.scss'
 import { useState } from 'react'
 import EyeIcon from '../../global/helpers/Icons/EyeIcon'
+import logo from '../../public/images/logo.svg';
 
 import {
 	isEmail,
@@ -22,6 +23,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import Input from '../../components-ui/Input/Input'
+import Link from 'next/link'
 
 export default function Login(): JSX.Element {
 	const {
@@ -67,130 +69,139 @@ export default function Login(): JSX.Element {
 	}
 
 	return (
-		<div className={s.card}>
-			<Head>
-				<title>Meetins-{t('Регистрация')}</title>
-				<meta name="description" content="Meetins - регистрация" key="desc" />
-				<meta property="og:title" content="Зарегестрируйтесь в Meetins и начните знакомится!" />
-				<meta
-                	property="og:description"
-                    content="Регистрируйтесь и общайтесь!"
-                />
-			</Head>
-			<h2>{t('Регистрация')}</h2>
-			<form autoComplete='off' onSubmit={handleSubmit(sendLoginData)}>
-				<Input
-					icon={loginIcon}
-					placeholder={t('Имя')}
-					type='text'
-					id='login'
-					autocomplete={'off'}
-					className={errors.name && s.errorBorder}
-					style={{ marginTop: '82px' }}
-					register={register('name', {
-						required: true,
-						validate: (value) =>
-							/^[a-zа-яё]+$/i.test(value) === false
-								? 'Пожалуйста следуйте формату: Имя'
-								: true,
-					})}
-				/>
-				{errors.name && (
-					<span className={s.errorSpan}>{errors.name.message}</span>
-				)}
-				<Input
-					icon={phoneIcon}
-					placeholder={t('Email')}
-					type='text' 
-					id='phoneOrEmail'
-					style={{ marginTop: '25px' }}
-					className={errors.phone_or_email && s.errorBorder}
-					register={register('phone_or_email', {
-						required: true,
-						validate: (value) => validateEmailOrPhone(value),
-					})}
-				/>
-				{errors.phone_or_email && (
-					<span className={s.errorSpan}>
-						{errors.phone_or_email.message}
-					</span>
-				)}
-				
-				<Input
-					icon={passIcon}
-					placeholder={t('Пароль')}
-					type='password'
-					id='pass'
-					style={{ marginTop: '25px' }}
-					register={register('pass', {
-						required: true,
-					})}>
-					<EyeIcon
-						onClick={() => {
-							setShowPassword(!showPassword)
-						}}
-						width={25}
-						height={25}
-						style={{ cursor: 'pointer' }}
+		<div className={s.cardWrapper}>
+			<div className={s.card}>
+				<Head>
+					<title>Meetins-{t('Регистрация')}</title>
+					<meta name="description" content="Meetins - регистрация" key="desc" />
+					<meta property="og:title" content="Зарегестрируйтесь в Meetins и начните знакомится!" />
+					<meta
+						property="og:description"
+						content="Регистрируйтесь и общайтесь!"
 					/>
-				</Input>
-
-				<Input
-					icon={phoneIcon}
-					placeholder={t('City')}
-					type='text' 
-					id='city'
-					style={{ marginTop: '25px' }}
-					className={errors.date && s.errorBorder}
-					register={register('city', {
-						required: true,
-					})}
-				/>
-				
-				<div className={s.gender}>
-					<span>Выберите пол:</span>
-					<label
-						onClick={() => setGender('male')}
-						className={gender === 'male' ? `${s.checked}` : ''}
-						htmlFor='gender_male'>
-						<Image
-							src={maleIcon}
-							alt='male icon'
-							width={40}
-							height={40}
-						/>
-					</label>
-					<input
-						{...register('gender', { required: true })}
-						id='gender_male'
-						value='male'
-						type='radio'
+				</Head>
+				<h1 style={{ display:"grid" }}>
+					<Image
+						src={logo}
 					/>
-					<label
-						onClick={() => setGender('female')}
-						className={gender === 'female' ? `${s.checked}` : ''}
-						htmlFor='gender_female'>
-						<Image
-							src={femaleIcon}
-							alt='female icon'
-							width={40}
-							height={40}
-						/>
-					</label>
-					<input
-						{...register('gender', { required: true })}
-						id='gender_female'
-						value='female'
-						type='radio'
-					/>
-				</div>
-				{errors.gender && (
-					<span className={s.errorSpan}>{t('Пожалуйста укажите пол')}</span>
-				)}
-				<button type='submit' className={` btn ${s.submitBtn}`}>
 					{t('Регистрация')}
-				</button>
-			</form>
+				</h1>
+				<form autoComplete='off' onSubmit={handleSubmit(sendLoginData)}>
+					<Input
+						icon={loginIcon}
+						placeholder={t('Имя')}
+						type='text'
+						id='login'
+						autocomplete={'off'}
+						className={errors.name && s.errorBorder}
+						register={register('name', {
+							required: true,
+							validate: (value) =>
+								/^[a-zа-яё]+$/i.test(value) === false
+									? 'Пожалуйста следуйте формату: Имя'
+									: true,
+						})}
+					/>
+					{errors.name && (
+						<span className={s.errorSpan}>{errors.name.message}</span>
+					)}
+					<Input
+						icon={phoneIcon}
+						placeholder={t('Email')}
+						type='text' 
+						id='phoneOrEmail'
+						style={{ marginTop: '25px' }}
+						className={errors.phone_or_email && s.errorBorder}
+						register={register('phone_or_email', {
+							required: true,
+							validate: (value) => validateEmailOrPhone(value),
+						})}
+					/>
+					{errors.phone_or_email && (
+						<span className={s.errorSpan}>
+							{errors.phone_or_email.message}
+						</span>
+					)}
+					
+					<Input
+						icon={passIcon}
+						placeholder={t('Пароль')}
+						type='password'
+						id='pass'
+						style={{ marginTop: '25px' }}
+						register={register('pass', {
+							required: true,
+						})}>
+						<EyeIcon
+							onClick={() => {
+								setShowPassword(!showPassword)
+							}}
+							width={25}
+							height={25}
+							style={{ cursor: 'pointer' }}
+						/>
+					</Input>
+
+					<Input
+						icon={phoneIcon}
+						placeholder={t('City')}
+						type='text' 
+						id='city'
+						style={{ marginTop: '25px' }}
+						className={errors.date && s.errorBorder}
+						register={register('city', {
+							required: true,
+						})}
+					/>
+					
+					<div className={s.gender}>
+						<span>Выберите пол:</span>
+						<label
+							onClick={() => setGender('male')}
+							className={gender === 'male' ? `${s.checked}` : ''}
+							htmlFor='gender_male'>
+							<Image
+								src={maleIcon}
+								alt='male icon'
+								width={40}
+								height={40}
+							/>
+						</label>
+						<input
+							{...register('gender', { required: true })}
+							id='gender_male'
+							value='male'
+							type='radio'
+						/>
+						<label
+							onClick={() => setGender('female')}
+							className={gender === 'female' ? `${s.checked}` : ''}
+							htmlFor='gender_female'>
+							<Image
+								src={femaleIcon}
+								alt='female icon'
+								width={40}
+								height={40}
+							/>
+						</label>
+						<input
+							{...register('gender', { required: true })}
+							id='gender_female'
+							value='female'
+							type='radio'
+						/>
+					</div>
+					{errors.gender && (
+						<span className={s.errorSpan}>{t('Пожалуйста укажите пол')}</span>
+					)}
+					<button type='submit' className={` btn ${s.submitBtn}`}>
+						{t('Регистрация')}
+					</button>
+					<div className={s.navActions}>
+						<Link href="/login">Уже есть аккаунт?</Link>
+					</div>
+				</form>
+			</div>
 		</div>
 	)
 }

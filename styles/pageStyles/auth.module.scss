@@ -1,69 +1,86 @@
-.card {
-	font-family: Nunito;
-
-	display: flex;
-	flex-direction: column;
+.cardWrapper {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+	display: grid;
 	align-items: center;
- 
-	background: rgba(0, 0, 0, 0.6);
-	border-radius: 16px;
-	width: 550px;
-
-	padding: 18px 90px 90px 90px;
-
-	& h2 {
-		font-size: 48px;
-		color: #ffffff;
-	}
-	& .submitBtn {
-		margin-top: 50px;
-		width: 100%;
-		background-color: rgb(75, 125, 235);
-		border-radius: 50px;
-		height: 70px;
-		font-size: 30px;
-		color: white;
-	}
-	& .submitBtn:hover {
-		background-color: rgb(221, 185, 24);
-		color: black;
-	}
-	& .gender {
+	justify-content: center;
+	justify-items: center;
+	height: 100%;
+	& .card {
+		font-family: Nunito;
+	
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		justify-content: space-around;
-
-		margin-top: 35px;
-
-		padding: 0 60px;
-		& span {
-			flex: 0.5;
-			font-family: Nunito;
-
-			color: #ffedda;
+	
+		background: rgba(0, 0, 0, 0.6);
+		border-radius: 16px;
+		width: 550px;
+	
+		padding: 18px 90px 90px 90px;
+	
+		& h1 {
+			color: #ffffff;
+			font-size: 36px;
 		}
-		& label {
-			height: 62px;
-			width: 62px;
-			background-color: white;
-			border-radius: 50%;
-			cursor: pointer;
+		& .submitBtn {
+			margin-top: 20px;
+			width: 100%;
+			background-color: rgb(75, 125, 235);
+			border-radius: 50px;
+			height: 70px;
+			font-size: 30px;
+			color: white;
+		}
+		& .submitBtn:hover {
+			background-color: rgb(221, 185, 24);
+			color: black;
+		}
+		& .gender {
 			display: flex;
-			justify-content: center;
 			align-items: center;
-			&:focus {
-				background-color: black;
+			justify-content: space-around;
+	
+			margin-top: 35px;
+	
+			padding: 0 60px;
+			& span {
+				flex: 0.5;
+				font-family: Nunito;
+	
+				color: #ffedda;
 			}
-
-			& ~ input {
-				display: none;
-			}
-			&.checked {
-				background-color: rgb(94, 94, 255);
-				color: white;
+			& label {
+				height: 62px;
+				width: 62px;
+				background-color: white;
+				border-radius: 50%;
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				&:focus {
+					background-color: black;
+				}
+	
+				& ~ input {
+					display: none;
+				}
+				&.checked {
+					background-color: rgb(94, 94, 255);
+					color: white;
+				}
 			}
 		}
 	}
+}
+.navActions {
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
 }
 .errorSpan {
 	color: rgb(255, 80, 80);
@@ -84,23 +101,31 @@
 }
 
 @media screen  and (max-width: 551px){
-	.card {
-		width: 450px;
+	.cardWrapper {
+		& .card {
+			width: 450px;
+		}
 	}
 }
 @media screen  and (max-width: 451px){
-	.card {
-		width: 400px;
+	.cardWrapper {
+		& .card {
+			width: 400px;
+		}
 	}
 }
 @media screen  and (max-width: 400px){
-	.card {
-		width: 380px;
+	.cardWrapper {
+		& .card {
+			width: 380px;
+		}
 	}
 }
 @media screen  and (max-width: 380px){
-	.card {
-		width: 360px;
+	.cardWrapper {
+		& .card {
+			width: 360px;
+		}
 	}
 }
 

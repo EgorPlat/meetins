@@ -6,7 +6,7 @@
 }
 .container {
 	display: grid;
-	grid-template-rows: 120px 1fr;
+	grid-template-rows: 1fr
 }
 .loginPage {
 	background-image: url('../../../public/images/background-login.jpg');
@@ -21,10 +21,4 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-}
-@media screen  and (max-width: 650px) {
-	.container {
-		padding-top: 15px;
-		grid-template-rows: 1fr;
-	}
 }
