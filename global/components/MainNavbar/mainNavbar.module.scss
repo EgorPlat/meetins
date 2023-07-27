@@ -22,15 +22,13 @@
 		border-radius: 100px;
 	}
 	& select {
-		background-color: transparent;
-		border: none;
-		outline: none;
 		margin-left: 10px;
 		cursor: pointer;
+		border: none;
+		outline: none;
 		& option {
 			cursor: pointer;
 			font-family: Nunito;
-			background-color: transparent;
 			font-size: 18px;
 			padding: 5px;
 		}

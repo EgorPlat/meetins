@@ -68,11 +68,11 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 					height={70} 
 					onClick={handleAvatarClick}
 				/>
-			    <select ref={ref} className={s.select} onChange={(event) => setSelect(event.target.value)}>
-				    <option className={s.option} value="name">{user?.name}</option>
-				    <option className={s.option} value="logOut">{t('Выход')}</option>
-				    <option className={s.option} value="settings">{t('Настройки')}</option>
-				    <option className={s.option} value="comeBack">{t('Вернуться')}</option>
+			    <select ref={ref} onChange={(event) => setSelect(event.target.value)}>
+				    <option value="name">{user?.name}</option>
+				    <option value="logOut">{t('Выход')}</option>
+				    <option value="settings">{t('Настройки')}</option>
+				    <option value="comeBack">{t('Вернуться')}</option>
 			    </select>
 		</div>
     )

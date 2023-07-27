@@ -7,13 +7,8 @@ export default function InputFile(props: { onMouseLeave: () => void, onChange: (
     const ref = useRef(null);
     const { t } = useTranslation();
 
-    const emitateInputFileClick = () => {
-        if (ref) {
-            ref.current.click();
-        }
-    }
     return( 
-        <div className={s.formGroup} onClick={emitateInputFileClick} onMouseLeave={props.onMouseLeave}>
+        <div className={s.formGroup} onMouseLeave={props.onMouseLeave}>
             <span className={s.inputFileTitle}>{t('Выбрать фото')}</span>
             <label className={s.label}>
                 <input 

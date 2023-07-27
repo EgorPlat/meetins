@@ -1,0 +1,9 @@
+.myMeetings {
+    & .title {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        font-size: 14px;
+        justify-content: center;
+    }
+}
