@@ -76,7 +76,7 @@ function Profile(): JSX.Element {
         getDataForProfilePage(route);
     }, [route]);
 
-    if (isConnected) {
+    if (isConnected && asyncLoaded) {
         return(
             <PageContainer>
                 <ProfileView

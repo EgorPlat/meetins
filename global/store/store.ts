@@ -136,9 +136,11 @@ export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | numb
 	return response;
 })
 export const getDataForProfilePage = createEffect((route: NextRouter) => {
+	setIsAsyncLoaded(false);
 	if(route.query.id !== undefined) {
 		getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
 			if(res.status === 200) {
+				setIsAsyncLoaded(true);
 				setCurrentProfileUser(res.data);
 			}
 		}) 
