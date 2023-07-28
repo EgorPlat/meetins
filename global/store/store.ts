@@ -140,8 +140,8 @@ export const getDataForProfilePage = createEffect((route: NextRouter) => {
 	if(route.query.id !== undefined) {
 		getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
 			if(res.status === 200) {
-				setIsAsyncLoaded(true);
 				setCurrentProfileUser(res.data);
+				setIsAsyncLoaded(true);
 			}
 		}) 
 	}
