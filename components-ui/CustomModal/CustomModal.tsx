@@ -1,4 +1,4 @@
-import React, { ReactChild, ReactComponentElement } from "react";
+import React, { ReactChild } from "react";
 import s from "./CustomModal.module.scss";
 
 const CustomModal = (props: {

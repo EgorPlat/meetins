@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import s from './mainNavbar.module.scss'; 
 import { $user, baseURL } from "../../../global/store/store";
 import { useTranslation } from "react-i18next";
-import ButtonWithHint from "../../../global/helpers/Hint/buttonWithHint";
+import ButtonWithHint from "../../../components-ui/Hint/buttonWithHint";
 import { connection, setNewConnection } from "../../store/connection_model";
 import { handleLogOut } from "../../store/login_model";
 

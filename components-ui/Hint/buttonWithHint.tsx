@@ -16,11 +16,11 @@ export default function ButtonWithHint({ title, hintTitle }: IHintProps) {
                 {title}
             </button>
             {
-                    isHint &&
-                    <div className={s.hint}>
-                        {hintTitle}
-                    </div>
-                }
+                isHint &&
+                <div className={s.hint}>
+                    {hintTitle}
+                </div>
+            }
         </div>
     )
 }

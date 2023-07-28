@@ -29,7 +29,8 @@ export default React.memo(function About(props: {
     if(props.user && authedUser) {
         return(
             <div className={s.about}>
-                {isAuthedProfile && <p><b>{t('О себе')}:</b><span onClick={() => newChangeSatus(true)} className={s.changeSpan}>{t('Изменить')}</span></p>} 
+                <b>{t('О себе')}:</b>
+                {isAuthedProfile && <span onClick={() => newChangeSatus(true)} className={s.changeSpan}>{t('Изменить')}</span>} 
                 {isAuthedProfile && authedUser.status === (null || "")
                  ? <p style={{color: "grey"}} onClick={() => newChangeSatus(true)}>{t('Введите ваш статус')}...</p>
                  : null

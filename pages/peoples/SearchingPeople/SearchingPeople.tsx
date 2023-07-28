@@ -17,16 +17,14 @@ import {
 } from "../../../global/store/peoples_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
+import { events, goals, popularInterests } from "../../../global/constants";
 
 
 
 export default function SearchingPeople(): JSX.Element {
 
     const { t } = useTranslation();
-    const [goals, setGoals] = useState<string[]>(['Новые отношения','Друзей','Новые Интересы','Встречи','События','Общение в сети']);
-    const [events, setEvents] = useState<string[]>(['По Москве на автобусе','История любви','"Энканто"','Green DAY']);
-    const [popularInterests, setPopularInterests] = useState<string[]>(['Программирование', 'Бизнес', 'Кухня', 'Природа']);
-    
+
     const maxPage$ = useStore(maxPageOfPeople);
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const filterParams$: Params = useStore(filterParams);
