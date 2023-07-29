@@ -1,6 +1,7 @@
 .customLoaderWrapper {
     display: grid;
     grid-template-columns: 1fr;
+    height: calc(100vh - 20%);
     justify-content: center;
     justify-items: center;
     align-items: center;

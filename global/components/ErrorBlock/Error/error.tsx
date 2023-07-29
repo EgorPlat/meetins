@@ -1,25 +1,27 @@
 import { useEffect, useState } from 'react';
-import { IError } from '../../../interfaces/error';
+import { ICreatedError, IError } from '../../../interfaces/error';
 import s from './error.module.scss';
 
-export const Error = (props: { error: IError }) => {
-    const error = props.error;
+export const Error = (props: { 
+    error: ICreatedError, 
+    handleRemove: (error: ICreatedError) => void 
+}) => {
+    const { error } = props;
     const [visible, setVisible] = useState<boolean>(true);
 
     useEffect(() => {
         const visibleTimeout = setTimeout(() => {
-            setVisible(false);
+            props.handleRemove(error);   
         }, error.time);
-
+        console.log(visibleTimeout)
         return () => {
             clearTimeout(visibleTimeout);
         }
-    }, [])
+    }, []);
 
     return (
-        visible && 
-            <div className={s.eachError} style={{backgroundColor: error.color, color: props.error.textColor}}>
-                {error.text}
-            </div>
+        <div className={s.eachError}>
+            {error.text}
+        </div>
     )
 }

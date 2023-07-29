@@ -58,7 +58,8 @@ export default function SearchingPeople(): JSX.Element {
 
     useEffect(() => {
         fullUpdatePeoples([]);
-    }, [])
+    }, []);
+    
     return(
     
         <div className={s.searching}>

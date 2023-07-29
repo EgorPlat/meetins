@@ -73,8 +73,10 @@ function Profile(): JSX.Element {
     }, [isConnected]);
 
     useEffect( () => {
-        getDataForProfilePage(route);
-    }, [route]);
+        if (route.query.id) {
+            getDataForProfilePage(String(route.query.id));
+        }
+    }, [route.query]);
 
     if (isConnected && asyncLoaded) {
         return(

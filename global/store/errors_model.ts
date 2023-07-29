@@ -1,7 +1,12 @@
 import { createEvent, createStore } from "effector";
-import { IError } from "../interfaces/error";
+import { ICreatedError, IError } from "../interfaces/error";
 
 export const addNewError = createEvent<IError>();
-export const currentErrors = createStore<IError[]>([]).on(addNewError, (prev, newErrorText) => {
-    return [...prev, newErrorText];
+export const removeError = createEvent<number>();
+export const currentErrors = createStore<ICreatedError[]>([]).on(addNewError, (prev, newErrorText) => {
+    if (prev.length !== 0) return prev;
+    return [...prev, { ...newErrorText, id: prev.length }];
+})
+currentErrors.on(removeError, (prev, errorId) => {
+    return prev.filter(el => el.id !== errorId)
 })

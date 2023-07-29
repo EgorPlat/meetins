@@ -135,16 +135,14 @@ export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | numb
 	}
 	return response;
 })
-export const getDataForProfilePage = createEffect((route: NextRouter) => {
+export const getDataForProfilePage = createEffect((userId: string) => {
 	setIsAsyncLoaded(false);
-	if(route.query.id !== undefined) {
-		getUserDataByLoginUrl(String(route.query.id)).then( (res) => {
-			if(res.status === 200) {
-				setCurrentProfileUser(res.data);
-				setIsAsyncLoaded(true);
-			}
-		}) 
-	}
+	getUserDataByLoginUrl(userId).then( (res) => {
+		if(res.status === 200) {
+			setCurrentProfileUser(res.data);
+			setIsAsyncLoaded(true);
+		}
+	})
 })
 export const updateTokens = createEffect(async () => {
 	const response = await instance.post('user/refresh-token', localStorage.getItem('refrash-token'));

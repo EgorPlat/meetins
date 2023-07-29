@@ -7,6 +7,7 @@
         & .example {
             margin-top: 10px;
             & .interestExample {
+                margin-left: 10px;
                 margin-top: 10px;
                 margin-bottom: 10px;
                 outline: none;
@@ -23,7 +24,7 @@
         align-items: center;
         row-gap: 10px;
         & .wrapper {
-            background-color: rgba(152, 152, 152, 0.101);
+            background-color: rgba(116, 116, 116, 0.101);
             padding: 10px;
             border-radius: 10px;
             width: 550px;

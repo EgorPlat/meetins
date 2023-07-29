@@ -44,7 +44,6 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 		if(select === 'comeBack') {
 			router.push(`/profile/${user?.login}`);
 		}
-		//ref.current.selectedIndex = ref.current.options[0];
 	}, [select]);
 
     return(
