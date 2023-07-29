@@ -43,7 +43,8 @@ export default function AddingPosts(): JSX.Element {
                             (Загружено {postFormData.currentFile ? 1 : 0} / 1)
                             <input 
                                 ref={ref} 
-                                type="file" 
+                                type="file"
+                                accept="image/png, image/jpeg"
                                 onChange={(e) => setPostFormData({ ...postFormData, currentFile: e.target.files[0] })}
                             />
                         </a>

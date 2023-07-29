@@ -20,11 +20,9 @@
     justify-content: center;
     font-family: Nunito;
     & .customModalContent {
-        //animation: ShowUpModal 1s 1;
         font-size: 24px;
         padding: 20px;
         border-radius: 5px;
-        max-height: 400px;
         width: 600px;
         & .customModalTitle {
             display: grid;
@@ -53,7 +51,7 @@
             }
         }
         & .customModalChildrenContent {
-            max-height: 450px;
+            max-height: 500px;
             width: 100%;
             overflow-y: scroll;
             overflow-x: hidden;

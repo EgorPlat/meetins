@@ -6,10 +6,10 @@ import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_
 import { checkDialog, getMyDialogs } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
-import ProfileView from "./ProfileView/profileView";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { useAuthAndInithialSocket } from "../../global/hooks/useAuthAndInithialSocket";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
+import ProfileView from "./ProfileView/profileView";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 
 function Profile(): JSX.Element {
 

@@ -96,16 +96,18 @@ export default function ProfileView(props: {
                                     </span>
                                     {getDateInDMYFormat(props.currentUser.dateRegister)}
                                 </div>
+                                <div className={s.lastActivity}>
+                                    последнее посещение: Сегодня
+                                </div>
                             </div>
                             { 
                                 props.currentUser.login !== props.authedUser.login ?
                                 <div className={`${s.actions}`}>
                                     <button type="button" className={`${s.actionsBtn}`} onClick={props.handleStartDialog}>
                                         {t('Диалог')}
-                                        <Image alt="Сообщение" src={message} width={20} height={20} />
                                     </button>
                                     <button type="button" className={`${s.actionsBtn}`} onClick={() => props.setIsInviteModal(true)}>
-                                        {t('Пригласить')} +
+                                        {t('Пригласить')}
                                     </button>
                                 </div> : null
                             }

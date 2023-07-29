@@ -1,5 +1,5 @@
-import React from "react";
 import { useState } from "react";
+import React from "react";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import LentaList from "./LentaList/LentaList";
 import s from "./peoples.module.scss";

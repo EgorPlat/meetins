@@ -1,0 +1,49 @@
+.info {
+    & label {
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px;
+        font-size: 20px;
+    }
+    & input {
+        display: inline;
+        margin-top: 10px;
+        font-size: 18px;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        border: 1px solid gray;
+    }
+    & textarea {
+        margin-top: 10px;
+        width: 100%;
+        resize: none;
+        border-radius: 5px;
+        min-height: 80px;
+    }
+    & .saveButton {
+        margin-top: 10px;
+        border: none;
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+        background-color: rgb(76, 174, 255);
+        color: white;
+        padding: 5px;
+    }
+    & .spanError {
+        color: red;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .info {
+        & label {
+            font-size: 16px;
+        }
+        & .formElem {
+            margin-top: 5px;
+        }
+    }
+}

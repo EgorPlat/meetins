@@ -8,6 +8,7 @@
     min-height: 20px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    text-align: justify;
 }
 .chat {
     height: calc(100vh - 25px);
@@ -19,7 +20,7 @@
     }
     & .user {
         display: grid;
-        grid-template-columns: 90px calc(100% - 90px);
+        grid-template-columns: 75px calc(100% - 85px);
         padding: 10px;
         & .avatar {
             width: 100%;
