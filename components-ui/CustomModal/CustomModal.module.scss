@@ -24,6 +24,7 @@
         padding: 20px;
         border-radius: 5px;
         width: 600px;
+        max-height: 630px;
         & .customModalTitle {
             display: grid;
             grid-template-columns: 95% 5%;
@@ -92,7 +93,6 @@
     .customModal {
         & .customModalContent {
             width: 700px;
-            max-height: 600px;
             font-size: 22px;
             //grid-template-rows: 45px 450px 65px;
             & .customModalTitle {
