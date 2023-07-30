@@ -34,6 +34,38 @@
             }
         }
     }
+    & .commentsWrapper {
+        text-align: center;
+        display: grid;
+        row-gap: 5px;
+        flex-wrap: wrap;
+        & .wrapper {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: rgb(41, 41, 41);
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            column-gap: 5px;
+            & .userInfo {
+                & .avatar {
+                    border-radius: 5px;
+                }
+            }
+            & .commentInfo {
+                display: grid;
+                & .name {
+                    text-align: left;
+                    font-size: 17px;
+                }
+                & .text {
+                    padding-right: 10px;
+                    text-align: justify;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 1320px) {

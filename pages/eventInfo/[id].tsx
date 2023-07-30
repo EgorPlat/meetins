@@ -2,7 +2,7 @@ import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { addNewError } from "../../global/store/errors_model";
-import { addUserEvent, currentEventById, getEventById, setCurrentEventById } from "../../global/store/events_model";
+import { addUserEvent, currentEventById, currentEventCommentsById, getCommentsForEventById, getEventById, setCurrentEventById } from "../../global/store/events_model";
 import { $user } from "../../global/store/store";
 import EventBlock from "./EventBlock";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
@@ -12,6 +12,7 @@ import Loader from "../../components-ui/Loader/Loader";
 export default function EventInfo(): JSX.Element {
 
     const currentEventById$ = useStore(currentEventById);
+    const currentEventCommentsById$ = useStore(currentEventCommentsById);
     const authedUser$ = useStore($user);
 
     const { query } = useRouter();
@@ -27,6 +28,7 @@ export default function EventInfo(): JSX.Element {
     useEffect(() => {
         if (query.id) {
             getEventById(String(query.id));
+            getCommentsForEventById(String(query.id));
         }
     }, [query]);
 
@@ -43,6 +45,7 @@ export default function EventInfo(): JSX.Element {
                 <EventBlock 
                     addUserEvent={addUserEventHandler} 
                     currentEventById={currentEventById$}
+                    commentsEvent={currentEventCommentsById$}
                 /> 
             : <Loader />}
         </PageContainer>

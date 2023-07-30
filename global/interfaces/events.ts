@@ -64,6 +64,20 @@ export interface IEventInfoCard {
     ]
 }
 
+export interface IEventComments {
+  id: number,
+  date_posted: number,
+  text: string,
+  user: {
+      name: string,
+      avatar: string
+  },
+  is_deleted: boolean,
+  replies_count: number,
+  thread: any,
+  reply_to: any
+}
+
 export interface IOuterInviteEvent extends IEventInfoCard {
   inviteInfo: IOuterInvites
 }

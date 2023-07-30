@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore } from "effector";
-import { IShortEventInfo, IEventInfoCard, IUnitedInvitesEvent, IInnerInviteEvent, IOuterInviteEvent } from "../interfaces/events";
+import { IShortEventInfo, IEventInfoCard, IUnitedInvitesEvent, IInnerInviteEvent, IOuterInviteEvent, IEventComments } from "../interfaces/events";
 import { instance, setUser } from "./store";
 import { sample } from 'effector';
 import { addNewError } from "./errors_model";
@@ -15,6 +15,11 @@ export const userEvents = createStore<IShortEventInfo[]>([]).on(setUserEvents, (
 export const setCurrentEventById = createEvent<IEventInfoCard>();
 export const currentEventById = createStore<IEventInfoCard | null>(null).on(setCurrentEventById, (_, currentEvent) => {
     return currentEvent;
+});
+export const setCurrentEventCommentsById = createEvent<IEventComments[]>();
+export const currentEventCommentsById = createStore<IEventComments[]>([])
+.on(setCurrentEventCommentsById, (_, currentEventComments) => {
+    return currentEventComments;
 });
 export const setLoadedStatus = createEvent<boolean>();
 export const loadedStatus = createStore<boolean>(false).on(setLoadedStatus, (_, newStatus) => {
@@ -62,6 +67,12 @@ export const getUserEventsInfo = createEffect(async () => {
 export const getUserInnerInvitesEventInfo = createEffect(async () => {
     const response = await instance.get(
         'event/getUserInnerInvitesEventInfo'
+    );
+    return response;
+})
+export const getCommentsForEventById = createEffect(async (eventId: string | number) => {
+    const response = await instance.post(
+        'event/getCommentsForEventById', { eventId }
     );
     return response;
 })
@@ -125,6 +136,12 @@ sample({
     filter: response => response.status <= 217, 
     fn: response => response.data, 
     target: setUnitedInnerInviteEvents
+})
+sample({ 
+    clock: getCommentsForEventById.doneData, 
+    filter: response => response.status <= 217, 
+    fn: response => response.data, 
+    target: setCurrentEventCommentsById
 })
 sample({ 
     clock: addUserEvent.doneData, 

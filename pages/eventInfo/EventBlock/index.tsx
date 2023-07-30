@@ -1,14 +1,17 @@
 import { useTranslation } from "react-i18next";
-import { IEventInfoCard } from "../../../global/interfaces/events";
+import { IEventComments, IEventInfoCard } from "../../../global/interfaces/events";
 import s from "./eventBlock.module.scss";
 import EventMoreInfo from "../EventMoreInfo";
 import CustomSlider from "../../../components-ui/CustomSlider/CustomSlider";
 import Loader from "../../../components-ui/Loader/Loader";
+import Image from "next/image";
+import { baseURL } from "../../../global/store/store";
 
 
 export default function EventBlock(props: {
     currentEventById: IEventInfoCard,
     addUserEvent: (id: number) => void,
+    commentsEvent: IEventComments[]
 }): JSX.Element {
     const event = props.currentEventById;
     const { t } = useTranslation();
@@ -39,6 +42,40 @@ export default function EventBlock(props: {
                             <button>{t('Понравилось')}!</button>
                         </div>
                     </div>
+                </div>
+                <div className={s.commentsWrapper}>
+                    { props.commentsEvent.length === 0 ? 'Комментариев пока нет' : 'Комментарии'}
+                    {
+                        props.commentsEvent.map(comment => (
+                            <div className={s.wrapper}>
+                                <div className={s.userInfo}>
+                                    {
+                                        comment.user.avatar.length !== 0
+                                        ? <Image
+                                            className={s.avatar}
+                                            src={comment.user.avatar}
+                                            width={50}
+                                            height={50}
+                                        />
+                                        : <Image
+                                            className={s.avatar}
+                                            src={baseURL + 'no-avatar.jpg'}
+                                            width={50}
+                                            height={50}
+                                        />
+                                    }
+                                </div>
+                                <div className={s.commentInfo}>
+                                    <div className={s.name}>
+                                        {comment.user.name}
+                                    </div>
+                                    <div className={s.text}>
+                                            {comment.text}
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         )

@@ -13,6 +13,6 @@ module.exports = {
     localeDetection: true
   },
   images: {
-    domains: ['media.kudago.com']
+    domains: ['media.kudago.com', 'localhost']
   }
 }

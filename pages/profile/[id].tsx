@@ -39,12 +39,12 @@ function Profile(): JSX.Element {
         setIsModal(true);
     }
 
-    const handleSaveNewStatus = useCallback((userStatus: string) => {
+    const handleSaveNewStatus = (userStatus: string) => {
         updateUserStatus(userStatus).then( (user: User) => {
             setUser(user);
             setCurrentProfileUser(user);
         });
-    }, [])
+    };
 
     const handleStartDialog = () => {
         checkDialog(currentUser);
