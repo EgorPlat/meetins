@@ -5,7 +5,8 @@ import EventMoreInfo from "../EventMoreInfo";
 import CustomSlider from "../../../components-ui/CustomSlider/CustomSlider";
 import Loader from "../../../components-ui/Loader/Loader";
 import Image from "next/image";
-import { baseURL } from "../../../global/store/store";
+import { baseURL, isMobile } from "../../../global/store/store";
+import { useStore } from "effector-react";
 
 
 export default function EventBlock(props: {
@@ -15,7 +16,8 @@ export default function EventBlock(props: {
 }): JSX.Element {
     const event = props.currentEventById;
     const { t } = useTranslation();
-    
+    const isMobile$ = useStore(isMobile);
+
 	if (event) {
         return(
             <div className={s.eventBlockContent}>
@@ -24,7 +26,7 @@ export default function EventBlock(props: {
                     <div className={s.eventInfo}>
                         <CustomSlider 
                             images={props.currentEventById.images}
-                            width="300px"
+                            width={isMobile$ ? `${window.innerWidth - 20}px` : "300px"}
                             height="300px"
                         />
                     </div>
@@ -44,10 +46,10 @@ export default function EventBlock(props: {
                     </div>
                 </div>
                 <div className={s.commentsWrapper}>
-                    { props.commentsEvent.length === 0 ? 'Комментариев пока нет' : 'Комментарии'}
+                    { props.commentsEvent.length === 0 ? 'Отзывов пока нет' : 'Отзывы'}
                     {
                         props.commentsEvent.map(comment => (
-                            <div className={s.wrapper}>
+                            <div className={s.wrapper} key={comment.id}>
                                 <div className={s.userInfo}>
                                     {
                                         comment.user.avatar.length !== 0

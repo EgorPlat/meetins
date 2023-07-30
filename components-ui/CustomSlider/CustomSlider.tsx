@@ -51,8 +51,8 @@ export default function CustomSlider({ images, width, height }: ICustomSliderPro
                         >
                             <img 
                                 src={el.image} 
-                                width={300} 
-                                height={300} 
+                                width={width} 
+                                height={height} 
                                 alt="Главное изображение" 
                                 onTouchStart={handleTouchStart}
                                 onTouchEnd={handleTouchEnd}
