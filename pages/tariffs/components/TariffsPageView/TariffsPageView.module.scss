@@ -1,15 +1,16 @@
 .tariffsPageView {
     & .tarrifsList {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        display: flex;
+        column-gap: 15px;
         justify-content: center;
         justify-items: center;
+        align-items: flex-start;
         row-gap: 15px;
         & .tariffView {
             border-radius: 15px;
-            background-color: rgba(84, 84, 84, 0.23);
+            border: 2px solid var(--text-color);
             width: 300px;
-            min-height: 350px;
+            min-height: 200px;
             padding: 5px;
             display: flex;
             flex-direction: column;

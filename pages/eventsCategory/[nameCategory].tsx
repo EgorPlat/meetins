@@ -22,7 +22,7 @@ export default function CategoryEventInfo(): JSX.Element {
                         ? <EventsList category={nameCategory}/> : null
                     }
                 </div>
-                <CustomModal
+                {/*<CustomModal
                     isDisplay={isNotificationModalShow}
                     changeModal={setIsNotificationModalShow}
                     actionConfirmed={() => setIsNotificationModalShow(false)}
@@ -31,7 +31,7 @@ export default function CategoryEventInfo(): JSX.Element {
                 >
                     Внимание, данный раздел (События) может работать медленно. 
                     Это временно, вскоре мы постараемся решить данную проблему.
-                </CustomModal>
+                </CustomModal>*/}
             </div>
         </PageContainer>
     )

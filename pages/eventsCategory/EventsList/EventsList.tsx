@@ -4,6 +4,7 @@ import { currentEvents, getEvents, loadedStatus } from "../../../global/store/ev
 import { getCategoryName } from "../../../global/helpers/utils/getCategoryName";
 import s from "./EventsList.module.scss";
 import List from "./List/List";
+import CustomLoader from "../../../components-ui/CustomLoader/CustomLoader";
 
 export default function EventsList(props: {category: string}): JSX.Element {
 
@@ -21,7 +22,7 @@ export default function EventsList(props: {category: string}): JSX.Element {
                 {categoryName}
             </div>
             <div className={s.list}>
-               {loadedStatus$ ? <List list={currentEvents$}/> : <h4>Загрузка...</h4>}
+               {loadedStatus$ ? <List list={currentEvents$}/> : <CustomLoader marginTop={100} />}
                {loadedStatus$ && currentEvents$.length === 0 ? <h4>В данной категории пока что нет запланированных мероприятий.</h4> : null}
             </div>
         </div>

@@ -3,6 +3,17 @@
     display: flex;
     flex-wrap: wrap;
 }
+.notify {
+    margin-top: 50px;
+    & .title {
+        text-align: center;
+    }
+    & .subTitle {
+        text-align: center;
+        font-size: 14px;
+        color: gray;
+    }
+}
 
 @media screen and (max-width: 470px) {
     .markedEvents {

@@ -24,9 +24,10 @@
         align-items: center;
         row-gap: 10px;
         & .wrapper {
-            background-color: rgba(116, 116, 116, 0.101);
+            box-shadow: 0px 0px 1px 1px rgba(128, 128, 128, 0.344);
+            //background-color: rgba(116, 116, 116, 0.101);
             padding: 10px;
-            border-radius: 10px;
+            //border-radius: 10px;
             width: 550px;
             display: grid;
             row-gap: 5px;

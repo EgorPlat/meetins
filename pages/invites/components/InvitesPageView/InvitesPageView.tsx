@@ -22,6 +22,6 @@ export default function InvitesPageView({ authedUser, unitedEventsInfo }: IInvit
             </div>
         )
     } else {
-        return <CustomLoader marginTop={250} />
+        return <CustomLoader />
     }
 }

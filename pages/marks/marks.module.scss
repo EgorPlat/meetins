@@ -8,10 +8,10 @@
             outline: none;
         }
         & button:hover {
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid var(--text-color);
         }
         & .active {
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid var(--text-color);
         }
         & .inactive {
             border-bottom: none;
