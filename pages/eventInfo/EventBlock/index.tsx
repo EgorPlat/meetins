@@ -72,7 +72,7 @@ export default function EventBlock(props: {
                                         {comment.user.name}
                                     </div>
                                     <div className={s.text}>
-                                            {comment.text}
+                                        {comment.text}
                                     </div>
                                 </div>
                             </div>

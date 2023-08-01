@@ -23,7 +23,11 @@ export default function EventsList(props: {category: string}): JSX.Element {
             </div>
             <div className={s.list}>
                {loadedStatus$ ? <List list={currentEvents$}/> : <CustomLoader marginTop={100} />}
-               {loadedStatus$ && currentEvents$.length === 0 ? <h4>В данной категории пока что нет запланированных мероприятий.</h4> : null}
+               {
+               loadedStatus$ && currentEvents$.length === 0 
+               ? <h5>В данной категории пока что нет запланированных мероприятий.</h5> 
+               : null
+               }
             </div>
         </div>
     )
