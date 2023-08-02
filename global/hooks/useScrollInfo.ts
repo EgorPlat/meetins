@@ -15,10 +15,6 @@ export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handl
             setArrayHeights((lastValue) => [...lastValue, document.body.offsetHeight]);
             setCurrentPageNumber((lastValue) => lastValue + 1);
         }
-        console.log(arrayHeights);
-        console.log(document.body.offsetHeight);
-        
-        //console.log(isScrollEnded + " "+isPageDoesntExists + " "+isNewPageAreMoreThenMax);
     }
 
     useEffect(() => {
