@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import logo from '../../../public/images/logo.svg';
 import s from './confirmation.module.scss';
+import Link from 'next/link';
 
 interface IConfirmationViewProps {
     sendConfirmationCode: (code: number) => void
@@ -25,6 +26,7 @@ export default function ConfirmationView({ sendConfirmationCode }: IConfirmation
             </div>
             <div className={s.actions}>
                 <button onClick={() => sendConfirmationCode(ref.current.value)}>Отправить</button>
+                <Link href="/login" className={s.goBack}>Вернуться назад</Link>
             </div>
         </div>
     )

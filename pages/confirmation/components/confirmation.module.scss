@@ -30,6 +30,12 @@
         }
     }
     & .actions {
+        display: grid;
+        text-align: center;
+        & a {
+            color: blue;
+            margin-top: 15px;
+        }
         & button {
             width: 200px;
             height: 40px;
