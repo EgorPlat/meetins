@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { createdSendFileAndUploadActiveChat } from "../../../global/store/chat_model";
 import Emoji from "../emoji/emoji";
 import s from "./chatMessageForm.module.scss";
-import { AiOutlineAudio, AiOutlineSend } from "react-icons/ai";
+import { AiOutlineAudio, AiOutlineFileText, AiOutlineSend } from "react-icons/ai";
 import { addNewError } from "../../../global/store/errors_model";
 
 export default function ChatMessageForm(
@@ -79,6 +79,7 @@ export default function ChatMessageForm(
             <div className={s.formInput}>
                 <input ref={messageRef} type="text" placeholder={t(props.placeholder)}/>
                 <div className={props.isChatExists ? s.fileInput : s.fileInputBlocked}>
+                    <AiOutlineFileText fontSize={30} color="#3DB2FF" />
                     <input type="file" onChange={(e) => onSendNewFile(e)}/>
                 </div>
                 <Emoji addSmileHandler={addSmileHandler} />

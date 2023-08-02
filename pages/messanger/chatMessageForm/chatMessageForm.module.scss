@@ -20,11 +20,9 @@
             outline: none;
         }
         & .fileInput {
-            width: 30px;
-            height: 30px;
-            background-image: url('../../../public/images/inputFile.png');
-            background-size: 30px 30px;
+            position: relative;
             & input[type='file'] {
+                position: absolute;
                 width: 45px;
                 height: 45px;
                 opacity: 0;
