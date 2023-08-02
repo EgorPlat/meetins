@@ -11,6 +11,7 @@ export default function EmojiList(props: {onAddSmile: (emoji) => void}): JSX.Ele
         <div className={s.emojiList}>
             {emoji.map(emoji => 
                 <p 
+                    key={emoji.dec}
                     className={s.defaultEmojiInList}
                     onClick={() => addSmile(emoji)}
                 >{String.fromCodePoint(emoji.hex)}</p>

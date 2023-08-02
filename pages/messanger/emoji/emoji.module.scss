@@ -1,10 +1,4 @@
 .emoji {
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    margin-left: 5px;
-    background-color: #3db1ffec;
-    font-weight: 300;
     cursor: pointer;
     position: relative;
     & .defaultEmoji {
@@ -20,27 +14,21 @@
     & .emojiListWrapper {
         position: absolute;
         top: -130px;
+        left: -145px;
     }
 }
 
 @media screen and (max-width: 810px) {
     .emoji {
         & .emojiListWrapper {
-            left: -30px;
-        }
-    }
-}
-@media screen and (max-width: 770px) {
-    .emoji {
-        & .emojiListWrapper {
-            left: -60px;
+            left: -135px;
         }
     }
 }
 @media screen and (max-width: 600px) {
     .emoji {
         & .emojiListWrapper {
-            left: -100px;
+            left: -135px;
         }
     }
 }

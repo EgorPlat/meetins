@@ -9,6 +9,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     text-align: justify;
+    color: black;
 }
 .chat {
     height: calc(100vh - 25px);
@@ -84,6 +85,13 @@
     & .messages {
         font-size: 20px;
         overflow-y: scroll;
+        & video {
+            height: 75px;
+            width: 220px;
+        }
+        & a {
+            color: blue;
+        }
         & .defaultText {
             color: grey;
             margin-top: 20%;
@@ -97,7 +105,7 @@
                 justify-content: right;
                 & .myMessage {
                     @extend .message;
-                    background-color: rgba($color: #86e020, $alpha: 0.3);
+                    background-color: rgba($color: #53ff7b, $alpha: 1);
                 }
             }
             & .notMyMessageBlock {
@@ -107,7 +115,7 @@
                 & .notMyMessage {
                     margin-left: 10px;
                     @extend .message;
-                    background-color: rgba($color: #3DB2FF, $alpha: 0.6);
+                    background-color: rgba($color: #3DB2FF, $alpha: 1);
                 }
             }
             & .messageDateWrapper {
@@ -123,6 +131,7 @@
                 }
             }
             & .messageTime {
+                color: black;
                 font-size: 15px;
                 text-align: right;
             }

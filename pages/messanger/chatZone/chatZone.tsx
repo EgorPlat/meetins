@@ -122,7 +122,13 @@ export default function ChatZone(): JSX.Element {
                                             message.isFile && 
                                             !isTypeOfFileAreImage(message.content) && 
                                             !isTypeOfFileAreVideo(message.content) &&
+                                            !message.content.includes('.blob') &&
                                             <a href={`${baseURL + message.content}`}>{message.content}</a>
+                                        }
+                                        {
+                                            message.isFile &&
+                                            message.content.includes('.blob') &&
+                                            <video controls src={baseURL + message.content}></video>
                                         }
                                         {
                                             !message.isFile && message.content

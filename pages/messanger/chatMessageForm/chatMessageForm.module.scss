@@ -8,6 +8,7 @@
         padding-left: 5px;
         padding-right: 5px;
         display: flex;
+        column-gap: 5px;
         align-items: center;
         width: 100%;
         border: 1px solid #3DB2FF;
@@ -19,10 +20,10 @@
             outline: none;
         }
         & .fileInput {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             background-image: url('../../../public/images/inputFile.png');
-            background-size: 35px 35px;
+            background-size: 30px 30px;
             & input[type='file'] {
                 width: 45px;
                 height: 45px;
@@ -91,28 +92,21 @@
     }
 }
 
-@media screen and (max-width: 555px){
+@media screen and (max-width: 600px){
     .form {
-        & button {
-            font-size: 14px;
+        & .formInput {
+            & input {
+                width: 80%;
+            }
         }
     }
 }
-
-@media screen and (max-width: 425px){
+@media screen and (max-width: 500px){
     .form {
-        font-size: 13px;
-        & button {
-            font-size: 13px;
-        }
-    }
-}
-
-@media screen and (max-width: 365px){
-    .form {
-        font-size: 13px;
-        & button {
-            font-size: 12px;
+        & .formInput {
+            & input {
+                width: 70%;
+            }
         }
     }
 }
