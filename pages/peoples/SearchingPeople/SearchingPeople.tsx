@@ -61,7 +61,6 @@ export default function SearchingPeople(): JSX.Element {
     }, []);
     
     return(
-    
         <div className={s.searching}>
             <div className={s.params}>
                 <div className={s.gender}>
