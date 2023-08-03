@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { IMyDialog } from "../../global/interfaces";
 import { activeChat, setActiveChat } from "../../global/store/chat_model";
@@ -17,7 +17,6 @@ export default function Messanger(): JSX.Element {
     const handleBack = () => {
         setActiveChat({} as IMyDialog);
     }
-
     const isChatNeededToShow = activeChat$.dialogId === null || Boolean(activeChat$.dialogId);
     
     return(
@@ -29,7 +28,7 @@ export default function Messanger(): JSX.Element {
                     <ChatList/>
                 </div>
                 <div className={`${s.chatZone}`}>
-                    {isChatNeededToShow ? <ChatZone/> : 
+                    {isChatNeededToShow ? <ChatZone activeChat$={activeChat$} /> : 
                     <div className={s.noChat}>
                         <h3 className={s.alert}>Выберите диалог...</h3>
                     </div>
@@ -45,7 +44,7 @@ export default function Messanger(): JSX.Element {
                     <div className={`${s.mobileChatZone}`}>
                         <div className={s.mobileChatZoneBack} onClick={handleBack}>{`< Назад`}</div>
                         <div className={s.mobileChatZoneContent}>
-                            <ChatZone />
+                            <ChatZone activeChat$={activeChat$} />
                         </div>
                     </div>
                 }

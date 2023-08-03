@@ -1,20 +1,16 @@
-import { useStore } from "effector-react";
 import React from "react";
 import { IMyDialog, User } from "../../../global/interfaces";
-import { activeChat, getDialogMessages, setActiveChat } from "../../../global/store/chat_model";
+import { getDialogMessages } from "../../../global/store/chat_model";
 import { baseURL } from "../../../global/store/store";
 import calculateCountOfUnredMessageInDialog from "../../../global/helpers/helper";
 import s from "./userChatCard.module.scss";
 
 export default function UserChatCard(props: { dialog: IMyDialog, authedUser: User }): JSX.Element {
 
-    const activeChat$ = useStore(activeChat);
     const countUnrededMessageInDialog = calculateCountOfUnredMessageInDialog(props.dialog?.messages, props.authedUser);
     
-    const chooseChat = () => { 
-        if(activeChat$.dialogId !== props.dialog.dialogId) {
-            getDialogMessages(props.dialog);
-        }
+    const chooseChat = () => {
+        getDialogMessages(props.dialog);
     } 
     return(
         <div className={s.chat} onClick={chooseChat}>

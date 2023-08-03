@@ -7,7 +7,7 @@ export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handl
 
     const handleScroll = () => {
                 
-        const isScrollEnded = (window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight;
+        const isScrollEnded = (window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight - 350;
         const isPageDoesntExists = !arrayHeights.includes(document.body.offsetHeight);
         const isNewPageAreMoreThenMax = arrayHeights.length < maxPage || maxPage === 0;
         

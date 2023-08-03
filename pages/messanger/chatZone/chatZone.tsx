@@ -15,14 +15,14 @@ import {
 import { $onlineUsers, $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
-import { useRouter } from "next/router";
 import Loader from "../../../components-ui/Loader/Loader";
 
-export default function ChatZone(): JSX.Element {
+interface IChatZoneProps {
+    activeChat$: IMyDialog
+}
+export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
 
     const authedUser = useStore($user);
-    const activeChat$ = useStore(activeChat);
-    const router = useRouter();
     const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
     const onlineUsers = useStore($onlineUsers);
     const isUserOnline = onlineUsers.filter(el => el.userId !== activeChat$.userId).length > 0;
@@ -42,7 +42,6 @@ export default function ChatZone(): JSX.Element {
     useEffect(() => {
         if (activeChat$.dialogId) {
             getDialogMessages(activeChat$);
-            //messagesEndRef.current.scrollIntoView({behavior: "smooth"});
         }
     }, [activeChat$.dialogId]);
 
