@@ -41,7 +41,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     };
 
     useEffect(() => {
-        if (activeChat$?.dialogId) {
+        if (activeChat$.dialogId !== 'none') {
             getDialogMessages(activeChat$);
         }
     }, [activeChat$?.dialogId]);

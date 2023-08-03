@@ -18,7 +18,7 @@ export default function Messanger(): JSX.Element {
     const handleBack = () => {
         setActiveChat(defaultDialog);
     }
-    const isChatNeededToShow = activeChat$.dialogId !== null || activeChat$.dialogId;
+    const isChatNeededToShow = Boolean(activeChat$.dialogId);
     
     return(
         <PageContainer> 
