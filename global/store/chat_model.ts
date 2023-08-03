@@ -4,7 +4,7 @@ import { defaultDialog } from "../mock/defaultDialog";
 import { $user, instance } from "./store";
 
 export const setActiveChat = createEvent<IMyDialog>();
-export const activeChat = createStore<IMyDialog>({} as IMyDialog).on(setActiveChat, (_, newActiveChat) => {
+export const activeChat = createStore<IMyDialog>(defaultDialog).on(setActiveChat, (_, newActiveChat) => {
     return newActiveChat;
 })
 export const setMyDialogs = createEvent<IMyDialog[]>();

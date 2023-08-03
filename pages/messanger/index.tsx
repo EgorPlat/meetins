@@ -8,6 +8,7 @@ import ChatList from "./chatList/chatList";
 import ChatZone from "./chatZone/chatZone";
 import s from "./messanger.module.scss";
 import MobileChatList from "./mobileChatList/mobileChatList";
+import { defaultDialog } from "../../global/mock/defaultDialog";
 
 export default function Messanger(): JSX.Element {
     
@@ -15,9 +16,9 @@ export default function Messanger(): JSX.Element {
     const isMobile$ = useStore(isMobile);
      
     const handleBack = () => {
-        setActiveChat({} as IMyDialog);
+        setActiveChat(defaultDialog);
     }
-    const isChatNeededToShow = activeChat$.dialogId === null || Boolean(activeChat$.dialogId);
+    const isChatNeededToShow = activeChat$.dialogId !== null || Boolean(activeChat$.dialogId);
     
     return(
         <PageContainer> 

@@ -16,6 +16,7 @@ import { $onlineUsers, $user, baseURL } from "../../../global/store/store";
 import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
 import Loader from "../../../components-ui/Loader/Loader";
+import { defaultDialog } from "../../../global/mock/defaultDialog";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -47,7 +48,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
 
     useEffect(() => {
         return () => { 
-            setActiveChat({} as IMyDialog);
+            setActiveChat(defaultDialog);
         }
     }, []);
     return(
