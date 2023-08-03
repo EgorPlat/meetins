@@ -22,7 +22,7 @@ interface IChatZoneProps {
     activeChat$: IMyDialog
 }
 export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
-
+    
     const authedUser = useStore($user);
     const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
     const onlineUsers = useStore($onlineUsers);
@@ -41,118 +41,122 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     };
 
     useEffect(() => {
-        if (activeChat$.dialogId) {
+        if (activeChat$?.dialogId) {
             getDialogMessages(activeChat$);
         }
-    }, [activeChat$.dialogId]);
+    }, [activeChat$?.dialogId]);
 
     useEffect(() => {
         return () => { 
             setActiveChat(defaultDialog);
         }
     }, []);
-    return(
-        <div className={s.chat}>  
-            <div className={`${s.user} ${s.block}`}>
-                <div className={s.avatar} style={{
-                    backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`}}>
-                </div>
-                <div className={s.userTextInfo}>
-                    <div className={s.name}>
-                        {activeChat$.userName}
+    if (activeChat$) {
+        return(
+            <div className={s.chat}>  
+                <div className={`${s.user} ${s.block}`}>
+                    <div className={s.avatar} style={{
+                        backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`}}>
                     </div>
-                    <div className={!isUserOnline ? s.statusOnline : s.status}>
-                        {!isUserOnline ? t('В сети') : t('Не в сети')}
-                    </div>
-                    <div className={s.userMoreActions} onClick={() => setMoreActionUserForModal(!moreActionForUserModal)}>
-                        <div className={s.userMoreActionsLine}></div>
-                        <div className={s.userMoreActionsLine}></div>
-                        <div className={s.userMoreActionsLine}></div>
-                        {
-                            moreActionForUserModal && 
-                            <div className={s.userActionsList}>
-                                <div 
-                                    className={s.userActionsListElement}
-                                    onClick={handleClickProfile}
-                                >Профиль</div>
-                                <div className={s.userActionsListElement}>Очистить чат</div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-            <div className={`${s.messages} ${s.block}`}>
-                {activeChat$.messages
-                    ? activeChat$.messages.map((message, index) => {
-                        const isMyMessage = message.senderId === authedUser?.userId;
-                        const isDateAlreadyExist = 
-                            getDateInDMFormat(message.sendAt) !== getDateInDMFormat(activeChat$.messages[index - 1]?.sendAt);
-                        return (
-                            <div className={s.messageWrapper} key={message.sendAt}>
-                                <div className={s.messageDateWrapper}>
-                                    { isDateAlreadyExist && 
-                                        <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div> 
-                                    }
+                    <div className={s.userTextInfo}>
+                        <div className={s.name}>
+                            {activeChat$.userName}
+                        </div>
+                        <div className={!isUserOnline ? s.statusOnline : s.status}>
+                            {!isUserOnline ? t('В сети') : t('Не в сети')}
+                        </div>
+                        <div className={s.userMoreActions} onClick={() => setMoreActionUserForModal(!moreActionForUserModal)}>
+                            <div className={s.userMoreActionsLine}></div>
+                            <div className={s.userMoreActionsLine}></div>
+                            <div className={s.userMoreActionsLine}></div>
+                            {
+                                moreActionForUserModal && 
+                                <div className={s.userActionsList}>
+                                    <div 
+                                        className={s.userActionsListElement}
+                                        onClick={handleClickProfile}
+                                    >Профиль</div>
+                                    <div className={s.userActionsListElement}>Очистить чат</div>
                                 </div>
-                                <div key={message.sendAt} className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
-                                        <div 
-                                            className={isMyMessage ? s.myMessage : s.notMyMessage}
-                                            key={message.content}
-                                        >
-                                        {
-                                            message.isFile && isTypeOfFileAreImage(message.content) 
-                                            && 
-                                            <div className={s.messageWithFile}>
-                                                <img 
-                                                    src={baseURL + message.content} 
-                                                    width="100px" 
-                                                    height="100px"
-                                                />
-                                                <a href={baseURL + message.content} target="_blank">{t('Открыть полностью')}</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div className={`${s.messages} ${s.block}`}>
+                    {activeChat$.messages
+                        ? activeChat$.messages.map((message, index) => {
+                            const isMyMessage = message.senderId === authedUser?.userId;
+                            const isDateAlreadyExist = 
+                                getDateInDMFormat(message.sendAt) !== getDateInDMFormat(activeChat$.messages[index - 1]?.sendAt);
+                            return (
+                                <div className={s.messageWrapper} key={message.sendAt}>
+                                    <div className={s.messageDateWrapper}>
+                                        { isDateAlreadyExist && 
+                                            <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div> 
+                                        }
+                                    </div>
+                                    <div key={message.sendAt} className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
+                                            <div 
+                                                className={isMyMessage ? s.myMessage : s.notMyMessage}
+                                                key={message.content}
+                                            >
+                                            {
+                                                message.isFile && isTypeOfFileAreImage(message.content) 
+                                                && 
+                                                <div className={s.messageWithFile}>
+                                                    <img 
+                                                        src={baseURL + message.content} 
+                                                        width="100px" 
+                                                        height="100px"
+                                                    />
+                                                    <a href={baseURL + message.content} target="_blank">{t('Открыть полностью')}</a>
+                                                </div>
+                                            }
+                                            {
+                                                message.isFile && isTypeOfFileAreVideo(message.content)
+                                                && 
+                                                <div className={s.messageWithVideo}>
+                                                    <a href={baseURL + message.content} target="_blank">{t('Видео')} - {message.content}</a>
+                                                </div>
+                                            }
+                                            {
+                                                message.isFile && 
+                                                !isTypeOfFileAreImage(message.content) && 
+                                                !isTypeOfFileAreVideo(message.content) &&
+                                                !message.content.includes('.blob') &&
+                                                <a href={`${baseURL + message.content}`}>{message.content}</a>
+                                            }
+                                            {
+                                                message.isFile &&
+                                                message.content.includes('.blob') &&
+                                                <video controls src={baseURL + message.content}></video>
+                                            }
+                                            {
+                                                !message.isFile && message.content
+                                            }
+                                            <div className={s.messageTime}>
+                                                { getMinutesAndHoursFromString(message.sendAt) }
                                             </div>
-                                        }
-                                        {
-                                            message.isFile && isTypeOfFileAreVideo(message.content)
-                                            && 
-                                            <div className={s.messageWithVideo}>
-                                                <a href={baseURL + message.content} target="_blank">{t('Видео')} - {message.content}</a>
-                                            </div>
-                                        }
-                                        {
-                                            message.isFile && 
-                                            !isTypeOfFileAreImage(message.content) && 
-                                            !isTypeOfFileAreVideo(message.content) &&
-                                            !message.content.includes('.blob') &&
-                                            <a href={`${baseURL + message.content}`}>{message.content}</a>
-                                        }
-                                        {
-                                            message.isFile &&
-                                            message.content.includes('.blob') &&
-                                            <video controls src={baseURL + message.content}></video>
-                                        }
-                                        {
-                                            !message.isFile && message.content
-                                        }
-                                        <div className={s.messageTime}>
-                                            { getMinutesAndHoursFromString(message.sendAt) }
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })
-                    : <Loader/>
-                }
-                <div ref={messagesEndRef}>.</div>
+                            )
+                        })
+                        : <Loader/>
+                    }
+                    <div ref={messagesEndRef}>.</div>
+                </div>
+                <div className={`${s.form} ${s.block}`}>
+                    <ChatMessageForm 
+                        isLoaded={isMessageWithFileLoaded$} 
+                        placeholder="Введите сообщение" 
+                        onClickForm={(inputValue) => sendForm(inputValue)}
+                        isChatExists={!activeChat$.userId}
+                    />
+                </div>
             </div>
-            <div className={`${s.form} ${s.block}`}>
-                <ChatMessageForm 
-                    isLoaded={isMessageWithFileLoaded$} 
-                    placeholder="Введите сообщение" 
-                    onClickForm={(inputValue) => sendForm(inputValue)}
-                    isChatExists={!activeChat$.userId}
-                />
-            </div>
-        </div>
-    )
+        )
+    } else {
+        return null;
+    }
 }
