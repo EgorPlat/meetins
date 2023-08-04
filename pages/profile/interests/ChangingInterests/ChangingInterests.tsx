@@ -29,7 +29,8 @@ export default function ChangingInterests(props: {
         <div className={s.changingInterests}>
             {
                 interestsList.map((el, index) => (
-                    <button 
+                    <button
+                        key={el.title}
                         className={ el.selected ? s.active : s.inactive } 
                         onClick={() => selectNewInterest(index)}
                     >{el.title}</button>

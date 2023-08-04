@@ -95,7 +95,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                             <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div> 
                                         }
                                     </div>
-                                    <div key={message.sendAt} className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
+                                    <div key={message.messageId} className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
                                             <div 
                                                 className={isMyMessage ? s.myMessage : s.notMyMessage}
                                                 key={message.content}
