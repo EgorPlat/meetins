@@ -89,16 +89,15 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                             const isDateAlreadyExist = 
                                 getDateInDMFormat(message.sendAt) !== getDateInDMFormat(activeChat$.messages[index - 1]?.sendAt);
                             return (
-                                <div className={s.messageWrapper} key={message.sendAt}>
+                                <div className={s.messageWrapper} key={message.messageId}>
                                     <div className={s.messageDateWrapper}>
                                         { isDateAlreadyExist && 
                                             <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div> 
                                         }
                                     </div>
-                                    <div key={message.messageId} className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
+                                    <div className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
                                             <div 
                                                 className={isMyMessage ? s.myMessage : s.notMyMessage}
-                                                key={message.content}
                                             >
                                             {
                                                 message.isFile && isTypeOfFileAreImage(message.content) 

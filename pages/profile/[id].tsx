@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { $currentProfileUser, $user, getDataForProfilePage, isAsyncLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
@@ -75,7 +75,7 @@ function Profile(): JSX.Element {
     useEffect( () => {
         if (!route.isReady) return;
         getDataForProfilePage(String(route.query.id));
-    }, [route.isReady]);
+    }, [route.isReady, route.asPath]);
 
     if (isConnected && asyncLoaded) {
         return(

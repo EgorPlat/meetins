@@ -15,11 +15,13 @@ export const connectionWatcher = createEffect((obj: {connection: Socket, activeC
     obj.connection.removeAllListeners();
     obj.connection.on('message', (message: any) => {
         if(message.dialogId === obj.activeChat.dialogId) {
-            setActiveChat({
-                ...obj.activeChat,
-                messages: [...obj.activeChat.messages, message]
-            });
-            updatedIsReadMessagesInActiveDialog(message.dialogId);
+            if (obj.activeChat.userName === message.senderName) {
+                setActiveChat({
+                    ...obj.activeChat,
+                    messages: [...obj.activeChat.messages, message]
+                });
+                updatedIsReadMessagesInActiveDialog(message.dialogId);
+            }
         } else {
             addOneUreadMessages(1);
         }
