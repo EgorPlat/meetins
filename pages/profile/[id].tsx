@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { $currentProfileUser, $user, getDataForProfilePage, isAsyncLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
-import { checkDialog, getMyDialogs } from "../../global/store/chat_model";
+import { checkDialog } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
 import { useAuthAndInithialSocket } from "../../global/hooks/useAuthAndInithialSocket";
@@ -65,12 +65,6 @@ function Profile(): JSX.Element {
         sendInviteToUser({ userToId: currentUser.userId, eventId: choosedEventForInvite });
         setIsInviteModal(false);
     }
-
-    useEffect(() => {
-        if (isConnected) {
-            getMyDialogs(true);
-        }
-    }, [isConnected]);
 
     useEffect( () => {
         if (!route.isReady) return;

@@ -61,6 +61,7 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
             sendFileInDialog(
                 formData
             ).then(res => {
+                setActiveChat({...actualActiveChat, messages: [...actualActiveChat.messages, res.data], content: res.data.content});
                 setIsMessageWithFileLoaded(true);
             })
         }
@@ -139,18 +140,16 @@ export const checkDialog = createEffect(async (user: User) => {
 
 
 export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) => {
-    if(chosedDialog.dialogId !== '-') {
-        try {
-            const response = await instance.post('chat/messages', JSON.stringify({dialogId: chosedDialog.dialogId}) );
-            if(response.status === 200) {
-                const activeDialogWithMessages: IMyDialog = {...chosedDialog, messages: response.data};
-                setActiveChat(activeDialogWithMessages);
-                return response;
-            }
+    try {
+        const response = await instance.post('chat/messages', JSON.stringify({dialogId: chosedDialog.dialogId}) );
+        if(response.status === 200) {
+            const activeDialogWithMessages: IMyDialog = {...chosedDialog, messages: response.data};
+            setActiveChat(activeDialogWithMessages);
+            return response;
         }
-        catch(error) {
-            console.log(error);
-        }
+    }
+    catch(error) {
+        console.log(error);
     }
 })
 

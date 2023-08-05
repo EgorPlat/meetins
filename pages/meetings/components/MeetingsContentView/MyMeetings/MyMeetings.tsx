@@ -10,7 +10,7 @@ export default function MyMeetings() {
     return (
         <div className={s.myMeetings}>
             <div className={s.title}>
-                Здесь будут видны встречи, когда-либо запланированные Вами.
+                Здесь видны встречи, запланированные Вами.
                 <BsCalendarPlus 
                     style={{ cursor: "pointer" }}
                     fontSize={24}

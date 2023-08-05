@@ -12,7 +12,6 @@ export default function ChoosingEvents(props: {
 }): JSX.Element {
 
     const { t } = useTranslation();
-    const authedUser = useStore($user);
     const userEvents$ = useStore(userEvents);
     const userEventsLoaded = useStore(loadedStatus);
     const [selectedEvent, setSelectedEvent] = useState(null);
@@ -35,7 +34,13 @@ export default function ChoosingEvents(props: {
                 <CustomLoader />
             </div>
         )
-    } else {
+    } 
+    else if (userEvents$.length === 0) {
+        return (
+            <div>У вас пока нет событий в Закладках.</div>
+        )
+    } 
+    else {
         return (
             <div className={s.choosingEvents}>
                 <table>

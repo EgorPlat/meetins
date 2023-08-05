@@ -17,6 +17,7 @@ import '../styles/app.css';
 import '../styles/themes.css';
 import { setRouter } from '../global/store/router_model';
 import { useRouter } from 'next/router';
+import { getMyDialogs } from '../global/store/chat_model';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {
 		setRouter(router);
 		getInitialUserDataAndCheckAuth();
+		getMyDialogs(true);
 		document.documentElement.setAttribute("data-theme", localStorage.getItem('data-theme') || 'black');
 		i18n.changeLanguage(detectUserLanguage());
 		return () => {

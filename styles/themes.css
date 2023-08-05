@@ -17,6 +17,9 @@ body {
     --text-color: #d6dce5;
 	--h4BG-color: rgba(231, 231, 231, 0.181);
 	--inp-text-color: gray;
+	::-webkit-calendar-picker-indicator {
+		filter: invert(1);
+	}
 }
 
 .customModal {
@@ -31,9 +34,6 @@ input {
 	outline: none;
 	color: var(--inp-text-color);
 	background-color: transparent;
-}
-input[type=date]::-webkit-calendar-picker-indicator {
-	opacity: 0;
 }
 textarea {
 	outline: none;

@@ -162,6 +162,16 @@ sample({
 })
 
 sample({
+    clock: getUserInnerInvitesEventInfo.pending,
+    fn: () => false,
+    target: loadedStatus
+})
+sample({
+    clock: getUserInnerInvitesEventInfo.doneData,
+    fn: () => true,
+    target: loadedStatus
+})
+sample({
     clock: getEvents.pending,
     fn: () => false,
     target: loadedStatus

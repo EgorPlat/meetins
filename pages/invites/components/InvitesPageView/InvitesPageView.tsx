@@ -7,10 +7,18 @@ import s from './InvitesPageView.module.scss';
 
 interface IInvitesPageView {
     authedUser: User,
-    unitedEventsInfo: IUnitedInvitesEvent
+    unitedEventsInfo: IUnitedInvitesEvent,
+    loadedStatus: boolean
 }
-export default function InvitesPageView({ authedUser, unitedEventsInfo }: IInvitesPageView) {
-    if (unitedEventsInfo && unitedEventsInfo.innerInvites.length !== 0) {
+export default function InvitesPageView({ authedUser, loadedStatus, unitedEventsInfo }: IInvitesPageView) {
+    if (loadedStatus && unitedEventsInfo.innerInvites.length === 0) {
+        return (
+            <div className={s.invitesPageView}>
+                <h5>У вас пока нет приглашений на мероприятия</h5>
+            </div>
+        )
+    }
+    else if (loadedStatus) {
         return (
             <div className={s.invitesPageView}>
                 {
@@ -21,7 +29,8 @@ export default function InvitesPageView({ authedUser, unitedEventsInfo }: IInvit
                 }
             </div>
         )
-    } else {
+    } 
+    else {
         return <CustomLoader />
     }
 }

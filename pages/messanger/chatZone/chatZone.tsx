@@ -41,16 +41,11 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     };
 
     useEffect(() => {
-        if (activeChat$.dialogId !== 'none') {
-            getDialogMessages(activeChat$);
-        }
-    }, [activeChat$?.dialogId]);
-
-    useEffect(() => {
         return () => { 
             setActiveChat(defaultDialog);
         }
     }, []);
+
     if (activeChat$) {
         return(
             <div className={s.chat}>  

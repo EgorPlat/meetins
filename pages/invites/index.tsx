@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { 
     getUserInnerInvitesEventInfo, 
     unitedInviteEvents,
-    getUserOuterInvitesEventInfo 
+    getUserOuterInvitesEventInfo, 
+    loadedStatus
 } from "../../global/store/events_model";
 import { $user } from "../../global/store/store";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
@@ -13,6 +14,7 @@ export default function Invites() {
 
     const authedUser$ = useStore($user);
     const unitedEventsInfo$ = useStore(unitedInviteEvents);
+    const loadedStatus$ = useStore(loadedStatus);
 
     useEffect(() => {
         getUserInnerInvitesEventInfo();
@@ -24,6 +26,7 @@ export default function Invites() {
             <InvitesPageView
                 authedUser={authedUser$}
                 unitedEventsInfo={unitedEventsInfo$}
+                loadedStatus={loadedStatus$}
             />
         </PageContainer>
     )

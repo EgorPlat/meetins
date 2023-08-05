@@ -1,10 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { createEffect, createEvent, createStore } from 'effector'
+import { createEffect, createEvent, createStore, sample } from 'effector'
 import { NextRouter } from 'next/router';
 import { User } from '../interfaces';
 import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 import { handleLogOut } from './login_model';
+import { getMyDialogs } from './chat_model';
 
 //export const baseURL = 'http://localhost:5000/';
 export const baseURL = 'https://meetins-egorplat.amvera.io/';
