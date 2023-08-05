@@ -17,6 +17,7 @@ import InputFile from '../../../components-ui/InputFile/InputFile';
 import Loader from '../../../components-ui/Loader/Loader';
 import Modal from '../../../components-ui/Modal/Modal';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
+import { AiOutlineMessage } from 'react-icons/ai';
 
 // test 
 

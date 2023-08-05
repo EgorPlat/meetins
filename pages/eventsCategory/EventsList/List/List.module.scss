@@ -10,10 +10,10 @@
         margin-top: 10px;
         margin-left: 1%;
         float: left;
-        & .eventViewZone {
+        /*& .eventViewZone {
             text-align: center;
             background-size: 100% 150px;
-        }
+        }*/
         & .eventDescription {
             text-align: center;
             & .free {
@@ -39,10 +39,10 @@
     .list {
         & .eventBody {
             grid-template-columns: 1fr;
-            & .eventViewZone {
+            /*& .eventViewZone {
                 height: 200px;
                 background-size: 100% 100%;
-            }
+            }*/
             & .eventDescription {
                 font-size: 15px;
             }

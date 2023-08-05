@@ -17,6 +17,8 @@ import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
 import Loader from "../../../components-ui/Loader/Loader";
 import { defaultDialog } from "../../../global/mock/defaultDialog";
+import { AiOutlinePhone } from "react-icons/ai";
+import { MdOutlineOndemandVideo } from "react-icons/md";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -56,6 +58,10 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                     <div className={s.userTextInfo}>
                         <div className={s.name}>
                             {activeChat$.userName}
+                            <MdOutlineOndemandVideo 
+                                fontSize={26}
+                                style={{cursor: "pointer"}}
+                            />
                         </div>
                         <div className={!isUserOnline ? s.statusOnline : s.status}>
                             {!isUserOnline ? t('В сети') : t('Не в сети')}
