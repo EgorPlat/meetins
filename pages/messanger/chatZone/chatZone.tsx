@@ -5,11 +5,11 @@ import { getDateInDMFormat } from "../../../global/functions/getDateInDMFormat";
 import { getMinutesAndHoursFromString } from "../../../global/functions/getMinutesAndHoursFromString";
 import { isTypeOfFileAreImage, isTypeOfFileAreVideo } from "../../../global/helpers/validate";
 import { IMyDialog } from "../../../global/interfaces";
-import { 
-    activeChat, 
+import {
+    createdSendFileAndUploadActiveChat,
     createdSendMessageAndUploadActiveChat,
-    getDialogMessages,
     isMessageWithFileLoaded,
+    sendFileAndUploadActiveChat,
     setActiveChat
 } from "../../../global/store/chat_model";
 import { $onlineUsers, $user, baseURL } from "../../../global/store/store";
@@ -17,8 +17,9 @@ import ChatMessageForm from "../chatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
 import Loader from "../../../components-ui/Loader/Loader";
 import { defaultDialog } from "../../../global/mock/defaultDialog";
-import { AiOutlinePhone } from "react-icons/ai";
 import { MdOutlineOndemandVideo } from "react-icons/md";
+import CustomModal from "../../../components-ui/CustomModal/CustomModal";
+import { addNewError } from "../../../global/store/errors_model";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -31,6 +32,9 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const isUserOnline = onlineUsers.filter(el => el.userId !== activeChat$.userId).length > 0;
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const [moreActionForUserModal, setMoreActionUserForModal] = useState<boolean>(false);
+    const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
+    const [videoMessageActive, setVideoMessageActive] = useState<boolean>();
+    const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
     const { t } = useTranslation();
 
     const sendForm = (inputValue: string) => {
@@ -38,9 +42,54 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
             createdSendMessageAndUploadActiveChat(inputValue);
         }
     };
-    const handleClickProfile = () => {
-        //router.push(`/profile/${e.activeChat$.user}`)
+    
+    const handleCancelVideoMessage = () => {
+        
     };
+    const handleVideoMessageConfirmed = () => {
+        setShowVideoModal(false);
+        navigator.mediaDevices.getUserMedia({ video: { width: 200, height: 200 }, audio: true }).then(function(stream) {        
+            setVideoMessageActive(true);
+            const mediaRecorder = new MediaRecorder(stream);
+            const mediaChunks = [];
+            mediaRecorder.start();
+            mediaRecorder.ondataavailable = (e) => {
+                mediaChunks.push(e.data);
+            }
+            if (videoMessageStreamRef.current) {
+                videoMessageStreamRef.current.srcObject = stream;
+                videoMessageStreamRef.current.play();
+            };
+            document.getElementById('videoMessageStop')?.addEventListener('click', () => {
+                setVideoMessageActive(false);
+                stream.getTracks().forEach(function(track) {
+                    track.stop();
+                });
+                mediaRecorder.stop();
+            });
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(mediaChunks, {
+                    type: 'video/mp4',
+                });
+                if (blob.size >= 5242880) {
+                    addNewError({
+                        color: "black",
+                        textColor: "white",
+                        text: "Размер видео-сообщения не более 5МБ",
+                        time: 3000
+                    });
+                };
+                createdSendFileAndUploadActiveChat(blob);
+            }
+        }).catch(function(error) {
+            addNewError({
+                color: "black",
+                textColor: "white",
+                text: "Нет доступа к вебкамере.",
+                time: 3000
+            });
+        });
+    }
 
     useEffect(() => {
         return () => { 
@@ -58,9 +107,11 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                     <div className={s.userTextInfo}>
                         <div className={s.name}>
                             {activeChat$.userName}
-                            <MdOutlineOndemandVideo 
+                            <MdOutlineOndemandVideo
+                                cursor="pointer"
                                 fontSize={26}
                                 style={{cursor: "pointer"}}
+                                onClick={() => setShowVideoModal(true)}
                             />
                         </div>
                         <div className={!isUserOnline ? s.statusOnline : s.status}>
@@ -73,10 +124,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                             {
                                 moreActionForUserModal && 
                                 <div className={s.userActionsList}>
-                                    <div 
-                                        className={s.userActionsListElement}
-                                        onClick={handleClickProfile}
-                                    >Профиль</div>
+                                    <div className={s.userActionsListElement}>Профиль</div>
                                     <div className={s.userActionsListElement}>Очистить чат</div>
                                 </div>
                             }
@@ -101,7 +149,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                                 className={isMyMessage ? s.myMessage : s.notMyMessage}
                                             >
                                             {
-                                                message.isFile && isTypeOfFileAreImage(message.content) 
+                                                isTypeOfFileAreImage(message.type) 
                                                 && 
                                                 <div className={s.messageWithFile}>
                                                     <img 
@@ -113,26 +161,22 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                                 </div>
                                             }
                                             {
-                                                message.isFile && isTypeOfFileAreVideo(message.content)
+                                                isTypeOfFileAreVideo(message.type)
                                                 && 
                                                 <div className={s.messageWithVideo}>
-                                                    <a href={baseURL + message.content} target="_blank">{t('Видео')} - {message.content}</a>
+                                                    <video controls src={baseURL + message.content}></video>
                                                 </div>
                                             }
                                             {
-                                                message.isFile && 
-                                                !isTypeOfFileAreImage(message.content) && 
-                                                !isTypeOfFileAreVideo(message.content) &&
-                                                !message.content.includes('.blob') &&
+                                                message.type.includes('document') &&
                                                 <a href={`${baseURL + message.content}`}>{message.content}</a>
                                             }
                                             {
-                                                message.isFile &&
-                                                message.content.includes('.blob') &&
+                                                message.type.includes('audio') &&
                                                 <video controls src={baseURL + message.content}></video>
                                             }
                                             {
-                                                !message.isFile && message.content
+                                                message.type === 'text' && message.content
                                             }
                                             <div className={s.messageTime}>
                                                 { getMinutesAndHoursFromString(message.sendAt) }
@@ -154,6 +198,40 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                         isChatExists={!activeChat$.userId}
                     />
                 </div>
+                {
+                    showVideoModal &&
+                    <CustomModal 
+                        isDisplay={showVideoModal}
+                        title="Подтвердите действие"
+                        typeOfActions="default"
+                        changeModal={setShowVideoModal}
+                        actionConfirmed={handleVideoMessageConfirmed}
+                    >
+                        Хотите записать видео-сообщение?
+                    </CustomModal>
+                }
+                {
+                    videoMessageActive &&
+                    <CustomModal 
+                        isDisplay={videoMessageActive}
+                        title="Видео-сообщение"
+                        typeOfActions="none"
+                        changeModal={handleCancelVideoMessage}
+                        actionConfirmed={setVideoMessageActive}
+                    >
+                        <div className={s.videoMessageWrapper}>
+                            <video
+                                className="video" 
+                                width="200px" 
+                                height="200px" 
+                                ref={videoMessageStreamRef} 
+                                autoPlay
+                                muted
+                            ></video>
+                            <button id="videoMessageStop">Остановить</button>
+                        </div>
+                    </CustomModal>
+                }
             </div>
         )
     } else {

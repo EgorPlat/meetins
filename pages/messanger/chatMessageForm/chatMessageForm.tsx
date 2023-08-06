@@ -16,7 +16,7 @@ export default function ChatMessageForm(
 ): JSX.Element { 
 
     const messageRef = useRef<HTMLInputElement>();
-    const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>();
+    //const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>();
     const [isMediaRecorderActive, setIsMediaRecorderActive] = useState<boolean>(false);
     const { t } = useTranslation();
 
@@ -35,12 +35,11 @@ export default function ChatMessageForm(
             const mediaRecorder = new MediaRecorder(stream);
             mediaRecorder.start();
             setIsMediaRecorderActive(true);
-            setMediaRecorder(mediaRecorder);
             let voice = [];
             mediaRecorder.addEventListener("dataavailable", (event) => {
                 voice.push(event.data);               
             });
-            mediaRecorder.addEventListener("stop", () => {
+            mediaRecorder.addEventListener("stop", (event) => {
                 const voiceBlob = new Blob(voice, {
                     type: 'audio/mp3'
                 });
@@ -58,6 +57,9 @@ export default function ChatMessageForm(
                     setIsMediaRecorderActive(false);
                 }
             });
+            document.getElementById('audioMessageStop').addEventListener('click', () => {
+                mediaRecorder.stop();
+            });            
         });
     };
 
@@ -93,7 +95,7 @@ export default function ChatMessageForm(
                         onClick={handleMediaRecorder}
                     />
                     : 
-                    <span onClick={() => mediaRecorder.stop()}>Stop</span>
+                    <span id="audioMessageStop">Stop</span>
                 }
                 {
                     props.isLoaded 

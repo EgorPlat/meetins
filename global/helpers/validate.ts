@@ -12,18 +12,16 @@ export const isEmail = (value: string | null) => {
 }
 export const isTypeOfFileAreImage = (value: string) => {
 	if (!value) return;
-	const validTypes = ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
-	const type = value.split('.')[1];
-	if (validTypes.includes(type)) {
+	const validTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/JPG', 'image/JPEG', 'image/PNG'];
+	if (validTypes.includes(value)) {
 		return true;
 	}
 	return false;
 }
 export const isTypeOfFileAreVideo = (value: string) => {
 	if (!value) return;
-	const validTypes = ['mp4']
-	const type = value.split('.')[1];
-	if (validTypes.includes(type)) {
+	const validTypes = ['video/mp4', 'video/mp3'];
+	if (validTypes.includes(value)) {
 		return true;
 	}
 	return false;

@@ -37,3 +37,32 @@ export function detectUserLanguage() {
     if (window.navigator.language === 'ru') return 'ru';
     return 'en';
 }
+
+export const turnOffAllMediaTracks = (navigator: Navigator) => {
+    navigator.mediaDevices.enumerateDevices()
+    .then(devices => {
+        devices.forEach(device => {
+        // является ли устройство медиа-устройством ввода
+        if (device.kind === 'videoinput' || device.kind === 'audioinput') {
+            // получаем все треки устройства
+            navigator.mediaDevices.getUserMedia({
+                audio: { deviceId: device.deviceId },
+                video: { deviceId: device.deviceId }
+            })
+            .then(stream => {
+                // получаем все треки потока
+                stream.getTracks().forEach(track => {
+                    // закрываем каждый трек
+                    track.stop();
+                });
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        }
+        });
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
+}

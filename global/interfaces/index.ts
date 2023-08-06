@@ -101,7 +101,7 @@ export interface IMyActiveDialogMessage {
     senderName: string,
     status?: boolean,
     isMine: boolean,
-    isFile?: boolean
+    type: string
 }
 export interface IMyDialog {
     dialogId: string,

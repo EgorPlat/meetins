@@ -163,6 +163,26 @@
     }
 }
 
+.videoMessageWrapper {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+    & button {
+        width: 200px;
+        height: 35px;
+        border-radius: 5px;
+        background-color: #3DB2FF;
+        color: white;
+        border: none;
+    }
+    & button:hover {
+        background-color: #ffd900;
+        color: black;
+    }
+}
 @media screen and (max-height: 940px){
     .chat {
         & .messages {
