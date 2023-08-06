@@ -1,9 +1,9 @@
 .mobileChatList {
     box-shadow:  0px 0px 1px 1px rgba(154, 147, 140, 0.3);
     border-radius: 5px;
-    display: grid;
     padding: 5px;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     height: calc(100vh - 60px);
     overflow-y: scroll;
     & .mobileUserChatCard {
