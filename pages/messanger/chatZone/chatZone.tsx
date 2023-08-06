@@ -164,7 +164,11 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                                 isTypeOfFileAreVideo(message.type)
                                                 && 
                                                 <div className={s.messageWithVideo}>
-                                                    <video controls src={baseURL + message.content}></video>
+                                                    <video 
+                                                        controls
+                                                        src={baseURL + message.content}
+                                                        width="200px"
+                                                    ></video>
                                                 </div>
                                             }
                                             {
@@ -173,7 +177,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                             }
                                             {
                                                 message.type.includes('audio') &&
-                                                <video controls src={baseURL + message.content}></video>
+                                                <audio controls src={baseURL + message.content}></audio>
                                             }
                                             {
                                                 message.type === 'text' && message.content
