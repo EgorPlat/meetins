@@ -1,7 +1,7 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
 import { Socket } from "socket.io-client";
-import { IDialogMessage, IMyActiveDialogMessage, IMyDialog } from "../interfaces";
-import { activeChat, addOneUreadMessages, getDialogMessages, getMyDialogs, setActiveChat, updatedIsReadMessagesInActiveDialog } from "./chat_model";
+import { IMyDialog } from "../interfaces";
+import { activeChat, setActiveChat, setIsUserUnReadMessagesExists, updatedIsReadMessagesInActiveDialog } from "./chat_model";
 import { setOnlineUsers } from "./store";
 
 export const setNewConnection = createEvent<Socket>();
@@ -23,7 +23,7 @@ export const connectionWatcher = createEffect((obj: {connection: Socket, activeC
                 updatedIsReadMessagesInActiveDialog(message.dialogId);
             }
         } else {
-            addOneUreadMessages(1);
+            setIsUserUnReadMessagesExists(true);
         }
     });
     obj.connection.on('updateUsers', (message: any) => {

@@ -17,7 +17,6 @@ i18n
     ns: ['translations'],
     defaultNS: 'translations',
     react: {
-      wait: true,
       useSuspense: true
     }
   })

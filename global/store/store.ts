@@ -25,7 +25,7 @@ instance.interceptors.response.use((response) => {
 }, (error: AxiosError) => {
 	const ec: AxiosRequestConfig = error.config;
 	const ers: number | undefined = error.response?.status;
-	if (ers >= 400 || ers <= 499) {
+	if (ers >= 400 && ers <= 499) {
 		const { message } = error.response.data;
 		if (message) {
 			addNewError({

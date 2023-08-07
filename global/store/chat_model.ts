@@ -11,32 +11,26 @@ export const setMyDialogs = createEvent<IMyDialog[]>();
 export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, (_, newMyDialogs) => {
     return newMyDialogs;
 })
-const myDialogsWatcher = createEffect(( params: { myDialogs: IMyDialog[], authedUser: User, activeChat: IMyDialog }) => {
-    const count = params.myDialogs.reduce((prev, curr) => {
-        let dialogUnReadMessages = 0;
-        curr.messages.map(message => {
+const handleIsUserUnReadMessagesExists = createEffect(( params: { myDialogs: IMyDialog[], authedUser: User }) => {
+    let isUnReadMessagesExists = false;
+    params.myDialogs.map(dialog => {
+        dialog.messages.map(message => {
             if (!message.isRead && params.authedUser.userId !== message.senderId) {
-                dialogUnReadMessages += 1;
-            }
+                isUnReadMessagesExists = true;
+                return;
+            }   
         })
-        return prev += dialogUnReadMessages;
-    }, 0);
-    
-    if (count) setCountUreadMessages(count);
-    if (!count) setCountUreadMessages(0);
+    })
+    setIsUserUnReadMessagesExists(isUnReadMessagesExists);
 })
 sample({
-    source: { myDialogs: myDialogs, authedUser: $user, activeChat: activeChat },
-    target: myDialogsWatcher
+    source: { myDialogs: myDialogs, authedUser: $user },
+    target: handleIsUserUnReadMessagesExists
 })
 
-export const setCountUreadMessages = createEvent<number>();
-export const addOneUreadMessages = createEvent<number>();
-export const countUreadMessages = createStore<number>(0).on(setCountUreadMessages, (_, newCount) => {
-    return newCount;
-})
-countUreadMessages.on(addOneUreadMessages, (count, newCount) => {
-    return count += newCount;
+export const setIsUserUnReadMessagesExists = createEvent<boolean>();
+export const isUserUnReadMessagesExists = createStore<boolean>(false).on(setIsUserUnReadMessagesExists, (_, status) => {
+    return status;
 })
 
 export const setIsMyDialogsLoaded = createEvent<boolean>();
