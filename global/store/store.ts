@@ -49,6 +49,14 @@ export const setIsMobile = createEvent<boolean>();
 export const isMobile = createStore<boolean>(false).on(setIsMobile, (_, isMobile) => {
 	return isMobile;
 })
+export const setIsUserLoaded = createEvent<boolean>();
+export const isUserLoaded = createStore<boolean>(false).on(setIsUserLoaded, (_, status) => {
+	return status;
+})
+export const setIsCurrentUserLoaded = createEvent<boolean>();
+export const isCurrentUserLoaded = createStore<boolean>(false).on(setIsCurrentUserLoaded, (_, status) => {
+	return status;
+})
 export const setIsAsyncLoaded = createEvent<boolean>();
 export const isAsyncLoaded = createStore<boolean>(false).on(setIsAsyncLoaded, (_, tokenUpdated) => {
 	return tokenUpdated;
@@ -98,24 +106,24 @@ export const getInterests = createEffect(async () => {
 })
 
 export const getUserData = createEffect(async () => {
-	setIsAsyncLoaded(false);
+	setIsUserLoaded(false);
 	const response = await instance.get('profile/my-profile');
 	if(response.status === 200) {
 		setUser(response.data);
-		setIsAsyncLoaded(true);
+		setIsUserLoaded(true);
 	}
 	return response;
 })
 export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const instanseRouter$ = instanseRouter.getState();
 	const savedRoute = localStorage.getItem("previousPage");
-	setIsAsyncLoaded(false);
+	setIsUserLoaded(false);
 	getUserData().then( (res) => {
 		if(res.status === 200) {
-			setIsAsyncLoaded(true);
+			setIsUserLoaded(true);
 			instanseRouter$?.push(savedRoute);
 		} else {
-			setIsAsyncLoaded(true);
+			setIsUserLoaded(true);
 			instanseRouter$?.push('/login');
 		}
 	})
@@ -129,19 +137,19 @@ export const getUserDataByUserId = createEffect(async (userId: string | number) 
 })
 
 export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | number) => {
-	setIsAsyncLoaded(false);
+	setIsUserLoaded(false);
 	const response = await instance.get(`profile/by-login/${loginUrl}`);
 	if(response.status <= 202) {
-		setIsAsyncLoaded(true);
+		setIsUserLoaded(true);
 	}
 	return response;
 })
 export const getDataForProfilePage = createEffect((userId: string) => {
-	setIsAsyncLoaded(false);
+	setIsCurrentUserLoaded(false);
 	getUserDataByLoginUrl(userId).then( (res) => {
 		if(res.status === 200) {
 			setCurrentProfileUser(res.data);
-			setIsAsyncLoaded(true);
+			setIsCurrentUserLoaded(true);
 		}
 	})
 })

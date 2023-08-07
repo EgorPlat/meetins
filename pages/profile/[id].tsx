@@ -1,6 +1,6 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { $currentProfileUser, $user, getDataForProfilePage, isAsyncLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
+import { $currentProfileUser, $user, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import { checkDialog } from "../../global/store/chat_model";
@@ -14,7 +14,8 @@ import PageContainer from "../../global/components/PageContainer/pageContainer";
 function Profile(): JSX.Element {
 
     const route = useRouter();
-    const asyncLoaded = useStore(isAsyncLoaded);
+    const userLoaded = useStore(isUserLoaded);
+    const currentUserLoaded = useStore(isCurrentUserLoaded);
     const currentUser = useStore($currentProfileUser);
     const authedUser = useStore($user);
     const isConnected = useAuthAndInithialSocket();
@@ -71,11 +72,11 @@ function Profile(): JSX.Element {
         getDataForProfilePage(String(route.query.id));
     }, [route.isReady, route.asPath]);
 
-    if (isConnected && asyncLoaded) {
+    if (isConnected && userLoaded && currentUserLoaded) {
         return(
             <PageContainer>
                 <ProfileView
-                    asyncLoaded={asyncLoaded}
+                    asyncLoaded={userLoaded}
                     addingImageStatus={addingImageStatus}
                     currentUser={currentUser}
                     authedUser={authedUser}
