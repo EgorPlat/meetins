@@ -11,9 +11,8 @@
         column-gap: 5px;
         align-items: center;
         width: 100%;
-        border: 1px solid #3DB2FF;
+        border: 1px solid var(--border-color);
         height: 50px;
-        border-radius: 5px;
         & input {
             width: 100%;
             border: none;
@@ -36,23 +35,6 @@
                 opacity: 0;
             }
         }
-    }
-    & button {
-        display: flex;
-        justify-content: center;
-        justify-items: center;
-        align-items: center;
-        width: 20%;
-        height: 30px;
-        outline: none;
-        border: none;
-        padding: 5px;
-        color: white;
-        background-color: #3DB2FF;
-        border-radius: 5px;
-    }
-    & button:disabled {
-        background-color: #56667043;
     }
 }
 

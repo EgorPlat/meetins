@@ -16,7 +16,6 @@ export default function ChatMessageForm(
 ): JSX.Element { 
 
     const messageRef = useRef<HTMLInputElement>();
-    //const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>();
     const [isMediaRecorderActive, setIsMediaRecorderActive] = useState<boolean>(false);
     const { t } = useTranslation();
 
@@ -30,6 +29,15 @@ export default function ChatMessageForm(
     };
 
     const handleMediaRecorder = () => {
+        if (!props.isChatExists) {
+            addNewError({
+                text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
+                color: "black",
+                textColor: 'black',
+                time: 3000
+            });
+            return;
+        }
         navigator.mediaDevices.getUserMedia({ audio: true })
         .then(stream => {
             const mediaRecorder = new MediaRecorder(stream);
@@ -67,6 +75,13 @@ export default function ChatMessageForm(
         if (props.isChatExists) {
             const file = event.target.files[0];
             createdSendFileAndUploadActiveChat(file);
+        } else {
+            addNewError({
+                text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
+                color: "black",
+                textColor: 'black',
+                time: 3000
+            });
         }
     };
 
@@ -80,8 +95,8 @@ export default function ChatMessageForm(
         <div className={s.form}>
             <div className={s.formInput}>
                 <input ref={messageRef} type="text" placeholder={t(props.placeholder)}/>
-                <div className={props.isChatExists ? s.fileInput : s.fileInputBlocked}>
-                    <AiOutlineFileText fontSize={30} color="#3DB2FF" />
+                <div className={s.fileInput}>
+                    <AiOutlineFileText fontSize={30} />
                     <input type="file" onChange={(e) => onSendNewFile(e)}/>
                 </div>
                 <Emoji addSmileHandler={addSmileHandler} />
@@ -89,9 +104,7 @@ export default function ChatMessageForm(
                     !isMediaRecorderActive
                     ? 
                     <AiOutlineAudio
-                        color="#3DB2FF" 
                         fontSize={35}  
-                        style={{cursor: "pointer"}}
                         onClick={handleMediaRecorder}
                     />
                     : 
@@ -99,7 +112,7 @@ export default function ChatMessageForm(
                 }
                 {
                     props.isLoaded 
-                        ? <AiOutlineSend style={{cursor: "pointer"}} color="#3DB2FF" fontSize={35} onClick={sendForm} />
+                        ? <AiOutlineSend fontSize={35} onClick={sendForm} />
                         : <Loader />
                 }
             </div>

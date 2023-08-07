@@ -1,7 +1,6 @@
 import { useStore } from "effector-react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
-import { IMyDialog } from "../../global/interfaces";
 import { activeChat, setActiveChat } from "../../global/store/chat_model";
 import { isMobile } from "../../global/store/store";
 import ChatList from "./chatList/chatList";
@@ -9,6 +8,7 @@ import ChatZone from "./chatZone/chatZone";
 import s from "./messanger.module.scss";
 import MobileChatList from "./mobileChatList/mobileChatList";
 import { defaultDialog } from "../../global/mock/defaultDialog";
+import { MdArrowBackIosNew } from 'react-icons/md';
 
 export default function Messanger(): JSX.Element {
     
@@ -43,7 +43,7 @@ export default function Messanger(): JSX.Element {
                     ? <MobileChatList /> 
                     : 
                     <div className={`${s.mobileChatZone}`}>
-                        <div className={s.mobileChatZoneBack} onClick={handleBack}>{`< Назад`}</div>
+                        <MdArrowBackIosNew fontSize={25} onClick={handleBack} />
                         <div className={s.mobileChatZoneContent}>
                             <ChatZone activeChat$={activeChat$} />
                         </div>

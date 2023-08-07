@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import { isAsyncLoaded, setCurrentPage } from "../../global/store/store";
+import { isAsyncLoaded, isUserLoaded, setCurrentPage } from "../../global/store/store";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -20,7 +20,7 @@ import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
 
 export default function Settings(): JSX.Element {
 
-    const isLoad = useStore(isAsyncLoaded);
+    const isLoad = useStore(isUserLoaded);
     const router = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const { t, i18n } = useTranslation();
