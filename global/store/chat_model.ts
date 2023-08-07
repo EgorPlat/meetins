@@ -61,7 +61,9 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
             sendFileInDialog(
                 formData
             ).then(res => {
-                setActiveChat({...actualActiveChat, messages: [...actualActiveChat.messages, res.data], content: res.data.content});
+                if (res.status <= 217) {
+                    setActiveChat({...actualActiveChat, messages: [...actualActiveChat.messages, res.data], content: res.data.content});
+                }
                 setIsMessageWithFileLoaded(true);
             })
         }
@@ -162,15 +164,8 @@ export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId:
     }
 })
 export const sendFileInDialog = createEffect(async (message: FormData) => {
-    try {
-        const response = await instance.post('chat/send-file-to-chat', message);
-        if(response.status === 200) {
-            return response;
-        }
-    }
-    catch(error) {
-        console.log(error);
-    }
+    const response = await instance.post('chat/send-file-to-chat', message);
+    return response;
 })
 
 export const sendMessageInDialog = createEffect(async (message: IDialogMessage) => {

@@ -1,11 +1,9 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { createEffect, createEvent, createStore, sample } from 'effector'
-import { NextRouter } from 'next/router';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios'
+import { createEffect, createEvent, createStore } from 'effector'
 import { User } from '../interfaces';
 import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 import { handleLogOut } from './login_model';
-import { getMyDialogs } from './chat_model';
 
 //export const baseURL = 'http://localhost:5000/';
 export const baseURL = 'https://meetins-egorplat.amvera.io/';
@@ -27,7 +25,7 @@ instance.interceptors.response.use((response) => {
 }, (error: AxiosError) => {
 	const ec: AxiosRequestConfig = error.config;
 	const ers: number | undefined = error.response?.status;
-	if (ers === 400) {
+	if (ers >= 400 || ers <= 499) {
 		const { message } = error.response.data;
 		if (message) {
 			addNewError({

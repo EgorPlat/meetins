@@ -71,14 +71,6 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                 const blob = new Blob(mediaChunks, {
                     type: 'video/mp4',
                 });
-                if (blob.size >= 5242880) {
-                    addNewError({
-                        color: "black",
-                        textColor: "white",
-                        text: "Размер видео-сообщения не более 5МБ",
-                        time: 3000
-                    });
-                };
                 createdSendFileAndUploadActiveChat(blob);
             }
         }).catch(function(error) {
