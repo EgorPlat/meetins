@@ -1,10 +1,11 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { createdSendFileAndUploadActiveChat } from "../../../global/store/chat_model";
 import Emoji from "../emoji/emoji";
 import s from "./chatMessageForm.module.scss";
 import { AiOutlineAudio, AiOutlineFileText, AiOutlineSend } from "react-icons/ai";
 import { addNewError } from "../../../global/store/errors_model";
+import { useUserMediaTracks } from "../../../global/hooks/useUserMediaTracks";
 
 export default function ChatMessageForm(
     props: {
@@ -18,7 +19,12 @@ export default function ChatMessageForm(
     const messageRef = useRef<HTMLInputElement>();
     const [isMediaRecorderActive, setIsMediaRecorderActive] = useState<boolean>(false);
     const { t } = useTranslation();
-
+    const { handleActivateMedia, mediaChunks } = useUserMediaTracks({ 
+        video: false, 
+        audio: true, 
+        htmlElementIdForStopMedia: 'audioMessageStop' 
+    });
+    
     const sendForm = () => {
         props.onClickForm(messageRef.current.value);
         messageRef.current.value = "";
@@ -38,38 +44,20 @@ export default function ChatMessageForm(
             });
             return;
         }
-        navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
-            const mediaRecorder = new MediaRecorder(stream);
-            mediaRecorder.start();
+        handleActivateMedia((stream: MediaStream) => {
             setIsMediaRecorderActive(true);
-            let voice = [];
-            mediaRecorder.addEventListener("dataavailable", (event) => {
-                voice.push(event.data);               
-            });
-            mediaRecorder.addEventListener("stop", (event) => {
-                const voiceBlob = new Blob(voice, {
-                    type: 'audio/mp3'
-                });
-                if (voiceBlob.size > 200000) {
-                    addNewError({
-                        text: "Слишком длинное голосовое сообщение",
-                        color: "black",
-                        textColor: 'black',
-                        time: 3000
-                    });
-                    setIsMediaRecorderActive(false);
-                    return;
-                } else {
-                    createdSendFileAndUploadActiveChat(voiceBlob);
-                    setIsMediaRecorderActive(false);
-                }
-            });
-            document.getElementById('audioMessageStop').addEventListener('click', () => {
-                mediaRecorder.stop();
-            });            
         });
     };
+
+    useEffect(() => {
+        if (mediaChunks) {
+            const voiceBlob = new Blob(mediaChunks, {
+                type: 'audio/mp3'
+            });
+            setIsMediaRecorderActive(false);
+            createdSendFileAndUploadActiveChat(voiceBlob);
+        }
+    }, [mediaChunks]);
 
     const onSendNewFile = async (event: ChangeEvent<HTMLInputElement>) => {
         if (props.isChatExists) {

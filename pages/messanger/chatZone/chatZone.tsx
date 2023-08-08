@@ -20,6 +20,7 @@ import { defaultDialog } from "../../../global/mock/defaultDialog";
 import { MdOutlineOndemandVideo } from "react-icons/md";
 import CustomModal from "../../../components-ui/CustomModal/CustomModal";
 import { addNewError } from "../../../global/store/errors_model";
+import { useUserMediaTracks } from "../../../global/hooks/useUserMediaTracks";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -37,52 +38,39 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
     const { t } = useTranslation();
 
+    const { handleActivateMedia, mediaChunks } = useUserMediaTracks({ 
+        video: { width: 200, height: 200 }, 
+        audio: true, 
+        htmlElementIdForStopMedia: 'videoMessageStop' 
+    });
+
+    useEffect(() => {
+        if (mediaChunks) {
+            setVideoMessageActive(false);
+            const blob = new Blob(mediaChunks, {
+                type: 'video/mp4',
+            });
+            createdSendFileAndUploadActiveChat(blob);
+        }
+    }, [mediaChunks]);
+
     const sendForm = (inputValue: string) => {
         if(inputValue.length > 0) {
             createdSendMessageAndUploadActiveChat(inputValue);
         }
     };
-    
-    const handleCancelVideoMessage = () => {
-        
-    };
+
     const handleVideoMessageConfirmed = () => {
         setShowVideoModal(false);
-        navigator.mediaDevices.getUserMedia({ video: { width: 200, height: 200 }, audio: true }).then(function(stream) {        
+        handleActivateMedia((stream: MediaStream) => {
             setVideoMessageActive(true);
-            const mediaRecorder = new MediaRecorder(stream);
-            const mediaChunks = [];
-            mediaRecorder.start();
-            mediaRecorder.ondataavailable = (e) => {
-                mediaChunks.push(e.data);
-            }
             if (videoMessageStreamRef.current) {
                 videoMessageStreamRef.current.srcObject = stream;
                 videoMessageStreamRef.current.play();
-            };
-            document.getElementById('videoMessageStop')?.addEventListener('click', () => {
-                setVideoMessageActive(false);
-                stream.getTracks().forEach(function(track) {
-                    track.stop();
-                });
-                mediaRecorder.stop();
-            });
-            mediaRecorder.onstop = () => {
-                const blob = new Blob(mediaChunks, {
-                    type: 'video/mp4',
-                });
-                createdSendFileAndUploadActiveChat(blob);
             }
-        }).catch(function(error) {
-            addNewError({
-                color: "black",
-                textColor: "white",
-                text: "Нет доступа к вебкамере.",
-                time: 3000
-            });
-        });
+        })
     }
-
+    
     useEffect(() => {
         return () => { 
             setActiveChat(defaultDialog);
@@ -124,6 +112,10 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                     </div>
                 </div>
                 <div className={`${s.messages} ${s.block}`}>
+                    {
+                        activeChat$.messages.length === 0 && 
+                        <div className={s.notificationMessage}>Чтобы начать диалог напишите какое-то сообщение.</div>
+                    }
                     {activeChat$.messages
                         ? activeChat$.messages.map((message, index) => {
                             const isMyMessage = message.senderId === authedUser?.userId;
@@ -184,7 +176,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                         })
                         : <Loader/>
                     }
-                    <div ref={messagesEndRef}>.</div>
+                    <div ref={messagesEndRef}></div>
                 </div>
                 <div className={`${s.form} ${s.block}`}>
                     <ChatMessageForm 
@@ -212,7 +204,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                         isDisplay={videoMessageActive}
                         title="Видео-сообщение"
                         typeOfActions="none"
-                        changeModal={handleCancelVideoMessage}
+                        changeModal={() => null}
                         actionConfirmed={setVideoMessageActive}
                     >
                         <div className={s.videoMessageWrapper}>

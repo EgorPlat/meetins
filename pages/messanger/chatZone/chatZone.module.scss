@@ -16,6 +16,9 @@
     display: grid;
     grid-template-rows: 95px calc(100% - 200px) 95px;
     row-gap: 5px;
+    & .notificationMessage {
+        text-align: center;
+    }
     & .block {
         box-shadow:  0px 0px 1px 1px rgba(154, 147, 140, 0.3);
     }
