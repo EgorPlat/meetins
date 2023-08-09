@@ -27,7 +27,6 @@ export default function MobileChatList(): JSX.Element {
             {isLoaded$ && myDialogs$
                 ? 
                 myDialogs$.map( dialog => {
-                    if (dialog) return null;
                     const lastMessage = dialog.messages[dialog.messages?.length - 1];
                     const isUnreadMessageMy = lastMessage.senderId === authedUser$.userId;
                     return (
@@ -50,7 +49,7 @@ export default function MobileChatList(): JSX.Element {
                 : <div className={s.loader}></div>
             }
             {
-                isLoaded$ !== false && myDialogs$?.length === 0 && 
+                isLoaded$ && myDialogs$?.length === 0 && 
                 <div className={s.notify}>
                     Вы еще ни с кем не начали диалог.
                     <div className={s.notifyDesc}>
