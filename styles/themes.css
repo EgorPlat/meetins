@@ -30,11 +30,13 @@ body {
     color: var(--text-color);
 }
 input {
+	border: 1px solid gray;
 	outline: none;
 	color: var(--inp-text-color);
 	background-color: transparent;
 }
 textarea {
+	border: 1px solid gray;
 	outline: none;
 	color: var(--inp-text-color);
 	background-color: transparent;

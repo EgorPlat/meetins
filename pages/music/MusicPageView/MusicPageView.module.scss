@@ -1,0 +1,70 @@
+.music {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    & .musicSearch {
+        display: grid;
+        grid-template-columns: calc(100% - 110px) 100px;
+        column-gap: 10px;
+        & .musicSearchInp {
+            padding: 5px;
+            font-size: 18px;
+        }
+        & .musicSearchBtn {
+            font-size: 18px;
+            background-color: rgba(10, 149, 255, 0.952);
+            border: none;
+        }
+        & .musicSearchBtn:hover {
+            color: black;
+            background-color: rgba(255, 251, 29, 0.952);
+        }
+    }
+    & .musicContent {
+        display: grid;
+        grid-template-columns: 1fr;
+        & .musicContentTitle {
+            font-size: 20px;
+        }
+        & .musicContentElement {
+            font-size: 15px;
+            display: grid;
+            align-items: center;
+            width: 60%;
+            grid-template-columns: 50px calc(100% - 115px) 50px;
+            min-height: 60px;
+            border: 1px solid gray;
+            padding: 5px;
+            column-gap: 15px;
+            margin-bottom: 10px;
+            & .musicContentElementLogo {
+
+            }
+            & .musicContentElementInfo {
+                
+            }
+            & .musicContentElementInfoActions {
+                cursor: pointer;
+                position: relative;
+                & .audio {
+                    width: 15px;
+                    height: 30px;
+                    position: absolute;
+                    opacity: 0;
+                    left: 8px;
+                    top: 0;
+                }
+            } 
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .music {
+        & .musicContent {
+            & .musicContentElement {
+                width: 100%;
+            }
+        }
+    }
+}
