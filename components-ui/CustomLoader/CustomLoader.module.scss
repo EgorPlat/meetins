@@ -1,19 +1,25 @@
 .customLoaderWrapper {
     display: grid;
+    width: 100%;
     grid-template-columns: 1fr;
-    height: calc(100vh - 20%);
+    height: 80%;
     justify-content: center;
     justify-items: center;
     align-items: center;
-    & .customLoader {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 3px solid rgb(0, 153, 255);
-        border-left-color: transparent;
-        border-right-color: transparent;
-        animation: rotate 1.5s infinite;
-    }
+}
+
+@keyframes logo_draw {
+	0% {stroke-dashoffset: 248;}
+    50% {stroke-dashoffset: 0;}
+    100% {stroke-dashoffset: -248;}
+}
+.logo {
+	stroke-dasharray: 248;
+	stroke-dashoffset: 248;
+}
+.start 
+.logo {
+	animation: logo_draw 2333ms linear 0ms forwards infinite;
 }
 
 @keyframes rotate {

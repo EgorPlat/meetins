@@ -12,20 +12,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 	const currentPage = useStore($currentPage)
 	let backgroundClass = ''
-	let footerTextColor = ''
-	let footerBackgroundColor = ''
 	if (currentPage === '/login') {
 		backgroundClass = s.loginPage
-		footerTextColor = '#ffff'
-		footerBackgroundColor = 'rgba(0,0,0,0)'
 	} else if (currentPage === '/register') {
 		backgroundClass = s.registerPage
-		footerTextColor = '#ffff'
-		footerBackgroundColor = 'rgba(0,0,0,0)'
 	} else if (currentPage === '/') {
 		backgroundClass = s.mainPage
-		footerTextColor = '#515151'
-		footerBackgroundColor = '#e5e5e5'
 	}
 	useEffect(() => {
 		if(route.asPath !== '/' && !route.asPath.includes('[' || ']')) {
@@ -37,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return ( 
 		<>
 			<div className={`${s.container} ${backgroundClass}`}>
-				{ route.asPath !== '/confirmation' && route.asPath !== '/login' && route.asPath !== '/register' &&
+				{ route.asPath !== '/confirmation' && route.asPath !== '/login' && route.asPath !== '/register' && route.asPath !== '/' &&
 					<Header />
 				}
 				<main className={s.main}>{children}</main>

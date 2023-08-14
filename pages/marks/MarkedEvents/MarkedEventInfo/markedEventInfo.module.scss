@@ -32,18 +32,6 @@
         cursor: pointer;
     }
 }
-.loader {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 3px solid rgb(0, 153, 255);
-    border-left-color: transparent;
-    border-bottom-color: transparent;
-    border-top-color: transparent;
-    animation: rotateMini 1.5s infinite;
-    margin-top: 40%;
-    margin-left: 40%;
-}
 
 @keyframes rotateMini {
     from {

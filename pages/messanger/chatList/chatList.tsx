@@ -5,6 +5,7 @@ import { getMyDialogs, isMyDialogsLoaded, myDialogs, setMyDialogs } from "../../
 import { $user } from "../../../global/store/store";
 import UserChatCard from "../userChatCard/userChatCard";
 import s from "./chatList.module.scss";
+import CustomLoader from "../../../components-ui/CustomLoader/CustomLoader";
  
 export default function ChatList(): JSX.Element {
 
@@ -34,7 +35,7 @@ export default function ChatList(): JSX.Element {
                     key={dialog.dialogId}
                     dialog={dialog}
                     authedUser={authedUser$}
-                />) : <div className={s.loader}></div>}
+                />) : <CustomLoader />}
             </div>
         </div>
     )

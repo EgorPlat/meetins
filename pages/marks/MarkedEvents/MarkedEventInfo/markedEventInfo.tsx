@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { IEventInfoCard } from "../../../../global/interfaces/events";
 import { deleteUserEvent, getEventById, setCurrentEventById } from "../../../../global/store/events_model";
 import s from "./markedEventInfo.module.scss";
+import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
 
 export default function MarkedEventInfo(props: {eventId: string}): JSX.Element {
 
@@ -27,7 +28,7 @@ export default function MarkedEventInfo(props: {eventId: string}): JSX.Element {
 
     return(
         <div className={s.markedEventInfo}>
-            {!currentEvent && <div className={s.loader}></div>}           
+            {!currentEvent && <CustomLoader />}           
             {currentEvent &&
                 <div className={s.markedEventInfoContent}>
                     <div className={s.image} onClick={goToEventInfo}>

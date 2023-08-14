@@ -31,7 +31,9 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 	useEffect(() => {
 		if( select === 'logOut' ) {
 			handleLogOut();
-			connection$.disconnect();
+			if (connection$) {
+				connection$.disconnect();
+			}
 			router.push('/login');
 			setNewConnection(null);	
 		}

@@ -4,13 +4,14 @@ import { $user } from "../../../global/store/store";
 import MarkedEventInfo from "./MarkedEventInfo/markedEventInfo";
 import s from "./markedEvents.module.scss";
 import Loader from "../../../components-ui/Loader/Loader";
+import CustomLoader from "../../../components-ui/CustomLoader/CustomLoader";
 
 export default function MarkedEvents(): JSX.Element {
 
     const user = useStore($user);
     
     if (user === null) {
-        return <Loader />
+        return <CustomLoader />
     }
     if (user.events.length === 0) {
         return (

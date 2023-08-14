@@ -22,7 +22,11 @@
         }
     }
 }
-
+@media screen and (max-width: 500px) {
+    .nav {
+        grid-template-rows: 30px 90%;
+    }
+}
 @media screen and (max-width: 420px) {
     .nav {
         & .menu {

@@ -17,9 +17,6 @@
         & a {
             text-decoration: none;
         }
-        & a:hover {
-            border-bottom: 2px solid black;
-        }
     }
 }
 .active {
@@ -65,7 +62,7 @@
     }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 550px) {
     .ul {
         display: flex;
         align-items: center;
@@ -81,31 +78,31 @@
         }
     }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .ul {
         & li {
             font-size: 21px;
         }
     }
 }
-@media screen and (max-width: 380px) {
-    .ul {
-        & li {
-            font-size: 20px;
-        }
-    }
-}
-@media screen and (max-width: 360px) {
-    .ul {
-        & li {
-            font-size: 19px;
-        }
-    }
-}
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 480px) {
     .ul {
         & li {
             font-size: 18px;
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .ul {
+        & li {
+            font-size: 16px;
+        }
+    }
+}
+@media screen and (max-width: 370px) {
+    .ul {
+        & li {
+            font-size: 15px;
         }
     }
 }

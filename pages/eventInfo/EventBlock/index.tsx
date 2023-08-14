@@ -3,10 +3,10 @@ import { IEventComments, IEventInfoCard } from "../../../global/interfaces/event
 import s from "./eventBlock.module.scss";
 import EventMoreInfo from "../EventMoreInfo";
 import CustomSlider from "../../../components-ui/CustomSlider/CustomSlider";
-import Loader from "../../../components-ui/Loader/Loader";
 import Image from "next/image";
 import { baseURL, isMobile } from "../../../global/store/store";
 import { useStore } from "effector-react";
+import CustomLoader from "../../../components-ui/CustomLoader/CustomLoader";
 
 
 export default function EventBlock(props: {
@@ -82,5 +82,5 @@ export default function EventBlock(props: {
             </div>
         )
     }
-    return <Loader />;
+    return <CustomLoader />;
 };

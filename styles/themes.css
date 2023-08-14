@@ -2,7 +2,6 @@ body {
 	background-color: var(--bg-color);
     color: var(--text-color);
 }
-
 [data-theme="white"] {
 	--border-color: #1C1E22;
     --bg-color: white;
@@ -59,4 +58,25 @@ select {
 option {
 	color: var(--text-color);
 	background-color: var(--bg-color)
+}
+
+.round {
+	width: 50px;
+	height: 50px;
+	background-color: white;
+	border-radius: 50%;
+}
+
+
+
+@keyframes testAnim {
+	100% {stroke-dashoffset: 0;}
+}
+.test {
+	stroke-dasharray: 510;
+	stroke-dashoffset: 510;
+}
+.start
+.test {
+	animation: testAnim 3333ms linear 0ms forwards;
 }

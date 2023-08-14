@@ -121,7 +121,6 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 			setIsUserLoaded(true);
 			instanseRouter$?.push(savedRoute);
 		} else {
-			setIsUserLoaded(true);
 			instanseRouter$?.push('/login');
 		}
 	})

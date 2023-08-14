@@ -37,6 +37,12 @@
 			background-color: rgb(221, 185, 24);
 			color: black;
 		}
+		& a {
+			color: white;
+		}
+		& a:hover {
+			color: rgb(75, 125, 235);
+		}
 		& .gender {
 			display: flex;
 			align-items: center;

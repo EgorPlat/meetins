@@ -18,6 +18,7 @@ export default function LeftNavMenu(): JSX.Element {
             </li>
             <li><Link href="/invites">{t('Приглашения')}</Link></li>
             <li><Link href="/marks">{t('Закладки')}</Link></li>
+            <li><Link href="/settings">{t('Музыка')}</Link></li>
         </ul> 
     )
 }
