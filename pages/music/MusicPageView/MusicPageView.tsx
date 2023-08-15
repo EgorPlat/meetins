@@ -1,7 +1,16 @@
 import { BsPlay } from 'react-icons/bs';
 import s from './MusicPageView.module.scss';
 
-export default function MusicPageView() {
+interface IMusicPageViewProps {
+    selectedMusic: string,
+    selectedMusicInfo: { currentTime: number, duration: number },
+    handleInithialMusic: (id: string) => void
+}
+export default function MusicPageView({
+    selectedMusic,
+    selectedMusicInfo,
+    handleInithialMusic
+}: IMusicPageViewProps) {
     return (
         <div className={s.music}>
             <div className={s.musicSearch}>
@@ -15,26 +24,40 @@ export default function MusicPageView() {
                         <div className={s.musicContentElement} key={el}>
                             <div className={s.musicContentElementLogo}>
                                 <img 
-                                    src="https://i1.sndcdn.com/artworks-YnWJxJ5thP5j4i3Y-KdEiUg-t500x500.jpg"
+                                    src="https://melodicc.com/wp-content/uploads/2021/09/Whats-Up-Danger.jpg"
                                     width="100%"
                                     height="100%"
                                 />
                             </div>
                             <div className={s.musicContentElementInfo}>
                                 <div className={s.musicContentElementInfoTitle}>
-                                    Fireman <span style={{color: "gray"}}>(3: 45)</span> 
+                                    What's up danger <span style={{color: "gray"}}>(3: 45)</span> 
                                 </div>
                                 <div className={s.musicContentElementInfoAuthor}>
-                                    Miyagi (feat with Эндшпиль)
+                                    Blackway, Black Caviar
+                                </div>
+                                <div className={s.musicContentElementInfoProgress}>
+                                    {
+                                        selectedMusic === String(el) ?
+                                        <progress 
+                                            value={selectedMusicInfo?.currentTime} 
+                                            max={selectedMusicInfo?.duration}
+                                        ></progress>
+                                        : <progress 
+                                            value={0} 
+                                            max={1}
+                                        ></progress>
+                                    }
                                 </div>
                             </div>
-                            <div className={s.musicContentElementInfoActions}>
-                                <BsPlay fontSize={30}/>
+                            <div className={s.musicContentElementInfoActions} >
+                                <BsPlay fontSize={30} />
                                 <audio
-                                    onFocus={(e) => console.log(e)}
+                                    id={String(el)}
+                                    onFocus={() => handleInithialMusic(String(el))}
                                     controls
                                     className={s.audio}
-                                    src='/IGotLove.mp3'
+                                    src='/danger.mp3'
                                 >
                                 </audio>
                             </div>
