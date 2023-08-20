@@ -66,3 +66,10 @@ export const turnOffAllMediaTracks = (navigator: Navigator) => {
         console.error('Ошибка:', error);
     });
 }
+
+export const getTimerFromSeconds = (seconds: number) => {
+    const maxMinutes = Math.floor(seconds / 60);
+    const maxSeconds = Math.floor(seconds - maxMinutes * 60);
+
+    return `${maxMinutes}:${maxSeconds}`;
+}

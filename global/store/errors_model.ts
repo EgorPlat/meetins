@@ -4,7 +4,7 @@ import { ICreatedError, IError } from "../interfaces/error";
 export const addNewError = createEvent<IError>();
 export const removeError = createEvent<number>();
 export const currentErrors = createStore<ICreatedError[]>([]).on(addNewError, (prev, newErrorText) => {
-    if (prev.length !== 0) return prev;
+    if (prev.map(error => error.text).includes(newErrorText.text)) return;
     return [...prev, { ...newErrorText, id: prev.length }];
 })
 currentErrors.on(removeError, (prev, errorId) => {

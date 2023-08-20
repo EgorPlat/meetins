@@ -20,7 +20,8 @@ export default function List(props: {list: IShortEventInfo[]}): JSX.Element {
                         style={{backgroundImage: `url(${event.images[0].image})`}}
                     >
                     </div>*/}
-                    <Image 
+                    <Image
+                        quality={100}
                         width="100%"
                         height="130px"
                         src={event.images[0].image}

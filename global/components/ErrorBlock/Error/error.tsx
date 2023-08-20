@@ -11,16 +11,16 @@ export const Error = (props: {
 
     useEffect(() => {
         const visibleTimeout = setTimeout(() => {
-            props.handleRemove(error);   
+            props.handleRemove(error);
+            setVisible(false);
         }, error.time);
-        console.log(visibleTimeout)
         return () => {
             clearTimeout(visibleTimeout);
         }
     }, []);
 
     return (
-        <div className={s.eachError}>
+        <div className={s.eachError} style={{ display: visible ? "block" : "none"}}>
             {error.text}
         </div>
     )

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MusicPageView from "./MusicPageView/MusicPageView";
+import { getListOfMusic } from "../../global/api_requests";
 
 export default function Music() {
 
@@ -27,6 +28,10 @@ export default function Music() {
             });
         };
     }, [selectedMusic]);
+
+    useEffect(() => {
+        getListOfMusic();
+    }, [])
 
     return (
         <PageContainer>

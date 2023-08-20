@@ -18,6 +18,7 @@ import '../styles/themes.css';
 import { setRouter } from '../global/store/router_model';
 import { useRouter } from 'next/router';
 import { getMyDialogs } from '../global/store/chat_model';
+import NotificationBlock from '../global/components/NotificationBlock/notificationBlock';
 
 function MyApp({ Component, pageProps }: AppProps) {
 

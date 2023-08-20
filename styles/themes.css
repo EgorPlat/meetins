@@ -11,7 +11,7 @@ body {
 }
   
 [data-theme="black"] {
-	--border-color: white;
+	--border-color: rgb(119, 119, 119);
     --bg-color: #1C1E22;
     --text-color: #d6dce5;
 	--h4BG-color: rgba(231, 231, 231, 0.181);

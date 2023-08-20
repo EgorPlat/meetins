@@ -9,7 +9,7 @@ export default function ErrorBlock() {
     const currentErrors$ = useStore(currentErrors);
 
     const handleRemove = (error: ICreatedError) => {
-        removeError(error.id);
+        removeError(error.id);    
     }
     
     return (

@@ -1,4 +1,4 @@
-import { FormControl, InputAdornment, InputLabel, OutlinedInput, Slider } from "@mui/material";
+import { Slider } from "@mui/material";
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -94,14 +94,6 @@ export default function SearchingPeople(): JSX.Element {
                 </div>
                 <div className={s.interests}>
                     <h3>Интересы</h3>
-                    <FormControl>
-                    <InputLabel htmlFor="outlined-adornment-amount">Найдите</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-amount"
-                        startAdornment={<InputAdornment position="start">&#128270;</InputAdornment>}
-                        label="Amount"
-                    />
-                    </FormControl>
                     { 
                         popularInterests.map((popular) => (
                             <div onClick={() => updateFilters("interests", popular)} className={s.eachPopular} key={popular}>{popular}</div>

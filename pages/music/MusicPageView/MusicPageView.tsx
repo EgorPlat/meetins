@@ -1,5 +1,6 @@
 import { BsPlay } from 'react-icons/bs';
 import s from './MusicPageView.module.scss';
+import { getTimerFromSeconds } from '../../../global/helpers/helper';
 
 interface IMusicPageViewProps {
     selectedMusic: string,
@@ -11,6 +12,7 @@ export default function MusicPageView({
     selectedMusicInfo,
     handleInithialMusic
 }: IMusicPageViewProps) {
+
     return (
         <div className={s.music}>
             <div className={s.musicSearch}>
@@ -20,49 +22,62 @@ export default function MusicPageView({
             <div className={s.musicContent}>
                 <div className={s.musicContentTitle}>Текущий плейлист</div>
                 {
-                    [1, 2, 3].map(el => (
-                        <div className={s.musicContentElement} key={el}>
-                            <div className={s.musicContentElementLogo}>
-                                <img 
-                                    src="https://melodicc.com/wp-content/uploads/2021/09/Whats-Up-Danger.jpg"
-                                    width="100%"
-                                    height="100%"
-                                />
-                            </div>
-                            <div className={s.musicContentElementInfo}>
-                                <div className={s.musicContentElementInfoTitle}>
-                                    What's up danger <span style={{color: "gray"}}>(3: 45)</span> 
+                    [1, 2, 3].map(el => {
+                        const musicFullTimer = getTimerFromSeconds(selectedMusicInfo?.duration);
+                        return (
+                            <div className={s.musicContentElement} key={el}>
+                                <div className={s.musicContentElementLogo}>
+                                    <img 
+                                        src="https://melodicc.com/wp-content/uploads/2021/09/Whats-Up-Danger.jpg"
+                                        width="100%"
+                                        height="100%"
+                                    />
                                 </div>
-                                <div className={s.musicContentElementInfoAuthor}>
-                                    Blackway, Black Caviar
+                                <div className={s.musicContentElementInfo}>
+                                    <div className={s.musicContentElementInfoTitle}>
+                                        What's up danger <span style={{color: "gray"}}>(3:36)</span> 
+                                    </div>
+                                    <div className={s.musicContentElementInfoAuthor}>
+                                        Blackway, Black Caviar
+                                    </div>
+                                    <div className={s.musicContentElementInfoProgress}>
+                                        {
+                                            selectedMusic === String(el) ?
+                                            <progress 
+                                                value={selectedMusicInfo?.currentTime} 
+                                                max={selectedMusicInfo?.duration}
+                                            ></progress>
+                                            : <progress 
+                                                value={0} 
+                                                max={1}
+                                            ></progress>
+                                        }
+                                        {
+                                            selectedMusic === String(el) &&
+                                            <span>
+                                            {getTimerFromSeconds(selectedMusicInfo?.currentTime) 
+                                            + '/' + 
+                                            musicFullTimer
+                                            }
+                                        </span>
+                                        }
+                                    </div>
                                 </div>
-                                <div className={s.musicContentElementInfoProgress}>
-                                    {
-                                        selectedMusic === String(el) ?
-                                        <progress 
-                                            value={selectedMusicInfo?.currentTime} 
-                                            max={selectedMusicInfo?.duration}
-                                        ></progress>
-                                        : <progress 
-                                            value={0} 
-                                            max={1}
-                                        ></progress>
-                                    }
+                                <div className={s.musicContentElementInfoActions} >
+                                    <BsPlay fontSize={30} />
+                                    <audio
+                                        loop
+                                        id={String(el)}
+                                        onFocus={() => handleInithialMusic(String(el))}
+                                        controls
+                                        className={s.audio}
+                                        src='/danger.mp3'
+                                    >
+                                    </audio>
                                 </div>
                             </div>
-                            <div className={s.musicContentElementInfoActions} >
-                                <BsPlay fontSize={30} />
-                                <audio
-                                    id={String(el)}
-                                    onFocus={() => handleInithialMusic(String(el))}
-                                    controls
-                                    className={s.audio}
-                                    src='/danger.mp3'
-                                >
-                                </audio>
-                            </div>
-                        </div>
-                    ))
+                        )
+                    })
                 }
             </div>
         </div>

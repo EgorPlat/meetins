@@ -81,9 +81,7 @@ export default function Login(): JSX.Element {
 					{ errors.password && <span className={s.errorSpan}>{errors.password.message}</span> }
 					{ errorMessage !== "" ? 
 					<div className={`row ${s.errorBlock}`}>
-						<div className={`col-md-12`}>
-								{t('Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова')}
-						</div>
+						{t('Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова')}
 					</div> : null }
 					<button type='submit' className={`${s.submitBtn} btn`} >
 						{t('Войти')}

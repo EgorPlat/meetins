@@ -43,6 +43,9 @@
             }
             & .musicContentElementInfo {
                 & .musicContentElementInfoProgress {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 10px;
                     & .musicContentElementInfoProgressElem {
                         width: 100px;
                         background-color: black;
