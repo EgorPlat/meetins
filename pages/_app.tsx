@@ -11,7 +11,6 @@ import Head from 'next/head';
 import '../i18n';
 import i18n from '../i18n';
 import Layout from '../global/components/Layout/Layout';
-import ErrorBlock from '../global/components/ErrorBlock/errorBlock';
 import CustomModal from '../components-ui/CustomModal/CustomModal';
 import '../styles/app.css';
 import '../styles/themes.css';
@@ -57,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				/>
 			</Head>
 			<Component {...pageProps} />
-			<ErrorBlock />
+			<NotificationBlock />
 			<CustomModal
 				isDisplay={isNotifyAdaptive}
 				changeModal={setIsNotifyAdaptive}

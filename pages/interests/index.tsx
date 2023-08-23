@@ -1,11 +1,11 @@
 import InterestsPageView from "./components/InterestsPageView/InterestsPageView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
-import { addNewError } from "../../global/store/errors_model";
+import { addNotification } from "../../global/store/notifications_model";
 
 export default function Interests() {
 
     const handleSendForm = () => {
-        addNewError({
+        addNotification({
             time: 3000,
             color: "green",
             textColor: "white",

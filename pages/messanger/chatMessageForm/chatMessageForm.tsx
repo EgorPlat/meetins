@@ -4,7 +4,7 @@ import { createdSendFileAndUploadActiveChat } from "../../../global/store/chat_m
 import Emoji from "../emoji/emoji";
 import s from "./chatMessageForm.module.scss";
 import { AiOutlineAudio, AiOutlineFileText, AiOutlineSend } from "react-icons/ai";
-import { addNewError } from "../../../global/store/errors_model";
+import { addNotification } from "../../../global/store/notifications_model";
 import { useUserMediaTracks } from "../../../global/hooks/useUserMediaTracks";
 
 export default function ChatMessageForm(
@@ -36,7 +36,7 @@ export default function ChatMessageForm(
 
     const handleMediaRecorder = () => {
         if (!props.isChatExists) {
-            addNewError({
+            addNotification({
                 text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
                 color: "black",
                 textColor: 'black',
@@ -64,7 +64,7 @@ export default function ChatMessageForm(
             const file = event.target.files[0];
             createdSendFileAndUploadActiveChat(file);
         } else {
-            addNewError({
+            addNotification({
                 text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
                 color: "black",
                 textColor: 'black',

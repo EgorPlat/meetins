@@ -1,11 +1,11 @@
-export interface IError {
+export interface INotification {
     text: string,
     time: number,
     color: string,
     textColor: string
 }
 
-export interface ICreatedError {
+export interface ICreatedNotification {
     id: number,
     text: string,
     time: number,

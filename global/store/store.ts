@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { createEffect, createEvent, createStore } from 'effector'
 import { User } from '../interfaces';
-import { addNewError } from './errors_model';
 import { instanseRouter } from './router_model';
 import { handleLogOut } from './login_model';
+import { addNotification } from './notifications_model';
 
 //export const baseURL = 'http://localhost:5000/';
 export const baseURL = 'https://meetins-egorplat.amvera.io/';
@@ -28,7 +28,7 @@ instance.interceptors.response.use((response) => {
 	if (ers >= 400 && ers <= 499) {
 		const { message } = error.response.data;
 		if (message) {
-			addNewError({
+			addNotification({
 				text: message,
 				color: "orange",
 				textColor: "black",
@@ -163,7 +163,7 @@ export const sendNewUserPost = createEffect(async (formData: FormData) => {
 	const response = await instance.post('users/addUserPost', formData);
 	if(response.status === 200) {
 		setUser(response.data);
-		addNewError({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000, textColor: "white" })
+		addNotification({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000, textColor: "white" })
 		window.location.reload();
 	}
 	return response;

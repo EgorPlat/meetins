@@ -1,4 +1,4 @@
-import { addNewError } from "../store/errors_model"
+import { addNotification } from "../store/notifications_model"
 
 export const validateEmailOrPhone = (value: string) =>
 	/^(?:\d{11}|\w+@\w+\.\w{2,3})$/.test(value) === false
@@ -30,19 +30,19 @@ export const isTypeOfFileAreVideo = (value: string) => {
 
 export const validatePost = (post) => {
 	if (post.title.length < 5) {
-		addNewError({ text: 'Минимальное название темы - 5 символов', time: 3000, color: 'orange', textColor: "black" });
+		addNotification({ text: 'Минимальное название темы - 5 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
 	}
 	if (post.description.length < 15) {
-		addNewError({ text: 'Минимальная длина описания - 15 символов', time: 3000, color: 'orange', textColor: "black" });
+		addNotification({ text: 'Минимальная длина описания - 15 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
 	}
     if (post.description.length > 100) {
-        addNewError({ text: 'Максимальная длина описания - 100 символов', time: 3000, color: 'orange', textColor: "black" });
+        addNotification({ text: 'Максимальная длина описания - 100 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
     }
     if (post.title.length > 20) {
-        addNewError({ text: 'Максимальное название темы - 20 символов', time: 3000, color: 'orange', textColor: "black" });
+        addNotification({ text: 'Максимальное название темы - 20 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
     }
     return true;

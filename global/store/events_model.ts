@@ -2,7 +2,7 @@ import { createEffect, createEvent, createStore } from "effector";
 import { IShortEventInfo, IEventInfoCard, IUnitedInvitesEvent, IInnerInviteEvent, IOuterInviteEvent, IEventComments } from "../interfaces/events";
 import { instance, setUser } from "./store";
 import { sample } from 'effector';
-import { addNewError } from "./errors_model";
+import { addNotification } from "./notifications_model";
 
 export const setCurrentEvents = createEvent<IShortEventInfo[]>();
 export const currentEvents = createStore<IShortEventInfo[]>([]).on(setCurrentEvents, (_, newEvents) => {
@@ -149,7 +149,7 @@ sample({
     fn: (response) => {
         return { text: "Успешно добавлено в 'Закладки'", time: 3000, color: "green", textColor: "white" }
     }, 
-    target: addNewError
+    target: addNotification
 })
 
 sample({ 
@@ -158,7 +158,7 @@ sample({
     fn: (response) => {
         return { text: "Возможно у вас пока нет приглашений!", time: 3000, color: "blue", textColor: "white" }
     }, 
-    target: addNewError
+    target: addNotification
 })
 
 sample({

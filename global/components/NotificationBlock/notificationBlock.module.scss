@@ -1,7 +1,16 @@
-.notificationBlock {
+.errorBlock {
+    text-align: center;
+    transform-style: flat;
+    perspective: 200px;
+    width: 200px;
+    min-height: 40px;
     position: fixed;
-    top: 0px;
-    right: 0px;
-    width: 300px;
-    min-height: 60px;
+    right: 0;
+    top: 1%;
+}
+
+@media screen and (max-width: 430px) {
+    .errorBlock {
+        width: 60%;
+    }
 }

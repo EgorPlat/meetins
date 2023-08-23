@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { addNewError } from '../../../../global/store/errors_model';
+import { addNewError } from '../../../../global/store/notifications_model';
 import s from './PostCommentForm.module.scss';
 
 export default function PostCommentForm(props: {
