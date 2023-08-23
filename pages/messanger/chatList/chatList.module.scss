@@ -1,15 +1,15 @@
 .chatList {
-    height: calc(100vh - 25px);
+    height: calc(100vh - 50px);
     & .list {
         width: 100%;
-        height: calc(100vh - 97px);
+        height: calc(100vh - 113px);
         overflow-x: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
     } 
     & .list::-webkit-scrollbar {
-        width: 12px;               /* ширина scrollbar */
+        width: 6px;               /* ширина scrollbar */
     }
     & .list::-webkit-scrollbar-track {
         background: transparent;        /* цвет дорожки */
