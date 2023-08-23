@@ -19,7 +19,7 @@ export default function ErrorBlock() {
                     <Error
                         handleRemove={handleRemove}
                         error={error} 
-                        key={error.text + `${index}`}
+                        key={error.text}
                     />
                 ))
             }
