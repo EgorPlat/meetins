@@ -10,6 +10,7 @@ import '../node_modules/reseter.css/css/reseter.min.css';
 import Head from 'next/head';
 import '../i18n';
 import i18n from '../i18n';
+import NotificationBlock from '../global/components/NotificationBlock/notificationBlock';
 import Layout from '../global/components/Layout/Layout';
 import CustomModal from '../components-ui/CustomModal/CustomModal';
 import '../styles/app.css';
@@ -17,7 +18,6 @@ import '../styles/themes.css';
 import { setRouter } from '../global/store/router_model';
 import { useRouter } from 'next/router';
 import { getMyDialogs } from '../global/store/chat_model';
-import NotificationBlock from '../global/components/NotificationBlock/notificationBlock';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
