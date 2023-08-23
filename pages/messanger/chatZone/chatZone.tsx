@@ -44,15 +44,9 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
         htmlElementIdForStopMedia: 'videoMessageStop' 
     });
 
-    useEffect(() => {
-        if (mediaChunks) {
-            setVideoMessageActive(false);
-            const blob = new Blob(mediaChunks, {
-                type: 'video/mp4',
-            });
-            createdSendFileAndUploadActiveChat(blob);
-        }
-    }, [mediaChunks]);
+    const handleBack = () => {
+        setActiveChat(defaultDialog);
+    }
 
     const sendForm = (inputValue: string) => {
         if(inputValue.length > 0) {
@@ -70,6 +64,16 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
             }
         })
     }
+    
+    useEffect(() => {
+        if (mediaChunks) {
+            setVideoMessageActive(false);
+            const blob = new Blob(mediaChunks, {
+                type: 'video/mp4',
+            });
+            createdSendFileAndUploadActiveChat(blob);
+        }
+    }, [mediaChunks]);
     
     useEffect(() => {
         return () => { 
@@ -106,6 +110,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                 <div className={s.userActionsList}>
                                     <div className={s.userActionsListElement}>Профиль</div>
                                     <div className={s.userActionsListElement}>Очистить чат</div>
+                                    <div className={s.userActionsListElement} onClick={handleBack}>Назад </div>
                                 </div>
                             }
                         </div>
