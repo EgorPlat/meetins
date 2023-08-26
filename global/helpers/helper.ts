@@ -68,6 +68,9 @@ export const turnOffAllMediaTracks = (navigator: Navigator) => {
 }
 
 export const getTimerFromSeconds = (seconds: number) => {
+    if (seconds === 0) {
+        return `0`;
+    }
     const maxMinutes = Math.floor(seconds / 60);
     const maxSeconds = Math.floor(seconds - maxMinutes * 60);
 

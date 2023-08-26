@@ -18,12 +18,15 @@ import '../styles/themes.css';
 import { setRouter } from '../global/store/router_model';
 import { useRouter } from 'next/router';
 import { getMyDialogs } from '../global/store/chat_model';
+import { MusicControlBlock } from '../global/components/MusicControlBlock/musicControlBlock';
+import { activeMusic } from '../global/store/music_model';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const connection$ = useStore(connection);
 	const {isMobile, isUnAdaptive} = useResize();
 	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
+	const activeMusic$ = useStore(activeMusic);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -41,7 +44,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setIsMobile(isMobile);
 		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);
-
 	
 	return (
 		<Layout>
@@ -57,6 +59,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 			</Head>
 			<Component {...pageProps} />
 			<NotificationBlock />
+			{
+				activeMusic$ && router.asPath !== '/music' &&
+				<MusicControlBlock />
+			}
 			<CustomModal
 				isDisplay={isNotifyAdaptive}
 				changeModal={setIsNotifyAdaptive}

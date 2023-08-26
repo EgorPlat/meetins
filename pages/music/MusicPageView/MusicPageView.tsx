@@ -1,18 +1,18 @@
 import { BsPlay } from 'react-icons/bs';
 import s from './MusicPageView.module.scss';
 import { getTimerFromSeconds } from '../../../global/helpers/helper';
+import { IActiveMusic } from '../../../global/interfaces/music';
 
 interface IMusicPageViewProps {
     selectedMusic: string,
     selectedMusicInfo: { currentTime: number, duration: number },
-    handleInithialMusic: (id: string) => void
+    handleInithialMusic: (activeMusic: IActiveMusic) => void
 }
 export default function MusicPageView({
     selectedMusic,
     selectedMusicInfo,
     handleInithialMusic
 }: IMusicPageViewProps) {
-
     return (
         <div className={s.music}>
             <div className={s.musicSearch}>
@@ -23,7 +23,7 @@ export default function MusicPageView({
                 <div className={s.musicContentTitle}>Текущий плейлист</div>
                 {
                     [1, 2, 3].map(el => {
-                        const musicFullTimer = getTimerFromSeconds(selectedMusicInfo?.duration);
+                        const musicFullTimer = getTimerFromSeconds(+selectedMusicInfo?.duration);
                         return (
                             <div className={s.musicContentElement} key={el}>
                                 <div className={s.musicContentElementLogo}>
@@ -55,7 +55,7 @@ export default function MusicPageView({
                                         {
                                             selectedMusic === String(el) &&
                                             <span>
-                                            {getTimerFromSeconds(selectedMusicInfo?.currentTime) 
+                                            {getTimerFromSeconds(+selectedMusicInfo?.currentTime) 
                                             + '/' + 
                                             musicFullTimer
                                             }
@@ -68,7 +68,14 @@ export default function MusicPageView({
                                     <audio
                                         loop
                                         id={String(el)}
-                                        onFocus={() => handleInithialMusic(String(el))}
+                                        onFocus={() => handleInithialMusic({
+                                            id: String(el),
+                                            title: 'test',
+                                            src: '/danger.mp3',
+                                            image: 'https://melodicc.com/wp-content/uploads/2021/09/Whats-Up-Danger.jpg',
+                                            duration: selectedMusicInfo?.duration,
+                                            currentTime: selectedMusicInfo?.currentTime
+                                        })}
                                         controls
                                         className={s.audio}
                                         src='/danger.mp3'

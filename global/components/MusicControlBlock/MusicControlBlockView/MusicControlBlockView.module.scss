@@ -1,0 +1,37 @@
+@keyframes showUp {
+    from {
+        left: -100px;
+    }
+    to {
+        left: 5px;
+    }
+}
+.wrapper {
+    cursor: pointer;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    top: 5px;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: rgb(48, 48, 48);
+    animation: showUp 1s forwards;
+    & .content {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border: 1px solid white;
+        background-size: cover;
+        border-radius: 5px;
+        & .status {
+            font-weight: 600;
+            font-size: 12px;
+        }
+    }
+}
