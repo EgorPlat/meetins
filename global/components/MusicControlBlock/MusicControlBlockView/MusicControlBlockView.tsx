@@ -10,7 +10,7 @@ export const MusicControlBlockView = (props: {
         <div className={s.wrapper}>
             <div className={s.content} style={{ backgroundImage: `url(${props.activeMusic.image})` }}>
                 <span className={s.status}>Играет</span>
-                <audio src={props.activeMusic.src} ref={props.audioRef} loop/>
+                <audio src={props.activeMusic.src} ref={props.audioRef} loop id="musicPageBlock" />
             </div>
         </div>
     )

@@ -9,7 +9,6 @@ import {
     createdSendFileAndUploadActiveChat,
     createdSendMessageAndUploadActiveChat,
     isMessageWithFileLoaded,
-    sendFileAndUploadActiveChat,
     setActiveChat
 } from "../../../global/store/chat_model";
 import { $onlineUsers, $user, baseURL } from "../../../global/store/store";
@@ -19,7 +18,6 @@ import Loader from "../../../components-ui/Loader/Loader";
 import { defaultDialog } from "../../../global/mock/defaultDialog";
 import { MdOutlineOndemandVideo } from "react-icons/md";
 import CustomModal from "../../../components-ui/CustomModal/CustomModal";
-import { addNewError } from "../../../global/store/notifications_model";
 import { useUserMediaTracks } from "../../../global/hooks/useUserMediaTracks";
 
 interface IChatZoneProps {

@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<Component {...pageProps} />
 			<NotificationBlock />
 			{
-				activeMusic$ && router.asPath !== '/music' &&
+				activeMusic$ && 
 				<MusicControlBlock />
 			}
 			<CustomModal

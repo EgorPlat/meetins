@@ -64,11 +64,8 @@ export default function MusicPageView({
                                     </div>
                                 </div>
                                 <div className={s.musicContentElementInfoActions} >
-                                    <BsPlay fontSize={30} />
-                                    <audio
-                                        loop
-                                        id={String(el)}
-                                        onFocus={() => handleInithialMusic({
+                                    <BsPlay fontSize={30}
+                                        onClick={() => handleInithialMusic({
                                             id: String(el),
                                             title: 'test',
                                             src: '/danger.mp3',
@@ -76,11 +73,7 @@ export default function MusicPageView({
                                             duration: selectedMusicInfo?.duration,
                                             currentTime: selectedMusicInfo?.currentTime
                                         })}
-                                        controls
-                                        className={s.audio}
-                                        src='/danger.mp3'
-                                    >
-                                    </audio>
+                                    />
                                 </div>
                             </div>
                         )
