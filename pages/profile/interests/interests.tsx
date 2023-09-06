@@ -35,11 +35,6 @@ export default function Interests(props: {
         setIsChangeMode(false);       
     }
 
-    useEffect(() => {
-        return () => {
-            setCurrentProfileUser({} as User);
-        }
-    }, [])
     useEffect(() => {  
         if (props.user?.interests) {
             getUserInterests(props.user.interests).then(res => {

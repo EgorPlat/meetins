@@ -67,12 +67,17 @@ function Profile(): JSX.Element {
         setIsInviteModal(false);
     }
 
+    useEffect(() => {
+        return () => {
+            setCurrentProfileUser({} as User);
+        }
+    }, [])
     useEffect( () => {
         if (!route.isReady) return;
         getDataForProfilePage(String(route.query.id));
     }, [route.isReady, route.asPath]);
-
-    if (isConnected && userLoaded && currentUserLoaded) {
+    
+    if (currentUserLoaded) {
         return(
             <PageContainer>
                 <ProfileView

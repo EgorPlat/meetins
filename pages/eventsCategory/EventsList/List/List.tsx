@@ -15,15 +15,10 @@ export default function List(props: {list: IShortEventInfo[]}): JSX.Element {
                     key={event.id}
                     onClick={() => router.push(`/eventInfo/${event.id}`)}
                 >
-                    {/*<div 
-                        className={s.eventViewZone}
-                        style={{backgroundImage: `url(${event.images[0].image})`}}
-                    >
-                    </div>*/}
                     <Image
-                        quality={100}
-                        width="100%"
-                        height="130px"
+                        layout="responsive"
+                        width="100px"
+                        height="40px"
                         src={event.images[0].image}
                     />
                     <div className={s.eventDescription}>
