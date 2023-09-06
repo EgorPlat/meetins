@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { addNewError } from '../../../../global/store/notifications_model';
 import s from './PostCommentForm.module.scss';
+import { addNotification } from '../../../../global/store/notifications_model';
 
 export default function PostCommentForm(props: {
     onSubmitComment: (commentText: string) => void
@@ -12,7 +12,7 @@ export default function PostCommentForm(props: {
     
     const handleSubmit = () => {
         if (commentText?.length < 5) {
-            addNewError({ text: "Длина комментария минимум 5 символов", color: "orange", time: 3000, textColor: "black" });
+            addNotification({ text: "Длина комментария минимум 5 символов", color: "orange", time: 3000, textColor: "black" });
             return;
         }
         props.onSubmitComment(commentText);

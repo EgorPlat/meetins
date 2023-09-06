@@ -101,7 +101,7 @@ export const createdSendFileAndUploadActiveChat = attach({
     mapParams: (file: any, dataStore) => {
       return {file: file, dataStore: dataStore}
     },
-  })
+})
 
 
 

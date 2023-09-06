@@ -18,8 +18,7 @@ import {
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
 import { events, goals, popularInterests } from "../../../global/constants";
-
-
+import { $onlineUsers } from "../../../global/store/store";
 
 export default function SearchingPeople(): JSX.Element {
 
@@ -29,7 +28,8 @@ export default function SearchingPeople(): JSX.Element {
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const filterParams$: Params = useStore(filterParams);
     const pending: boolean = useStore(isPagePending);
-
+    const userOnlineList = useStore($onlineUsers);
+    
     const [clearScrollData, setClearScrollData] = useState<boolean>(false);
     const handleClearedScroll = () => {
         setClearScrollData(false);
@@ -88,8 +88,7 @@ export default function SearchingPeople(): JSX.Element {
                     { goals.map((goal) => <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>)}
                 </div>
                 <div className={s.events}>
-                    <h3>События</h3>    
-                    <h6>Предстоящие</h6>
+                    <h3>События</h3>
                     { events.map((event) => <div onClick={() => updateFilters("event", event)} className={s.eachEvent} key={event}>{event}</div>)}
                 </div>
                 <div className={s.interests}>

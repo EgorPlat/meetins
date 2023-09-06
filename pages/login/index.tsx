@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
-import { isEmail, isPassword, isPhoneNumber } from '../../global/helpers/validate'
+import { isEmail, isPassword } from '../../global/helpers/validate'
 import { sendLogData, setLoginDetails } from '../../global/store/login_model'
 import loginIcon from '../../public/images/login.svg'
 import passIcon from '../../public/images/pass.svg'
 import s from '../../styles/pageStyles/auth.module.scss'
-import Router from 'next/router'
 import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useTranslation } from 'react-i18next'
@@ -30,14 +29,7 @@ export default function Login(): JSX.Element {
 		sendLogData({
 			email: login,
 			password: pass,
-		}).then((res: any) => {
-			if(res.status <= 201) {
-				Router.push(`/profile/${res.data.profile.user.login}`);
-			} else {
-				setErrorMessage(() => "Error.")
-			}
-		}
-		)
+		});
 	}
 	return (
 		<div className={s.cardWrapper}>

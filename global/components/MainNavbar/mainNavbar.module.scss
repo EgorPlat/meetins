@@ -21,7 +21,7 @@
 	& select {
 		margin-left: 10px;
 		cursor: pointer;
-		border: none;
+		border: 1px solid transparent;
 		outline: none;
 		& option {
 			cursor: pointer;

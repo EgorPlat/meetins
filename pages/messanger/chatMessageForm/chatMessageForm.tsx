@@ -84,7 +84,7 @@ export default function ChatMessageForm(
             <div className={s.formInput}>
                 <input ref={messageRef} type="text" placeholder={t(props.placeholder)}/>
                 <div className={s.fileInput}>
-                    <AiOutlineFileText fontSize={30} />
+                    <AiOutlineFileText fontSize={35} color="gray" />
                     <input type="file" onChange={(e) => onSendNewFile(e)}/>
                 </div>
                 <Emoji addSmileHandler={addSmileHandler} />
@@ -92,7 +92,8 @@ export default function ChatMessageForm(
                     !isMediaRecorderActive
                     ? 
                     <AiOutlineAudio
-                        fontSize={35}  
+                        color="gray"
+                        fontSize={40}  
                         onClick={handleMediaRecorder}
                     />
                     : 
@@ -100,7 +101,7 @@ export default function ChatMessageForm(
                 }
                 {
                     props.isLoaded 
-                        ? <AiOutlineSend fontSize={35} onClick={sendForm} />
+                        ? <AiOutlineSend fontSize={40} onClick={sendForm} color="gray" />
                         : <Loader />
                 }
             </div>

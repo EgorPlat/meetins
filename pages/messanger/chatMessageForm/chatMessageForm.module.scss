@@ -11,7 +11,9 @@
         column-gap: 5px;
         align-items: center;
         width: 100%;
-        border: 1px solid var(--border-color);
+        border: none;
+        font-size: 18px;
+        //border: 1px solid var(--border-color);
         height: 50px;
         & input {
             width: 100%;
