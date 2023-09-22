@@ -30,13 +30,13 @@ export default function MeetingsPageView(props: {
                     className={props.currentMenu === 2 ? s.activeActionMenu : s.actionMenu}
                     onClick={() => props.setCurrentMenu(2)}
                 >
-                    Будущие встречи ({ props.currentMeetings.furtherMeetings.length })
+                    Будущие встречи ({ props.currentMeetings?.furtherMeetings.length })
                 </div>
                 <div 
                     className={props.currentMenu === 3 ? s.activeActionMenu : s.actionMenu}
                     onClick={() => props.setCurrentMenu(3)}
                 >
-                    Завершенные встречи ({ props.currentMeetings.previousMeetings.length })
+                    Завершенные встречи ({ props.currentMeetings?.previousMeetings.length })
                 </div>
             </div>
             <div className={s.content}>
