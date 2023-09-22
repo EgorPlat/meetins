@@ -28,13 +28,15 @@ export default function MusicPageView({
             <div className={s.musicSearch}>
                 <input className={s.musicSearchInp} type='text' placeholder='Введите название музыкальной композиции' />
                 <button className={s.musicSearchBtn} >Искать</button>
-                <div className={s.addMusic}>
+            </div>
+            <div className={s.addMusic}>
                     Хотите добавить свою композицию?
-                    <PiMusicNotesPlus fontSize={25}
+                    <PiMusicNotesPlus
+                        className={s.controls}
+                        fontSize={25}
                         onClick={() => handleSwapMusicModal(true)}
                     />
                 </div>
-            </div>
             <div className={s.musicContent}>
                 <div className={s.musicContentTitle}>Все композиции от других исполнителей и пользователей сервиса:</div>
                 {

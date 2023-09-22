@@ -35,10 +35,12 @@ export const MusicPlayer = (props: {
                     {
                         props.isMusicSelected ?
                         <progress 
+                            className={s.musicContentElementInfoProgressElem}
                             value={props.selectedMusicInfo?.currentTime} 
                             max={props.selectedMusicInfo?.duration}
                         ></progress>
-                        : <progress 
+                        : <progress
+                            className={s.musicContentElementInfoProgressElem}
                             value={0} 
                             max={1}
                         ></progress>
@@ -58,7 +60,8 @@ export const MusicPlayer = (props: {
                 {
                     !props.isMusicSelected 
                     ?
-                    <BsPlay 
+                    <BsPlay
+                        className={s.controls}
                         fontSize={30}
                         onClick={() => props.handleStartMusic({
                             id: String(props.selectedMusic),
@@ -70,7 +73,8 @@ export const MusicPlayer = (props: {
                         })}
                     />
                     : 
-                    <LuStretchVertical 
+                    <LuStretchVertical
+                        className={s.controls}
                         fontSize={22}
                         onClick={() => props.handleStopMusic()}
                     />

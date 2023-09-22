@@ -20,7 +20,7 @@
             & .musicContentElementInfoProgressElem {
                 width: 100px;
                 background-color: black;
-                height: 2px;
+                height: 10px;
             }
         }
     }
@@ -36,4 +36,10 @@
             top: 0;
         }
     } 
+}
+
+@media screen and (max-width: 600px) {
+    .musicContentElement {
+        width: 100%;
+    }
 }
