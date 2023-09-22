@@ -13,7 +13,7 @@ export default function FurtherMeetings(props: {
         <div className={s.furtherMeetings}>
             <div className={s.meetingsList}>
                 {
-                    props.data.map((el) => (
+                    props.data?.map((el) => (
                         <div className={s.meeting} key={el.meetingId}>
                             <img src={baseURL + el.preview} width="75px" height="75px" />
                             <div className={s.content}>
