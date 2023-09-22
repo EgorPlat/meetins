@@ -1,0 +1,39 @@
+.musicContentElement {
+    font-size: 15px;
+    display: grid;
+    align-items: center;
+    width: 60%;
+    grid-template-columns: 50px calc(100% - 125px) 50px;
+    min-height: 60px;
+    border: 1px solid gray;
+    padding: 5px;
+    column-gap: 15px;
+    margin-bottom: 10px;
+    & .musicContentElementLogo {
+
+    }
+    & .musicContentElementInfo {
+        & .musicContentElementInfoProgress {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            & .musicContentElementInfoProgressElem {
+                width: 100px;
+                background-color: black;
+                height: 2px;
+            }
+        }
+    }
+    & .musicContentElementInfoActions {
+        cursor: pointer;
+        position: relative;
+        & .audio {
+            width: 15px;
+            height: 30px;
+            position: absolute;
+            opacity: 0;
+            left: 8px;
+            top: 0;
+        }
+    } 
+}

@@ -22,7 +22,7 @@ export const MusicControlBlock = () => {
             audioRef.current.addEventListener("timeupdate", handleTimeUpdate)
         }
         return () => {
-            audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+            audioRef?.current?.removeEventListener("timeupdate", handleTimeUpdate);
         }
     }, [activeMusic$]);
 

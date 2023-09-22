@@ -55,7 +55,7 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                       <img src={baseURL + el.images[0]} />
                     </div>
                     <div className={s.postDescription}>
-                      {el.description}
+                      Описание: {el.description}
                     </div>
                     <div className={s.postActions}>
                       <div className={s.postActionsLikes}>

@@ -13,6 +13,7 @@ export default function Card(props: ICardProps): JSX.Element {
 	const pushToCategory = () => {
 		router.push(`eventsCategory/${props.categoryRoute}`);
 	}
+
 	return (
 		<div style = {{ backgroundImage: `url(${props.img_src})`, backgroundSize: `cover`,}} className={s.card} onClick = {pushToCategory}>
             <h2>{props.name}</h2>

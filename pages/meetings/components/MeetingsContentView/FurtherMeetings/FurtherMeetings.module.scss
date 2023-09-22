@@ -1,9 +1,31 @@
 .furtherMeetings {
-    & .title {
+    & .meetingsList {
         display: flex;
         align-items: center;
         column-gap: 10px;
         font-size: 14px;
-        justify-content: center;
+        & .meeting {
+            width: 100%;
+            min-width: 322px;
+            display: grid;
+            grid-template-columns: 75px calc(100% - 90px) 20px;
+            column-gap: 5px;
+            padding: 5px 0px 5px 5px;
+            border: 1px solid var(--border-color);
+            & .content {
+                display: grid;
+                grid-template-columns: 1fr;
+                text-align: left;
+                & .title {
+                    font-weight: 700;
+                    display: flex;
+                    align-items: center;
+                    column-gap: 10px;
+                }
+                & .date {
+                    color: gray;
+                }
+            }
+        }
     }
 }
