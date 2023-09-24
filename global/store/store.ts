@@ -119,6 +119,8 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	getUserData().then( (res) => {
 		if(res.status === 200) {
 			setIsUserLoaded(true);
+			console.log(savedRoute);
+			
 			instanseRouter$?.push(savedRoute);
 		} else {
 			instanseRouter$?.push('/login');

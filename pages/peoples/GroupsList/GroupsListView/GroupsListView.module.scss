@@ -1,0 +1,107 @@
+.defaultTitle {
+    font-size: 15px;
+}
+.groupsListView {
+    width: 98%;
+    text-align: justify;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    & .groupsFilters {
+        & .title {
+            @extend .defaultTitle;
+            color: gray;
+        }   
+        & .option {
+            font-size: 15px;
+            float: right;
+            cursor: pointer;
+            color: white;
+            margin-left: 5px;
+        }
+        & .option:hover {
+            color: var(--default-color);
+        }
+    }
+    & .groupsContent {
+        & .title {
+            @extend .defaultTitle
+        }
+        & .list {
+            & .group {
+                display: grid;
+                grid-template-columns: 90px calc(100% - 310px) 230px;
+                padding: 10px;
+                & .image {
+                    width: 80px;
+                    height: 80px;
+                    & img {
+                        border: 2px solid white;
+                        border-radius: 50%;
+                    }
+                }
+                & .info {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    font-size: 15px;
+                    & .name {
+                        color: var(--default-color);
+                    }
+                    & .type {
+                        
+                    }
+                    & .followers {
+                        
+                    }
+                }
+                & .actions {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 5px;
+                    & button {
+                        font-size: 16px;
+                        border: none;
+                        background-color: rgb(37, 37, 91);
+                        padding: 7px;
+                        border-radius: 100px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .groupsListView {
+        & .groupsContent {
+            & .list {
+                & .group {
+                    grid-template-columns: 90px calc(100% - 190px) 100px;
+                    & .actions {
+                        display: grid;
+                        grid-template-columns: 1fr;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .groupsListView {
+        & .groupsContent {
+            & .list {
+                & .group {
+                    grid-template-columns: 90px calc(100% - 190px) 100px;
+                    & .info {
+                        font-size: 13px;
+                    }
+                    & .actions {
+                        & button {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

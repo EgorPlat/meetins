@@ -46,6 +46,13 @@
                 font-size: 16px;
                 color: rgb(35, 193, 255);
             }
+            & .vied {
+                font-size: 15px;
+                color: gray;
+                & .count {
+                    color: rgb(32, 200, 35);
+                }
+            }
             & .userName {
                 display: flex;
                 align-items: center;

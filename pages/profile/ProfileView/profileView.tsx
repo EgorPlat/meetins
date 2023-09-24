@@ -100,6 +100,10 @@ export default function ProfileView(props: {
                                 <div className={s.lastActivity}>
                                     последнее посещение: Сегодня
                                 </div>
+                                <div className={s.vied}>
+                                    за последние 24 часа профиль просмотрен:
+                                    <span className={s.count}> 150 раз</span>
+                                </div>
                             </div>
                             { 
                                 props.currentUser.login !== props.authedUser.login ?

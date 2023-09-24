@@ -8,6 +8,7 @@ body {
     --text-color: black;
 	--h4BG-color: rgba(176, 176, 176, 0.326);
 	--inp-text-color: black;
+	--default-color: #3db2ff;
 }
   
 [data-theme="black"] {
@@ -16,6 +17,7 @@ body {
     --text-color: #d6dce5;
 	--h4BG-color: rgba(231, 231, 231, 0.181);
 	--inp-text-color: gray;
+	--default-color: #3db2ff;
 	::-webkit-calendar-picker-indicator {
 		filter: invert(1);
 	}

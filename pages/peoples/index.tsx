@@ -5,6 +5,7 @@ import LentaList from "./LentaList/LentaList";
 import s from "./peoples.module.scss";
 import SearchingPeople from "./SearchingPeople/SearchingPeople";
 import Head from "next/head";
+import { GroupsList } from "./GroupsList/GroupsList";
 
 export default function Peoples(): JSX.Element {
 
@@ -25,14 +26,24 @@ export default function Peoples(): JSX.Element {
                     />
                 </Head>
                 <div className={s.chapters}>
-                    <button onClick={() => setCurrentChapter('searching')}>Поиск людей</button>
-                    <button onClick={() => setCurrentChapter('list')}>Лента</button>
-                    <button onClick={() => setCurrentChapter('groups')}>Сообщества</button>
+                    <button 
+                        onClick={() => setCurrentChapter('searching')}
+                        className={currentChapter === 'searching' ? s.selectedChapter : s.notSelectedChapter}
+                    >Поиск людей</button>
+                    <button 
+                        onClick={() => setCurrentChapter('list')}
+                        className={currentChapter === 'list' ? s.selectedChapter : s.notSelectedChapter}
+                    >Лента</button>
+                    <button 
+                        onClick={() => setCurrentChapter('groups')}
+                        className={currentChapter === 'groups' ? s.selectedChapter : s.notSelectedChapter}
+                    >Сообщества</button>
                 </div>
                 <div className={s.activeChapter}>
                     {
-                        currentChapter === 'searching' ? <SearchingPeople/> :
-                        currentChapter === 'list' ? <LentaList/> : null
+                        currentChapter === 'searching' ? <SearchingPeople /> :
+                        currentChapter === 'list' ? <LentaList /> : 
+                        currentChapter === 'groups' && <GroupsList />
                     }
                 </div>
             </div>
