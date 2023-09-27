@@ -1,7 +1,11 @@
+import { IGroup } from '../../../../global/interfaces/groups';
+import { baseURL } from '../../../../global/store/store';
 import s from './GroupsListView.module.scss';
-import Image from 'next/image';
 
-export const GroupsListView = () => {
+export const GroupsListView = (props: {
+    groupsList: IGroup[],
+    handleGoToGroup: (groupId: IGroup) => void
+}) => {
     return (
         <div className={s.groupsListView}>
             <div className={s.groupsFilters}>
@@ -14,22 +18,26 @@ export const GroupsListView = () => {
             <div className={s.groupsContent}>
                 <div className={s.list}>
                     {
-                        [1, 2, 3].map(el => (
-                            <div className={s.group} key={el}>
+                        props.groupsList.map(el => (
+                            <div className={s.group} key={el.groupId}>
                                 <div className={s.image}>
                                     <img 
-                                        src="https://eusp.org/sites/default/files/news/preview/2019/l_6643290037_7ac713ccf1_b.jpg"
+                                        src={baseURL + el.mainAvatar}
                                         width="80px"
                                         height="80px"
                                     />
                                 </div>
                                 <div className={s.info}>
-                                    <div className={s.name}>Учимся рисовать</div>
+                                    <div className={s.name}>{el.name}</div>
                                     <div className={s.type}>Рисование, искусство, живопись</div>
-                                    <div className={s.followers}>Участников: <span style={{color: 'gray'}}>15.0k</span></div>
+                                    <div className={s.followers}>Участников: 
+                                        <span style={{color: 'gray'}}> {el.membersId.length}</span>
+                                    </div>
                                 </div>
                                 <div className={s.actions}>
-                                    <button>Присоединиться</button>
+                                    <button
+                                        onClick={() => props.handleGoToGroup(el)}    
+                                    >Присоединиться</button>
                                     <button>Перейти</button>
                                 </div>
                             </div>

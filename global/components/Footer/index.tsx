@@ -10,7 +10,8 @@ export default function Footer(props: {
 	backgroundColor: string
 }): JSX.Element {
 	return (
-		<footer
+		null
+		/*<footer
 			style={{ backgroundColor: props.backgroundColor }}
 			className={`${s.footer} ${s.container}`}>
 			<div className={'_container'}>
@@ -48,6 +49,6 @@ export default function Footer(props: {
 					</div>
 				</div>
 			</div>
-		</footer>
+		</footer>*/
 	)
 }

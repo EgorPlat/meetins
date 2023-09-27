@@ -37,7 +37,7 @@ export const validatePost = (post) => {
 		addNotification({ text: 'Минимальная длина описания - 15 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
 	}
-    if (post.description.length > 100) {
+    if (post.description.length > 350) {
         addNotification({ text: 'Максимальная длина описания - 100 символов', time: 3000, color: 'orange', textColor: "black" });
         return false;
     }
