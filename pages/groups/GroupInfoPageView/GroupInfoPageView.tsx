@@ -7,25 +7,25 @@ import s from './GroupInfoPageView.module.scss';
 import { FiSettings } from 'react-icons/fi';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 
-export const GroupInfoPageView = (props: {
+export default function GroupInfoPageView (props: {
     groupInfo: IGroup,
     groupMembersInfo: IGroupMembersInfo[],
     isAutherUserCreator: boolean,
     handleOpenGroupSettings: () => void,
     isSettingsGroupOpen: boolean,
-}) => {
+}) {
     return (
         <div className={s.groupInfo}>
             <div 
                 className={s.head}
-                style={{ backgroundImage: `url(${baseURL}${props.groupInfo.headAvatar})` }}
+                style={{ backgroundImage: `url(${baseURL}${props.groupInfo?.headAvatar})` }}
             >
                 <div className={s.subHead}>
                     <div 
                         className={s.mainAvatar}
-                        style={{ backgroundImage: `url(${baseURL}${props.groupInfo.mainAvatar})` }}
+                        style={{ backgroundImage: `url(${baseURL}${props.groupInfo?.mainAvatar})` }}
                     ></div>
-                    <div className={s.title}>{props.groupInfo.name}</div>
+                    <div className={s.title}>{props.groupInfo?.name}</div>
                     <div className={s.settings}>
                         {
                             props.isAutherUserCreator && 
@@ -38,12 +38,12 @@ export const GroupInfoPageView = (props: {
             </div>
             <div className={s.postForm}>
                 Создать новый пост? <button className={s.actionBtn}>Добавить публикацию</button>
-                <span className={s.countPosts}>Публикаций в сообществе - {props.groupInfo.posts?.length}</span>
+                <span className={s.countPosts}>Публикаций в сообществе - {props.groupInfo?.posts?.length}</span>
             </div>
             <div className={s.content}>
                 <div className={s.postList}>
                     {
-                      props.groupInfo.posts?.map(el => (
+                      props.groupInfo?.posts?.map(el => (
                             <div className={s.post} key={el.id}>
                                 <div className={s.title}>
                                     {el.id}. {el.title} <span className={s.date}>{customizeDateToYYYYMMDDFormat(el.date)}</span>
@@ -75,7 +75,7 @@ export const GroupInfoPageView = (props: {
                     Участники: 1
                     <div className={s.members}>
                         {
-                            props.groupMembersInfo.map(el => (
+                            props.groupMembersInfo?.map(el => (
                                 <div 
                                     className={s.member} 
                                     key={el.login}

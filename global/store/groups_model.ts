@@ -3,7 +3,7 @@ import { IGroup, IGroupMembersInfo } from "../interfaces/groups";
 import { instance } from "./store";
 
 export const setGroupsList = createEvent<IGroup[]>();
-export const groupsList = createStore<IGroup[]>([]).on(setGroupsList, (_, newGroupsList) => {
+export const groupsList = createStore<IGroup[]>([] as IGroup[]).on(setGroupsList, (_, newGroupsList) => {
     return newGroupsList;
 })
 export const setActiveGroup = createEvent<IGroup>();

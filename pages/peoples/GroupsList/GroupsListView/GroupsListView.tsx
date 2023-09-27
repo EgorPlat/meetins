@@ -2,10 +2,10 @@ import { IGroup } from '../../../../global/interfaces/groups';
 import { baseURL } from '../../../../global/store/store';
 import s from './GroupsListView.module.scss';
 
-export const GroupsListView = (props: {
+export default function GroupsListView (props: {
     groupsList: IGroup[],
     handleGoToGroup: (groupId: IGroup) => void
-}) => {
+}) {
     return (
         <div className={s.groupsListView}>
             <div className={s.groupsFilters}>
@@ -18,7 +18,7 @@ export const GroupsListView = (props: {
             <div className={s.groupsContent}>
                 <div className={s.list}>
                     {
-                        props.groupsList.map(el => (
+                        props.groupsList?.map(el => (
                             <div className={s.group} key={el.groupId}>
                                 <div className={s.image}>
                                     <img 

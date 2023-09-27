@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
 import { getGroupById, getGroupMembersInfo, groupInfo, groupMembersInfo } from "../../global/store/groups_model";
 import { useStore } from "effector-react";
-import { GroupInfoPageView } from "./GroupInfoPageView/GroupInfoPageView";
+import GroupInfoPageView from "./GroupInfoPageView/GroupInfoPageView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { $user } from "../../global/store/store";
 import CustomModal from "../../components-ui/CustomModal/CustomModal";
