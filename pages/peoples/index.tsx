@@ -5,7 +5,7 @@ import LentaList from "./LentaList/LentaList";
 import s from "./peoples.module.scss";
 import SearchingPeople from "./SearchingPeople/SearchingPeople";
 import Head from "next/head";
-import { GroupsList } from "./GroupsList/GroupsList";
+import GroupsList from "./GroupsList/GroupsList";
 
 export default function Peoples(): JSX.Element {
 
