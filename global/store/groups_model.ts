@@ -23,6 +23,14 @@ export const getGroupsList = createEffect(async () => {
     return response;
 });
 
+export const createNewPostInGroup = createEffect(async (data: FormData) => {
+    const response = await instance.post(
+        'groups/create-new-post-in-group',
+        data
+    );
+    return response;
+});
+
 export const getGroupMembersInfo = createEffect(async (id: number) => {
     const response = await instance.post(
         'groups/get-group-members-info', { id: id }

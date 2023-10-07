@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import s from "./addMeetingForm.module.scss";
+import s from "./addMusicForm.module.scss";
  
 export default function AddMusic(): JSX.Element {
 

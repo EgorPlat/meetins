@@ -39,10 +39,14 @@
             }
         }
     }
+    & .talks {
+        margin-top: 50px;
+        column-gap: 10px;
+        display: flex;
+    }
     & .postForm {
         width: 98%;
         color: gray;
-        margin-top: 50px;
         & .countPosts {
             float: right;
         }

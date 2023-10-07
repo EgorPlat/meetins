@@ -8,7 +8,7 @@ export default function ManageGroup(): JSX.Element {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
     
-    const onChangeMusic = (data: {name: string, composition: any, description: string}) => {
+    const onChangeMusic = (data: {name: string, headImage: any, description: string}) => {
         console.log(data);
     }
     return (
@@ -42,10 +42,10 @@ export default function ManageGroup(): JSX.Element {
                 <label htmlFor="phone">{t("Шапка сообщества")}</label>
                 <input
                     accept=".jpg,.png,.jpeg"
-                    id="composition"
+                    id="headImage"
                     type="file"
                     placeholder={t("Шапка сообщества")}
-                    {...register("composition", {required: false, validate: (value) =>
+                    {...register("headImage", {required: false, validate: (value) =>
                     value.length === 0 ? "Нельзя оставить пустым" : true
                 })}/>
                 {errors.composition ? <span className={s.spanError}>{errors.composition.message}</span> : null}

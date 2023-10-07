@@ -11,7 +11,7 @@ export default function calculateCountOfUnredMessageInDialog (messages: IMyActiv
     return count;
 }
 
-export function customizeDateToYYYYMMDDFormat (date: string) {
+export function customizeDateToYYYYMMDDFormat (date: string | number) {
     let newDate = new Date(date);
     let day = String(newDate.getDate());
     let month = String(newDate.getMonth() + 1);
@@ -38,33 +38,21 @@ export function detectUserLanguage() {
     return 'en';
 }
 
-export const turnOffAllMediaTracks = (navigator: Navigator) => {
-    navigator.mediaDevices.enumerateDevices()
-    .then(devices => {
-        devices.forEach(device => {
-        // является ли устройство медиа-устройством ввода
-        if (device.kind === 'videoinput' || device.kind === 'audioinput') {
-            // получаем все треки устройства
-            navigator.mediaDevices.getUserMedia({
-                audio: { deviceId: device.deviceId },
-                video: { deviceId: device.deviceId }
-            })
-            .then(stream => {
-                // получаем все треки потока
-                stream.getTracks().forEach(track => {
-                    // закрываем каждый трек
-                    track.stop();
-                });
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
-            });
+export function validateFilesFromInputAndStructuring (inputFiles: File[]) {
+    const dataForServer = new FormData();
+    const dataForClient = Object.values(inputFiles).map(el => {
+        const fileType = el.type.split('/')[0];
+        dataForServer.append('media', el);
+        return {
+            lastModified: el.lastModified,
+            name: el.name,
+            size: el.size,
+            webkitRelativePath: el.webkitRelativePath,
+            type: fileType
         }
-        });
-    })
-    .catch(error => {
-        console.error('Ошибка:', error);
     });
+    
+    return { dataForClient, dataForServer }
 }
 
 export const getTimerFromSeconds = (seconds: number) => {

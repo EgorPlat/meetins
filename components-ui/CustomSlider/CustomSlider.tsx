@@ -9,7 +9,6 @@ interface ICustomSliderProps {
 }
 
 export default function CustomSlider({ images, width, height }: ICustomSliderProps) {
-
     const [activeImageId, setActiveImageId] = useState<number>(0);
     const [touchXData, setTouchXData] = useState<number>(0);
 
