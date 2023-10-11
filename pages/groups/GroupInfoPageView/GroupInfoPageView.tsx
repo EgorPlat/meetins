@@ -61,7 +61,7 @@ export default function GroupInfoPageView (props: {
                                 </div>
                                 <div className={s.file}>
                                     { 
-                                        el.files &&
+                                        el.files?.length > 0 &&
                                         <CustomSlider 
                                             images={
                                                 el.files?.map(el => {
@@ -94,7 +94,7 @@ export default function GroupInfoPageView (props: {
                     }
                 </div>
                 <div className={s.leftInfo}>
-                    Участники: 1
+                    Участники: {props.groupMembersInfo?.length}
                     <div className={s.members}>
                         {
                             props.groupMembersInfo?.map(el => (

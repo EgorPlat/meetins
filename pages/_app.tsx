@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime';
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { setIsMobile } from '../global/store/store';
+import { getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';
@@ -32,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {
 		setRouter(router);
 		getMyDialogs(true);
+		getInitialUserDataAndCheckAuth();
 		document.documentElement.setAttribute("data-theme", localStorage.getItem('data-theme') || 'black');
 		i18n.changeLanguage(detectUserLanguage());
 		return () => {

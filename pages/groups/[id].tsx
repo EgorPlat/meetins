@@ -68,7 +68,7 @@ export default function Groups() {
                 <CustomModal
                         isDisplay={isAddingPostModalOpen}
                         changeModal={setIsAddingPostModalOpen}
-                        actionConfirmed={setIsAddingPostModalOpen}
+                        actionConfirmed={() => setIsAddingPostModalOpen(false)}
                         typeOfActions="none"
                         title="Добавить публикацию"
                 >

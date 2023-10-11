@@ -40,7 +40,7 @@ export function detectUserLanguage() {
 
 export function validateFilesFromInputAndStructuring (inputFiles: File[]) {
     const dataForServer = new FormData();
-    const dataForClient = Object.values(inputFiles).map(el => {
+    Object.values(inputFiles).map(el => {
         const fileType = el.type.split('/')[0];
         dataForServer.append('media', el);
         return {
@@ -52,7 +52,7 @@ export function validateFilesFromInputAndStructuring (inputFiles: File[]) {
         }
     });
     
-    return { dataForClient, dataForServer }
+    return { dataForClient: inputFiles, dataForServer }
 }
 
 export const getTimerFromSeconds = (seconds: number) => {

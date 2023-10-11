@@ -27,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	}, [route.asPath]);
 
 	useEffect(() => {
-		getInitialUserDataAndCheckAuth();
+		
 	}, [])
 	
 	return ( 

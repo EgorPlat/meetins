@@ -15,7 +15,9 @@ export default function AddMusic(): JSX.Element {
         <div className={s.info}>
             <form onSubmit={handleSubmit(onChangeMusic)}>
             <div className={s.formElem}>
-                <label htmlFor="name">{t("Псевдоним автора")}</label>
+                <label htmlFor="name">
+                    {t("Псевдоним автора")}
+                </label>
                 <input 
                     type="text" 
                     id="name"

@@ -9,15 +9,21 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
-    const [selectedMediaContent, setSelectedMediaContent] = useState();
+    const [selectedMediaContent, setSelectedMediaContent] = useState<any[]>([]);
     
     const onChangePost = (data: {name: string, description: string, media: File[]}) => {
         const mediaData = validateFilesFromInputAndStructuring(data.media);
         mediaData.dataForServer.append('name', data.name);
         mediaData.dataForServer.append('description', data.description);
         mediaData.dataForServer.append('groupId', props.groupId);
-        
-        
+
+        for (let i = 0; i < mediaData.dataForClient.length; i++) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setSelectedMediaContent(prev => [...prev, reader.result]);
+            }
+            reader.readAsDataURL(mediaData.dataForClient[i]);
+        }
         /*const reader = new FileReader();
         reader.onload = (event) => {
             fileBlob = event.target.result;
@@ -60,13 +66,20 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
                     accept=".mp3,.ape,.jpg,.jpeg,.mp4,.png"
                     id="media"
                     type="file"
-                    placeholder={t("Краткое описание композиции")}
-                    {...register("media", {required: false, validate: (value) =>
-                    value.length === 0 ? "Нельзя оставить пустым" : true
-                })}/>
+                    {...register("media", {required: false})} />
                 {errors.media ? <span className={s.spanError}>{errors.media.message}</span> : null}
             </div>
-            <button type="submit" className={s.saveButton}>{t("Добавить композицию")}</button>
+            {
+                selectedMediaContent.length > 0 &&
+                <div>
+                    {
+                        selectedMediaContent.map(el => (
+                            <img src={el} width="75px" height="75px" />
+                        ))
+                    }
+                </div>
+            }
+            <button type="submit" className={s.saveButton}>{t("Добавить публикацию")}</button>
             </form>
         </div>
     )
