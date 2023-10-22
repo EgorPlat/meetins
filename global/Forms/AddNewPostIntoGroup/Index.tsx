@@ -30,7 +30,7 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
         };
         reader.readAsDataURL(el);*/
 
-        createNewPostInGroup(mediaData.dataForServer);
+        //createNewPostInGroup(mediaData.dataForServer);
     }
     return (
         <div className={s.info}>
