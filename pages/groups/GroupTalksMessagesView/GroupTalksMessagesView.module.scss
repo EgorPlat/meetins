@@ -1,0 +1,36 @@
+.groupTalksMessagesView {
+    & .talkMessage {
+        display: grid;
+        grid-template-columns: 50px calc(100% - 50px);
+        width: 100%;
+        min-height: 40px;
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 5px;
+        & .senderAvatar {
+            & img {
+                border-radius: 5px;
+            }
+        }
+        & .senderContent {
+            & .senderName {
+                text-indent: 10px;
+                & .sendAt {
+                    color: gray;
+                    font-size: 12px;
+                    float: right;
+                }
+            }
+            & .senderText {
+                font-size: 13px;
+                text-align: justify;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+    & .talkMessage:hover {
+        cursor: pointer;
+        background-color: rgba(128, 128, 128, 0.133);
+    }
+}

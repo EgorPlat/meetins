@@ -1,7 +1,11 @@
 import GroupTalksView from './GroupTalksView/GroupTalksView';
 
-export default function GroupTalks() {
+export default function GroupTalks(props: {
+    handleOpenTalkMessages: () => void
+}) {
     return (
-        <GroupTalksView />
+        <GroupTalksView
+            handleOpenTalkMessages={props.handleOpenTalkMessages}
+        />
     )
 }

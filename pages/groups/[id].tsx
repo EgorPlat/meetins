@@ -9,6 +9,7 @@ import CustomModal from "../../components-ui/CustomModal/CustomModal";
 import ManageGroup from "../../global/Forms/ManageGroup/Index";
 import AddNewPostIntoGroupForm from "../../global/Forms/AddNewPostIntoGroup/Index";
 import GroupTalks from "./GroupTalks/GroupTalks";
+import GroupTalksMessagesView from "./GroupTalksMessagesView/GroupTalksMessagesView";
 
 export default function Groups() {
 
@@ -21,6 +22,7 @@ export default function Groups() {
     const [isCommentsModalOpen, setIsCommentsModalOpen] = useState<boolean>(false);
     const [isAddingPostModalOpen, setIsAddingPostModalOpen] = useState<boolean>(false);
     const [isTalksOpen, setIsTalksOpen] = useState<boolean>(false);
+    const [isTalkMessagesOpen, setIsTalkMessagesOpen] = useState<boolean>(false);
 
     const handleOpenGroupSettings = () => {
         setIsSettingsGroupOppen(true);
@@ -34,6 +36,10 @@ export default function Groups() {
     const handleOpenTalks = () => {
         setIsTalksOpen(true);
     };
+    const handleOpenTalkMessages = () => {
+        setIsTalksOpen(false);
+        setIsTalkMessagesOpen(true);
+    }
 
     useEffect(() => {
         getGroupById(+router.query.id);
@@ -87,7 +93,25 @@ export default function Groups() {
                     typeOfActions="none"
                     title="Обсуждения"
                 >
-                    <GroupTalks />
+                    <GroupTalks
+                        handleOpenTalkMessages={handleOpenTalkMessages}
+                    />
+                </CustomModal>
+                <CustomModal
+                    isDisplay={isTalkMessagesOpen}
+                    changeModal={setIsTalkMessagesOpen}
+                    actionConfirmed={setIsTalkMessagesOpen}
+                    typeOfActions="custom"
+                    actionsComponent={
+                        <input
+                            style={{width: "100%", height: "40px", borderRadius: "5px"}}
+                            type="text" 
+                            placeholder="Введите текст сообщения" 
+                        />
+                    }
+                    title="Обсуждения - Рейтинг художников"
+                >
+                    <GroupTalksMessagesView />
                 </CustomModal>
             </div>
         </PageContainer>
