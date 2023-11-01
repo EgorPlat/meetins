@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setRouter(router);
 		getMyDialogs(true);
 		getInitialUserDataAndCheckAuth();
-		document.documentElement.setAttribute("data-theme", localStorage.getItem('data-theme') || 'black');
+		document.documentElement.setAttribute("data-theme", 'black');
 		i18n.changeLanguage(detectUserLanguage());
 		return () => {
 			connection$?.disconnect();

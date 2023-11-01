@@ -1,0 +1,27 @@
+.groupTalksView {
+    & .talksList {
+        display: grid;
+        row-gap: 5px;
+        min-height: 60px;
+        & .talk {
+            padding: 5px;
+            display: grid;
+            font-size: 14px;
+            & .info {
+                color: gray;
+                font-size: 12px;
+                display: flex;
+                column-gap: 10px;
+                justify-content: right;
+                & .count {
+                    color: rgba(17, 192, 255, 0.636);
+                }
+            }
+        }
+        & .talk:hover {
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgba(128, 128, 128, 0.116);
+        }
+    }
+}

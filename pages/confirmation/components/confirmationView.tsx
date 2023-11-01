@@ -22,7 +22,7 @@ export default function ConfirmationView({ sendConfirmationCode }: IConfirmation
                 <Image src={logo} width="50px" height="50px" />
             </div>
             <div className={s.content}>
-                <input type="number" placeholder="Введите код подтверждения" ref={ref} />
+                <input type="number" placeholder="Введите код" ref={ref} />
             </div>
             <div className={s.actions}>
                 <button onClick={() => sendConfirmationCode(ref.current.value)}>Отправить</button>

@@ -8,10 +8,14 @@
         outline: none;
     }
     & .active {
+        border-radius: 5px;
         border: 2px solid rgb(44, 142, 255);
+        padding: 3px;
     }
     & .inactive {
-        border: 2px solid rgb(55, 170, 9);;
+        border-radius: 5px;
+        border: 2px solid rgb(55, 170, 9);
+        padding: 3px;
     }
     & .changingInterestsActions {
         & .save {
@@ -19,6 +23,8 @@
             border: none;
             background-color: rgb(68, 171, 255);
             color: white;
+            border-radius: 5px;
+            padding: 5px
         }
         & .save:hover {
             background-color: rgb(255, 232, 28);

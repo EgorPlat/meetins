@@ -31,9 +31,44 @@
     }
     & .musicContent {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
         & .musicContentTitle {
             font-size: 16px;
+        }
+        & .songers {
+            font-size: 17px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            & .songer {
+                font-size: 16px;
+                & .name {
+                    color: rgb(32, 173, 255);
+                }
+                & .mapBtn:hover {
+                    cursor: pointer;
+                    color: rgb(255, 157, 0);
+                }
+            }
+            & .info {
+                margin-top: 20px;
+                font-size: 15px;
+                text-align: justify;
+                text-indent: 30px;
+                & .termin {
+                    color: rgb(255, 117, 48);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .music {
+        & .musicContent {
+            display: grid;
+            grid-template-columns: 1fr;
         }
     }
 }

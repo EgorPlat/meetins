@@ -17,6 +17,7 @@ export default function GroupInfoPageView (props: {
     handleOpenGroupSettings: () => void,
     handleOpenComments: () => void,
     handleOpenAddingPost: () => void,
+    handleOpenTalks: () => void,
     isSettingsGroupOpen: boolean
 }) {
     return (
@@ -42,10 +43,10 @@ export default function GroupInfoPageView (props: {
                 </div>
             </div>
             <div className={s.talks}>
-                <div>Обсуждения <RiDiscussLine fontSize={20} /></div>
-                <div>Фото <BiPhotoAlbum fontSize={20} /></div>
-                <div>Видео <AiOutlineVideoCamera fontSize={20} /></div>
-                <div>Вложения <ImAttachment fontSize={20} /></div>
+                <div className={s.item}>Обсуждения <RiDiscussLine fontSize={20} onClick={props.handleOpenTalks} /></div>
+                <div className={s.item}>Фото <BiPhotoAlbum fontSize={20} /></div>
+                <div className={s.item}>Видео <AiOutlineVideoCamera fontSize={20} /></div>
+                <div className={s.item}>Вложения <ImAttachment fontSize={20} /></div>
             </div>
             <div className={s.postForm}>
                 <button className={s.actionBtn} onClick={props.handleOpenAddingPost}>Добавить публикацию</button>
@@ -68,7 +69,7 @@ export default function GroupInfoPageView (props: {
                                                     if (el.type.includes('image')) return { image: baseURL + el.src }
                                                 })
                                             } 
-                                            width='400px' 
+                                            width='300px' 
                                             height='300px' 
                                         />
                                     }

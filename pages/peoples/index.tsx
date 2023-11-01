@@ -31,13 +31,13 @@ export default function Peoples(): JSX.Element {
                         className={currentChapter === 'searching' ? s.selectedChapter : s.notSelectedChapter}
                     >Поиск людей</button>
                     <button 
-                        onClick={() => setCurrentChapter('list')}
-                        className={currentChapter === 'list' ? s.selectedChapter : s.notSelectedChapter}
-                    >Лента</button>
-                    <button 
                         onClick={() => setCurrentChapter('groups')}
                         className={currentChapter === 'groups' ? s.selectedChapter : s.notSelectedChapter}
                     >Сообщества</button>
+                    <button 
+                        onClick={() => setCurrentChapter('list')}
+                        className={currentChapter === 'list' ? s.selectedChapter : s.notSelectedChapter}
+                    >Лента</button>
                 </div>
                 <div className={s.activeChapter}>
                     {

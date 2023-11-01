@@ -30,15 +30,15 @@ export default function MusicPageView({
                 <button className={s.musicSearchBtn} >Искать</button>
             </div>
             <div className={s.addMusic}>
-                    Хотите добавить свою композицию?
-                    <PiMusicNotesPlus
-                        className={s.controls}
-                        fontSize={25}
-                        onClick={() => handleSwapMusicModal(true)}
-                    />
-                </div>
+                Хотите добавить свою композицию?
+                <PiMusicNotesPlus
+                    className={s.controls}
+                    fontSize={25}
+                    onClick={() => handleSwapMusicModal(true)}
+                />
+            </div>
             <div className={s.musicContent}>
-                <div className={s.musicContentTitle}>Все композиции от других исполнителей и пользователей сервиса:</div>
+                <div className={s.musicList}>
                 {
                     [1, 2, 3].map(el => {
                         return (
@@ -53,6 +53,24 @@ export default function MusicPageView({
                         )
                     })
                 }
+                </div>
+                <div className={s.songers}>
+                    Статистика исполнителей
+                    {
+                        [1,2,3].map(el => (
+                            <div className={s.songer}>
+                                <a href='#' className={s.name}>Blackway, Black Caviar - </a>
+                                <span>Прослушиваний 1.295 - </span>
+                                <span className={s.mapBtn}>Посмотреть карту </span>
+                            </div>
+                        ))
+                    }
+                    <div className={s.info}>
+                        <span className={s.termin}>Карта исполнителя</span> - это специальный виджет, который служит для того, чтобы
+                        узнать в каком регионе мира чаще слушают выбранного Вами исполнителя. Это функция поможет
+                        Вам найти сторонников и любителей схожего с Вашим стиля музыки и начать с ним общаться!
+                    </div>
+                </div>
             </div>
             <CustomModal 
                 isDisplay={addMusicModal} 
@@ -63,6 +81,7 @@ export default function MusicPageView({
             >
                 <AddMusic />
             </CustomModal>
+
         </div>
     )
 }

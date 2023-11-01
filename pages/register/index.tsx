@@ -53,7 +53,7 @@ export default function Login(): JSX.Element {
 			gender: data.gender,
 			city: data.city
 		})
-
+		router.push(`/confirmation`);
 		sendRegData({
 			name: nameArr[0],
 			email,
@@ -63,7 +63,6 @@ export default function Login(): JSX.Element {
 		}).then( (res: any) => {
 			if(res.data.statusCode <= 217) {
 				setEmailForConfirmation(email);
-				router.push(`/confirmation`);
 			}
 		})
 	}

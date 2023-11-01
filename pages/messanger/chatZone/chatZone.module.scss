@@ -20,7 +20,8 @@
         text-align: center;
     }
     & .block {
-        box-shadow:  0px 0px 1px 1px var(--border-color);
+        border-radius: 8px;
+        border: 1px solid rgba(128, 128, 128, 0.668);
     }
     & .user {
         display: grid;
@@ -59,6 +60,7 @@
                 justify-items: center;
                 top: 25px;
                 right: 0px;
+                z-index: 999;
                 cursor: pointer;
                 & .userMoreActionsLine {
                     background-color: black;

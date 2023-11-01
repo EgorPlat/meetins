@@ -102,13 +102,13 @@ select:-webkit-autofill:focus {
 	padding: 0;
 	margin: 0;
 	::-webkit-scrollbar {
-        width: 6px;               /* ширина scrollbar */
+        width: 6px;         /* ширина scrollbar */
     }
     ::-webkit-scrollbar-track {
         background: transparent;        /* цвет дорожки */
     }
     ::-webkit-scrollbar-thumb {
         background-color: grey;    /* цвет плашки */
-        border-radius: 20px;       /* закругления плашки */
+        border-radius: 10px;       /* закругления плашки */
     }
 }

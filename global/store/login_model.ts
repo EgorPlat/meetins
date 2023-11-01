@@ -26,8 +26,8 @@ export const $loginDetails = createStore<LoginDetailsType>(null).on(
 ) 
 export const saveDataAfterLogin = createEffect((data: any) => {
 	const router = instanseRouter.getState();
-	setUser(data.profile.user);
 	router.push(`profile/${data.profile.user.login}`);
+	setUser(data.profile.user);
 });
 
 sample({

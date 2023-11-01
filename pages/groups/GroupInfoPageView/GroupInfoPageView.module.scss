@@ -1,6 +1,6 @@
 .groupInfo {
     display: grid;
-    grid-template-columns: 1fr;
+    //grid-template-columns: 1fr;
     font-size: 15px;
     row-gap: 10px;
     & .head {
@@ -10,7 +10,7 @@
         width: 98%;
         min-height: 120px;
         border-radius: 10px;
-        border: 1px solid var(--border-color);
+        border: 1px solid rgba(128, 128, 128, 0.784);
         position: relative;
         & .subHead {
             display: flex;
@@ -29,7 +29,7 @@
                 width: 80px;
                 height: 80px;
                 border-radius: 50%;
-                border: 1px solid var(--border-color);
+                border: 1px solid rgba(128, 128, 128, 0.784);
                 background-size: cover;
             }
             & .settings {
@@ -43,6 +43,10 @@
         margin-top: 50px;
         column-gap: 10px;
         display: flex;
+        & .item:hover {
+            color: rgb(0, 128, 255);
+            cursor: pointer;
+        }
     }
     & .postForm {
         width: 98%;
@@ -62,13 +66,13 @@
             display: grid;
             grid-template-columns: 1fr;
             row-gap: 15px;
+            width: 100%;
             border-radius: 10px;
-            width: 70%;
             & .post {
                 display: grid;
                 row-gap: 10px;
                 border-radius: 10px;
-                border: 1px solid var(--border-color);;
+                border: 1px solid rgba(128, 128, 128, 0.784);
                 padding: 5px;
                 & .title {
                     & .date {
@@ -102,7 +106,7 @@
             }
         }
         & .leftInfo {
-            border: 1px solid var(--border-color);;
+            border: 1px solid rgba(128, 128, 128, 0.784);
             border-radius: 10px;
             width: 30%;
             padding: 5px;
