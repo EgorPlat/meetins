@@ -1,4 +1,4 @@
-.info {
+.formContainer {
     & label {
         display: inline-block;
         width: 100%;
@@ -24,17 +24,17 @@
         border-radius: 5px;
         min-height: 80px;
     }
-    & .saveButton {
+    & button {
         margin-top: 10px;
         border: none;
-        width: 100%;
+        min-width: 150px;
         height: 40px;
         border-radius: 5px;
         background-color: rgb(76, 174, 255);
         color: white;
         padding: 5px;
     }
-    & .spanError {
+    & span {
         color: red;
         font-size: 14px;
     }
@@ -44,9 +44,6 @@
     .info {
         & label {
             font-size: 16px;
-        }
-        & .formElem {
-            margin-top: 5px;
         }
     }
 }

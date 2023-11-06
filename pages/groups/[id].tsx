@@ -8,8 +8,9 @@ import { $user } from "../../global/store/store";
 import CustomModal from "../../components-ui/CustomModal/CustomModal";
 import ManageGroup from "../../global/Forms/ManageGroup/Index";
 import AddNewPostIntoGroupForm from "../../global/Forms/AddNewPostIntoGroup/Index";
-import GroupTalks from "./GroupTalks/GroupTalks";
 import GroupTalksMessagesView from "./GroupTalksMessagesView/GroupTalksMessagesView";
+import GroupTalks from "./GroupTalks/GroupTalks";
+import GroupCreateTalk from "./GroupCreateTalk/GroupCreateTalk";
 
 export default function Groups() {
 
@@ -23,6 +24,7 @@ export default function Groups() {
     const [isAddingPostModalOpen, setIsAddingPostModalOpen] = useState<boolean>(false);
     const [isTalksOpen, setIsTalksOpen] = useState<boolean>(false);
     const [isTalkMessagesOpen, setIsTalkMessagesOpen] = useState<boolean>(false);
+    const [isTalkCreationOpen, setIsTalkCreationOpen] = useState<boolean>(false);
 
     const handleOpenGroupSettings = () => {
         setIsSettingsGroupOppen(true);
@@ -39,6 +41,10 @@ export default function Groups() {
     const handleOpenTalkMessages = () => {
         setIsTalksOpen(false);
         setIsTalkMessagesOpen(true);
+    };
+    const handeOpenTalkCreation = () => {
+        setIsTalksOpen(false);
+        setIsTalkCreationOpen(true);
     }
 
     useEffect(() => {
@@ -95,6 +101,7 @@ export default function Groups() {
                 >
                     <GroupTalks
                         handleOpenTalkMessages={handleOpenTalkMessages}
+                        handeOpenTalkCreation={handeOpenTalkCreation}
                     />
                 </CustomModal>
                 <CustomModal
@@ -112,6 +119,15 @@ export default function Groups() {
                     title="Обсуждения - Рейтинг художников"
                 >
                     <GroupTalksMessagesView />
+                </CustomModal>
+                <CustomModal
+                    isDisplay={isTalkCreationOpen}
+                    changeModal={setIsTalkCreationOpen}
+                    actionConfirmed={setIsTalkCreationOpen}
+                    typeOfActions="default"
+                    title="Начать обсуждение"
+                >
+                    <GroupCreateTalk />
                 </CustomModal>
             </div>
         </PageContainer>

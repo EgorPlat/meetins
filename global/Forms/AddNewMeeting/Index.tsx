@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import s from "./addMeetingForm.module.scss";
+import FormContainer from "../../components/FormContainer/FormContainer";
  
 export default function AddNewMeetingForm(): JSX.Element {
 
@@ -12,9 +12,9 @@ export default function AddNewMeetingForm(): JSX.Element {
         console.log(data);
     }
     return (
-        <div className={s.info}>
+        <FormContainer>
             <form onSubmit={handleSubmit(onChangeMeeting)}>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="name">{t("Название встречи")}</label>
                 <input 
                     type="text" 
@@ -26,9 +26,9 @@ export default function AddNewMeetingForm(): JSX.Element {
 				        : true,
                     })}
                 />
-                {errors.name ? <span className={s.spanError}>{errors.name.message}</span> : null}
+                {errors.name ? <span>{errors.name.message}</span> : null}
             </div> 
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="date">{t("Дата встречи")}</label>
                 <input 
                     type="datetime-local" 
@@ -38,9 +38,9 @@ export default function AddNewMeetingForm(): JSX.Element {
                     })} 
                     placeholder={t("Дата мероприятия")}
                 />
-                {errors.meetingDate ? <span className={s.spanError}>{errors.meetingDate.message}</span> : null}
+                {errors.meetingDate ? <span>{errors.meetingDate.message}</span> : null}
             </div>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="phone">{t("В чем цель встречи?")}</label>
                 <textarea
                     id="description"
@@ -48,11 +48,10 @@ export default function AddNewMeetingForm(): JSX.Element {
                     {...register("description", {required: false, validate: (value) =>
                     value.length === 0 ? "Нельзя оставить пустым" : true
                 })}/>
-                {errors.description ? <span className={s.spanError}>{errors.description.message}</span> : null}
+                {errors.description ? <span>{errors.description.message}</span> : null}
             </div>
-            
-            <button type="submit" className={s.saveButton}>{t("Создать встречу")}</button>
+            <button type="submit">{t("Создать встречу")}</button>
             </form>
-        </div>
+        </FormContainer>
     )
 }

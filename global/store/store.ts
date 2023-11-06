@@ -5,8 +5,8 @@ import { instanseRouter } from './router_model';
 import { handleLogOut } from './login_model';
 import { addNotification } from './notifications_model';
 
-//export const baseURL = 'http://localhost:5000/';
-export const baseURL = 'https://meetins-egorplat.amvera.io/';
+export const baseURL = 'http://localhost:5000/';
+//export const baseURL = 'https://meetins-egorplat.amvera.io/';
 
 export const instance = axios.create({
 	baseURL: baseURL,

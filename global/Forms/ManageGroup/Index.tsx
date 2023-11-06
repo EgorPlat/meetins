@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import s from './manageGroup.module.scss';
+import FormContainer from "../../components/FormContainer/FormContainer";
  
 export default function ManageGroup(): JSX.Element {
 
@@ -12,9 +12,9 @@ export default function ManageGroup(): JSX.Element {
         console.log(data);
     }
     return (
-        <div className={s.info}>
+        <FormContainer>
             <form onSubmit={handleSubmit(onChangeMusic)}>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="name">{t("Название группы")}</label>
                 <input 
                     type="text" 
@@ -26,9 +26,9 @@ export default function ManageGroup(): JSX.Element {
 				        : true,
                     })}
                 />
-                {errors.name ? <span className={s.spanError}>{errors.name.message}</span> : null}
+                {errors.name ? <span>{errors.name.message}</span> : null}
             </div>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="description">{t("Описание группы")}</label>
                 <textarea
                     id="description"
@@ -36,9 +36,9 @@ export default function ManageGroup(): JSX.Element {
                     {...register("description", {required: false, validate: (value) =>
                     value.length === 0 ? "Нельзя оставить пустым" : true
                 })}/>
-                {errors.description ? <span className={s.spanError}>{errors.description.message}</span> : null}
+                {errors.description ? <span>{errors.description.message}</span> : null}
             </div>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="phone">{t("Шапка сообщества")}</label>
                 <input
                     accept=".jpg,.png,.jpeg"
@@ -48,10 +48,10 @@ export default function ManageGroup(): JSX.Element {
                     {...register("headImage", {required: false, validate: (value) =>
                     value.length === 0 ? "Нельзя оставить пустым" : true
                 })}/>
-                {errors.composition ? <span className={s.spanError}>{errors.composition.message}</span> : null}
+                {errors.composition ? <span>{errors.composition.message}</span> : null}
             </div>
-            <button type="submit" className={s.saveButton}>{t("Сохранить настройки")}</button>
+            <button type="submit">{t("Сохранить настройки")}</button>
             </form>
-        </div>
+        </FormContainer>
     )
 }

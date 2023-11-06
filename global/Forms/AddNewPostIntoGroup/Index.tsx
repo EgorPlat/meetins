@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import s from "./addNewPostIntoGroupForm.module.scss";
 import { validateFilesFromInputAndStructuring } from "../../helpers/helper";
 import { createNewPostInGroup } from "../../store/groups_model";
+import FormContainer from "../../components/FormContainer/FormContainer";
  
 export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX.Element {
 
@@ -33,9 +33,9 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
         //createNewPostInGroup(mediaData.dataForServer);
     }
     return (
-        <div className={s.info}>
+        <FormContainer>
             <form onSubmit={handleSubmit(onChangePost)}>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="name">{t("Заголовок")}</label>
                 <input 
                     type="text" 
@@ -47,9 +47,9 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
 				        : true,
                     })}
                 />
-                {errors.name ? <span className={s.spanError}>{errors.name.message}</span> : null}
+                {errors.name ? <span>{errors.name.message}</span> : null}
             </div>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="description">{t("Описание публикации")}</label>
                 <textarea
                     id="description"
@@ -57,9 +57,9 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
                     {...register("description", {required: false, validate: (value) =>
                     value.length === 0 ? "Нельзя оставить пустым" : true
                 })}/>
-                {errors.description ? <span className={s.spanError}>{errors.description.message}</span> : null}
+                {errors.description ? <span>{errors.description.message}</span> : null}
             </div>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="media">{t("Медиа-контент")}</label>
                 <input
                     multiple
@@ -67,7 +67,7 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
                     id="media"
                     type="file"
                     {...register("media", {required: false})} />
-                {errors.media ? <span className={s.spanError}>{errors.media.message}</span> : null}
+                {errors.media ? <span>{errors.media.message}</span> : null}
             </div>
             {
                 selectedMediaContent.length > 0 &&
@@ -79,8 +79,8 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
                     }
                 </div>
             }
-            <button type="submit" className={s.saveButton}>{t("Добавить публикацию")}</button>
+            <button type="submit">{t("Добавить публикацию")}</button>
             </form>
-        </div>
+        </FormContainer>
     )
 }

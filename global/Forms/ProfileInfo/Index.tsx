@@ -7,6 +7,7 @@ import { isProfileUpdated, updateUserProfileData } from "../../store/settings_mo
 import { $user } from "../../store/store";
 import s from "./profileInfo.module.scss";
 import { customizeDateToInputFormatFromDBFormat } from "../../helpers/helper";
+import FormContainer from "../../components/FormContainer/FormContainer";
  
 export default function ProfileInfoForm(): JSX.Element {
 
@@ -19,9 +20,9 @@ export default function ProfileInfoForm(): JSX.Element {
         updateUserProfileData(data); 
     }
     return (
-        <div className={s.info}>
+        <FormContainer>
             <form onSubmit={handleSubmit(onChangeProfile)}>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="name">{t("Имя")}</label>
                 <input type="text" id="name"
                     defaultValue={user?.name}
@@ -30,9 +31,9 @@ export default function ProfileInfoForm(): JSX.Element {
 				    ? 'Пожалуйста следуйте формату: Имя'
 				    : true,
                 })}/>
-                {errors.name ? <span className={s.spanError}>{errors.name.message}</span> : null}
+                {errors.name ? <span>{errors.name.message}</span> : null}
             </div> 
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="date">{t("Дата рождения")}</label>
                 <input 
                     type="date" 
@@ -43,9 +44,9 @@ export default function ProfileInfoForm(): JSX.Element {
                     placeholder={user?.birthDate}
                     defaultValue={customizeDateToInputFormatFromDBFormat(user?.birthDate)}
                 />
-                {errors.birthDate ? <span className={s.spanError}>{errors.birthDate.message}</span> : null}
+                {errors.birthDate ? <span>{errors.birthDate.message}</span> : null}
             </div>
-            <div className={s.formElem}>
+            <div>
                 <label htmlFor="phone">{t("Мобильный телефон")}</label>
                 <input type="text" id="phone"
                     placeholder={user?.phoneNumber}
@@ -53,7 +54,7 @@ export default function ProfileInfoForm(): JSX.Element {
                     {...register("phoneNumber", {required: false, validate: (value) =>
                     isPhoneNumber(value) !== value ? "Введите телефон в формате 79693461718." : true
                 })}/>
-                {errors.phoneNumber ? <span className={s.spanError}>{errors.phoneNumber.message}</span> : null}
+                {errors.phoneNumber ? <span>{errors.phoneNumber.message}</span> : null}
             </div>
             { 
             isUpdated === null ? null :
@@ -61,8 +62,8 @@ export default function ProfileInfoForm(): JSX.Element {
             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 
             : <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (телефон)</div> 
             }
-            <button type="submit" className={s.saveButton}>{t("Сохранить")}</button>
+            <button type="submit">{t("Сохранить")}</button>
             </form>
-        </div>
+        </FormContainer>
     )
 }
