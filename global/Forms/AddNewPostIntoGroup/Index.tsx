@@ -17,21 +17,24 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
         mediaData.dataForServer.append('description', data.description);
         mediaData.dataForServer.append('groupId', props.groupId);
 
-        for (let i = 0; i < mediaData.dataForClient.length; i++) {
+        createNewPostInGroup(mediaData.dataForServer);
+    };
+
+    const onFileChanges = (files: FileList) => {
+        setSelectedMediaContent([]);  
+        for (let i = 0; i < files.length; i++) {
             const reader = new FileReader();
-            reader.onload = () => {
+            reader.onload = () => {      
                 setSelectedMediaContent(prev => [...prev, reader.result]);
             }
-            reader.readAsDataURL(mediaData.dataForClient[i]);
+            reader.readAsDataURL(files[i]);
         }
-        /*const reader = new FileReader();
-        reader.onload = (event) => {
-            fileBlob = event.target.result;
-        };
-        reader.readAsDataURL(el);*/
+    };
 
-        //createNewPostInGroup(mediaData.dataForServer);
-    }
+    const handleRemoveImgFile = (blob: String) => {
+        setSelectedMediaContent(prev => prev.filter(el => el !== blob));
+    };
+
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangePost)}>
@@ -41,10 +44,12 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
                     type="text" 
                     id="name"
                     placeholder="Заголовок" 
-                    {...register("name", {required: false, validate: (value) => 
-			            value.length >= 20 || value.length <= 5
-				        ? 'Не менее 5-ти и не более 20-ти символов'
-				        : true,
+                    {...register("name", {
+                        required: false, 
+                        validate: (value) => 
+                            value.length >= 20 || value.length <= 5
+                            ? 'Не менее 5-ти и не более 20-ти символов'
+                            : true,
                     })}
                 />
                 {errors.name ? <span>{errors.name.message}</span> : null}
@@ -66,15 +71,41 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
                     accept=".mp3,.ape,.jpg,.jpeg,.mp4,.png"
                     id="media"
                     type="file"
-                    {...register("media", {required: false})} />
+                    style={{ color: "transparent" }}
+                    {...register("media", {
+                        required: false,
+                        onChange: (e) => onFileChanges(e.target.files)
+                    })} />
                 {errors.media ? <span>{errors.media.message}</span> : null}
             </div>
             {
                 selectedMediaContent.length > 0 &&
-                <div>
+                <div style={{ display: "flex", columnGap: "5px" }}>
                     {
                         selectedMediaContent.map(el => (
-                            <img src={el} width="75px" height="75px" />
+                            <div key={el} style={{ position: "relative" }}>
+                                <div 
+                                    style={{ 
+                                        position: "absolute", 
+                                        top: 0, 
+                                        right: 5, 
+                                        color: "red", 
+                                        cursor: "pointer",
+                                        height: "15px",
+                                        fontWeight: 700,
+                                        fontSize: "18px"
+                                    }}
+                                    onClick={(inp) => handleRemoveImgFile(el)}
+                                >
+                                    <div>x</div>
+                                </div>
+                                <img 
+                                    src={el} 
+                                    width="75px" 
+                                    height="75px"
+                                    style={{ borderRadius: "5px" }}
+                                />
+                            </div>
                         ))
                     }
                 </div>

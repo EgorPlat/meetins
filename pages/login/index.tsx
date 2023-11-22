@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 import { isEmail, isPassword } from '../../global/helpers/validate'
-import { sendLogData, setLoginDetails } from '../../global/store/login_model'
+import { $loginLoading, sendLogData, setLoginDetails } from '../../global/store/login_model'
 import loginIcon from '../../public/images/login.svg'
 import passIcon from '../../public/images/pass.svg'
 import s from '../../styles/pageStyles/auth.module.scss'
@@ -12,11 +12,14 @@ import Input from '../../components-ui/Input/Input'
 import Link from 'next/link';
 import logo from '../../public/images/logo.svg';
 import Image from 'next/image';
+import CustomLoader from '../../components-ui/CustomLoader/CustomLoader'
+import { useStore } from 'effector-react'
 
 export default function Login(): JSX.Element {
 
 	const { register, handleSubmit, formState: {errors} } = useForm()
 	const [errorMessage, setErrorMessage] = useState<string>("");
+	const loginLoading = useStore($loginLoading);
 	const { t } = useTranslation();
 
 	const sendLoginData = (data: {login: string, password: string}) => {
@@ -76,7 +79,9 @@ export default function Login(): JSX.Element {
 						{t('Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова')}
 					</div> : null }
 					<button type='submit' className={`${s.submitBtn} btn`} >
-						{t('Войти')}
+						{
+							loginLoading ? <CustomLoader /> : t('Войти')
+						}
 					</button>
 					<div className={s.navActions}>
 						<Link href="/register">Еще не зарегистрированы?</Link>

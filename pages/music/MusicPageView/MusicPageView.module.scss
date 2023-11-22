@@ -3,12 +3,63 @@
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 10px;
+    & .matches {
+        font-size: 18px;
+        & .title {
+            margin-bottom: 10px;
+        }
+        & .desk {
+            display: flex;
+            column-gap: 10px;
+            row-gap: 10px;
+            flex-wrap: wrap;
+            & .card {
+                background-size: 100% 100%;
+                min-width: 200px;
+                max-height: 200px;
+                background-color: rgba(29, 45, 49, 0.751);
+                border-radius: 20px;
+                & .topContent {
+                    display: flex;
+                    & .avatar {
+                        margin: 10px;
+                        background-size: 100% 100%;
+                        border-radius: 15px;
+                        width: 65px;
+                        height: 65px;
+                    }
+                    & .title {
+                        font-size: 16px;
+                        margin: 10px 0 0 0;
+                        & .matchData {
+                            font-size: 12px;
+                            & .count {
+                                color: rgba(255, 83, 20, 0.949);
+                                font-weight: 700;
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+                & .bottomContent {
+                    padding: 0px 10px 10px 10px;
+                    font-size: 12px;
+                    & .compositions {
+                        //color: black;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
     & .musicSearch {
         display: grid;
         grid-template-columns: calc(100% - 110px) 100px;
         column-gap: 10px;
         row-gap: 5px;
         & .musicSearchInp {
+            height: 45px;
+            border-radius: 10px;
             padding: 5px;
             font-size: 18px;
         }
@@ -16,6 +67,7 @@
             font-size: 18px;
             background-color: rgba(10, 149, 255, 0.952);
             border: none;
+            border-radius: 10px;
         }
         & .musicSearchBtn:hover {
             color: black;
@@ -79,6 +131,25 @@
             font-size: 17px;
             & .controls {
                 font-size: 28px;
+            }
+        }
+        & .matches {
+            & .desk {
+                & .card {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 430px) {
+    .music {
+        & .matches {
+            font-size: 14px;
+            & .desk {
+                & .card {
+                    width: 100%;
+                }
             }
         }
     }

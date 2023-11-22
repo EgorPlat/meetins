@@ -3,13 +3,14 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { $currentProfileUser, $user, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
-import { checkDialog } from "../../global/store/chat_model";
+import { checkDialog, getMyDialogs } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
 import { useAuthAndInithialSocket } from "../../global/hooks/useAuthAndInithialSocket";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
 import ProfileView from "./ProfileView/profileView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
+import { setLoginLoading } from "../../global/store/login_model";
 
 function Profile(): JSX.Element {
 
@@ -68,6 +69,8 @@ function Profile(): JSX.Element {
     }
 
     useEffect(() => {
+        setLoginLoading(false);
+        getMyDialogs(true);
         return () => {
             setCurrentProfileUser({} as User);
         }

@@ -36,6 +36,8 @@
                     width: 80px;
                     height: 80px;
                     & img {
+                        width: 80px;
+                        height: 80px;
                         border: 2px solid white;
                         border-radius: 50%;
                     }
@@ -76,10 +78,22 @@
         & .groupsContent {
             & .list {
                 & .group {
-                    grid-template-columns: 90px calc(100% - 190px) 100px;
+                    grid-template-columns: 70px calc(100% - 190px) 100px;
+                    & .image {
+                        & img {
+                            width: 65px;
+                            height: 65px;
+                        }
+                    }
                     & .actions {
                         display: grid;
                         grid-template-columns: 1fr;
+                        & button {
+                            font-size: 13px;
+                        }
+                    }
+                    & .info {
+                        font-size: 12px;
                     }
                 }
             }

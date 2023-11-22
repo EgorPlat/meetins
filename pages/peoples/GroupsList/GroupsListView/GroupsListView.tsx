@@ -23,8 +23,6 @@ export default function GroupsListView (props: {
                                 <div className={s.image}>
                                     <img 
                                         src={baseURL + el.mainAvatar}
-                                        width="80px"
-                                        height="80px"
                                     />
                                 </div>
                                 <div className={s.info}>

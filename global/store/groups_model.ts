@@ -31,6 +31,14 @@ export const createNewPostInGroup = createEffect(async (data: FormData) => {
     return response;
 });
 
+export const createNewTalkInGroup = createEffect(async (data: { title: string, groupId: string }) => {
+    const response = await instance.post(
+        'groups/create-new-talk-in-group',
+        data
+    );
+    return response;
+});
+
 export const getGroupMembersInfo = createEffect(async (id: number) => {
     const response = await instance.post(
         'groups/get-group-members-info', { id: id }
@@ -44,6 +52,41 @@ export const getGroupById = createEffect(async (id: number) => {
     );
     return response;
 });
+
+export const getGroupTalkMessageByTalkId = createEffect(async (groupData: { 
+    groupId: number, 
+    talkId: number,
+}) => {
+    const response = await instance.post(
+        'groups/get-group-talk-messages-by-id', { groupId: groupData.groupId, talkId: groupData.talkId }
+    );
+    return response;
+});
+
+export const getGroupTalksList = createEffect(async (groupId: number) => {
+    const response = await instance.post(
+        'groups/get-group-talks-by-id', { groupId }
+    );
+    return response;
+});
+
+export const createNewMessageInGroupTalk = createEffect(async (groupData: { 
+    groupId: number, 
+    talkId: number,
+    text: string
+}) => {
+    const response = await instance.post(
+        'groups/create-new-message-in-group-talk', { 
+            groupId: groupData.groupId, 
+            talkId: groupData.talkId,
+            text: groupData.text
+        }
+    );
+    return response;
+});
+
+
+
 
 sample({ 
     clock: getGroupsList.doneData, 

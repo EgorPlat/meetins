@@ -4,11 +4,12 @@ import { AiFillHeart, AiOutlineEye, AiOutlineVideoCamera } from 'react-icons/ai'
 import { RiDiscussLine } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
 import { BiComment, BiPhotoAlbum, BiRepost } from 'react-icons/bi';
-import { customizeDateToYYYYMMDDFormat } from '../../../global/helpers/helper';
+import { customizeDateToYYYYMMDDFormat, destrucutreFilesInGroupPost } from '../../../global/helpers/helper';
 import s from './GroupInfoPageView.module.scss';
 import { FiSettings } from 'react-icons/fi';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import CustomSlider from '../../../components-ui/CustomSlider/CustomSlider';
+import { groupInfo } from '../../../global/store/groups_model';
 
 export default function GroupInfoPageView (props: {
     groupInfo: IGroup,
@@ -20,6 +21,8 @@ export default function GroupInfoPageView (props: {
     handleOpenTalks: () => void,
     isSettingsGroupOpen: boolean
 }) {
+    const enchancedPosts = destrucutreFilesInGroupPost(props.groupInfo);
+    
     return (
         <div className={s.groupInfo}>
             <div 
@@ -55,18 +58,20 @@ export default function GroupInfoPageView (props: {
             <div className={s.content}>
                 <div className={s.postList}>
                     {
-                      props.groupInfo?.posts?.map(el => (
-                            <div className={s.post} key={el.id}>
+                        enchancedPosts.map(post => (
+                            <div className={s.post} key={post.id}>
                                 <div className={s.title}>
-                                    {el.id}. {el.title} <span className={s.date}>{customizeDateToYYYYMMDDFormat(el.date)}</span>
+                                    {post.id}. {post.title} <span className={s.date}>{customizeDateToYYYYMMDDFormat(post.date)}</span>
                                 </div>
                                 <div className={s.file}>
-                                    { 
-                                        el.files?.length > 0 &&
+                                    {
+                                        post.files.image?.length > 0 &&
                                         <CustomSlider 
                                             images={
-                                                el.files?.map(el => {
-                                                    if (el.type.includes('image')) return { image: baseURL + el.src }
+                                                post.files.image.map(el => {
+                                                    return {
+                                                        image: baseURL + el.src
+                                                    }
                                                 })
                                             } 
                                             width='300px' 
@@ -75,10 +80,10 @@ export default function GroupInfoPageView (props: {
                                     }
                                 </div>
                                 <div className={s.description}>
-                                    {el.description}
+                                    {post.description}
                                 </div>
                                 <div className={s.actions}>
-                                    {el.likes}<AiFillHeart fontSize={25} />
+                                    {post.likes}<AiFillHeart fontSize={25} />
                                     10
                                     <BiComment 
                                         fontSize={25}

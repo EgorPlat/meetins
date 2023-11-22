@@ -1,4 +1,5 @@
 import { IMyActiveDialogMessage, IMyDialog, User } from "../interfaces";
+import { EnchancedFiles, IGroup, IGroupPostEnchancedFiles } from "../interfaces/groups";
 
 export default function calculateCountOfUnredMessageInDialog (messages: IMyActiveDialogMessage[], authedUser: User) {
     if (!messages) return;
@@ -63,4 +64,25 @@ export const getTimerFromSeconds = (seconds: number) => {
     const maxSeconds = Math.floor(seconds - maxMinutes * 60);
 
     return `${maxMinutes}:${maxSeconds}`;
+}
+
+export const destrucutreFilesInGroupPost = (groupInfo: IGroup): IGroupPostEnchancedFiles[] => {
+    if (!groupInfo.posts) return [] as IGroupPostEnchancedFiles[];
+    
+    const updatedPosts = groupInfo.posts.map(post => {
+        const files: EnchancedFiles = {};
+        post.files.map(file => {
+            const fileType = file.type.split("/")[0];
+            if (files[fileType]) {
+                files[fileType].push(file);
+            } else {
+                files[fileType] = [file]
+            }
+        });
+        return {
+            ...post,
+            files: files
+        }
+    });
+    return updatedPosts
 }

@@ -7,7 +7,6 @@ import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'
 import { $currentPage, isMobile } from '../../../global/store/store'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BottomMobileNavMenu from '../BottomMobileNavMenu/BottomMobileNavMenu'
 
 export default function Header(): JSX.Element {
 	const currentPage = useStore($currentPage);

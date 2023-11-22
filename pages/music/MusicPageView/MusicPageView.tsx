@@ -6,6 +6,8 @@ import { PiMusicNotesPlus } from 'react-icons/pi';
 import { MusicPlayer } from '../../../global/components/MusicPlayer/MusicPlayer';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import AddMusic from '../../../global/Forms/AddMusic/Index';
+import { baseURL } from '../../../global/store/store';
+import Link from 'next/link';
 
 interface IMusicPageViewProps {
     addMusicModal: boolean,
@@ -72,6 +74,39 @@ export default function MusicPageView({
                     </div>
                 </div>
             </div>
+            <div className={s.matches}>
+                <div className={s.title}>Ваш вкус совпадает с другими пользователями</div>
+                <div className={s.desk}>
+                    {
+                        [1,2,3,4].map(el => (
+                            <div className={s.card}>
+                                <div className={s.topContent}>
+                                    <div 
+                                        className={s.avatar}
+                                        style={{ backgroundImage: `url(${baseURL + '/no-avatar.jpg'})` }}
+                                    ></div>
+                                    <div className={s.title}>
+                                        Egor
+                                        <div className={s.matchData}>
+                                            Совпадение: <span className={s.count}>97%</span>
+                                            <div>
+                                                <Link href={`/profile/333`}>
+                                                    Посетить
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={s.bottomContent}>
+                                    <div className={s.compositions}>
+                                        1-Blackway, Black Caviar - What's up danger
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
             <CustomModal 
                 isDisplay={addMusicModal} 
                 changeModal={(status) => handleSwapMusicModal(status)} 
@@ -81,7 +116,6 @@ export default function MusicPageView({
             >
                 <AddMusic />
             </CustomModal>
-
         </div>
     )
 }

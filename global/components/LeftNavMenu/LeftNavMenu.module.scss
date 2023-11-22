@@ -1,5 +1,8 @@
 .ul {
-    list-style: none;
+    display: grid;
+    justify-content: center;
+    justify-content: center;
+    font-size: 22px;
     & .messangerLink {
         display: flex;
         align-items: center;
@@ -11,11 +14,20 @@
             margin-left: 5px;
         }
     }
-    & li {
-        font-family: Nunito;
-        font-size: 32px;
-        & a {
-            text-decoration: none;
+    & .marksLink {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        & .countMarks {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            padding: 5px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(0, 140, 255, 0.941);
+            font-size: clamp(10px, 2.5vw, 14px);
         }
     }
 }
@@ -71,11 +83,6 @@
         margin-left: 0;
         column-gap: 6px;
         font-size: 18px;
-        & li {
-            & a {
-                margin-left: 0%;
-            }
-        }
     }
 }
 @media screen and (max-width: 500px) {
@@ -83,26 +90,33 @@
         & li {
             font-size: 21px;
         }
+        & .marksLink {
+            & .countMarks {
+                width: 15px;
+                height: 15px;
+            }
+        }
     }
 }
 @media screen and (max-width: 480px) {
     .ul {
-        & li {
-            font-size: 18px;
-        }
+        font-size: 18px;
     }
 }
 @media screen and (max-width: 400px) {
     .ul {
-        & li {
-            font-size: 16px;
-        }
+        font-size: 16px;
     }
 }
 @media screen and (max-width: 370px) {
     .ul {
-        & li {
-            font-size: 15px;
+        font-size: 14px;
+        & .marksLink {
+            & .countMarks {
+                padding: 1px;
+                width: 18px;
+                height: 18px;
+            }
         }
     }
 }

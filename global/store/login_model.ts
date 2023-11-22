@@ -23,11 +23,20 @@ export const $loginDetails = createStore<LoginDetailsType>(null).on(
 	(_, newLogDetails) => {
 		return newLogDetails
 	}  
+)
+export const setLoginLoading = createEvent<boolean>()
+export const $loginLoading = createStore<boolean>(false).on(
+	setLoginLoading,
+	(_, status) => {
+		return status
+	}  
 ) 
+
 export const saveDataAfterLogin = createEffect((data: any) => {
 	const router = instanseRouter.getState();
-	router.push(`profile/${data.profile.user.login}`);
 	setUser(data.profile.user);
+	setLoginLoading(true);
+	router.push(`profile/${data.profile.user.login}`);
 });
 
 sample({

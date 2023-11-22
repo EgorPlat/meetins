@@ -12,16 +12,15 @@ export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, 
     return newMyDialogs;
 })
 const handleIsUserUnReadMessagesExists = createEffect(( params: { myDialogs: IMyDialog[], authedUser: User }) => {
-    let isUnReadMessagesExists = false;
+    setIsUserUnReadMessagesExists(false);
     params.myDialogs.map(dialog => {
         dialog.messages.map(message => {
             if (!message.isRead && params.authedUser.userId !== message.senderId) {
-                isUnReadMessagesExists = true;
+                setIsUserUnReadMessagesExists(true);
                 return;
             }   
         })
     })
-    setIsUserUnReadMessagesExists(isUnReadMessagesExists);
 })
 sample({
     source: { myDialogs: myDialogs, authedUser: $user },

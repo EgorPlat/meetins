@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
-import { getGroupById, getGroupMembersInfo, groupInfo, groupMembersInfo } from "../../global/store/groups_model";
+import { createNewMessageInGroupTalk, getGroupById, getGroupMembersInfo, groupInfo, groupMembersInfo } from "../../global/store/groups_model";
 import { useStore } from "effector-react";
 import GroupInfoPageView from "./GroupInfoPageView/GroupInfoPageView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
@@ -10,7 +10,10 @@ import ManageGroup from "../../global/Forms/ManageGroup/Index";
 import AddNewPostIntoGroupForm from "../../global/Forms/AddNewPostIntoGroup/Index";
 import GroupTalksMessagesView from "./GroupTalksMessagesView/GroupTalksMessagesView";
 import GroupTalks from "./GroupTalks/GroupTalks";
-import GroupCreateTalk from "./GroupCreateTalk/GroupCreateTalk";
+import AddNewTalkInGroup from "../../global/Forms/AddNewTalkInGroup/Index";
+import { IGroupTalkMessage } from "../../global/interfaces/groups";
+import AddNewMessageIntoGroupTalk from "../../global/Forms/AddNewMessageIntoGroupTalk";
+import { AxiosResponse } from "axios";
 
 export default function Groups() {
 
@@ -25,6 +28,8 @@ export default function Groups() {
     const [isTalksOpen, setIsTalksOpen] = useState<boolean>(false);
     const [isTalkMessagesOpen, setIsTalkMessagesOpen] = useState<boolean>(false);
     const [isTalkCreationOpen, setIsTalkCreationOpen] = useState<boolean>(false);
+    const [selectedTalkId, setSelectedTalkId] = useState<number>();
+    const [messageText, setMessageText] = useState<string>("");
 
     const handleOpenGroupSettings = () => {
         setIsSettingsGroupOppen(true);
@@ -38,18 +43,28 @@ export default function Groups() {
     const handleOpenTalks = () => {
         setIsTalksOpen(true);
     };
-    const handleOpenTalkMessages = () => {
+    const handleOpenTalkMessages = (talkId: number) => {
+        setSelectedTalkId(talkId)
         setIsTalksOpen(false);
         setIsTalkMessagesOpen(true);
     };
     const handeOpenTalkCreation = () => {
         setIsTalksOpen(false);
         setIsTalkCreationOpen(true);
+    };
+    const handleSuccessSubmitTalkCreation = () => {
+        setIsTalkCreationOpen(false);
+        setIsTalksOpen(true);
+    }
+    const handleAddNewMessage = (res: AxiosResponse) => {
+        
     }
 
     useEffect(() => {
-        getGroupById(+router.query.id);
-        getGroupMembersInfo(+router.query.id);
+        if(router.query?.id) {
+            getGroupById(+router.query.id);
+            getGroupMembersInfo(+router.query.id);
+        }
     }, [router.query.id]);
     
     return (
@@ -102,6 +117,7 @@ export default function Groups() {
                     <GroupTalks
                         handleOpenTalkMessages={handleOpenTalkMessages}
                         handeOpenTalkCreation={handeOpenTalkCreation}
+                        groupId={groupInfo$.groupId}
                     />
                 </CustomModal>
                 <CustomModal
@@ -110,24 +126,30 @@ export default function Groups() {
                     actionConfirmed={setIsTalkMessagesOpen}
                     typeOfActions="custom"
                     actionsComponent={
-                        <input
-                            style={{width: "100%", height: "40px", borderRadius: "5px"}}
-                            type="text" 
-                            placeholder="Введите текст сообщения" 
+                        <AddNewMessageIntoGroupTalk
+                            groupId={groupInfo$.groupId}
+                            talkId={selectedTalkId}
+                            onSaveMessage={handleAddNewMessage}
                         />
                     }
-                    title="Обсуждения - Рейтинг художников"
+                    title="Обсуждение"
                 >
-                    <GroupTalksMessagesView />
+                    <GroupTalksMessagesView 
+                        talkId={selectedTalkId}
+                        groupId={groupInfo$.groupId}
+                    />
                 </CustomModal>
                 <CustomModal
                     isDisplay={isTalkCreationOpen}
                     changeModal={setIsTalkCreationOpen}
                     actionConfirmed={setIsTalkCreationOpen}
-                    typeOfActions="default"
-                    title="Начать обсуждение"
+                    typeOfActions="none"
+                    title="Обсуждение"
                 >
-                    <GroupCreateTalk />
+                    <AddNewTalkInGroup 
+                        groupId={String(router.query.id)}
+                        successSubmit={handleSuccessSubmitTalkCreation}
+                    />
                 </CustomModal>
             </div>
         </PageContainer>
