@@ -16,6 +16,9 @@
         & .help {
             font-size: 18px;
             margin-top: 15px;
+            & .description {
+                text-align: justify;
+            }
             & .actions {
                 margin-bottom: 15px;
                 button {

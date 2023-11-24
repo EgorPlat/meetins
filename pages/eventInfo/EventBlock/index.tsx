@@ -32,7 +32,7 @@ export default function EventBlock(props: {
                     </div>
                     <div className={s.help}>
                         <div>{event.title}, {event.age_restriction}+</div>
-                        <div dangerouslySetInnerHTML={{ __html: event.description }} />
+                        <div dangerouslySetInnerHTML={{ __html: event.description }} className={s.description} />
                         <EventMoreInfo 
                             price={event.price}
                             tags={event.tags}

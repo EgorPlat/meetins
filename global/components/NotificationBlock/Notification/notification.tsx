@@ -20,7 +20,7 @@ export const Notification = (props: {
     }, []);
 
     return (
-        <div className={s.eachError} style={{ display: visible ? "block" : "none"}}>
+        <div className={s.eachError} style={{ display: visible ? "block" : "none", border: `1px solid ${notification.color}`}}>
             {notification.text}
         </div>
     )

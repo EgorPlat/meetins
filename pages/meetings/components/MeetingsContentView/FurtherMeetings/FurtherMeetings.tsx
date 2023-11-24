@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { customizeDateToYYYYMMDDFormat } from '../../../../../global/helpers/helper';
 
 export default function FurtherMeetings(props: {
-    data: IMeeting[]
+    data: IMeeting[],
+    handleGoToMeetingRoom: (meetingId: string) => void
 }) {
 
     return (
@@ -14,7 +15,7 @@ export default function FurtherMeetings(props: {
             <div className={s.meetingsList}>
                 {
                     props.data?.map((el) => (
-                        <div className={s.meeting} key={el.meetingId}>
+                        <div className={s.meeting} key={el.meetingId} onClick={() => props.handleGoToMeetingRoom(el.meetingId)}>
                             <img src={baseURL + el.preview} width="75px" height="75px" />
                             <div className={s.content}>
                                 <div className={s.title}>

@@ -6,7 +6,8 @@ import s from './MeetingsPageView.module.scss';
 export default function MeetingsPageView(props: {
     currentMenu: number,
     currentMeetings: ISplitedMeetings,
-    setCurrentMenu: (menuId: number) => void
+    setCurrentMenu: (menuId: number) => void,
+    handleGoToMeetingRoom: (meetingId: string) => void
 }) {
     return (
         <div className={s.meetings}>
@@ -41,6 +42,7 @@ export default function MeetingsPageView(props: {
             </div>
             <div className={s.content}>
                 <MeetingsContentView
+                    handleGoToMeetingRoom={props.handleGoToMeetingRoom}
                     currentMenu={props.currentMenu}
                     currentMeetings={props.currentMeetings}
                 />

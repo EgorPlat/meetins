@@ -6,12 +6,18 @@ import MyMeetings from './MyMeetings/MyMeetings';
 
 export default function MeetingsContentView(props: {
     currentMenu: number,
-    currentMeetings: ISplitedMeetings
+    currentMeetings: ISplitedMeetings,
+    handleGoToMeetingRoom: (meetingId: string) => void
 }) {
     return (
         <div className={s.furtherMeetings}>
             { props.currentMenu === 1 && <MyMeetings /> }
-            { props.currentMenu === 2 && <FurtherMeetings data={props.currentMeetings?.furtherMeetings} /> }
+            { props.currentMenu === 2 && 
+                <FurtherMeetings 
+                    data={props.currentMeetings?.furtherMeetings}
+                    handleGoToMeetingRoom={props.handleGoToMeetingRoom}
+                /> 
+            }
             { props.currentMenu === 3 && <CompletedMeetings data={props.currentMeetings?.previousMeetings} /> }
         </div>
     )

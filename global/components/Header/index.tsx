@@ -1,7 +1,6 @@
 import s from './header.module.scss'
 import Image from 'next/image'
 import logo from '../../../public/images/logo-l.svg'
-import Navbar from '../Navbar'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'

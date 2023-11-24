@@ -1,7 +1,4 @@
-import ConfirmAndCancelActions from "../../../../components/ConfirmAndCancelActions/ConfirmAndCancelActions";
-import { customizeDateToYYYYMMDDFormat } from "../../../../global/helpers/helper";
 import { IOuterInviteEvent } from "../../../../global/interfaces/events";
-import { baseURL } from "../../../../global/store/store";
 import s from './OuterInviteWrapper.module.scss';
 
 interface IOuterInviteWrapperProps {
