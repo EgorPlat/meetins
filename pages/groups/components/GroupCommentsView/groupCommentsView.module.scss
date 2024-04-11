@@ -1,0 +1,28 @@
+.groupComments {
+    display: grid;
+    row-gap: 10px;
+    & .comment {
+        width: 100%;
+        min-height: 30px;
+        display: flex;
+        column-gap: 10px;
+        & .avatar {
+            & .image {
+                border-radius: 5px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+        & .info {
+            display: grid;
+            row-gap: 5px;
+            & .name {
+                color: gray;
+            }
+            & .text {
+                text-align: justify;
+                font-size: 14px;
+            }
+        }
+    }
+}

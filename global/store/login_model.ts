@@ -32,16 +32,28 @@ export const $loginLoading = createStore<boolean>(false).on(
 	}  
 ) 
 
-export const saveDataAfterLogin = createEffect((data: any) => {
-	const router = instanseRouter.getState();
-	setUser(data.profile.user);
+export const handlePushUserToLoginPage = createEffect((params: { router: any, data: any }) => {
+	params.router.push(`/login`);
+})
+
+export const saveDataAfterLogin = createEffect((params: { router: any, data: any }) => {
+	setUser(params.data.profile.user);
 	setLoginLoading(true);
-	router.push(`profile/${data.profile.user.login}`);
+	params.router.push(`profile/${params.data.profile.user.login}`);
 });
 
 sample({
+	source: { router: instanseRouter },
 	clock: sendLogData.doneData,
-	filter: response => response.status <= 201,
-	fn: response => response.data,
+	filter: (router, response) => response.status <= 201,
+	fn: (routerState, response) => { return { router: routerState.router, data: response.data } },
 	target: saveDataAfterLogin
+});
+
+sample({
+	source: { router: instanseRouter },
+	clock: handleLogOut.doneData,
+	filter: (router, response) => response.status <= 201,
+	fn: (routerState, response) => { return { router: routerState.router, data: response.data } },
+	target: handlePushUserToLoginPage
 });

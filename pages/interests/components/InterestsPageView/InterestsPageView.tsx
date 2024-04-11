@@ -1,13 +1,18 @@
+import { Ref } from 'react';
+import ButtonWithHint from '../../../../components-ui/Hint/buttonWithHint';
+import { IInterest } from '../../../../global/interfaces/interest';
 import s from './InterestsPageView.module.scss';
 
-export default function InterestsPageView ({ handleSendForm }: {
-    handleSendForm: () => void
+export default function InterestsPageView ({ handleSendForm, currentInterests, titleRef }: {
+    handleSendForm: () => void,
+    currentInterests: IInterest[],
+    titleRef: Ref<HTMLInputElement>
 }) {
     return (
         <div className={s.interests}>
             <div className={s.block}>
-                Интересы - это критерий для поиска людей или знакомых, с помощью которого Вы можете
-                понять хотите - ли Вы общаться с этим человеком или у Вас мало чего общего.
+                Интересы - это критерий для поиска людей, с помощью которого Вы можете
+                понять есть ли у Вас что-то общее или нет .
                 <div className={s.example}>
                     По умолчанию мы предлагаем Вам несколько стандартных интересов которые Вы можете 
                     настроить у себя в профиле (пример)
@@ -24,7 +29,12 @@ export default function InterestsPageView ({ handleSendForm }: {
                         Тогда его смогут увидеть и выбирать другие пользователи, что поможет
                         Вам найти друзей.
                     </span>
-                    <input type='text' placeholder='Название интереса' className={s.title} />
+                    <input 
+                        type='text' 
+                        placeholder='Название интереса' 
+                        className={s.title}
+                        ref={titleRef}
+                    />
                     <textarea 
                         placeholder='В чем заключается ваш интерес?' 
                         className={s.description}
@@ -33,6 +43,27 @@ export default function InterestsPageView ({ handleSendForm }: {
                         className={s.submit}
                         onClick={handleSendForm}
                     >Отправить</button>
+                </div>
+                <div className={s.interestsList}>
+                    <ButtonWithHint 
+                            title='?'
+                            hintTitle={
+                                `Здесь указаны все интересы, которые могут быть использованы на сайте.`
+                            }
+                            fontSize={13}
+                        />
+                    <div className={s.title}>
+                        Текущий список интересов людей:
+                    </div>
+                    {
+                        currentInterests?.map((el, index) => (
+                            <div key={el.interestId}>
+                                {
+                                    index < currentInterests.length - 1 ? el.title + ',': el.title
+                                }
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>

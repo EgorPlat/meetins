@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { getInterests } from '../../../../global/store/store';
+import { $currentInterestsList, getInterests } from '../../../../global/store/store';
 import s from './ChangingInterests.module.scss';
+import { useStore } from 'effector-react';
 
 export default function ChangingInterests(props: { 
     currentInterests: string[],
@@ -8,23 +9,28 @@ export default function ChangingInterests(props: {
 }) {
 
     const [interestsList, setInterestsList] = useState([]);
+    const currentInterests = useStore($currentInterestsList);
 
     const selectNewInterest = (index: number) => {
         let updatedInterests = interestsList;
         updatedInterests[index].selected = !updatedInterests[index].selected;
         setInterestsList(() => [...updatedInterests]);
-    }
+    };
+
     useEffect(() => {
-        getInterests().then(res => {
-            setInterestsList(res.map(el => {
-                if (props.currentInterests.includes(el.interestId)) {
-                    return { ...el, selected: true }
-                }
-                return { ...el, selected: false }
-            } 
-            ));
-        });
-    }, [])
+        getInterests();
+    }, []);
+
+    useEffect(() => {
+        setInterestsList(currentInterests.map(el => {
+            if (props.currentInterests.includes(el.interestId)) {
+                return { ...el, selected: true }
+            }
+            return { ...el, selected: false }
+        } 
+        ));
+    }, [currentInterests])
+
     return (
         <div className={s.changingInterests}>
             {

@@ -1,0 +1,61 @@
+.lentaList {
+    display: grid;
+    row-gap: 10px;
+    justify-content: center;
+    justify-items: center;
+    & .wallPost {
+        width: 800px;
+        min-height: 100px;
+        padding: 10px;
+        background-color: var(--bg-color-block);
+        border-radius: 10px;
+        display: grid;
+        row-gap: 15px;
+        position: relative;
+        & .postAuthor {
+            display: flex;
+            column-gap: 10px;
+            & .name {
+                font-size: 16px;
+            }
+            & .avatar {
+                width: 30px;
+                height: 30px;
+                border-radius: 10px;
+            }
+        }
+        & .postContent {
+            font-size: 16px;
+        }
+        & .postDescription {
+            font-size: 16px;
+        }
+        & .postMoreInfo {
+            color: var(--default-color);
+            display: flex;
+            column-gap: 5px;
+            align-items: center;
+            font-size: 17px;
+            position: relative;
+            & .postDate {
+                position: absolute;
+                right: 10px;
+                font-size: 14px;
+                color: gray;
+            }
+        }
+        & .postActions {
+            position: absolute;
+            top: 7px;
+            right: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .lentaList {
+        & .wallPost {
+            width: 100%;
+        }
+    }
+}

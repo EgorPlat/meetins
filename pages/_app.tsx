@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime';
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
+import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, setIsMobile, setIsScrollPageBlocked } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';
@@ -20,15 +20,19 @@ import { useRouter } from 'next/router';
 import { getMyDialogs } from '../global/store/chat_model';
 import { MusicControlBlock } from '../global/components/MusicControlBlock/musicControlBlock';
 import { activeMusic } from '../global/store/music_model';
+import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
 	const connection$ = useStore(connection);
-	const {isMobile, isUnAdaptive} = useResize();
-	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
+	const isScrollPageBlocked = useStore($scrollPageBlocked)
 	const activeMusic$ = useStore(activeMusic);
-	const router = useRouter();
 
+	const router = useRouter();
+	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
+	const {isMobile, isUnAdaptive} = useResize();
+	const inithialConnection = useAuthAndInithialSocket();
+	
 	useEffect(() => {
 		setRouter(router);
 		getMyDialogs(true);
@@ -44,6 +48,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setIsMobile(isMobile);
 		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);
+
+	useEffect(() => {
+		const body = document.getElementsByTagName('body')[0];
+		if (isScrollPageBlocked) {
+			body.style.overflowY = 'hidden';
+		} else {
+			body.style.overflowY = 'scroll';
+		}
+	}, [isScrollPageBlocked])
 	
 	return (
 		<Layout>

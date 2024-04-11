@@ -1,22 +1,25 @@
 import { useStore } from "effector-react";
-import { isAsyncLoaded, isUserLoaded, setCurrentPage } from "../../global/store/store";
+import { $user, isAsyncLoaded, isUserLoaded, setCurrentPage, setUser } from "../../global/store/store";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { deleteUserAccount, setIsAccountUpdated, setIsProfileUpdated } from "../../global/store/settings_model";
+import { deleteUserAccount, setIsAccountUpdated, setIsProfileUpdated, updateUserFilterStatus } from "../../global/store/settings_model";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import s from "./settings.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
-import ProfileInfoForm from "../../global/Forms/ProfileInfo/Index";
-import ManageAccountForm from "../../global/Forms/ManageAccount/Index";
+import ProfileInfoForm from "../../global/forms/ProfileInfo/Index";
+import ManageAccountForm from "../../global/forms/ManageAccount/Index";
 import ru from '../../public/images/ru.png';
 import us from '../../public/images/us.png';
 import Image from "next/image";
 import Loader from "../../components-ui/Loader/Loader";
 import Modal from "../../components-ui/Modal/Modal";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
+import TurnOffOn from "../../components-ui/TurnOffOn/TurnOffOn";
+import { User } from "../../global/interfaces";
+import ButtonWithHint from "../../components-ui/Hint/buttonWithHint";
 
 export default function Settings(): JSX.Element {
 
@@ -24,6 +27,7 @@ export default function Settings(): JSX.Element {
     const router = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const { t, i18n } = useTranslation();
+    const user$ = useStore($user);
 
     useEffect(() => {
         return () => {
@@ -38,6 +42,14 @@ export default function Settings(): JSX.Element {
 
     const handleChangeLocale = (local: string) => {
         i18n.changeLanguage(local);
+    };
+
+    const handleChangeStatus = (status: boolean) => {
+        updateUserFilterStatus(status).then((res: User) => {
+            if (res) {
+                setUser(res);
+            }
+        })
     };
 
     const deleteAccount = (status: boolean) => {
@@ -64,6 +76,28 @@ export default function Settings(): JSX.Element {
                     <div><Link href = ''>{t("Другое")}</Link></div>
                 </div>
                 <div className={`${s.formAndInfo}`}>
+                    <div className={s.filters}>
+                        <h4>{t("Управление фильтрами контента")}</h4>
+                        <div className={s.filter}>
+                            <TurnOffOn
+                                inithialStatus={user$?.isFilter}
+                                onChange={handleChangeStatus}
+                            />
+                            <ButtonWithHint
+                                fontSize={14}
+                                title="?"
+                                hintTitle={
+                                    `*Фильтры контента - это функция, которая дает Вам возможность активировать
+                                    алгоритм подбора контента на сайте (сообщества, люди, встречи, лента и т.д.)
+                                    исходя из Ваших настроек профиля (например интересов, закладок, активности).
+                                    *Включая данную функцию важно понимать что количество контента на сайте может
+                                    уменьшиться, при этом вероятность того что Вам попадется что-то не нужное или Вам не интерсное
+                                    крайне мала.
+                                    `
+                                }
+                            />
+                        </div>
+                    </div>
                     <div className={s.locale}>
                         <h4>{t("Выбрать язык")}</h4>
                         <div className={s.locales}>
@@ -109,7 +143,7 @@ export default function Settings(): JSX.Element {
                 </div>
             </div>
             <Modal isDisplay={isModal} changeModal={changeModal} actionConfirmed={deleteAccount}>
-                <h6>Подвердите действие - Удаление аккаунта.</h6>
+                <h6>{t('Подвердите действие - Удаление аккаунта')}.</h6>
             </Modal>
         </div>
     ) 

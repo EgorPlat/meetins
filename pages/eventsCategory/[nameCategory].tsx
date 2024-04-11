@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
-import EventsList from "./EventsList/EventsList";
+import EventsList from "./components/EventsList/EventsList";
 import s from "./nameCategory.module.scss";
 
 export default function CategoryEventInfo(): JSX.Element {

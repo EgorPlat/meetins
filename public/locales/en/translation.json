@@ -55,7 +55,7 @@
     "You can delete your account, then others peoples wont be able to",
     "Вас найти на нашем сайте": "find you on this service",
     "Отключение": "Disable",
-    "Не менее 6-ми символов, не более 12 символов": "6 symbols is minimum and 12 symbols is maximum",
+    "Не менее 6-ти символов, не более 12-ти символов": "6 symbols is minimum and 12 symbols is maximum",
     "Комментарии к посту": "Comments on the post",
     "Введите текст комментария": "Write your comment",
     "Кино": "Movies",
@@ -81,5 +81,16 @@
     "Видео": "Video",
     "В сети": "В сети",
     "Не в сети": "Не в сети",
-    "Показать всех": "Show all"
+    "Показать всех": "Show all",
+    "Управление фильтрами контента": "Manage content filters",
+    "Информация": "Information",
+    "Уведомление": "Notification",
+    "Подвердите действие - Удаление аккаунта": "Confirm action - deleting account",
+    "Подтвердить": "Confirm",
+    "Закрыть": "Close",
+    "зарегистрирован": "registrated",
+    "зарегистрирована": "registrated",
+    "последнее посещение": "last activity",
+    "за последние 24 часа профиль просмотрен": "for the last 24 hours this profile was watched",
+    "раз": "times"
 }

@@ -1,0 +1,21 @@
+.groupAttachments {
+    & .attachmentList {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 10px;
+        column-gap: 10px;
+        & .image {
+            width: 100px;
+            height: 100px;
+            border: 1px solid var(--border-color);
+            padding: 5px;
+        }
+        & .video {
+            outline: none;
+            width: 220px;
+            height: 150px;
+            border: 1px solid var(--border-color);
+            padding: 5px;
+        }
+    }
+}

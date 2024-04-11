@@ -1,7 +1,7 @@
 .confirmation {
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     column-gap: 10px;
@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
     justify-items: center;
-    color: black;
+    color: var(--text-color);
     & .description {
         max-width: 400px;
         text-align: center;
@@ -33,7 +33,7 @@
         display: grid;
         text-align: center;
         & a {
-            color: blue;
+            color: var(--default-color);
             margin-top: 15px;
         }
         & button {

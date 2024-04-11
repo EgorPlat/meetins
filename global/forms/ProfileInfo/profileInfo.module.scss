@@ -1,0 +1,16 @@
+.successActionDiv {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: green;
+    padding: 5px;
+    width: 96%;
+    border-radius: 5px;
+    background-color: rgba($color: green, $alpha: 0.3);
+}
+.unSuccessActionDiv {
+    margin-top: 5px;
+    color: red;
+    padding: 5px;
+    background-color: rgba($color: red, $alpha: 0.1);
+}

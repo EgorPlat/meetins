@@ -1,20 +1,68 @@
 .wrapper {
-    max-width: 600px;
-    min-height: 100px;
     background-size: 100% 100%;
-    & .wrapperBlur {
-        max-width: 600px;
-        min-height: 300px;
-        background-color: rgba(128, 128, 128, 0.311);
-        color: white;
-        padding: 10px;
-       
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    & .content {
+        display: flex;
+        column-gap: 10px;
+        width: 100%;
+        & .image {
+            & img {
+                width: 100px;
+                height: 100px;
+                border-radius: 10px;
+            }
+        }
+        & .mainInfo {
+            & .eventTitle {
+                font-size: 16px;
+                color: gray;
+            }
+            & .eventDescription {
+                font-size: 14px;
+            }
+            & .eventSender {
+                display: flex;
+                font-size: 14px;
+                color: gray;
+                align-items: center;
+                & .eventSenderName {
+                    display: flex;
+                    justify-content: center;
+                    margin-left: 5px;
+                }
+                & .eventSenderAvatar {
+                    display: flex;
+                    justify-content: center;
+                    margin-left: 5px;
+                    & .avatar {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
     }
-    & .wrapperBlur:hover {
-        background-color: rgba(128, 128, 128, 0.477);
-        transition: 0.5s;
+    & .actions {
+        display: flex;
+        column-gap: 10px;
+        & .action {
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            background-color: var(--default-color);
+        }
+        & .action:hover {
+            background-color: orange;
+            color: black;
+        }
     }
 }
+
 
 @media screen and (max-width: 625px) {
     .wrapper {

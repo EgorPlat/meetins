@@ -1,16 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import s from './CustomSlider.module.scss';
+import { useStore } from 'effector-react';
+import { isMobile } from '../../global/store/store';
 
 interface ICustomSliderProps {
-    images: any[],
+    files: {
+        src: string,
+        type: string
+    }[],
     width: string,
     height: string
 }
 
-export default function CustomSlider({ images, width, height }: ICustomSliderProps) {
+export default function CustomSlider({ files, width, height }: ICustomSliderProps) {
+
     const [activeImageId, setActiveImageId] = useState<number>(0);
     const [touchXData, setTouchXData] = useState<number>(0);
+    const [params, setParams] = useState({ width, height });
+    const isMobile$ = useStore(isMobile);
 
     const updateActiveImage = (newActiveImageId: number) => {
         setActiveImageId(() => newActiveImageId);
@@ -22,47 +30,79 @@ export default function CustomSlider({ images, width, height }: ICustomSliderPro
 
     const handleTouchEnd = (e) => {
         if (e.changedTouches[0].pageX < touchXData) {
-            if (images.length - 1 === activeImageId){
+            if (files.length - 1 === activeImageId){
                 setActiveImageId(() => 0);
             } else {
                 setActiveImageId((prev) => prev + 1);
             }
         } else {
             if (activeImageId === 0){
-                setActiveImageId(() => images.length - 1);
+                setActiveImageId(() => files.length - 1);
             } else {
                 setActiveImageId((prev) => prev - 1);
             }
         }
     };
 
+    useEffect(() => {
+        if (isMobile$) setParams({ ...params, width: "300px "});
+    }, [isMobile$])
+
     return (
         <div className={s.customSlider}>
             <div className={s.customSliderSlides}
-                style={{ width, height }}
+                style={{ width: params.width }}
             >
                 {
-                    images.map(el => (
+                    files.map(el => (
                         <div 
                             className={s.customSliderCurrentImage}
-                            style={{ transform: `translateX(-${activeImageId * 100}%)` }}
-                            key={el.image}
+                            style={{
+                                transform: `translateX(-${activeImageId * 100}%)`,
+                                transition: '1s'
+                            }}
+                            key={el.src}
                         >
-                            <img
-                                src={el.image} 
-                                width={width} 
-                                height={height} 
-                                alt="Главное изображение" 
-                                onTouchStart={handleTouchStart}
-                                onTouchEnd={handleTouchEnd}
-                            />
+                            {
+                                el.type.includes('image') ?
+                                    <img
+                                        src={el.src} 
+                                        width={params.width} 
+                                        height={height} 
+                                        alt="Главное изображение" 
+                                        onTouchStart={handleTouchStart}
+                                        onTouchEnd={handleTouchEnd}
+                                    />
+                                : el.type.includes('video') ?
+                                    <video
+                                        src={el.src} 
+                                        width={params.width}
+                                        height={height}
+                                        onTouchStart={handleTouchStart}
+                                        onTouchEnd={handleTouchEnd}
+                                        controls
+                                    />
+                                : el.type.includes('audio') ? 
+                                    <audio
+                                        style={{ width: params.width, height }}
+                                        src={el.src} 
+                                        onTouchStart={handleTouchStart}
+                                        onTouchEnd={handleTouchEnd}
+                                        controls
+                                    />
+                                : 
+                                <div style={{ width: params.width, textAlign: "center" }}>
+                                    <div>Вложение (файл) - {el.type}</div>
+                                    <a href={el.src} target='__blank'>Скачать</a>
+                                </div>
+                            }
                         </div>
                     ))
                 }
             </div>
             <div className={s.customSliderState}>
                 {
-                    images.map((el, index) => (
+                    files.map((el, index) => (
                         <div 
                             className={
                                 index === activeImageId ? s.customSliderRoundActive : s.customSliderRoundInactive

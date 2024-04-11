@@ -1,16 +1,17 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { $currentProfileUser, $user, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
+import { $currentProfileUser, $user, addUserIntoMarkedList, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import { checkDialog, getMyDialogs } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
-import { useAuthAndInithialSocket } from "../../global/hooks/useAuthAndInithialSocket";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
-import ProfileView from "./ProfileView/profileView";
+import ProfileView from "./profileView/profileView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { setLoginLoading } from "../../global/store/login_model";
+import { addNotification } from "../../global/store/notifications_model";
+import { currentUserPlaces$, getUserPlaces } from "../../global/store/meetings_model";
 
 function Profile(): JSX.Element {
 
@@ -19,27 +20,26 @@ function Profile(): JSX.Element {
     const currentUserLoaded = useStore(isCurrentUserLoaded);
     const currentUser = useStore($currentProfileUser);
     const authedUser = useStore($user);
-    const isConnected = useAuthAndInithialSocket();
+    const currentUserPlaces = useStore(currentUserPlaces$);
 
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
-    const [isModal, setIsModal] = useState<boolean>(false);
     const [isAddPostModal, setIsAddPostModal] = useState<boolean>(false);
     const [isInviteModal, setIsInviteModal] = useState<boolean>(false);
     const [choosedEventForInvite, setChoosedEventForInvite] = useState<number>();
+    const [isEditTagOpen, setIsEditTagOpen] = useState<boolean>(false);
 
     const changeAddingImageStatus = (status: boolean) => {
         if(currentUser.login === authedUser?.login) {
             setAddingImageStatus(() => status);
         }
-    }
+    };
 
     const onChangeInputImage = (event: ChangeEvent<HTMLInputElement>) => {
-        updateUserAvatar(event).then((res: { data: User }) => {
-            setCurrentProfileUser(res.data)
-            setUser(res.data);
+        updateUserAvatar(event).then((res: User) => {
+            setCurrentProfileUser(res)
+            setUser(res);
         })
-        setIsModal(true);
-    }
+    };
 
     const handleSaveNewStatus = (userStatus: string) => {
         updateUserStatus(userStatus).then( (user: User) => {
@@ -51,21 +51,33 @@ function Profile(): JSX.Element {
     const handleStartDialog = () => {
         checkDialog(currentUser);
         Router.push('/messanger')
-    } 
-    const onImageModalClick = (status: boolean) => {
-        if (status) {
-            window.location.reload();
-        }
-        setIsModal(false);
-    }
+    };
 
     const onAddingModalClick = () => {
         setIsAddPostModal(false);
-    }
+    };
 
     const handleSendInvite = () => {
         sendInviteToUser({ userToId: currentUser.userId, eventId: choosedEventForInvite });
         setIsInviteModal(false);
+    };
+
+    const handleAddUserIntoMarked = () => {
+        if (authedUser.markedUsers.includes(currentUser.userId)) {
+            addNotification({
+                textColor: "white",
+                color: "orange",
+                time: 3000,
+                text: "Уже в избранных."
+            })
+        } else {
+            addUserIntoMarkedList(currentUser.userId);
+        }
+    };
+
+    const handleOpenEditTag = () => {
+        if (authedUser.userId === currentUser.userId) setIsEditTagOpen(true);
+        return;
     }
 
     useEffect(() => {
@@ -74,11 +86,18 @@ function Profile(): JSX.Element {
         return () => {
             setCurrentProfileUser({} as User);
         }
-    }, [])
-    useEffect( () => {
+    }, []);
+
+    useEffect(() => {
         if (!route.isReady) return;
         getDataForProfilePage(String(route.query.id));
     }, [route.isReady, route.asPath]);
+
+    useEffect(() => {
+        if (currentUser.userId) {
+            getUserPlaces({ userId: currentUser.userId });
+        }
+    }, [currentUser])
     
     if (currentUserLoaded) {
         return(
@@ -89,18 +108,21 @@ function Profile(): JSX.Element {
                     currentUser={currentUser}
                     authedUser={authedUser}
                     isAddPostModal={isAddPostModal}
-                    isImageModal={isModal}
                     isInviteModal={isInviteModal}
+                    isEditTagOpen={isEditTagOpen}
                     handleSendInvite={handleSendInvite}
                     setChoosedEventForInvite={setChoosedEventForInvite}
                     setIsAddPostModal={setIsAddPostModal}
                     setIsInviteModal={setIsInviteModal}
+                    setIsEditTagOpen={setIsEditTagOpen}
                     handleStartDialog={handleStartDialog}
                     onChangeInputImage={onChangeInputImage}
                     handleSaveNewStatus={handleSaveNewStatus}
                     changeAddingImageStatus={changeAddingImageStatus}
                     onAddingModalClick={onAddingModalClick}
-                    onImageModalClick={onImageModalClick}
+                    handleAddUserIntoMarked={handleAddUserIntoMarked}
+                    handleOpenEditTag={handleOpenEditTag}
+                    currentUserPlaces={currentUserPlaces}
                 />
             </PageContainer>
         )

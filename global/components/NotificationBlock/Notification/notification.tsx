@@ -4,7 +4,7 @@ import { ICreatedNotification } from '../../../interfaces/notification';
 
 export const Notification = (props: { 
     notification: ICreatedNotification, 
-    handleRemove: (error: ICreatedNotification) => void 
+    handleRemove: (error: ICreatedNotification) => void
 }) => {
     const { notification } = props;
     const [visible, setVisible] = useState<boolean>(true);
@@ -20,7 +20,10 @@ export const Notification = (props: {
     }, []);
 
     return (
-        <div className={s.eachError} style={{ display: visible ? "block" : "none", border: `1px solid ${notification.color}`}}>
+        <div
+            className={s.eachError} 
+            style={{ display: visible ? "block" : "none", border: `2.5px solid ${notification.color}`}}
+        >
             {notification.text}
         </div>
     )

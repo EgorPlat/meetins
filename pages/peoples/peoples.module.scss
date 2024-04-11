@@ -1,10 +1,24 @@
 .peoples {
     .chapters {
+        display: flex;
+        column-gap: 10px;
         margin-bottom: 10px;
+        align-items: center;
+        & .hint {
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        & .hint:hover {
+            color: gray;
+        }
+        & .hintText {
+            & .title {
+                color: var(--default-color);
+            }
+        }
         & button {
             border: none;
             background-color: transparent;
-            margin-right: 10px;
         }
         & button:hover {
             border-bottom: 3px solid rgb(134, 134, 243);

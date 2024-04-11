@@ -1,0 +1,180 @@
+import { baseURL } from '../../../../global/store/store';
+import { CiSquarePlus } from "react-icons/ci";
+import s from './MeetingsRoomPageView.module.scss';
+import CustomProgressBar from '../../../../components-ui/CustomProgressBar/CustomProgressBar';
+import { IMeeting } from '../../../../global/interfaces/meetings';
+import CustomLoader from '../../../../components-ui/CustomLoader/CustomLoader';
+import { customizeDateToYYYYMMDDHHMMFormat } from '../../../../global/helpers/helper';
+import { ChangeEvent, useRef } from 'react';
+import Link from 'next/link';
+import { selectedMeeting } from '../../../../global/store/meetings_model';
+import { IGroupFile } from '../../../../global/interfaces/groups';
+
+export default function MeetingsRoomPageView(props: {
+    selectedMeeting: IMeeting,
+    handleFileUpload: (event: ChangeEvent<HTMLInputElement>) => void,
+    handleAddComment: () => void,
+    handleRegInMeeting: (meetingId: string) => void,
+    handleOpenAllFiles: () => void,
+    isUserInParticipants: boolean
+}) {
+    const mediaRef = useRef<HTMLInputElement>(null);
+    
+    if (props.selectedMeeting) {
+        return (
+            <div className={s.meetingsRoom}>
+                <div className={s.topContent}>
+                    <div className={s.mainInfo}>
+                        <img 
+                            src={baseURL + props.selectedMeeting.preview} 
+                            width="150px" 
+                            height="150px"
+                            className={s.photo}
+                        />
+                        <div className={s.title}>{props.selectedMeeting.title}</div>
+                    </div>
+                    <div className={s.moreInfo}>
+                        <div className={s.activityBar}>
+                            <CustomProgressBar
+                                text='Кол-во человек записавшихся на встречу: '
+                                width='90%'
+                                height='30px'
+                                max={25}
+                                value={props.selectedMeeting.participants.length}
+                            />
+                            <CiSquarePlus
+                                className={s.addMember}
+                                fontSize={35}
+                                onClick={() => props.handleRegInMeeting(props.selectedMeeting.meetingId)}
+                            />
+                        </div>
+                        <div className={s.tags}>
+                            Цели: {props.selectedMeeting.goal}
+                        </div>
+                        <div className={s.members}>
+                            Участники: 
+                            <div className={s.list}>
+                                {
+                                    props.selectedMeeting.participants.map(el => (
+                                        <div className={s.user} key={el.login}>
+                                            <div className={s.avatar}>
+                                                <Link href={`/profile/${el.login}`}>
+                                                    <img src={baseURL + el.avatar} width="100%" height="100%" />
+                                                </Link>
+                                            </div>
+                                            <div className={s.name}>{el.name}</div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        <div className={s.dates}>
+                            Даты проведения: {customizeDateToYYYYMMDDHHMMFormat(String(props.selectedMeeting.date))}
+                        </div>
+                        <div className={s.description}>
+                            Описание: {props.selectedMeeting.description}
+                            <span> Приходите по адресу: {props.selectedMeeting.address}</span>
+                        </div>
+                    </div>
+                </div>
+                <div className={s.bottomContent}>
+                    <div className={s.mediaInfo}>
+                        <div className={s.title}>
+                            <span className={s.text}>Фотографии  и видео со встречи:</span>
+                            <CiSquarePlus
+                                className={s.addMedia}
+                                fontSize={35}
+                                onClick={() => mediaRef.current.click()}
+                            />
+                            <input
+                                accept='.jpg, .jpeg, .png, .mp4'
+                                type='file' 
+                                className={s.loadMeetingMediaFile} 
+                                ref={mediaRef}
+                                onChange={props.handleFileUpload}
+                            />
+                        </div>
+                        <div className={s.content}>
+                            {
+                                props.selectedMeeting.files.length === 0 &&
+                                <span className={s.message}>Пока никто не загружал видео или фото со встречи.</span>
+                            }
+                            {
+                                props.selectedMeeting.files.slice(0, 9).map(el => (
+                                    el.type.includes('image') 
+                                        ? <img 
+                                            key={el.src} 
+                                            src={baseURL + el.src} 
+                                            width={120} 
+                                            height={120}
+                                        /> :
+                                    el.type.includes('video') 
+                                        && <video
+                                                key={el.src} 
+                                                src={baseURL + el.src}
+                                                width={150} 
+                                                height={100}
+                                                controls
+                                            />
+                                ))
+                            }
+                            {
+                                props.selectedMeeting.files.length >= 9 &&
+                                    <span 
+                                        className={s.moreMedia}
+                                        onClick={props.handleOpenAllFiles}
+                                    >Ещё...</span>
+                            }
+                        </div>
+                    </div>
+                    <div className={s.commentsInfo}>
+                        <div className={s.title}>
+                            <span className={s.text}>Комментарии к данной встрече от участников:</span>
+                            <CiSquarePlus
+                                className={s.addComment}
+                                fontSize={35}
+                                onClick={props.handleAddComment}
+                            />
+                        </div>
+                        <div className={s.content}>
+                            {
+                                props.selectedMeeting.comments.length === 0 &&
+                                <span className={s.message}>Пока никто не комментировал данную встречу.</span>
+                            }
+                            {
+                                props.isUserInParticipants 
+                                ? props.selectedMeeting.comments.map(comment => {
+                                    const { name, avatar } = 
+                                    props.selectedMeeting.participants.filter(el => el.userId === comment.userId)[0]
+                                    return (
+                                        <div className={s.comment} key={String(comment.date)}>
+                                            <div className={s.userInfo}>
+                                                <div className={s.avatar}>
+                                                    <img src={baseURL + avatar} />
+                                                </div>
+                                                <div className={s.name}>
+                                                    {name}
+                                                </div>
+                                            </div>
+                                            <div className={s.commentContent}>
+                                                {
+                                                    comment.text
+                                                }
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                                : 
+                                <span
+                                    style={{textAlign: "center", fontSize: "15px"}}
+                                >Перед тем как принять участие в обсуждении, запишитесь на встречу.</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    } else {
+        return <CustomLoader />
+    }
+}

@@ -4,11 +4,12 @@ export default function CustomProgressBar(props: {
     max: number,
     value: number,
     width: string,
-    height: string
+    height: string,
+    text: string
 }) {
     return (
-        <div className={s.wrapper} style={{ width: props.width, height: props.height }}>
-            <div className={s.title}>На встрече учавствуют 17/25 человек</div>
+        <div className={s.wrapper} style={{ minWidth: props.width, height: props.height }}>
+            <div className={s.title}>{props.text} {props.value}/{props.max}</div>
             <div 
                 className={s.progress}
                 style={{ 

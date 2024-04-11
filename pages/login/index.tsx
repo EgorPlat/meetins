@@ -25,10 +25,10 @@ export default function Login(): JSX.Element {
 	const sendLoginData = (data: {login: string, password: string}) => {
 		const login = data.login;
 		const pass = data.password;
-		setLoginDetails({
+		/*setLoginDetails({
 			email: login,
 			password: pass,
-		})
+		})*/
 		sendLogData({
 			email: login,
 			password: pass,
@@ -57,10 +57,10 @@ export default function Login(): JSX.Element {
 						register={register('login', {
 							required: true,
 							validate: (value) =>
-								isEmail(value) === value ? true : t('Введите корректный e-mail в формате *@gmail.com'),
+								isEmail(value) === value
 						})}
 					/>
-					{ errors.login && <span className={s.errorSpan}>{errors.login.message}</span> }
+					{ errors.login && <span className={s.errorSpan}>{t('Введите корректный e-mail в формате *@gmail.com')}</span> }
 					<Input
 						icon={passIcon}
 						placeholder={t('Пароль')}
@@ -70,10 +70,10 @@ export default function Login(): JSX.Element {
 						register={register('password', {
 							required: true,
 							validate: (value) =>
-								isPassword(value) ? true : t('Не менее 6-ми символов, не более 12 символов'),
+								value.length >= 6 && value.length <= 12
 						})}
 					/>
-					{ errors.password && <span className={s.errorSpan}>{errors.password.message}</span> }
+					{ errors.password && <span className={s.errorSpan}>{t('Не менее 6-ти символов, не более 12-ти символов')}</span> }
 					{ errorMessage !== "" ? 
 					<div className={`row ${s.errorBlock}`}>
 						{t('Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова')}

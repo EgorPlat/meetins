@@ -5,4 +5,65 @@
         align-items: center;
         font-size: 14px;
     }
+    & .meetingsList {
+        display: grid;
+        row-gap: 10px;
+        margin-top: 10px;
+        & .meetingWrapper {
+            width: 100%;
+            border-radius: 10px;
+            min-height: 30px;
+            background-color: var(--bg-color-block);
+            display: flex;
+            padding: 10px;
+            column-gap: 10px;
+            & .meetingImage {
+                width: 100px;
+                height: 100px;
+                background-size: 100% 100%;
+                border-radius: 10px;
+            }
+            & .meetingDescription {
+                font-size: 18px;
+                display: flex;
+                flex-direction: column;
+                row-gap: 5px;
+                & .meetingTitle {
+                    & .hint {
+                        font-size: 18px;
+                        color: gray;
+                    }
+                }
+                & .meetingCreator {
+                    font-size: 15px;
+                }
+                & .meetingDate {
+                    font-size: 15px;
+                    & .dateTime {
+                        color: gray;
+                    }
+                }
+                & .meetingGoal {
+                    font-size: 15px;
+                    & .hint {
+                        color: var(--default-color);
+                    }
+                }
+                & .meetingActions {
+                    display: flex;
+                    column-gap: 10px;
+                    margin-top: 20px;
+                    & .actionBtn {
+                        background-color: var(--default-color);
+                        border: none;
+                        border-radius: 3px;
+                    }
+                    & .actionBtn:hover {
+                        background-color: rgb(255, 184, 53);
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
 }

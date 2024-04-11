@@ -1,12 +1,12 @@
 .interests {
     width: 98%;
-    font-size: 18px;
+    font-size: 16px;
     & .block {
         padding: 10px;
-        box-shadow: 0px 0px 1px 1px gray;
+        background-color: var(--bg-color-block);
         border-radius: 10px;
         & .example {
-            margin-top: 10px;
+            margin-top: 5px;
             & .interestExample {
                 margin-left: 10px;
                 margin-top: 10px;
@@ -20,17 +20,16 @@
     & .formInterest {
         margin-top: 15px;
         display: grid;
+        grid-template-columns: 1fr 1fr;
         justify-items: center;
         justify-content: center;
         align-items: center;
         row-gap: 10px;
         & .wrapper {
             border-radius: 10px;
-            box-shadow: 0px 0px 1px 1px gray;
-            //background-color: rgba(116, 116, 116, 0.101);
+            background-color: var(--bg-color-block);
             padding: 10px;
-            //border-radius: 10px;
-            width: 550px;
+            max-width: 550px;
             display: grid;
             row-gap: 5px;
             justify-items: center;
@@ -67,6 +66,19 @@
                 background-color: rgb(243, 206, 70);
             }
         }
+        & .interestsList {
+            display: flex;
+            column-gap: 5px;
+            flex-wrap: wrap;
+            font-size: 15px;
+            text-align: justify;
+            & .title {
+                color: var(--default-color);
+            }
+            & .hint {
+                color: gray;
+            }
+        }
     }
 }
 
@@ -74,9 +86,8 @@
     .interests {
         font-size: 16px;
         & .formInterest {
-            & .wrapper {
-                width: 100%;
-            }
+            display: grid;
+                grid-template-columns: 1fr;
         }
     }
 }

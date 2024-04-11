@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import s from "./ImageList.module.scss";
 import { Post, User } from "../../../global/interfaces";
-import { baseURL } from "../../../global/store/store";
+import { baseURL, likeUserPost, unlikeUserPost } from "../../../global/store/store";
 import CurrentPostComments  from "./CurrentPostComments/CurrentPostComments";
 import PostCommentForm from "./PostCommentForm/PostCommentForm";
 import { NewComment } from "../../../global/interfaces/newComment";
 import { addNewCommentToCurrentPost } from "../../../global/store/comments_model";
-import { customizeDateToYYYYMMDDFormat } from "../../../global/helpers/helper";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../global/helpers/helper";
 import { useTranslation } from "react-i18next";
 import CustomModal from "../../../components-ui/CustomModal/CustomModal";
 import { AiOutlineEye, AiOutlineLike } from "react-icons/ai";
 import { FaComments } from 'react-icons/fa';
 import { CgCalendarDates } from "react-icons/cg";
+import CustomSlider from "../../../components-ui/CustomSlider/CustomSlider";
 
 export default function ImageList(props: {currentUser: User, authedUser: User}): JSX.Element {
 
@@ -22,11 +23,13 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
     const handleComments = (el: Post) => {
       setCurrentPost(el);
       setIsCommentsOpen(true);
-    }
+    };
+
     const handleModalAction = (status: boolean) => {
       if (status) setIsCommentsOpen(!status);
       if (!status) setIsCommentsOpen(status);
-    }
+    };
+
     const handleSubmitComment = (commentText: string) => {
       const newComment: NewComment = {
         text: commentText,
@@ -35,7 +38,16 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
         commentOwnerId: props.authedUser.userId
       };
       addNewCommentToCurrentPost(newComment);
-    }
+    };
+
+    const handleLikeUserPost = (post: Post) => {
+      if (post.likes.includes(props.authedUser.userId)) {
+        unlikeUserPost({ userId: props.currentUser.userId, postId: post.id });
+      } else {
+        likeUserPost({ userId: props.currentUser.userId, postId: post.id });
+      }
+    };
+
     return(
         <div className={s.postsList}>
             {
@@ -48,19 +60,37 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                         <CgCalendarDates
                           fontSize={24}
                         />
-                        {customizeDateToYYYYMMDDFormat(el.date)}
+                        {customizeDateToYYYYMMDDHHMMFormat(el.date)}
                       </span>
                     </div>
                     <div className={s.postImage}>
-                      <img src={baseURL + el.images[0]} />
+                      {/*<img src={baseURL + el.files[0].src} />*/}
+                      {
+                        el.files?.length > 0 &&
+                          <CustomSlider 
+                            files={
+                              el.files.map(el => {
+                                return {
+                                  ...el,
+                                  src: baseURL + el.src
+                                }
+                              })
+                            } 
+                            width='450px' 
+                            height='300px' 
+                          />
+                      }
                     </div>
                     <div className={s.postDescription}>
-                      Описание: {el.description}
+                      Описание: <pre>{el.description}</pre>
                     </div>
                     <div className={s.postActions}>
                       <div className={s.postActionsLikes}>
-                        <AiOutlineLike />
-                        <span>{el.likes + 120}</span>
+                        <AiOutlineLike
+                          color={el.likes.includes(props.authedUser.userId) ? 'red' : undefined}
+                          onClick={() => handleLikeUserPost(el)}
+                        />
+                        <span>{el.likes.length}</span>
                       </div>
                       <div className={s.postActionsComments} onClick={() => handleComments(el)}>
                         <FaComments />

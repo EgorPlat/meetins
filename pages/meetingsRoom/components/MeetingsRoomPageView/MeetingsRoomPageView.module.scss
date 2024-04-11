@@ -1,0 +1,168 @@
+.meetingsRoom {
+    display: grid;
+    row-gap: 15px;
+    text-align: justify;
+    width: 98%;
+    & .topContent {
+        display: grid;
+        grid-template-columns: 200px calc(100% - 200px);
+        column-gap: 20px;
+        & .mainInfo {
+            display: grid;
+            justify-content: center;
+            justify-items: center;
+            & .photo {
+                border-radius: 10%;
+            }
+            & .title {
+                font-size: 19px;
+                text-align: center;
+            }
+        }
+        & .moreInfo {
+            display: grid;
+            row-gap: 15px;
+            & .activityBar {
+                display: flex;
+                align-items: center;
+                & .addMember {
+                    cursor: pointer;
+                }
+            }
+            & .tags {
+                font-size: 18px;
+            }
+            & .members {
+                display: flex;
+                column-gap: 10px;
+                & .list {
+                    display: flex;
+                    column-gap: 10px;
+                    & .user {
+                        display: grid;
+                        justify-content: center;
+                        justify-items: center;
+                        & .avatar {
+                            width: 50px;
+                            height: 50px;
+                            & img {
+                                cursor: pointer;
+                                border-radius: 10px;
+                            }
+                        }
+                        & .name {
+                            text-align: center;
+                            font-size: 14px;
+                        }
+                    }
+                }
+                font-size: 18px;
+            }
+            & .dates {
+                color: gray;
+                font-size: 15px;
+            }
+            & .description {
+                font-size: 16px;
+            }
+        }
+    }
+    & .bottomContent {
+        display: grid;
+        row-gap: 10px;
+        & .mediaInfo {
+            & .title {
+                cursor: pointer;
+                font-size: 16px;
+                & .text {
+                    color: rgb(88, 180, 255);
+                }
+                & .loadMeetingMediaFile {
+                    display: none;
+                }
+            }
+            & .content {
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                & .message {
+                    font-size: 16px;
+                    color: gray;
+                }
+                & .moreMedia {
+                    font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;    
+                }
+                & .moreMedia:hover {
+                    color: orange;  
+                }
+                & img {
+                    cursor: pointer;
+                    border-radius: 10px;
+                }
+                & img:first-child {
+                    width: 180px;
+                    height: 180px;
+                }
+            }
+        }
+        & .commentsInfo {
+            width: 98%;
+            & .title {
+                font-size: 16px;
+                & .text {
+                    color: rgb(88, 180, 255);
+                }
+            }
+            & .content {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+                width: 100%;
+                & .message {
+                    width: 100%;
+                    font-size: 16px;
+                    color: gray;
+                }
+                & .comment {
+                    width: 100%;
+                    min-height: 30px;
+                    padding: 10px;
+                    background-color: var(--bg-color-block);
+                    display: grid;
+                    grid-template-columns: 65px calc(100% - 75px);
+                    column-gap: 10px;
+                    & .userInfo {
+                        & .avatar {
+                            & img {
+                                border-radius: 10px;
+                                width: 65px;
+                                height: 65px;
+                            }
+                        }
+                        & .name {
+                            text-align: center;
+                            font-size: 14px;
+                        }
+                    }
+                    & .commentContent {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .meetingsRoom {
+        & .topContent {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+}

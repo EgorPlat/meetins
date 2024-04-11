@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Card from "./categoryCard/card";
+import Card from "./components/categoryCard/card";
 import s from "./index.module.scss";
 import Head from "next/head";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 
 
 export default function Events(): JSX.Element {
-	const [calendarValue, setCalenadarValue] = useState(new Date());
+
 	const { t } = useTranslation();
 
 	return (

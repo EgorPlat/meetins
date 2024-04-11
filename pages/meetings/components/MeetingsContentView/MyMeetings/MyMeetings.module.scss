@@ -6,4 +6,8 @@
         font-size: 14px;
         justify-content: center;
     }
+    & .meetingsList {
+        display: grid;
+        row-gap: 10px;
+    }
 }

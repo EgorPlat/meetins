@@ -40,7 +40,7 @@ updateUserAvatar.use(async (event: any) => {
 	formData.append('uploadedFile', image);
 
 	const response = await instance.post<User>('/settings/update-avatar', formData);
-	if(response.status === 200) {
+	if(response.status <= 200) {
 		return response.data;
 	}
 })
@@ -48,6 +48,14 @@ updateUserAvatar.use(async (event: any) => {
 export const updateUserStatus = createEffect();
 updateUserStatus.use( async (userStatus) => {
 	const response = await instance.post<User>('settings/update-status', {status: userStatus});
+	if(response.status === 200) {
+		return response.data;
+	}
+})
+
+export const updateUserFilterStatus = createEffect();
+updateUserFilterStatus.use( async (userFilterStatus: boolean) => {
+	const response = await instance.post<User>('settings/update-filter-status', {isFilter: userFilterStatus});
 	if(response.status === 200) {
 		return response.data;
 	}

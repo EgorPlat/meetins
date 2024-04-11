@@ -3,7 +3,7 @@
     grid-template-columns: 15% 70%;
     min-height: 500px;
     & .chatList {
-        height: calc(100% - 15px); 
+        height: calc(100vh - 40px); 
     }
     & .chatZone {
         & .noChat {
@@ -17,7 +17,8 @@
     }
     & .block {
         margin-right: 5px;
-        border: 1px solid rgba(128, 128, 128, 0.516);
+        //border: 1px solid rgba(128, 128, 128, 0.516);
+        background-color: var(--bg-color-block);
         border-radius: 10px;
     }
 }

@@ -1,5 +1,5 @@
 import CustomLoader from '../../../../components-ui/CustomLoader/CustomLoader';
-import { User } from '../../../../global/interfaces';
+import { IInnerInvites, User } from '../../../../global/interfaces';
 import { IUnitedInvitesEvent } from '../../../../global/interfaces/events';
 import InnerInviteWrapper from '../InnerInviteWrapper/InnerInviteWrapper';
 import OuterInviteWrapper from '../OuterInviteWrapper/OuterInviteWrapper';
@@ -8,10 +8,22 @@ import s from './InvitesPageView.module.scss';
 interface IInvitesPageView {
     authedUser: User,
     unitedEventsInfo: IUnitedInvitesEvent,
-    loadedStatus: boolean
+    loadedStatus: boolean,
+    handleWatch: (eventId: number) => void,
+    handleDecline: (event: IInnerInvites) => void,
+    handleVisit: (login: number) => void
 }
-export default function InvitesPageView({ authedUser, loadedStatus, unitedEventsInfo }: IInvitesPageView) {
-    if (loadedStatus && unitedEventsInfo.innerInvites.length === 0) {
+export default function InvitesPageView({ 
+    authedUser, 
+    handleWatch, 
+    loadedStatus,
+    unitedEventsInfo, 
+    handleDecline,
+    handleVisit
+}: IInvitesPageView) {
+    const { innerInvites, outerInvites } = unitedEventsInfo;
+
+    if (loadedStatus && innerInvites.length === 0 && outerInvites.length === 0) {
         return (
             <div className={s.invitesPageView}>
                 <h5>У вас пока нет приглашений на мероприятия</h5>
@@ -22,10 +34,23 @@ export default function InvitesPageView({ authedUser, loadedStatus, unitedEvents
         return (
             <div className={s.invitesPageView}>
                 {
-                    unitedEventsInfo.innerInvites.map((invite) => <InnerInviteWrapper invite={invite} key={invite.id} />)
+                    unitedEventsInfo.innerInvites.map((invite) => 
+                    <InnerInviteWrapper 
+                        invite={invite}    
+                        key={invite.id}
+                        handleDecline={handleDecline}
+                        handleWatch={handleWatch}
+                        handleVisit={handleVisit}
+                    />)
                 }
                 {
-                    unitedEventsInfo.outerInvites.map((invite) => <OuterInviteWrapper invite={invite} key={invite.id} />)
+                    unitedEventsInfo.outerInvites.map((invite) => 
+                    <OuterInviteWrapper 
+                        invite={invite} 
+                        key={invite.id}
+                        handleWatch={handleWatch}
+                        handleVisit={handleVisit}
+                    />)
                 }
             </div>
         )

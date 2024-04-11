@@ -1,9 +1,10 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
-import { createEffect, createEvent, createStore } from 'effector'
-import { User } from '../interfaces';
+import { createEffect, createEvent, createStore, sample } from 'effector'
+import { IMarkedUserInfo, IUserTag, User } from '../interfaces';
 import { instanseRouter } from './router_model';
 import { handleLogOut } from './login_model';
 import { addNotification } from './notifications_model';
+import { IInterest } from '../interfaces/interest';
 
 export const baseURL = 'http://localhost:5000/';
 //export const baseURL = 'https://meetins-egorplat.amvera.io/';
@@ -25,6 +26,10 @@ instance.interceptors.response.use((response) => {
 }, (error: AxiosError) => {
 	const ec: AxiosRequestConfig = error.config;
 	const ers: number | undefined = error.response?.status;
+	if (ers === 401) {
+		handleLogOut();
+		setIsAsyncLoaded(true);
+	}
 	if (ers >= 400 && ers <= 499) {
 		const { message } = error.response.data;
 		if (message) {
@@ -35,10 +40,6 @@ instance.interceptors.response.use((response) => {
 				time: 3000
 			});
 		}
-	}
-	if (ers === 401) {
-		setIsAsyncLoaded(true);
-		handleLogOut();
 	}
 	return error;
 })
@@ -79,11 +80,44 @@ export const $currentPage = createStore<string>('').on(
 	}
 )
 
+export const setIsScrollPageBlocked = createEvent<boolean>()
+export const $scrollPageBlocked = createStore<boolean>(false).on(
+	setIsScrollPageBlocked,
+	(_, scrollPageBlocked) => {
+		return scrollPageBlocked;
+	}
+)
+
+export const setCurrentInterestsList = createEvent<IInterest[]>()
+export const addNewInterest = createEvent<IInterest>()
+export const $currentInterestsList = createStore<IInterest[]>([])
+.on(setCurrentInterestsList, (_, interests) => {
+	return interests;
+})
+.on(addNewInterest, (interests, interest) => {
+	return [...interests, interest];
+})
+
+export const setMarkedUsersInfo = createEvent<IMarkedUserInfo[]>()
+export const $markedUsersInfo = createStore<IMarkedUserInfo[]>([]).on(setMarkedUsersInfo, (_, usersInfo) => {
+	return usersInfo;
+})
+
 export const getUserInterests = createEffect(async (userInterests) => {
 	const response = await instance.post('interests/get-ineterests-by-id', JSON.stringify({ interests: userInterests}));
 	if(response.status <= 217) {
 		return response.data;
 	}
+})
+
+export const addUserIntoMarkedList = createEffect(async (userId: string) => {
+	const response = await instance.post('users/addUserIntoMarkedList', JSON.stringify({ neededUserId: userId }));
+	return response;
+})
+
+export const removeUserFromMarkedList = createEffect(async (userId: string) => {
+	const response = await instance.delete(`users/removeUserFromMarkedList/${userId}`);
+	return response;
 })
 
 export const updateInterests = createEffect(async (interests: string[]) => {
@@ -95,13 +129,21 @@ export const updateInterests = createEffect(async (interests: string[]) => {
 	}
 })
 
-export const getInterests = createEffect(async () => {
-	const response = await instance.get('interests/get-interests');
-	if(response.status <= 217) {
-		return response.data;
-	}
+export const getMarkedUsersInfo = createEffect(async () => {
+	const response = await instance.get('users/getMarkedUsersInfo');
 	return response;
 })
+
+export const getInterests = createEffect(async () => {
+	const response = await instance.get('interests/get-interests');
+	return response;
+})
+
+export const addInterest = createEffect(async (title: string) => {
+	const response = await instance.post('interests/add-interest', { title });
+	return response;
+})
+
 
 export const getUserData = createEffect(async () => {
 	setIsUserLoaded(false);
@@ -122,7 +164,6 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 			instanseRouter$?.push(savedRoute);
 		} else {
 			instanseRouter$?.push('/login');
-			//window.location.reload();
 		}
 	})
 });
@@ -165,7 +206,56 @@ export const sendNewUserPost = createEffect(async (formData: FormData) => {
 	if(response.status === 200) {
 		setUser(response.data);
 		addNotification({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000, textColor: "white" })
-		window.location.reload();
 	}
 	return response;
+})
+
+export const updateUserTag = createEffect(async (data: IUserTag) => {
+	const response = await instance.put('users/updateUserTag', data);
+	return response;
+})
+
+export const likeUserPost = createEffect(async (data: { userId: string, postId: string }) => {
+	const response = await instance.put(`users/like/${data.userId}/${data.postId}`);
+	return response;
+})
+
+export const unlikeUserPost = createEffect(async (data: { userId: string, postId: string }) => {
+	const response = await instance.put(`users/remove-like/${data.userId}/${data.postId}`);
+	return response;
+})
+
+sample({
+	clock: [likeUserPost.doneData, unlikeUserPost.doneData],
+	filter: (res) => res.status <= 217,
+	fn: (res) => res.data,
+	target: setCurrentProfileUser
+})
+
+sample({
+	clock: [addInterest.doneData],
+	filter: (res) => res.status <= 217,
+	fn: (res) => res.data,
+	target: addNewInterest
+})
+
+sample({
+	clock: getInterests.doneData,
+	filter: (res) => res.status <= 217,
+	fn: (res) => res.data,
+	target: setCurrentInterestsList
+})
+
+sample({
+	clock: [addUserIntoMarkedList.doneData, updateUserTag.doneData],
+	filter: (res) => res.status <= 217,
+	fn: (res) => res.data,
+	target: setUser
+})
+
+sample({
+	clock: [getMarkedUsersInfo.doneData, removeUserFromMarkedList.doneData],
+	filter: (res) => res.status <= 217,
+	fn: (res) => res.data,
+	target: setMarkedUsersInfo
 })

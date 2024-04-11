@@ -1,14 +1,29 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
-import { IGroup, IGroupMembersInfo } from "../interfaces/groups";
+import { ICreateGroup, IGroup, IGroupMembersInfo, IGroupTalkMessage, IManageGroup } from "../interfaces/groups";
 import { instance } from "./store";
 
 export const setGroupsList = createEvent<IGroup[]>();
-export const groupsList = createStore<IGroup[]>([] as IGroup[]).on(setGroupsList, (_, newGroupsList) => {
+export const addNewGroup = createEvent<IGroup>();
+export const groupsList = createStore<IGroup[]>([] as IGroup[])
+groupsList.on(setGroupsList, (_, newGroupsList) => {
     return newGroupsList;
 })
+groupsList.on(addNewGroup, (groupList, newGroup) => {
+    return [...groupList, newGroup];
+})
+
 export const setActiveGroup = createEvent<IGroup>();
 export const groupInfo = createStore<IGroup>({} as IGroup).on(setActiveGroup, (_, newGroup) => {
     return newGroup;
+})
+export const addActiveGroupTalkMessage = createEvent<IGroupTalkMessage>();
+export const setActiveGroupTalkMessage = createEvent<IGroupTalkMessage[]>();
+export const activeGroupTalksMessages = createStore<IGroupTalkMessage[]>([] as IGroupTalkMessage[])
+.on(addActiveGroupTalkMessage, (prevMessages, newMessage) => {
+    return [...prevMessages, newMessage];
+})
+.on(setActiveGroupTalkMessage, (_, messages) => {
+    return messages;
 })
 export const setActiveGroupMembersInfo = createEvent<IGroupMembersInfo[]>();
 export const groupMembersInfo = createStore<IGroupMembersInfo[]>([] as IGroupMembersInfo[])
@@ -23,9 +38,25 @@ export const getGroupsList = createEffect(async () => {
     return response;
 });
 
+export const joinToGroup = createEffect(async (groupId: number) => {
+    const response = await instance.post(
+        'groups/join-to-group', { groupId: groupId }
+    );
+    return response;
+});
+
+
 export const createNewPostInGroup = createEffect(async (data: FormData) => {
     const response = await instance.post(
         'groups/create-new-post-in-group',
+        data
+    );
+    return response;
+});
+
+export const createNewGroup = createEffect(async (data: ICreateGroup) => {
+    const response = await instance.post(
+        'groups/create-new-group',
         data
     );
     return response;
@@ -70,6 +101,24 @@ export const getGroupTalksList = createEffect(async (groupId: number) => {
     return response;
 });
 
+export const manageGroup = createEffect(async (formData: FormData) => {
+    const response = await instance.post(
+        'groups/manage-group-by-id', formData
+    );
+    return response;
+});
+
+export const addNewCommentIntoGroupPost = createEffect(async (params: {
+    groupId: number,
+    text: string,
+    postId: number
+}) => {
+    const response = await instance.post(
+        `groups/add-new-comment-into-post/${params.groupId}/${params.postId}`, params
+    );
+    return response;
+});
+
 export const createNewMessageInGroupTalk = createEffect(async (groupData: { 
     groupId: number, 
     talkId: number,
@@ -85,8 +134,48 @@ export const createNewMessageInGroupTalk = createEffect(async (groupData: {
     return response;
 });
 
+export const likePostInGroup = createEffect(async (params: {
+    groupId: number,
+    postId: number
+}) => {
+    const response = await instance.put(
+        `groups/like/${params.groupId}/${params.postId}`, params
+    );
+    return response;
+});
+
+export const unlikePostInGroup = createEffect(async (params: {
+    groupId: number,
+    postId: number
+}) => {
+    const response = await instance.put(
+        `groups/unlike/${params.groupId}/${params.postId}`, params
+    );
+    return response;
+});
+
+sample({ 
+    clock: [
+        manageGroup.doneData, 
+        createNewTalkInGroup.doneData, 
+        createNewPostInGroup.doneData, 
+        getGroupById.doneData,
+        addNewCommentIntoGroupPost.doneData,
+        likePostInGroup.doneData,
+        unlikePostInGroup.doneData
+    ], 
+    filter: response => response.status <= 217,
+    fn: response => response.data, 
+    target: setActiveGroup
+});
 
 
+sample({ 
+    clock: createNewGroup.doneData, 
+    filter: response => response.status <= 217,
+    fn: response => response.data, 
+    target: addNewGroup
+});
 
 sample({ 
     clock: getGroupsList.doneData, 
@@ -94,12 +183,7 @@ sample({
     fn: response => response.data, 
     target: setGroupsList
 });
-sample({ 
-    clock: getGroupById.doneData, 
-    filter: response => response.status <= 217,
-    fn: response => response.data, 
-    target: setActiveGroup
-});
+
 sample({ 
     clock: getGroupMembersInfo.doneData, 
     filter: response => response.status <= 217,

@@ -1,19 +1,29 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
-import { createNewMessageInGroupTalk, getGroupById, getGroupMembersInfo, groupInfo, groupMembersInfo } from "../../global/store/groups_model";
+import { 
+    addActiveGroupTalkMessage, 
+    getGroupById, 
+    getGroupMembersInfo, 
+    groupInfo, 
+    groupMembersInfo,
+    likePostInGroup,
+    unlikePostInGroup
+} from "../../global/store/groups_model";
 import { useStore } from "effector-react";
-import GroupInfoPageView from "./GroupInfoPageView/GroupInfoPageView";
+import GroupInfoPageView from "./components/GroupInfoPageView/GroupInfoPageView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { $user } from "../../global/store/store";
 import CustomModal from "../../components-ui/CustomModal/CustomModal";
-import ManageGroup from "../../global/Forms/ManageGroup/Index";
-import AddNewPostIntoGroupForm from "../../global/Forms/AddNewPostIntoGroup/Index";
-import GroupTalksMessagesView from "./GroupTalksMessagesView/GroupTalksMessagesView";
-import GroupTalks from "./GroupTalks/GroupTalks";
-import AddNewTalkInGroup from "../../global/Forms/AddNewTalkInGroup/Index";
-import { IGroupTalkMessage } from "../../global/interfaces/groups";
-import AddNewMessageIntoGroupTalk from "../../global/Forms/AddNewMessageIntoGroupTalk";
-import { AxiosResponse } from "axios";
+import ManageGroup from "../../global/forms/ManageGroup/Index";
+import AddNewPostIntoGroupForm from "../../global/forms/AddNewPostIntoGroup/Index";
+import GroupTalksMessagesView from "./components/GroupTalksMessagesView/GroupTalksMessagesView";
+import GroupTalks from "./components/GroupTalks/GroupTalks";
+import AddNewTalkInGroup from "../../global/forms/AddNewTalkInGroup/Index";
+import { IGroup, IGroupPost, IGroupTalkMessage } from "../../global/interfaces/groups";
+import AddNewMessageIntoGroupTalk from "../../global/forms/AddNewMessageIntoGroupTalk";
+import GroupCommentsView from "./components/GroupCommentsView";
+import GroupAttachments from "./components/GroupAttachments/GroupAttachments";
+import { destrucutreFilesInGroupPost } from "../../global/helpers/helper";
 
 export default function Groups() {
 
@@ -22,42 +32,86 @@ export default function Groups() {
     const groupMembersInfo$ = useStore(groupMembersInfo);
     const authedUser$ = useStore($user);
     const isAutherUserCreator = authedUser$?.userId === groupInfo$?.creatorId;
-    const [isSettingsGroupOpen, setIsSettingsGroupOppen] = useState<boolean>(false);
-    const [isCommentsModalOpen, setIsCommentsModalOpen] = useState<boolean>(false);
-    const [isAddingPostModalOpen, setIsAddingPostModalOpen] = useState<boolean>(false);
-    const [isTalksOpen, setIsTalksOpen] = useState<boolean>(false);
-    const [isTalkMessagesOpen, setIsTalkMessagesOpen] = useState<boolean>(false);
-    const [isTalkCreationOpen, setIsTalkCreationOpen] = useState<boolean>(false);
+    const [modals, setModals] = useState({
+        isSettingsGroupOpen: false,
+        isCommentsModalOpen: false,
+        isAddingPostModalOpen: false,
+        isTalksOpen: false,
+        isTalkMessagesOpen: false,
+        isTalkCreationOpen: false,
+        isPhotosOpen: false,
+        isVideosOpen: false
+    });
     const [selectedTalkId, setSelectedTalkId] = useState<number>();
-    const [messageText, setMessageText] = useState<string>("");
+    const [activePostId, setActivePostId] = useState<number>();
+    const videoPhotoAttachmentsInfo = destrucutreFilesInGroupPost(groupInfo$);
 
     const handleOpenGroupSettings = () => {
-        setIsSettingsGroupOppen(true);
+        setModals({
+            ...modals,
+            isSettingsGroupOpen: true
+        });
     };
-    const handleOpenComments = () => {
-        setIsCommentsModalOpen(true);
+    const handleOpenComments = (postId: number) => {
+        setActivePostId(postId);
+        setModals({
+            ...modals,
+            isCommentsModalOpen: true
+        });
     };
     const handleOpenAddingPost = () => {
-        setIsAddingPostModalOpen(true);
+        setModals({
+            ...modals,
+            isAddingPostModalOpen: true
+        });
     };
     const handleOpenTalks = () => {
-        setIsTalksOpen(true);
+        setModals({
+            ...modals,
+            isTalksOpen: true
+        });
     };
     const handleOpenTalkMessages = (talkId: number) => {
         setSelectedTalkId(talkId)
-        setIsTalksOpen(false);
-        setIsTalkMessagesOpen(true);
+        setModals({
+            ...modals,
+            isTalkMessagesOpen: true
+        });
     };
     const handeOpenTalkCreation = () => {
-        setIsTalksOpen(false);
-        setIsTalkCreationOpen(true);
+        setModals({
+            ...modals,
+            isTalkCreationOpen: true
+        });
     };
     const handleSuccessSubmitTalkCreation = () => {
-        setIsTalkCreationOpen(false);
-        setIsTalksOpen(true);
-    }
-    const handleAddNewMessage = (res: AxiosResponse) => {
-        
+        setModals({
+            ...modals,
+            isTalkCreationOpen: false,
+            isTalksOpen: true
+        });
+    };
+    const handleAddNewMessage = (message: IGroupTalkMessage) => {
+        addActiveGroupTalkMessage(message);
+    };
+    const handleOpenPhotos = () => {
+        setModals({
+            ...modals,
+            isPhotosOpen: true
+        });
+    };
+    const handleOpenVideos = () => {
+        setModals({
+            ...modals,
+            isVideosOpen: true
+        });
+    };
+    const handleLikePost = (post: IGroupPost, groupId: number) => {
+        if (post.likes.includes(authedUser$.userId)) {
+            unlikePostInGroup({ groupId: groupId, postId: post.id });
+        } else {
+            likePostInGroup({ groupId: groupId, postId: post.id });
+        }
     }
 
     useEffect(() => {
@@ -69,48 +123,56 @@ export default function Groups() {
     
     return (
         <PageContainer>
-            <div>
+            <>
                 <GroupInfoPageView
+                    authedUser={authedUser$}
                     groupInfo={groupInfo$}
                     isAutherUserCreator={isAutherUserCreator}
                     handleOpenGroupSettings={handleOpenGroupSettings}
-                    isSettingsGroupOpen={isSettingsGroupOpen}
+                    isSettingsGroupOpen={modals.isSettingsGroupOpen}
                     groupMembersInfo={groupMembersInfo$}
                     handleOpenComments={handleOpenComments}
                     handleOpenAddingPost={handleOpenAddingPost}
                     handleOpenTalks={handleOpenTalks}
+                    handleOpenPhotos={handleOpenPhotos}
+                    handleLikePost={handleLikePost}
+                    handleOpenVideos={handleOpenVideos}
+                    videoPhotoAttachmentsInfo={videoPhotoAttachmentsInfo}
                 />
                 <CustomModal
-                    isDisplay={isSettingsGroupOpen}
-                    changeModal={setIsSettingsGroupOppen}
-                    actionConfirmed={setIsSettingsGroupOppen}
+                    isDisplay={modals.isSettingsGroupOpen}
+                    changeModal={(status) => setModals({ ...modals, isSettingsGroupOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isSettingsGroupOpen: status })}
                     typeOfActions="none"
                     title="Управление сообществом"
                 >
                     <ManageGroup />
                 </CustomModal>
                 <CustomModal
-                    isDisplay={isCommentsModalOpen}
-                    changeModal={setIsCommentsModalOpen}
-                    actionConfirmed={setIsCommentsModalOpen}
+                    isDisplay={modals.isCommentsModalOpen}
+                    changeModal={(status) => setModals({ ...modals, isCommentsModalOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isCommentsModalOpen: status })}
                     typeOfActions="none"
                     title="Комментарии"
                 >
-                    Comments
+                    <GroupCommentsView 
+                        groupInfo={groupInfo$}
+                        activePostId={activePostId}
+                    />
                 </CustomModal>
                 <CustomModal
-                    isDisplay={isAddingPostModalOpen}
-                    changeModal={setIsAddingPostModalOpen}
-                    actionConfirmed={() => setIsAddingPostModalOpen(false)}
+                    isDisplay={modals.isAddingPostModalOpen}
+                    changeModal={(status) => setModals({ ...modals, isAddingPostModalOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isAddingPostModalOpen: status })}
                     typeOfActions="none"
                     title="Добавить публикацию"
                 >
                     <AddNewPostIntoGroupForm groupId={String(router.query.id)} />
                 </CustomModal>
                 <CustomModal
-                    isDisplay={isTalksOpen}
-                    changeModal={setIsTalksOpen}
-                    actionConfirmed={setIsTalksOpen}
+                    isDisplay={modals.isTalksOpen}
+                    changeModal={(status) => setModals({ ...modals, isTalksOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isTalksOpen: status })}
                     typeOfActions="none"
                     title="Обсуждения"
                 >
@@ -118,12 +180,13 @@ export default function Groups() {
                         handleOpenTalkMessages={handleOpenTalkMessages}
                         handeOpenTalkCreation={handeOpenTalkCreation}
                         groupId={groupInfo$.groupId}
+                        groupTalks={groupInfo$.talks}
                     />
                 </CustomModal>
                 <CustomModal
-                    isDisplay={isTalkMessagesOpen}
-                    changeModal={setIsTalkMessagesOpen}
-                    actionConfirmed={setIsTalkMessagesOpen}
+                    isDisplay={modals.isTalkMessagesOpen}
+                    changeModal={(status) => setModals({ ...modals, isTalkMessagesOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isTalkMessagesOpen: status })}
                     typeOfActions="custom"
                     actionsComponent={
                         <AddNewMessageIntoGroupTalk
@@ -140,18 +203,36 @@ export default function Groups() {
                     />
                 </CustomModal>
                 <CustomModal
-                    isDisplay={isTalkCreationOpen}
-                    changeModal={setIsTalkCreationOpen}
-                    actionConfirmed={setIsTalkCreationOpen}
+                    isDisplay={modals.isTalkCreationOpen}
+                    changeModal={(status) => setModals({ ...modals, isTalkCreationOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isTalkCreationOpen: status })}
                     typeOfActions="none"
-                    title="Обсуждение"
+                    title="Создать обсуждение"
                 >
                     <AddNewTalkInGroup 
                         groupId={String(router.query.id)}
                         successSubmit={handleSuccessSubmitTalkCreation}
                     />
                 </CustomModal>
-            </div>
+                <CustomModal
+                    isDisplay={modals.isPhotosOpen}
+                    changeModal={(status) => setModals({ ...modals, isPhotosOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isPhotosOpen: status })}
+                    typeOfActions="none"
+                    title="Фотографии в сообществе"
+                >
+                    <GroupAttachments images={videoPhotoAttachmentsInfo.images} />
+                </CustomModal>
+                <CustomModal
+                    isDisplay={modals.isVideosOpen}
+                    changeModal={(status) => setModals({ ...modals, isVideosOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isVideosOpen: status })}
+                    typeOfActions="none"
+                    title="Видео в сообществе"
+                >
+                    <GroupAttachments videos={videoPhotoAttachmentsInfo.videos} />
+                </CustomModal>
+            </>
         </PageContainer>
     )
 }

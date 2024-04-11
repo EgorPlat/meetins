@@ -1,0 +1,52 @@
+.markedUsers {
+    & .list {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 10px;
+        column-gap: 30px;
+        margin-top: 30px;
+        font-size: 16px;
+        & .markedUser {
+            display: grid;
+            row-gap: 5px;
+            justify-content: center;
+            justify-items: center;
+            position: relative;
+            & .avatar {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+            }
+            & .actions {
+                display: grid;
+                row-gap: 5px;
+                position: absolute;
+                right: -25px;
+                top: -10px;
+                .standardAction {
+                    border: none;
+                    outline: none;
+                    display: flex;
+                    align-items: center;
+                    justify-items: center;
+                    justify-content: center;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background-color: var(--default-color);
+                }
+                .standardAction:hover {
+                    background-color: orange;
+                }
+                & .actionRemove {
+                    background-color: rgb(106, 106, 106);
+                    @extend .standardAction;
+                }
+                & .actionGo {
+                    background-color: var(--default-color);
+                    @extend .standardAction;
+                }
+            }
+        }
+    }
+}

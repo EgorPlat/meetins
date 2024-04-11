@@ -6,9 +6,16 @@
     align-items: center;
     & .customSliderSlides {
         display: flex;
+        align-items: center;
         overflow: hidden;
         & .customSliderCurrentImage {
-            transition: all 0.5s;
+            & video::-webkit-media-controls {
+                width: 100%; /* Измените этот параметр по вашему усмотрению */
+            }
+            
+            & video::-webkit-media-controls-panel {
+                width: 100%; /* Измените этот параметр по вашему усмотрению */
+            }
         }
     }
     & .customSliderState {

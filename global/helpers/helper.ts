@@ -1,5 +1,5 @@
 import { IMyActiveDialogMessage, IMyDialog, User } from "../interfaces";
-import { EnchancedFiles, IGroup, IGroupPostEnchancedFiles } from "../interfaces/groups";
+import { EnchancedFiles, IGroup, IGroupFile, IGroupPostEnchancedFiles } from "../interfaces/groups";
 
 export default function calculateCountOfUnredMessageInDialog (messages: IMyActiveDialogMessage[], authedUser: User) {
     if (!messages) return;
@@ -24,6 +24,28 @@ export function customizeDateToYYYYMMDDFormat (date: string | number) {
         month = '0' + `${month}`
     }
     return `${year}-${month}-${day}`
+}
+
+export function customizeDateToYYYYMMDDHHMMFormat (date: string | number) {
+    let newDate = new Date(date);
+    let day = String(newDate.getDate());
+    let month = String(newDate.getMonth() + 1);
+    let year = String(newDate.getFullYear());
+    let hours = String(newDate.getHours());
+    let minutes = String(newDate.getMinutes());
+    if (+day < 10) {
+        day = '0' + `${day}`
+    }
+    if (+month < 10) {
+        month = '0' + `${month}`
+    }
+    if (+hours < 10) {
+        hours = '0' + `${hours}`
+    }
+    if (+minutes < 10) {
+        minutes = '0' + `${minutes}`
+    }
+    return `${year}-${month}-${day} ${hours}:${minutes}`
 }
 
 export function findUserInOnlineList( email: string, onlineList: any[] ) {
@@ -66,23 +88,31 @@ export const getTimerFromSeconds = (seconds: number) => {
     return `${maxMinutes}:${maxSeconds}`;
 }
 
-export const destrucutreFilesInGroupPost = (groupInfo: IGroup): IGroupPostEnchancedFiles[] => {
-    if (!groupInfo.posts) return [] as IGroupPostEnchancedFiles[];
-    
-    const updatedPosts = groupInfo.posts.map(post => {
-        const files: EnchancedFiles = {};
+export const destrucutreFilesInGroupPost = (groupInfo: IGroup) => {
+
+    let mainInfo = {
+        images: [],
+        videos: [],
+        attachments: []
+    }
+    if (!groupInfo.posts) mainInfo;
+
+    groupInfo?.posts?.map(post => {
         post.files.map(file => {
-            const fileType = file.type.split("/")[0];
-            if (files[fileType]) {
-                files[fileType].push(file);
-            } else {
-                files[fileType] = [file]
+            if (file.type.includes('image')) {
+                mainInfo = {
+                    ...mainInfo,
+                    images: [...mainInfo.images, file]
+                }
             }
-        });
-        return {
-            ...post,
-            files: files
-        }
-    });
-    return updatedPosts
+            if (file.type.includes('video')) {
+                mainInfo = {
+                    ...mainInfo,
+                    videos: [...mainInfo.videos, file]
+                }
+            }
+        })
+    })
+
+    return mainInfo;
 }

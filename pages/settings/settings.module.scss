@@ -23,7 +23,7 @@
         padding-top: 1%;
         font-family: Nunito;
         h4 {
-            padding: 5px;
+            padding: 7px;
             width: 96%;
             border-radius: 5px;
         }
@@ -67,6 +67,13 @@
                 width: 50%;
                 margin-top: 2px;
             }
+        }
+        & .filters {
+            & .filter {
+                display: flex;
+                column-gap: 5px;
+            }
+            margin-bottom: 10px;
         }
         & .infoText {
             margin-top: 5px;

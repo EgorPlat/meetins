@@ -7,7 +7,7 @@ const CustomModal = (props: {
     changeModal: (status: boolean) => void
     actionConfirmed: (status: boolean) => void,
     title: string,
-    typeOfActions: string,
+    typeOfActions: 'default' | 'none' | 'custom'
     actionsComponent?: any,
 }): JSX.Element | null => {
 

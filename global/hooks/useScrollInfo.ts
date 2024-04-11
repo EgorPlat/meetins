@@ -6,13 +6,14 @@ export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handl
     const [arrayHeights, setArrayHeights] = useState([]);
 
     const handleScroll = () => {
-                
-        const isScrollEnded = (window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight - 350;
-        const isPageDoesntExists = !arrayHeights.includes(document.body.offsetHeight);
+        const currentScrollPosition = window.innerHeight + Math.ceil(window.pageYOffset);
+        const isScrollEnded = currentScrollPosition >= document.body.scrollHeight - 250;
+        
+        const isPageDoesntExists = !arrayHeights.includes(document.body.scrollHeight);
         const isNewPageAreMoreThenMax = arrayHeights.length < maxPage || maxPage === 0;
         
         if (isScrollEnded && isPageDoesntExists && isNewPageAreMoreThenMax) {
-            setArrayHeights((lastValue) => [...lastValue, document.body.offsetHeight]);
+            setArrayHeights((lastValue) => [...lastValue, document.body.scrollHeight]);
             setCurrentPageNumber((lastValue) => lastValue + 1);
         }
     }
@@ -24,7 +25,7 @@ export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handl
         }
     }, [isClearNeeded]);
 
-    useEffect(() => {
+    useEffect(() => {        
         window.addEventListener("scroll", handleScroll);  
         return () => {
             window.removeEventListener("scroll", handleScroll);

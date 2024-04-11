@@ -21,7 +21,7 @@ export const isPeoplesLoaded = createStore<boolean>(false).on(setIsPeoplesLoaded
     return peoplesLoaded;
 });
 export const setFilterParams = createEvent<Params>();
-export const filterParams = createStore<Params>({gender: "all", age: 0}).on(setFilterParams, (_, newFilterParams) => {
+export const filterParams = createStore<Params>({gender: "all", age: 0, event: null}).on(setFilterParams, (_, newFilterParams) => {
     return newFilterParams;
 });
 
@@ -61,7 +61,7 @@ export const getAllPeoples = createEffect(async () => {
         return response.data;
     }
 });
-getAllPeoples.doneData.watch((peoples: IPeople[]) => {
+getAllPeoples.doneData.watch(() => {
     setIsPeoplesLoaded(true);
 })
 getAllPeoplesByPageNumber.doneData.watch(() => {

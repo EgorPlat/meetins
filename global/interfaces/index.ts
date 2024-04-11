@@ -1,9 +1,12 @@
 export type Post = {
     date: string,
-    images: string[],
+    files: {
+        src: string,
+        type: string
+    }[],
     description: string,
     title: string,
-    likes: number,
+    likes: string[],
     id: string,
 }
 export interface IOuterInvites {
@@ -12,11 +15,9 @@ export interface IOuterInvites {
 }
 
 export interface IInvitedUsers {
-    userId: string,
-    status: boolean,
-    dateOfSending: string,
     avatar: string,
-    name: string
+    name: string,
+    login: number
 }
 
 export interface IInnerInvites {
@@ -25,7 +26,8 @@ export interface IInnerInvites {
     dateOfSending: string,
     status: boolean,
     avatar: string,
-    name: string
+    name: string,
+    login: number
 }
 
 export type User = {
@@ -43,12 +45,26 @@ export type User = {
     age: number,
     events: string[],
     posts: Post[],
+    isFilter: boolean,
     isOnline: boolean,
+    markedUsers: string[],
     interests: string[],
     innerInvites: IInnerInvites[]
     outerInvites: IOuterInvites[],
-    tag: { color: string, title: string },
+    tag: IUserTag,
     purchasedOpportunities: number[]
+}
+
+export interface IUserTag { 
+    color: string, 
+    title: string 
+}
+
+export type IMarkedUserInfo = {
+	name: string,
+	avatar: string,
+	login: number,
+    userId: string
 }
 
 export type ProfileData = {
@@ -74,6 +90,7 @@ export interface IPeople {
 export interface Params {
     gender: string,
     age: number,
+    event: number
 }
 export interface IParams {
     gender?: string,
@@ -96,7 +113,7 @@ export interface IMyActiveDialogMessage {
     messageId: string,
     sendAt: string,
     senderId: string,
-    isRead: true,
+    isRead: boolean,
     avatar: string,
     senderName: string,
     status?: boolean,
@@ -107,7 +124,7 @@ export interface IMyDialog {
     dialogId: string,
     userName: string,
     userAvatar: string,
-    isRead: true,
+    isRead: boolean,
     content: string,
     messages: IMyActiveDialogMessage[],
     status?: boolean,

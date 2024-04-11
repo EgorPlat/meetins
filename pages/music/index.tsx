@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
-import MusicPageView from "./MusicPageView/MusicPageView";
-import { IActiveMusic } from "../../global/interfaces/music";
-import { activeMusicTimeData, setActiveMusic, setActiveMusicCurrentTime, setActiveMusicTimeData } from "../../global/store/music_model";
+import MusicPageView from "./components/MusicPageView/MusicPageView";
+import { IActiveMusic, IMusic } from "../../global/interfaces/music";
+import { activeMusicTimeData, getAllMusic, getAuthorsStatistic, authorsStatistic, musicList, setActiveMusic, setActiveMusicCurrentTime, setActiveMusicTimeData, addPlaysToComposition, setMusicList, getMatchesList, matchesList } from "../../global/store/music_model";
 import { useStore } from "effector-react";
+import CustomModal from "../../components-ui/CustomModal/CustomModal";
+import StatsView from "./components/StatsView/StatsView";
 
 export default function Music() {
 
     const [addMusicModal, setAddMusicModal] = useState<boolean>(false);
+    const [showMyStatistic, setShowMyStatistic] = useState<boolean>(false);
     const [selectedMusic, setSelectedMusic] = useState<string>();
+    const [searchMusic, setSearchMusic] = useState<string>("");
     const activeMusicTimeData$ = useStore(activeMusicTimeData);
+    const musicList$ = useStore(musicList);
+    const authorsStatistic$ = useStore(authorsStatistic);
+    const matchesList$ = useStore(matchesList);
 
     const handleInithialMusic = (activeMusic: IActiveMusic) => {
+        addPlaysToComposition({ authorId: activeMusic.authorId, trackId: activeMusic.id });
         setSelectedMusic(activeMusic.id);
-        setActiveMusic(activeMusic);
+        setActiveMusic(activeMusic); 
     };
     const handleStopMusic = () => {
         setSelectedMusic(null);
@@ -23,16 +31,50 @@ export default function Music() {
     const handleSwapMusicModal = (status: boolean) => {
         setAddMusicModal(() => status);
     }
+    const handleOpenMyStatistic = () => {
+        setShowMyStatistic(true);
+    }
+
+    useEffect(() => {
+        getAllMusic();
+        getAuthorsStatistic();
+        getMatchesList();
+    }, []);
+    
+    useEffect(() => {
+        if (searchMusic.length === 0) {
+            getAllMusic()
+        } else {
+            setMusicList(musicList$.filter(el => el.name.includes(searchMusic)));
+        }
+    }, [searchMusic]);
+
     return (
         <PageContainer>
-            <MusicPageView
-                selectedMusic={selectedMusic}
-                selectedMusicInfo={activeMusicTimeData$}
-                handleInithialMusic={handleInithialMusic}
-                handleStopMusic={handleStopMusic}
-                addMusicModal={addMusicModal}
-                handleSwapMusicModal={handleSwapMusicModal}
-            />
+            <>
+                <MusicPageView
+                    matchesList={matchesList$}
+                    selectedMusic={selectedMusic}
+                    selectedMusicInfo={activeMusicTimeData$}
+                    handleInithialMusic={handleInithialMusic}
+                    handleStopMusic={handleStopMusic}
+                    setSearchMusic={setSearchMusic}
+                    addMusicModal={addMusicModal}
+                    handleSwapMusicModal={handleSwapMusicModal}
+                    musicList={musicList$}
+                    authorsStatistic={authorsStatistic$}
+                    handleOpenMyStatistic={handleOpenMyStatistic}
+                />
+                <CustomModal
+                    isDisplay={showMyStatistic}
+                    changeModal={setShowMyStatistic}
+                    actionConfirmed={setShowMyStatistic}
+                    typeOfActions="none"
+                    title="Статистика"
+                >
+                    <StatsView />
+                </CustomModal>
+            </>
         </PageContainer>
     )
 }

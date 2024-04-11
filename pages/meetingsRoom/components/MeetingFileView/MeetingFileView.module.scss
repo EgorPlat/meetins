@@ -1,0 +1,9 @@
+.file {
+    & .image {
+        width: 100px;
+        height: 100px;
+    }
+    & .video {
+        width: 180px;
+    }
+}

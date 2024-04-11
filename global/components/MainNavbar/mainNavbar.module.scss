@@ -4,16 +4,20 @@
 	//background-color: rgb(251, 254, 255);
 	display: flex;
 	flex-wrap: wrap;
+	column-gap: 2.5%;
 	justify-content: center;
 	align-items: center;
 	justify-items: center;
+	& .round {
+		cursor: pointer;
+	}
 	& a {
-		margin-left: 3.5%;
+		//margin-left: 3.5%;
 		text-decoration: none;
 		font-size: 24px;
 	}
 	& select {
-		margin-left: 10px;
+		//margin-left: 10px;
 		cursor: pointer;
 		border: 1px solid transparent;
 		outline: none;

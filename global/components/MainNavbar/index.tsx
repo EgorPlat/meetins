@@ -56,7 +56,8 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 				<Link href="/events">{t('События')}</Link>
 				<Link href="/interests">{t('Интересы')}</Link>
 				<Link href="/meetings">{t('Встречи')}</Link>
-			    <ButtonWithHint 
+			    <ButtonWithHint
+					fontSize={20}
 					title={t('Пригласить')} 
 					hintTitle={
 						`Вы можете приглашать пользователей на мерпориятия которые есть в ваших закладках,

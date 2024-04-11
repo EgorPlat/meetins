@@ -7,7 +7,11 @@ export interface IGroup {
     membersId: string[];
     creatorId: string;
     posts: IGroupPost[];
-    talks: IGroupTalk[]
+    talks: IGroupTalk[],
+    photos: string[],
+    video: string[],
+    attachments: string[],
+    interestsId: string[]
 }
 
 export interface IGroupMembersInfo {
@@ -16,9 +20,16 @@ export interface IGroupMembersInfo {
     login: number
 }
 
+export interface IManageGroup {
+    name: string, 
+    headImage: File,
+    description: string,
+    groupId: number
+}
+
 export interface IGroupPostComment {
     userId: string,
-    userAvatar: string,
+    avatar: string,
     text: string,
     date: Date
 }
@@ -28,7 +39,7 @@ export interface IGroupPost {
     files: IGroupFile[],
     date: number,
     description: string,
-    likes: number,
+    likes: string[],
     views: number,
     comments: IGroupPostComment[]
 }
@@ -64,4 +75,10 @@ export interface IGroupTalk {
     title: string,
     dateOfCreation: Date,
     messages: IGroupTalkMessage[]
+}
+
+export interface ICreateGroup {
+    name: string,
+    description: string,
+    interestsId: string[]
 }

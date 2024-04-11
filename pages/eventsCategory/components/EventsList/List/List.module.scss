@@ -1,0 +1,47 @@
+.list {
+    display: grid;
+    grid-template-columns: 1fr;
+    & .eventBody {
+        background-color: var(--bg-color-block);
+        padding: 5px;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        min-height: 150px;
+        margin-top: 10px;
+        margin-left: 1%;
+        float: left;
+        & .eventDescription {
+            text-align: center;
+            & .free {
+                font-size: 15px;
+                border: none;
+                background-color: rgba(43, 255, 43, 0.697);
+                border-radius: 100px;
+            }
+            & .notFree {
+                font-size: 15px;
+                border: none;
+                background-color: rgba(59, 160, 255, 0.538);
+                border-radius: 100px;
+            }
+        }
+    }
+    & .eventBody:hover {
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .list {
+        & .eventBody {
+            grid-template-columns: 1fr;
+            /*& .eventViewZone {
+                height: 200px;
+                background-size: 100% 100%;
+            }*/
+            & .eventDescription {
+                font-size: 15px;
+            }
+        }
+    }
+}

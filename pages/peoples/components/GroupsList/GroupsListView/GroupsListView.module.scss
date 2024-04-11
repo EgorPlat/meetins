@@ -1,0 +1,124 @@
+.defaultTitle {
+    font-size: 15px;
+}
+.groupsListView {
+    width: 98%;
+    text-align: justify;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    & .groupsFilters {
+        & .title {
+            @extend .defaultTitle;
+            color: gray;
+        }   
+        & .option {
+            font-size: 15px;
+            float: right;
+            cursor: pointer;
+            color: var(--text-color);
+            margin-left: 5px;
+        }
+        & .option:hover {
+            color: var(--default-color);
+        }
+    }
+    & .groupsContent {
+        & .title {
+            @extend .defaultTitle
+        }
+        & .list {
+            & .group {
+                display: grid;
+                grid-template-columns: 90px calc(100% - 310px) 230px;
+                padding: 10px;
+                & .image {
+                    width: 80px;
+                    height: 80px;
+                    & img {
+                        width: 80px;
+                        height: 80px;
+                        border: 2px solid white;
+                        border-radius: 50%;
+                    }
+                }
+                & .info {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    font-size: 15px;
+                    & .name {
+                        color: var(--default-color);
+                    }
+                    & .type {
+                        
+                    }
+                    & .followers {
+                        
+                    }
+                }
+                & .actions {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 5px;
+                    & button {
+                        font-size: 16px;
+                        border: none;
+                        background-color: var(--default-color);
+                        padding: 7px;
+                        border-radius: 100px;
+                    }
+                    & button:hover {
+                        background-color: orange;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .groupsListView {
+        & .groupsContent {
+            & .list {
+                & .group {
+                    grid-template-columns: 70px calc(100% - 190px) 100px;
+                    & .image {
+                        & img {
+                            width: 65px;
+                            height: 65px;
+                        }
+                    }
+                    & .actions {
+                        display: grid;
+                        grid-template-columns: 1fr;
+                        & button {
+                            font-size: 13px;
+                        }
+                    }
+                    & .info {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .groupsListView {
+        & .groupsContent {
+            & .list {
+                & .group {
+                    grid-template-columns: 90px calc(100% - 190px) 100px;
+                    & .info {
+                        font-size: 13px;
+                    }
+                    & .actions {
+                        & button {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

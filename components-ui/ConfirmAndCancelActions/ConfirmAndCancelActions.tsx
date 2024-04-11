@@ -4,12 +4,13 @@ export default function ConfirmAndCancelActions(props: {
     confirmButton: boolean,
     cancelButton: boolean,
     infoButton: boolean,
-    horizontal: boolean
+    horizontal: boolean,
+    handleWatchButton: () => void
 }) {
     return (
         <div className={props.horizontal ? s.horizontal : s.vertical}>
             { props.infoButton && 
-                <div className={s.info}>
+                <div className={s.info} onClick={props.handleWatchButton}>
                     Посмотреть
                 </div>
             }

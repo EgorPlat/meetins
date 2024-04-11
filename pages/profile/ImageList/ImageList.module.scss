@@ -11,30 +11,31 @@
         & .postTitle {
             display: grid;
             grid-template-columns: 65% 35%;
-            font-weight: 200;
+            font-weight: 600;
             & .date {
                 display: flex;
                 align-items: center;
                 justify-content: right;
                 text-align: right;
                 font-weight: 300;
-                font-size: 18px;
+                font-size: 16px;
                 color: grey;
             }
         }
         & .postImage {
             //padding-top: 10px;
             //padding-bottom: 10px;
-            & img {
-                max-width: 100%;
-                max-height: 100%;
-            }
         }
         & .postDescription {
             padding-top: 5px;
             padding-bottom: 5px;
-            font-size: 20px;
-            font-weight: 250;
+            width: 100%;
+            & pre {
+                white-space: pre-wrap;
+                font-size: 18px;
+                font-weight: 250;
+                font-family: Nunito;
+            }
         }
         & .postActions {
             font-weight: 300;
@@ -74,7 +75,8 @@
     & .block {
         padding: 15px;
         margin-bottom: 10px;
-        border: 1px solid rgba(128, 128, 128, 0.516);
+        //border: 1px solid rgba(128, 128, 128, 0.516);
+        background-color: var(--bg-color-block);
         border-radius: 10px;
     }
 }

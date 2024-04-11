@@ -5,7 +5,8 @@
     max-width: 600px;
     grid-template-columns: 50px calc(100% - 125px) 50px;
     min-height: 60px;
-    border: 1px solid gray;
+    background-color: var(--bg-color-block);
+    //border: 1px solid gray;
     padding: 7px;
     column-gap: 15px;
     margin-bottom: 10px;
@@ -16,6 +17,11 @@
         }
     }
     & .musicContentElementInfo {
+        display: grid;
+        row-gap: 5px;
+        & .authorName {
+            color: rgb(255, 146, 51);
+        }
         & .musicContentElementInfoProgress {
             display: flex;
             align-items: center;

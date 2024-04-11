@@ -13,13 +13,13 @@ export default function ConfirmationView({ sendConfirmationCode }: IConfirmation
 
     return (
         <div className={s.confirmation}>
+            <div className={s.title}>
+                <Image src={logo} width="50px" height="50px" />
+            </div>
             <div className={s.description}>
                 Пожалуйста, для успешной процедуры подтверждения не перезагружайте страницу.
                 На указанную Вами при регистрации почту был выслан код подтверждения.
                 Пожалуйста впишите его в поле и нажмите "Отправить"
-            </div>
-            <div className={s.title}>
-                <Image src={logo} width="50px" height="50px" />
             </div>
             <div className={s.content}>
                 <input type="number" placeholder="Введите код" ref={ref} />

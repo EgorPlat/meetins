@@ -19,7 +19,7 @@ export default function NotificationBlock() {
                     <Notification
                         handleRemove={handleRemove}
                         notification={notification} 
-                        key={notification.text}
+                        key={notification.id}
                     />
                 ))
             }

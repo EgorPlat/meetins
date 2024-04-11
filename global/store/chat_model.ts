@@ -121,7 +121,7 @@ export const getMyDialogs = createEffect(async (isFirstGetDialogs: boolean) => {
 export const checkDialog = createEffect(async (user: User) => {
     try {
         const response = await instance.post('chat/check-dialog', {userId: user.userId});
-        if(response.status === 200) {
+        if(response.data.length !== 0) {
             setActiveChat({
                 ...defaultDialog, 
                 dialogId: response.data[0].dialogId, 
@@ -155,12 +155,8 @@ export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) =>
 })
 
 export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId: string) => {
-    try {
-        const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
-        return response;
-    } catch(error) {
-        console.log(error);
-    }
+    const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
+    return response;
 })
 export const sendFileInDialog = createEffect(async (message: FormData) => {
     const response = await instance.post('chat/send-file-to-chat', message);
@@ -198,9 +194,9 @@ sample({
 })
 sample({
 	clock: updatedIsReadMessagesInActiveDialog.doneData,
-	filter: response => response.status === 200,
-	fn: response => false,
-	target: getMyDialogs
+	filter: response => response.status <= 217,
+	fn: response => response.data,
+	target: setMyDialogs
 })
 sample({
 	clock: getMyDialogs.doneData,

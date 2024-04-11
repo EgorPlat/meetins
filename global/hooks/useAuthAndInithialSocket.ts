@@ -21,7 +21,7 @@ export const useAuthAndInithialSocket = () => {
 				setNewConnection(null);
 			}
 		}
-	}, [router]);
+	}, [router.asPath]);
 
 	return socketConnection !== null;
 }

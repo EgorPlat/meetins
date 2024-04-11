@@ -61,11 +61,12 @@ export default function Login(): JSX.Element {
 			gender: data.gender,
 			city: data.city
 		}).then( (res: any) => {
-			if(res.data.statusCode <= 217) {
+			if(res.data?.statusCode <= 217) {
 				setEmailForConfirmation(email);
 			}
 		})
 	}
+	// error.name.message
 
 	return (
 		<div className={s.cardWrapper}>
@@ -90,7 +91,7 @@ export default function Login(): JSX.Element {
 						icon={loginIcon}
 						placeholder={t('Имя')}
 						type='text'
-						id='login'
+						id='login'	
 						autocomplete={'off'}
 						className={errors.name && s.errorBorder}
 						register={register('name', {
@@ -102,7 +103,7 @@ export default function Login(): JSX.Element {
 						})}
 					/>
 					{errors.name && (
-						<span className={s.errorSpan}>{errors.name.message}</span>
+						<span className={s.errorSpan}>Следуйте формату Имя: </span>
 					)}
 					<Input
 						icon={phoneIcon}
@@ -111,15 +112,13 @@ export default function Login(): JSX.Element {
 						id='phoneOrEmail'
 						style={{ marginTop: '25px' }}
 						className={errors.phone_or_email && s.errorBorder}
-						register={register('phone_or_email', {
+						register={register('email', {
 							required: true,
 							validate: (value) => validateEmailOrPhone(value),
 						})}
 					/>
-					{errors.phone_or_email && (
-						<span className={s.errorSpan}>
-							{errors.phone_or_email.message}
-						</span>
+					{errors.email && (
+						<span className={s.errorSpan}>{t('Введите валидную почту')}</span>
 					)}
 					
 					<Input
@@ -140,6 +139,9 @@ export default function Login(): JSX.Element {
 							style={{ cursor: 'pointer' }}
 						/>
 					</Input>
+					{errors.pass && (
+						<span className={s.errorSpan}>{t('Введите пароль от 1 до 16 символов')}</span>
+					)}
 
 					<Input
 						icon={phoneIcon}
@@ -152,7 +154,9 @@ export default function Login(): JSX.Element {
 							required: true,
 						})}
 					/>
-					
+					{errors.city && (
+						<span className={s.errorSpan}>{t('Пожалуйста укажите город')}</span>
+					)}
 					<div className={s.gender}>
 						<span>Выберите пол:</span>
 						<label
