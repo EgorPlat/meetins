@@ -1,15 +1,17 @@
 .modal {
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.595);
+    background-color: rgba(0, 0, 0, 0.901);
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
     & .modalContent {
         font-size: 24px;
         padding: 25px;
         border-radius: 5px;
-        margin: 15% auto;
         width: 33%;
         min-height: 100px;
     }

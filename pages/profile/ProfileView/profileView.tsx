@@ -4,12 +4,12 @@ import { baseURL } from '../../../global/store/store';
 import { getDateInDMYFormat } from '../../../global/functions/getDateInDMFormat';
 import { getIsUserMale } from '../../../global/functions/getIsUserMale';
 import s from './profileView.module.scss';
-import About from '../about/About';
-import Interests from '../interests/interests';
+import About from '../About/About';
+import Interests from '../Interests/interests';
 import ImageList from '../ImageList/ImageList';
-import AddingPosts from '../addingPosts/AddingPosts';
+import AddingPosts from '../AddingPosts/AddingPosts';
 import ChoosingEvents from '../СhoosingEvents/choosingEvents';
-import Places from '../places/places';
+import Places from '../Places/places';
 import CustomEditMenu from '../../../components-ui/CustomEditMenu/CustomEditMenu';
 import InputFile from '../../../components-ui/InputFile/InputFile';
 import Loader from '../../../components-ui/Loader/Loader';
@@ -17,6 +17,7 @@ import Modal from '../../../components-ui/Modal/Modal';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import Input from '../../../components-ui/Input/Input';
 import EditUserTag from '../../../global/forms/EditUsetTag/Index';
+import Head from 'next/head';
 
 // test 
 
@@ -48,6 +49,16 @@ export default function ProfileView(props: {
     
     return (
         <div className={s.profile}>
+            <Head>
+				<title>Meetins - Профиль</title>
+				<link rel='icon' href='/images/logo.svg' />
+				<meta name="description" content="User profile" key="desc" />
+				<meta property="og:title" content="Social Media Meetins for cool persons" />
+				<meta
+				property="og:description"
+				content="Join us and get a lot of fun and new friends"
+				/>
+			</Head>
             {   
                 props.asyncLoaded && activeUser && props.authedUser ? 
                 <div className={`${s.bodyCol}`}>

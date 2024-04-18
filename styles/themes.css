@@ -10,6 +10,7 @@ body {
 	--inp-text-color: black;
 	--default-color: #3db2ff;
 	--bg-color-block: rgba(195, 195, 195, 0.103);
+	--bg-color-mobile-menu: rgb(249, 249, 249);
 }
   
 [data-theme="black"] {
@@ -20,6 +21,7 @@ body {
 	--inp-text-color: gray;
 	--default-color: #3db2ff;
 	--bg-color-block: rgba(40, 40, 40, 0.463);
+	--bg-color-mobile-menu: rgba(40, 40, 40, 1);
 	::-webkit-calendar-picker-indicator {
 		filter: invert(1);
 	}

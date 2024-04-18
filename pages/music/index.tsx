@@ -11,20 +11,20 @@ export default function Music() {
 
     const [addMusicModal, setAddMusicModal] = useState<boolean>(false);
     const [showMyStatistic, setShowMyStatistic] = useState<boolean>(false);
-    const [selectedMusic, setSelectedMusic] = useState<string>();
+    const [selectedMusicId, setSelectedMusicId] = useState<string>();
     const [searchMusic, setSearchMusic] = useState<string>("");
     const activeMusicTimeData$ = useStore(activeMusicTimeData);
     const musicList$ = useStore(musicList);
     const authorsStatistic$ = useStore(authorsStatistic);
     const matchesList$ = useStore(matchesList);
 
-    const handleInithialMusic = (activeMusic: IActiveMusic) => {
+    const handleStartMusic = (activeMusic: IActiveMusic) => {
         addPlaysToComposition({ authorId: activeMusic.authorId, trackId: activeMusic.id });
-        setSelectedMusic(activeMusic.id);
+        setSelectedMusicId(activeMusic.id);
         setActiveMusic(activeMusic); 
     };
     const handleStopMusic = () => {
-        setSelectedMusic(null);
+        setSelectedMusicId(null);
         setActiveMusic(null);
         setActiveMusicTimeData(null);
     }
@@ -54,9 +54,9 @@ export default function Music() {
             <>
                 <MusicPageView
                     matchesList={matchesList$}
-                    selectedMusic={selectedMusic}
+                    selectedMusicId={selectedMusicId}
                     selectedMusicInfo={activeMusicTimeData$}
-                    handleInithialMusic={handleInithialMusic}
+                    handleStartMusic={handleStartMusic}
                     handleStopMusic={handleStopMusic}
                     setSearchMusic={setSearchMusic}
                     addMusicModal={addMusicModal}

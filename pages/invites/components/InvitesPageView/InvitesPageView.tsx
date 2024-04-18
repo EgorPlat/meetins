@@ -21,9 +21,8 @@ export default function InvitesPageView({
     handleDecline,
     handleVisit
 }: IInvitesPageView) {
-    const { innerInvites, outerInvites } = unitedEventsInfo;
 
-    if (loadedStatus && innerInvites.length === 0 && outerInvites.length === 0) {
+    if (loadedStatus && unitedEventsInfo.innerInvites.length === 0 && unitedEventsInfo.outerInvites.length === 0) {
         return (
             <div className={s.invitesPageView}>
                 <h5>У вас пока нет приглашений на мероприятия</h5>

@@ -25,10 +25,6 @@ export default function Login(): JSX.Element {
 	const sendLoginData = (data: {login: string, password: string}) => {
 		const login = data.login;
 		const pass = data.password;
-		/*setLoginDetails({
-			email: login,
-			password: pass,
-		})*/
 		sendLogData({
 			email: login,
 			password: pass,

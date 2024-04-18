@@ -7,7 +7,7 @@ import { checkDialog, getMyDialogs } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
-import ProfileView from "./profileView/profileView";
+import ProfileView from "./ProfileView/profileView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { setLoginLoading } from "../../global/store/login_model";
 import { addNotification } from "../../global/store/notifications_model";
@@ -82,7 +82,6 @@ function Profile(): JSX.Element {
 
     useEffect(() => {
         setLoginLoading(false);
-        getMyDialogs(true);
         return () => {
             setCurrentProfileUser({} as User);
         }

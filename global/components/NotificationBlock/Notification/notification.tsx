@@ -11,18 +11,19 @@ export const Notification = (props: {
 
     useEffect(() => {
         const visibleTimeout = setTimeout(() => {
-            props.handleRemove(notification);
             setVisible(false);
+            setTimeout(() => {
+                props.handleRemove(notification);
+            }, 1000);
         }, notification.time);
         return () => {
             clearTimeout(visibleTimeout);
         }
     }, []);
-
     return (
         <div
-            className={s.eachError} 
-            style={{ display: visible ? "block" : "none", border: `2.5px solid ${notification.color}`}}
+            className={`${ visible ? s.errorShowUp : s.errorHide}`} 
+            style={{ border: `2.5px solid ${notification.color}`}}
         >
             {notification.text}
         </div>

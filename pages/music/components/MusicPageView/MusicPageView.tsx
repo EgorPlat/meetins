@@ -11,11 +11,11 @@ import Link from 'next/link';
 
 interface IMusicPageViewProps {
     addMusicModal: boolean,
-    selectedMusic: string,
+    selectedMusicId: string,
     selectedMusicInfo: { currentTime: number, duration: number },
     musicList: IMusicAuthors[],
     authorsStatistic: IMusicAuthorsStatistics[],
-    handleInithialMusic: (activeMusic: IActiveMusic) => void,
+    handleStartMusic: (activeMusic: IActiveMusic) => void,
     handleStopMusic: () => void,
     handleSwapMusicModal: (status: boolean) => void,
     handleOpenMyStatistic: () => void,
@@ -24,9 +24,9 @@ interface IMusicPageViewProps {
 }
 export default function MusicPageView({
     addMusicModal,
-    selectedMusic,
+    selectedMusicId,
     selectedMusicInfo,
-    handleInithialMusic,
+    handleStartMusic,
     handleStopMusic,
     handleSwapMusicModal,
     musicList,
@@ -66,8 +66,8 @@ export default function MusicPageView({
                                 <MusicPlayer
                                     key={music.id}
                                     selectedMusicInfo={selectedMusicInfo}
-                                    isMusicSelected={selectedMusic === String(music.id)}
-                                    handleStartMusic={handleInithialMusic}
+                                    isMusicSelected={selectedMusicId === String(music.id)}
+                                    handleStartMusic={handleStartMusic}
                                     handleStopMusic={handleStopMusic}
                                     musicInfo={music}
                                     authorInfo={author}

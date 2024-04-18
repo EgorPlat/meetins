@@ -70,7 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				content="Join us and get a lot of fun and new friends"
 				/>
 			</Head>
-			<Component {...pageProps} />
+			{  <Component {...pageProps} />  }
 			<NotificationBlock />
 			{
 				activeMusic$ && 

@@ -127,6 +127,7 @@ export interface IMyDialog {
     isRead: boolean,
     content: string,
     messages: IMyActiveDialogMessage[],
+    userLogin?: number,
     status?: boolean,
     userId?: string
 }

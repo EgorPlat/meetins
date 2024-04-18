@@ -5,7 +5,7 @@ import s from "./pageContainer.module.scss";
 export default function PageContainer(props: {children: ReactChild}): JSX.Element {
 
     return (
-        <div className={s.nav}>
+        <div className={s.page}>
             <div className={s.menu}>
                 <LeftNavMenu/>
             </div>

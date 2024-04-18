@@ -47,9 +47,6 @@
                 background-color: #3DB2FF;
             }
         }
-        & .goal::-webkit-scrollbar { width: 3px;/* ширина scrollbar */}
-        & .goal::-webkit-scrollbar-track { background: transparent;/* цвет дорожки */}
-        & .goal::-webkit-scrollbar-thumb { background-color: rgb(187, 187, 187); }
 
         & .events {
             border-right: 1px solid grey;
@@ -72,9 +69,6 @@
                 background-color: #3DB2FF;
             }
         }
-        & .events::-webkit-scrollbar { width: 3px;/* ширина scrollbar */}
-        & .events::-webkit-scrollbar-track { background: transparent;/* цвет дорожки */}
-        & .events::-webkit-scrollbar-thumb { background-color: rgb(187, 187, 187); }
 
         & .interests {
             border-right: 1px solid grey;

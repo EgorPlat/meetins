@@ -127,7 +127,7 @@ export const checkDialog = createEffect(async (user: User) => {
                 dialogId: response.data[0].dialogId, 
                 userAvatar: user.avatar, 
                 userName: user.name,
-                messages: response.data[0].messages 
+                messages: response.data[0].messages
             });
             return response;
         } else {

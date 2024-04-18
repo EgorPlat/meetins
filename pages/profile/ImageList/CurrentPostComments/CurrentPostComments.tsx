@@ -30,22 +30,27 @@ export default function CurrentPostComments (props: {post: Post}) {
     }
     return (
         <div className={s.commentsList}>
-            {currentPostComments$.map(comment => (
-                <div className={s.comment} onClick={() => handleCommentAvatarClick(comment)} key={comment.commentId} >
-                    <div className={s.commentAvatar}>
-                        <img src = {baseURL + comment.commentOwnerAvatar} />
-                    </div>
-                    <div className={s.commentContent}>
-                        <div className={s.commentTitle}>
-                            <span className={s.commentOwnerName}>{comment.commentOwnerName}</span>
-                            <span className={s.commentDate}>{customizeDateToYYYYMMDDFormat(comment.date)}</span>
+            {
+                currentPostComments$.length === 0 && <div className={s.noComments}>Комментариев пока нет</div>
+            }
+            {
+                currentPostComments$.map(comment => (
+                    <div className={s.comment} onClick={() => handleCommentAvatarClick(comment)} key={comment.commentId} >
+                        <div className={s.commentAvatar}>
+                            <img src = {baseURL + comment.commentOwnerAvatar} />
                         </div>
-                        <div className={s.commentText}>
-                            {comment.text}
+                        <div className={s.commentContent}>
+                            <div className={s.commentTitle}>
+                                <span className={s.commentOwnerName}>{comment.commentOwnerName}</span>
+                                <span className={s.commentDate}>{customizeDateToYYYYMMDDFormat(comment.date)}</span>
+                            </div>
+                            <div className={s.commentText}>
+                                {comment.text}
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))
+            }
         </div>
     )
 }

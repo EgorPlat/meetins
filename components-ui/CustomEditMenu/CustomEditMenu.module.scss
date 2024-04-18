@@ -6,7 +6,7 @@
     display: grid;
     row-gap: 5px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 18px;
     font-family: Nunito;
     & .round {
         width: 8px;
@@ -29,5 +29,11 @@
         & .menuElement:hover {
             background-color: rgba(222, 222, 222, 0.455);
         }
+    }
+}
+
+@media screen and (max-width: 1560px) {
+    .customEditMenu {
+        font-size: 16px;
     }
 }

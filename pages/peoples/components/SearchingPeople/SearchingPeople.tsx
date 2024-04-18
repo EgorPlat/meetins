@@ -17,9 +17,9 @@ import {
 } from "../../../../global/store/peoples_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
-import { events, goals, popularInterests } from "../../../../global/constants";
+import { goals } from "../../../../global/constants";
 import { $currentInterestsList } from "../../../../global/store/store";
-import { getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
+import { currentEventsInfoLoaded, getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
 import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
 
 export default function SearchingPeople(): JSX.Element {
@@ -32,6 +32,7 @@ export default function SearchingPeople(): JSX.Element {
     const pending: boolean = useStore(isPagePending);
     const interests$ = useStore($currentInterestsList);
     const events$ = useStore(userEvents);
+    const currentEventsInfoLoaded$ = useStore(currentEventsInfoLoaded);
 
     const [clearScrollData, setClearScrollData] = useState<boolean>(false);
     const handleClearedScroll = () => {
@@ -96,7 +97,7 @@ export default function SearchingPeople(): JSX.Element {
                 <div className={s.events}>
                     <h3>События</h3>
                     {
-                        events$.length === 0 && <CustomLoader />
+                        !currentEventsInfoLoaded$ && <CustomLoader />
                     }
                     { events$.map((event) => 
                         <div 

@@ -22,6 +22,27 @@ export default function InterestsPageView ({ handleSendForm, currentInterests, t
                 </div>
             </div>
             <div className={s.formInterest}>
+            <div className={s.interestsList}>
+                    <ButtonWithHint 
+                            title='?'
+                            hintTitle={
+                                `Здесь указаны все интересы, которые могут быть использованы на сайте.`
+                            }
+                            fontSize={13}
+                        />
+                    <div className={s.title}>
+                        Текущий список интересов людей:
+                    </div>
+                    {
+                        currentInterests?.map((el, index) => (
+                            <div key={el.interestId}>
+                                {
+                                    index < currentInterests.length - 1 ? el.title + ',': el.title
+                                }
+                            </div>
+                        ))
+                    }
+                </div>
                 <div className={s.wrapper}>
                     <h5>Заполните форму, если Вашего интереса нет в списке</h5>
                     <span className={s.text}>
@@ -43,27 +64,6 @@ export default function InterestsPageView ({ handleSendForm, currentInterests, t
                         className={s.submit}
                         onClick={handleSendForm}
                     >Отправить</button>
-                </div>
-                <div className={s.interestsList}>
-                    <ButtonWithHint 
-                            title='?'
-                            hintTitle={
-                                `Здесь указаны все интересы, которые могут быть использованы на сайте.`
-                            }
-                            fontSize={13}
-                        />
-                    <div className={s.title}>
-                        Текущий список интересов людей:
-                    </div>
-                    {
-                        currentInterests?.map((el, index) => (
-                            <div key={el.interestId}>
-                                {
-                                    index < currentInterests.length - 1 ? el.title + ',': el.title
-                                }
-                            </div>
-                        ))
-                    }
                 </div>
             </div>
         </div>

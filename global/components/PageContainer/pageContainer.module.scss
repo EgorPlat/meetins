@@ -1,67 +1,29 @@
-.nav {
+.page {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: 15% 80%;
     font-family: Nunito;
     & .menu {
-        padding-left: 2%; padding-top: 1%;
-    }
-    & .mobileMenu {
-        position: fixed;
-        z-index: 99999;
-        top: 0;
-        left: 0;
+        padding-left: 2%; 
+        padding-top: 1%;
     }
     & .content {
-        padding-left: 2%; padding-top: 1%;
+        padding-top: 15px;
         font-size: 24px;
     }
 }
 
 @media screen and (max-width: 1000px) {
-    .nav {
+    .page {
         grid-template-columns: 100%;
-        grid-template-rows: 50px 90%;
+        grid-template-rows: 40px 90%;
         & .menu {
             padding-left: 0;
         }
-    }
-}
-@media screen and (max-width: 500px) {
-    .nav {
-        grid-template-rows: 30px 90%;
-    }
-}
-@media screen and (max-width: 420px) {
-    .nav {
-        & .menu {
-            margin-left: 0%;
-            padding-left: 0%;
-        }
-    }
-}
-
-.mobileNav {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-rows: calc(100% - 60px) 60px;
-    font-family: Nunito;
-    & .mobileMenu {
-        padding-left: 2%; padding-top: 1%;
-    }
-    & .mobileContent {
-        overflow-y: scroll;
-        height: calc(100vh - 60px);
-        padding-left: 2%; padding-top: 1%;
-        font-size: 24px;
-    }
-}
-@media screen and (max-width: 440px) {
-    .mobileNav {
-        & .mobileContent {
-            height: calc(100vh - 60px);
+        & .content {
+            padding-top: 1%;
+            padding-left: 2%;
         }
     }
 }

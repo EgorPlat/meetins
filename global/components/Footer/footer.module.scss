@@ -1,51 +1,8 @@
 .footer {
-	background: #e5e5e5;
-	&Body {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-pack: justify;
-		-ms-flex-pack: justify;
-		justify-content: space-between;
-		-webkit-box-align: center;
-		-ms-flex-align: center;
-		align-items: center;
-		height: 65px;
-	}
-	&Link {
-		font-weight: 300;
-		font-size: 20px;
-		color: #515151;
-		&Logo {
-			display: -webkit-box;
-			display: -ms-flexbox;
-			display: flex;
-			-webkit-box-align: center;
-			-ms-flex-align: center;
-			align-items: center;
-			& img {
-				width: 20px;
-			}
-		}
-		&Social {
-			margin: 0px 20px 0px 0px;
-			&:last-child {
-				margin: 0px 0px 0px 0px;
-			}
-		}
-	}
-	&Label {
-		margin: 0px 0px 0px 8px;
-		font-size: 18px;
-		letter-spacing: 0.055em;
-		color: #000000;
-	}
-	&Socials {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-align: center;
-		-ms-flex-align: center;
-		align-items: center;
-	}
+	position: fixed;
+	bottom: 0px;
+	height: 60px;
+	width: 100%;
+	background-color: black;
+	z-index: 1000000;
 }

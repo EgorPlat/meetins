@@ -1,11 +1,20 @@
-@keyframes rotate {
+@keyframes showUp {
     from {
-        margin-left: 200px;
+        margin-left: 240px;
     }
     to {
         margin-left: -10px;
     }
 }
+@keyframes hide {
+    from {
+        margin-left: -10px;
+    }
+    to {
+        margin-left: 240px;
+    }
+}
+
 .eachError {
     padding: 5px;
     background-color: #101113e7;
@@ -20,6 +29,14 @@
     width: 100%;
     min-height: 40px;
     border-radius: 5px;
-    animation: rotate 1s;
+}
+.errorShowUp {
+    @extend .eachError;
+    animation: showUp 1s;
+    animation-fill-mode: forwards;
+}
+.errorHide {
+    @extend .eachError;
+    animation: hide 1s;
     animation-fill-mode: forwards;
 }

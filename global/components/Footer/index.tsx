@@ -1,16 +1,13 @@
 import companyLogo from '../../public/images/logo.svg'
 import Image from 'next/image'
-import s from './footer.module.scss'
 import FacebookIcon from '../../../public/images/socials/FacebookIcon'
 import VkIcon from '../../../public/images/socials/VkIcon'
 import YoutubeIcon from '../../../public/images/socials/YoutubeIcon'
+import s from './footer.module.scss';
 
-export default function Footer(props: {
-	textColor: string
-	backgroundColor: string
-}): JSX.Element {
+export default function Footer(): JSX.Element {
 	return (
-		null
+		<div className={s.footer}>1</div>
 		/*<footer
 			style={{ backgroundColor: props.backgroundColor }}
 			className={`${s.footer} ${s.container}`}>

@@ -27,12 +27,17 @@ export const loadedStatus = createStore<boolean>(false).on(setLoadedStatus, (_, 
     return newStatus;
 });
 
+export const setCurrentEventsInfoLoaded = createEvent<boolean>();
+export const currentEventsInfoLoaded = createStore<boolean>(false).on(setCurrentEventsInfoLoaded, (_, newStatus) => {
+    return newStatus;
+});
+
 export const setUnitedInnerInviteEvents = createEvent<IInnerInviteEvent[]>();
 export const setUnitedOuterInviteEvents = createEvent<IOuterInviteEvent[]>();
 export const removeFromUnitedInnerInvite = createEvent<number>();
 export const unitedInviteEvents = createStore<IUnitedInvitesEvent>({
-    innerInvites: [] as IInnerInviteEvent[],
-    outerInvites: [] as IOuterInviteEvent[]
+    innerInvites: [],
+    outerInvites: []
 });
 
 unitedInviteEvents.on(setUnitedInnerInviteEvents, (prev, innerInvites) => {
@@ -120,6 +125,13 @@ sample({
     filter: response => response.status <= 201, 
     fn: response => response.data, 
     target: setUserEvents
+})
+
+sample({
+    clock: getUserEventsInfo.doneData, 
+    filter: response => response.status <= 201, 
+    fn: response => true, 
+    target: setCurrentEventsInfoLoaded
 })
 
 sample({ 

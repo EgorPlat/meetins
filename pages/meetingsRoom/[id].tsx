@@ -91,5 +91,4 @@ export default function MeetingsRoom() {
             </>
         </PageContainer>
     )
-    
 }

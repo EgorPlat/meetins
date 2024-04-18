@@ -13,6 +13,9 @@
             align-items: center;
             justify-content: center;
             justify-items: center;
+            background-color: var(--bg-color-block);
+            border-radius: 10px;
+            height: 100%;
         }
     }
     & .block {
