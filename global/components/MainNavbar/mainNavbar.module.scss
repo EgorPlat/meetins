@@ -70,9 +70,6 @@
 			& .round {
 				display: none;
 			}
-			& .select {
-				margin-top: 20px;
-			}
 		}
 	}
 }
@@ -81,6 +78,9 @@
 	.link {
 		select {
 			font-size: 18px;
+			& option {
+				font-size: 16px;
+			}
 		}
 		button {
 			font-size: 20px;

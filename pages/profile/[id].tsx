@@ -1,6 +1,6 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { $currentProfileUser, $user, addUserIntoMarkedList, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setUser } from "../../global/store/store";
+import { $currentProfileUser, $user, addUserIntoMarkedList, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setIsCurrentUserLoaded, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import { checkDialog, getMyDialogs } from "../../global/store/chat_model";
@@ -83,6 +83,7 @@ function Profile(): JSX.Element {
     useEffect(() => {
         setLoginLoading(false);
         return () => {
+            setIsCurrentUserLoaded(false);
             setCurrentProfileUser({} as User);
         }
     }, []);

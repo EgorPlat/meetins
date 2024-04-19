@@ -13,12 +13,6 @@ export default function MeetingsPageView(props: {
 }) {
     return (
         <div className={s.meetings}>
-            <div className={s.title}>
-                { MeetingsContent.title }
-            </div>
-            <div className={s.subTitle}>
-                { MeetingsContent.subTitle }
-            </div>
             <div className={s.description}>
                 { MeetingsContent.description }
             </div>

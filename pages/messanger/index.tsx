@@ -20,7 +20,7 @@ export default function Messanger(): JSX.Element {
            { !isMobile$ 
             ? 
             <div className={s.messangerContent}>
-                <div className={`${s.chatList} ${s.block}`}>
+                <div className={`${s.chatList}`}>
                     <ChatList/>
                 </div>
                 <div className={`${s.chatZone}`}>
@@ -38,9 +38,7 @@ export default function Messanger(): JSX.Element {
                     ? <MobileChatList /> 
                     : 
                     <div className={`${s.mobileChatZone}`}>
-                        <div className={s.mobileChatZoneContent}>
-                            <ChatZone activeChat$={activeChat$} />
-                        </div>
+                        <ChatZone activeChat$={activeChat$} />
                     </div>
                 }
             </div>

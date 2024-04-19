@@ -1,0 +1,44 @@
+.mobileMenuWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.699);
+    z-index: 10;
+    min-height: 100%;
+}
+
+@keyframes showUp {
+    from {
+        margin-left: -250px;
+    } to {
+        margin-left: 0px;
+    }
+}
+.mobileMenu {
+    padding-left: 2%;
+    & .mobileMenuIcon {
+        z-index: 10;
+    }
+    & .mobileMenuWrapperShown {
+        width: 250px;
+        height: 100%;
+        background-color: var(--bg-color-mobile-menu);
+        animation: showUp 0.5s forwards;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        font-size: 24px;
+        padding: 15px;
+        position: relative;
+        & .exitIcon {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            & .exitTitle {
+                font-size: 20px;
+            }
+        }
+    }
+}

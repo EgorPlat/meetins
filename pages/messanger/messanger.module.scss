@@ -1,6 +1,7 @@
 .messangerContent {
     display: grid;
     grid-template-columns: 15% 70%;
+    column-gap: 5px;
     min-height: 500px;
     & .chatList {
         height: calc(100vh - 40px); 
@@ -28,10 +29,6 @@
 
 .mobileMessangerContent {
     width: 98%;
-    & .mobileChatZone {
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 .notificationModalText {

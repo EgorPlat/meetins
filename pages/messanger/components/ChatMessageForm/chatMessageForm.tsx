@@ -93,7 +93,7 @@ export default function ChatMessageForm(
                     ? 
                     <AiOutlineAudio
                         color="gray"
-                        fontSize={40}  
+                        fontSize={35}  
                         onClick={handleMediaRecorder}
                     />
                     : 
@@ -101,7 +101,7 @@ export default function ChatMessageForm(
                 }
                 {
                     props.isLoaded 
-                        ? <AiOutlineSend fontSize={40} onClick={sendForm} color="gray" />
+                        ? <AiOutlineSend fontSize={35} onClick={sendForm} color="gray" />
                         : <Loader />
                 }
             </div>

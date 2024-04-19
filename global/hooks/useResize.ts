@@ -6,7 +6,7 @@ export const useResize = () => {
     const [isUnAdaptive, setIsUnAdaptive] = useState<boolean>(false);
 
     const handleResize = () => {
-		if (window.innerWidth <= 810) {
+		if (window.innerWidth <= 1000) {
 			setIsMobile(true);
 		} else {
 			setIsMobile(false);

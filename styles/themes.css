@@ -21,7 +21,7 @@ body {
 	--inp-text-color: gray;
 	--default-color: #3db2ff;
 	--bg-color-block: rgba(40, 40, 40, 0.463);
-	--bg-color-mobile-menu: rgba(40, 40, 40, 1);
+	--bg-color-mobile-menu: rgb(20, 20, 20);
 	::-webkit-calendar-picker-indicator {
 		filter: invert(1);
 	}

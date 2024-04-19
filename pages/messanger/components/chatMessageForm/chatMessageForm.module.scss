@@ -16,7 +16,7 @@
         //border: 1px solid var(--border-color);
         height: 50px;
         & textarea {
-            width: 100%;
+            width: calc(100% - 120px);
             border: none;
             outline: none;
             resize: none;
