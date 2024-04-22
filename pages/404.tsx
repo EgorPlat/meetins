@@ -4,7 +4,9 @@ export default function Custom404() {
             display: "grid",
             gridTemplateColumns: "1fr",
             height: "70vh",
-            alignItems: "center"
+            alignItems: "center",
+            textAlign: "center",
+            padding: "10px"
         }}>
             <div style={{
                 display: "grid",

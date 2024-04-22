@@ -13,6 +13,7 @@
         cursor: pointer;
     }
     & .textChange {
+        border-radius: 5px;
         width: 100%;
         min-height: 30px;
         resize: none;
@@ -28,12 +29,12 @@
         border: none;
         outline: none;
         margin-top: 1%;
-        margin-left: 1%;
+        margin-right: 5px;
         border-radius: 5px;
     }
     & .confirmBtn {
         width: 80px;
-        background-color: rgb(29, 142, 255);
+        background-color: var(--default-color);
     }
     & .cancelBtn {
         width: 80px;
