@@ -8,7 +8,7 @@ import { $user } from "../../store/store";
 import s from "./profileInfo.module.scss";
 import { customizeDateToInputFormatFromDBFormat } from "../../helpers/helper";
 import FormContainer from "../../components/FormContainer/FormContainer";
- 
+
 export default function ProfileInfoForm(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
