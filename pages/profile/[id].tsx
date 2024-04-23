@@ -97,7 +97,7 @@ function Profile(): JSX.Element {
         if (currentUser.userId) {
             getUserPlaces({ userId: currentUser.userId });
         }
-    }, [currentUser])
+    }, [currentUser.userId])
     
     if (currentUserLoaded) {
         return(

@@ -3,9 +3,10 @@ import s from "./LentaList.module.scss";
 import { IWall } from "../../../../global/interfaces/wall";
 import { baseURL } from "../../../../global/store/store";
 import CustomSlider from "../../../../components-ui/CustomSlider/CustomSlider";
-import { AiOutlineLike } from "react-icons/ai";
+import { FcLike } from "react-icons/fc";
 import CustomEditMenu from "../../../../components-ui/CustomEditMenu/CustomEditMenu";
 import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
+import { CiHeart } from "react-icons/ci";
 
 export default function LentaList(props: {
     wallPosts: IWall[],
@@ -18,7 +19,10 @@ export default function LentaList(props: {
                     <div className={s.wallPost} key={el.postDescription}>
                         <div className={s.postAuthor}>
                             <img src={baseURL + el.avatar} className={s.avatar} />
-                            <div className={s.name}>{el.name} - {el.postTitle}</div>
+                            <div className={s.name}>
+                                {el.isGroup && "Сообщество: "}
+                                {el.name} - {el.postTitle}
+                                </div>
                         </div>
                         <div className={s.postContent}>
                             {
@@ -41,10 +45,10 @@ export default function LentaList(props: {
                             {el.postDescription}
                         </div>
                         <div className={s.postMoreInfo}>
-                            <span>Понравилось: {el.postLikes.length} {/*<AiOutlineLike fontSize={20} />*/}</span>
-                            <span className={s.postDate}>
+                            <div className={s.postLikes}>{<CiHeart fontSize={26} />}{el.postLikes.length}</div>
+                            <div className={s.postDate}>
                                 Опубликовано: {customizeDateToYYYYMMDDHHMMFormat(el.postDate)}
-                            </span>
+                            </div>
                         </div>
                         <div className={s.postActions}>
                             <CustomEditMenu

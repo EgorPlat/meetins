@@ -41,7 +41,8 @@ export default function Interests(props: {
                 setCurrentUserInterests(res);
             });
         }
-    }, [props.user?.interests])
+    }, [props.user?.userId]);
+
     return(
         <>
             <div className={s.interests}>

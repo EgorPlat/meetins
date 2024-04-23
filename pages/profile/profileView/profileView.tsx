@@ -45,7 +45,7 @@ export default function ProfileView(props: {
 }) {
     
     const { t } = useTranslation();
-    const activeUser = props.authedUser?.userId === props.currentUser?.userId ? props.authedUser : props.currentUser;
+    const activeUser = props.authedUser?.userId === props.currentUser?.userId ? props.currentUser : props.currentUser;
     
     return (
         <div className={s.profile}>
