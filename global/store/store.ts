@@ -144,7 +144,6 @@ export const addInterest = createEffect(async (title: string) => {
 	return response;
 })
 
-
 export const getUserData = createEffect(async () => {
 	setIsUserLoaded(false);
 	const response = await instance.get('profile/my-profile');
@@ -154,6 +153,7 @@ export const getUserData = createEffect(async () => {
 	}
 	return response;
 })
+
 export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const instanseRouter$ = instanseRouter.getState();
 	const savedRoute = localStorage.getItem("previousPage");
