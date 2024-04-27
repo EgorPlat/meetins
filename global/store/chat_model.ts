@@ -123,7 +123,8 @@ export const checkDialog = createEffect(async (user: User) => {
         const response = await instance.post('chat/check-dialog', {userId: user.userId});
         if(response.data.length !== 0) {
             setActiveChat({
-                ...defaultDialog, 
+                ...defaultDialog,
+                userId: user.userId,
                 dialogId: response.data[0].dialogId, 
                 userAvatar: user.avatar, 
                 userName: user.name,

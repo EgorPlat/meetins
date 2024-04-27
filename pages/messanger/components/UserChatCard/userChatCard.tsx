@@ -8,7 +8,7 @@ import s from "./userChatCard.module.scss";
 export default function UserChatCard(props: { dialog: IMyDialog, authedUser: User }): JSX.Element {
 
     const countUnrededMessageInDialog = calculateCountOfUnredMessageInDialog(props.dialog?.messages, props.authedUser);
-    
+
     const chooseChat = () => {
         getDialogMessages(props.dialog);
     } 

@@ -1,9 +1,9 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { $currentProfileUser, $user, addUserIntoMarkedList, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setIsCurrentUserLoaded, setUser } from "../../global/store/store";
+import { $currentProfileUser, $onlineUsers, $user, addUserIntoMarkedList, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setIsCurrentUserLoaded, setUser } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
-import { checkDialog, getMyDialogs } from "../../global/store/chat_model";
+import { checkDialog } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
@@ -21,12 +21,15 @@ function Profile(): JSX.Element {
     const currentUser = useStore($currentProfileUser);
     const authedUser = useStore($user);
     const currentUserPlaces = useStore(currentUserPlaces$);
-
+    const onlineUsers = useStore($onlineUsers);
+    
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const [isAddPostModal, setIsAddPostModal] = useState<boolean>(false);
     const [isInviteModal, setIsInviteModal] = useState<boolean>(false);
     const [choosedEventForInvite, setChoosedEventForInvite] = useState<number>();
     const [isEditTagOpen, setIsEditTagOpen] = useState<boolean>(false);
+    
+    const isCurrentUserOnline = onlineUsers.filter(el => el.userId === currentUser.userId).length !== 0;        
 
     const changeAddingImageStatus = (status: boolean) => {
         if(currentUser.login === authedUser?.login) {
@@ -123,6 +126,7 @@ function Profile(): JSX.Element {
                     handleAddUserIntoMarked={handleAddUserIntoMarked}
                     handleOpenEditTag={handleOpenEditTag}
                     currentUserPlaces={currentUserPlaces}
+                    isCurrentUserOnline={isCurrentUserOnline}
                 />
             </PageContainer>
         )

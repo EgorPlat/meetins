@@ -30,7 +30,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const authedUser = useStore($user);
     const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
     const onlineUsers = useStore($onlineUsers);
-    const isUserOnline = onlineUsers.filter(el => el.userId !== activeChat$.userId).length > 0;
+    const isUserOnline = onlineUsers.filter(el => el.userId === activeChat$.userId).length !== 0;
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
     const [videoMessageActive, setVideoMessageActive] = useState<boolean>();
@@ -38,6 +38,8 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const { t } = useTranslation();
     const router = useRouter();    
 
+    console.log(onlineUsers);
+    
     const { handleActivateMedia, mediaChunks } = useUserMediaTracks({ 
         video: { width: 200, height: 200 }, 
         audio: true, 
@@ -85,6 +87,10 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
         }
     }, []);
 
+    console.log(onlineUsers);
+    console.log(activeChat$);
+    
+    
     if (activeChat$) {
         return(
             <div className={s.chat}>  
@@ -102,8 +108,8 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                 onClick={() => setShowVideoModal(true)}
                             />
                         </div>
-                        <div className={!isUserOnline ? s.statusOnline : s.status}>
-                            {!isUserOnline ? t('В сети') : t('Не в сети')}
+                        <div className={isUserOnline ? s.statusOnline : s.status}>
+                            {isUserOnline ? t('В сети') : t('Не в сети')}
                         </div>
                         <CustomEditMenu 
                             data={[

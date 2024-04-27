@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { createEffect, createEvent, createStore, sample } from 'effector'
-import { IMarkedUserInfo, IUserTag, User } from '../interfaces';
+import { IMarkedUserInfo, IOnlineUser, IUserTag, User } from '../interfaces';
 import { instanseRouter } from './router_model';
 import { handleLogOut } from './login_model';
 import { addNotification } from './notifications_model';
@@ -64,8 +64,8 @@ export const setUser = createEvent<User | null>()
 export const $user = createStore<User | null>(null).on(setUser, (_, userDetails) => {
 	return userDetails;
 })
-export const setOnlineUsers = createEvent<any[]>()
-export const $onlineUsers = createStore<any[]>([]).on(setOnlineUsers, (_, onlineUserList) => {
+export const setOnlineUsers = createEvent<IOnlineUser[]>()
+export const $onlineUsers = createStore<IOnlineUser[]>([]).on(setOnlineUsers, (_, onlineUserList) => {
 	return onlineUserList;
 })
 export const setCurrentProfileUser = createEvent<User>();

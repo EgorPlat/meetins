@@ -17,13 +17,14 @@
             background-color: transparent;
         }
         & .hint {
+            border-radius: 5px;
             z-index: 999;
             font-size: 12px;
             max-width: 200px;
             text-align: center;
             position: absolute;
             word-wrap: break-word;
-            border: 2px solid gray;
+            border: 1px solid gray;
             margin-top: 40px;
             padding: 5px;
             color: var(--text-color);

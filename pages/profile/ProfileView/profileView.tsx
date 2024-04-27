@@ -30,6 +30,7 @@ export default function ProfileView(props: {
     isInviteModal: boolean,
     isEditTagOpen: boolean,
     currentUserPlaces: string[],
+    isCurrentUserOnline: boolean,
     handleSaveNewStatus: (status: string) => void,
     changeAddingImageStatus: (status: boolean) => void,
     onChangeInputImage: (event: any) => void,
@@ -112,8 +113,8 @@ export default function ProfileView(props: {
                                     </span>
                                     {getDateInDMYFormat(activeUser.dateRegister)}
                                 </div>
-                                <div className={s.lastActivity}>
-                                    {t('последнее посещение')}: Сегодня
+                                <div className={s.userStatus}>
+                                    {t('Статус')}: {props.isCurrentUserOnline ? "В сети" : "Не в сети"}
                                 </div>
                                 <div className={s.vied}>
                                     {t('за последние 24 часа профиль просмотрен')}:

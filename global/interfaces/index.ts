@@ -135,3 +135,8 @@ export interface SortedMessagesOnDays {
     data: string,
     messages: IMyActiveDialogMessage[]
 }
+export interface IOnlineUser {
+    email: string,
+    userId: string,
+    sockedId: string
+}
