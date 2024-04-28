@@ -28,7 +28,11 @@
             @extend .defaultTitle
         }
         & .list {
+            display: grid;
+            row-gap: 10px;
             & .group {
+                border-radius: 5px;
+                background-color: var(--bg-color-block);
                 display: grid;
                 grid-template-columns: 90px calc(100% - 310px) 230px;
                 padding: 10px;
@@ -38,8 +42,8 @@
                     & img {
                         width: 80px;
                         height: 80px;
-                        border: 2px solid white;
                         border-radius: 50%;
+                        border: 1px solid gray;
                     }
                 }
                 & .info {

@@ -58,15 +58,6 @@
             overflow-y: scroll;
             overflow-x: hidden;
         }
-        & .customModalChildrenContent::-webkit-scrollbar {
-            width: 5px;               /* ширина scrollbar */
-        }
-        & .customModalChildrenContent::-webkit-scrollbar-track {
-            background: transparent;        /* цвет дорожки */
-        }
-        & .customModalChildrenContent::-webkit-scrollbar-thumb {
-            background-color: rgba(44, 44, 44, 0.537);    /* цвет плашки */
-        }
     }
     & .manageCustomModal {
         & button {

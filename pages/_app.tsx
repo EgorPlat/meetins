@@ -21,6 +21,7 @@ import { getMyDialogs } from '../global/store/chat_model';
 import { MusicControlBlock } from '../global/components/MusicControlBlock/musicControlBlock';
 import { activeMusic } from '../global/store/music_model';
 import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
+import { useTheme } from '../global/hooks/useTheme';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -31,18 +32,24 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
 	const {isMobile, isUnAdaptive} = useResize();
+	const theme = useTheme();
 	const inithialConnection = useAuthAndInithialSocket();
 	
 	useEffect(() => {
 		setRouter(router);
 		getMyDialogs(true);
 		getInitialUserDataAndCheckAuth();
-		document.documentElement.setAttribute("data-theme", 'black');
 		i18n.changeLanguage(detectUserLanguage());
 		return () => {
 			connection$?.disconnect();
 		}
 	}, []);
+
+	useEffect(() => {
+		console.log(theme);
+		
+		document.documentElement.setAttribute("data-theme", theme);
+	}, [theme])
 
 	useEffect(() => {
 		setIsMobile(isMobile);

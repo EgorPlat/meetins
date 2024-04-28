@@ -76,7 +76,7 @@
         }
         & .musicSearchBtn {
             font-size: 18px;
-            background-color: rgba(10, 149, 255, 0.952);
+            background-color: var(--default-color);
             border: none;
             border-radius: 5px;
         }
@@ -101,14 +101,12 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 10px;
-        & .musicContentTitle {
-            font-size: 16px;
-        }
         & .songers {
+            background-color: var(--bg-color-block);
+            border-radius: 10px;
             font-size: 17px;
-            padding-left: 5px;
-            padding-right: 5px;
-            padding-bottom: 5px;
+            padding: 10px;
+            height: min-content;
             & .songer {
                 font-size: 16px;
                 & .name {
