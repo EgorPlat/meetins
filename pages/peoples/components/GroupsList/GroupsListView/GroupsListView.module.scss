@@ -1,5 +1,6 @@
 .defaultTitle {
     font-size: 15px;
+    font-weight: 600;
 }
 .groupsListView {
     width: 98%;
@@ -50,7 +51,9 @@
                     display: grid;
                     grid-template-columns: 1fr;
                     font-size: 15px;
+                    font-weight: 500;
                     & .name {
+                        font-weight: 600;
                         color: var(--default-color);
                     }
                     & .type {
