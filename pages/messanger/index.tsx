@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React from "react";
+import React, { useEffect } from "react";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { activeChat } from "../../global/store/chat_model";
 import { isMobile } from "../../global/store/store";
@@ -15,6 +15,13 @@ export default function Messanger(): JSX.Element {
 
     const isChatNeededToShow = Boolean(activeChat$.dialogId);
     
+    useEffect(() => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+        });
+    }, []);
+
     return(
         <PageContainer> 
            { !isMobile$ 

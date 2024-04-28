@@ -37,8 +37,6 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
     const { t } = useTranslation();
     const router = useRouter();    
-
-    console.log(onlineUsers);
     
     const { handleActivateMedia, mediaChunks } = useUserMediaTracks({ 
         video: { width: 200, height: 200 }, 
@@ -86,9 +84,6 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
             setActiveChat(defaultDialog);
         }
     }, []);
-
-    console.log(onlineUsers);
-    console.log(activeChat$);
     
     
     if (activeChat$) {
