@@ -69,7 +69,7 @@ export default function GroupInfoPageView (props: {
                         <AiOutlineVideoCamera fontSize={20} onClick={props.handleOpenVideos} />
                     </div>
                     <div className={s.item}>
-                        Вложения <span className={s.count}>{props.groupInfo?.attachments?.length} </span>
+                        Ещё<span className={s.count}>{props.groupInfo?.attachments?.length} </span>
                         <ImAttachment fontSize={20} />
                     </div>
                 </div>
@@ -122,7 +122,7 @@ export default function GroupInfoPageView (props: {
                                             Комментарии
                                         </div>
                                         <div className={s.views}>
-                                            Просмотрели: 
+                                            Просм. 
                                             <AiOutlineEye fontSize={25} />
                                             1.728
                                         </div>

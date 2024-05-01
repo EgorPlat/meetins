@@ -94,11 +94,11 @@ export default function ProfileView(props: {
                             <div>
                                 <div className={`${s.userName}`}>
                                     {activeUser.name + ', ' + activeUser.age}
-                                    <span
+                                    <div
                                         onClick={props.handleOpenEditTag}
                                         className={s.userTag}
                                         style={{backgroundColor: `${activeUser.tag?.color}`}}
-                                    >{activeUser.tag?.title}</span>
+                                    >{activeUser.tag?.title}</div>
                                 </div>
                                 <div className={s.town}>
                                     г. {activeUser.city}

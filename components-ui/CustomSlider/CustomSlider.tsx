@@ -29,6 +29,9 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
     };
 
     const handleTouchEnd = (e) => {
+        const differense = e.changedTouches[0].pageX - touchXData;
+        if (differense >= -15 && differense <= 0) return;
+        if (differense <= 15 && differense >= 0) return;
         if (e.changedTouches[0].pageX < touchXData) {
             if (files.length - 1 === activeImageId){
                 setActiveImageId(() => 0);
@@ -59,7 +62,7 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
                             className={s.customSliderCurrentImage}
                             style={{
                                 transform: `translateX(-${activeImageId * 100}%)`,
-                                transition: '1s'
+                                transition: '0.5s'
                             }}
                             key={el.src}
                         >
@@ -72,6 +75,7 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
                                         alt="Главное изображение" 
                                         onTouchStart={handleTouchStart}
                                         onTouchEnd={handleTouchEnd}
+                                        onClick={(e) => e.preventDefault()}
                                     />
                                 : el.type.includes('video') ?
                                     <video
@@ -80,7 +84,8 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
                                         height={height}
                                         onTouchStart={handleTouchStart}
                                         onTouchEnd={handleTouchEnd}
-                                        controls
+                                        controls={true}
+                                        onClick={(e) => e.preventDefault()}
                                     />
                                 : el.type.includes('audio') ? 
                                     <audio
@@ -91,7 +96,14 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
                                         controls
                                     />
                                 : 
-                                <div style={{ width: params.width, textAlign: "center" }}>
+                                <div 
+                                    style={{ 
+                                        width: params.width, 
+                                        textAlign: "center", 
+                                    }}
+                                    onTouchStart={handleTouchStart}
+                                    onTouchEnd={handleTouchEnd}
+                                >
                                     <div>Вложение (файл) - {el.type}</div>
                                     <a href={el.src} target='__blank'>Скачать</a>
                                 </div>

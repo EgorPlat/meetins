@@ -10,11 +10,11 @@
         overflow: hidden;
         & .customSliderCurrentImage {
             & video::-webkit-media-controls {
-                width: 100%; /* Измените этот параметр по вашему усмотрению */
+                width: 100%;
             }
             
             & video::-webkit-media-controls-panel {
-                width: 100%; /* Измените этот параметр по вашему усмотрению */
+                width: 100%;
             }
         }
     }
