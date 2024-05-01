@@ -6,7 +6,9 @@ import {
     getGroupMembersInfo, 
     groupInfo, 
     groupMembersInfo,
+    isGroupInfoLoaded,
     likePostInGroup,
+    setIsGroupInfoLoaded,
     unlikePostInGroup
 } from "../../global/store/groups_model";
 import { useStore } from "effector-react";
@@ -24,6 +26,7 @@ import AddNewMessageIntoGroupTalk from "../../global/forms/AddNewMessageIntoGrou
 import GroupCommentsView from "./components/GroupCommentsView";
 import GroupAttachments from "./components/GroupAttachments/GroupAttachments";
 import { destrucutreFilesInGroupPost } from "../../global/helpers/helper";
+import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
 
 export default function Groups() {
 
@@ -31,6 +34,7 @@ export default function Groups() {
     const groupInfo$ = useStore(groupInfo);
     const groupMembersInfo$ = useStore(groupMembersInfo);
     const authedUser$ = useStore($user);
+    const isGroupInfoLoaded$ = useStore(isGroupInfoLoaded);
     const isAutherUserCreator = authedUser$?.userId === groupInfo$?.creatorId;
     const [modals, setModals] = useState({
         isSettingsGroupOpen: false,
@@ -115,6 +119,7 @@ export default function Groups() {
     }
 
     useEffect(() => {
+        setIsGroupInfoLoaded(false);
         if(router.query?.id) {
             getGroupById(+router.query.id);
             getGroupMembersInfo(+router.query.id);
@@ -124,21 +129,25 @@ export default function Groups() {
     return (
         <PageContainer>
             <>
-                <GroupInfoPageView
-                    authedUser={authedUser$}
-                    groupInfo={groupInfo$}
-                    isAutherUserCreator={isAutherUserCreator}
-                    handleOpenGroupSettings={handleOpenGroupSettings}
-                    isSettingsGroupOpen={modals.isSettingsGroupOpen}
-                    groupMembersInfo={groupMembersInfo$}
-                    handleOpenComments={handleOpenComments}
-                    handleOpenAddingPost={handleOpenAddingPost}
-                    handleOpenTalks={handleOpenTalks}
-                    handleOpenPhotos={handleOpenPhotos}
-                    handleLikePost={handleLikePost}
-                    handleOpenVideos={handleOpenVideos}
-                    videoPhotoAttachmentsInfo={videoPhotoAttachmentsInfo}
-                />
+                {
+                    isGroupInfoLoaded$ ?
+                    <GroupInfoPageView
+                        authedUser={authedUser$}
+                        groupInfo={groupInfo$}
+                        isAutherUserCreator={isAutherUserCreator}
+                        handleOpenGroupSettings={handleOpenGroupSettings}
+                        isSettingsGroupOpen={modals.isSettingsGroupOpen}
+                        groupMembersInfo={groupMembersInfo$}
+                        handleOpenComments={handleOpenComments}
+                        handleOpenAddingPost={handleOpenAddingPost}
+                        handleOpenTalks={handleOpenTalks}
+                        handleOpenPhotos={handleOpenPhotos}
+                        handleLikePost={handleLikePost}
+                        handleOpenVideos={handleOpenVideos}
+                        videoPhotoAttachmentsInfo={videoPhotoAttachmentsInfo}
+                    /> :
+                    <CustomLoader />
+                }
                 <CustomModal
                     isDisplay={modals.isSettingsGroupOpen}
                     changeModal={(status) => setModals({ ...modals, isSettingsGroupOpen: status })}

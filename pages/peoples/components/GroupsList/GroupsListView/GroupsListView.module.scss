@@ -4,12 +4,14 @@
 }
 .groupsListView {
     width: 98%;
-    text-align: justify;
+    //text-align: justify;
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 10px;
     & .groupsFilters {
         & .title {
+            text-overflow: ellipsis;
+            //white-space: nowrap;
             @extend .defaultTitle;
             color: gray;
         }   
@@ -35,8 +37,10 @@
                 border-radius: 5px;
                 background-color: var(--bg-color-block);
                 display: grid;
-                grid-template-columns: 90px calc(100% - 310px) 230px;
-                padding: 10px;
+                grid-template-columns: 90px calc(100% - 310px) 220px;
+                padding-left: 5px;
+                padding-top: 10px;
+                padding-bottom: 10px;
                 & .image {
                     width: 80px;
                     height: 80px;
@@ -64,14 +68,18 @@
                     }
                 }
                 & .actions {
-                    display: flex;
-                    align-items: center;
+                    display: grid;
+                    align-content: start;
+                    justify-content: right;
+                    padding-right: 20px;
                     column-gap: 5px;
+                    row-gap: 5px;
                     & button {
-                        font-size: 16px;
+                        max-width: 150px;
+                        height: 30px;
+                        font-size: 14px;
                         border: none;
                         background-color: var(--default-color);
-                        padding: 7px;
                         border-radius: 100px;
                     }
                     & button:hover {
@@ -88,41 +96,16 @@
         & .groupsContent {
             & .list {
                 & .group {
-                    grid-template-columns: 70px calc(100% - 190px) 100px;
+                    column-gap: 5px;
+                    grid-template-columns: 70px calc(100% - 200px) 120px;
                     & .image {
                         & img {
-                            width: 65px;
-                            height: 65px;
+                            width: 70px;
+                            height: 70px;
                         }
                     }
                     & .actions {
-                        display: grid;
-                        grid-template-columns: 1fr;
-                        & button {
-                            font-size: 13px;
-                        }
-                    }
-                    & .info {
-                        font-size: 12px;
-                    }
-                }
-            }
-        }
-    }
-}
-@media screen and (max-width: 400px) {
-    .groupsListView {
-        & .groupsContent {
-            & .list {
-                & .group {
-                    grid-template-columns: 90px calc(100% - 190px) 100px;
-                    & .info {
-                        font-size: 13px;
-                    }
-                    & .actions {
-                        & button {
-                            font-size: 12px;
-                        }
+                        padding-right: 0px;
                     }
                 }
             }

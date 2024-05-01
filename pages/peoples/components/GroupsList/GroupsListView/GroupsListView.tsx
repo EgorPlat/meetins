@@ -4,7 +4,8 @@ import s from './GroupsListView.module.scss';
 
 export default function GroupsListView (props: {
     groupsList: IGroup[],
-    handleGoToGroup: (groupId: IGroup) => void,
+    handleJoinToGroup: (groupId: IGroup) => void,
+    handleGoToCheckGroup: (groupId: number) => void,
     handleCrateNewGroup: () => void
 }) {
     return (
@@ -35,9 +36,11 @@ export default function GroupsListView (props: {
                                 </div>
                                 <div className={s.actions}>
                                     <button
-                                        onClick={() => props.handleGoToGroup(el)}    
+                                        onClick={() => props.handleJoinToGroup(el)}    
                                     >Присоединиться</button>
-                                    <button>Перейти</button>
+                                    <button
+                                        onClick={() => props.handleGoToCheckGroup(el.groupId)} 
+                                    >Перейти</button>
                                 </div>
                             </div>
                         ))

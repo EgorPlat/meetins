@@ -56,20 +56,20 @@ export default function GroupInfoPageView (props: {
                     <span className={s.title}>Описание: </span>{props.groupInfo?.description}
                 </div>
                 <div className={s.talks}>
-                    <div className={s.item}>
-                        Обсуждения <span className={s.count}>{props.groupInfo?.talks?.length} </span>
-                        <RiDiscussLine fontSize={20} onClick={props.handleOpenTalks} />
+                    <div className={s.item} onClick={props.handleOpenTalks}>
+                        Обсуждения {/*<span className={s.count}>{props.groupInfo?.talks?.length} </span>*/}
+                        <RiDiscussLine fontSize={20} />
+                    </div>
+                    <div className={s.item} onClick={props.handleOpenPhotos}>
+                        Фото {/*<span className={s.count}>{props.videoPhotoAttachmentsInfo.images.length} </span>*/}
+                        <BiPhotoAlbum fontSize={20} />
+                    </div>
+                    <div className={s.item} onClick={props.handleOpenVideos}>
+                        Видео {/*<span className={s.count}>{props.videoPhotoAttachmentsInfo.videos.length} </span>*/}
+                        <AiOutlineVideoCamera fontSize={20} />
                     </div>
                     <div className={s.item}>
-                        Фото <span className={s.count}>{props.videoPhotoAttachmentsInfo.images.length} </span>
-                        <BiPhotoAlbum fontSize={20} onClick={props.handleOpenPhotos} />
-                    </div>
-                    <div className={s.item}>
-                        Видео <span className={s.count}>{props.videoPhotoAttachmentsInfo.videos.length} </span>
-                        <AiOutlineVideoCamera fontSize={20} onClick={props.handleOpenVideos} />
-                    </div>
-                    <div className={s.item}>
-                        Ещё<span className={s.count}>{props.groupInfo?.attachments?.length} </span>
+                        Ещё {/*<span className={s.count}>{props.groupInfo?.attachments?.length} </span>*/}
                         <ImAttachment fontSize={20} />
                     </div>
                 </div>

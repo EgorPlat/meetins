@@ -15,13 +15,17 @@ export default function GroupsList () {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
     const user$ = useStore($user);
 
-    const handleGoToGroup = (group: IGroup) => {
+    const handleJoinToGroup = (group: IGroup) => {
         if (!group.membersId.includes(user$.userId)) {
             joinToGroup(group.groupId);
         }
         router.push(`/groups/${group.groupId}`);
     };
     
+    const handleGoToCheckGroup = (groupId: number) => {
+        router.push(`/groups/${groupId}`);
+    };
+
     const handleCrateNewGroup = () => {
         setIsCreateModalOpen(true);
     };
@@ -36,7 +40,8 @@ export default function GroupsList () {
             <GroupsListView
                 handleCrateNewGroup={handleCrateNewGroup}
                 groupsList={groupsList$}
-                handleGoToGroup={handleGoToGroup}
+                handleJoinToGroup={handleJoinToGroup}
+                handleGoToCheckGroup={handleGoToCheckGroup}
             />
             {
                 isCreateModalOpen &&

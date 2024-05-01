@@ -7,15 +7,22 @@ export const addNewGroup = createEvent<IGroup>();
 export const groupsList = createStore<IGroup[]>([] as IGroup[])
 groupsList.on(setGroupsList, (_, newGroupsList) => {
     return newGroupsList;
-})
+});
+
 groupsList.on(addNewGroup, (groupList, newGroup) => {
     return [...groupList, newGroup];
-})
+});
 
+export const setIsGroupInfoLoaded = createEvent<boolean>();
+export const isGroupInfoLoaded = createStore<boolean>(false);
+isGroupInfoLoaded.on(setIsGroupInfoLoaded, (_, status) => {
+    return status;
+});
 export const setActiveGroup = createEvent<IGroup>();
 export const groupInfo = createStore<IGroup>({} as IGroup).on(setActiveGroup, (_, newGroup) => {
     return newGroup;
-})
+});
+
 export const addActiveGroupTalkMessage = createEvent<IGroupTalkMessage>();
 export const setActiveGroupTalkMessage = createEvent<IGroupTalkMessage[]>();
 export const activeGroupTalksMessages = createStore<IGroupTalkMessage[]>([] as IGroupTalkMessage[])
@@ -167,6 +174,15 @@ sample({
     filter: response => response.status <= 217,
     fn: response => response.data, 
     target: setActiveGroup
+});
+
+sample({ 
+    clock: [
+        getGroupById.doneData
+    ], 
+    filter: response => response.status <= 217,
+    fn: response => true, 
+    target: setIsGroupInfoLoaded
 });
 
 
