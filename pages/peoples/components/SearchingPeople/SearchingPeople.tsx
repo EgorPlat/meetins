@@ -133,7 +133,7 @@ export default function SearchingPeople(): JSX.Element {
                         {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
                     </div>
                     { 
-                        peoplesList$.length === 0 && !pending ? 
+                        maxPage$ === 0 && !pending ? 
                         <div>
                             <h3>Никого не найдено.</h3>
                             <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>

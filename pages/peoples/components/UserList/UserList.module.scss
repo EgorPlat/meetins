@@ -41,3 +41,20 @@
     background-color: rgba(215, 215, 215, 0.301);
 }
 
+@media screen and (max-width: 400px) {
+    .user {
+        height: 80px;
+        grid-template-columns: 70px 1fr;
+        & .image {
+            width: 70px;
+            height: 70px;
+            & .round {
+                margin-left: 50px;
+                margin-top: 50px;
+                width: 15px;
+                height: 15px;
+            }
+        }
+    }
+}
+
