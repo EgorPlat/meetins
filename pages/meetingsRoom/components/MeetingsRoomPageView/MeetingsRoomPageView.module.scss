@@ -87,6 +87,7 @@
                 column-gap: 10px;
                 padding-top: 5px;
                 padding-bottom: 5px;
+                row-gap: 5px;
                 & .message {
                     font-size: 16px;
                     color: gray;
@@ -104,10 +105,10 @@
                     cursor: pointer;
                     border-radius: 10px;
                 }
-                & img:first-child {
+                /*& img:first-child {
                     width: 180px;
                     height: 180px;
-                }
+                }*/
             }
         }
         & .commentsInfo {

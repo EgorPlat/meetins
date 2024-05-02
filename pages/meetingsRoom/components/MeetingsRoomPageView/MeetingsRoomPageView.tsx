@@ -36,8 +36,8 @@ export default function MeetingsRoomPageView(props: {
                     <div className={s.moreInfo}>
                         <div className={s.activityBar}>
                             <CustomProgressBar
-                                text='Кол-во человек записавшихся на встречу: '
-                                width='90%'
+                                text='Люди, записывшиеся на встречу: '
+                                width='calc(100% - 30px)'
                                 height='30px'
                                 max={25}
                                 value={props.selectedMeeting.participants.length}

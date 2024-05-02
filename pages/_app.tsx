@@ -46,8 +46,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}, []);
 
 	useEffect(() => {
-		console.log(theme);
-		
 		document.documentElement.setAttribute("data-theme", theme);
 	}, [theme])
 
@@ -63,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		} else {
 			body.style.overflowY = 'scroll';
 		}
-	}, [isScrollPageBlocked])
+	}, [isScrollPageBlocked]);
 	
 	return (
 		<Layout>

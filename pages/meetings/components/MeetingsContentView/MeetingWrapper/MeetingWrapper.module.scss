@@ -57,14 +57,86 @@
     }
 }
 
+.meetingMobileWrapper {
+    width: 100%;
+    border-radius: 10px;
+    min-height: 30px;
+    background-color: var(--bg-color-block);
+    display: grid;
+    padding: 10px;
+    column-gap: 10px;
+    & .meetingDescription {
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        & .meetingTitle {
+            display: grid;
+            grid-template-columns: calc(100% - 50px) 50px;
+            column-gap: 5px;
+            & .meetingImage {
+                width: 50px;
+                height: 50px;
+                background-size: 100% 100%;
+                border-radius: 10px;
+            }
+        }
+        & .meetingCreator {
+            font-size: 15px;
+        }
+        & .meetingDate {
+            font-size: 15px;
+            & .dateTime {
+                color: gray;
+            }
+        }
+        & .meetingGoal {
+            font-size: 15px;
+            & .hint {
+                color: var(--default-color);
+            }
+        }
+        & .meetingActions {
+            display: flex;
+            column-gap: 10px;
+            margin-top: 20px;
+            & .actionBtn {
+                background-color: var(--default-color);
+                border: none;
+                border-radius: 3px;
+            }
+            & .actionBtn:hover {
+                background-color: rgb(255, 184, 53);
+                color: black;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 600px) {
     .meetingWrapper {
+        grid-template-columns: 80px calc(100% - 80px);
+        & .meetingImage {
+            width: 80px;
+            height: 80px;
+        }
         & .meetingTitle {
             flex-direction: column;
             font-size: 16px;
         }
     }
 }
+
+@media screen and (max-width: 425px) {
+    .meetingWrapper {
+        grid-template-columns: 1fr;
+        & .meetingImage {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
 @media screen and (max-width: 480px) {
     .meetingWrapper {
         & .meetingActions {

@@ -9,9 +9,10 @@ export const useAuthAndInithialSocket = () => {
 
     const socketConnection = useStore(connection);
 	const router = useRouter();
+	const isNeededRoutes = router.asPath !== "/login" && router.asPath !== "/register" && router.asPath !== '';
 
 	useEffect(() => {
-		if (socketConnection === null) {
+		if (isNeededRoutes && socketConnection === null) {
 			try {
 				const newConnection = io(baseURL, {
 					transports: ['websocket', 'polling']
