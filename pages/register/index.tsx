@@ -66,7 +66,6 @@ export default function Login(): JSX.Element {
 			}
 		})
 	}
-	// error.name.message
 
 	return (
 		<div className={s.cardWrapper}>

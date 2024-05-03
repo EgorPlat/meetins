@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Card from "./components/categoryCard/card";
 import s from "./index.module.scss";

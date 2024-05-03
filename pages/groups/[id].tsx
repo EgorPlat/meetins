@@ -12,21 +12,21 @@ import {
     unlikePostInGroup
 } from "../../global/store/groups_model";
 import { useStore } from "effector-react";
-import GroupInfoPageView from "./components/GroupInfoPageView/GroupInfoPageView";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { $user } from "../../global/store/store";
+import { IGroupPost, IGroupTalkMessage } from "../../global/interfaces/groups";
+import { destrucutreFilesInGroupPost } from "../../global/helpers/helper";
 import CustomModal from "../../components-ui/CustomModal/CustomModal";
 import ManageGroup from "../../global/forms/ManageGroup/Index";
 import AddNewPostIntoGroupForm from "../../global/forms/AddNewPostIntoGroup/Index";
 import GroupTalksMessagesView from "./components/GroupTalksMessagesView/GroupTalksMessagesView";
 import GroupTalks from "./components/GroupTalks/GroupTalks";
 import AddNewTalkInGroup from "../../global/forms/AddNewTalkInGroup/Index";
-import { IGroup, IGroupPost, IGroupTalkMessage } from "../../global/interfaces/groups";
 import AddNewMessageIntoGroupTalk from "../../global/forms/AddNewMessageIntoGroupTalk";
 import GroupCommentsView from "./components/GroupCommentsView";
 import GroupAttachments from "./components/GroupAttachments/GroupAttachments";
-import { destrucutreFilesInGroupPost } from "../../global/helpers/helper";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
+import GroupInfoPageView from "./components/GroupInfoPageView/GroupInfoPageView";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 
 export default function Groups() {
 

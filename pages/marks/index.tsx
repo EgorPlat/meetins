@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
-import MarkedEvents from "./components/MarkedEvents/markedEvents";
-import s from "./marks.module.scss";
-import MarkedUsers from "./components/MarkedUsers/markedUsers";
 import { useStore } from "effector-react";
 import { $markedUsersInfo, $user, getMarkedUsersInfo } from "../../global/store/store";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
+import MarkedEvents from "./components/MarkedEvents/markedEvents";
+import MarkedUsers from "./components/MarkedUsers/markedUsers";
+import s from "./marks.module.scss";
 
 export default function Marks(): JSX.Element {
 

@@ -1,11 +1,23 @@
 import { useEffect, useState } from "react";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
-import MusicPageView from "./components/MusicPageView/MusicPageView";
-import { IActiveMusic, IMusic } from "../../global/interfaces/music";
-import { activeMusicTimeData, getAllMusic, getAuthorsStatistic, authorsStatistic, musicList, setActiveMusic, setActiveMusicCurrentTime, setActiveMusicTimeData, addPlaysToComposition, setMusicList, getMatchesList, matchesList } from "../../global/store/music_model";
+import { IActiveMusic } from "../../global/interfaces/music";
+import { 
+    activeMusicTimeData, 
+    getAllMusic, 
+    getAuthorsStatistic, 
+    authorsStatistic, 
+    musicList, 
+    setActiveMusic, 
+    setActiveMusicTimeData, 
+    addPlaysToComposition, 
+    setMusicList, 
+    getMatchesList, 
+    matchesList 
+} from "../../global/store/music_model";
 import { useStore } from "effector-react";
 import CustomModal from "../../components-ui/CustomModal/CustomModal";
 import StatsView from "./components/StatsView/StatsView";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
+import MusicPageView from "./components/MusicPageView/MusicPageView";
 
 export default function Music() {
 

@@ -1,15 +1,14 @@
 import { useRouter } from "next/router";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
-import MeetingsRoomPageView from "./components/MeetingsRoomPageView/MeetingsRoomPageView";
 import { useStore } from "effector-react";
 import { handleRegInMeeting, selectedMeeting, uploadFileToMediaMeeting } from "../../global/store/meetings_model";
 import { ChangeEvent, useState } from "react";
-import AddCommentIntoMeeting from "../../global/forms/AddCommentIntoMeeting/Index";
-import CustomModal from "../../components-ui/CustomModal/CustomModal";
-import { $user, baseURL } from "../../global/store/store";
+import { $user } from "../../global/store/store";
 import { addNotification } from "../../global/store/notifications_model";
 import MeetingsFilesList from "./components/MeetingsFilesList/MeetingsFilesList";
-import { IGroupFile } from "../../global/interfaces/groups";
+import AddCommentIntoMeeting from "../../global/forms/AddCommentIntoMeeting/Index";
+import CustomModal from "../../components-ui/CustomModal/CustomModal";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
+import MeetingsRoomPageView from "./components/MeetingsRoomPageView/MeetingsRoomPageView";
 
 export default function MeetingsRoom() {
     

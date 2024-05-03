@@ -1,9 +1,9 @@
-import InterestsPageView from "./components/InterestsPageView/InterestsPageView";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { addNotification } from "../../global/store/notifications_model";
 import { useStore } from "effector-react";
 import { $currentInterestsList, addInterest, getInterests } from "../../global/store/store";
 import { useEffect, useRef } from "react";
+import InterestsPageView from "./components/InterestsPageView/InterestsPageView";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 
 export default function Interests() {
 

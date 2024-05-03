@@ -5,9 +5,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { setIsAccountUpdated, setIsProfileUpdated, updateUserFilterStatus } from "../../global/store/settings_model";
 import { useTranslation } from "react-i18next";
+import { User } from "../../global/interfaces";
 import React from "react";
-import s from "./settings.module.scss";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileInfoForm from "../../global/forms/ProfileInfo/Index";
 import ManageAccountForm from "../../global/forms/ManageAccount/Index";
 import ru from '../../public/images/ru.png';
@@ -16,9 +15,10 @@ import Image from "next/image";
 import Modal from "../../components-ui/Modal/Modal";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
 import TurnOffOn from "../../components-ui/TurnOffOn/TurnOffOn";
-import { User } from "../../global/interfaces";
 import ButtonWithHint from "../../components-ui/Hint/buttonWithHint";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
+import s from "./settings.module.scss";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Settings(): JSX.Element {
 

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
-import MeetingsPageView from "./components/MeetingsPageView/MeetingsPageView";
 import { currentMeetings, getAllMeetings, setSelectedMeeting } from "../../global/store/meetings_model";
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import { IMeeting } from "../../global/interfaces/meetings";
 import { $user } from "../../global/store/store";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
+import MeetingsPageView from "./components/MeetingsPageView/MeetingsPageView";
 
 export default function Meetings() {
 

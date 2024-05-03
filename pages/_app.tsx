@@ -1,20 +1,10 @@
-import 'regenerator-runtime/runtime';
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, setIsMobile, setIsScrollPageBlocked } from '../global/store/store';
+import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';
 import { useResize } from '../global/hooks/useResize';
-import '../node_modules/reseter.css/css/reseter.min.css';
-import Head from 'next/head';
-import '../i18n';
-import i18n from '../i18n';
-import NotificationBlock from '../global/components/NotificationBlock/notificationBlock';
-import Layout from '../global/components/Layout/Layout';
-import CustomModal from '../components-ui/CustomModal/CustomModal';
-import '../styles/app.css';
-import '../styles/themes.css';
 import { setRouter } from '../global/store/router_model';
 import { useRouter } from 'next/router';
 import { getMyDialogs } from '../global/store/chat_model';
@@ -23,6 +13,15 @@ import { activeMusic } from '../global/store/music_model';
 import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 import { useTheme } from '../global/hooks/useTheme';
 import { useBlockBodyScroll } from '../global/hooks/useBlockScroll';
+import Head from 'next/head';
+import i18n from '../i18n';
+import NotificationBlock from '../global/components/NotificationBlock/notificationBlock';
+import Layout from '../global/components/Layout/Layout';
+import '../i18n';
+import '../styles/app.css';
+import '../styles/themes.css';
+import 'regenerator-runtime/runtime';
+import '../node_modules/reseter.css/css/reseter.min.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -32,11 +31,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
 	const router = useRouter();
-	
 	const {isMobile, isUnAdaptive} = useResize();
-	const theme = useTheme();
-	const inithialConnection = useAuthAndInithialSocket();
-	const blockMainScroll = useBlockBodyScroll(isScrollPageBlocked);
+	const currentTheme = useTheme();
+	const isConnected = useAuthAndInithialSocket();
+	
+	useBlockBodyScroll(isScrollPageBlocked);
 
 	useEffect(() => {
 		setRouter(router);

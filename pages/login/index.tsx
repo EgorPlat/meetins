@@ -1,19 +1,19 @@
-import Head from 'next/head'
-import { useForm } from 'react-hook-form'
-import { isEmail, isPassword } from '../../global/helpers/validate'
-import { $loginLoading, sendLogData, setLoginDetails } from '../../global/store/login_model'
-import loginIcon from '../../public/images/login.svg'
-import passIcon from '../../public/images/pass.svg'
-import s from '../../styles/pageStyles/auth.module.scss'
-import { useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useTranslation } from 'react-i18next'
-import Input from '../../components-ui/Input/Input'
+import Head from 'next/head';
+import { useForm } from 'react-hook-form';
+import { isEmail } from '../../global/helpers/validate';
+import { $loginLoading, sendLogData } from '../../global/store/login_model';
+import { useState } from 'react';
+import { useStore } from 'effector-react';
+import { useTranslation } from 'react-i18next';
+import Input from '../../components-ui/Input/Input';
 import Link from 'next/link';
 import logo from '../../public/images/logo.svg';
 import Image from 'next/image';
-import CustomLoader from '../../components-ui/CustomLoader/CustomLoader'
-import { useStore } from 'effector-react'
+import CustomLoader from '../../components-ui/CustomLoader/CustomLoader';
+import loginIcon from '../../public/images/login.svg';
+import passIcon from '../../public/images/pass.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import s from '../../styles/pageStyles/auth.module.scss';
 
 export default function Login(): JSX.Element {
 

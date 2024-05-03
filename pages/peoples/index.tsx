@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import React from "react";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
-import LentaList from "./components/LentaList/LentaList";
-import s from "./peoples.module.scss";
-import SearchingPeople from "./components/SearchingPeople/SearchingPeople";
-import Head from "next/head";
-import GroupsList from "./components/GroupsList/GroupsList";
 import { currentWall$, getCurrentWall } from "../../global/store/wall_model";
 import { useStore } from "effector-react";
 import { FaRegCircleQuestion } from "react-icons/fa6";
-import CustomModal from "../../components-ui/CustomModal/CustomModal";
 import { getInterests } from "../../global/store/store";
 import { useRouter } from "next/router";
+import React from "react";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
+import LentaList from "./components/LentaList/LentaList";
+import SearchingPeople from "./components/SearchingPeople/SearchingPeople";
+import Head from "next/head";
+import GroupsList from "./components/GroupsList/GroupsList";
+import CustomModal from "../../components-ui/CustomModal/CustomModal";
+import s from "./peoples.module.scss";
 
 export default function Peoples(): JSX.Element {
 

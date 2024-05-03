@@ -1,17 +1,28 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { $currentProfileUser, $onlineUsers, $user, addUserIntoMarkedList, getDataForProfilePage, isCurrentUserLoaded, isUserLoaded, setCurrentProfileUser, setIsCurrentUserLoaded, setUser } from "../../global/store/store";
+import { 
+    $currentProfileUser, 
+    $onlineUsers, 
+    $user, 
+    addUserIntoMarkedList, 
+    getDataForProfilePage, 
+    isCurrentUserLoaded, 
+    isUserLoaded, 
+    setCurrentProfileUser,
+    setIsCurrentUserLoaded, 
+    setUser 
+} from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import { checkDialog } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
-import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
-import ProfileView from "./ProfileView/profileView";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { setLoginLoading } from "../../global/store/login_model";
 import { addNotification } from "../../global/store/notifications_model";
 import { currentUserPlaces$, getUserPlaces } from "../../global/store/meetings_model";
+import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
+import ProfileView from "./ProfileView/profileView";
+import PageContainer from "../../global/components/PageContainer/pageContainer";
 
 function Profile(): JSX.Element {
 
