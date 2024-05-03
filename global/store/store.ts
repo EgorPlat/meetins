@@ -171,6 +171,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 				instanseRouter$?.push(savedRoute);
 			}
 		} else {
+			setIsAsyncLoaded(true);
 			instanseRouter$?.push('/login');
 		}
 	})
