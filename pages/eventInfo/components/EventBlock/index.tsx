@@ -56,7 +56,7 @@ export default function EventBlock(props: {
                 <div className={s.actorsInfo}>
                     {
                         props.currentEventById.participants.map(el => (
-                            <div className={s.actor}>
+                            <div className={s.actor} key={el.agent.title}>
                                 <div className={s.avatar}>
                                     <img src={baseURL + '/no-avatar.jpg'} className={s.image} />
                                 </div>

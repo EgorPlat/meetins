@@ -32,7 +32,7 @@ export default function MarkedEventInfo(props: {eventId: string}): JSX.Element {
             {currentEvent &&
                 <div className={s.markedEventInfoContent}>
                     <div className={s.image} onClick={goToEventInfo}>
-                        <img src={currentEvent?.images[0].image} width={270} height={270} />
+                        <img src={currentEvent?.images[0].image} />
                     </div>
                     <div className={s.name}>
                         <b>{currentEvent?.title}, {currentEvent?.age_restriction}</b>

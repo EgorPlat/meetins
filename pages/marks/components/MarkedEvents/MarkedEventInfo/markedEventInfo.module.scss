@@ -1,24 +1,30 @@
 .markedEventInfo {
-    float: left;
     width: 300px;
     min-height: 300px;
     border-radius: 5px;
-    margin-right: 20px;
-    margin-top: 15px;
+    background-color: var(--bg-color-block);
+    padding: 20px;
     & .markedEventInfoContent {
         & .image {
-            padding: 5px;
+            display: flex;
+            justify-content: center;
+            & img {
+                width: 270px;
+                height: 270px;
+                border-radius: 5px;
+            }
         }
         & .name {
             font-size: 13px;
         }
         & .actions {
+            display: flex;
+            column-gap: 5px;
             button {
                 font-size: 13px;
                 background-color: #3DB2FF;
                 color: white;
                 width: 49%;
-                margin-right: 0.5%;
                 border: none;
                 border-radius: 5px;
             }
