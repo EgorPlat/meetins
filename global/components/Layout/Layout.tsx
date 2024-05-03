@@ -24,17 +24,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return ( 
 		<>
 			<div className={`${s.container} ${background}`}>
-				{ 	isAsyncLoaded$ &&
+				{
 					route.asPath !== '/confirmation' &&
 					route.asPath !== '/login' &&
 					route.asPath !== '/register' &&
 					route.asPath !== '/' && 
 					<Header />
 				}
-				{ isAsyncLoaded$ 
-					? <div className={s.main}>{children}</div>
-					: <CustomLoader />
-				}
+				<div className={s.main}>{children}</div>
 			</div>
 		</>
 	)
