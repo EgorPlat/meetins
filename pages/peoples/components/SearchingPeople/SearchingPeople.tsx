@@ -56,7 +56,7 @@ export default function SearchingPeople(): JSX.Element {
             pageNumber: scrollData,
             pageSize: 10, 
             filters: filterParams$
-        });        
+        });   
     }, [scrollData]);
 
     
@@ -121,13 +121,6 @@ export default function SearchingPeople(): JSX.Element {
                 </div>
             </div>
             <div className={s.result}>
-                <div className={s.filterSelect}>
-                    <select>
-                        <option value="All">Все</option>
-                        <option value="Online">Онлайн</option>
-                        <option value="Event">В событиях</option>
-                    </select>
-                </div>
                 <div className={s.users}>
                     <div className={s.usersList}>
                         {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
