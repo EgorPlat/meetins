@@ -4,7 +4,6 @@ import { $currentPage, isAsyncLoaded, isMobile, setCurrentPage } from '../../../
 import { useStore } from 'effector-react'
 import { useEffect } from 'react'
 import Header from '../Header'
-import CustomLoader from '../../../components-ui/CustomLoader/CustomLoader'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
@@ -12,7 +11,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 	const currentPage = useStore($currentPage)
 	const background = ['/login', '/register'].includes(currentPage) ? s.loginPage : s.mainPage;
-	const isAsyncLoaded$ = useStore(isAsyncLoaded);
 
 	useEffect(() => {
 		if(route.asPath !== '/' && !route.asPath.includes("[")) {
