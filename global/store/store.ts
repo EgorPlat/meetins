@@ -6,8 +6,8 @@ import { handleLogOut } from './login_model';
 import { addNotification } from './notifications_model';
 import { IInterest } from '../interfaces/interest';
 
-//export const baseURL = 'http://localhost:5000/';
-export const baseURL = 'https://meetins-egorplat.amvera.io/';
+export const baseURL = 'http://localhost:5000/';
+//export const baseURL = 'https://meetins-egorplat.amvera.io/';
 
 export const instance = axios.create({
 	baseURL: baseURL,
@@ -158,11 +158,9 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const instanseRouter$ = instanseRouter.getState();
 	const savedRoute = localStorage.getItem("previousPage");
 	setIsUserLoaded(false);
-	setIsAsyncLoaded(false);
 	getUserData().then( (res) => {
 		if(res.status === 200) {
 			setIsUserLoaded(true);
-			setIsAsyncLoaded(true);
 			if (
 				instanseRouter$.asPath.includes('login') ||
 				instanseRouter$.asPath.includes('register') ||
@@ -171,7 +169,6 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 				instanseRouter$?.push(savedRoute);
 			}
 		} else {
-			setIsAsyncLoaded(true);
 			instanseRouter$?.push('/login');
 		}
 	})

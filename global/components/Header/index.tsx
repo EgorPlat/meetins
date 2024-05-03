@@ -11,7 +11,7 @@ export default function Header(): JSX.Element {
 	const currentPage = useStore($currentPage);
 	const router = useRouter();
 	const isMobile$ = useStore(isMobile);
-
+	
 	let headerBgClass
 	if (currentPage === '/') {
 		headerBgClass = s.headerMainPage

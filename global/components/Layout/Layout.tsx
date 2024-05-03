@@ -1,6 +1,6 @@
 import s from './layout.module.scss'
 import { useRouter } from 'next/dist/client/router'
-import { $currentPage, isAsyncLoaded, isMobile, setCurrentPage } from '../../../global/store/store'
+import { $currentPage, isMobile, setCurrentPage } from '../../../global/store/store'
 import { useStore } from 'effector-react'
 import { useEffect } from 'react'
 import Header from '../Header'
@@ -22,12 +22,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return ( 
 		<>
 			<div className={`${s.container} ${background}`}>
-				{
-					route.asPath !== '/confirmation' &&
-					route.asPath !== '/login' &&
-					route.asPath !== '/register' &&
-					route.asPath !== '/' && 
-					<Header />
+				{ route.asPath !== '/confirmation' 
+					&& route.asPath !== '/login' 
+					&& route.asPath !== '/register' 
+					&& route.asPath !== '/' 
+					&& <Header />
 				}
 				<div className={s.main}>{children}</div>
 			</div>
