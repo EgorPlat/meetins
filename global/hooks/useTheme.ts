@@ -12,5 +12,9 @@ export const useTheme = () => {
         }
     }, []);
 
+    useEffect(() => {
+		document.documentElement.setAttribute("data-theme", currentTheme);
+	}, [currentTheme]);
+
     return currentTheme;
 }

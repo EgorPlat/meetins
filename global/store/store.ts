@@ -28,7 +28,7 @@ instance.interceptors.response.use((response) => {
 	const ers: number | undefined = error.response?.status;
 	if (ers === 401) {
 		handleLogOut();
-		setIsAsyncLoaded(true);
+		setIsInithialDataLoaded(true);
 	}
 	if (ers >= 400 && ers <= 499) {
 		const { message } = error.response.data;
@@ -56,9 +56,9 @@ export const setIsCurrentUserLoaded = createEvent<boolean>();
 export const isCurrentUserLoaded = createStore<boolean>(false).on(setIsCurrentUserLoaded, (_, status) => {
 	return status;
 })
-export const setIsAsyncLoaded = createEvent<boolean>();
-export const isAsyncLoaded = createStore<boolean>(false).on(setIsAsyncLoaded, (_, tokenUpdated) => {
-	return tokenUpdated;
+export const setIsInithialDataLoaded = createEvent<boolean>();
+export const isInithialDataLoaded = createStore<boolean>(false).on(setIsInithialDataLoaded, (_, status) => {
+	return status;
 })
 export const setUser = createEvent<User | null>()
 export const $user = createStore<User | null>(null).on(setUser, (_, userDetails) => {
@@ -159,6 +159,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const savedRoute = localStorage.getItem("previousPage");
 	setIsUserLoaded(false);
 	getUserData().then( (res) => {
+		setIsInithialDataLoaded(true);
 		if(res.status === 200) {
 			setIsUserLoaded(true);
 			if (

@@ -22,6 +22,7 @@ import { MusicControlBlock } from '../global/components/MusicControlBlock/musicC
 import { activeMusic } from '../global/store/music_model';
 import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 import { useTheme } from '../global/hooks/useTheme';
+import { useBlockBodyScroll } from '../global/hooks/useBlockScroll';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -29,12 +30,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const isScrollPageBlocked = useStore($scrollPageBlocked)
 	const activeMusic$ = useStore(activeMusic);
 
-	const router = useRouter();
 	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
+	const router = useRouter();
+	
 	const {isMobile, isUnAdaptive} = useResize();
 	const theme = useTheme();
 	const inithialConnection = useAuthAndInithialSocket();
-	
+	const blockMainScroll = useBlockBodyScroll(isScrollPageBlocked);
+
 	useEffect(() => {
 		setRouter(router);
 		getMyDialogs(true);
@@ -46,22 +49,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}, []);
 
 	useEffect(() => {
-		document.documentElement.setAttribute("data-theme", theme);
-	}, [theme])
-
-	useEffect(() => {
 		setIsMobile(isMobile);
 		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);
-
-	useEffect(() => {
-		const body = document.getElementsByTagName('body')[0];
-		if (isScrollPageBlocked) {
-			body.style.overflowY = 'hidden';
-		} else {
-			body.style.overflowY = 'scroll';
-		}
-	}, [isScrollPageBlocked]);
 	
 	return (
 		<Layout>
@@ -77,20 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			</Head>
 			{  <Component {...pageProps} />  }
 			<NotificationBlock />
-			{
-				activeMusic$ && 
-				<MusicControlBlock />
-			}
-			<CustomModal
-				isDisplay={isNotifyAdaptive}
-				changeModal={setIsNotifyAdaptive}
-				actionConfirmed={(status) => setIsNotifyAdaptive(false)}
-				title='Уведомление'
-				typeOfActions='default'
-			>
-				Внимание, возможно параметры Вашего экрана отличаются от ожидаемых.
-				Отображение страниц сайта может быть некорректным.
-			</CustomModal>
+			{ activeMusic$ && <MusicControlBlock /> }
 		</Layout>
 	)
 }
