@@ -32,14 +32,25 @@ export const $loginLoading = createStore<boolean>(false).on(
 	}  
 ) 
 
-export const handlePushUserToLoginPage = createEffect((params: { router: any, data: any }) => {
+export const handlePushUserToLoginPage = createEffect((params: { router: any, data: any }) => {	
 	params.router.push(`/login`);
 })
 
 export const saveDataAfterLogin = createEffect((params: { router: any, data: any }) => {
 	setUser(params.data.profile.user);
-	setLoginLoading(true);
 	params.router.push(`profile/${params.data.profile.user.login}`);
+});
+
+sample({
+	clock: sendLogData.pending,
+	fn: () => true,
+	target: setLoginLoading
+});
+
+sample({
+	clock: sendLogData.doneData,
+	fn: () => false,
+	target: setLoginLoading
 });
 
 sample({

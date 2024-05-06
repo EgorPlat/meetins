@@ -17,7 +17,6 @@ import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_
 import { checkDialog } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
 import { User } from "../../global/interfaces";
-import { setLoginLoading } from "../../global/store/login_model";
 import { addNotification } from "../../global/store/notifications_model";
 import { currentUserPlaces$, getUserPlaces } from "../../global/store/meetings_model";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
@@ -91,11 +90,9 @@ function Profile(): JSX.Element {
 
     const handleOpenEditTag = () => {
         if (authedUser.userId === currentUser.userId) setIsEditTagOpen(true);
-        return;
     }
 
     useEffect(() => {
-        setLoginLoading(false);
         return () => {
             setIsCurrentUserLoaded(false);
             setCurrentProfileUser({} as User);
@@ -111,7 +108,7 @@ function Profile(): JSX.Element {
         if (currentUser.userId) {
             getUserPlaces({ userId: currentUser.userId });
         }
-    }, [currentUser.userId])
+    }, [currentUser.userId]);
     
     if (currentUserLoaded) {
         return(

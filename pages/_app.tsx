@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
+import { $scrollPageBlocked, $user, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';

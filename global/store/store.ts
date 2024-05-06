@@ -6,8 +6,7 @@ import { handleLogOut } from './login_model';
 import { addNotification } from './notifications_model';
 import { IInterest } from '../interfaces/interest';
 
-//export const baseURL = 'http://localhost:5000/';
-export const baseURL = 'https://meetins-egorplat.amvera.io/';
+export const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 export const instance = axios.create({
 	baseURL: baseURL,
@@ -159,8 +158,8 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const savedRoute = localStorage.getItem("previousPage");
 	setIsUserLoaded(false);
 	getUserData().then( (res) => {
-		setIsInithialDataLoaded(true);
 		if(res.status === 200) {
+			setIsInithialDataLoaded(true);
 			setIsUserLoaded(true);
 			if (
 				instanseRouter$.asPath.includes('login') ||
@@ -198,14 +197,6 @@ export const getDataForProfilePage = createEffect((userId: string) => {
 			setIsCurrentUserLoaded(true);
 		}
 	})
-})
-export const updateTokens = createEffect(async () => {
-	const response = await instance.post('user/refresh-token', localStorage.getItem('refrash-token'));
-	if(response.status === 200) {
-		localStorage.setItem('access-token', response.data.accessToken);
-	    localStorage.setItem('refrash-token', response.data.refreshToken);
-	}
-	return response;
 })
 
 export const sendNewUserPost = createEffect(async (formData: FormData) => {

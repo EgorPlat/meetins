@@ -6,7 +6,7 @@
     display: grid;
     row-gap: 5px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 14px;
     font-family: Nunito;
     & .round {
         width: 8px;
@@ -15,6 +15,7 @@
         background-color: gray;
     }
     & .content {
+        border-radius: 5px;
         background-color: var(--bg-color);
         border: 1px solid gray;
         padding: 5px;
@@ -22,18 +23,15 @@
         top: 38px;
         right: 0px;
         min-height: 30px;
-        width: 170px;
+        min-width: 170px;
         & .menuElement {
-            padding: 1px;
+            white-space: nowrap;
+            min-width: 170px;
+            padding: 2px;
+            border-radius: 5px;
         }
         & .menuElement:hover {
             background-color: rgba(222, 222, 222, 0.455);
         }
-    }
-}
-
-@media screen and (max-width: 1560px) {
-    .customEditMenu {
-        font-size: 16px;
     }
 }
