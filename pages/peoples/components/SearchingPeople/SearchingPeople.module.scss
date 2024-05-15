@@ -4,6 +4,7 @@
     & .params {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        max-height: 410px;
         & .gender {
             border-right: 1px solid grey;
             padding: 2%;
@@ -47,7 +48,6 @@
             padding: 2%;
             overflow-y: scroll;
             overflow-x: hidden;
-            max-height: 410px;
             display: grid;
             align-items: start;
             row-gap: 10px;

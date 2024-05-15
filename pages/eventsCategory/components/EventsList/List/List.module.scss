@@ -9,20 +9,60 @@
         min-height: 150px;
         margin-top: 10px;
         margin-left: 1%;
-        float: left;
+        column-gap: 10px;
+        border-radius: 10px;
+        & .eventImage {
+            border-radius: 10px;
+        }
         & .eventDescription {
-            text-align: center;
-            & .free {
-                font-size: 15px;
-                border: none;
-                background-color: rgba(43, 255, 43, 0.697);
-                border-radius: 100px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            font-size: 18px;
+            color: rgb(164, 164, 164);
+            & .eventTitle {
+                color: white;
+                font-size: 22px;
             }
-            & .notFree {
-                font-size: 15px;
-                border: none;
-                background-color: rgba(59, 160, 255, 0.538);
-                border-radius: 100px;
+            & .eventPrice {
+                display: flex;
+                column-gap: 10px;
+                & .free {
+                    font-size: 15px;
+                    border: none;
+                    border-radius: 100px;
+                    background-color: rgba(43, 255, 43, 0.697);
+                }
+                & .notFree {
+                    font-size: 15px;
+                    border: none;
+                    border-radius: 100px;
+                    background-color: rgba(59, 160, 255, 0.538);
+                }
+            }
+            & .eventAge {
+                display: flex;
+                column-gap: 10px;
+                & .age {
+                    min-width: 40px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    color: black;
+                    background-color: rgb(255, 229, 127);
+                    border-radius: 100px;
+                    text-align: center;
+                }
+            }
+            & .eventActions {
+                display: flex;
+                justify-content: right;
+                padding-right: 20px;
+                & a {
+                    color: var(--default-color);
+                }
+                & a:hover {
+                    color: orange;
+                }
             }
         }
     }
@@ -35,10 +75,6 @@
     .list {
         & .eventBody {
             grid-template-columns: 1fr;
-            /*& .eventViewZone {
-                height: 200px;
-                background-size: 100% 100%;
-            }*/
             & .eventDescription {
                 font-size: 15px;
             }

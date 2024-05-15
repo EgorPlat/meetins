@@ -7,6 +7,9 @@
         display: flex;
         column-gap: 10px;
         width: 100%;
+        background-color: var(--bg-color-block);
+        padding: 10px;
+        border-radius: 10px;
         & .image {
             & img {
                 width: 100px;

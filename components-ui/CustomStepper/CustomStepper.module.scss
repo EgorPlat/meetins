@@ -1,0 +1,21 @@
+.customStepper {
+    display: grid;
+    row-gap: 10px;
+    & .steps {
+        display: flex;
+        column-gap: 5px;
+        & .commonStep {
+            border-bottom: 1px solid transparent;
+        }
+        & .activeStep {
+            border-bottom: 1px solid var(--default-color);
+        }
+        & .commonStep:hover, & .activeStep:hover {
+            cursor: pointer;
+            border-bottom: 1px solid var(--default-color);
+        }
+    }
+    & .activeStepContent {
+        min-height: 380px;
+    }
+}

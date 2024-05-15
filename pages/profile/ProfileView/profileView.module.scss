@@ -54,7 +54,10 @@
                 }
             }
             & .userStatus {
-                color: var(--default-color)
+                color: gray;
+                & .title {
+                    color: var(--default-color);
+                }
             }
             & .userName {
                 display: flex;
@@ -158,6 +161,7 @@
                         flex-direction: column;
                         justify-content: center;
                         justify-items: center;
+                        row-gap: 5px;
                     }
                 }
             }

@@ -6,7 +6,7 @@ import { getIsUserMale } from '../../../global/functions/getIsUserMale';
 import s from './profileView.module.scss';
 import About from '../About/About';
 import Interests from '../Interests/interests';
-import ImageList from '../ImageList/ImageList';
+import PostsList from '../PostsList/PostsList';
 import AddingPosts from '../AddingPosts/AddingPosts';
 import ChoosingEvents from '../СhoosingEvents/choosingEvents';
 import Places from '../Places/places';
@@ -114,7 +114,7 @@ export default function ProfileView(props: {
                                     {getDateInDMYFormat(activeUser.dateRegister)}
                                 </div>
                                 <div className={s.userStatus}>
-                                    {t('Статус')}: {props.isCurrentUserOnline ? "В сети" : "Не в сети"}
+                                    {t('статус')}: <span className={s.title}>{props.isCurrentUserOnline ? "В сети" : "Не в сети"}</span>
                                 </div>
                                 <div className={s.vied}>
                                     {t('за последние 24 часа профиль просмотрен')}:
@@ -159,7 +159,7 @@ export default function ProfileView(props: {
                         </div>
                     }
                     <div className={s.postsList}>
-                        { props.authedUser && <ImageList currentUser={activeUser} authedUser={props.authedUser} /> }
+                        { props.authedUser && <PostsList currentUser={activeUser} authedUser={props.authedUser} /> }
                     </div>
                 </div> : <Loader/>
             }

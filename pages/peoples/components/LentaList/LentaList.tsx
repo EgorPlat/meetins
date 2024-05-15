@@ -7,6 +7,7 @@ import { FcLike } from "react-icons/fc";
 import CustomEditMenu from "../../../../components-ui/CustomEditMenu/CustomEditMenu";
 import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
 import { CiHeart } from "react-icons/ci";
+import { AiFillHeart } from "react-icons/ai";
 
 export default function LentaList(props: {
     wallPosts: IWall[],
@@ -45,7 +46,10 @@ export default function LentaList(props: {
                             {el.postDescription}
                         </div>
                         <div className={s.postMoreInfo}>
-                            <div className={s.postLikes}>{<CiHeart fontSize={26} />}{el.postLikes.length}</div>
+                            <div className={s.postLikes}>
+                                <AiFillHeart />
+                                {el.postLikes.length}
+                            </div>
                             <div className={s.postDate}>
                                 Опубликовано: {customizeDateToYYYYMMDDHHMMFormat(el.postDate)}
                             </div>

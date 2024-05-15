@@ -18,6 +18,9 @@ import CustomModal from "../../components-ui/CustomModal/CustomModal";
 import StatsView from "./components/StatsView/StatsView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MusicPageView from "./components/MusicPageView/MusicPageView";
+import CustomStepper from "../../components-ui/CustomStepper/CustomStepper";
+import StatsTimeView from "./components/StatsTimeView/StatsTimeView";
+import StatsGeoView from "./components/StatsGeoView/StatsGeoView";
 
 export default function Music() {
 
@@ -57,7 +60,7 @@ export default function Music() {
         if (searchMusic.length === 0) {
             getAllMusic()
         } else {
-            setMusicList(musicList$.filter(el => el.name.includes(searchMusic)));
+            setMusicList(musicList$.filter(el => el.name.toLowerCase().includes(searchMusic.toLowerCase())));
         }
     }, [searchMusic]);
 
@@ -84,7 +87,13 @@ export default function Music() {
                     typeOfActions="none"
                     title="Статистика"
                 >
-                    <StatsView />
+                    <CustomStepper
+                        steps={[
+                            { title: "Основное", component: <StatsView /> },
+                            { title: "Вычисляемое", component: <StatsTimeView /> },
+                            { title: "Гео-данные", component: <StatsGeoView /> }
+                        ]}
+                    />
                 </CustomModal>
             </>
         </PageContainer>

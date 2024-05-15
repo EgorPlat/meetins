@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import s from "./ImageList.module.scss";
+import s from "./PostsList.module.scss";
 import { Post, User } from "../../../global/interfaces";
 import { baseURL, likeUserPost, unlikeUserPost } from "../../../global/store/store";
 import { NewComment } from "../../../global/interfaces/newComment";
 import { addNewCommentToCurrentPost } from "../../../global/store/comments_model";
 import { customizeDateToYYYYMMDDHHMMFormat } from "../../../global/helpers/helper";
 import { useTranslation } from "react-i18next";
-import { AiOutlineEye, AiOutlineLike } from "react-icons/ai";
+import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
 import { FaComments } from 'react-icons/fa';
 import { CgCalendarDates } from "react-icons/cg";
 import CurrentPostComments  from "./CurrentPostComments/CurrentPostComments";
@@ -14,7 +14,7 @@ import PostCommentForm from "./PostCommentForm/PostCommentForm";
 import CustomModal from "../../../components-ui/CustomModal/CustomModal";
 import CustomSlider from "../../../components-ui/CustomSlider/CustomSlider";
 
-export default function ImageList(props: {currentUser: User, authedUser: User}): JSX.Element {
+export default function PostsList(props: {currentUser: User, authedUser: User}): JSX.Element {
 
     const [isCommentsOpen, setIsCommentsOpen] = useState(false);
     const [currentPost, setCurrentPost] = useState(null);
@@ -86,7 +86,7 @@ export default function ImageList(props: {currentUser: User, authedUser: User}):
                     </div>
                     <div className={s.postActions}>
                       <div className={s.postActionsLikes}>
-                        <AiOutlineLike
+                        <AiFillHeart 
                           color={el.likes.includes(props.authedUser.userId) ? 'red' : undefined}
                           onClick={() => handleLikeUserPost(el)}
                         />

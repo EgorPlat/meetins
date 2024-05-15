@@ -37,6 +37,15 @@ export default function MusicPageView({
 }: IMusicPageViewProps) {    
     return (
         <div className={s.music}>
+            <div className={s.addMusic}>
+                <span>Хотите добавить свою композицию?</span>
+                <PiMusicNotesPlus
+                    className={s.controls}
+                    fontSize={25}
+                    onClick={() => handleSwapMusicModal(true)}
+                />
+                <TfiStatsUp className={s.myStatistic} fontSize={28} onClick={handleOpenMyStatistic} />
+            </div>
             <div className={s.musicSearch}>
                 <input 
                     className={s.musicSearchInp} 
@@ -45,17 +54,6 @@ export default function MusicPageView({
                     onChange={(e) => setSearchMusic(e.target.value)}
                 />
                 <button className={s.musicSearchBtn} >Искать</button>
-            </div>
-            <div className={s.addMusic}>
-                <span>Хотите добавить свою композицию?</span>
-                <PiMusicNotesPlus
-                    className={s.controls}
-                    fontSize={25}
-                    onClick={() => handleSwapMusicModal(true)}
-                />
-                <div className={s.myStatistic}>
-                    <TfiStatsUp fontSize={28} onClick={handleOpenMyStatistic} />
-                </div>
             </div>
             <div className={s.musicContent}>
                 <div className={s.musicList}>

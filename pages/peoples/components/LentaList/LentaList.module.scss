@@ -40,6 +40,8 @@
             & .postLikes {
                 display: flex;
                 align-items: center;
+                color: red;
+                column-gap: 5px;
             }
             & .postDate {
                 position: absolute;

@@ -25,6 +25,12 @@
                 color: gray;
             }
         }
+        & .meetingTimer {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+            font-size: 15px;
+        }
         & .meetingCreator {
             font-size: 15px;
         }
@@ -82,6 +88,12 @@
             }
         }
         & .meetingCreator {
+            font-size: 15px;
+        }
+        & .meetingTimer {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
             font-size: 15px;
         }
         & .meetingDate {

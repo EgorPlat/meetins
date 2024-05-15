@@ -3,6 +3,7 @@ import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../../global/helpers
 import { IMeeting } from "../../../../../global/interfaces/meetings";
 import { baseURL, isMobile } from "../../../../../global/store/store";
 import s from "./MeetingWrapper.module.scss";
+import CustomTimer from "../../../../../components-ui/CustomTimer/CustomTimer";
 
 export default function MeetingWrapper(props: {
     meeting: IMeeting,
@@ -16,8 +17,10 @@ export default function MeetingWrapper(props: {
             <div className={s.meetingMobileWrapper} key={String(props.meeting?.date)}>
                 <div className={s.meetingDescription}>
                     <div className={s.meetingTitle}>
-                        <div className={s.title}>{props.meeting?.title}</div>
-                        <div 
+                        <div className={s.title}>
+                            {props.meeting?.title}
+                        </div>
+                        <div
                             className={s.meetingImage}
                             style={{backgroundImage: `url(${baseURL + props.meeting?.preview})`}}
                         >
@@ -29,6 +32,15 @@ export default function MeetingWrapper(props: {
                     <div className={s.meetingDate}>
                         Планируемая дата встречи: 
                         <span className={s.dateTime}> {customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))}</span>
+                    </div>
+                    <div className={s.meetingTimer}>
+                        Будет доступна:
+                        <CustomTimer 
+                            dateTo={props.meeting.date} 
+                            dateFrom={Date.now()}
+                            color="black"
+                            backgroundColor="#73fa97"
+                        />
                     </div>
                     <div className={s.date}>{props.meeting?.address}</div>
                     <div className={s.meetingGoal}>
@@ -63,6 +75,15 @@ export default function MeetingWrapper(props: {
                     <div className={s.meetingDate}>
                         Планируемая дата встречи: 
                         <span className={s.dateTime}> {customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))}</span>
+                    </div>
+                    <div className={s.meetingTimer}>
+                        Будет доступна:
+                        <CustomTimer 
+                            dateTo={props.meeting.date} 
+                            dateFrom={Date.now()}
+                            color="black"
+                            backgroundColor="#73fa97"
+                        />
                     </div>
                     <div className={s.meetingGoal}>
                         Цель встречи: <span className={s.hint}>{props.meeting?.goal}</span>

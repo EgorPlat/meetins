@@ -12,6 +12,9 @@ export default function StatsView() {
         getMyMusicStatistic();
     }, []);
 
+    if (myStatistic$.length === 0) {
+        return <span>У Вас нет опубликованных композиций.</span>
+    }
     return (
         <div className={s.statsView}>
             {
