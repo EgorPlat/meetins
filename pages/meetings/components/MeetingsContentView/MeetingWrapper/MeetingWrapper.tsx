@@ -43,7 +43,7 @@ export default function MeetingWrapper(props: {
                         {
                             !isMeetingEnded
                             ? <CustomTimer 
-                                dateTo={props.meeting.date} 
+                                dateTo={props.meeting?.date} 
                                 dateFrom={Date.now()}
                                 color="black"
                                 backgroundColor="#73fa97"
@@ -90,7 +90,7 @@ export default function MeetingWrapper(props: {
                         {
                             !isMeetingEnded
                             ? <CustomTimer 
-                                dateTo={props.meeting.date} 
+                                dateTo={props.meeting?.date} 
                                 dateFrom={Date.now()}
                                 color="black"
                                 backgroundColor="#73fa97"
