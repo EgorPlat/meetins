@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import s from './buttonWithHint.module.scss';
 import { setIsScrollPageBlocked } from '../../global/store/store';
+import { useTranslation } from 'react-i18next';
 
 interface IHintProps {
     title: string,
@@ -11,7 +12,8 @@ interface IHintProps {
 export default function ButtonWithHint({ title, hintTitle, fontSize }: IHintProps) {
 
     const [isHint, setIsHint] = useState<boolean>(false);
-
+    const { t } = useTranslation();
+    
     useEffect(() => {
         if (isHint) {
             setIsScrollPageBlocked(true);
@@ -24,7 +26,7 @@ export default function ButtonWithHint({ title, hintTitle, fontSize }: IHintProp
         <div className={s.hintBackground}>
             <div className={s.hintWrapper} style={{ fontSize: fontSize }}>
                 <button onClick={() => setIsHint(prev => !prev)}>
-                    {title}
+                    {t(`${title}`)}
                 </button>
                 {
                     isHint &&
@@ -35,7 +37,7 @@ export default function ButtonWithHint({ title, hintTitle, fontSize }: IHintProp
                             onClick={() => setIsHint(prev => !prev)}
                         ></div>
                         <div className={s.hint}>
-                            {hintTitle}
+                            {t(`${hintTitle}`)}
                         </div>
                     </>
                     

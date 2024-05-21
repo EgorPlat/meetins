@@ -44,6 +44,9 @@
                 display: flex;
                 column-gap: 10px;
                 & .age {
+                    display: flex;
+                    align-items: center;
+                    font-size: 15px;
                     min-width: 40px;
                     padding-left: 10px;
                     padding-right: 10px;
@@ -51,6 +54,19 @@
                     background-color: rgb(255, 229, 127);
                     border-radius: 100px;
                     text-align: center;
+                }
+            }
+            & .eventDates {
+                display: flex;
+                column-gap: 5px;
+                & .date {
+                    display: flex;
+                    align-items: center;
+                    font-size: 15px;
+                    background-color: rgba(8, 189, 8, 0.196);
+                    color: white;
+                    padding: 0px 10px 0px 10px;
+                    border-radius: 100px;
                 }
             }
             & .eventActions {

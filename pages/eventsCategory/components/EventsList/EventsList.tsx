@@ -19,7 +19,7 @@ export default function EventsList(props: {category: string}): JSX.Element {
     return (
         <div className={s.content}>
             <div className={s.title}>
-                {categoryName}
+                Текущая категория: {categoryName}
             </div>
             <div className={s.list}>
                {loadedStatus$ ? <List list={currentEvents$}/> : <CustomLoader marginTop={100} />}

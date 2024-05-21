@@ -9,6 +9,9 @@
         align-items: center;
         overflow: hidden;
         & .customSliderCurrentImage {
+            & video, img {
+                border-radius: 5px;
+            }
             & video::-webkit-media-controls {
                 width: 100%;
             }

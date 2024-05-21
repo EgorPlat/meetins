@@ -8,6 +8,7 @@ import CustomModal from '../../../../components-ui/CustomModal/CustomModal';
 import AddMusic from '../../../../global/forms/AddMusic/Index';
 import { baseURL } from '../../../../global/store/store';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 interface IMusicPageViewProps {
     addMusicModal: boolean,
@@ -34,11 +35,14 @@ export default function MusicPageView({
     handleOpenMyStatistic,
     setSearchMusic,
     matchesList
-}: IMusicPageViewProps) {    
+}: IMusicPageViewProps) {   
+    
+    const { t } = useTranslation();
+
     return (
         <div className={s.music}>
             <div className={s.addMusic}>
-                <span>Хотите добавить свою композицию?</span>
+                <span>{t('Хотите добавить свою композицию?')}</span>
                 <PiMusicNotesPlus
                     className={s.controls}
                     fontSize={25}
@@ -50,10 +54,10 @@ export default function MusicPageView({
                 <input 
                     className={s.musicSearchInp} 
                     type='text' 
-                    placeholder='Введите псевдоним автора'
+                    placeholder={t('Введите псевдоним автора')}
                     onChange={(e) => setSearchMusic(e.target.value)}
                 />
-                <button className={s.musicSearchBtn} >Искать</button>
+                <button className={s.musicSearchBtn}>{t('Искать')}</button>
             </div>
             <div className={s.musicContent}>
                 <div className={s.musicList}>
@@ -76,12 +80,12 @@ export default function MusicPageView({
                 }
                 </div>
                 <div className={s.songers}>
-                    Статистика исполнителей
+                    {t('Статистика исполнителей')}
                     {
                         authorsStatistic?.map(el => (
                             <div className={s.songer} key={el.id}>
                                 <a href='#' className={s.name}>{el.name} - </a>
-                                <span>Прослушиваний {el.playsNumber} - </span>
+                                <span>{t('Прослушивания')} {el.playsNumber} - </span>
                                 <span className={s.mapBtn}>Узнать где популярен? </span>
                             </div>
                         ))
@@ -89,7 +93,7 @@ export default function MusicPageView({
                 </div>
             </div>
             <div className={s.matches}>
-                <div className={s.title}>Ваш вкус совпадает с другими пользователями</div>
+                <div className={s.title}>{t('Ваш вкус совпадает с другими пользователями')}</div>
                 <div className={s.desk}>
                     {
                         matchesList?.map(el => (
@@ -102,9 +106,9 @@ export default function MusicPageView({
                                     <div className={s.title}>
                                         {el.name}
                                         <div className={s.matchData}>
-                                            Совпадение: <span className={s.count}>100%</span>
+                                            {t('Совпадение')}: <span className={s.count}>100%</span>
                                             <Link href={`/profile/${el.login}`} className={s.userLink}>
-                                                Посетить
+                                                {t('Посетить')}
                                             </Link>
                                         </div>
                                     </div>

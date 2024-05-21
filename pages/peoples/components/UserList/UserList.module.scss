@@ -31,6 +31,13 @@
     & .name {
         text-align: left;
         padding-left: 20px;
+        & .tag {
+            border-radius: 100px;
+            font-size: 18px;
+            color: black;
+            padding: 0px 10px 0px 10px;
+            margin-left: 10px;
+        }
         & .town {
             color: grey;
         }

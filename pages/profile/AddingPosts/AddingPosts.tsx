@@ -40,7 +40,7 @@ export default function AddingPosts(): JSX.Element {
                     <div className={s.addingPostsUploadFiles}>
                         <a className={s.addingPostsFormMainFile} onClick={chooseFile}>
                             {!isMobile$ ? t('Добавить изображение к публикации') : t('Добавить изображение')}
-                            (Загружено {postFormData.currentFiles?.length ? postFormData.currentFiles?.length : 0} / 5)
+                            ({postFormData.currentFiles?.length ? postFormData.currentFiles?.length : 0} / 5)
                             <input 
                                 ref={ref} 
                                 type="file"

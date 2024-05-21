@@ -11,6 +11,7 @@ export default function MeetingWrapper(props: {
 }) {
 
     const isMobile$ = useStore(isMobile);
+    const isMeetingEnded = new Date(props.meeting.date) <= new Date();
 
     if (isMobile$) {
         return (
@@ -31,16 +32,24 @@ export default function MeetingWrapper(props: {
                     </div>
                     <div className={s.meetingDate}>
                         Планируемая дата встречи: 
-                        <span className={s.dateTime}> {customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))}</span>
+                        <span className={s.dateTime}> 
+                            {
+                                customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))
+                            }
+                        </span>
                     </div>
                     <div className={s.meetingTimer}>
                         Будет доступна:
-                        <CustomTimer 
-                            dateTo={props.meeting.date} 
-                            dateFrom={Date.now()}
-                            color="black"
-                            backgroundColor="#73fa97"
-                        />
+                        {
+                            !isMeetingEnded
+                            ? <CustomTimer 
+                                dateTo={props.meeting.date} 
+                                dateFrom={Date.now()}
+                                color="black"
+                                backgroundColor="#73fa97"
+                            />
+                            : <span className={s.meetingOver}>Завершилась</span>
+                        }
                     </div>
                     <div className={s.date}>{props.meeting?.address}</div>
                     <div className={s.meetingGoal}>
@@ -78,12 +87,16 @@ export default function MeetingWrapper(props: {
                     </div>
                     <div className={s.meetingTimer}>
                         Будет доступна:
-                        <CustomTimer 
-                            dateTo={props.meeting.date} 
-                            dateFrom={Date.now()}
-                            color="black"
-                            backgroundColor="#73fa97"
-                        />
+                        {
+                            !isMeetingEnded
+                            ? <CustomTimer 
+                                dateTo={props.meeting.date} 
+                                dateFrom={Date.now()}
+                                color="black"
+                                backgroundColor="#73fa97"
+                            />
+                            : <span className={s.meetingOver}>Завершилась</span>
+                        }
                     </div>
                     <div className={s.meetingGoal}>
                         Цель встречи: <span className={s.hint}>{props.meeting?.goal}</span>

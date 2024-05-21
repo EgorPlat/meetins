@@ -2,13 +2,14 @@ import { IShortEventInfo } from "../../../../../global/interfaces/events";
 import Image from "next/image";
 import s from './List.module.scss';
 import Link from "next/link";
+import { customizeDateToYYYYMMDDFormat } from "../../../../../global/helpers/helper";
 
 export default function List(props: {list: IShortEventInfo[]}): JSX.Element {
 
     return (
         <div className={s.list}>
             {
-            props.list?.map((event) => 
+            props.list?.slice(props.list.length - 50, props.list.length).map((event) => 
                 <div 
                     className={s.eventBody} 
                     key={event.id}
@@ -32,6 +33,15 @@ export default function List(props: {list: IShortEventInfo[]}): JSX.Element {
                             Минимальный возраст для посещения: 
                             <div className={s.age}>{event.age_restriction} лет</div>
                         </div>
+                        {
+                            event.dates[event.dates.length - 2] &&
+                            <div className={s.eventDates}>
+                                Ближайшая дата: 
+                                <div className={s.date} key={event.dates[event.dates.length - 2]?.start * 1000}>
+                                    {customizeDateToYYYYMMDDFormat(event.dates[event.dates.length - 2]?.start  * 1000)}
+                                </div>
+                            </div>
+                        }
                         <div className={s.eventActions}>
                             <Link href={`/eventInfo/${event.id}`}>Посмотреть</Link>
                         </div>

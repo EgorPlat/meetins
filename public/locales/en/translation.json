@@ -92,5 +92,15 @@
     "зарегистрирована": "registrated",
     "последнее посещение": "last activity",
     "за последние 24 часа профиль просмотрен": "for the last 24 hours this profile was watched",
-    "раз": "times"
+    "раз": "times",
+    "Фильтры контента - это функция, которая дает Вам возможность активировать алгоритм подбора контента на сайте (сообщества, люди, встречи, лента и т.д.) исходя из Ваших настроек профиля (например интересов, закладок, активности). Включая данную функцию важно понимать что количество контента на сайте может уменьшиться, при этом вероятность того что Вам попадется что-то не нужное или Вам не интерсное крайне мала"
+    :
+    "Content filters - is a function which gives you an opportunity to activate a content selection on the site (groups, peoples, meetings and e.t.c) by using your profile settings (for example - interests, marks, activity). Enabling this function you should realise that the count of the content on the site will be decreased but the chance to find something usefull or uninterested content will be very small.",
+    "Хотите добавить свою композицию?": "Whould you like to add new composition?",
+    "Статистика исполнителей": "Authors statistic",
+    "Ваш вкус совпадает с другими пользователями": "Your musical flavor are matched with the other users",
+    "Совпадение": "Match",
+    "Введите псевдоним автора": "Write an authors pseudonym",
+    "Искать": "Search",
+    "Прослушивания": "Listenings"
 }

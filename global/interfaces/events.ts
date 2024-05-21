@@ -6,7 +6,11 @@ export interface IShortEventInfo {
     description: string,
     price: string,
     images: any[],
-    age_restriction: number
+    age_restriction: number,
+    location: {
+      slug: string
+    },
+    dates: { start: number, end: number }[]
 }
 export interface IEventInfoCard {
     id: number,

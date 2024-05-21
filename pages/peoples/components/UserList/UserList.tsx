@@ -23,7 +23,10 @@ export default function UserList(props: {user: IPeople}): JSX.Element {
                 }
             </div>
             <div className={s.name}>
-                <h5>{props.user?.userName + ", " + props.user?.age}</h5>
+                <h5>
+                    {props.user?.userName + ", " + props.user?.age} 
+                    <span className={s.tag} style={{backgroundColor: props.user?.tag.color}}>{props.user?.tag.title}</span> 
+                </h5>
                 <h5 className={s.town}>г.{props.user?.city}</h5>
             </div>
         </div>

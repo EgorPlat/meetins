@@ -2,7 +2,6 @@ import { User } from '../../../../global/interfaces';
 import { IMeeting, ISplitedMeetings } from '../../../../global/interfaces/meetings';
 import CompletedMeetings from './CompletedMeetings/CompletedMeetings';
 import FurtherMeetings from './FurtherMeetings/FurtherMeetings';
-import s from './MeetingsContentView.module.scss';
 import MyMeetings from './MyMeetings/MyMeetings';
 
 export default function MeetingsContentView(props: {
@@ -14,7 +13,7 @@ export default function MeetingsContentView(props: {
     const myMeetings = props.currentMeetings?.furtherMeetings.filter(el => el.creatorId === props.authedUser?.userId);  
     
     return (
-        <div className={s.furtherMeetings}>
+        <>
             { props.currentMenu === 1 && 
             <MyMeetings 
                 data={myMeetings} 
@@ -31,6 +30,6 @@ export default function MeetingsContentView(props: {
                     data={props.currentMeetings?.previousMeetings}
                     handleGoToMeeting={props.handleGoToMeetingRoom}
                 /> }
-        </div>
+        </>
     )
 }

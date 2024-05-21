@@ -86,6 +86,7 @@ export interface IPeople {
     age: 0,
     city: string,
     gender: string,
+    tag: IUserTag
 }
 export interface Params {
     gender: string,

@@ -30,6 +30,11 @@
             align-items: center;
             column-gap: 5px;
             font-size: 15px;
+            & .meetingOver {
+                background-color: rgba(255, 87, 87, 0.89);
+                border-radius: 5px;
+                padding: 0px 10px 0px 10px;
+            }
         }
         & .meetingCreator {
             font-size: 15px;
@@ -95,6 +100,11 @@
             align-items: center;
             column-gap: 5px;
             font-size: 15px;
+            & .meetingOver {
+                background-color: rgba(255, 87, 87, 0.89);
+                border-radius: 5px;
+                padding: 0px 10px 0px 10px;
+            }
         }
         & .meetingDate {
             font-size: 15px;
