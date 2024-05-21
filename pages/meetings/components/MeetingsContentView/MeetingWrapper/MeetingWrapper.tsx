@@ -11,7 +11,7 @@ export default function MeetingWrapper(props: {
 }) {
 
     const isMobile$ = useStore(isMobile);
-    const isMeetingEnded = new Date(props.meeting.date) <= new Date();
+    const isMeetingEnded = new Date(props.meeting?.date) <= new Date();
 
     if (isMobile$) {
         return (
