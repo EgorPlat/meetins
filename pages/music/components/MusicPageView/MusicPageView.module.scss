@@ -3,66 +3,6 @@
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 20px;
-    & .matches {
-        font-size: 18px;
-        margin-bottom: 10px;
-        & .title {
-            margin-bottom: 10px;
-        }
-        & .desk {
-            display: flex;
-            column-gap: 10px;
-            row-gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            & .card {
-                background-size: 100% 100%;
-                min-width: 200px;
-                max-height: 200px;
-                background-color: var(--bg-color-block);
-                border-radius: 20px;
-                & .topContent {
-                    display: flex;
-                    & .avatar {
-                        margin: 10px;
-                        background-size: 100% 100%;
-                        border-radius: 15px;
-                        width: 65px;
-                        height: 65px;
-                    }
-                    & .title {
-                        font-size: 16px;
-                        margin: 10px 0 0 0;
-                        & .matchData {
-                            font-size: 12px;
-                            display: flex;
-                            column-gap: 5px;
-                            align-items: center;
-                            & .count {
-                                color: rgba(255, 83, 20, 0.949);
-                                font-weight: 700;
-                                font-size: 15px;
-                            }
-                            & a {
-                                color: rgb(0, 157, 255);
-                            }
-                            & a:hover {
-                                color: yellow;
-                            }
-                        }
-                    }
-                }
-                & .bottomContent {
-                    padding: 0px 10px 10px 10px;
-                    font-size: 12px;
-                    & .compositions {
-                        //color: black;
-                        text-align: left;
-                    }
-                }
-            }
-        }
-    }
     & .musicSearch {
         display: flex;
         column-gap: 10px;
@@ -107,6 +47,65 @@
             font-size: 17px;
             padding: 10px;
             height: min-content;
+            & .matches {
+                margin-top: 10px;
+                & .title {
+                    margin-bottom: 10px;
+                }
+                & .desk {
+                    display: grid;
+                    column-gap: 10px;
+                    row-gap: 10px;
+                    grid-template-columns: 1fr;
+                    justify-content: center;
+                    & .card {
+                        background-size: 100% 100%;
+                        min-width: 200px;
+                        max-height: 200px;
+                        background-color: var(--bg-color-block);
+                        border-radius: 20px;
+                        & .topContent {
+                            display: flex;
+                            & .avatar {
+                                margin: 10px;
+                                background-size: 100% 100%;
+                                border-radius: 15px;
+                                width: 65px;
+                                height: 65px;
+                            }
+                            & .title {
+                                font-size: 16px;
+                                margin: 10px 0 0 0;
+                                & .matchData {
+                                    font-size: 12px;
+                                    display: flex;
+                                    column-gap: 5px;
+                                    align-items: center;
+                                    & .count {
+                                        color: rgba(255, 83, 20, 0.949);
+                                        font-weight: 700;
+                                        font-size: 15px;
+                                    }
+                                    & a {
+                                        color: rgb(0, 157, 255);
+                                    }
+                                    & a:hover {
+                                        color: yellow;
+                                    }
+                                }
+                            }
+                        }
+                        & .bottomContent {
+                            padding: 0px 10px 10px 10px;
+                            font-size: 12px;
+                            & .compositions {
+                                //color: black;
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+            }
             & .songer {
                 font-size: 16px;
                 & .name {
@@ -147,22 +146,12 @@
                 font-size: 28px;
             }
         }
-        & .matches {
-            & .desk {
-                & .card {
-                    width: 100%;
-                }
-            }
-        }
-    }
-}
-@media screen and (max-width: 430px) {
-    .music {
-        & .matches {
-            font-size: 14px;
-            & .desk {
-                & .card {
-                    width: 100%;
+        & .musicContent {
+            & .songers {
+                & .matches {
+                    & .desk {
+                        grid-template-columns: 1fr;
+                    }
                 }
             }
         }

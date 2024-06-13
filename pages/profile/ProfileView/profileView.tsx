@@ -97,7 +97,10 @@ export default function ProfileView(props: {
                                     <div
                                         onClick={props.handleOpenEditTag}
                                         className={s.userTag}
-                                        style={{backgroundColor: `${activeUser.tag?.color}`}}
+                                        style={{
+                                            backgroundColor: `${activeUser.tag?.color}`,
+                                            //boxShadow: `0px 0px 10px 5px ${activeUser.tag?.color}`
+                                        }}
                                     >{activeUser.tag?.title}</div>
                                 </div>
                                 <div className={s.town}>

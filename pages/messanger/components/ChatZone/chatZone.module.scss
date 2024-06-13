@@ -12,7 +12,7 @@
     color: black;
 }
 .chat {
-    max-height: calc(100vh - 55px);
+    height: calc(100vh - 55px);
     display: grid;
     grid-template-rows: 95px calc(100% - 200px) 80px;
     row-gap: 5px;
@@ -105,15 +105,22 @@
                     padding: 5px;
                     background-color: #d0ecff4c;
                     border-radius: 100px;
-                    font-size: 15px;
+                    font-size: 13px;
                 }
             }
-            & .messageTime {
-                color: black;
-                font-size: 15px;
-                text-align: right;
+            & .messageInfo {
+                font-size: 13px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                & .messageTime {
+                    color: black;
+                }
+                & .messageReadStatus {
+                    text-align: right;
+                }
             }
             & .messageWithFile {
+                font-size: 16px;
                 display: grid;
                 grid-template-columns: 1fr;
             }
@@ -147,27 +154,7 @@
         color: black;
     }
 }
-@media screen and (max-height: 940px){
-    .chat {
-        & .messages {
-            font-size: 18px;
-            & .textMessage {
-                font-size: 18px;
-            }
-            & .messageWrapper {
-                & .messageDateWrapper {
-                    & .messageDate {
-                        font-size: 13px;
-                    }
-                }
-                & .messageTime {
-                    font-size: 13px;
-                }
-            }
-        }
-    }
-}
-@media screen and (max-height: 860px){
+@media screen and (max-width: 1000px) {
     .chat {
         height: calc(100vh - 40px);
         & .messages {
@@ -181,7 +168,7 @@
                         font-size: 10px;
                     }
                 }
-                & .messageTime {
+                & .messageInfo {
                     font-size: 10px;
                 }
             }
@@ -233,9 +220,3 @@
         }
     }
 }
-
-/*@media screen and (max-width: 811px) {
-    .chat {
-        height: calc(100vh - 85px);
-    }
-}*/

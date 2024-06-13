@@ -90,39 +90,39 @@ export default function MusicPageView({
                             </div>
                         ))
                     }
-                </div>
-            </div>
-            <div className={s.matches}>
-                <div className={s.title}>{t('Ваш вкус совпадает с другими пользователями')}</div>
-                <div className={s.desk}>
-                    {
-                        matchesList?.map(el => (
-                            <div className={s.card} key={el.login}>
-                                <div className={s.topContent}>
-                                    <div 
-                                        className={s.avatar}
-                                        style={{ backgroundImage: `url(${baseURL + el.avatar})` }}
-                                    ></div>
-                                    <div className={s.title}>
-                                        {el.name}
-                                        <div className={s.matchData}>
-                                            {t('Совпадение')}: <span className={s.count}>100%</span>
-                                            <Link href={`/profile/${el.login}`} className={s.userLink}>
-                                                {t('Посетить')}
-                                            </Link>
+                    <div className={s.matches}>
+                    <div className={s.title}>{t('Ваш вкус совпадает с другими пользователями')}</div>
+                        <div className={s.desk}>
+                            {
+                                matchesList?.map(el => (
+                                    <div className={s.card} key={el.login}>
+                                        <div className={s.topContent}>
+                                            <div 
+                                                className={s.avatar}
+                                                style={{ backgroundImage: `url(${baseURL + el.avatar})` }}
+                                            ></div>
+                                            <div className={s.title}>
+                                                {el.name}
+                                                <div className={s.matchData}>
+                                                    {t('Совпадение')}: <span className={s.count}>100%</span>
+                                                    <Link href={`/profile/${el.login}`} className={s.userLink}>
+                                                        {t('Посетить')}
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={s.bottomContent}>
+                                            <div className={s.compositions}>
+                                                <div>1 - Blackway, Black Caviar - What's up danger</div>
+                                                <div>2 - Tommee Profitt - I see who you are...</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className={s.bottomContent}>
-                                    <div className={s.compositions}>
-                                        <div>1 - Blackway, Black Caviar - What's up danger</div>
-                                        <div>2 - Tommee Profitt - I see who you are...</div>
-                                    </div>
-                                </div>
+                                ))
+                            }
                             </div>
-                        ))
-                    }
-                </div>
+                        </div>
+                    </div>
             </div>
             <CustomModal 
                 isDisplay={addMusicModal} 

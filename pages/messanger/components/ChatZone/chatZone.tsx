@@ -21,6 +21,7 @@ import CustomModal from "../../../../components-ui/CustomModal/CustomModal";
 import { useUserMediaTracks } from "../../../../global/hooks/useUserMediaTracks";
 import CustomEditMenu from "../../../../components-ui/CustomEditMenu/CustomEditMenu";
 import { useRouter } from "next/router";
+import { IoCheckmarkDoneOutline } from "react-icons/io5";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -172,8 +173,19 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                                     {message.content}
                                                 </pre>
                                             }
-                                            <div className={s.messageTime}>
-                                                { getMinutesAndHoursFromString(message.sendAt) }
+                                            <div className={s.messageInfo}>
+                                                <div className={s.messageTime}>
+                                                    { getMinutesAndHoursFromString(message.sendAt) }
+                                                </div>
+                                                <div className={s.messageReadStatus}>
+                                                    { 
+                                                        isMyMessage 
+                                                        ? message.isRead
+                                                            ? <IoCheckmarkDoneOutline color="blue" fontSize={18} />
+                                                            : <IoCheckmarkDoneOutline color="black" fontSize={18} />
+                                                        : null
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
