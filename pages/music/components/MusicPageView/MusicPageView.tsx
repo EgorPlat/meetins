@@ -12,29 +12,23 @@ import { useTranslation } from 'react-i18next';
 
 interface IMusicPageViewProps {
     addMusicModal: boolean,
-    selectedMusicId: string,
-    selectedMusicInfo: { currentTime: number, duration: number },
     musicList: IMusicAuthors[],
     authorsStatistic: IMusicAuthorsStatistics[],
-    handleStartMusic: (activeMusic: IActiveMusic) => void,
-    handleStopMusic: () => void,
     handleSwapMusicModal: (status: boolean) => void,
     handleOpenMyStatistic: () => void,
     setSearchMusic: (value: string) => void,
-    matchesList: IMatch[]
+    matchesList: IMatch[],
+    activeMusicId: number,
 }
 export default function MusicPageView({
     addMusicModal,
-    selectedMusicId,
-    selectedMusicInfo,
-    handleStartMusic,
-    handleStopMusic,
     handleSwapMusicModal,
     musicList,
     authorsStatistic,
     handleOpenMyStatistic,
     setSearchMusic,
-    matchesList
+    matchesList,
+    activeMusicId
 }: IMusicPageViewProps) {   
     
     const { t } = useTranslation();
@@ -42,12 +36,7 @@ export default function MusicPageView({
     return (
         <div className={s.music}>
             <div className={s.addMusic}>
-                <span>{t('Хотите добавить свою композицию?')}</span>
-                <PiMusicNotesPlus
-                    className={s.controls}
-                    fontSize={25}
-                    onClick={() => handleSwapMusicModal(true)}
-                />
+                <span onClick={() => handleSwapMusicModal(true)}>{t('Добавить свою композицию?')}</span>
                 <TfiStatsUp className={s.myStatistic} fontSize={28} onClick={handleOpenMyStatistic} />
             </div>
             <div className={s.musicSearch}>
@@ -66,11 +55,8 @@ export default function MusicPageView({
                         return author.compositions.map(music => {
                             return (
                                 <MusicPlayer
+                                    isStopNeeded={activeMusicId !== music.id}
                                     key={music.id}
-                                    selectedMusicInfo={selectedMusicInfo}
-                                    isMusicSelected={selectedMusicId === String(music.id)}
-                                    handleStartMusic={handleStartMusic}
-                                    handleStopMusic={handleStopMusic}
                                     musicInfo={music}
                                     authorInfo={author}
                                 />
@@ -79,19 +65,21 @@ export default function MusicPageView({
                     })
                 }
                 </div>
-                <div className={s.songers}>
+                <div className={s.moreInfo}>
                     {t('Статистика исполнителей')}
-                    {
-                        authorsStatistic?.map(el => (
-                            <div className={s.songer} key={el.id}>
-                                <a href='#' className={s.name}>{el.name} - </a>
-                                <span>{t('Прослушивания')} {el.playsNumber} - </span>
-                                <span className={s.mapBtn}>Узнать где популярен? </span>
-                            </div>
-                        ))
-                    }
+                    <div className={s.songers}>
+                        {
+                            authorsStatistic?.map(el => (
+                                <div className={s.songer} key={el.id}>
+                                    <a href='#' className={s.name}>{el.name} - </a>
+                                    <span>{t('Прослушивания')} {el.playsNumber} - </span>
+                                    <span className={s.mapBtn}>Узнать где популярен? </span>
+                                </div>
+                            ))
+                        }
+                    </div>
                     <div className={s.matches}>
-                    <div className={s.title}>{t('Ваш вкус совпадает с другими пользователями')}</div>
+                        <div className={s.title}>{t('Ваш вкус совпадает с другими пользователями')}</div>
                         <div className={s.desk}>
                             {
                                 matchesList?.map(el => (

@@ -27,7 +27,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	const connection$ = useStore(connection);
 	const isScrollPageBlocked = useStore($scrollPageBlocked)
-	const activeMusic$ = useStore(activeMusic);
 
 	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
 	const router = useRouter();
@@ -66,7 +65,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			</Head>
 			{  <Component {...pageProps} />  }
 			<NotificationBlock />
-			{ activeMusic$ && <MusicControlBlock /> }
+			<MusicControlBlock />
 		</Layout>
 	)
 }

@@ -1,4 +1,7 @@
 .musicContentElement {
+    & audio {
+        display: none;
+    }
     font-size: 15px;
     display: grid;
     align-items: center;
@@ -26,10 +29,22 @@
             display: flex;
             align-items: center;
             column-gap: 10px;
+            min-height: 25px;
             & .musicContentElementInfoProgressElem {
                 width: 50%;
-                background-color: black;
+                border-radius: 100px;
                 height: 10px;
+            }
+            & .musicContentElementInfoProgressElem::-webkit-progress-bar {
+                border-radius: 100px;
+                background-color:gray;
+            }
+            & .musicContentElementInfoProgressElem::-webkit-progress-value {
+                border-radius: 100px;
+                background-color: var(--default-color);
+            }
+            & .musicContentElementInfoProgressElem::-moz-progress-bar {
+                border-radius: 100px;
             }
         }
     }

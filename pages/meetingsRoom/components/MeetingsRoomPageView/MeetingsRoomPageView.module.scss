@@ -30,9 +30,10 @@
                 }
             }
             & .tags {
-                font-size: 18px;
+                font-size: 16px;
             }
             & .members {
+                margin-top: 10px;
                 display: flex;
                 column-gap: 10px;
                 & .list {

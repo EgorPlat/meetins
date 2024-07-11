@@ -55,12 +55,11 @@
         }
     }
     & .messages {
-        font-size: 20px;
+        font-size: 16px;
         overflow-y: scroll;
         padding-bottom: 10px;
         & .textMessage {
             white-space: pre-wrap;
-            font-size: 16px;
             font-family: Nunito;
         }
         & audio {
@@ -120,7 +119,6 @@
                 }
             }
             & .messageWithFile {
-                font-size: 16px;
                 display: grid;
                 grid-template-columns: 1fr;
             }

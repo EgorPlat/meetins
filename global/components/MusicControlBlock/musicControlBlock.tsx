@@ -1,35 +1,29 @@
 import { useStore } from "effector-react"
 import { MusicControlBlockView } from "./MusicControlBlockView/MusicControlBlockView"
-import { activeMusic, setActiveMusicTimeData } from "../../store/music_model"
+import { activeMusic, isMusicNeededOnBackground } from "../../store/music_model"
 import { useEffect, useRef } from "react";
 
 export const MusicControlBlock = () => {
 
-    const activeMusic$ = useStore(activeMusic);
+    const activeMusic$ = useStore(activeMusic); 
+    const isMusicNeededOnBackground$ = useStore(isMusicNeededOnBackground);
     const audioRef = useRef<HTMLAudioElement>(null);
-
-    const handleTimeUpdate = (audio) => {
-        setActiveMusicTimeData({
-            currentTime: audio.target.currentTime,
-            duration: audio.target.duration
-        })
-    };
-
+    
     useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.currentTime = 0;
+        if (audioRef.current && isMusicNeededOnBackground$) {
+            audioRef.current.currentTime = activeMusic$.currentTime;
             audioRef.current.play();
-            audioRef.current.addEventListener("timeupdate", handleTimeUpdate)
-        }
-        return () => {
-            audioRef?.current?.removeEventListener("timeupdate", handleTimeUpdate);
         }
     }, [activeMusic$]);
 
-    return (
-        <MusicControlBlockView
-            audioRef={audioRef}
-            activeMusic={activeMusic$}
-        />
-    )
+    if (activeMusic$ && isMusicNeededOnBackground$) {
+        return (
+            <MusicControlBlockView
+                audioRef={audioRef}
+                activeMusic={activeMusic$}
+            />
+        )
+    } else {
+        return null;
+    }
 }

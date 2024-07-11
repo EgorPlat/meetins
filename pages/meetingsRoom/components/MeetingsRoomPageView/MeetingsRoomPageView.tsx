@@ -51,8 +51,14 @@ export default function MeetingsRoomPageView(props: {
                         <div className={s.tags}>
                             Цели: {props.selectedMeeting.goal}
                         </div>
+                        <div className={s.dates}>
+                            Даты проведения: {customizeDateToYYYYMMDDHHMMFormat(String(props.selectedMeeting.date))}
+                        </div>
+                        <div className={s.description}>
+                            Описание: {props.selectedMeeting.description}
+                            <span> Приходите по адресу: {props.selectedMeeting.address}</span>
+                        </div>
                         <div className={s.members}>
-                            Участники: 
                             <div className={s.list}>
                                 {
                                     props.selectedMeeting.participants.map(el => (
@@ -67,13 +73,6 @@ export default function MeetingsRoomPageView(props: {
                                     ))
                                 }
                             </div>
-                        </div>
-                        <div className={s.dates}>
-                            Даты проведения: {customizeDateToYYYYMMDDHHMMFormat(String(props.selectedMeeting.date))}
-                        </div>
-                        <div className={s.description}>
-                            Описание: {props.selectedMeeting.description}
-                            <span> Приходите по адресу: {props.selectedMeeting.address}</span>
                         </div>
                     </div>
                 </div>

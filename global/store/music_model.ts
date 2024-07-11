@@ -20,6 +20,14 @@ export const musicList = createStore<IMusicAuthors[]>([]).on(
     }
 );
 
+export const setIsMusicNeededOnBackground = createEvent<boolean>();
+export const isMusicNeededOnBackground = createStore<boolean>(false).on(
+    setIsMusicNeededOnBackground,
+    (_, status) => {
+        return status;
+    }
+);
+
 export const setCurrentAuthorName = createEvent<string>();
 export const currentAuthorName = createStore<string>("").on(
     setCurrentAuthorName,
@@ -60,6 +68,15 @@ export const activeMusic = createStore<IActiveMusic>(null).on(
         return newActiveMusic;
     }
 );
+
+export const setActiveMusicId = createEvent<number>();
+export const activeMusicId = createStore<number>(null).on(
+    setActiveMusicId,
+    (_, id) => {
+        return id;
+    }
+);
+
 activeMusic.on(setActiveMusicCurrentTime, (prevActiveMusic, currentTime) => {
     return { ...prevActiveMusic, currentTime }
 })

@@ -49,12 +49,15 @@
             }
             & .actions {
                 margin-top: auto;
+                font-size: 18px;
                 & .buyAction {
                     border-radius: 15px;
                     outline: none;
                     border: none;
                     background-color: rgba(68, 149, 255, 0.837);
                     color: white;
+                    padding: 5px;
+                    min-width: 150px
                 }
                 & .buyAction:hover {
                     background-color: rgba(255, 205, 24, 0.999);

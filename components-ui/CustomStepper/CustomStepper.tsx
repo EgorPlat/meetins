@@ -19,7 +19,8 @@ export default function CustomStepper({ steps }: ICustomStepperProps) {
             <div className={s.steps}>
                 {
                     steps.map(step => (
-                        <div 
+                        <div
+                            key={step.title} 
                             className={ step.title === activeStep?.title ? s.activeStep : s.commonStep }
                             onClick={() => setActiveStep(step)}
                         >
