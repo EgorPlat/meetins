@@ -31,7 +31,7 @@ export default function MeetingWrapper(props: {
                         Организатор встречи: {props.meeting?.participants[0].name}
                     </div>
                     <div className={s.meetingDate}>
-                        Планируемая дата встречи: 
+                        <span>Планируемая дата встречи:  </span>
                         <span className={s.dateTime}> 
                             {
                                 customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))

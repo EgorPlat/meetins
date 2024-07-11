@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
-import { IActiveMusic } from "../../global/interfaces/music";
-import { 
-    activeMusicTimeData, 
+import {  
     getAllMusic, 
     getAuthorsStatistic, 
     authorsStatistic, 
-    musicList, 
-    setActiveMusic, 
-    setActiveMusicTimeData, 
-    addPlaysToComposition, 
+    musicList,
     setMusicList, 
     getMatchesList, 
-    matchesList 
+    matchesList, 
+    activeMusicId
 } from "../../global/store/music_model";
 import { useStore } from "effector-react";
 import CustomModal from "../../components-ui/CustomModal/CustomModal";
@@ -26,23 +22,12 @@ export default function Music() {
 
     const [addMusicModal, setAddMusicModal] = useState<boolean>(false);
     const [showMyStatistic, setShowMyStatistic] = useState<boolean>(false);
-    const [selectedMusicId, setSelectedMusicId] = useState<string>();
     const [searchMusic, setSearchMusic] = useState<string>("");
-    const activeMusicTimeData$ = useStore(activeMusicTimeData);
     const musicList$ = useStore(musicList);
     const authorsStatistic$ = useStore(authorsStatistic);
     const matchesList$ = useStore(matchesList);
+    const activeMusicId$ = useStore(activeMusicId);
 
-    const handleStartMusic = (activeMusic: IActiveMusic) => {
-        addPlaysToComposition({ authorId: activeMusic.authorId, trackId: activeMusic.id });
-        setSelectedMusicId(activeMusic.id);
-        setActiveMusic(activeMusic); 
-    };
-    const handleStopMusic = () => {
-        setSelectedMusicId(null);
-        setActiveMusic(null);
-        setActiveMusicTimeData(null);
-    }
     const handleSwapMusicModal = (status: boolean) => {
         setAddMusicModal(() => status);
     }
@@ -69,16 +54,13 @@ export default function Music() {
             <>
                 <MusicPageView
                     matchesList={matchesList$}
-                    selectedMusicId={selectedMusicId}
-                    selectedMusicInfo={activeMusicTimeData$}
-                    handleStartMusic={handleStartMusic}
-                    handleStopMusic={handleStopMusic}
                     setSearchMusic={setSearchMusic}
                     addMusicModal={addMusicModal}
                     handleSwapMusicModal={handleSwapMusicModal}
                     musicList={musicList$}
                     authorsStatistic={authorsStatistic$}
                     handleOpenMyStatistic={handleOpenMyStatistic}
+                    activeMusicId={activeMusicId$}
                 />
                 <CustomModal
                     isDisplay={showMyStatistic}
