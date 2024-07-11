@@ -103,13 +103,15 @@
                     color: orange;  
                 }
                 & img {
+                    width: 120px;
+                    height: 120px;
                     cursor: pointer;
                     border-radius: 10px;
                 }
-                /*& img:first-child {
-                    width: 180px;
-                    height: 180px;
-                }*/
+                & video {
+                    width: 120px;
+                    height: 100px;
+                }
             }
         }
         & .commentsInfo {
@@ -165,6 +167,23 @@
         & .topContent {
             display: grid;
             grid-template-columns: 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .meetingsRoom {
+        & .bottomContent {
+            & .mediaInfo {
+                & .content {
+                    & img {
+                        width: 48%;
+                    }
+                    & video {
+                        width: 48%;
+                    }
+                }
+            }
         }
     }
 }

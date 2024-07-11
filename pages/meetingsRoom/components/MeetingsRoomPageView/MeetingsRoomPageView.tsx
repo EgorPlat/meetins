@@ -104,15 +104,15 @@ export default function MeetingsRoomPageView(props: {
                                         ? <img 
                                             key={el.src} 
                                             src={baseURL + el.src} 
-                                            width={120} 
-                                            height={120}
+                                            //width={120} 
+                                            //height={120}
                                         /> :
                                     el.type.includes('video') 
                                         && <video
                                                 key={el.src} 
                                                 src={baseURL + el.src}
-                                                width={150} 
-                                                height={100}
+                                                //width={150} 
+                                                //height={100}
                                                 controls
                                             />
                                 ))
@@ -128,7 +128,7 @@ export default function MeetingsRoomPageView(props: {
                     </div>
                     <div className={s.commentsInfo}>
                         <div className={s.title}>
-                            <span className={s.text}>Комментарии к данной встрече от участников:</span>
+                            <span className={s.text}>Комментарии к данной встрече:</span>
                             <CiSquarePlus
                                 className={s.addComment}
                                 fontSize={35}
