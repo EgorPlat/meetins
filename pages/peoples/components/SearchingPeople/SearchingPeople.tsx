@@ -43,13 +43,14 @@ export default function SearchingPeople(): JSX.Element {
     const showAllPeoples = () => {
         setClearScrollData(true);
         setFilterParams({ gender: 'all', age: 0, event: null });
-    }
+    };
+
     const updateFilters = async (param: string, data: any) => {
         setFilterParams({ ...filterParams$, [param]: data });
         fullUpdatePeoples([]);
         setMaxPageOfPeople(0);
         setClearScrollData(true);
-    }
+    };
 
     useEffect(() => {
         getAllPeoplesByPageNumber({
@@ -58,8 +59,6 @@ export default function SearchingPeople(): JSX.Element {
             filters: filterParams$
         });   
     }, [scrollData]);
-
-    
 
     useEffect(() => {
         fullUpdatePeoples([]);
