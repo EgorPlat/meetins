@@ -38,17 +38,19 @@ export default function Login(): JSX.Element {
 
 	const sendLoginData = (data: {
 		name: string
-		phone_or_email: string | null
+		email: string | null
 		pass: string
 		gender: string
 		city: string
 	} | any) => {
-		const email = isEmail(data.phone_or_email)
+		const email = isEmail(data.email);
 		const nameArr = data.name.split(' ')
-
+		
+		console.log(data);
+		
 		setRegisterDetails({
 			name: nameArr[0],
-			email,
+			email: email,
 			password: data.pass,
 			gender: data.gender,
 			city: data.city
@@ -56,7 +58,7 @@ export default function Login(): JSX.Element {
 		router.push(`/confirmation`);
 		sendRegData({
 			name: nameArr[0],
-			email,
+			email: email,
 			password: data.pass,
 			gender: data.gender,
 			city: data.city
