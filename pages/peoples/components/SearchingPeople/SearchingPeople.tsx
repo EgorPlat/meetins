@@ -53,7 +53,7 @@ export default function SearchingPeople(): JSX.Element {
 
     useEffect(() => {
         getAllPeoplesByPageNumber({
-            pageNumber: scrollData,
+            pageNumber: scrollData === 0 ? scrollData + 1 : scrollData,
             pageSize: 10, 
             filters: filterParams$
         });   
@@ -77,7 +77,7 @@ export default function SearchingPeople(): JSX.Element {
                         <button onClick={() => updateFilters("gender", "female")}>Ж</button>
                     </div>
                     <div className={s.part}>
-                        <h3>Возраст</h3>
+                        <h3 className={s.title}>Возраст</h3>
                         <Slider 
                             onChangeCommitted={(event, newValue) => updateFilters("age", newValue)} 
                             defaultValue={50} 
@@ -91,33 +91,37 @@ export default function SearchingPeople(): JSX.Element {
                     </div>
                 </div>
                 <div className={s.goal}>
-                    <h3>Цель</h3>
+                    <h3 className={s.title}>Цель</h3>
                     { goals.map((goal) => <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>)}
                 </div>
                 <div className={s.events}>
-                    <h3>События</h3>
+                    <h3 className={s.title}>События</h3>
                     {
                         !currentEventsInfoLoaded$ && <CustomLoader />
                     }
-                    { events$.map((event) => 
-                        <div 
-                            onClick={() => updateFilters("event", event.id)} 
-                            className={s.eachEvent} 
-                            key={event.id}
-                        >{event.title}</div>
-                    )}
+                    <div className={s.list}>
+                        { events$.map((event) => 
+                            <div 
+                                onClick={() => updateFilters("event", event.id)} 
+                                className={s.eachEvent} 
+                                key={event.id}
+                            >{event.title}</div>
+                        )}
+                    </div>
                 </div>
                 <div className={s.interests}>
-                    <h3>Интересы</h3>
-                    { 
-                        interests$.map((interest) => (
-                            <div 
-                                onClick={() => updateFilters("interests", interest.title)} 
-                                className={s.eachPopular} 
-                                key={interest.interestId}
-                            >{interest.title}</div>
-                        ))
-                    }
+                    <h3 className={s.title}>Интересы</h3>
+                    <div className={s.list}>
+                        { 
+                            interests$.map((interest) => (
+                                <div 
+                                    onClick={() => updateFilters("interests", interest.title)} 
+                                    className={s.eachPopular} 
+                                    key={interest.interestId}
+                                >{interest.title}</div>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
             <div className={s.result}>

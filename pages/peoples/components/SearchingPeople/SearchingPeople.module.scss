@@ -4,10 +4,14 @@
     & .params {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        column-gap: 5px;
+        row-gap: 5px;
         & .gender {
-            border-right: 1px solid grey;
-            padding-right: 10px;
-            max-height: 410px;
+            //border-right: 1px solid grey;
+            background-color: var(--bg-color-block);
+            border-radius: 15px;
+            padding: 20px;
+            height: 400px; 
             & button {
                 width: 50px;
                 height: 50px;
@@ -25,11 +29,16 @@
             }
         }
         & .goal {
-            border-right: 1px solid grey;
-            padding: 2%;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            max-height: 410px;
+            //border-right: 1px solid grey;
+            background-color: var(--bg-color-block);
+            border-radius: 15px;
+            padding: 20px;
+            height: 400px; 
+            & .list {
+                max-height: 300px; 
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
             & .eachGoal {
                 display: flex;
                 align-items: center;
@@ -45,14 +54,18 @@
         }
 
         & .events {
-            border-right: 1px solid grey;
-            padding: 2%;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            display: grid;
-            max-height: 410px;
-            align-items: start;
-            row-gap: 10px;
+            //border-right: 1px solid grey;
+            background-color: var(--bg-color-block);
+            border-radius: 15px;
+            padding: 20px;
+            height: 400px; 
+            & .list {
+                display: grid;
+                row-gap: 20px;
+                max-height: 300px; 
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
             & .eachEvent {
                 font-size: 18px;
                 padding-left: 5%;
@@ -64,10 +77,16 @@
         }
 
         & .interests {
-            border-right: 1px solid grey;
-            padding: 2%;
-            max-height: 410px;
-            overflow-y: scroll;
+            background-color: var(--bg-color-block);
+            border-radius: 15px;
+            //border-right: 1px solid grey;
+            padding: 20px;
+            height: 400px; 
+            & .list {
+                max-height: 300px; 
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
             & .eachPopular {
                 width: 100%;
                 height: 50px;
@@ -83,7 +102,7 @@
         }
     }
     & .result {
-        padding-top: 5%;
+        padding-top: 20px;
         & .showAllBtn {
             border: none;
             background-color: #3DB2FF;
