@@ -16,7 +16,8 @@ export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handl
             setArrayHeights((lastValue) => [...lastValue, document.body.scrollHeight]);
             setCurrentPageNumber((lastValue) => lastValue + 1);
         }
-    }
+    };
+    
     useEffect(() => {
         if (isClearNeeded) {
             setArrayHeights(() => []);
