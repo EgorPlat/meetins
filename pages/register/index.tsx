@@ -46,8 +46,6 @@ export default function Login(): JSX.Element {
 		const email = isEmail(data.email);
 		const nameArr = data.name.split(' ')
 		
-		console.log(data);
-		
 		setRegisterDetails({
 			name: nameArr[0],
 			email: email,
