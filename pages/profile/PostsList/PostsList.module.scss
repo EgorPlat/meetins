@@ -22,13 +22,14 @@
                 color: grey;
             }
         }
-        & .postImage {
-            //padding-top: 10px;
-            //padding-bottom: 10px;
+        & .postFiles {
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         & .postDescription {
             padding-top: 5px;
             padding-bottom: 5px;
+            text-align: justify;
             width: 100%;
             & pre {
                 white-space: pre-wrap;

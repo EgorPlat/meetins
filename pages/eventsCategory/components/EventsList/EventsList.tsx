@@ -25,7 +25,7 @@ export default function EventsList(props: {category: string}): JSX.Element {
                {loadedStatus$ ? <List list={currentEvents$}/> : <CustomLoader marginTop={100} />}
                {
                loadedStatus$ && currentEvents$.length === 0 
-               ? <h5>В данной категории пока что нет запланированных мероприятий.</h5> 
+               ? <div className={s.errorMessage}>В данной категории пока что нет запланированных мероприятий.</div> 
                : null
                }
             </div>

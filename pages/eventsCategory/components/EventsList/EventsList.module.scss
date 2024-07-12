@@ -3,4 +3,17 @@
     & .title {
         padding-left: 2%;
     }
+    & .errorMessage {
+        font-size: 18px;
+        text-align: center;
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .content {
+        & .title {
+            font-size: 18px;
+        }
+    }
 }

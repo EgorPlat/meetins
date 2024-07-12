@@ -24,13 +24,13 @@ export default function List(props: {list: IShortEventInfo[]}): JSX.Element {
                     <div className={s.eventDescription}>
                         <div className={s.eventTitle}>{event.title}</div>
                         <div className={s.eventPrice}>
-                            Приблизительная цена: 
+                            Примерная цена: 
                             <button className={event.price.length > 0 ? s.notFree : s.free}>
                                 {event.price.length > 0 ? event.price : 'Бесплатно'}
                             </button>
                         </div>
                         <div className={s.eventAge}>
-                            Минимальный возраст для посещения: 
+                            Возраст для посещения: 
                             <div className={s.age}>{event.age_restriction} лет</div>
                         </div>
                         {

@@ -63,7 +63,7 @@ export default function PostsList(props: {currentUser: User, authedUser: User}):
                         {customizeDateToYYYYMMDDHHMMFormat(el.date)}
                       </span>
                     </div>
-                    <div className={s.postImage}>
+                    <div className={s.postFiles}>
                       {/*<img src={baseURL + el.files[0].src} />*/}
                       {
                         el.files?.length > 0 &&
@@ -82,7 +82,7 @@ export default function PostsList(props: {currentUser: User, authedUser: User}):
                       }
                     </div>
                     <div className={s.postDescription}>
-                      Описание: <pre>{el.description}</pre>
+                      <pre>{el.description}</pre>
                     </div>
                     <div className={s.postActions}>
                       <div className={s.postActionsLikes}>
