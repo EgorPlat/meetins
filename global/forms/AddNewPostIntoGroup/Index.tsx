@@ -5,34 +5,41 @@ import { validateFilesFromInputAndStructuring } from "../../helpers/helper";
 import { createNewPostInGroup } from "../../store/groups_model";
 import FormContainer from "../../components/FormContainer/FormContainer";
  
-export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX.Element {
+export default function AddNewPostIntoGroupForm(props: { 
+    groupId: string,
+    handleCloseModal: () => void
+}): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
-    const [selectedMediaContent, setSelectedMediaContent] = useState<any[]>([]);
+    const [selectedMediaContent, setSelectedMediaContent] = useState<{ file: File, blob: string }[]>([]);
     
     const onChangePost = (data: {name: string, description: string, media: File[]}) => {
-        const mediaData = validateFilesFromInputAndStructuring(data.media);
+        const filesFromInput = selectedMediaContent.map(el => { 
+            return el.file;
+        });
+        const mediaData = validateFilesFromInputAndStructuring(filesFromInput);
         mediaData.dataForServer.append('name', data.name);
         mediaData.dataForServer.append('description', data.description);
         mediaData.dataForServer.append('groupId', props.groupId);
-
         createNewPostInGroup(mediaData.dataForServer);
+        props.handleCloseModal();
     };
 
     const onFileChanges = (files: FileList) => {
-        setSelectedMediaContent([]);  
+        let mediaContent = []; 
         for (let i = 0; i < files.length; i++) {
             const reader = new FileReader();
-            reader.onload = () => {      
-                setSelectedMediaContent(prev => [...prev, reader.result]);
+            reader.onload = function () {
+                mediaContent = [...mediaContent, { file: files[i], blob: reader.result }];
+                setSelectedMediaContent(mediaContent)
             }
             reader.readAsDataURL(files[i]);
         }
     };
 
-    const handleRemoveImgFile = (blob: String) => {
-        setSelectedMediaContent(prev => prev.filter(el => el !== blob));
+    const handleRemoveImgFile = (blob: string) => {
+        setSelectedMediaContent(prev => prev.filter(el => el.blob !== blob));
     };
 
     return (
@@ -83,7 +90,7 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
                 <div style={{ display: "flex", columnGap: "5px" }}>
                     {
                         selectedMediaContent.map(el => (
-                            <div key={el} style={{ position: "relative" }}>
+                            <div key={el.blob} style={{ position: "relative" }}>
                                 <div 
                                     style={{ 
                                         position: "absolute", 
@@ -95,12 +102,12 @@ export default function AddNewPostIntoGroupForm(props: { groupId: string }): JSX
                                         fontWeight: 700,
                                         fontSize: "18px"
                                     }}
-                                    onClick={(inp) => handleRemoveImgFile(el)}
+                                    onClick={() => handleRemoveImgFile(el.blob)}
                                 >
                                     <div>x</div>
                                 </div>
                                 <img 
-                                    src={el} 
+                                    src={el.blob} 
                                     width="75px" 
                                     height="75px"
                                     style={{ borderRadius: "5px" }}

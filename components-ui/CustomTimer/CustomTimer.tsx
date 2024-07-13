@@ -35,7 +35,7 @@ export default function CustomTimer({ dateFrom, dateTo, backgroundColor, color }
 
     return (
         <div className={s.customTimer} style={{ backgroundColor, color }}>
-            {`${timerInfo?.month}м. ${timerInfo?.days} дней ${timerInfo?.minutes} минут ${timerInfo?.seconds} секунд`}
+            {`${timerInfo?.month}м. ${timerInfo?.days} дней ${timerInfo?.minutes} мин. ${timerInfo?.seconds} сек.`}
         </div>
     )
 }

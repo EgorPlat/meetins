@@ -60,7 +60,7 @@ export default function MeetingWrapper(props: {
                             className={s.actionBtn}
                             onClick={() => props.handleGoToMeeting(props.meeting)}
                         >Перейти</button>
-                        <button className={s.actionBtn}>Связаться с организатором</button>
+                        <button className={s.actionBtn}>Связь с организатором</button>
                     </div>
                 </div>
             </div>        
@@ -106,7 +106,7 @@ export default function MeetingWrapper(props: {
                             className={s.actionBtn}
                             onClick={() => props.handleGoToMeeting(props.meeting)}
                         >Перейти</button>
-                        <button className={s.actionBtn}>Связаться с организатором</button>
+                        <button className={s.actionBtn}>Связь с организатором</button>
                     </div>
                 </div>
             </div>        

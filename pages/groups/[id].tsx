@@ -116,7 +116,13 @@ export default function Groups() {
         } else {
             likePostInGroup({ groupId: groupId, postId: post.id });
         }
-    }
+    };
+    const handleCloseAddingPostModal = () => {
+        setModals({
+            ...modals,
+            isAddingPostModalOpen: false
+        });
+    };
 
     useEffect(() => {
         setIsGroupInfoLoaded(false);
@@ -176,7 +182,7 @@ export default function Groups() {
                     typeOfActions="none"
                     title="Добавить публикацию"
                 >
-                    <AddNewPostIntoGroupForm groupId={String(router.query.id)} />
+                    <AddNewPostIntoGroupForm groupId={String(router.query.id)} handleCloseModal={handleCloseAddingPostModal} />
                 </CustomModal>
                 <CustomModal
                     isDisplay={modals.isTalksOpen}

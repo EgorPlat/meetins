@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { $scrollPageBlocked, $user, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
+import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';
@@ -9,7 +9,6 @@ import { setRouter } from '../global/store/router_model';
 import { useRouter } from 'next/router';
 import { getMyDialogs } from '../global/store/chat_model';
 import { MusicControlBlock } from '../global/components/MusicControlBlock/musicControlBlock';
-import { activeMusic } from '../global/store/music_model';
 import { useAuthAndInithialSocket } from '../global/hooks/useAuthAndInithialSocket';
 import { useTheme } from '../global/hooks/useTheme';
 import { useBlockBodyScroll } from '../global/hooks/useBlockScroll';

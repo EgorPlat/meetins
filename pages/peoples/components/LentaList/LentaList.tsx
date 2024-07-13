@@ -3,10 +3,8 @@ import s from "./LentaList.module.scss";
 import { IWall } from "../../../../global/interfaces/wall";
 import { baseURL } from "../../../../global/store/store";
 import CustomSlider from "../../../../components-ui/CustomSlider/CustomSlider";
-import { FcLike } from "react-icons/fc";
 import CustomEditMenu from "../../../../components-ui/CustomEditMenu/CustomEditMenu";
 import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
-import { CiHeart } from "react-icons/ci";
 import { AiFillHeart } from "react-icons/ai";
 
 export default function LentaList(props: {
@@ -17,13 +15,13 @@ export default function LentaList(props: {
         <div className={s.lentaList}>
             {
                 props.wallPosts?.map(el => (
-                    <div className={s.wallPost} key={el.postDescription}>
+                    <div className={s.wallPost} key={el.postDate}>
                         <div className={s.postAuthor}>
                             <img src={baseURL + el.avatar} className={s.avatar} />
                             <div className={s.name}>
                                 {el.isGroup && "Сообщество: "}
                                 {el.name} - {el.postTitle}
-                                </div>
+                            </div>
                         </div>
                         <div className={s.postContent}>
                             {
@@ -47,7 +45,7 @@ export default function LentaList(props: {
                         </div>
                         <div className={s.postMoreInfo}>
                             <div className={s.postLikes}>
-                                <AiFillHeart />
+                                <AiFillHeart color="red" />
                                 {el.postLikes.length}
                             </div>
                             <div className={s.postDate}>

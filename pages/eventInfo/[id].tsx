@@ -30,7 +30,7 @@ export default function EventInfo(): JSX.Element {
             return;
         }
         addUserEvent(id);
-    }
+    };
     
     useEffect(() => {
         if (query.id) {

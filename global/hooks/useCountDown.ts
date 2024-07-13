@@ -12,8 +12,6 @@ export const useCountDown = (dateStart: Date, dateEnd: Date) => {
       setTimeLeft(timeLeft);
     };
 
-    calculateTimeLeft();
-
     intervalRef.current = setInterval(calculateTimeLeft, 1000);
 
     return () => {
