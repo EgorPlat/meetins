@@ -78,6 +78,10 @@
             & .eachEvent:hover {
                 @extend .eachElemListButtonHover;
             }
+            & .warning {
+                color: gray;
+                font-size: 18px
+            }
         }
 
         & .interests {

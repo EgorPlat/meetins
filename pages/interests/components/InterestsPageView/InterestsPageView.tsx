@@ -22,26 +22,28 @@ export default function InterestsPageView ({ handleSendForm, currentInterests, t
                 </div>
             </div>
             <div className={s.formInterest}>
-            <div className={s.interestsList}>
-                    <ButtonWithHint 
+                <div className={s.interestsList}>
+                    <div className={s.title}>
+                        Текущий список интересов людей 
+                        <ButtonWithHint 
                             title='?'
                             hintTitle={
                                 `Здесь указаны все интересы, которые могут быть использованы на сайте.`
                             }
                             fontSize={13}
                         />
-                    <div className={s.title}>
-                        Текущий список интересов людей:
                     </div>
-                    {
-                        currentInterests?.map((el, index) => (
-                            <div key={el.interestId}>
-                                {
-                                    index < currentInterests.length - 1 ? el.title + ',': el.title
-                                }
-                            </div>
-                        ))
-                    }
+                    <div className={s.list}>
+                        {
+                            currentInterests?.map((el, index) => (
+                                <div key={el.interestId}>
+                                    {
+                                        index < currentInterests.length - 1 ? el.title + ',': el.title
+                                    }
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
                 <div className={s.wrapper}>
                     <h5>Заполните форму, если Вашего интереса нет в списке</h5>

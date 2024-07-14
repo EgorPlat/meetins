@@ -38,7 +38,7 @@ export const getAllPeoplesByPageNumber = createEffect(async (data: { pageNumber:
         filters: data.filters
     });
     if(response.status === 201) {
-        setAllPeoples(response.data.peoples);
+        setAllPeoples(response.data.data);
         setMaxPageOfPeople(response.data.maxPage)
         return response.data.peoples;
     }
