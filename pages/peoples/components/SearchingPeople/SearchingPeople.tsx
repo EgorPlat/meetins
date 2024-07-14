@@ -19,7 +19,7 @@ import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
 import { goals } from "../../../../global/constants";
 import { $currentInterestsList } from "../../../../global/store/store";
-import { currentEventsInfoLoaded, getUserEventsInfo, setCurrentEventsInfoLoaded, userEvents } from "../../../../global/store/events_model";
+import { currentEventsInfoLoaded, getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
 import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
 
 export default function SearchingPeople(): JSX.Element {
@@ -48,24 +48,22 @@ export default function SearchingPeople(): JSX.Element {
     const updateFilters = async (param: string, data: any) => {
         setFilterParams({ ...filterParams$, [param]: data });
         fullUpdatePeoples([]);
+        setMaxPageOfPeople(0);
         setClearScrollData(true);
     };
 
     useEffect(() => {
         getAllPeoplesByPageNumber({
-            pageNumber: scrollData,
-            pageSize: 10,
+            pageNumber: scrollData === 0 ? scrollData + 1 : scrollData,
+            pageSize: 10, 
             filters: filterParams$
-        });
+        });   
     }, [scrollData]);
 
     useEffect(() => {
         fullUpdatePeoples([]);
         setFilterParams({ gender: 'all', age: 0, event: null });
         getUserEventsInfo();
-        return () => {
-            setCurrentEventsInfoLoaded(false);
-        }
     }, []);
 
     return(
@@ -113,8 +111,7 @@ export default function SearchingPeople(): JSX.Element {
                         </div>
                     }
                     {
-                        currentEventsInfoLoaded$ && events$.length === 0 && 
-                        <span className={s.warning}>У Вас нет событий в закладках.</span>
+                        currentEventsInfoLoaded$ && events$.length === 0 && <span className={s.warning}>У вас нет событий в закладках.</span>
                     }
                 </div>
                 <div className={s.interests}>

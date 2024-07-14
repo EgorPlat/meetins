@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handleIsCleared: () => void) => {
 
-    const [currentPageNumber, setCurrentPageNumber] = useState(1);
+    const [currentPageNumber, setCurrentPageNumber] = useState(0);
     const [arrayHeights, setArrayHeights] = useState([]);
 
     const handleScroll = () => {
@@ -10,7 +10,7 @@ export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handl
         const isScrollEnded = currentScrollPosition >= document.body.scrollHeight - 10;
         
         const isPageDoesntExists = !arrayHeights.includes(document.body.scrollHeight);
-        const isNewPageAreMoreThenMax = arrayHeights.length + 1 < maxPage || maxPage === 0;
+        const isNewPageAreMoreThenMax = arrayHeights.length < maxPage || maxPage === 0;
         
         if (isScrollEnded && isPageDoesntExists && isNewPageAreMoreThenMax) {
             setArrayHeights((lastValue) => [...lastValue, document.body.scrollHeight]);
@@ -21,7 +21,7 @@ export const useScrollDownInfo = (maxPage: number, isClearNeeded: boolean, handl
     useEffect(() => {
         if (isClearNeeded) {
             setArrayHeights(() => []);
-            setCurrentPageNumber(() => 1);
+            setCurrentPageNumber(() => 0);
             handleIsCleared();
         }
     }, [isClearNeeded]);
