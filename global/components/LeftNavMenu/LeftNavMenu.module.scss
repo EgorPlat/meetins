@@ -3,14 +3,17 @@
     justify-content: center;
     justify-content: center;
     font-size: 22px;
+    & a:hover {
+        color: var(--default-color);
+    }
     & .messangerLink {
         display: flex;
         align-items: center;
         & .count {
             min-width: 10px;
-            height: 10px;
+            min-height: 10px;
             border-radius: 50%;
-            background-color: rgba(0, 140, 255, 0.941);
+            background-color: var(--default-color);
             margin-left: 5px;
         }
     }
@@ -27,7 +30,7 @@
             height: 20px;
             padding: 5px;
             border-radius: 100px;
-            background-color: rgba(0, 140, 255, 0.941);
+            background-color: var(--default-color);
             font-size: clamp(10px, 2.5vw, 14px);
         }
     }
@@ -35,7 +38,7 @@
 .active {
     text-align:left;
     float:left;
-    border-bottom: 2px solid rgb(74, 106, 248)
+    border-bottom: 2px solid var(--default-color);
 }
 @media screen and (max-width: 1720px) {
     .ul {
@@ -58,66 +61,3 @@
         }
     }
 }
-/*@media screen and (max-width: 1000px) {
-    .ul {
-        display: flex;
-        margin: 0;
-        margin-left: 20px;
-        column-gap: 15px;
-        padding-left: 0;
-        & li {
-            display: flex;
-            align-items: center;
-            & a {
-                margin-left: 2%;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 550px) {
-    .ul {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        justify-items: center;
-        margin-left: 0;
-        column-gap: 6px;
-        font-size: 18px;
-    }
-}
-@media screen and (max-width: 500px) {
-    .ul {
-        & li {
-            font-size: 21px;
-        }
-        & .marksLink {
-            & .countMarks {
-                width: 15px;
-                height: 15px;
-            }
-        }
-    }
-}
-@media screen and (max-width: 480px) {
-    .ul {
-        font-size: 18px;
-    }
-}
-@media screen and (max-width: 400px) {
-    .ul {
-        font-size: 16px;
-    }
-}
-@media screen and (max-width: 370px) {
-    .ul {
-        font-size: 14px;
-        & .marksLink {
-            & .countMarks {
-                padding: 1px;
-                width: 18px;
-                height: 18px;
-            }
-        }
-    }
-}*/

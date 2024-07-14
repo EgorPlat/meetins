@@ -46,8 +46,11 @@
             font-size: 17px;
             padding: 10px;
             height: min-content;
+            & .title {
+                margin-bottom: 10px;
+            }
             & .matches {
-                margin-top: 10px;
+                margin-top: 20px;
                 & .title {
                     margin-bottom: 10px;
                 }

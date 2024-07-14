@@ -42,7 +42,7 @@
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
-                border: 1px solid #3DB2FF;
+                border: 1px solid var(--default-color);
                 background-color: transparent;
                 margin-right: 5%;
             }
@@ -97,7 +97,7 @@
         padding-top: 20px;
         & .showAllBtn {
             border: none;
-            background-color: #3DB2FF;
+            background-color: var(--default-color);
             border-radius: 10px;
         }
         & .users {

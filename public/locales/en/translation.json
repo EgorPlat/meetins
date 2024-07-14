@@ -98,7 +98,7 @@
     "Content filters - is a function which gives you an opportunity to activate a content selection on the site (groups, peoples, meetings and e.t.c) by using your profile settings (for example - interests, marks, activity). Enabling this function you should realise that the count of the content on the site will be decreased but the chance to find something usefull or uninterested content will be very small.",
     "Хотите добавить свою композицию?": "Whould you like to add new composition?",
     "Статистика исполнителей": "Authors statistic",
-    "Ваш вкус совпадает с другими пользователями": "Your musical flavor are matched with the other users",
+    "Ваш вкус совпадает с пользователями": "Your musical flavor are matched with users",
     "Совпадение": "Match",
     "Введите псевдоним автора": "Write an authors pseudonym",
     "Искать": "Search",

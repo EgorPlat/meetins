@@ -72,3 +72,11 @@
         width: calc(100vw - 15px);
     }
 }
+
+@media screen and (max-width: 450px) {
+    .wrapper {
+        & .title {
+            font-size: 18px;
+        }
+    }
+}

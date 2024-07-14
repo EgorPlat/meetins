@@ -66,7 +66,7 @@ export default function MusicPageView({
                 }
                 </div>
                 <div className={s.moreInfo}>
-                    {t('Статистика исполнителей')}
+                    <div className={s.title}>{t('Статистика исполнителей')}:</div>
                     <div className={s.songers}>
                         {
                             authorsStatistic?.map(el => (
@@ -79,7 +79,7 @@ export default function MusicPageView({
                         }
                     </div>
                     <div className={s.matches}>
-                        <div className={s.title}>{t('Ваш вкус совпадает с другими пользователями')}</div>
+                        <div className={s.title}>{t('Ваш вкус совпадает с пользователями')}:</div>
                         <div className={s.desk}>
                             {
                                 matchesList?.map(el => (
