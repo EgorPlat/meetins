@@ -35,13 +35,11 @@ export default function SearchingPeople(): JSX.Element {
     const currentEventsInfoLoaded$ = useStore(currentEventsInfoLoaded);
 
     const showAllPeoples = () => {
-        //fullUpdatePeoples([]);
-        //setFilterParams({ ...filterParams$, gender: 'all', age: 0, event: null });
+        setFilterParams({ ...filterParams$, gender: 'all', age: 0, event: null });
     };
 
     const updateFilters = async (param: string, data: any) => {
-        //fullUpdatePeoples([]);
-        //setFilterParams({ ...filterParams$, [param]: data });
+        setFilterParams({ ...filterParams$, [param]: data });
     };
 
     const handleIncreaseCurrentPage = () => {
@@ -51,6 +49,16 @@ export default function SearchingPeople(): JSX.Element {
     const handleUpdateCurrentPage = (newPage: number) => {
         setCurrentPageNumber(() => newPage);
     };
+
+    useEffect(() => {
+        fullUpdatePeoples([]);
+        getAllPeoplesByPageNumber({
+            pageNumber: 0,
+            pageSize: 10, 
+            filters: filterParams$
+        });
+        setCurrentPageNumber(0);
+    }, [filterParams$]);
 
     useEffect(() => {
         getAllPeoplesByPageNumber({
