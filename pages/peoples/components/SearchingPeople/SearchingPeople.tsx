@@ -1,9 +1,7 @@
 import { Slider } from "@mui/material";
 import { useStore } from "effector-react";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useScrollDownInfo } from "../../../../global/hooks/useScrollInfo";
 import { IPeople, Params } from "../../../../global/interfaces";
 import { 
     allPeoples, 
@@ -12,8 +10,7 @@ import {
     getAllPeoplesByPageNumber, 
     isPagePending, 
     maxPageOfPeople, 
-    setFilterParams, 
-    setMaxPageOfPeople
+    setFilterParams
 } from "../../../../global/store/peoples_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
@@ -21,6 +18,7 @@ import { goals } from "../../../../global/constants";
 import { $currentInterestsList } from "../../../../global/store/store";
 import { currentEventsInfoLoaded, getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
 import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+import InfinityScroll from "../../../../global/components/InfinityScroll/InfinityScroll";
 
 export default function SearchingPeople(): JSX.Element {
 
@@ -30,40 +28,44 @@ export default function SearchingPeople(): JSX.Element {
     const peoplesList$: IPeople[] = useStore(allPeoples);
     const filterParams$: Params = useStore(filterParams);
     const pending: boolean = useStore(isPagePending);
+    const [currentPageNumber, setCurrentPageNumber] = useState<number>(0);
+
     const interests$ = useStore($currentInterestsList);
     const events$ = useStore(userEvents);
     const currentEventsInfoLoaded$ = useStore(currentEventsInfoLoaded);
 
-    const [clearScrollData, setClearScrollData] = useState<boolean>(false);
-    const handleClearedScroll = () => {
-        setClearScrollData(false);
-    }
-    const scrollData = useScrollDownInfo(maxPage$, clearScrollData, handleClearedScroll);
-
     const showAllPeoples = () => {
-        setClearScrollData(true);
-        setFilterParams({ gender: 'all', age: 0, event: null });
+        //fullUpdatePeoples([]);
+        //setFilterParams({ ...filterParams$, gender: 'all', age: 0, event: null });
     };
 
     const updateFilters = async (param: string, data: any) => {
-        setFilterParams({ ...filterParams$, [param]: data });
-        fullUpdatePeoples([]);
-        setMaxPageOfPeople(0);
-        setClearScrollData(true);
+        //fullUpdatePeoples([]);
+        //setFilterParams({ ...filterParams$, [param]: data });
+    };
+
+    const handleIncreaseCurrentPage = () => {
+        setCurrentPageNumber((prevPageNumber) => prevPageNumber + 1);
+    };
+
+    const handleUpdateCurrentPage = (newPage: number) => {
+        setCurrentPageNumber(() => newPage);
     };
 
     useEffect(() => {
         getAllPeoplesByPageNumber({
-            pageNumber: scrollData === 0 ? scrollData + 1 : scrollData,
+            pageNumber: currentPageNumber,
             pageSize: 10, 
             filters: filterParams$
-        });   
-    }, [scrollData]);
+        });
+    }, [currentPageNumber]);
 
     useEffect(() => {
-        fullUpdatePeoples([]);
-        setFilterParams({ gender: 'all', age: 0, event: null });
         getUserEventsInfo();
+        return () => {
+            fullUpdatePeoples([]);
+            setFilterParams({ gender: 'all', age: 0, event: null });
+        }
     }, []);
 
     return(
@@ -132,7 +134,15 @@ export default function SearchingPeople(): JSX.Element {
             <div className={s.result}>
                 <div className={s.users}>
                     <div className={s.usersList}>
-                        {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
+                        <InfinityScroll 
+                            maxPage={maxPage$} 
+                            handleIncreaseCurrentPage={handleIncreaseCurrentPage}
+                            handleUpdateCurrentPage={handleUpdateCurrentPage}
+                        >
+                            <>
+                                {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
+                            </>
+                        </InfinityScroll>
                     </div>
                     { 
                         maxPage$ === 0 && !pending ? 
