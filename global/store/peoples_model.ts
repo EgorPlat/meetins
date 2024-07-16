@@ -23,7 +23,7 @@ export const isPeoplesLoaded = createStore<boolean>(false).on(setIsPeoplesLoaded
 
 export const setFilterParams = createEvent<Params>();
 export const filterParams = createStore<Params>({gender: "all", age: 0, event: null}).on(setFilterParams, (_, newFilterParams) => {
-    return { ...newFilterParams };
+    return newFilterParams;
 });
 
 export const setIsPagePending = createEvent<boolean>();

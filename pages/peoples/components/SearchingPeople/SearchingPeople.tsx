@@ -10,7 +10,8 @@ import {
     getAllPeoplesByPageNumber, 
     isPagePending, 
     maxPageOfPeople, 
-    setFilterParams
+    setFilterParams,
+    setMaxPageOfPeople
 } from "../../../../global/store/peoples_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
@@ -39,6 +40,8 @@ export default function SearchingPeople(): JSX.Element {
     };
 
     const updateFilters = async (param: string, data: any) => {
+        setMaxPageOfPeople(0);
+        fullUpdatePeoples([]);
         setFilterParams({ ...filterParams$, [param]: data });
     };
 
@@ -51,7 +54,15 @@ export default function SearchingPeople(): JSX.Element {
     };
 
     useEffect(() => {
-        fullUpdatePeoples([]);
+        getUserEventsInfo();
+        return () => {
+            setFilterParams({ ...filterParams$, gender: 'all', age: 0, event: null });
+            setMaxPageOfPeople(0);
+            fullUpdatePeoples([]);
+        }
+    }, []);
+
+    useEffect(() => {
         getAllPeoplesByPageNumber({
             pageNumber: 0,
             pageSize: 10, 
@@ -67,14 +78,6 @@ export default function SearchingPeople(): JSX.Element {
             filters: filterParams$
         });
     }, [currentPageNumber]);
-
-    useEffect(() => {
-        getUserEventsInfo();
-        return () => {
-            fullUpdatePeoples([]);
-            setFilterParams({ gender: 'all', age: 0, event: null });
-        }
-    }, []);
 
     return(
         <div className={s.searching}>
