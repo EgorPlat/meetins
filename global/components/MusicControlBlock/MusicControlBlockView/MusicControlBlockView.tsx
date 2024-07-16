@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { IActiveMusic } from '../../../interfaces/music';
 import s from './MusicControlBlockView.module.scss';
 
-export const MusicControlBlockView = (props: {
+export const MusicControlBlockView = (
+    { 
+        activeMusic 
+    }: {
     activeMusic: IActiveMusic,
-    audioRef: React.RefObject<HTMLAudioElement>
 }) => {
+
+    const audioRef = useRef<HTMLAudioElement>(null);
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.currentTime = activeMusic.currentTime;
+            audioRef.current.play();
+        }
+    }, [activeMusic]);
+    
     return (
         <div className={s.wrapper}>
-            <div className={s.content} style={{ backgroundImage: `url(${props.activeMusic.image})` }}>
+            <div className={s.content} style={{ backgroundImage: `url(${activeMusic.image})` }}>
                 <span className={s.status}>Играет</span>
-                <audio src={props.activeMusic.src} ref={props.audioRef} loop id="musicPageBlock" />
+                <audio src={activeMusic.src} ref={audioRef} loop id="musicPageBlock" />
             </div>
         </div>
     )

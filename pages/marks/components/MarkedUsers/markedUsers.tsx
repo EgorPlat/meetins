@@ -21,6 +21,13 @@ export default function MarkedUsers(props: {
         <div className={s.markedUsers} >
             <div className={s.list} >
                 {
+                    props.markedUsers?.length === 0 && 
+                    <div className={s.warning}>
+                        <h5 className={s.title}>У Вас нет пользователей в закладках.</h5>
+                        <div className={s.subTitle}>Чтобы добавить пользователя в закладки перейдите в профиль.</div>
+                    </div>
+                }
+                {
                     props.markedUsers?.map(el => (
                         <div className={s.markedUser} key={el.userId}>
                             <img src={baseURL + el.avatar} className={s.avatar} />

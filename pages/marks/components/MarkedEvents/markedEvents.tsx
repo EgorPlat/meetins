@@ -15,9 +15,9 @@ export default function MarkedEvents(props: {
         return (
             <div className={s.notify}>
                 <h5 className={s.title}>У вас пока нет событий в закладках.</h5>
-                <h6  className={s.subTitle}>Чтобы сохранить событие в закладках - перейдите в раздел "События", 
+                <div  className={s.subTitle}>Чтобы сохранить событие в закладках - перейдите в раздел "События", 
                     выберите категорию а затем нужное мероприятие.
-                </h6>
+                </div>
             </div>
         )
     }
