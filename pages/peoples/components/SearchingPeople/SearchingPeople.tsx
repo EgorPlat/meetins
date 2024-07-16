@@ -40,8 +40,8 @@ export default function SearchingPeople(): JSX.Element {
     };
 
     const updateFilters = async (param: string, data: any) => {
-        setMaxPageOfPeople(0);
         fullUpdatePeoples([]);
+        setMaxPageOfPeople(0);
         setFilterParams({ ...filterParams$, [param]: data });
     };
 
