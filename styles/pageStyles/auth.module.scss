@@ -1,24 +1,19 @@
 .cardWrapper {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	width: 100%;
 	display: grid;
 	align-items: center;
 	justify-content: center;
 	justify-items: center;
 	& .card {
 		font-family: Nunito;
-	
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-template-columns: 1fr;
+		justify-items: center;
 		align-items: center;
-	
 		background: rgba(0, 0, 0, 0.6);
 		border-radius: 16px;
 		width: 550px;
-	
-		padding: 18px 90px 90px 90px;
-	
+		margin-top: 10px;
+		margin-bottom: 10px;
 		& h1 {
 			color: #ffffff;
 			font-size: 36px;
@@ -38,6 +33,7 @@
 		}
 		& a {
 			color: white;
+			margin-bottom: 90px;
 		}
 		& a:hover {
 			color: rgb(75, 125, 235);
@@ -93,6 +89,8 @@
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+	word-break: break-all;
+	max-width: 300px;
 	margin-left: 15px;
 }
 .errorBlock {
@@ -131,6 +129,14 @@
 	.cardWrapper {
 		& .card {
 			width: 360px;
+		}
+	}
+}
+
+@media screen  and (max-width: 360px){
+	.cardWrapper {
+		& .card {
+			width: 340px;
 		}
 	}
 }
