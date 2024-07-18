@@ -1,10 +1,12 @@
 .content {
     & .types {
         & button {
-            margin-right: 10px;
+            margin-left: 10px;
             border: none;
             background-color: transparent;
             outline: none;
+            font-size: 20px;
+            margin-bottom: 10px;
         }
         & button:hover {
             border-bottom: 2px solid var(--default-color);

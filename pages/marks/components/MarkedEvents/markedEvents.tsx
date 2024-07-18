@@ -1,17 +1,13 @@
 import React from "react";
 import MarkedEventInfo from "./MarkedEventInfo/markedEventInfo";
 import s from "./markedEvents.module.scss";
-import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
-import { User } from "../../../../global/interfaces";
+import { IShortEventInfo } from "../../../../global/interfaces/events";
 
 export default function MarkedEvents(props: {
-    user: User
+    markedEvents: IShortEventInfo[]
 }): JSX.Element {
     
-    if (props.user === null) {
-        return <CustomLoader />
-    }
-    if (props.user && props.user?.events.length === 0) {
+    if (props.markedEvents.length === 0) {
         return (
             <div className={s.notify}>
                 <h5 className={s.title}>У вас пока нет событий в закладках.</h5>
@@ -21,10 +17,10 @@ export default function MarkedEvents(props: {
             </div>
         )
     }
-    if (props.user) {
+    if (props.markedEvents) {
         return(
             <div className={s.markedEvents}>            
-                { props.user?.events.map(event => <MarkedEventInfo eventId={event} key={event} />) }
+                { props.markedEvents?.map(event => <MarkedEventInfo event={event} key={event.id} />) }
             </div>
         )
     } else {

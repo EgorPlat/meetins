@@ -5,16 +5,19 @@ import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MarkedEvents from "./components/MarkedEvents/markedEvents";
 import MarkedUsers from "./components/MarkedUsers/markedUsers";
 import s from "./marks.module.scss";
+import { getUserEventsInfo, userEvents } from "../../global/store/events_model";
 
 export default function Marks(): JSX.Element {
 
     const [currentMark, setCurrentMark] = useState<string>('events');
     const user$ = useStore($user);
     const markedUsersInfo$ = useStore($markedUsersInfo);
+    const markedEventsInfo$ = useStore(userEvents);
 
     useEffect(() => {
         getMarkedUsersInfo();
-    }, []);
+        getUserEventsInfo();
+    }, [user$]);
 
     return(
         <PageContainer>
@@ -30,7 +33,7 @@ export default function Marks(): JSX.Element {
                 </button>
             </div>
             <div className={s.result}>
-                { currentMark === 'events' && <MarkedEvents user={user$} /> }
+                { currentMark === 'events' && <MarkedEvents markedEvents={markedEventsInfo$} /> }
                 { currentMark === 'peoples' && <MarkedUsers markedUsers={markedUsersInfo$} /> }
             </div>
             </div>
