@@ -7,7 +7,7 @@ export default function MarkedEvents(props: {
     markedEvents: IShortEventInfo[]
 }): JSX.Element {
     
-    if (props.markedEvents.length === 0) {
+    if (props.markedEvents?.length === 0) {
         return (
             <div className={s.notify}>
                 <h5 className={s.title}>У вас пока нет событий в закладках.</h5>
