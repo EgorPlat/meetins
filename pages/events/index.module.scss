@@ -11,4 +11,9 @@
         text-align: center;
     }
 }
+@media screen and (max-width: 600px) {
+    .mainContent {
+        grid-template-columns: 1fr;
+    }
+}
 
