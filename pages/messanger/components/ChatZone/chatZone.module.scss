@@ -52,6 +52,11 @@
                 color: rgb(100, 100, 255);
                 font-size: 18px;
             }
+            & .moreActions {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
         }
     }
     & .messages {

@@ -107,12 +107,14 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                         <div className={isUserOnline ? s.statusOnline : s.status}>
                             {isUserOnline ? t('В сети') : t('Не в сети')}
                         </div>
-                        <CustomEditMenu 
-                            data={[
-                                { menuTitle: "Профиль", menuFunction: () => handleGoToProfile(activeChat$.userLogin) },
-                                { menuTitle: "Назад", menuFunction: handleBack }
-                            ]}
-                        />
+                        <div className={s.moreActions}>
+                            <CustomEditMenu 
+                                data={[
+                                    { menuTitle: "Профиль", menuFunction: () => handleGoToProfile(activeChat$.userLogin) },
+                                    { menuTitle: "Назад", menuFunction: handleBack }
+                                ]}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className={`${s.messages} ${s.block}`}>
