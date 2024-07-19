@@ -1,15 +1,15 @@
 .hintBackground {
-    & .bluredBlock {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        z-index: 997;
-        background-color: rgba(33, 33, 33, 0.845);
-    }
     & .hintWrapper {
         display: flex;
         font-size: 24px;
+        & .bluredBlock {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            z-index: 997;
+            background-color: rgba(33, 33, 33, 0.845);
+        }
         & button {
             outline: none;
             border-radius: 100px;

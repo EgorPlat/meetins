@@ -4,6 +4,7 @@ import { IMeeting } from "../../../../../global/interfaces/meetings";
 import { baseURL, isMobile } from "../../../../../global/store/store";
 import s from "./MeetingWrapper.module.scss";
 import CustomTimer from "../../../../../components-ui/CustomTimer/CustomTimer";
+import Link from "next/link";
 
 export default function MeetingWrapper(props: {
     meeting: IMeeting,
@@ -12,6 +13,7 @@ export default function MeetingWrapper(props: {
 
     const isMobile$ = useStore(isMobile);
     const isMeetingEnded = new Date(props.meeting?.date) <= new Date();
+    const meetingCreator = props.meeting?.participants[0];
 
     if (isMobile$) {
         return (
@@ -28,10 +30,14 @@ export default function MeetingWrapper(props: {
                     </div>
                     </div>
                     <div className={s.meetingCreator}>
-                        Организатор встречи: {props.meeting?.participants[0].name}
+                        <span>Организатор: </span>
+                        <img src={baseURL + meetingCreator.avatar} width="25px" height="25px" />
+                        <Link href={`/profile/${meetingCreator.login}`}>
+                            {meetingCreator.name}
+                        </Link>
                     </div>
                     <div className={s.meetingDate}>
-                        <span>Планируемая дата встречи:  </span>
+                        <span>Дата проведения: </span>
                         <span className={s.dateTime}> 
                             {
                                 customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))
@@ -75,14 +81,18 @@ export default function MeetingWrapper(props: {
                 </div>
                 <div className={s.meetingDescription}>
                     <div className={s.meetingTitle}>
-                        <div>Заголовок встречи: {props.meeting?.title},</div>
+                        <div>{props.meeting?.title}</div>
                         <div className={s.date}>{props.meeting?.address}</div>
                     </div>
                     <div className={s.meetingCreator}>
-                        Организатор встречи: {props.meeting?.participants[0].name}
+                        <span>Организатор: </span>
+                        <img src={baseURL + meetingCreator.avatar} width="25px" height="25px" />
+                        <Link href={`/profile/${meetingCreator.login}`}>
+                            {meetingCreator.name}
+                        </Link>
                     </div>
                     <div className={s.meetingDate}>
-                        Планируемая дата встречи: 
+                        Дата проведения: 
                         <span className={s.dateTime}> {customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))}</span>
                     </div>
                     <div className={s.meetingTimer}>

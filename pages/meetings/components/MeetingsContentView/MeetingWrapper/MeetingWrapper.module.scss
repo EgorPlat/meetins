@@ -17,7 +17,7 @@
         font-size: 18px;
         display: flex;
         flex-direction: column;
-        row-gap: 5px;
+        row-gap: 10px;
         & .meetingTitle {
             display: flex;
             column-gap: 5px;
@@ -37,13 +37,22 @@
             }
         }
         & .meetingCreator {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
             font-size: 15px;
+            & img {
+                border-radius: 50%;
+            }
+            & a {
+                text-decoration: underline;
+            }
+            & a:hover {
+                color: var(--default-color);
+            }
         }
         & .meetingDate {
             font-size: 15px;
-            & .dateTime {
-                color: gray;
-            }
         }
         & .meetingGoal {
             font-size: 15px;

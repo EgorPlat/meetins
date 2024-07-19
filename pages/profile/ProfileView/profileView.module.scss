@@ -24,6 +24,11 @@
         position: relative;
         display: grid;
         grid-template-columns: 30% 70%;
+        & .moreActions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
         & .bodyInfo {
             & .avatar {
                 border-radius: 50%; /* Радиус скругления */

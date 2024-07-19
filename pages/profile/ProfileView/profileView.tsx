@@ -65,16 +65,18 @@ export default function ProfileView(props: {
                 <div className={`${s.bodyCol}`}>
 
                     <div className={`${s.block} ${s.mainBlock}`}>
-                        {
-                            activeUser.login !== props.authedUser.login &&
-                            <CustomEditMenu
-                                data={[
-                                    { menuTitle: "Пометить важным", menuFunction: () => props.handleAddUserIntoMarked() },
-                                    { menuTitle: "Не получать уведомления", menuFunction: () => console.log(2) },
-                                    { menuTitle: "Посмотреть статистику", menuFunction: () => console.log(3) }
-                                ]}
-                            />
-                        }
+                        <div className={s.moreActions}>
+                            {
+                                activeUser.login !== props.authedUser.login &&
+                                <CustomEditMenu
+                                    data={[
+                                        { menuTitle: "Пометить важным", menuFunction: () => props.handleAddUserIntoMarked() },
+                                        { menuTitle: "Не получать уведомления", menuFunction: () => console.log(2) },
+                                        { menuTitle: "Посмотреть статистику", menuFunction: () => console.log(3) }
+                                    ]}
+                                />
+                            }
+                        </div>
                         <div className={`${s.bodyInfo}`}>
                             {
                                 !props.addingImageStatus && activeUser.avatar ?

@@ -17,17 +17,20 @@ export default function CustomEditMenu(props: {
             <div className={s.round}></div>
             {
                 isContent &&
-                <div className={s.content}>
-                    {
-                        props.data.map(el => (
-                            <div
-                                key={el.menuTitle} 
-                                onClick={el.menuFunction}
-                                className={s.menuElement}
-                            >{el.menuTitle}</div>
-                        ))
-                    }
-                </div>
+                <>
+                    <div className={s.contentWrapper}></div>
+                    <div className={s.content}>
+                        {
+                            props.data.map(el => (
+                                <div
+                                    key={el.menuTitle} 
+                                    onClick={el.menuFunction}
+                                    className={s.menuElement}
+                                >{el.menuTitle}</div>
+                            ))
+                        }
+                    </div>
+                </>
             }
         </div>
     )
