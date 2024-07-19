@@ -31,7 +31,7 @@ export default function MeetingWrapper(props: {
                     </div>
                     <div className={s.meetingCreator}>
                         <span>Организатор: </span>
-                        <img src={baseURL + meetingCreator.avatar} width="25px" height="25px" />
+                        <img src={baseURL + meetingCreator?.avatar} width="25px" height="25px" />
                         <Link href={`/profile/${meetingCreator.login}`}>
                             {meetingCreator.name}
                         </Link>
@@ -86,7 +86,7 @@ export default function MeetingWrapper(props: {
                     </div>
                     <div className={s.meetingCreator}>
                         <span>Организатор: </span>
-                        <img src={baseURL + meetingCreator.avatar} width="25px" height="25px" />
+                        <img src={baseURL + meetingCreator?.avatar} width="25px" height="25px" />
                         <Link href={`/profile/${meetingCreator.login}`}>
                             {meetingCreator.name}
                         </Link>
