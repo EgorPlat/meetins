@@ -11,11 +11,7 @@ export default function GroupsListView (props: {
     return (
         <div className={s.groupsListView}>
             <div className={s.groupsFilters}>
-                <div className={s.title}>
-                    Сообщества подобраны исходя из настроек Вашего профиля и интересов.
-                </div>
                 <span className={s.option} onClick={props.handleCrateNewGroup}>Создать сообщество</span>
-                <span className={s.option}>Мои Сообщества</span>
             </div>
             <div className={s.groupsContent}>
                 <div className={s.list}>
@@ -30,17 +26,18 @@ export default function GroupsListView (props: {
                                 <div className={s.info}>
                                     <div className={s.name}>{el.name}</div>
                                     <div className={s.type}>Рисование, искусство, живопись</div>
-                                    <div className={s.followers}>Участников: 
-                                        <span style={{color: 'gray'}}> {el.membersId.length}</span>
+                                    <div className={s.followers}> 
+                                        <span>Участников: {el.membersId.length}</span>
+                                        <div className={s.actions}>
+                                            <button
+                                                onClick={() => props.handleJoinToGroup(el)}    
+                                            >Присоединиться</button>
+                                            |
+                                            <button
+                                                onClick={() => props.handleGoToCheckGroup(el.groupId)} 
+                                            >Перейти</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={s.actions}>
-                                    <button
-                                        onClick={() => props.handleJoinToGroup(el)}    
-                                    >Присоединиться</button>
-                                    <button
-                                        onClick={() => props.handleGoToCheckGroup(el.groupId)} 
-                                    >Перейти</button>
                                 </div>
                             </div>
                         ))
