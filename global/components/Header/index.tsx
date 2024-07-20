@@ -4,10 +4,11 @@ import logo from '../../../public/images/logo-l.svg'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'
-import { $currentPage, isMobile } from '../../../global/store/store'
+import { $currentPage, isMobile } from '../../store/store'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Header(): JSX.Element {
+	
 	const currentPage = useStore($currentPage);
 	const router = useRouter();
 	const isMobile$ = useStore(isMobile);
@@ -20,12 +21,10 @@ export default function Header(): JSX.Element {
 	} else if (currentPage === '/profile') {
 		headerBgClass = s.headerProfilePage
 	}
-	const logOut = () => {
-		//window.location.reload();
-	}
+
 	return (   
 		<div className={`${s.header} ${headerBgClass}`}>
-			<div className={s.logo} onClick={logOut}>
+			<div className={s.logo}>
 				<Image  
 					className={s.logoImage}
 					src={logo}

@@ -7,6 +7,8 @@ import LeftNavMenu from '../LeftNavMenu/LeftNavMenu';
 import logo from '../../../public/images/logo.svg'
 import Image from 'next/image';
 import { handleLogOut } from '../../store/login_model';
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function MobileNavMenu() {
 
@@ -21,11 +23,11 @@ export default function MobileNavMenu() {
     };
 
     const handleLogOutClick = () => {
-        handleLogOut()
+        handleLogOut();
     }
     return (
         <div className={s.mobileMenu}>
-            <MdOutlineReadMore className={s.mobileMenuIcon} fontSize={42} onClick={() => setIsOpened(true)} />
+            <RxHamburgerMenu className={s.mobileMenuIcon} fontSize={42} onClick={() => setIsOpened(true)} />
             {
                 isOpened &&
                 <div className={s.mobileMenuWrapper} onClick={handleCloseMenu}>
