@@ -1,13 +1,11 @@
-import Link from 'next/link';
 import s from './MobileNavMenu.module.scss';
-import { MdExitToApp, MdOutlineReadMore } from 'react-icons/md';
+import { MdExitToApp } from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import { setIsScrollPageBlocked } from '../../store/store';
 import LeftNavMenu from '../LeftNavMenu/LeftNavMenu';
 import logo from '../../../public/images/logo.svg'
 import Image from 'next/image';
 import { handleLogOut } from '../../store/login_model';
-import { GiHamburgerMenu } from "react-icons/gi";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function MobileNavMenu() {
