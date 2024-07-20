@@ -128,6 +128,8 @@ export default function Login(): JSX.Element {
 						style={{ marginTop: '25px' }}
 						register={register('pass', {
 							required: true,
+							validate: (value) =>
+								value.length >= 6 && value.length <= 12
 						})}>
 						<EyeIcon
 							onClick={() => {
@@ -139,7 +141,7 @@ export default function Login(): JSX.Element {
 						/>
 					</Input>
 					{errors.pass && (
-						<span className={s.errorSpan}>{t('Введите пароль от 1 до 16 символов')}</span>
+						<span className={s.errorSpan}>{t('Введите пароль от 6 до 12 символов')}</span>
 					)}
 
 					<Input
