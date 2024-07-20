@@ -13,7 +13,7 @@ export default function Tariffs({ tarrifs }) {
     )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const response = await fetch(baseURL + 'tariffs/getTariffsInfo');
     const tarrifs = await response.json();
     return {

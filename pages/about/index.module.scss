@@ -1,0 +1,113 @@
+@keyframes smoothShowUpFromLeft {
+    from {
+        opacity: 0;
+        left: -200px;
+    }
+    to {
+        opacity: 1;
+        left: 0;
+    } 
+}
+
+@keyframes smoothShowUpFromRight {
+    from {
+        opacity: 0;
+        right: -200px;
+    }
+    to {
+        opacity: 1;
+        right: 0;
+    } 
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    width: 65%;
+    margin-top: 50px;
+    & .aboutBlock {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 350px calc(100% - 370px);
+        column-gap: 20px;
+        & .aboutBlockImage {
+            position: relative;
+            animation: smoothShowUpFromLeft 2s forwards;
+            & .aboutBlockImageContent {
+                width: 350px;
+                height: 250px;
+                border-radius: 2px;
+            }
+        }
+        & .aboutBlockText {
+            position: relative;
+            animation: smoothShowUpFromRight 3s forwards;
+            text-align: justify;
+            display: grid;
+            align-items: center;
+        }
+    }
+    & .contactsBlock {
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+        & .contactsBlockTitle {
+            text-align: center;
+            font-size: 24px;
+        }
+        & .contactsBlockLinks {
+            display: flex;
+            column-gap: 30px;
+            font-size: 48px;
+            margin-top: 10px;
+            & .contactsBlockLinksEach {
+                min-width: 100px;
+                display: grid;
+                justify-content: center;
+                justify-items: center;
+                & a {
+                    font-size: 20px;
+                }
+                & a:hover {
+                    color: var(--default-color);
+                }
+            }
+        }
+    }
+}
+
+@media screen and(max-width: 1060px) {
+    .about {
+        width: 98%;
+    }
+}
+
+@media screen and(max-width: 760px) {
+    .about {
+        margin-top: 20px;
+        width: 90%;
+        row-gap: 20px;
+        & .aboutBlock {
+            grid-template-columns: 1fr;
+            row-gap: 20px;
+            & .aboutBlockImage {
+                & .aboutBlockImageContent {
+                    width: 100%;
+                    height: 250px;
+                    border-radius: 2px;
+                }
+            }
+            & .aboutBlockText {
+                & .aboutBlockTextParagraph {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        & .contactsBlock {
+            & .contactsBlockTitle {
+                font-size: 20px;
+            }
+        }
+    }
+}
