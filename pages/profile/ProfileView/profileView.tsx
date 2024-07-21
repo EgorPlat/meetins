@@ -18,8 +18,12 @@ import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import Input from '../../../components-ui/Input/Input';
 import EditUserTag from '../../../global/forms/EditUsetTag/Index';
 import Head from 'next/head';
+import DragAndDropList from '../../../global/components/DragAndDropList/dragAndDropList';
 
 // test 
+function Component (props: { value: string }) {
+    return <div style={{backgroundColor: "gray", borderRadius: "5px", padding: "5px", marginTop: "5px"}}>{props.value}</div>
+}
 
 export default function ProfileView(props: {
     asyncLoaded: boolean,
@@ -101,7 +105,6 @@ export default function ProfileView(props: {
                                         className={s.userTag}
                                         style={{
                                             backgroundColor: `${activeUser.tag?.color}`,
-                                            //boxShadow: `0px 0px 10px 5px ${activeUser.tag?.color}`
                                         }}
                                     >{activeUser.tag?.title}</div>
                                 </div>

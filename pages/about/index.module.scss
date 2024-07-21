@@ -92,6 +92,7 @@
             grid-template-columns: 1fr;
             row-gap: 20px;
             & .aboutBlockImage {
+                animation: none;
                 & .aboutBlockImageContent {
                     width: 100%;
                     height: 250px;
@@ -99,6 +100,7 @@
                 }
             }
             & .aboutBlockText {
+                animation: none;
                 & .aboutBlockTextParagraph {
                     margin-bottom: 20px;
                 }
