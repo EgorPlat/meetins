@@ -1,5 +1,5 @@
-import { IMyActiveDialogMessage, IMyDialog, User } from "../interfaces";
-import { EnchancedFiles, IGroup, IGroupFile, IGroupPostEnchancedFiles } from "../interfaces/groups";
+import { IMyActiveDialogMessage, User } from "../interfaces";
+import { IGroup } from "../interfaces/groups";
 
 export default function calculateCountOfUnredMessageInDialog (messages: IMyActiveDialogMessage[], authedUser: User) {
     if (!messages) return;

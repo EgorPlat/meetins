@@ -12,7 +12,8 @@ export default function AddNewMeetingForm(): JSX.Element {
     
     const onChangeMeeting = (data: ICreateMeeting) => {
         handleCreateNewMeeting(data);
-    }
+    };
+    
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeMeeting)}>

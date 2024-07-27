@@ -1,6 +1,4 @@
-import { customizeDateToYYYYMMDDHHMMFormat } from '../../../../../global/helpers/helper';
 import { IMeeting } from '../../../../../global/interfaces/meetings';
-import { baseURL } from '../../../../../global/store/store';
 import MeetingWrapper from '../MeetingWrapper/MeetingWrapper';
 import s from './CompletedMeetings.module.scss';
 
@@ -12,7 +10,7 @@ export default function CompletedMeetings(props: {
         return (
             <div className={s.completedMeetings}>
                 <div className={s.title}>
-                    Здесь видна история встреч на которых Вы были:
+                    Здесь видна история встреч на которых Вы были
                 </div>
                 <div className={s.meetingsList}>
                     {

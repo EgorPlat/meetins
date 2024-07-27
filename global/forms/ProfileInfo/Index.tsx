@@ -18,7 +18,8 @@ export default function ProfileInfoForm(): JSX.Element {
     
     const onChangeProfile = (data: {name: string, birthDate: string, phoneNumber: string}) => {
         updateUserProfileData(data); 
-    }
+    };
+    
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeProfile)}>

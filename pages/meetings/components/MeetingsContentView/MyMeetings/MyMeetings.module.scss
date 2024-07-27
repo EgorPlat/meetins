@@ -1,6 +1,8 @@
 .myMeetings {
     & .title {
         display: flex;
+        text-align: center;
+        width: 98%;
         align-items: center;
         column-gap: 10px;
         font-size: 14px;

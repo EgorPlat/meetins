@@ -36,9 +36,13 @@
         min-width: 150px;
         height: 40px;
         border-radius: 5px;
-        background-color: rgb(76, 174, 255);
+        background-color: var(--default-color);
         color: white;
         padding: 5px;
+    }
+    & button:hover {
+        background-color: orange;
+        color: black;
     }
     & span {
         color: red;

@@ -1,11 +1,9 @@
-@keyframes ShowUpModal {
+@keyframes showUpModal {
     from {
-        margin-top: -100px;
-        opacity: 0;
+        transform: scale(0.5);
     }
     to {
-        margin-top: 0px;
-        opacity: 1;
+        transform: scale(1);
     }
 }
 .customModal {
@@ -21,10 +19,13 @@
     justify-content: center;
     font-family: Nunito;
     & .customModalContent {
+        //animation-duration: 0.3s;
+        //animation-name: showUpModal;
+        //animation-iteration-count: 1;
+        //animation-direction: alternate;
         font-size: 24px;
         padding: 20px;
         border-radius: 5px;
-        width: 600px;
         max-height: 600px;
         & .customModalTitle {
             display: grid;
@@ -40,7 +41,7 @@
                 font-size: 15px;
                 width: 25px;
                 height: 25px;
-                background-color: rgba(0, 166, 255, 0.9);
+                background-color: var(--default-color);
                 border-radius: 50%;
                 font-weight: 600;
                 border: none;
@@ -55,6 +56,7 @@
         & .customModalChildrenContent {
             max-height: 420px;
             width: 100%;
+            padding-right: 10px;
             overflow-y: scroll;
             overflow-x: hidden;
         }
@@ -72,12 +74,20 @@
         & .confirmBtn {
             width: 110px;
             min-height: 30px;
-            background-color: rgb(15, 129, 223);
+            background-color: var(--default-color);
+        }
+        & .confirmBtn:hover {
+            background-color: rgb(255, 171, 35);
+            color: black;
         }
         & .cancelBtn {
             width: 110px;
             min-height: 30px;
             background-color: rgb(65, 65, 65);
+        }
+        & .cancelBtn:hover {
+            background-color: rgb(255, 171, 35);
+            color: black;
         }
     }
 }

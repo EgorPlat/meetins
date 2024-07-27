@@ -3,11 +3,13 @@
     row-gap: 10px;
     & .steps {
         display: flex;
-        column-gap: 5px;
+        column-gap: 10px;
         & .commonStep {
+            text-align: center;
             border-bottom: 1px solid transparent;
         }
         & .activeStep {
+            text-align: center;
             border-bottom: 1px solid var(--default-color);
         }
         & .commonStep:hover, & .activeStep:hover {
@@ -16,6 +18,7 @@
         }
     }
     & .activeStepContent {
+        margin-top: 10px;
         min-height: 380px;
     }
 }

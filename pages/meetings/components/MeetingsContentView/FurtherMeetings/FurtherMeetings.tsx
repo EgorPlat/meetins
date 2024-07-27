@@ -1,7 +1,5 @@
 import { IMeeting } from '../../../../../global/interfaces/meetings';
-import { baseURL } from '../../../../../global/store/store';
 import s from './FurtherMeetings.module.scss';
-import { customizeDateToYYYYMMDDHHMMFormat } from '../../../../../global/helpers/helper';
 import MeetingWrapper from '../MeetingWrapper/MeetingWrapper';
 
 export default function FurtherMeetings(props: {
@@ -12,7 +10,7 @@ export default function FurtherMeetings(props: {
         return (
             <div className={s.completedMeetings}>
                 <div className={s.title}>
-                    Здесь видна история встреч на которых Вы были:
+                    Здесь видны активные встречи, на которые можно записаться
                 </div>
                 <div className={s.meetingsList}>
                     {

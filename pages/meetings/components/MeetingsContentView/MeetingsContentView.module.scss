@@ -1,0 +1,10 @@
+.meetingsContentView {
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 1500px) {
+    .meetingsContentView {
+        font-size: 16px;
+    }
+}

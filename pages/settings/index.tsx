@@ -12,18 +12,17 @@ import ManageAccountForm from "../../global/forms/ManageAccount/Index";
 import ru from '../../public/images/ru.png';
 import us from '../../public/images/us.png';
 import Image from "next/image";
-import Modal from "../../components-ui/Modal/Modal";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
 import TurnOffOn from "../../components-ui/TurnOffOn/TurnOffOn";
 import ButtonWithHint from "../../components-ui/Hint/buttonWithHint";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import s from "./settings.module.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CustomModal from "../../components-ui/CustomModal/CustomModal";
 
 export default function Settings(): JSX.Element {
 
     const isLoad = useStore(isUserLoaded);
-    const router = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const { t, i18n } = useTranslation();
     const user$ = useStore($user);
@@ -52,13 +51,6 @@ export default function Settings(): JSX.Element {
     };
 
     const deleteAccount = (status: boolean) => {
-        /*deleteUserAccount().then((response) => {
-            if(response.status === 200) {
-                localStorage.removeItem('access-token');
-                localStorage.removeItem('refrash-token');
-                router.push('/login');
-            }
-        })*/
         setIsModal(() => false);
     };
 
@@ -129,9 +121,15 @@ export default function Settings(): JSX.Element {
                             <button className={s.deleteBtn} onClick={() => changeModal(true)}>{t("Удалить аккаунт")}</button>
                         </div>
                     </div>
-                <Modal isDisplay={isModal} changeModal={changeModal} actionConfirmed={deleteAccount}>
+                <CustomModal
+                    title="Удаление аккаунта" 
+                    isDisplay={isModal} 
+                    changeModal={changeModal}
+                    actionConfirmed={deleteAccount}
+                    typeOfActions="default"
+                >
                     <h6>{t('Подвердите действие - Удаление аккаунта')}.</h6>
-                </Modal>
+                </CustomModal>
             </div>
         </PageContainer>
     ) 
