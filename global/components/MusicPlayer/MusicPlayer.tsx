@@ -7,7 +7,6 @@ import { baseURL } from '../../store/store';
 import { useEffect, useRef, useState } from 'react';
 import { setActiveMusic, setActiveMusicId, setIsMusicNeededOnBackground } from '../../store/music_model';
 import { useRouter } from 'next/router';
-import { GiHandBandage } from 'react-icons/gi';
 
 export const MusicPlayer = (props: {
     musicInfo: IMusic,
@@ -19,7 +18,6 @@ export const MusicPlayer = (props: {
     const [musicTimeData, setMusicTimeData] = useState<{ currentTime: number, duration: number }>({ currentTime: 0, duration: 0 });
     const musicFullTimer = getTimerFromSeconds(+musicTimeData?.duration);
     const audioRef = useRef<HTMLAudioElement>();
-    const router = useRouter();
 
     const handleTimeUpdate = (audio) => {
         if (audioRef.current) {

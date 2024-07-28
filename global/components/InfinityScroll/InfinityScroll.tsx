@@ -1,4 +1,4 @@
-import { ReactChild, ReactChildren, useEffect, useRef, useState } from 'react';
+import { ReactChild, useEffect, useRef } from 'react';
 import s from './InfinityScroll.module.scss';
 
 interface IInfinityScrollProps {
