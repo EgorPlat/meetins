@@ -14,8 +14,9 @@ import CustomEditMenu from '../../../components-ui/CustomEditMenu/CustomEditMenu
 import InputFile from '../../../components-ui/InputFile/InputFile';
 import Loader from '../../../components-ui/Loader/Loader';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
-import EditUserTag from '../../../global/forms/EditUsetTag/Index';
+import EditUserTag from '../../../global/forms/EditUserTag/Index';
 import Head from 'next/head';
+import { MdEdit } from 'react-icons/md';
 
 export default function ProfileView(props: {
     asyncLoaded: boolean,
@@ -33,14 +34,13 @@ export default function ProfileView(props: {
     handleStartDialog: () => void,
     setIsInviteModal: (status: boolean) => void,
     setIsAddPostModal: (status: boolean) => void,
-    setIsEditTagOpen: (status: boolean) => void,
+    handleSwapEditTag: (status: boolean) => void,
     setChoosedEventForInvite: (eventId: number) => void,
     onAddingModalClick: (status: boolean) => void,
     handleSendInvite: () => void,
     handleAddUserIntoMarked: () => void,
-    handleOpenEditTag: () => void
 }) {
-    
+
     const { t } = useTranslation();
     const activeUser = props.authedUser?.userId === props.currentUser?.userId ? props.currentUser : props.currentUser;
     
@@ -93,12 +93,20 @@ export default function ProfileView(props: {
                                 <div className={`${s.userName}`}>
                                     {activeUser.name + ', ' + activeUser.age}
                                     <div
-                                        onClick={props.handleOpenEditTag}
+                                        onClick={() => props.handleSwapEditTag(true)}
                                         className={s.userTag}
                                         style={{
                                             backgroundColor: `${activeUser.tag?.color}`,
                                         }}
-                                    >{activeUser.tag?.title}</div>
+                                    >
+                                        {activeUser.tag?.title}
+                                        {
+                                            activeUser.login === props.authedUser.login && 
+                                            <MdEdit 
+                                                fontSize={18}
+                                            />
+                                        }
+                                    </div>
                                 </div>
                                 <div className={s.town}>
                                     г. {activeUser.city}
@@ -114,7 +122,8 @@ export default function ProfileView(props: {
                                     {getDateInDMYFormat(activeUser.dateRegister)}
                                 </div>
                                 <div className={s.userStatus}>
-                                    {t('статус')}: <span className={s.title}>{props.isCurrentUserOnline ? "В сети" : "Не в сети"}</span>
+                                    {t('статус')}: 
+                                    <span className={s.title}> {props.isCurrentUserOnline ? "В сети" : "Не в сети"}</span>
                                 </div>
                                 <div className={s.vied}>
                                     {t('за последние 24 часа профиль просмотрен')}:
@@ -124,10 +133,18 @@ export default function ProfileView(props: {
                             { 
                                 activeUser.login !== props.authedUser.login ?
                                 <div className={`${s.actions}`}>
-                                    <button type="button" className={`${s.actionsBtn}`} onClick={props.handleStartDialog}>
+                                    <button 
+                                        type="button" 
+                                        className={`${s.actionsBtn}`} 
+                                        onClick={props.handleStartDialog}
+                                    >
                                         {t('Диалог')}
                                     </button>
-                                    <button type="button" className={`${s.actionsBtn}`} onClick={() => props.setIsInviteModal(true)}>
+                                    <button 
+                                        type="button" 
+                                        className={`${s.actionsBtn}`} 
+                                        onClick={() => props.setIsInviteModal(true)}
+                                    >
                                         {t('Пригласить')}
                                     </button>
                                 </div> : null
@@ -183,8 +200,8 @@ export default function ProfileView(props: {
             </CustomModal>
             <CustomModal 
                 isDisplay={props.isEditTagOpen} 
-                changeModal={props.setIsEditTagOpen} 
-                actionConfirmed={props.setIsEditTagOpen}
+                changeModal={props.handleSwapEditTag} 
+                actionConfirmed={props.handleSwapEditTag}
                 title={t('Настройте Ваш тэг')}
                 typeOfActions="none"
             >

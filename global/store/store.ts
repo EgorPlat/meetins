@@ -252,6 +252,15 @@ sample({
 })
 
 sample({
+	clock: [updateUserTag.doneData],
+	filter: (res) => res.status <= 217,
+	fn: () => {
+		return { time: 3000, color: "green", textColor: "white", text: "Изменения вступят после перезахода в профиль." }
+	},
+	target: addNotification
+})
+
+sample({
 	clock: [getMarkedUsersInfo.doneData, removeUserFromMarkedList.doneData],
 	filter: (res) => res.status <= 217,
 	fn: (res) => res.data,

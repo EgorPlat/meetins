@@ -88,8 +88,8 @@ function Profile(): JSX.Element {
         }
     };
 
-    const handleOpenEditTag = () => {
-        if (authedUser.userId === currentUser.userId) setIsEditTagOpen(true);
+    const handleSwapEditTag = (status: boolean) => {
+        if (authedUser.userId === currentUser.userId) setIsEditTagOpen(status);
     }
 
     useEffect(() => {
@@ -125,14 +125,13 @@ function Profile(): JSX.Element {
                     setChoosedEventForInvite={setChoosedEventForInvite}
                     setIsAddPostModal={setIsAddPostModal}
                     setIsInviteModal={setIsInviteModal}
-                    setIsEditTagOpen={setIsEditTagOpen}
+                    handleSwapEditTag={handleSwapEditTag}
                     handleStartDialog={handleStartDialog}
                     onChangeInputImage={onChangeInputImage}
                     handleSaveNewStatus={handleSaveNewStatus}
                     changeAddingImageStatus={changeAddingImageStatus}
                     onAddingModalClick={onAddingModalClick}
                     handleAddUserIntoMarked={handleAddUserIntoMarked}
-                    handleOpenEditTag={handleOpenEditTag}
                     currentUserPlaces={currentUserPlaces}
                     isCurrentUserOnline={isCurrentUserOnline}
                 />

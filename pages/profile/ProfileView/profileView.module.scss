@@ -69,7 +69,9 @@
                 align-items: center;
                 font-size: 36px;
                 & .userTag {
-                    border-width: 90%;
+                    display: flex;
+                    column-gap: 5px;
+                    align-items: center;
                     cursor: pointer;
                     color: black;
                     border-radius: 50px;
