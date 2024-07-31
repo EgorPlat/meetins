@@ -25,7 +25,7 @@ export default function MobileNavMenu() {
     }
     return (
         <div className={s.mobileMenu}>
-            <RxHamburgerMenu className={s.mobileMenuIcon} fontSize={42} onClick={() => setIsOpened(true)} />
+            <RxHamburgerMenu className={s.mobileMenuIcon} fontSize={36} onClick={() => setIsOpened(true)} />
             {
                 isOpened &&
                 <div className={s.mobileMenuWrapper} onClick={handleCloseMenu}>

@@ -17,7 +17,6 @@
         padding: 2%;
         margin-bottom: 15px;
         border-radius: 10px;
-        //border: 1px solid rgba(128, 128, 128, 0.516);
         background-color: var(--bg-color-block);
     }
     & .mainBlock {
@@ -31,8 +30,9 @@
         }
         & .bodyInfo {
             & .avatar {
-                border-radius: 50%; /* Радиус скругления */
-                border: 1px solid grey; /* Параметры рамки */
+                box-shadow: 0 0 7px #666;
+                border-radius: 50%;
+                border: 2px solid white;
                 width: 190px;
                 height: 190px;
             }
@@ -42,7 +42,6 @@
             grid-template-columns: 1fr;
             font-family: Nunito;
             font-size: 16px;
-            //position: relative;
             & .town {
                 color: grey; 
             }
