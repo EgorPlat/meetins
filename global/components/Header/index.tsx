@@ -1,6 +1,6 @@
 import s from './header.module.scss'
 import Image from 'next/image'
-import logo from '../../../public/images/logo-l.svg'
+import logo from '../../../public/images/full-new-logo.svg'
 import { useStore } from 'effector-react'
 import MainNavbar from '../MainNavbar'
 import { useRouter } from 'next/router'
@@ -29,8 +29,7 @@ export default function Header(): JSX.Element {
 					className={s.logoImage}
 					src={logo}
 					alt='company logo'
-					width={isMobile$ ? 260 : 330}
-				 	height={isMobile$ ? 40 : 60}
+					width={190}
 				/>
 			</div>
 			<MainNavbar currentPage={currentPage} />

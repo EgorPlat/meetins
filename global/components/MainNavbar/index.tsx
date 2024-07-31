@@ -51,11 +51,14 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
     return(
 		<div className={s.link}>
+			<div className={s.navBlock}>
 				<Link href="/peoples">{t('Люди')}</Link>
 				<Link href="/events">{t('События')}</Link>
 				<Link href="/interests">{t('Интересы')}</Link>
 				<Link href="/meetings">{t('Встречи')}</Link>
-			    <ButtonWithHint
+			</div>
+			<div className={s.userBlock}>
+				<ButtonWithHint
 					fontSize={20}
 					title={t('Пригласить')} 
 					hintTitle={
@@ -63,7 +66,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 						для этого перейдите к ним в профиль и нажмите кнопку "Пригласить"`
 					} 
 				/>
-			    <img 
+				<img 
 					src={baseURL + userAvatar} 
 					className={s.round} 
 					alt="Аватарка" 
@@ -71,12 +74,13 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 					height={70} 
 					onClick={handleAvatarClick}
 				/>
-			    <select ref={ref} onChange={(event) => setSelect(event.target.value)}>
-				    <option value="name">{user?.name}</option>
-				    <option value="logOut">{t('Выход')}</option>
-				    <option value="settings">{t('Настройки')}</option>
-				    <option value="comeBack">{t('Вернуться')}</option>
-			    </select>
+				<select className={s.customSelect} ref={ref} onChange={(event) => setSelect(event.target.value)}>
+					<option value="name">{user?.name}</option>
+					<option value="logOut">{t('Выход')}</option>
+					<option value="settings">{t('Настройки')}</option>
+					<option value="comeBack">{t('Вернуться')}</option>
+				</select>
+			</div>
 		</div>
     )
 }

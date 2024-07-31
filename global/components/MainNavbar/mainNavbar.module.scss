@@ -1,121 +1,118 @@
 .link {
-	font-size: 32px;
-	font-family: Nunito;
-	display: flex;
-	flex-wrap: wrap;
-	column-gap: 2.5%;
-	justify-content: center;
-	align-items: center;
-	justify-items: center;
-	
-	& .round {
-		cursor: pointer;
-	}
-	& a {
-		text-decoration: none;
-		font-size: 24px;
-	}
-	& a:hover {
-		color: var(--default-color);
-	}
-	& select {
-		cursor: pointer;
-		border: 1px solid transparent;
-		outline: none;
-		font-size: 24px;
-		& option {
-			cursor: pointer;
-			font-family: Nunito;
-			font-size: 18px;
-			padding: 5px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	& .navBlock {
+		font-size: 32px;
+		font-family: Nunito;
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 3%;
+		justify-content: flex-end;
+		align-items: center;
+		justify-items: center;
+		& a {
+			text-decoration: none;
+			font-size: 24px;
+		}
+		& a:hover {
+			color: var(--default-color);
 		}
 	}
-}
-.round {
-	border-radius: 100px; /* Радиус скругления */
-	border: 3px solid white; /* Параметры рамки */
-	box-shadow: 0 0 7px #666; /* Параметры тени */
-}
-.avatar {
-	width: 70px;
-	height: 70px;
-}
-.avatar:hover {
-	cursor: pointer;
+	& .userBlock {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		column-gap: 10px;
+		& .customSelect {
+			border: none;
+			cursor: pointer;
+			outline: none;
+			font-size: 24px;
+			& option {
+				outline: none;
+				font-family: Nunito;
+				font-size: 18px;
+				padding: 5px;
+			}
+		}
+		& .round {
+			border-radius: 50%;
+			border-radius: 100px; /* Радиус скругления */
+			border: 3px solid white; /* Параметры рамки */
+			box-shadow: 0 0 7px #666; /* Параметры тени */
+		} 
+	}
 }
 
 @media screen  and (max-width: 1720px){
 	.link {
-		font-size: 26px;
+		& .navBlock {
+			font-size: 26px;
+		}
 	}
 }
 @media screen  and (max-width: 1340px){
 	.link {
-		font-size: 24px;
+		& .navBlock {
+			font-size: 24px;
+		}
 	}
 }
 @media screen  and (max-width: 1210px){
 	.link {
-		font-size: 22px;
-	}
-}
-@media screen  and (max-width: 1365px){
-	.link {
-		grid-template-columns: 70% 30%;
-	}
-}
-@media screen  and (max-width: 1030px){
-	.link {
-		grid-template-columns: 68% 32%;
-		& .navAvatar {
-			& .round {
-				display: none;
-			}
+		& .navBlock {
+			font-size: 22px;
 		}
 	}
 }
 
-@media screen and (max-width: 440px){
+@media screen  and (max-width: 890px){
 	.link {
-		select {
-			font-size: 18px;
-			& option {
-				font-size: 16px;
-			}
-		}
-		button {
-			font-size: 20px;
-		}
-		a {
-			font-size: 21px;
+		grid-template-columns: 1fr;
+		row-gap: 10px;
+		& .navBlock {
+			justify-content: center;
 		}
 	}
 }
 @media screen and (max-width: 400px){
 	.link {
-		a {
-			font-size: 20px;
+		& .navBlock {
+			a {
+				font-size: 20px;
+			}
+		}
+		& .userBlock {
+			& .customSelect {
+				font-size: 20px;
+			}
 		}
 	}
 }
 @media screen and (max-width: 380px){
 	.link {
-		a {
-			font-size: 19px;
+		& .navBlock {
+			a {
+				font-size: 19px;
+			}
 		}
 	}
 }
 @media screen and (max-width: 360px){
 	.link {
-		a {
-			font-size: 18px;
+		& .navBlock {
+			a {
+				font-size: 18px;
+			}
 		}
 	}
 }
 @media screen and (max-width: 350px){
 	.link {
-		a {
-			font-size: 17px;
+		& .navBlock {
+			a {
+				font-size: 17px;
+			}
 		}
 	}
 }
