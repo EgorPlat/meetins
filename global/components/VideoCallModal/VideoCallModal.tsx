@@ -79,18 +79,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
         if (!isOpen) {
             setPeerIDForCall(null);
             setPeerCall(null);
-            navigator.mediaDevices.enumerateDevices().then(devices => {
-                devices.forEach(device => {
-                    if (device.kind === 'videoinput' || device.kind === 'audioinput') {
-                        navigator.mediaDevices.getUserMedia({ video: { deviceId: device.deviceId }, audio: true })
-                            .then(stream => {
-                                stream.getTracks().forEach(track => {
-                                    track.stop();
-                                })
-                            });
-                    }
-                });
-            });
+            
         }
     }, [isOpen]);
 
