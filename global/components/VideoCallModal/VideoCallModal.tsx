@@ -26,23 +26,6 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
     };
 
     const handleCallClose = () => {
-        console.log(111)
-        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-            .then(stream => {
-                // Получаем все треки потока
-                const tracks = stream.getTracks();
-
-                // Останавливаем каждый трек
-                tracks.forEach(track => {
-                    track.stop();
-                });
-
-                // Очищаем ссылку на поток
-                stream = null;
-            })
-            .catch(err => {
-                console.error('Error accessing media devices:', err);
-            });
         setIsVideoCallOpened(false);
     };
 
@@ -80,6 +63,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
                     myStream.current.play();
                 };
             }
+            peerCall.on('close', handleCallClose);
             setTimeout(function() {
                 if (commingStream && commingStream.current) {
                     commingStream.current.srcObject = peerCall.remoteStream;
