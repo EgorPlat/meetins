@@ -87,8 +87,8 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
 		});
         newPeer.on('call', function(call) {
             // Answer the call, providing our mediaStream
-            setPeerCall(() => peerCall);
-            callAnswer(peerCall);
+            setPeerCall(() => call);
+            callAnswer(call);
         });
         setPeer(newPeer);
         //callToNode();
