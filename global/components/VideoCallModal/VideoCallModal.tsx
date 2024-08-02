@@ -22,7 +22,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
     const authedUser$ = useStore($user);
 
     const handleConfirmVideoCall = () => {
-
+        
     };
 
     const handleCallClose = () => {
@@ -41,7 +41,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
                                 commingStream.current.play();
                             }
                         };
-                    }, 1500);	
+                    }, 1500);
                 });
                 newPeerCall.on('close', handleCallClose);				  
                 if (myStream && myStream.current) {
@@ -79,6 +79,18 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
         if (!isOpen) {
             setPeerIDForCall(null);
             setPeerCall(null);
+            navigator.mediaDevices.enumerateDevices().then(devices => {
+                devices.forEach(device => {
+                    if (device.kind === 'videoinput' || device.kind === 'audioinput') {
+                        navigator.mediaDevices.getUserMedia()
+                            .then(stream => {
+                                stream.getTracks().forEach(track => {
+                                    track.stop();
+                                })
+                            });
+                    }
+                });
+            });
         }
     }, [isOpen]);
 
