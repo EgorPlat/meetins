@@ -26,6 +26,22 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
     };
 
     const handleCallClose = () => {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(stream => {
+                // Получаем все треки потока
+                const tracks = stream.getTracks();
+
+                // Останавливаем каждый трек
+                tracks.forEach(track => {
+                    track.stop();
+                });
+
+                // Очищаем ссылку на поток
+                stream = null;
+            })
+            .catch(err => {
+                console.error('Error accessing media devices:', err);
+            });
         setIsVideoCallOpened(false);
     };
 
@@ -76,10 +92,9 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
     }
 
     useEffect(() => {
-        if (!isOpen) {
+        if (isOpen === false) {
             setPeerIDForCall(null);
             setPeerCall(null);
-            
         }
     }, [isOpen]);
 
