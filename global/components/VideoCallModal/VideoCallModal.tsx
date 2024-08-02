@@ -90,6 +90,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
             });
             newPeer.on('call', function(call) {
                 setPeerCall(() => call);
+                setIsVideoCallOpened(true);
                 callAnswer(call);
             });
             setPeer(newPeer);
