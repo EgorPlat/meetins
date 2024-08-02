@@ -22,13 +22,14 @@ export default function MobileChatList(): JSX.Element {
             ref.current.scrollIntoView({ behaviour: "smooth" });
         }
     }, []);
+    
     return(
         <div className={s.mobileChatList} ref={ref}>
             {isLoaded$ && myDialogs$
                 ? 
                 myDialogs$.map( dialog => {
                     const lastMessage = dialog.messages[dialog.messages?.length - 1];
-                    const isUnreadMessageMy = lastMessage.senderId === authedUser$.userId;
+                    const isUnreadMessageMy = lastMessage.senderId === authedUser$?.userId;
                     return (
                         <div className={s.mobileUserChatCard} key={dialog.dialogId}>
                             <UserChatCard

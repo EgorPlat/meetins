@@ -26,6 +26,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
     };
 
     const handleCallClose = () => {
+        console.log(111)
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
             .then(stream => {
                 // Получаем все треки потока
