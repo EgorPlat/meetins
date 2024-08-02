@@ -5,7 +5,7 @@ export default function calculateCountOfUnredMessageInDialog (messages: IMyActiv
     if (!messages) return;
     let count = 0;
     messages.map((el) => {
-        if (!el.isRead && el.senderId !== authedUser.userId) {
+        if (!el?.isRead && el?.senderId !== authedUser?.userId) {
             count++;
         }
     });

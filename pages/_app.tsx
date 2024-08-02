@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, setIsMobile } from '../global/store/store';
+import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile, setIsVideoCallOpened } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';
@@ -21,6 +21,7 @@ import '../styles/app.css';
 import '../styles/themes.css';
 import 'regenerator-runtime/runtime';
 import '../node_modules/reseter.css/css/reseter.min.css';
+import VideoCallModal from '../global/components/VideoCallModal/VideoCallModal';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -32,7 +33,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const {isMobile, isUnAdaptive} = useResize();
 	const currentTheme = useTheme();
 	const isConnected = useAuthAndInithialSocket();
-	
+	const isVideoCallOpened$ = useStore(isVideoCallOpened);
+
 	useBlockBodyScroll(isScrollPageBlocked);
 
 	useEffect(() => {
@@ -65,6 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<Component {...pageProps} />
 			<NotificationBlock />
 			<MusicControlBlock />
+			<VideoCallModal isOpen={true} handleChangeModal={setIsVideoCallOpened} />
 		</Layout>
 	)
 }

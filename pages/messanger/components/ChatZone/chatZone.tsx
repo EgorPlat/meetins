@@ -11,17 +11,17 @@ import {
     isMessageWithFileLoaded,
     setActiveChat
 } from "../../../../global/store/chat_model";
-import { $onlineUsers, $user, baseURL } from "../../../../global/store/store";
-import ChatMessageForm from "../ChatMessageForm/chatMessageForm";
-import s from "./chatZone.module.scss";
-import Loader from "../../../../components-ui/Loader/Loader";
+import { $onlineUsers, $user, baseURL, setIsVideoCallOpened } from "../../../../global/store/store";
 import { defaultDialog } from "../../../../global/mock/defaultDialog";
 import { MdOutlineOndemandVideo } from "react-icons/md";
-import CustomModal from "../../../../components-ui/CustomModal/CustomModal";
 import { useUserMediaTracks } from "../../../../global/hooks/useUserMediaTracks";
-import CustomEditMenu from "../../../../components-ui/CustomEditMenu/CustomEditMenu";
 import { useRouter } from "next/router";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
+import CustomEditMenu from "../../../../components-ui/CustomEditMenu/CustomEditMenu";
+import CustomModal from "../../../../components-ui/CustomModal/CustomModal";
+import ChatMessageForm from "../ChatMessageForm/chatMessageForm";
+import Loader from "../../../../components-ui/Loader/Loader";
+import s from "./chatZone.module.scss";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -37,13 +37,14 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const [videoMessageActive, setVideoMessageActive] = useState<boolean>();
     const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
     const { t } = useTranslation();
-    const router = useRouter();    
-    
+    const router = useRouter();
+
     const { handleActivateMedia, mediaChunks } = useUserMediaTracks({ 
-        video: { width: 200, height: 200 }, 
-        audio: true, 
-        htmlElementIdForStopMedia: 'videoMessageStop' 
+        video: { width: 200, height: 200 },
+        audio: true,
+        htmlElementIdForStopMedia: 'videoMessageStop'
     });
+
 
     const handleBack = () => {
         setActiveChat(defaultDialog);
@@ -68,8 +69,8 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                 videoMessageStreamRef.current.play();
             }
         })
-    }
-    
+    };
+
     useEffect(() => {
         if (mediaChunks) {
             setVideoMessageActive(false);
@@ -111,7 +112,8 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                             <CustomEditMenu 
                                 data={[
                                     { menuTitle: "Профиль", menuFunction: () => handleGoToProfile(activeChat$.userLogin) },
-                                    { menuTitle: "Назад", menuFunction: handleBack }
+                                    { menuTitle: "Назад", menuFunction: handleBack },
+                                    { menuTitle: "Позвонить", menuFunction: () => setIsVideoCallOpened(true) }
                                 ]}
                             />
                         </div>

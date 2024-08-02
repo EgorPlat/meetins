@@ -47,6 +47,12 @@ export const setIsMobile = createEvent<boolean>();
 export const isMobile = createStore<boolean>(false).on(setIsMobile, (_, isMobile) => {
 	return isMobile;
 })
+
+export const setIsVideoCallOpened = createEvent<boolean>();
+export const isVideoCallOpened = createStore<boolean>(false).on(setIsVideoCallOpened, (_, setIsVideoCallOpened) => {
+	return setIsVideoCallOpened;
+})
+
 export const setIsUserLoaded = createEvent<boolean>();
 export const isUserLoaded = createStore<boolean>(false).on(setIsUserLoaded, (_, status) => {
 	return status;
