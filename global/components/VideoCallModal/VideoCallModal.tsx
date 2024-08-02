@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import s from './VideoCallModal.module.scss';
 import Peer from 'peerjs';
-import { setIsVideoCallOpened } from '../../store/store';
+import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from '../../store/store';
+import { connection } from '../../store/connection_model';
+import { useStore } from 'effector-react';
 
 interface IVideoCallModalProps {
     isOpen: boolean,
@@ -14,28 +16,24 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
     const [peerCall, setPeerCall] = useState(null);
     const myStream = useRef<HTMLVideoElement>(null);
     const commingStream = useRef<HTMLVideoElement>(null);
-    const peerIDRef = useRef<HTMLInputElement>(null);
+    const peerIDForCall$ = useStore(peerIDForCall);
     const [peer, setPeer] = useState<Peer>(null);
+    const connection$ = useStore(connection);
+    const authedUser$ = useStore($user);
 
     const handleConfirmVideoCall = () => {
 
     };
 
-    const handleEnterClick = (e) => {
-        if (e.code === 'Enter') {
-            callToNode();
-        }
-    };
-
     const handleCallClose = () => {
         setIsVideoCallOpened(false);
-    }
+    };
 
-    function callToNode() { //вызов
+    function callToNode() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {
-            if (peerIDRef && peerIDRef.current) {
-                const newPeerCall = peer.call(peerIDRef.current.value, mediaStream); //звоним, указав peerId-партнера и передав свой mediaStream
-                newPeerCall.on('stream', function (stream) { //нам ответили, получим стрим
+            if (peerIDForCall$) {
+                const newPeerCall = peer.call(peerIDForCall$, mediaStream);
+                newPeerCall.on('stream', function (stream) {
                     setTimeout(function() {
                             if (commingStream && commingStream.current) {
                                 commingStream.current.srcObject = newPeerCall.remoteStream;
@@ -58,17 +56,14 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
   
     const callAnswer = (peerCall) => {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {	    				  
-            peerCall.answer(mediaStream); // отвечаем на звонок и передаем свой медиапоток собеседнику
-            //peercall.on ('close', onCallClose); //можно обработать закрытие-обрыв звонка
-            myStream.current.srcObject = mediaStream; //помещаем собственный медиапоток в объект видео (чтоб видеть себя)
+            peerCall.answer(mediaStream);
+            myStream.current.srcObject = mediaStream;
             if (myStream && myStream.current) {
                 myStream.current.onloadedmetadata = function(e) {
                     myStream.current.play();
                 };
             }
             setTimeout(function() {
-                //входящий стрим помещаем в объект видео для отображения
-                // и запускаем воспроизведение когда объект загружен
                 if (commingStream && commingStream.current) {
                     commingStream.current.srcObject = peerCall.remoteStream;
                     commingStream.current.onloadedmetadata = function(e) {
@@ -81,29 +76,41 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
     }
 
     useEffect(() => {
-        const newPeer = new Peer();
-        newPeer.on('open', function(peerID) {
-			console.log(peerID);	
-		});
-        newPeer.on('call', function(call) {
-            // Answer the call, providing our mediaStream
-            setPeerCall(() => call);
-            callAnswer(call);
-        });
-        setPeer(newPeer);
-        //callToNode();
-    }, [])
+        if (!isOpen) {
+            setPeerIDForCall(null);
+            setPeerCall(null);
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (connection$) {
+            const newPeer = new Peer();
+            newPeer.on('open', function(peerID) {
+                connection$?.emit('send-peer-id', { userId: authedUser$.userId, peerID: peerID })
+            });
+            newPeer.on('call', function(call) {
+                setPeerCall(() => call);
+                callAnswer(call);
+            });
+            setPeer(newPeer);
+        }
+    }, [connection$]);
+
+    useEffect(() => {
+        if (peerIDForCall$) {
+            callToNode();
+        }
+    }, [peerIDForCall$])
 
     return (
         <CustomModal
             title='Видеозвонок'
             isDisplay={isOpen}
-            changeModal={handleChangeModal}
+            changeModal={() => handleChangeModal(false)}
             actionConfirmed={handleConfirmVideoCall}
             typeOfActions='default'
         >
             <div className={s.videoCallModal}>
-                <input ref={peerIDRef} onKeyDown={handleEnterClick} />
                 <video ref={myStream} width="200px" height="200px"></video>
                 <video ref={commingStream} width="200px" height="200px"></video>
             </div>

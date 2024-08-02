@@ -67,7 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<Component {...pageProps} />
 			<NotificationBlock />
 			<MusicControlBlock />
-			<VideoCallModal isOpen={true} handleChangeModal={setIsVideoCallOpened} />
+			<VideoCallModal isOpen={isVideoCallOpened$} handleChangeModal={setIsVideoCallOpened} />
 		</Layout>
 	)
 }

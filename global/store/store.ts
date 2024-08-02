@@ -49,9 +49,15 @@ export const isMobile = createStore<boolean>(false).on(setIsMobile, (_, isMobile
 })
 
 export const setIsVideoCallOpened = createEvent<boolean>();
-export const isVideoCallOpened = createStore<boolean>(false).on(setIsVideoCallOpened, (_, setIsVideoCallOpened) => {
-	return setIsVideoCallOpened;
+export const isVideoCallOpened = createStore<boolean>(false).on(setIsVideoCallOpened, (_, newIsVideoCallOpened) => {
+	return newIsVideoCallOpened;
 })
+
+export const setPeerIDForCall = createEvent<string>();
+export const peerIDForCall = createStore<string>(null).on(setPeerIDForCall, (_, newPeerIDForCall) => {
+	return newPeerIDForCall;
+})
+
 
 export const setIsUserLoaded = createEvent<boolean>();
 export const isUserLoaded = createStore<boolean>(false).on(setIsUserLoaded, (_, status) => {

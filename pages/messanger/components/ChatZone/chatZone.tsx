@@ -11,7 +11,7 @@ import {
     isMessageWithFileLoaded,
     setActiveChat
 } from "../../../../global/store/chat_model";
-import { $onlineUsers, $user, baseURL, setIsVideoCallOpened } from "../../../../global/store/store";
+import { $onlineUsers, $user, baseURL, setIsVideoCallOpened, setPeerIDForCall } from "../../../../global/store/store";
 import { defaultDialog } from "../../../../global/mock/defaultDialog";
 import { MdOutlineOndemandVideo } from "react-icons/md";
 import { useUserMediaTracks } from "../../../../global/hooks/useUserMediaTracks";
@@ -22,6 +22,7 @@ import CustomModal from "../../../../components-ui/CustomModal/CustomModal";
 import ChatMessageForm from "../ChatMessageForm/chatMessageForm";
 import Loader from "../../../../components-ui/Loader/Loader";
 import s from "./chatZone.module.scss";
+import { connection } from "../../../../global/store/connection_model";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -36,6 +37,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
     const [videoMessageActive, setVideoMessageActive] = useState<boolean>();
     const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
+    const connection$ = useStore(connection);
     const { t } = useTranslation();
     const router = useRouter();
 
@@ -58,6 +60,17 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
         if(inputValue.length > 0) {
             createdSendMessageAndUploadActiveChat(inputValue);
         };
+    };
+
+    const handleOpenVideoCall = () => {
+        if (connection$) {
+            connection$.emit('get-peerID-for-call', { userId: activeChat$.userId }, (res: any) => {
+                if (res) {
+                    setPeerIDForCall(res);
+                    setIsVideoCallOpened(true);
+                }
+            });
+        }
     };
 
     const handleVideoMessageConfirmed = () => {
@@ -113,7 +126,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                 data={[
                                     { menuTitle: "Профиль", menuFunction: () => handleGoToProfile(activeChat$.userLogin) },
                                     { menuTitle: "Назад", menuFunction: handleBack },
-                                    { menuTitle: "Позвонить", menuFunction: () => setIsVideoCallOpened(true) }
+                                    { menuTitle: "Позвонить", menuFunction: handleOpenVideoCall }
                                 ]}
                             />
                         </div>
