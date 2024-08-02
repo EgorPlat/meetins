@@ -56,7 +56,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
         }).catch(function(err) { console.log(err.name + ": " + err.message); });
     }
   
-    const callAnswer = () => {
+    const callAnswer = (peerCall) => {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {	    				  
             peerCall.answer(mediaStream); // отвечаем на звонок и передаем свой медиапоток собеседнику
             //peercall.on ('close', onCallClose); //можно обработать закрытие-обрыв звонка
@@ -88,7 +88,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
         newPeer.on('call', function(call) {
             // Answer the call, providing our mediaStream
             setPeerCall(() => peerCall);
-            callAnswer();
+            callAnswer(peerCall);
         });
         setPeer(newPeer);
         //callToNode();
