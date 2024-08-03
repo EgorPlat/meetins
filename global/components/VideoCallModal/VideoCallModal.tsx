@@ -22,25 +22,17 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
     const connection$ = useStore(connection);
     const authedUser$ = useStore($user);
 
-    //const [localStream, setLocalStream] = useState<MediaStream>(null);
-
     const handleConfirmVideoCall = () => {
         
     };
 
     const handleCallClose = () => { 
         setIsVideoCallOpened(false);
-        /*if (localStream) {
-            localStream.getTracks().forEach(function(track) {
-                track.stop();
-            });
-        }*/
     };
 
     function handleCallToUser() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream: MediaStream) {
             if (peerIDForCall$) {
-                //setLocalStream(mediaStream);
                 const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                 newPeerCall.on('stream', function (remoteStream) {
                     if (commingStream && commingStream.current) {
@@ -62,8 +54,7 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
     }
   
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream: MediaStream) {
-            //setLocalStream(mediaStream);	  
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream: MediaStream) {  
             peerCall.answer(mediaStream);
             myStream.current.srcObject = mediaStream;
             peerCall.on('close', handleCallClose);
@@ -113,7 +104,7 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
             typeOfActions='default'
         >
             <div className={s.videoCallModal}>
-                <video ref={myStream} width="200px" height="200px"></video>
+                <video ref={myStream} muted width="200px" height="200px"></video>
                 <video ref={commingStream} width="200px" height="200px"></video>
             </div>
         </CustomModal>
