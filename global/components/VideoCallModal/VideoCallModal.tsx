@@ -17,7 +17,6 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
 
     const myStream = useRef<HTMLVideoElement>(null);
     const commingStream = useRef<HTMLVideoElement>(null);
-    const closeVideoCallBtn = useRef<HTMLButtonElement>(null);
 
     const peerIDForCall$ = useStore(peerIDForCall);
     const connection$ = useStore(connection);
@@ -67,13 +66,6 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
             setLocalStream(mediaStream);	  
             peerCall.answer(mediaStream);
             myStream.current.srcObject = mediaStream;
-            if (closeVideoCallBtn && closeVideoCallBtn.current) {
-                closeVideoCallBtn.current.onclick = () => {
-                    mediaStream.getTracks().forEach(function(track) {
-                        track.stop();
-                    });
-                }
-            }
             peerCall.on('close', handleCallClose);
             peerCall.on('stream', (remoteStream) => {
                 if (commingStream && commingStream.current) {
