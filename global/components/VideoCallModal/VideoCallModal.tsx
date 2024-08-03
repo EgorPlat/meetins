@@ -35,59 +35,63 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     };
 
     function handleCallToUser() {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream: MediaStream) {
-            if (peerIDForCall$) {
-                const newPeerCall = peer.call(peerIDForCall$, mediaStream);
-                setPeerCall(newPeerCall);
-                newPeerCall.on('stream', function (remoteStream) {
-                    if (commingStream && commingStream.current) {
-                        commingStream.current.srcObject = remoteStream;
-                        commingStream.current.onloadedmetadata = function(e) {
-                            commingStream.current.play();
-                        }
-                    };
-                });
-                newPeerCall.on('close', () => {
-                    mediaStream.getTracks().forEach(function(track) {
-                        track.stop();
+        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+            .then(function(mediaStream: MediaStream) {
+                if (peerIDForCall$) {
+                    const newPeerCall = peer.call(peerIDForCall$, mediaStream);
+                    setPeerCall(newPeerCall);
+                    newPeerCall.on('stream', function (remoteStream) {
+                        if (commingStream && commingStream.current) {
+                            commingStream.current.srcObject = remoteStream;
+                            commingStream.current.onloadedmetadata = function(e) {
+                                commingStream.current.play();
+                            }
+                        };
                     });
-                    handleCloseVideoModal();
-                });				  
+                    newPeerCall.on('close', () => {
+                        mediaStream.getTracks().forEach(function(track) {
+                            track.stop();
+                        });
+                        handleCloseVideoModal();
+                    });				  
+                    if (myStream && myStream.current) {
+                        myStream.current.srcObject = mediaStream;
+                        myStream.current.onloadedmetadata = function(e) {
+                            myStream.current.play();
+                        };
+                    }
+                }
+            })
+            .catch(function(err) { console.log(err.name + ": " + err.message); });
+    }
+  
+    const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
+        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+            .then(function(mediaStream: MediaStream) {  
+                peerCall.answer(mediaStream);
+                setPeerCall(peerCall);
                 if (myStream && myStream.current) {
                     myStream.current.srcObject = mediaStream;
                     myStream.current.onloadedmetadata = function(e) {
                         myStream.current.play();
                     };
                 }
-            }
-        }).catch(function(err) { console.log(err.name + ": " + err.message); });
-    }
-  
-    const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream: MediaStream) {  
-            peerCall.answer(mediaStream);
-            setPeerCall(peerCall);
-            if (myStream && myStream.current) {
-                myStream.current.srcObject = mediaStream;
-                myStream.current.onloadedmetadata = function(e) {
-                    myStream.current.play();
-                };
-            }
-            peerCall.on('close', () => {
-                mediaStream.getTracks().forEach(function(track) {
-                    track.stop();
+                peerCall.on('close', () => {
+                    mediaStream.getTracks().forEach(function(track) {
+                        track.stop();
+                    });
+                    handleCloseVideoModal();
                 });
-                handleCloseVideoModal();
-            });
-            peerCall.on('stream', (remoteStream) => {
-                if (commingStream && commingStream.current) {
-                    commingStream.current.srcObject = remoteStream;
-                    commingStream.current.onloadedmetadata = function(e) {
-                        commingStream.current.play();
-                    };
-                }
+                peerCall.on('stream', (remoteStream) => {
+                    if (commingStream && commingStream.current) {
+                        commingStream.current.srcObject = remoteStream;
+                        commingStream.current.onloadedmetadata = function(e) {
+                            commingStream.current.play();
+                        };
+                    }
+                })
             })
-        }).catch(function(err) { console.log(err.name + ": " + err.message); });
+            .catch(function(err) { console.log(err.name + ": " + err.message); });
     }
 
     useEffect(() => {
@@ -103,8 +107,11 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 connection$?.emit('send-peer-id', { userId: authedUser$.userId, peerID: peerID })
             });
             newPeer.on('call', function(call) {
-                setIsVideoCallOpened(true);
-                handleAcceptCallFromUser(call);
+                const isUserConfirmedCall = confirm('Входящий звонок от пользователя. Принять?');
+                if (isUserConfirmedCall) {
+                    setIsVideoCallOpened(true);
+                    handleAcceptCallFromUser(call);
+                } 
             });
             setPeer(newPeer);
         }
