@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import CustomModal from '../../../components-ui/CustomModal/CustomModal';
-import s from './VideoCallModal.module.scss';
-import Peer from 'peerjs';
-import { $user, peerIDForCall, setIsVideoCallNeededToUpdate, setIsVideoCallOpened, setPeerIDForCall } from '../../store/store';
+import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from '../../store/store';
 import { connection } from '../../store/connection_model';
 import { useStore } from 'effector-react';
+import CustomModal from '../../../components-ui/CustomModal/CustomModal';
+import Peer from 'peerjs';
+import s from './VideoCallModal.module.scss';
 
 interface IVideoCallModalProps {
     isOpen: boolean,
@@ -23,18 +23,25 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
     const connection$ = useStore(connection);
     const authedUser$ = useStore($user);
 
+    const [myMediaDevicesStream, setMyMediaDevicesStream] = useState<MediaStream>(null);
+
     const handleConfirmVideoCall = () => {
         
     };
 
     const handleCallClose = () => {
+        if (myMediaDevicesStream) {
+            myMediaDevicesStream.getTracks().forEach(function(track) {
+                track.stop();
+            });
+        }
         setIsVideoCallOpened(false);
-        setIsVideoCallNeededToUpdate(true);
     };
 
     function handleCallToUser() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {
             if (peerIDForCall$) {
+                setMyMediaDevicesStream(mediaStream);
                 const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                 newPeerCall.on('stream', function (stream) {
                     setTimeout(function() {
@@ -58,7 +65,8 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
     }
   
     const handleAcceptCallFromUser = (peerCall) => {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {	    				  
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {	    	
+            setMyMediaDevicesStream(mediaStream);			  
             peerCall.answer(mediaStream);
             myStream.current.srcObject = mediaStream;
             if (myStream && myStream.current) {

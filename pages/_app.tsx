@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallNeededToUpdate, isVideoCallOpened, setIsMobile, setIsVideoCallNeededToUpdate, setIsVideoCallOpened } from '../global/store/store';
+import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile, setIsVideoCallOpened } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';
@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const {isMobile, isUnAdaptive} = useResize();
 	const currentTheme = useTheme();
 	const isConnected = useAuthAndInithialSocket();
-	const isVideoCallNeededToUpdate$ = useStore(isVideoCallNeededToUpdate);
+	
 
 	useBlockBodyScroll(isScrollPageBlocked);
 
@@ -54,12 +54,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);
 	
-	useEffect(() => {
-		if (isVideoCallNeededToUpdate$) {
-			setIsVideoCallNeededToUpdate(false);
-		}
-	}, [isVideoCallNeededToUpdate$]);
-
 	return (
 		<Layout>
 			<Head>
@@ -75,9 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<Component {...pageProps} />
 			<NotificationBlock />
 			<MusicControlBlock />
-			{
-				!isVideoCallNeededToUpdate$ && <VideoCallModal isOpen={isVideoCallOpened$} /*handleChangeModal={setIsVideoCallOpened}*/ />
-			}
+			<VideoCallModal isOpen={isVideoCallOpened$} /*handleChangeModal={setIsVideoCallOpened}*/ />
 		</Layout>
 	)
 }
