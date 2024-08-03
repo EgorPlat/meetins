@@ -23,35 +23,35 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
     const connection$ = useStore(connection);
     const authedUser$ = useStore($user);
 
-    const [myMediaDevicesStream, setMyMediaDevicesStream] = useState<MediaStream>(null);
-
     const handleConfirmVideoCall = () => {
         
     };
 
-    const handleCallClose = () => {
-        if (myMediaDevicesStream) {
-            myMediaDevicesStream.getTracks().forEach(function(track) {
-                track.stop();
-            });
-        }
+    const handleCallClose = () => { 
         setIsVideoCallOpened(false);
     };
 
     function handleCallToUser() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {
             if (peerIDForCall$) {
-                setMyMediaDevicesStream(mediaStream);
                 const newPeerCall = peer.call(peerIDForCall$, mediaStream);
-                newPeerCall.on('stream', function (stream) {
+                /*newPeerCall.on('stream', function (stream) {
                     setTimeout(function() {
-                            if (commingStream && commingStream.current) {
-                                commingStream.current.srcObject = newPeerCall.remoteStream;
-                                commingStream.current.onloadedmetadata = function(e) {
+                        if (commingStream && commingStream.current) {
+                            commingStream.current.srcObject = newPeerCall.remoteStream;
+                            commingStream.current.onloadedmetadata = function(e) {
                                 commingStream.current.play();
                             }
                         };
                     }, 500);
+                });*/
+                newPeerCall.on('stream', function (remoteStream) {
+                    if (commingStream && commingStream.current) {
+                        commingStream.current.srcObject = remoteStream;
+                        commingStream.current.onloadedmetadata = function(e) {
+                            commingStream.current.play();
+                        }
+                    };
                 });
                 newPeerCall.on('close', handleCallClose);				  
                 if (myStream && myStream.current) {
@@ -65,8 +65,7 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
     }
   
     const handleAcceptCallFromUser = (peerCall) => {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {	    	
-            setMyMediaDevicesStream(mediaStream);			  
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {		  
             peerCall.answer(mediaStream);
             myStream.current.srcObject = mediaStream;
             if (myStream && myStream.current) {
@@ -75,14 +74,22 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
                 };
             }
             peerCall.on('close', handleCallClose);
-            setTimeout(function() {
+            peerCall.on('stream', (remoteStream) => {
+                if (commingStream && commingStream.current) {
+                    commingStream.current.srcObject = remoteStream;
+                    commingStream.current.onloadedmetadata = function(e) {
+                        commingStream.current.play();
+                    };
+                }
+            })
+            /*setTimeout(function() {
                 if (commingStream && commingStream.current) {
                     commingStream.current.srcObject = peerCall.remoteStream;
                     commingStream.current.onloadedmetadata = function(e) {
                         commingStream.current.play();
                     };
                 }
-            }, 500);
+            }, 500);*/
         }).catch(function(err) { console.log(err.name + ": " + err.message); });
     }
 
