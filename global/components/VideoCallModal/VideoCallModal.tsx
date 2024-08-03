@@ -69,6 +69,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     }
   
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
+        setIsUserAcceptedCall(true);
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
             .then(function(mediaStream: MediaStream) {  
                 peerCall.answer(mediaStream);
@@ -115,6 +116,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     setIsVideoCallOpened(true);
                     handleAcceptCallFromUser(call);
                 } else {
+                    call.answer();
                     call.close();
                 }
             });
