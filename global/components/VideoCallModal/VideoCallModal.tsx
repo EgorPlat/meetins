@@ -82,7 +82,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
                 };
             }
             peerCall.on('close', handleCallClose);
-            //setTimeout(function() {
+            setTimeout(function() {
                 peerAnswer.on('stream', () => {
                     if (commingStream && commingStream.current) {
                         commingStream.current.srcObject = peerCall.remoteStream;
@@ -92,7 +92,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
                     }
                 })
                 
-            //}, 1500);		  				  
+            }, 500);		  				  
                       
         }).catch(function(err) { console.log(err.name + ": " + err.message); });
     }
