@@ -14,10 +14,12 @@ interface IVideoCallModalProps {
 export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCallModalProps) {
 
     const [peerCall, setPeerCall] = useState(null);
+    const [peer, setPeer] = useState<Peer>(null);
+
     const myStream = useRef<HTMLVideoElement>(null);
     const commingStream = useRef<HTMLVideoElement>(null);
+
     const peerIDForCall$ = useStore(peerIDForCall);
-    const [peer, setPeer] = useState<Peer>(null);
     const connection$ = useStore(connection);
     const authedUser$ = useStore($user);
 
@@ -29,19 +31,19 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
         setIsVideoCallOpened(false);
     };
 
-    function callToNode() {
+    function handleCallToUser() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {
             if (peerIDForCall$) {
                 const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                 newPeerCall.on('stream', function (stream) {
-                    setTimeout(function() {
+                    //setTimeout(function() {
                             if (commingStream && commingStream.current) {
                                 commingStream.current.srcObject = newPeerCall.remoteStream;
                                 commingStream.current.onloadedmetadata= function(e) {
                                 commingStream.current.play();
                             }
                         };
-                    }, 1500);
+                    //}, 1500);
                 });
                 newPeerCall.on('close', handleCallClose);				  
                 if (myStream && myStream.current) {
@@ -54,7 +56,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
         }).catch(function(err) { console.log(err.name + ": " + err.message); });
     }
   
-    const callAnswer = (peerCall) => {
+    const handleAcceptCallFromUser = (peerCall) => {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {	    				  
             peerCall.answer(mediaStream);
             myStream.current.srcObject = mediaStream;
@@ -64,14 +66,14 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
                 };
             }
             peerCall.on('close', handleCallClose);
-            setTimeout(function() {
+            //setTimeout(function() {
                 if (commingStream && commingStream.current) {
                     commingStream.current.srcObject = peerCall.remoteStream;
                     commingStream.current.onloadedmetadata = function(e) {
                         commingStream.current.play();
                     };
                 }
-            }, 1500);			  				  
+            //}, 1500);			  				  
                       
         }).catch(function(err) { console.log(err.name + ": " + err.message); });
     }
@@ -92,7 +94,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
             newPeer.on('call', function(call) {
                 setPeerCall(() => call);
                 setIsVideoCallOpened(true);
-                callAnswer(call);
+                handleAcceptCallFromUser(call);
             });
             setPeer(newPeer);
         }
@@ -100,7 +102,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
 
     useEffect(() => {
         if (peerIDForCall$) {
-            callToNode();
+            handleCallToUser();
         }
     }, [peerIDForCall$])
 
