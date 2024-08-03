@@ -58,23 +58,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
   
     const handleAcceptCallFromUser = (peerCall) => {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream) {	    				  
-            /*peerCall.answer(mediaStream);
-            myStream.current.srcObject = mediaStream;
-            if (myStream && myStream.current) {
-                myStream.current.onloadedmetadata = function(e) {
-                    myStream.current.play();
-                };
-            }
-            peerCall.on('close', handleCallClose);
-            //setTimeout(function() {
-                if (commingStream && commingStream.current) {
-                    commingStream.current.srcObject = peerCall.remoteStream;
-                    commingStream.current.onloadedmetadata = function(e) {
-                        commingStream.current.play();
-                    };
-                }
-            //}, 1500);*/
-            const peerAnswer = peerCall.answer(mediaStream);
+            peerCall.answer(mediaStream);
             myStream.current.srcObject = mediaStream;
             if (myStream && myStream.current) {
                 myStream.current.onloadedmetadata = function(e) {
@@ -83,17 +67,13 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
             }
             peerCall.on('close', handleCallClose);
             setTimeout(function() {
-                peerAnswer.on('stream', () => {
-                    if (commingStream && commingStream.current) {
-                        commingStream.current.srcObject = peerCall.remoteStream;
-                        commingStream.current.onloadedmetadata = function(e) {
-                            commingStream.current.play();
-                        };
-                    }
-                })
-                
-            }, 500);		  				  
-                      
+                if (commingStream && commingStream.current) {
+                    commingStream.current.srcObject = peerCall.remoteStream;
+                    commingStream.current.onloadedmetadata = function(e) {
+                        commingStream.current.play();
+                    };
+                }
+            }, 500);
         }).catch(function(err) { console.log(err.name + ": " + err.message); });
     }
 
