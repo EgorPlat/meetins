@@ -47,7 +47,10 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                         }
                     };
                 });
-                newPeerCall.on('close', handleCloseVideoModal);				  
+                newPeerCall.on('close', () => {
+                    console.log(mediaStream);
+                    handleCloseVideoModal();
+                });				  
                 if (myStream && myStream.current) {
                     myStream.current.srcObject = mediaStream;
                     myStream.current.onloadedmetadata = function(e) {
@@ -68,7 +71,10 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     myStream.current.play();
                 };
             }
-            peerCall.on('close', handleCloseVideoModal);
+            peerCall.on('close', () => {
+                console.log(mediaStream);
+                handleCloseVideoModal();
+            });
             peerCall.on('stream', (remoteStream) => {
                 if (commingStream && commingStream.current) {
                     commingStream.current.srcObject = remoteStream;
