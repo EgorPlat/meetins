@@ -36,14 +36,14 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
             if (peerIDForCall$) {
                 const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                 newPeerCall.on('stream', function (stream) {
-                    //setTimeout(function() {
+                    setTimeout(function() {
                             if (commingStream && commingStream.current) {
                                 commingStream.current.srcObject = newPeerCall.remoteStream;
-                                commingStream.current.onloadedmetadata= function(e) {
+                                commingStream.current.onloadedmetadata = function(e) {
                                 commingStream.current.play();
                             }
                         };
-                    //}, 1500);
+                    }, 500);
                 });
                 newPeerCall.on('close', handleCallClose);				  
                 if (myStream && myStream.current) {
@@ -82,7 +82,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
                 };
             }
             peerCall.on('close', handleCallClose);
-            setTimeout(function() {
+            //setTimeout(function() {
                 peerAnswer.on('stream', () => {
                     if (commingStream && commingStream.current) {
                         commingStream.current.srcObject = peerCall.remoteStream;
@@ -92,7 +92,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
                     }
                 })
                 
-            }, 500);		  				  
+            //}, 500);		  				  
                       
         }).catch(function(err) { console.log(err.name + ": " + err.message); });
     }
