@@ -13,6 +13,7 @@ interface IVideoCallModalProps {
 export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     const [peer, setPeer] = useState<Peer>(null);
+    const [peerCall, setPeerCall] = useState<MediaConnection>(null);
 
     const myStream = useRef<HTMLVideoElement>(null);
     const commingStream = useRef<HTMLVideoElement>(null);
@@ -25,7 +26,8 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         
     };
 
-    const handleCallClose = () => { 
+    const handleCallClose = () => {
+        peerCall.close();
         setIsVideoCallOpened(false);
     };
 
@@ -33,6 +35,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream: MediaStream) {
             if (peerIDForCall$) {
                 const newPeerCall = peer.call(peerIDForCall$, mediaStream);
+                setPeerCall(newPeerCall);
                 newPeerCall.on('stream', function (remoteStream) {
                     if (commingStream && commingStream.current) {
                         commingStream.current.srcObject = remoteStream;
@@ -55,6 +58,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream: MediaStream) {  
             peerCall.answer(mediaStream);
+            setPeerCall(peerCall);
             if (myStream && myStream.current) {
                 myStream.current.srcObject = mediaStream;
                 myStream.current.onloadedmetadata = function(e) {
