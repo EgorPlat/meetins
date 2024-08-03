@@ -48,7 +48,9 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     };
                 });
                 newPeerCall.on('close', () => {
-                    console.log(mediaStream);
+                    mediaStream.getTracks().forEach(function(track) {
+                        track.stop();
+                    });
                     handleCloseVideoModal();
                 });				  
                 if (myStream && myStream.current) {
@@ -72,7 +74,9 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 };
             }
             peerCall.on('close', () => {
-                console.log(mediaStream);
+                mediaStream.getTracks().forEach(function(track) {
+                    track.stop();
+                });
                 handleCloseVideoModal();
             });
             peerCall.on('stream', (remoteStream) => {
