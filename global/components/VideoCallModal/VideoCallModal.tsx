@@ -14,7 +14,8 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     const [peer, setPeer] = useState<Peer>(null);
     const [peerCall, setPeerCall] = useState<MediaConnection>(null);
-
+    const [isUserAcceptedCall, setIsUserAcceptedCall] = useState<boolean>(false);
+    
     const myStream = useRef<HTMLVideoElement>(null);
     const commingStream = useRef<HTMLVideoElement>(null);
 
@@ -32,6 +33,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     const handleCloseVideoModal = () => {
         setIsVideoCallOpened(false);
+        setIsUserAcceptedCall(false);
     };
 
     function handleCallToUser() {
@@ -41,6 +43,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                     setPeerCall(newPeerCall);
                     newPeerCall.on('stream', function (remoteStream) {
+                        setIsUserAcceptedCall(true);
                         if (commingStream && commingStream.current) {
                             commingStream.current.srcObject = remoteStream;
                             commingStream.current.onloadedmetadata = function(e) {
@@ -111,7 +114,9 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 if (isUserConfirmedCall) {
                     setIsVideoCallOpened(true);
                     handleAcceptCallFromUser(call);
-                } 
+                } else {
+                    call.close();
+                }
             });
             setPeer(newPeer);
         }
@@ -133,7 +138,12 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         >
             <div className={s.videoCallModal}>
                 <video ref={myStream} muted width="200px" height="200px"></video>
-                <video ref={commingStream} width="200px" height="200px"></video>
+                
+                {
+                    isUserAcceptedCall 
+                    ? <video ref={commingStream} width="200px" height="200px"></video>
+                    : <div className={s.watingMessage}>Ожидание ответа...</div>
+                }
             </div>
         </CustomModal>
     )

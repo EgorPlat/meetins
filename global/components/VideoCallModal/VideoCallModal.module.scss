@@ -3,7 +3,12 @@
     justify-content: center;
     justify-items: center;
     align-items: center;
+    row-gap: 15px;
     & video {
         transform: scaleX(-1);
+    }
+    & .watingMessage {
+        font-size: 18px;
+        text-align: center;
     }
 }
