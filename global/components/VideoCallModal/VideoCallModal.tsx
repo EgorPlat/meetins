@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import s from './VideoCallModal.module.scss';
 import Peer from 'peerjs';
-import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from '../../store/store';
+import { $user, peerIDForCall, setIsVideoCallNeededToUpdate, setIsVideoCallOpened, setPeerIDForCall } from '../../store/store';
 import { connection } from '../../store/connection_model';
 import { useStore } from 'effector-react';
 
 interface IVideoCallModalProps {
     isOpen: boolean,
-    handleChangeModal: (status: boolean) => void,
+    //handleChangeModal: (status: boolean) => void,
 }
 
-export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCallModalProps) {
+export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideoCallModalProps) {
 
     const [peerCall, setPeerCall] = useState(null);
     const [peer, setPeer] = useState<Peer>(null);
@@ -29,6 +29,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
 
     const handleCallClose = () => {
         setIsVideoCallOpened(false);
+        setIsVideoCallNeededToUpdate(true);
     };
 
     function handleCallToUser() {
@@ -109,7 +110,7 @@ export default function VideoCallModal({ isOpen, handleChangeModal }: IVideoCall
         <CustomModal
             title='Видеозвонок'
             isDisplay={isOpen}
-            changeModal={() => handleChangeModal(false)}
+            changeModal={handleCallClose}
             actionConfirmed={handleConfirmVideoCall}
             typeOfActions='default'
         >

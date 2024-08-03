@@ -58,6 +58,11 @@ export const peerIDForCall = createStore<string>(null).on(setPeerIDForCall, (_, 
 	return newPeerIDForCall;
 })
 
+export const setIsVideoCallNeededToUpdate = createEvent<boolean>();
+export const isVideoCallNeededToUpdate = createStore<boolean>(false).on(setIsVideoCallNeededToUpdate, (_, newIsVideoCallNeededToUpdate) => {
+	return newIsVideoCallNeededToUpdate;
+})
+
 
 export const setIsUserLoaded = createEvent<boolean>();
 export const isUserLoaded = createStore<boolean>(false).on(setIsUserLoaded, (_, status) => {
