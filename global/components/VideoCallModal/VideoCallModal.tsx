@@ -8,10 +8,9 @@ import s from './VideoCallModal.module.scss';
 
 interface IVideoCallModalProps {
     isOpen: boolean,
-    //handleChangeModal: (status: boolean) => void,
 }
 
-export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideoCallModalProps) {
+export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     const [peer, setPeer] = useState<Peer>(null);
 
@@ -56,7 +55,12 @@ export default function VideoCallModal({ isOpen, /*handleChangeModal*/ }: IVideo
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(mediaStream: MediaStream) {  
             peerCall.answer(mediaStream);
-            myStream.current.srcObject = mediaStream;
+            if (myStream && myStream.current) {
+                myStream.current.srcObject = mediaStream;
+                myStream.current.onloadedmetadata = function(e) {
+                    myStream.current.play();
+                };
+            }
             peerCall.on('close', handleCallClose);
             peerCall.on('stream', (remoteStream) => {
                 if (commingStream && commingStream.current) {
