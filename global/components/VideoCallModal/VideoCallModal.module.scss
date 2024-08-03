@@ -6,14 +6,4 @@
     & video {
         transform: scaleX(-1);
     }
-    & .closeVideoCall {
-        padding: 2px;
-        border-radius: 100px;
-        background-color: red;
-        cursor: pointer;
-    }
-    & .closeVideoCall:hover {
-        background-color: orange;
-        color: black;
-    }
 }
