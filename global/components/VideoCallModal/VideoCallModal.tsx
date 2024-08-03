@@ -98,7 +98,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 })
             })
             .catch(function(err) { console.log(err.name + ": " + err.message); });
-    }
+    };
 
     useEffect(() => {
         if (isOpen === false) {
@@ -112,13 +112,12 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             newPeer.on('open', function(peerID) {
                 connection$?.emit('send-peer-id', { userId: authedUser$.userId, peerID: peerID })
             });
-            newPeer.on('call', function(call) {
+            newPeer.on('call', function(call: MediaConnection) {
                 const isUserConfirmedCall = confirm('Входящий звонок от пользователя. Принять?');
                 if (isUserConfirmedCall) {
                     setIsVideoCallOpened(true);
                     handleAcceptCallFromUser(call);
                 } else {
-                    call.dataChannel.close();
                     call.close();
                 }
             });
