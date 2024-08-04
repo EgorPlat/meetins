@@ -5,6 +5,7 @@ import { useStore } from 'effector-react';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import Peer, { MediaConnection } from 'peerjs';
 import s from './VideoCallModal.module.scss';
+import { FaCamera, FaMicrophone } from 'react-icons/fa6';
 
 interface IVideoCallModalProps {
     isOpen: boolean,
@@ -15,10 +16,12 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     const [peer, setPeer] = useState<Peer>(null);
     const [peerCall, setPeerCall] = useState<MediaConnection>(null);
     const [isUserAcceptedCall, setIsUserAcceptedCall] = useState<boolean>(false);
-    
-    const myStream = useRef<HTMLVideoElement>(null);
-    const commingStream = useRef<HTMLVideoElement>(null);
-    const mediaDeviceStream = useRef<MediaStream>(null);
+    const [isMediaActive, setIsMediaActive] = useState<{ video: boolean, audio: boolean }>({ video: true, audio: true });
+
+    const myStreamRef = useRef<HTMLVideoElement>(null);
+    const commingStreamRef = useRef<HTMLVideoElement>(null);
+    const myMediaDeviceStream = useRef<MediaStream>(null);
+    const activeVideoTrack = useRef<MediaStreamTrack>(null);
 
     const peerIDForCall$ = useStore(peerIDForCall);
     const connection$ = useStore(connection);
@@ -33,7 +36,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             peerCall.close();
         }
         handleCloseVideoModal();
-        mediaDeviceStream.current.getTracks().forEach(function(track) {
+        myMediaDeviceStream.current.getTracks().forEach(function(track) {
             track.stop();
         });
     };
@@ -43,21 +46,28 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         setIsUserAcceptedCall(false);
     };
 
+    const handleSwapMediaStatus = (audio: boolean, video: boolean) => {
+        setIsMediaActive(() => {
+            return { audio, video };
+        });
+    };
+
     function handleCallToUser() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
             .then(function(mediaStream: MediaStream) {
-                if (mediaDeviceStream) {
-                    mediaDeviceStream.current = mediaStream;
+                if (myMediaDeviceStream) {
+                    myMediaDeviceStream.current = mediaStream;
                 }
+
                 if (peerIDForCall$) {
                     const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                     setPeerCall(newPeerCall);
                     newPeerCall.on('stream', function (remoteStream) {
                         setIsUserAcceptedCall(true);
-                        if (commingStream && commingStream.current) {
-                            commingStream.current.srcObject = remoteStream;
-                            commingStream.current.onloadedmetadata = function(e) {
-                                commingStream.current.play();
+                        if (commingStreamRef && commingStreamRef.current) {
+                            commingStreamRef.current.srcObject = remoteStream;
+                            commingStreamRef.current.onloadedmetadata = function(e) {
+                                commingStreamRef.current.play();
                             }
                         };
                     });
@@ -68,10 +78,10 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                         handleCloseVideoModal();
                     });
 	  
-                    if (myStream && myStream.current) {
-                        myStream.current.srcObject = mediaStream;
-                        myStream.current.onloadedmetadata = function(e) {
-                            myStream.current.play();
+                    if (myStreamRef && myStreamRef.current) {
+                        myStreamRef.current.srcObject = mediaStream;
+                        myStreamRef.current.onloadedmetadata = function(e) {
+                            myStreamRef.current.play();
                         };
                     }
                 }
@@ -83,15 +93,16 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         setIsUserAcceptedCall(true);
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
             .then(function(mediaStream: MediaStream) {
-                if (mediaDeviceStream) {
-                    mediaDeviceStream.current = mediaStream;
+                if (myMediaDeviceStream) {
+                    myMediaDeviceStream.current = mediaStream;
                 }
                 peerCall.answer(mediaStream);
                 setPeerCall(peerCall);
-                if (myStream && myStream.current) {
-                    myStream.current.srcObject = mediaStream;
-                    myStream.current.onloadedmetadata = function(e) {
-                        myStream.current.play();
+                
+                if (myStreamRef && myStreamRef.current) {
+                    myStreamRef.current.srcObject = mediaStream;
+                    myStreamRef.current.onloadedmetadata = function(e) {
+                        myStreamRef.current.play();
                     };
                 }
                 peerCall.on('close', () => {
@@ -102,10 +113,10 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 });
                 
                 peerCall.on('stream', (remoteStream) => {
-                    if (commingStream && commingStream.current) {
-                        commingStream.current.srcObject = remoteStream;
-                        commingStream.current.onloadedmetadata = function(e) {
-                            commingStream.current.play();
+                    if (commingStreamRef && commingStreamRef.current) {
+                        commingStreamRef.current.srcObject = remoteStream;
+                        commingStreamRef.current.onloadedmetadata = function(e) {
+                            commingStreamRef.current.play();
                         };
                     }
                 })
@@ -150,16 +161,30 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             isDisplay={isOpen}
             changeModal={handleCallClose}
             actionConfirmed={handleConfirmVideoCall}
-            typeOfActions='default'
+            typeOfActions='none'
         >
             <div className={s.videoCallModal}>
-                <video ref={myStream} muted width="200px" height="200px"></video>
+                <video ref={myStreamRef} muted width="200px" height="200px"></video>
                 
                 {
                     isUserAcceptedCall 
-                    ? <video ref={commingStream} width="200px" height="200px"></video>
+                    ? <video ref={commingStreamRef} width="200px" height="200px"></video>
                     : <div className={s.watingMessage}>Ожидание ответа...</div>
                 }
+                <div className={s.actions}>
+                    <div 
+                        className={s.actionsMicrophone}
+                        onClick={() => handleSwapMediaStatus(!isMediaActive.audio, isMediaActive.video)}
+                    >
+                        <FaMicrophone fontSize={28} color={isMediaActive.audio ? "gray" : "red"} />
+                    </div>
+                    <div 
+                        className={s.actionsCamera}
+                        onClick={() => handleSwapMediaStatus(isMediaActive.audio, !isMediaActive.video)}
+                    >
+                        <FaCamera fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
+                    </div>
+                </div>
             </div>
         </CustomModal>
     )

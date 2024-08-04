@@ -11,4 +11,9 @@
         font-size: 18px;
         text-align: center;
     }
+    & .actions {
+        display: flex;
+        column-gap: 10px;
+        cursor: pointer;
+    }
 }
