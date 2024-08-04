@@ -18,6 +18,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     
     const myStream = useRef<HTMLVideoElement>(null);
     const commingStream = useRef<HTMLVideoElement>(null);
+    const mediaDeviceStream = useRef<MediaStream>(null);
 
     const peerIDForCall$ = useStore(peerIDForCall);
     const connection$ = useStore(connection);
@@ -32,6 +33,9 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             peerCall.close();
         }
         handleCloseVideoModal();
+        mediaDeviceStream.current.getTracks().forEach(function(track) {
+            track.stop();
+        });
     };
 
     const handleCloseVideoModal = () => {
@@ -42,6 +46,9 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     function handleCallToUser() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
             .then(function(mediaStream: MediaStream) {
+                if (mediaDeviceStream) {
+                    mediaDeviceStream.current = mediaStream;
+                }
                 if (peerIDForCall$) {
                     const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                     setPeerCall(newPeerCall);
@@ -75,7 +82,10 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
         setIsUserAcceptedCall(true);
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
-            .then(function(mediaStream: MediaStream) {  
+            .then(function(mediaStream: MediaStream) {
+                if (mediaDeviceStream) {
+                    mediaDeviceStream.current = mediaStream;
+                }
                 peerCall.answer(mediaStream);
                 setPeerCall(peerCall);
                 if (myStream && myStream.current) {
