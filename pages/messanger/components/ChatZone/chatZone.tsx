@@ -23,23 +23,27 @@ import ChatMessageForm from "../ChatMessageForm/chatMessageForm";
 import Loader from "../../../../components-ui/Loader/Loader";
 import s from "./chatZone.module.scss";
 import { connection } from "../../../../global/store/connection_model";
+import { addNotification } from "../../../../global/store/notifications_model";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
 }
 export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     
+    const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
+    const [videoMessageActive, setVideoMessageActive] = useState<boolean>();
+
     const authedUser = useStore($user);
     const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
     const onlineUsers = useStore($onlineUsers);
-    const isUserOnline = onlineUsers.filter(el => el.userId === activeChat$.userId).length !== 0;
-    const messagesEndRef = useRef<HTMLDivElement>(null);
-    const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
-    const [videoMessageActive, setVideoMessageActive] = useState<boolean>();
-    const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
     const connection$ = useStore(connection);
-    const { t } = useTranslation();
+
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+    const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
+    
     const router = useRouter();
+    const isUserOnline = onlineUsers.filter(el => el.userId === activeChat$.userId).length !== 0;
+    const { t } = useTranslation();
 
     const { handleActivateMedia, mediaChunks } = useUserMediaTracks({ 
         video: { width: 200, height: 200 },
@@ -68,6 +72,13 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                 if (res) {
                     setPeerIDForCall(res);
                     setIsVideoCallOpened(true);
+                } else {
+                    addNotification({
+                        time: 3000,
+                        textColor: "white",
+                        color: "yellow",
+                        text: "Пользователь не в сети."
+                    })
                 }
             });
         }
