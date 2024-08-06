@@ -12,7 +12,7 @@ export default function About() {
                 <div className={s.aboutBlock}>
                     <div className={s.aboutBlockImage}>
                         <CustomShowUpComponent side='bottom' transitionType='ease-out'>
-                        <img className={s.aboutBlockImageContent} src="/images/social_1.jpg"></img>
+                            <img className={s.aboutBlockImageContent} src="/images/social_1.jpg"></img>
                         </CustomShowUpComponent>
                     </div>
                     <div className={s.aboutBlockText}>
