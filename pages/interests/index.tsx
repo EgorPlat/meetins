@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import InterestsPageView from "./components/InterestsPageView/InterestsPageView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { useTranslation } from "react-i18next";
-import { Head } from "next/document";
+import Head from "next/head";
 
 export default function Interests() {
 
