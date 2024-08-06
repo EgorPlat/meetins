@@ -4,11 +4,14 @@ import { $currentInterestsList, addInterest, getInterests } from "../../global/s
 import { useEffect, useRef } from "react";
 import InterestsPageView from "./components/InterestsPageView/InterestsPageView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
+import { useTranslation } from "react-i18next";
+import { Head } from "next/document";
 
 export default function Interests() {
 
     const currentInterests$ = useStore($currentInterestsList);
     const titleRef = useRef<HTMLInputElement>(null);
+    const { t } = useTranslation();
 
     const handleSendForm = () => {
         if (titleRef.current && titleRef.current.value.length >= 3) {
@@ -35,11 +38,23 @@ export default function Interests() {
 
     return (
         <PageContainer>
-            <InterestsPageView
-                currentInterests={currentInterests$}
-                handleSendForm={handleSendForm}
-                titleRef={titleRef}
-            />
+            <>
+                <Head>
+                    <title>Meetins - {t('Интересы')}</title>
+                    <link rel='icon' href='/images/logo.svg' />
+                    <meta name="description" content="Meetings interests - this page is using to explore basic interests on the site." key="desc" />
+                    <meta property="og:title" content="Social Media Interests" />
+                    <meta
+                        property="og:description"
+                        content="Join us and get a lot of fun and new friends"
+                    />
+                </Head>
+                <InterestsPageView
+                    currentInterests={currentInterests$}
+                    handleSendForm={handleSendForm}
+                    titleRef={titleRef}
+                />
+            </>
         </PageContainer>
     )
 }

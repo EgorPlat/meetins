@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile, setIsVideoCallOpened } from '../global/store/store';
+import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
 import { detectUserLanguage } from '../global/helpers/helper';
@@ -16,12 +16,12 @@ import Head from 'next/head';
 import i18n from '../i18n';
 import NotificationBlock from '../global/components/NotificationBlock/notificationBlock';
 import Layout from '../global/components/Layout/Layout';
+import VideoCallModal from '../global/components/VideoCallModal/VideoCallModal';
 import '../i18n';
 import '../styles/app.css';
 import '../styles/themes.css';
 import 'regenerator-runtime/runtime';
 import '../node_modules/reseter.css/css/reseter.min.css';
-import VideoCallModal from '../global/components/VideoCallModal/VideoCallModal';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -60,10 +60,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<title>Meetins</title>
 				<link rel='icon' href='/images/logo.svg' />
 				<meta name="description" content="Checkout our service" key="desc" />
-				<meta property="og:title" content="Social Media Meetins for cool persons" />
+				<meta property="og:title" content="Social Media Meetins for persons who want to find new relations with other peoples and go forward together." />
 				<meta
 					property="og:description"
-					content="Join us and get a lot of fun and new friends"
+					content="Join us and get a lot of fun and new friends."
 				/>
 			</Head>
 			<Component {...pageProps} />
