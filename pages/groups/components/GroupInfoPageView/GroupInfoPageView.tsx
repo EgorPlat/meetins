@@ -97,7 +97,6 @@ export default function GroupInfoPageView (props: {
                                                             src: baseURL + el.src
                                                         }
                                                     })
-                                                    //post.files
                                                 } 
                                                 width='450px' 
                                                 height='300px' 

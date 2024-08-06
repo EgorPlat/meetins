@@ -9,7 +9,6 @@ export const useAuthAndInithialSocket = () => {
 
     const socketConnection = useStore(connection);
 	const router = useRouter();
-	//const isNeededRoutes = router.asPath !== "/login" && router.asPath !== "/register" && router.asPath !== '';
 	const authedUser$ = useStore($user);
 
 	useEffect(() => {
@@ -23,7 +22,7 @@ export const useAuthAndInithialSocket = () => {
 				setNewConnection(null);
 			}
 		}
-	}, [/*router.asPath*/ authedUser$]);
+	}, [authedUser$]);
 
 	return socketConnection !== null;
 }

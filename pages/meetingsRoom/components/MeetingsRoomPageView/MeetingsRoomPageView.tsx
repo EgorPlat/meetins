@@ -104,15 +104,11 @@ export default function MeetingsRoomPageView(props: {
                                         ? <img 
                                             key={el.src} 
                                             src={baseURL + el.src} 
-                                            //width={120} 
-                                            //height={120}
                                         /> :
                                     el.type.includes('video') 
                                         && <video
                                                 key={el.src} 
                                                 src={baseURL + el.src}
-                                                //width={150} 
-                                                //height={100}
                                                 controls
                                             />
                                 ))

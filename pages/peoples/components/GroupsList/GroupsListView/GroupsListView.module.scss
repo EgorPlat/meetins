@@ -4,14 +4,12 @@
 }
 .groupsListView {
     width: 98%;
-    //text-align: justify;
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 10px;
     & .groupsFilters {
         & .title {
             text-overflow: ellipsis;
-            //white-space: nowrap;
             @extend .defaultTitle;
             color: gray;
         }   

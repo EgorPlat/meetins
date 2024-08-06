@@ -1,11 +1,3 @@
-@keyframes showUpModal {
-    from {
-        transform: scale(0.5);
-    }
-    to {
-        transform: scale(1);
-    }
-}
 .customModal {
     z-index: 9999;
     width: 100%;
@@ -19,14 +11,10 @@
     justify-content: center;
     font-family: Nunito;
     & .customModalContent {
-        //animation-duration: 0.3s;
-        //animation-name: showUpModal;
-        //animation-iteration-count: 1;
-        //animation-direction: alternate;
         font-size: 24px;
         padding: 20px;
         border-radius: 5px;
-        max-height: 600px;
+        max-height: 650px;
         & .customModalTitle {
             display: grid;
             grid-template-columns: 95% 5%;
@@ -54,7 +42,7 @@
             }
         }
         & .customModalChildrenContent {
-            max-height: 420px;
+            max-height: 500px;
             width: 100%;
             padding-right: 10px;
             overflow-y: scroll;
@@ -97,7 +85,6 @@
         & .customModalContent {
             width: 700px;
             font-size: 22px;
-            //grid-template-rows: 45px 450px 65px;
             & .customModalTitle {
                 font-size: 26px;
                 & .customModalClose {

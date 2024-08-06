@@ -37,6 +37,9 @@
             right: 0;
         }
     }
+    & .addMusic:hover {
+        color: var(--default-color);
+    }
     & .musicContent {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -101,7 +104,6 @@
                             padding: 0px 10px 10px 10px;
                             font-size: 12px;
                             & .compositions {
-                                //color: black;
                                 text-align: left;
                             }
                         }
