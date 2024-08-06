@@ -57,19 +57,19 @@ export default function GroupInfoPageView (props: {
                 </div>
                 <div className={s.talks}>
                     <div className={s.item} onClick={props.handleOpenTalks}>
-                        Обсуждения {/*<span className={s.count}>{props.groupInfo?.talks?.length} </span>*/}
+                        Обсуждения
                         <RiDiscussLine fontSize={20} />
                     </div>
                     <div className={s.item} onClick={props.handleOpenPhotos}>
-                        Фото {/*<span className={s.count}>{props.videoPhotoAttachmentsInfo.images.length} </span>*/}
+                        Фото
                         <BiPhotoAlbum fontSize={20} />
                     </div>
                     <div className={s.item} onClick={props.handleOpenVideos}>
-                        Видео {/*<span className={s.count}>{props.videoPhotoAttachmentsInfo.videos.length} </span>*/}
+                        Видео
                         <AiOutlineVideoCamera fontSize={20} />
                     </div>
                     <div className={s.item}>
-                        Ещё {/*<span className={s.count}>{props.groupInfo?.attachments?.length} </span>*/}
+                        Ещё
                         <ImAttachment fontSize={20} />
                     </div>
                 </div>

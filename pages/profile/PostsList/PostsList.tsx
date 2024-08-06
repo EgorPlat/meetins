@@ -64,7 +64,6 @@ export default function PostsList(props: {currentUser: User, authedUser: User}):
                       </span>
                     </div>
                     <div className={s.postFiles}>
-                      {/*<img src={baseURL + el.files[0].src} />*/}
                       {
                         el.files?.length > 0 &&
                           <CustomSlider 
