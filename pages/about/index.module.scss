@@ -1,23 +1,5 @@
 @keyframes smoothShowUpFromLeft {
-    from {
-        opacity: 0;
-        left: -200px;
-    }
-    to {
-        opacity: 1;
-        left: 0;
-    } 
-}
-
-@keyframes smoothShowUpFromRight {
-    from {
-        opacity: 0;
-        right: -200px;
-    }
-    to {
-        opacity: 1;
-        right: 0;
-    } 
+    
 }
 
 .about {
@@ -32,8 +14,6 @@
         grid-template-columns: 350px calc(100% - 370px);
         column-gap: 20px;
         & .aboutBlockImage {
-            position: relative;
-            animation: smoothShowUpFromLeft 2s forwards;
             & .aboutBlockImageContent {
                 width: 350px;
                 height: 250px;
@@ -41,8 +21,6 @@
             }
         }
         & .aboutBlockText {
-            position: relative;
-            animation: smoothShowUpFromRight 3s forwards;
             text-align: justify;
             display: grid;
             align-items: center;

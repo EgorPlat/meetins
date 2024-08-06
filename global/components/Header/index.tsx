@@ -25,7 +25,8 @@ export default function Header(): JSX.Element {
 	return (   
 		<div className={`${s.header} ${headerBgClass}`}>
 			<div className={s.logo}>
-				<Image  
+				<Image
+					onClick={() => router.push('/about')}
 					className={s.logoImage}
 					src={logo}
 					alt='company logo'
