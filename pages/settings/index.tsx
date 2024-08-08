@@ -89,8 +89,12 @@ export default function Settings(): JSX.Element {
                     </div>
                     <div className={s.themes}> 
                         <h4>{t("Темы")}</h4>
-                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme('black')}>Черная</button>
-                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme('white')}>Белая</button>
+                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme('black')}>
+                            {t('Черная')}
+                        </button>
+                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme('white')}>
+                            {t('Белая')}
+                        </button>
                     </div>
                     <div className={s.info}> 
                         <h4>{t("Информация профиля")}</h4>
@@ -108,8 +112,7 @@ export default function Settings(): JSX.Element {
                         <div className={`${s.infoText}`}>
                             <div className={`${s.description}`}>
                                 {t('Вы можете изменить адрес аккаунта на более привлекательный')}.<br />
-                                {t('Другие пользователи смогут найти Вас по адресу')} <b>meetins.ru/ВашАдрес</b><br />
-                                <b>Отключение</b><br/>
+                                {t('Другие пользователи смогут найти Вас по адресу')} <b>meetins.ru/{t('адрес')}</b><br />
                                 {t('Вы можете удалить свой аккаунт, тогда другие пользователи больше не смогут')}<br />
                                 {t('Вас найти на нашем сайте')}.
                             </div>
@@ -120,7 +123,7 @@ export default function Settings(): JSX.Element {
                     </div>
                 </div>
                 <CustomModal
-                    title="Удаление аккаунта" 
+                    title="Удаление аккаунта"
                     isDisplay={isModal} 
                     changeModal={changeModal}
                     actionConfirmed={deleteAccount}

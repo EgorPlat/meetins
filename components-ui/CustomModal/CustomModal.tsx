@@ -1,5 +1,6 @@
 import React, { ReactChild } from "react";
 import s from "./CustomModal.module.scss";
+import { useTranslation } from "react-i18next";
 
 const CustomModal = (props: {
     children: ReactChild, 
@@ -11,6 +12,8 @@ const CustomModal = (props: {
     actionsComponent?: any,
 }): JSX.Element | null => {
 
+    const { t } = useTranslation();
+
     if(!props.isDisplay) {
         return null;
     }
@@ -18,7 +21,7 @@ const CustomModal = (props: {
         <div className={s.customModal}>
             <div className={`${s.customModalContent} customModal`}>
                 <div className={s.customModalTitle}>
-                    <p>{props.title}</p>
+                    <p>{t(props.title)}</p>
                     <div className={s.customModalClose} onClick={() => props.changeModal(false)}>
                         x
                     </div>
@@ -31,8 +34,8 @@ const CustomModal = (props: {
                         props.typeOfActions === 'default' 
                         &&
                         <>
-                            <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>Подтвердить</button>
-                            <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>Закрыть</button>
+                            <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>{t('Подтвердить')}</button>
+                            <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>{t('Закрыть')}</button>
                         </>
                     }
                     {

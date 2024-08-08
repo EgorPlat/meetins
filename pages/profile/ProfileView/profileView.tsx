@@ -184,7 +184,7 @@ export default function ProfileView(props: {
                 isDisplay={props.isAddPostModal} 
                 changeModal={props.onAddingModalClick} 
                 actionConfirmed={props.onAddingModalClick}
-                title={t('Добавить новую запись')}
+                title="Добавить новую запись"
                 typeOfActions="none"
             >
                 <AddingPosts />
@@ -193,7 +193,7 @@ export default function ProfileView(props: {
                 isDisplay={props.isInviteModal} 
                 changeModal={props.setIsInviteModal} 
                 actionConfirmed={props.handleSendInvite}
-                title={t('Выберите событие')}
+                title="Выберите событие"
                 typeOfActions="default"
             >
                 <ChoosingEvents choosedEvent={props.setChoosedEventForInvite} />
@@ -202,7 +202,7 @@ export default function ProfileView(props: {
                 isDisplay={props.isEditTagOpen} 
                 changeModal={props.handleSwapEditTag} 
                 actionConfirmed={props.handleSwapEditTag}
-                title={t('Настройте Ваш тэг')}
+                title="Настройте Ваш тэг"
                 typeOfActions="none"
             >
                 <EditUserTag />

@@ -102,5 +102,26 @@
     "Совпадение": "Match",
     "Введите псевдоним автора": "Write an authors pseudonym",
     "Искать": "Search",
-    "Прослушивания": "Listenings"
+    "Прослушивания": "Listenings",
+    "Видеозвонок": "Videocall",
+    "Управление сообществом": "Managing group",
+    "Добавить публикацию": "Create publication",
+    "Обсуждения": "Talks",
+    "Обсуждение": "Talk",
+    "Создать обсуждение": "Create talk",
+    "Фотографии в сообществе": "Photos in this group",
+    "Видео в сообществе": "Videos in this group",
+    "Добавление новой встречи": "Create new meetings",
+    "Добавить комментарий": "Add comment",
+    "Все медиа файлы со встречи": "All media-files from this meeting",
+    "Подтвердите действие": "Confirm action",
+    "Видео-сообщение": "Video-message",
+    "Добавить новую композицию": "Create new composition",
+    "Создать новую группу": "Create new group",
+    "Настройте Ваш тэг": "Manage your tag",
+    "Удаление аккаунта": "Deleting an account",
+    "Черная": "Dark",
+    "Белая": "White",
+    "Вы можете приглашать пользователей на мерпориятия которые есть в ваших закладках, для этого перейдите к ним в профиль и нажмите кнопку 'Пригласить'":
+    "You can invite users to the events. This users must be in your marked list. To add some user to marked list you should go to his profile and click the 'Invite' button. "
 }
