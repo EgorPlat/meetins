@@ -38,9 +38,11 @@ export default function MobileChatList(): JSX.Element {
                                 authedUser={authedUser$}
                             />
                             <div className={s.mobileUserChatCardLastMessage}>
-                                <div className={s.mobileLastMessage}>
+                                <div>
                                     {!lastMessage.isRead && isUnreadMessageMy && <div className={s.mobileNotMyChatRound}></div> }
                                     {!lastMessage.isRead && !isUnreadMessageMy && <div className={s.mobileMyChatRound}></div> }
+                                </div>
+                                <div className={s.mobileLastMessage}>
                                     {dialog.messages[dialog.messages?.length - 1].content}
                                 </div>
                             </div>

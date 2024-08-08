@@ -113,7 +113,7 @@ sample({
     filter: (res) => res.status === 200,
     fn: (res) => {
         let splitedMeetings = { previousMeetings: [], furtherMeetings: [] };
-        res.data.map(el => {
+        res.data.map((el: IMeeting) => {
             if (new Date(el.date).getTime() > new Date(Date.now()).getTime()) {
                 splitedMeetings = {
                     ...splitedMeetings,

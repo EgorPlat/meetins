@@ -15,31 +15,26 @@
         & .mobileUserChatCardLastMessage {
             font-size: 16px;
             display: grid;
+            grid-template-columns: 10px calc(100% - 10px);
+            column-gap: 5px;
             align-items: center;
+            & .mobileNotMyChatRound {
+                width: 10px;
+                height: 10px;
+                background-color: rgba(0, 145, 255, 0.581);
+                border-radius: 50%;
+            }
+            & .mobileMyChatRound {
+                width: 10px;
+                height: 10px;
+                background-color: rgba(68, 255, 93, 0.581);
+                border-radius: 50%;
+            }
             & .mobileLastMessage {
-                display: flex;
-                width: 200px;
+                width: 90%;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                overflow-x: hidden;
-                & .mobileNotMyChatRound {
-                    width: 10px;
-                    height: 10px;
-                    background-color: rgba(0, 145, 255, 0.581);
-                    border-radius: 50%;
-                    margin-right: 15px;
-                    margin-left: 15px;
-                    margin-top: 5px;
-                }
-                & .mobileMyChatRound {
-                    width: 10px;
-                    height: 10px;
-                    background-color: rgba(68, 255, 93, 0.581);
-                    border-radius: 50%;
-                    margin-right: 15px;
-                    margin-left: 15px;
-                    margin-top: 5px;
-                }
+                overflow: hidden;
             }
         }
     }

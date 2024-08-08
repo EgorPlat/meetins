@@ -13,7 +13,7 @@ export default function Marks(): JSX.Element {
     const user$ = useStore($user);
     const markedUsersInfo$ = useStore($markedUsersInfo);
     const markedEventsInfo$ = useStore(userEvents);
-
+    
     useEffect(() => {
         getMarkedUsersInfo();
         getUserEventsInfo();

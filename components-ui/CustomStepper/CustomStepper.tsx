@@ -8,11 +8,11 @@ interface ICustomStepperProps {
 
 export default function CustomStepper({ steps }: ICustomStepperProps) {
 
-    const [activeStep, setActiveStep] = useState<IStep>();
+    const [activeStep, setActiveStep] = useState<IStep>(steps[0]);
 
     useEffect(() => {
         setActiveStep(steps[0]);
-    }, []);
+    }, [steps]);
 
     return (
         <div className={s.customStepper}>

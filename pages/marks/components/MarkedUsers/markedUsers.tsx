@@ -29,7 +29,7 @@ export default function MarkedUsers(props: {
                 }
                 {
                     props.markedUsers?.map(el => (
-                        <div className={s.markedUser} key={el.userId}>
+                        <div className={s.markedUser} key={el.userId} onClick={() => handleGoToUser(el.login)}>
                             <img src={baseURL + el.avatar} className={s.avatar} />
                             <div className={s.name} >{el.name}</div>
                             <div className={s.actions} >
@@ -37,10 +37,6 @@ export default function MarkedUsers(props: {
                                     className={s.actionRemove} 
                                     onClick={() => handleRemoveUser(el.userId)}
                                 >x</button>
-                                <button 
-                                    className={s.actionGo} 
-                                    onClick={() => handleGoToUser(el.login)}
-                                >{'>'}</button>
                             </div>
                         </div>
                     ))

@@ -7,29 +7,28 @@ import MyMeetings from './MyMeetings/MyMeetings';
 import s from './MeetingsContentView.module.scss';
 
 export default function MeetingsContentView(props: {
-    currentMeetings: ISplitedMeetings,
+    completedMeetings: IMeeting[],
+    furtherMeetings: IMeeting[],
+    myMeetings: IMeeting[],
     authedUser: User,
     handleGoToMeetingRoom: (meetingId: IMeeting) => void,
 }) {
-    const myMeetings = props.currentMeetings?.furtherMeetings.filter(el => el.creatorId === props.authedUser?.userId);  
-    const furtherMeetings = props.currentMeetings?.furtherMeetings;
-    const completedMeetings = props.currentMeetings?.previousMeetings;
-
+    
     return (
         <div className={s.meetingsContentView}>
             <CustomStepper
                 steps={[
                     { 
                         title: "Мои встречи", 
-                        component: <MyMeetings data={myMeetings} handleGoToMeeting={props.handleGoToMeetingRoom} /> 
+                        component: <MyMeetings data={props.myMeetings} handleGoToMeeting={props.handleGoToMeetingRoom} /> 
                     },
                     { 
                         title: "Будущие встречи", 
-                        component: <FurtherMeetings data={furtherMeetings} handleGoToMeetingRoom={props.handleGoToMeetingRoom} /> 
+                        component: <FurtherMeetings data={props.furtherMeetings} handleGoToMeetingRoom={props.handleGoToMeetingRoom} /> 
                     },
                     { 
                         title: "Завершенные встречи", 
-                        component: <CompletedMeetings data={completedMeetings} handleGoToMeeting={props.handleGoToMeetingRoom} /> 
+                        component: <CompletedMeetings data={props.completedMeetings} handleGoToMeeting={props.handleGoToMeetingRoom} /> 
                     },
                 ]}
             >

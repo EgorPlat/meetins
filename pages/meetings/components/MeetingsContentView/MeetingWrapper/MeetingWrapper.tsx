@@ -13,7 +13,7 @@ export default function MeetingWrapper(props: {
 
     const isMobile$ = useStore(isMobile);
     const isMeetingEnded = new Date(props.meeting?.date) <= new Date();
-    const meetingCreator = props.meeting?.participants[0];
+    const meetingCreator = props.meeting?.participants.filter(el => el.userId === props.meeting.creatorId)[0];
 
     if (isMobile$) {
         return (
@@ -121,13 +121,15 @@ export default function MeetingWrapper(props: {
                     <div className={s.meetingGoal}>
                         Цель встречи: <span className={s.hint}>{props.meeting?.goal}</span>
                     </div>
-                    <div className={s.meetingActions}>
-                        <button 
-                            className={s.actionBtn}
-                            onClick={() => props.handleGoToMeeting(props.meeting)}
-                        >Перейти</button>
-                        <button className={s.actionBtn}>Связь с организатором</button>
-                    </div>
+                    {
+                        !isMeetingEnded &&
+                        <div className={s.meetingActions}>
+                            <button 
+                                className={s.actionBtn}
+                                onClick={() => props.handleGoToMeeting(props.meeting)}
+                            >Перейти на страницу встречи</button>
+                        </div>
+                    }
                 </div>
             </div>        
         )

@@ -13,7 +13,7 @@ export default function MyMeetings({
     data: IMeeting[],
     handleGoToMeeting: (meeting: IMeeting) => void
 }) {
-
+       
     const [isAddModalShown, setIsAddModalShown] = useState<boolean>(false);
     
     return (

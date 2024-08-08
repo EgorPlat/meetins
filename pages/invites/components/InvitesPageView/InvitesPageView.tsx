@@ -22,7 +22,12 @@ export default function InvitesPageView({
     handleVisit
 }: IInvitesPageView) {
 
-    if (loadedStatus && unitedEventsInfo.innerInvites.length === 0 && unitedEventsInfo.outerInvites.length === 0) {
+    if (!loadedStatus) {
+        return (
+            <CustomLoader />
+        )
+    }
+    else if (loadedStatus && unitedEventsInfo.innerInvites.length === 0 && unitedEventsInfo.outerInvites.length === 0) {
         return (
             <div className={s.invitesPageView}>
                 <h5>У вас пока нет приглашений на мероприятия</h5>
