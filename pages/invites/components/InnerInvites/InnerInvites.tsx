@@ -12,7 +12,7 @@ interface IInnerInvitesProps {
 export default function InnerInvites(props: IInnerInvitesProps) {
     const invites = props.invites;
 
-    if (invites.length === 0) {
+    if (invites?.length === 0) {
         return <div className={s.warning}>У вас пока нет приглашений на мероприятия.</div>
     }
     if (invites) {

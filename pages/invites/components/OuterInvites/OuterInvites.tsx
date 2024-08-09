@@ -10,7 +10,7 @@ interface IOuterInviteWrapperProps {
 export default function OuterInvites(props: IOuterInviteWrapperProps) {
     const invites = props.invites;
     
-    if (invites.length === 0) {
+    if (invites?.length === 0) {
         return <div className={s.warning}>Вы пока не отправляли приглашений.</div>
     }
     if (invites) {
