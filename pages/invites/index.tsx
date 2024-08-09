@@ -36,7 +36,7 @@ export default function Invites() {
         getUserInnerInvitesEventInfo();
         getUserOuterInvitesEventInfo();
     }, []);
-
+    
     return (
         <PageContainer>
             <InvitesPageView

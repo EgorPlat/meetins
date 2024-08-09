@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { currentWall$, getCurrentWall } from "../../global/store/wall_model";
 import { useStore } from "effector-react";
-import { FaRegCircleQuestion } from "react-icons/fa6";
 import { getInterests } from "../../global/store/store";
 import { useRouter } from "next/router";
 import React from "react";
@@ -10,13 +9,10 @@ import LentaList from "./components/LentaList/LentaList";
 import SearchingPeople from "./components/SearchingPeople/SearchingPeople";
 import Head from "next/head";
 import GroupsList from "./components/GroupsList/GroupsList";
-import CustomModal from "../../components-ui/CustomModal/CustomModal";
 import s from "./peoples.module.scss";
+import CustomStepper from "../../components-ui/CustomStepper/CustomStepper";
 
 export default function Peoples(): JSX.Element {
-
-    const [currentChapter, setCurrentChapter] = useState<string>('searching');
-    const [isHintOpen, setIsHintOpen] = useState<boolean>(false);
 
     const currentWall = useStore(currentWall$);
     const router = useRouter();
@@ -49,52 +45,13 @@ export default function Peoples(): JSX.Element {
                         content="Присоединяйтесь прямо сейчас, ищите людей."
                     />
                 </Head>
-                <div className={s.chapters}>
-                    <button 
-                        onClick={() => setCurrentChapter('searching')}
-                        className={currentChapter === 'searching' ? s.selectedChapter : s.notSelectedChapter}
-                    >Поиск людей</button>
-                    <FaRegCircleQuestion
-                        className={s.hint}
-                        onClick={() => setIsHintOpen(true)}
-                    />
-                    <button 
-                        onClick={() => setCurrentChapter('groups')}
-                        className={currentChapter === 'groups' ? s.selectedChapter : s.notSelectedChapter}
-                    >Сообщества</button>
-                    <button 
-                        onClick={() => setCurrentChapter('list')}
-                        className={currentChapter === 'list' ? s.selectedChapter : s.notSelectedChapter}
-                    >Новости</button>
-                </div>
-                <div className={s.activeChapter}>
-                    {
-                        currentChapter === 'searching' ? <SearchingPeople /> :
-                        currentChapter === 'list' ? 
-                            <LentaList 
-                                wallPosts={currentWall}
-                                handleGoToLink={handleGoToLink}
-                            /> : 
-                        currentChapter === 'groups' && <GroupsList />
-                    }
-                </div>
-                <CustomModal
-                    isDisplay={isHintOpen}
-                    title="Информация"
-                    actionConfirmed={setIsHintOpen}
-                    changeModal={setIsHintOpen}
-                    typeOfActions="none"
-                >
-                    <div className={s.hintText}>
-                        Внимание, данные фильтры лучше использовать при выключенной функции
-                        <span style={{ color: "var(--default-color)"}}> "Фильтры контента"</span>.
-                        <div>*</div>
-                        <div className={s.block}>
-                            Если данная функция включена, применение дополнительных фильтров может
-                            не дать желаемого результата.
-                        </div>
-                    </div>
-                </CustomModal>
+                <CustomStepper
+                    steps={[
+                        {title: "Поиск людей", component: <SearchingPeople />},
+                        {title: "Сообщества", component: <GroupsList />},
+                        {title: "Новости", component: <LentaList wallPosts={currentWall} handleGoToLink={handleGoToLink} />}
+                    ]}
+                />
             </div>
         </PageContainer> 
     )

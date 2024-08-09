@@ -3,6 +3,7 @@ import { User } from '../../../global/interfaces';
 import { baseURL } from '../../../global/store/store';
 import { getDateInDMYFormat } from '../../../global/functions/getDateInDMFormat';
 import { getIsUserMale } from '../../../global/functions/getIsUserMale';
+import { MdEdit } from 'react-icons/md';
 import s from './profileView.module.scss';
 import About from '../About/About';
 import Interests from '../Interests/interests';
@@ -16,7 +17,6 @@ import Loader from '../../../components-ui/Loader/Loader';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import EditUserTag from '../../../global/forms/EditUserTag/Index';
 import Head from 'next/head';
-import { MdEdit } from 'react-icons/md';
 
 export default function ProfileView(props: {
     asyncLoaded: boolean,

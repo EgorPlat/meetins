@@ -1,5 +1,5 @@
 import { baseURL } from '../../../../global/store/store';
-import { CiSquarePlus } from "react-icons/ci";
+import { CiBookmarkPlus, CiSquarePlus } from "react-icons/ci";
 import s from './MeetingsRoomPageView.module.scss';
 import CustomProgressBar from '../../../../components-ui/CustomProgressBar/CustomProgressBar';
 import { IMeeting } from '../../../../global/interfaces/meetings';
@@ -7,8 +7,6 @@ import CustomLoader from '../../../../components-ui/CustomLoader/CustomLoader';
 import { customizeDateToYYYYMMDDHHMMFormat } from '../../../../global/helpers/helper';
 import { ChangeEvent, useRef } from 'react';
 import Link from 'next/link';
-import { selectedMeeting } from '../../../../global/store/meetings_model';
-import { IGroupFile } from '../../../../global/interfaces/groups';
 
 export default function MeetingsRoomPageView(props: {
     selectedMeeting: IMeeting,
@@ -42,9 +40,10 @@ export default function MeetingsRoomPageView(props: {
                                 max={25}
                                 value={props.selectedMeeting.participants.length}
                             />
-                            <CiSquarePlus
+                            <CiBookmarkPlus
                                 className={s.addMember}
-                                fontSize={35}
+                                title='Записаться на встречу'
+                                fontSize={37}
                                 onClick={() => props.handleRegInMeeting(props.selectedMeeting.meetingId)}
                             />
                         </div>

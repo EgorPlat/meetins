@@ -1,16 +1,4 @@
-.invitesPageView {
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    padding-right: 2%;
-    padding-bottom: 2%;
-    h5 {
-        margin-top: 200px;
-        text-align: center;
-        font-size: 18px;
-        color: gray;
-    }
-    & .hint {
-        font-size: 16px;
-    }
+.content {
+    width: 98%;
+    font-size: 18px;
 }

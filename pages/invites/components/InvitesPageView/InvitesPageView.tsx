@@ -1,8 +1,9 @@
 import CustomLoader from '../../../../components-ui/CustomLoader/CustomLoader';
+import CustomStepper from '../../../../components-ui/CustomStepper/CustomStepper';
 import { IInnerInvites, User } from '../../../../global/interfaces';
 import { IUnitedInvitesEvent } from '../../../../global/interfaces/events';
-import InnerInviteWrapper from '../InnerInviteWrapper/InnerInviteWrapper';
-import OuterInviteWrapper from '../OuterInviteWrapper/OuterInviteWrapper';
+import InnerInvites from '../InnerInvites/InnerInvites';
+import OuterInvites from '../OuterInvites/OuterInvites';
 import s from './InvitesPageView.module.scss';
 
 interface IInvitesPageView {
@@ -27,35 +28,28 @@ export default function InvitesPageView({
             <CustomLoader />
         )
     }
-    else if (loadedStatus && unitedEventsInfo.innerInvites.length === 0 && unitedEventsInfo.outerInvites.length === 0) {
-        return (
-            <div className={s.invitesPageView}>
-                <h5>У вас пока нет приглашений на мероприятия</h5>
-            </div>
-        )
-    }
     else if (loadedStatus) {
         return (
-            <div className={s.invitesPageView}>
-                {
-                    unitedEventsInfo.innerInvites.map((invite) => 
-                    <InnerInviteWrapper 
-                        invite={invite}    
-                        key={invite.id}
-                        handleDecline={handleDecline}
-                        handleWatch={handleWatch}
-                        handleVisit={handleVisit}
-                    />)
-                }
-                {
-                    unitedEventsInfo.outerInvites.map((invite) => 
-                    <OuterInviteWrapper 
-                        invite={invite} 
-                        key={invite.id}
-                        handleWatch={handleWatch}
-                        handleVisit={handleVisit}
-                    />)
-                }
+            <div className={s.content}>
+                <CustomStepper
+                    steps={[
+                        { title: "Входящие приглашения", component: 
+                            <InnerInvites
+                                invites={unitedEventsInfo.innerInvites}    
+                                handleDecline={handleDecline}
+                                handleWatch={handleWatch}
+                                handleVisit={handleVisit}
+                            />
+                        },
+                        { title: "Исходящие приглашения", component: 
+                            <OuterInvites
+                                invites={unitedEventsInfo.outerInvites}
+                                handleWatch={handleWatch}
+                                handleVisit={handleVisit}
+                            />
+                        }
+                    ]}
+                />
             </div>
         )
     } 
