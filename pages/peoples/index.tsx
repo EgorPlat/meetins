@@ -46,6 +46,7 @@ export default function Peoples(): JSX.Element {
                     />
                 </Head>
                 <CustomStepper
+                    center={true}
                     steps={[
                         {title: "Поиск людей", component: <SearchingPeople />},
                         {title: "Сообщества", component: <GroupsList />},
