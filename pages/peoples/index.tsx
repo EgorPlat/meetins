@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { currentWall$, getCurrentWall } from "../../global/store/wall_model";
 import { useStore } from "effector-react";
-import { getInterests } from "../../global/store/store";
+import { getInterests, isMobile } from "../../global/store/store";
 import { useRouter } from "next/router";
 import React from "react";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
@@ -16,7 +16,8 @@ export default function Peoples(): JSX.Element {
 
     const currentWall = useStore(currentWall$);
     const router = useRouter();
-    
+    const isMobile$ = useStore(isMobile);
+
     const handleGoToLink = (isGroup: boolean, linkId: number) => {
         if (isGroup) {
             router.push(`/groups/${linkId}`);
@@ -46,7 +47,7 @@ export default function Peoples(): JSX.Element {
                     />
                 </Head>
                 <CustomStepper
-                    center={true}
+                    center={isMobile$ ? true : false}
                     steps={[
                         {title: "Поиск людей", component: <SearchingPeople />},
                         {title: "Сообщества", component: <GroupsList />},
