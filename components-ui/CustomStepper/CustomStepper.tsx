@@ -17,7 +17,7 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
 
     return (
         <div className={s.customStepper}>
-            <div className={s.steps} style={center && { justifyContent: "center" }}>
+            <div className={s.steps} style={center ? { justifyContent: "center" } : { justifyContent: "left" }}>
                 {
                     steps.map(step => (
                         <div
