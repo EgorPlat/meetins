@@ -17,12 +17,14 @@ import MusicPageView from "./components/MusicPageView/MusicPageView";
 import CustomStepper from "../../components-ui/CustomStepper/CustomStepper";
 import StatsTimeView from "./components/StatsTimeView/StatsTimeView";
 import StatsGeoView from "./components/StatsGeoView/StatsGeoView";
+import useDebounce from "../../global/hooks/useDebounce";
 
 export default function Music() {
 
     const [addMusicModal, setAddMusicModal] = useState<boolean>(false);
     const [showMyStatistic, setShowMyStatistic] = useState<boolean>(false);
     const [searchMusic, setSearchMusic] = useState<string>("");
+    const debouncedSearchMusic = useDebounce(searchMusic, 300);
     const musicList$ = useStore(musicList);
     const authorsStatistic$ = useStore(authorsStatistic);
     const matchesList$ = useStore(matchesList);
@@ -42,12 +44,12 @@ export default function Music() {
     }, []);
     
     useEffect(() => {
-        if (searchMusic.length === 0) {
+        if (debouncedSearchMusic.length === 0) {
             getAllMusic()
         } else {
-            setMusicList(musicList$.filter(el => el.name.toLowerCase().includes(searchMusic.toLowerCase())));
+            setMusicList(musicList$.filter(el => el.name.toLowerCase().includes(debouncedSearchMusic.toLowerCase())));
         }
-    }, [searchMusic]);
+    }, [debouncedSearchMusic]);
 
     return (
         <PageContainer>

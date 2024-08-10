@@ -21,7 +21,11 @@ export const MusicControlBlockView = (
     return (
         <div className={s.wrapper}>
             <div className={s.content} style={{ backgroundImage: `url(${activeMusic.image})` }}>
-                <span className={s.status}>Играет</span>
+                <span className={s.status}>
+                    <div className={s.verticalBlock}></div>
+                    <div className={s.verticalBlock}></div>
+                    <div className={s.verticalBlock}></div>
+                </span>
                 <audio src={activeMusic.src} ref={audioRef} loop id="musicPageBlock" />
             </div>
         </div>
