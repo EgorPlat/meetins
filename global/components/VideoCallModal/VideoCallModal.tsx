@@ -49,7 +49,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         setIsMediaActive(() => {
             return { audio, video };
         });
-        if (!video) {
+        /*if (!video) {
             myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
                 if (track.kind === 'video') {
                     track.stop();
@@ -67,7 +67,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     };
                 }
             });
-        }
+        }*/
     };
 
     function handleCallToUser() {
