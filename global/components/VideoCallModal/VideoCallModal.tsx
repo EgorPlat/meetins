@@ -49,25 +49,20 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         setIsMediaActive(() => {
             return { audio, video };
         });
-        /*if (!video) {
-            myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
-                if (track.kind === 'video') {
-                    track.stop();
-                }
+        navigator.mediaDevices.getUserMedia({ audio: audio, video: video ? { width: 200, height: 200 } : false}).then((stream) => {
+            peerCall.peerConnection.getSenders().forEach((sender) => {
+              if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
+                sender.replaceTrack(stream.getAudioTracks()[0]);
+            }
+            if (sender.track.kind === "video" && stream.getVideoTracks().length > 0) {
+                sender.replaceTrack(stream.getVideoTracks()[0]);
+            }
             });
-            peerCall.addStream(myMediaDeviceStream.current);
-        } else {
-            navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
-            .then(function(mediaStream: MediaStream) {
-                peerCall.addStream(mediaStream);
-                if (myStreamRef && myStreamRef.current) {
-                    myStreamRef.current.srcObject = mediaStream;
-                    myStreamRef.current.onloadedmetadata = function(e) {
-                        myStreamRef.current?.play();
-                    };
-                }
-            });
-        }*/
+            if (myStreamRef && myStreamRef.current) {
+                myStreamRef.current.srcObject = stream;
+                myStreamRef.current.play();
+            }
+        });
     };
 
     function handleCallToUser() {
