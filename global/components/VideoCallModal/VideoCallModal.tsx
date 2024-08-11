@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from '../../store/store';
 import { connection } from '../../store/connection_model';
 import { useStore } from 'effector-react';
+import { FaCamera, FaMicrophone } from 'react-icons/fa6';
 import CustomModal from '../../../components-ui/CustomModal/CustomModal';
 import Peer, { MediaConnection } from 'peerjs';
 import s from './VideoCallModal.module.scss';
-import { FaCamera, FaMicrophone } from 'react-icons/fa6';
 
 interface IVideoCallModalProps {
     isOpen: boolean,
@@ -53,7 +53,6 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             track.stop();
         });
         navigator.mediaDevices.getUserMedia({ audio: audio, video: video ? { width: 200, height: 200 } : false}).then((stream) => {
-            myMediaDeviceStream.current = stream;
             peerCall.peerConnection.getSenders().forEach((sender: RTCRtpSender) => {
                 if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
                     sender.replaceTrack(stream.getAudioTracks()[0]);
@@ -62,6 +61,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     sender.replaceTrack(stream.getVideoTracks()[0]);
                 }
             });
+            myMediaDeviceStream.current = stream;
             if (myStreamRef && myStreamRef.current) {
                 myStreamRef.current.srcObject = stream;
                 myStreamRef.current.play();
@@ -87,6 +87,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                             }
                         };
                     });
+
                     newPeerCall.on('close', () => {
                         mediaStream.getTracks().forEach(function(track) {
                             track.stop();
@@ -127,7 +128,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     });
                     handleCloseVideoModal();
                 });
-                
+
                 peerCall.on('stream', (remoteStream) => {
                     if (commingStreamRef && commingStreamRef.current) {
                         commingStreamRef.current.srcObject = remoteStream;
