@@ -59,6 +59,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             return { audio, video };
         });
         navigator.mediaDevices.getUserMedia({ audio: audio, video: video ? { width: 200, height: 200 } : false}).then((stream) => {
+            myMediaDeviceStream.current = stream;
             peerCall.peerConnection.getSenders().forEach((sender: RTCRtpSender) => {
                 if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
                     sender.replaceTrack(stream.getAudioTracks()[0]);
@@ -67,7 +68,6 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     sender.replaceTrack(stream.getVideoTracks()[0]);
                 }
             });
-            myMediaDeviceStream.current = stream;
             if (myStreamRef && myStreamRef.current) {
                 myStreamRef.current.srcObject = stream;
                 myStreamRef.current.play();
