@@ -31,12 +31,12 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     };
 
     const handleRemoveVideoTrack = () => {
-        myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
+        /*myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
             if (track.kind === 'video') {
                 track.stop();
             }
         });
-        peerCall.addStream(myMediaDeviceStream.current);
+        peerCall.addStream(myMediaDeviceStream.current);*/
     };
 
     const handleCallClose = () => {
@@ -66,7 +66,6 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
                 }
-
                 if (peerIDForCall$) {
                     const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                     setPeerCall(newPeerCall);
@@ -75,7 +74,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                         if (commingStreamRef && commingStreamRef.current) {
                             commingStreamRef.current.srcObject = remoteStream;
                             commingStreamRef.current.onloadedmetadata = function(e) {
-                                commingStreamRef.current.play();
+                                commingStreamRef.current?.play();
                             }
                         };
                     });
@@ -89,7 +88,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     if (myStreamRef && myStreamRef.current) {
                         myStreamRef.current.srcObject = mediaStream;
                         myStreamRef.current.onloadedmetadata = function(e) {
-                            myStreamRef.current.play();
+                            myStreamRef.current?.play();
                         };
                     }
                 }
@@ -110,7 +109,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 if (myStreamRef && myStreamRef.current) {
                     myStreamRef.current.srcObject = mediaStream;
                     myStreamRef.current.onloadedmetadata = function(e) {
-                        myStreamRef.current.play();
+                        myStreamRef.current?.play();
                     };
                 }
                 peerCall.on('close', () => {
@@ -124,7 +123,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     if (commingStreamRef && commingStreamRef.current) {
                         commingStreamRef.current.srcObject = remoteStream;
                         commingStreamRef.current.onloadedmetadata = function(e) {
-                            commingStreamRef.current.play();
+                            commingStreamRef.current?.play();
                         };
                     }
                 })
@@ -173,12 +172,13 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         >
             <div className={s.videoCallModal}>
                 <video ref={myStreamRef} muted width="200px" height="200px"></video>
-                
-                {
-                    isUserAcceptedCall 
-                    ? <video ref={commingStreamRef} width="200px" height="200px"></video>
-                    : <div className={s.watingMessage}>Ожидание ответа...</div>
-                }
+                <video 
+                    style={isUserAcceptedCall ? {opacity: 1} : {opacity: 0}} 
+                    ref={commingStreamRef} 
+                    width="200px" 
+                    height="200px"
+                ></video>
+                {isUserAcceptedCall && <div className={s.watingMessage}>Ожидание ответа...</div>}
                 <div className={s.actions}>
                     <div 
                         className={s.actionsMicrophone}
