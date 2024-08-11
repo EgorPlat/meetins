@@ -31,12 +31,12 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     };
 
     const handleRemoveVideoTrack = () => {
-        /*myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
+        myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
             if (track.kind === 'video') {
                 track.stop();
             }
         });
-        peerCall.addStream(myMediaDeviceStream.current);*/
+        peerCall.addStream(myMediaDeviceStream.current);
     };
 
     const handleCallClose = () => {
@@ -178,7 +178,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     width="200px" 
                     height="200px"
                 ></video>
-                {isUserAcceptedCall && <div className={s.watingMessage}>Ожидание ответа...</div>}
+                {!isUserAcceptedCall && <div className={s.watingMessage}>Ожидание ответа...</div>}
                 <div className={s.actions}>
                     <div 
                         className={s.actionsMicrophone}
