@@ -44,6 +44,9 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         setIsMediaActive({ video: true, audio: true });
         setIsVideoCallOpened(false);
         setIsUserAcceptedCall(false);
+        myMediaDeviceStream.current.getTracks().forEach(function(track) {
+            track.stop();
+        });
     };
 
     const handleSwapMediaStatus = (audio: boolean, video: boolean) => {
