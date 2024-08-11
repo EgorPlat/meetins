@@ -16,7 +16,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     const [peer, setPeer] = useState<Peer>(null);
     const [peerCall, setPeerCall] = useState<MediaConnection>(null);
     const [isUserAcceptedCall, setIsUserAcceptedCall] = useState<boolean>(false);
-    const [isMediaActive, setIsMediaActive] = useState<{ video: boolean, audio: boolean }>({ video: true, audio: true });
+    const [isMediaActive, setIsMediaActive] = useState<{ video: boolean, audio: boolean }>({ video: false, audio: true });
 
     const myStreamRef = useRef<HTMLVideoElement>(null);
     const commingStreamRef = useRef<HTMLVideoElement>(null);
@@ -54,13 +54,13 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         });
         navigator.mediaDevices.getUserMedia({ audio: audio, video: video ? { width: 200, height: 200 } : false}).then((stream) => {
             myMediaDeviceStream.current = stream;
-            peerCall.peerConnection.getSenders().forEach((sender) => {
-            if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
-                sender.replaceTrack(stream.getAudioTracks()[0]);
-            }
-            if (sender.track.kind === "video" && stream.getVideoTracks().length > 0) {
-                sender.replaceTrack(stream.getVideoTracks()[0]);
-            }
+            peerCall.peerConnection.getSenders().forEach((sender: RTCRtpSender) => {
+                if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
+                    sender.replaceTrack(stream.getAudioTracks()[0]);
+                }
+                if (sender.track.kind === "video" && stream.getVideoTracks().length > 0) {
+                    sender.replaceTrack(stream.getVideoTracks()[0]);
+                }
             });
             if (myStreamRef && myStreamRef.current) {
                 myStreamRef.current.srcObject = stream;
@@ -70,7 +70,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     };
 
     function handleCallToUser() {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
             .then(function(mediaStream: MediaStream) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
@@ -107,7 +107,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
   
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
         setIsUserAcceptedCall(true);
-        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
             .then(function(mediaStream: MediaStream) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
