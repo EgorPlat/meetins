@@ -30,31 +30,33 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         
     };
 
+    const handleCloseAllLocalMediaTracks = () => {
+        if (myMediaDeviceStream && myMediaDeviceStream.current) {
+            myMediaDeviceStream.current.getTracks().forEach(function(track) {
+                track.stop();
+            });
+        }
+    };
+
     const handleCallClose = () => {
+        handleCloseAllLocalMediaTracks();
         if (peerCall) {
             peerCall.close();
         }
         setIsMediaActive({ video: true, audio: true });
-        myMediaDeviceStream.current.getTracks().forEach(function(track) {
-            track.stop();
-        });
     };
 
     const handleCloseVideoModal = () => {
         setIsMediaActive({ video: true, audio: true });
         setIsVideoCallOpened(false);
         setIsUserAcceptedCall(false);
-        myMediaDeviceStream.current.getTracks().forEach(function(track) {
-            track.stop();
-        });
+        handleCloseAllLocalMediaTracks();
     };
 
     const handleSwapMediaStatus = (audio: boolean, video: boolean) => {
+        handleCloseAllLocalMediaTracks();
         setIsMediaActive(() => {
             return { audio, video };
-        });
-        myMediaDeviceStream.current.getTracks().forEach(function(track) {
-            track.stop();
         });
         navigator.mediaDevices.getUserMedia({ audio: audio, video: video ? { width: 200, height: 200 } : false}).then((stream) => {
             peerCall.peerConnection.getSenders().forEach((sender: RTCRtpSender) => {
