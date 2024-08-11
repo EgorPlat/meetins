@@ -30,15 +30,6 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         
     };
 
-    const handleRemoveVideoTrack = () => {
-        myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
-            if (track.kind === 'video') {
-                track.stop();
-            }
-        });
-        peerCall.addStream(myMediaDeviceStream.current);
-    };
-
     const handleCallClose = () => {
         if (peerCall) {
             peerCall.close();
@@ -58,6 +49,25 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         setIsMediaActive(() => {
             return { audio, video };
         });
+        if (!video) {
+            myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
+                if (track.kind === 'video') {
+                    track.stop();
+                }
+            });
+            peerCall.addStream(myMediaDeviceStream.current);
+        } else {
+            navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+            .then(function(mediaStream: MediaStream) {
+                peerCall.addStream(mediaStream);
+                if (myStreamRef && myStreamRef.current) {
+                    myStreamRef.current.srcObject = mediaStream;
+                    myStreamRef.current.onloadedmetadata = function(e) {
+                        myStreamRef.current?.play();
+                    };
+                }
+            });
+        }
     };
 
     function handleCallToUser() {
@@ -190,7 +200,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                         className={s.actionsCamera}
                         onClick={() => handleSwapMediaStatus(isMediaActive.audio, !isMediaActive.video)}
                     >
-                        <FaCamera onClick={handleRemoveVideoTrack} fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
+                        <FaCamera fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
                     </div>
                 </div>
             </div>
