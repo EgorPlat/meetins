@@ -49,9 +49,13 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         setIsMediaActive(() => {
             return { audio, video };
         });
-        /*navigator.mediaDevices.getUserMedia({ audio: audio, video: video ? { width: 200, height: 200 } : false}).then((stream) => {
+        myMediaDeviceStream.current.getTracks().forEach(function(track) {
+            track.stop();
+        });
+        navigator.mediaDevices.getUserMedia({ audio: audio, video: video ? { width: 200, height: 200 } : false}).then((stream) => {
+            myMediaDeviceStream.current = stream;
             peerCall.peerConnection.getSenders().forEach((sender) => {
-              if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
+            if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
                 sender.replaceTrack(stream.getAudioTracks()[0]);
             }
             if (sender.track.kind === "video" && stream.getVideoTracks().length > 0) {
@@ -62,7 +66,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 myStreamRef.current.srcObject = stream;
                 myStreamRef.current.play();
             }
-        });*/
+        });
     };
 
     function handleCallToUser() {
