@@ -34,13 +34,14 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         if (peerCall) {
             peerCall.close();
         }
-        handleCloseVideoModal();
+        setIsMediaActive({ video: true, audio: true });
         myMediaDeviceStream.current.getTracks().forEach(function(track) {
             track.stop();
         });
     };
 
     const handleCloseVideoModal = () => {
+        setIsMediaActive({ video: true, audio: true });
         setIsVideoCallOpened(false);
         setIsUserAcceptedCall(false);
     };
