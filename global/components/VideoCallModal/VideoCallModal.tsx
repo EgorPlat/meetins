@@ -59,8 +59,8 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             return { audio, video };
         });
         navigator.mediaDevices.getUserMedia({ 
-            audio: isMediaActive.audio, 
-            video: isMediaActive.video ? { width: 200, height: 200 } : false
+            audio: audio, 
+            video: video ? { width: 200, height: 200 } : false
         }).then((stream) => {
             peerCall.peerConnection.getSenders().forEach((sender: RTCRtpSender) => {
                 if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
