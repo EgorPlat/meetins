@@ -62,29 +62,31 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     useEffect(() => {
         const interval = setTimeout(() => {
-            navigator.mediaDevices.getUserMedia({ 
-                audio: isMediaActive.audio, 
-                video: isMediaActive.video ? { width: 200, height: 200 } : false
-            }).then((stream) => {
-                peerCall.peerConnection.getSenders().forEach((sender: RTCRtpSender) => {
-                    if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
-                        sender.replaceTrack(stream.getAudioTracks()[0]);
-                    }
-                    if (sender.track.kind === "video" && stream.getVideoTracks().length > 0) {
-                        sender.replaceTrack(stream.getVideoTracks()[0]);
+            if (isUserAcceptedCall) {
+                navigator.mediaDevices.getUserMedia({ 
+                    audio: isMediaActive.audio, 
+                    video: isMediaActive.video ? { width: 200, height: 200 } : false
+                }).then((stream) => {
+                    peerCall.peerConnection.getSenders().forEach((sender: RTCRtpSender) => {
+                        if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
+                            sender.replaceTrack(stream.getAudioTracks()[0]);
+                        }
+                        if (sender.track.kind === "video" && stream.getVideoTracks().length > 0) {
+                            sender.replaceTrack(stream.getVideoTracks()[0]);
+                        }
+                    });
+                    myMediaDeviceStream.current = stream;
+                    if (myStreamRef && myStreamRef.current) {
+                        myStreamRef.current.srcObject = stream;
+                        myStreamRef.current.play();
                     }
                 });
-                myMediaDeviceStream.current = stream;
-                if (myStreamRef && myStreamRef.current) {
-                    myStreamRef.current.srcObject = stream;
-                    myStreamRef.current.play();
-                }
-            });
+            }
         }, 500);
         return () => {
             clearInterval(interval);
         }
-    }, [isMediaActive.audio, isMediaActive.video]);
+    }, [isMediaActive.audio, isMediaActive.video, isUserAcceptedCall]);
 
     function handleCallToUser() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
