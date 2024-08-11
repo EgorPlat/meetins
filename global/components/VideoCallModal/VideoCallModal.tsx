@@ -21,7 +21,6 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     const myStreamRef = useRef<HTMLVideoElement>(null);
     const commingStreamRef = useRef<HTMLVideoElement>(null);
     const myMediaDeviceStream = useRef<MediaStream>(null);
-    const activeVideoTrack = useRef<MediaStreamTrack>(null);
 
     const peerIDForCall$ = useStore(peerIDForCall);
     const connection$ = useStore(connection);
@@ -29,6 +28,15 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     const handleConfirmVideoCall = () => {
         
+    };
+
+    const handleRemoveVideoTrack = () => {
+        myMediaDeviceStream.current.getTracks().forEach(function(track: MediaStreamTrack) {
+            if (track.kind === 'video') {
+                track.stop();
+            }
+        });
+        peerCall.addStream(myMediaDeviceStream.current);
     };
 
     const handleCallClose = () => {
@@ -182,7 +190,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                         className={s.actionsCamera}
                         onClick={() => handleSwapMediaStatus(isMediaActive.audio, !isMediaActive.video)}
                     >
-                        <FaCamera fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
+                        <FaCamera onClick={handleRemoveVideoTrack} fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
                     </div>
                 </div>
             </div>
