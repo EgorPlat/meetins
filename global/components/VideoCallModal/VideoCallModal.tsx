@@ -190,20 +190,22 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     height="200px"
                 ></video>
                 {!isUserAcceptedCall && <div className={s.watingMessage}>Ожидание ответа...</div>}
-                <div className={s.actions}>
-                    <div 
-                        className={s.actionsMicrophone}
-                        onClick={() => handleSwapMediaStatus(!isMediaActive.audio, isMediaActive.video)}
-                    >
-                        <FaMicrophone fontSize={28} color={isMediaActive.audio ? "gray" : "red"} />
+                {isUserAcceptedCall &&
+                    <div className={s.actions}>
+                        <div 
+                            className={s.actionsMicrophone}
+                            onClick={() => handleSwapMediaStatus(!isMediaActive.audio, isMediaActive.video)}
+                        >
+                            <FaMicrophone fontSize={28} color={isMediaActive.audio ? "gray" : "red"} />
+                        </div>
+                        <div 
+                            className={s.actionsCamera}
+                            onClick={() => handleSwapMediaStatus(isMediaActive.audio, !isMediaActive.video)}
+                        >
+                            <FaCamera fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
+                        </div>
                     </div>
-                    <div 
-                        className={s.actionsCamera}
-                        onClick={() => handleSwapMediaStatus(isMediaActive.audio, !isMediaActive.video)}
-                    >
-                        <FaCamera fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
-                    </div>
-                </div>
+                }
             </div>
         </CustomModal>
     )
