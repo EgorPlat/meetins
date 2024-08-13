@@ -23,7 +23,7 @@ export const Notification = (props: {
     return (
         <div
             className={`${ visible ? s.errorShowUp : s.errorHide}`} 
-            style={{ border: `2.5px solid ${notification.color}`}}
+            style={{ boxShadow: `0px 0px 5px 2px ${notification.color}` }}
         >
             {notification.text}
         </div>

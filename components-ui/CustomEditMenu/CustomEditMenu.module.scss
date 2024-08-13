@@ -4,6 +4,7 @@
     cursor: pointer;
     font-size: 14px;
     font-family: Nunito;
+    direction: rtl;
     & .round {
         width: 8px;
         height: 8px;
@@ -15,7 +16,8 @@
         left: 0px;
         top: 0px;
         width: 100%;
-        height: 190px;
+        z-index: 99;
+        background-color: rgba(65, 65, 65, 0.474);
     }
     & .content {
         border-radius: 5px;
@@ -23,10 +25,9 @@
         border: 1px solid gray;
         padding: 5px;
         position: absolute;
-        top: 38px;
-        right: 0px;
-        min-height: 30px;
-        min-width: 170px;
+        z-index: 100;
+        margin-top: 35px;
+        direction: ltr;
         & .menuElement {
             white-space: nowrap;
             min-width: 170px;

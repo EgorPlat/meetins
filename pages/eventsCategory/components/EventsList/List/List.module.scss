@@ -21,7 +21,8 @@
             font-size: 18px;
             color: rgb(164, 164, 164);
             & .eventTitle {
-                color: white;
+                color: var(--text-color);
+                //color: white;
                 font-size: 20px;
             }
             & .eventPrice {
@@ -63,7 +64,7 @@
                     display: flex;
                     align-items: center;
                     font-size: 15px;
-                    background-color: rgba(8, 189, 8, 0.196);
+                    background-color: rgba(11, 125, 212, 0.586);
                     color: white;
                     padding: 0px 10px 0px 10px;
                     border-radius: 100px;

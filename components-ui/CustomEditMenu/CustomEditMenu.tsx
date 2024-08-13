@@ -9,7 +9,7 @@ export default function CustomEditMenu(props: {
 }) {
 
     const [isContent, setIsContent] = useState<boolean>(false);
-
+    
     return (
         <div className={s.customEditMenu} onClick={() => setIsContent(!isContent)}>
             <div className={s.round}></div>
@@ -18,7 +18,7 @@ export default function CustomEditMenu(props: {
             {
                 isContent &&
                 <>
-                    <div className={s.contentWrapper}></div>
+                    <div className={s.contentWrapper} style={{ height: document.getElementsByTagName('body')[0].clientHeight }}></div>
                     <div className={s.content}>
                         {
                             props.data.map(el => (

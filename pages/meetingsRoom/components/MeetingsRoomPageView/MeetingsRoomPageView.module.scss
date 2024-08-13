@@ -123,21 +123,28 @@
                 }
             }
             & .content {
-                display: flex;
-                flex-direction: column;
+                display: grid;
+                grid-auto-rows: auto;
+                height: auto;
+                gap: 20px;
+
+                column-gap: 10px;
                 row-gap: 10px;
                 width: 100%;
+                margin-top: 10px;
+                margin-bottom: 10px;
                 & .message {
                     width: 100%;
                     font-size: 16px;
                     color: gray;
                 }
                 & .comment {
-                    width: 100%;
-                    min-height: 30px;
+                    min-width: 400px;
                     padding: 10px;
                     background-color: var(--bg-color-block);
                     display: grid;
+                    word-break: break-all;
+                    border-radius: 5px;
                     grid-template-columns: 65px calc(100% - 75px);
                     column-gap: 10px;
                     & .userInfo {

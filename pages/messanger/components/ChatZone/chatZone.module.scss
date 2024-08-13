@@ -25,7 +25,8 @@
     }
     & .user {
         display: grid;
-        grid-template-columns: 75px calc(100% - 85px);
+        grid-template-columns: 75px calc(100% - 115px) 30px;
+        align-items: center;
         padding: 10px;
         & .avatar {
             width: 100%;
@@ -35,7 +36,6 @@
             background-size: 100% 100%;
         }
         & .userTextInfo {
-            position: relative;
             padding-left: 15px;
             & .name {
                 display: flex;
@@ -51,11 +51,10 @@
                 color: rgb(100, 100, 255);
                 font-size: 18px;
             }
-            & .moreActions {
-                position: absolute;
-                right: 10px;
-                top: 10px;
-            }
+        }
+        & .moreActions {
+            display: flex;
+            justify-content: right;
         }
     }
     & .messages {

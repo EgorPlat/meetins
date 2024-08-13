@@ -17,9 +17,10 @@
 
 .eachError {
     padding: 5px;
-    background-color: #101113e7;
+    box-shadow: 0px 0px 3px 1px white;
+    background-color: var(--bg-color);
     color: white;
-    border: 2px solid white;
+    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +29,6 @@
     font-weight: 600;
     width: 100%;
     min-height: 40px;
-    border-radius: 5px;
 }
 .errorShowUp {
     @extend .eachError;

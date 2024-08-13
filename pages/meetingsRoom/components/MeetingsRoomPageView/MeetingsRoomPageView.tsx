@@ -81,7 +81,7 @@ export default function MeetingsRoomPageView(props: {
                             <span className={s.text}>Фотографии  и видео со встречи:</span>
                             <CiSquarePlus
                                 className={s.addMedia}
-                                fontSize={35}
+                                fontSize={30}
                                 onClick={() => mediaRef.current.click()}
                             />
                             <input
@@ -126,7 +126,7 @@ export default function MeetingsRoomPageView(props: {
                             <span className={s.text}>Комментарии к данной встрече:</span>
                             <CiSquarePlus
                                 className={s.addComment}
-                                fontSize={35}
+                                fontSize={30}
                                 onClick={props.handleAddComment}
                             />
                         </div>
