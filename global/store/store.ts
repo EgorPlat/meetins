@@ -102,12 +102,12 @@ export const $scrollPageBlocked = createStore<boolean>(false).on(
 export const setCurrentInterestsList = createEvent<IInterest[]>()
 export const addNewInterest = createEvent<IInterest>()
 export const $currentInterestsList = createStore<IInterest[]>([])
-.on(setCurrentInterestsList, (_, interests) => {
-	return interests;
-})
-.on(addNewInterest, (interests, interest) => {
-	return [...interests, interest];
-})
+	.on(setCurrentInterestsList, (_, interests) => {
+		return interests;
+	})
+	.on(addNewInterest, (interests, interest) => {
+		return [...interests, interest];
+	})
 
 export const setMarkedUsersInfo = createEvent<IMarkedUserInfo[]>()
 export const $markedUsersInfo = createStore<IMarkedUserInfo[]>([]).on(setMarkedUsersInfo, (_, usersInfo) => {
@@ -115,8 +115,8 @@ export const $markedUsersInfo = createStore<IMarkedUserInfo[]>([]).on(setMarkedU
 })
 
 export const getUserInterests = createEffect(async (userInterests) => {
-	const response = await instance.post('interests/get-ineterests-by-id', JSON.stringify({ interests: userInterests}));
-	if(response.status <= 217) {
+	const response = await instance.post('interests/get-ineterests-by-id', JSON.stringify({ interests: userInterests }));
+	if (response.status <= 217) {
 		return response.data;
 	}
 })
@@ -133,7 +133,7 @@ export const removeUserFromMarkedList = createEffect(async (userId: string) => {
 
 export const updateInterests = createEffect(async (interests: string[]) => {
 	const response = await instance.post('users/updateUserInterest', JSON.stringify({ interests: interests }));
-	if(response.status <= 217) {
+	if (response.status <= 217) {
 		setUser(response.data);
 		setCurrentProfileUser(response.data);
 		return response;
@@ -158,7 +158,7 @@ export const addInterest = createEffect(async (title: string) => {
 export const getUserData = createEffect(async () => {
 	setIsUserLoaded(false);
 	const response = await instance.get('profile/my-profile');
-	if(response.status === 200) {
+	if (response.status === 200) {
 		setUser(response.data);
 		setIsUserLoaded(true);
 	}
@@ -169,8 +169,8 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 	const instanseRouter$ = instanseRouter.getState();
 	const savedRoute = localStorage.getItem("previousPage");
 	setIsUserLoaded(false);
-	getUserData().then( (res) => {
-		if(res.status === 200) {
+	getUserData().then((res) => {
+		if (res.status === 200) {
 			setIsInithialDataLoaded(true);
 			setIsUserLoaded(true);
 			if (
@@ -188,7 +188,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
 
 export const getUserDataByUserId = createEffect(async (userId: string | number) => {
 	const response = await instance.post(`users/getUserByUserId`);
-	if(response.data) {
+	if (response.data) {
 		return response.data;
 	}
 })
@@ -196,15 +196,15 @@ export const getUserDataByUserId = createEffect(async (userId: string | number) 
 export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | number) => {
 	setIsUserLoaded(false);
 	const response = await instance.get(`profile/by-login/${loginUrl}`);
-	if(response.status <= 202) {
+	if (response.status <= 202) {
 		setIsUserLoaded(true);
 	}
 	return response;
 })
 export const getDataForProfilePage = createEffect((userId: string) => {
 	setIsCurrentUserLoaded(false);
-	getUserDataByLoginUrl(userId).then( (res) => {
-		if(res.status === 200) {
+	getUserDataByLoginUrl(userId).then((res) => {
+		if (res.status === 200) {
 			setCurrentProfileUser(res.data);
 			setIsCurrentUserLoaded(true);
 		}
@@ -213,7 +213,7 @@ export const getDataForProfilePage = createEffect((userId: string) => {
 
 export const sendNewUserPost = createEffect(async (formData: FormData) => {
 	const response = await instance.post('users/addUserPost', formData);
-	if(response.status === 200) {
+	if (response.status === 200) {
 		setUser(response.data);
 		addNotification({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000, textColor: "white" })
 	}

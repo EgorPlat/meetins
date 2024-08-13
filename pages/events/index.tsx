@@ -3,7 +3,7 @@ import Card from "./components/categoryCard/card";
 import s from "./index.module.scss";
 import Head from "next/head";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
-
+import React from "react";
 
 export default function Events(): JSX.Element {
 
@@ -22,36 +22,36 @@ export default function Events(): JSX.Element {
 					/>
 				</Head>
 				<div className={s.mainContent}>
-					<Card 
-						img_src = "images/cinema.jpg"
-						name = {t("Кино")} 
+					<Card
+						img_src="images/cinema.jpg"
+						name={t("Кино")}
 						categoryRoute='cinema'
 					/>
-					<Card 
-						img_src = "images/theatre.jpg" 
-						name = {t("Театр")} 
+					<Card
+						img_src="images/theatre.jpg"
+						name={t("Театр")}
 						categoryRoute='theater'
 					/>
-					<Card 
-						img_src = "images/concert.jpg" 
-						name = {t("Концерты")} 
+					<Card
+						img_src="images/concert.jpg"
+						name={t("Концерты")}
 						categoryRoute='concert'
 					/>
-					<Card 
-						img_src = "images/exibition.jpg" 
-						name = {t("Выставки")} 
+					<Card
+						img_src="images/exibition.jpg"
+						name={t("Выставки")}
 						categoryRoute='exhibition'
 					/>
-					<Card 
-						img_src = "images/tour.jpg" 
-						name = {t("Экскурсии")} 
+					<Card
+						img_src="images/tour.jpg"
+						name={t("Экскурсии")}
 						categoryRoute='tour'
 					/>
-					<Card 
-						img_src = "images/quest.jpg" 
-						name = {t("Квесты")} 
+					<Card
+						img_src="images/quest.jpg"
+						name={t("Квесты")}
 						categoryRoute='quest'
-					/> 
+					/>
 				</div>
 			</div>
 		</PageContainer>

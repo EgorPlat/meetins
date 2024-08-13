@@ -9,16 +9,16 @@ import { MdInterests } from 'react-icons/md';
 import { useTranslation } from "react-i18next";
 
 export default function Interests(props: {
-    user: User, 
+    user: User,
     authedUser: User
 }): JSX.Element {
-    
+
     const { t } = useTranslation();
     const [currentUserInterests, setCurrentUserInterests] = useState([]);
     const [isChangeMode, setIsChangeMode] = useState(false);
     const isAuthedUserAreCurrentUser = props.authedUser?.userId === props.user?.userId;
     const isCurrentInterestsAvailable = currentUserInterests?.length > 0;
-    
+
     const openChangeInterests = () => {
         setIsChangeMode(true);
     };
@@ -32,10 +32,10 @@ export default function Interests(props: {
             }
         }, []);
         updateInterests(selectedInterests);
-        setIsChangeMode(false);       
+        setIsChangeMode(false);
     }
 
-    useEffect(() => {  
+    useEffect(() => {
         if (props.user?.interests) {
             getUserInterests(props.user.interests).then(res => {
                 setCurrentUserInterests(res);
@@ -43,24 +43,24 @@ export default function Interests(props: {
         }
     }, [props.user?.userId]);
 
-    return(
+    return (
         <>
             <div className={s.interests}>
                 <div className={s.title}>
-                    <MdInterests fontSize={34}/>
-                    <b>{t('Интересы')}</b> 
-                    {isAuthedUserAreCurrentUser && 
+                    <MdInterests fontSize={34} />
+                    <b>{t('Интересы')}</b>
+                    {isAuthedUserAreCurrentUser &&
                         <span className={s.changeStatus} onClick={openChangeInterests}> (изм.)</span>
                     }
                 </div>
                 {
-                    isChangeMode 
-                    ? <ChangingInterests currentInterests={props.authedUser.interests} handleSaveClick={handleSaveClick} />
-                    : isCurrentInterestsAvailable
-                    ? currentUserInterests.map((elem) => 
-                        <button type="button" className={`${s.interest}`} key={elem.title}>{elem.title}</button> 
-                    )
-                    : <p>{t('Хобби пока нет')}.</p>
+                    isChangeMode
+                        ? <ChangingInterests currentInterests={props.authedUser.interests} handleSaveClick={handleSaveClick} />
+                        : isCurrentInterestsAvailable
+                            ? currentUserInterests.map((elem) =>
+                                <button type="button" className={`${s.interest}`} key={elem.title}>{elem.title}</button>
+                            )
+                            : <p>{t('Хобби пока нет')}.</p>
                 }
             </div>
         </>

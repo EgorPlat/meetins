@@ -22,7 +22,7 @@ export const isPeoplesLoaded = createStore<boolean>(false).on(setIsPeoplesLoaded
 });
 
 export const setFilterParams = createEvent<Params>();
-export const filterParams = createStore<Params>({gender: "all", age: 0, event: null}).on(setFilterParams, (_, newFilterParams) => {
+export const filterParams = createStore<Params>({ gender: "all", age: 0, event: null }).on(setFilterParams, (_, newFilterParams) => {
     return newFilterParams;
 });
 
@@ -38,7 +38,7 @@ export const getAllPeoplesByPageNumber = createEffect(async (data: { pageNumber:
         pageSize: data.pageSize,
         filters: data.filters
     });
-    if(response.status === 201) {
+    if (response.status === 201) {
         setAllPeoples(response.data.data);
         setMaxPageOfPeople(response.data.maxPage)
         return response.data.peoples;
@@ -57,7 +57,7 @@ sample({
 
 export const getAllPeoples = createEffect(async () => {
     const response = await instance.get('/users/getUserList');
-    if(response.status === 200) {
+    if (response.status === 200) {
         setAllPeoples(response.data);
         return response.data;
     }

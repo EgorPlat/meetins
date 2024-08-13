@@ -30,16 +30,16 @@ export default function Peoples(): JSX.Element {
         getCurrentWall();
         getInterests();
     }, []);
-    
-    return(
+
+    return (
         <PageContainer>
             <div className={s.peoples}>
                 <Head>
                     <title>Meetins - Люди</title>
                     <meta name="description" content="Ищите новые знакомства!" key="desc" />
                     <meta property="og:title" content="Только у нас Вы сможете найти себе хороших друзей и пообщаться!" />
-                    <meta 
-                        name="keywords" 
+                    <meta
+                        name="keywords"
                         content="meetins, meetin-s, Meetins, Meetin-s, знакомства, meetings, meet, люди, peoples, meetins seven peoples" />
                     <meta
                         property="og:description"
@@ -49,12 +49,12 @@ export default function Peoples(): JSX.Element {
                 <CustomStepper
                     center={isMobile$}
                     steps={[
-                        {title: "Поиск людей", component: <SearchingPeople />},
-                        {title: "Сообщества", component: <GroupsList />},
-                        {title: "Новости", component: <LentaList wallPosts={currentWall} handleGoToLink={handleGoToLink} />}
+                        { title: "Поиск людей", component: <SearchingPeople /> },
+                        { title: "Сообщества", component: <GroupsList /> },
+                        { title: "Новости", component: <LentaList wallPosts={currentWall} handleGoToLink={handleGoToLink} /> }
                     ]}
                 />
             </div>
-        </PageContainer> 
+        </PageContainer>
     )
 }

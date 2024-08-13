@@ -17,12 +17,12 @@ import s from '../../styles/pageStyles/auth.module.scss';
 
 export default function Login(): JSX.Element {
 
-	const { register, handleSubmit, formState: {errors} } = useForm()
+	const { register, handleSubmit, formState: { errors } } = useForm()
 	const [errorMessage, setErrorMessage] = useState<string>("");
 	const loginLoading = useStore($loginLoading);
 	const { t } = useTranslation();
 
-	const sendLoginData = (data: {login: string, password: string}) => {
+	const sendLoginData = (data: { login: string, password: string }) => {
 		const login = data.login;
 		const pass = data.password;
 		sendLogData({
@@ -33,11 +33,11 @@ export default function Login(): JSX.Element {
 	return (
 		<div className={s.cardWrapper}>
 			<div className={s.card}>
-				<Head> 
+				<Head>
 					<title>{t('Вход')}</title>
 					<meta name="keywords" content="meetins, meetin-s, Meetins, Meetin-s, знакомства, meetings, meet" />
 				</Head>
-				<h1 style={{ display:"grid" }}>
+				<h1 style={{ display: "grid" }}>
 					<Image
 						src={logo}
 					/>
@@ -56,7 +56,7 @@ export default function Login(): JSX.Element {
 								isEmail(value) === value
 						})}
 					/>
-					{ errors.login && <span className={s.errorSpan}>{t('Введите корректный e-mail в формате *@gmail.com')}</span> }
+					{errors.login && <span className={s.errorSpan}>{t('Введите корректный e-mail в формате *@gmail.com')}</span>}
 					<Input
 						icon={passIcon}
 						placeholder={t('Пароль')}
@@ -69,11 +69,11 @@ export default function Login(): JSX.Element {
 								value.length >= 6 && value.length <= 12
 						})}
 					/>
-					{ errors.password && <span className={s.errorSpan}>{t('Не менее 6-ти символов, не более 12-ти символов')}</span> }
-					{ errorMessage !== "" ? 
-					<div className={`row ${s.errorBlock}`}>
-						{t('Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова')}
-					</div> : null }
+					{errors.password && <span className={s.errorSpan}>{t('Не менее 6-ти символов, не более 12-ти символов')}</span>}
+					{errorMessage !== "" ?
+						<div className={`row ${s.errorBlock}`}>
+							{t('Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова')}
+						</div> : null}
 					<button type='submit' className={`${s.submitBtn} btn`} >
 						{
 							loginLoading ? <CustomLoader /> : t('Войти')

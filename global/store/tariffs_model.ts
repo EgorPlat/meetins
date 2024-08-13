@@ -7,7 +7,7 @@ export const tariffs = createStore<ITariff[]>([] as ITariff[]).on(setTariffs, (_
     return newTariffs;
 })
 
-export const getTariffsData = createEffect( async () => {
+export const getTariffsData = createEffect(async () => {
     const response = await instance.get('/tariffs/getTariffsInfo');
     if (response) {
         return response;

@@ -9,11 +9,11 @@ export default function CategoryEventInfo(): JSX.Element {
     const { nameCategory } = router.query;
     const { t } = useTranslation();
 
-    return(
+    return (
         <PageContainer>
             {
                 nameCategory && typeof nameCategory === "string"
-                    ? <EventsList category={nameCategory}/> : null
+                    ? <EventsList category={nameCategory} /> : null
             }
         </PageContainer>
     )

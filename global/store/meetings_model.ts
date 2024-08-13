@@ -19,9 +19,9 @@ export const currentUserPlaces$ = createStore<string[]>([]).on(setUserPlaces, (_
 export const setSelectedMeeting = createEvent<IMeeting>();
 export const addCommentToSelectedMeeting = createEvent<MeetingComment>();
 export const selectedMeeting = createStore<IMeeting>(null)
-.on(setSelectedMeeting, (_, meeting) => {
-    return meeting;
-})
+    .on(setSelectedMeeting, (_, meeting) => {
+        return meeting;
+    })
 selectedMeeting.on(addCommentToSelectedMeeting, (meeting, comment) => {
     return {
         ...meeting,
@@ -30,22 +30,22 @@ selectedMeeting.on(addCommentToSelectedMeeting, (meeting, comment) => {
 })
 
 export const getAllMeetings = createEffect(async () => {
-	const meetings = await instance.get('meetings/get-all-meetings');
+    const meetings = await instance.get('meetings/get-all-meetings');
     return meetings;
 })
 
 export const uploadFileToMediaMeeting = createEffect(async (params: {
-    event: ChangeEvent<HTMLInputElement>, 
+    event: ChangeEvent<HTMLInputElement>,
     meetingId: string
 }
 ) => {
-	const file = params.event.target.files[0];
-	const formData = new FormData();
-	formData.append('uploadedFile', file);
+    const file = params.event.target.files[0];
+    const formData = new FormData();
+    formData.append('uploadedFile', file);
     formData.append('meetingId', params.meetingId)
-    
-	const response = await instance.post<IMeeting>('/meetings/upload-media', formData);
-	return response;
+
+    const response = await instance.post<IMeeting>('/meetings/upload-media', formData);
+    return response;
 });
 
 export const handleCreateNewMeeting = createEffect(async (meeting: ICreateMeeting) => {
@@ -69,8 +69,8 @@ export const handleRegInMeeting = createEffect(async (meetingId: string) => {
 });
 
 export const getUserPlaces = createEffect(async (data: { userId: string }) => {
-	const response = await instance.get(`meetings/places/${data.userId}`);
-	return response;
+    const response = await instance.get(`meetings/places/${data.userId}`);
+    return response;
 })
 
 sample({

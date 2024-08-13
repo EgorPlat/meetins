@@ -1,16 +1,16 @@
 import Router, { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { 
-    $currentProfileUser, 
-    $onlineUsers, 
-    $user, 
-    addUserIntoMarkedList, 
-    getDataForProfilePage, 
-    isCurrentUserLoaded, 
-    isUserLoaded, 
+import {
+    $currentProfileUser,
+    $onlineUsers,
+    $user,
+    addUserIntoMarkedList,
+    getDataForProfilePage,
+    isCurrentUserLoaded,
+    isUserLoaded,
     setCurrentProfileUser,
-    setIsCurrentUserLoaded, 
-    setUser 
+    setIsCurrentUserLoaded,
+    setUser
 } from "../../global/store/store";
 import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
@@ -32,17 +32,17 @@ function Profile(): JSX.Element {
     const authedUser = useStore($user);
     const currentUserPlaces = useStore(currentUserPlaces$);
     const onlineUsers = useStore($onlineUsers);
-    
+
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const [isAddPostModal, setIsAddPostModal] = useState<boolean>(false);
     const [isInviteModal, setIsInviteModal] = useState<boolean>(false);
     const [choosedEventForInvite, setChoosedEventForInvite] = useState<number>();
     const [isEditTagOpen, setIsEditTagOpen] = useState<boolean>(false);
-    
-    const isCurrentUserOnline = onlineUsers.filter(el => el.userId === currentUser.userId).length !== 0;        
+
+    const isCurrentUserOnline = onlineUsers.filter(el => el.userId === currentUser.userId).length !== 0;
 
     const changeAddingImageStatus = (status: boolean) => {
-        if(currentUser.login === authedUser?.login) {
+        if (currentUser.login === authedUser?.login) {
             setAddingImageStatus(() => status);
         }
     };
@@ -55,7 +55,7 @@ function Profile(): JSX.Element {
     };
 
     const handleSaveNewStatus = (userStatus: string) => {
-        updateUserStatus(userStatus).then( (user: User) => {
+        updateUserStatus(userStatus).then((user: User) => {
             setUser(user);
             setCurrentProfileUser(user);
         });
@@ -109,9 +109,9 @@ function Profile(): JSX.Element {
             getUserPlaces({ userId: currentUser.userId });
         }
     }, [currentUser.userId]);
-    
+
     if (currentUserLoaded) {
-        return(
+        return (
             <PageContainer>
                 <ProfileView
                     asyncLoaded={userLoaded}

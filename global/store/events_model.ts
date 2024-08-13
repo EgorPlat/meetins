@@ -19,9 +19,9 @@ export const currentEventById = createStore<IEventInfoCard | null>(null).on(setC
 });
 export const setCurrentEventCommentsById = createEvent<IEventComments[]>();
 export const currentEventCommentsById = createStore<IEventComments[]>([])
-.on(setCurrentEventCommentsById, (_, currentEventComments) => {
-    return currentEventComments;
-});
+    .on(setCurrentEventCommentsById, (_, currentEventComments) => {
+        return currentEventComments;
+    });
 export const setLoadedStatus = createEvent<boolean>();
 export const loadedStatus = createStore<boolean>(false).on(setLoadedStatus, (_, newStatus) => {
     return newStatus;
@@ -41,32 +41,32 @@ export const unitedInviteEvents = createStore<IUnitedInvitesEvent>({
 });
 
 unitedInviteEvents.on(setUnitedInnerInviteEvents, (prev, innerInvites) => {
-    return {...prev, innerInvites: innerInvites}
+    return { ...prev, innerInvites: innerInvites }
 });
 unitedInviteEvents.on(setUnitedOuterInviteEvents, (prev, outerInvites) => {
-    return {...prev, outerInvites: outerInvites}
+    return { ...prev, outerInvites: outerInvites }
 })
 unitedInviteEvents.on(removeFromUnitedInnerInvite, (prev, removingInviteId) => {
-    return {...prev, innerInvites: prev.innerInvites.filter(el => el.id !== removingInviteId)}
+    return { ...prev, innerInvites: prev.innerInvites.filter(el => el.id !== removingInviteId) }
 })
 
-export const sendInviteToUser = createEffect(async (data: {userToId: string | number, eventId: string | number}) => {
+export const sendInviteToUser = createEffect(async (data: { userToId: string | number, eventId: string | number }) => {
     const response = await instance.post(
-        'event/sendInviteToUser', {userIdTo: data.userToId, eventId: data.eventId}
+        'event/sendInviteToUser', { userIdTo: data.userToId, eventId: data.eventId }
     );
     return response;
 })
 
-export const getEvents = createEffect(async (info: {categoryName: string, page: number}) => {
+export const getEvents = createEffect(async (info: { categoryName: string, page: number }) => {
     const response = await instance.post(
-        'event/getEventsCategory', {nameCategory: info.categoryName, page: info.page}
+        'event/getEventsCategory', { nameCategory: info.categoryName, page: info.page }
     );
     return response;
 })
 
 export const getEventById = createEffect(async (id: string) => {
     const response = await instance.post(
-        'event/getEventInfoById', {eventId: id}
+        'event/getEventInfoById', { eventId: id }
     );
     return response;
 })
@@ -101,14 +101,14 @@ export const getUserOuterInvitesEventInfo = createEffect(async () => {
 
 export const addUserEvent = createEffect(async (id: number) => {
     const response = await instance.post(
-        'users/addUserEvent', {eventId: String(id)}
+        'users/addUserEvent', { eventId: String(id) }
     );
     return response;
 })
 
 export const deleteUserEvent = createEffect(async (id: number) => {
     const response = await instance.post(
-        'users/deleteUserEvent', {eventId: String(id)}
+        'users/deleteUserEvent', { eventId: String(id) }
     );
     return response;
 })
@@ -120,76 +120,76 @@ export const declineInnerInvite = createEffect(async (event: IInnerInvites) => {
     return response;
 })
 
-sample({ 
-    clock: getUserEventsInfo.doneData, 
-    filter: response => response.status <= 201, 
-    fn: response => response.data, 
+sample({
+    clock: getUserEventsInfo.doneData,
+    filter: response => response.status <= 201,
+    fn: response => response.data,
     target: setUserEvents
 })
 
 sample({
-    clock: getUserEventsInfo.doneData, 
-    filter: response => response.status <= 201, 
-    fn: response => true, 
+    clock: getUserEventsInfo.doneData,
+    filter: response => response.status <= 201,
+    fn: response => true,
     target: setCurrentEventsInfoLoaded
 })
 
-sample({ 
-    clock: declineInnerInvite.doneData, 
-    filter: response => response.status <= 201, 
-    fn: response => response.data, 
+sample({
+    clock: declineInnerInvite.doneData,
+    filter: response => response.status <= 201,
+    fn: response => response.data,
     target: removeFromUnitedInnerInvite
 })
 
-sample({ 
-    clock: addUserEvent.doneData, 
-    filter: response => response.status === 201, 
-    fn: response => response.data, 
+sample({
+    clock: addUserEvent.doneData,
+    filter: response => response.status === 201,
+    fn: response => response.data,
     target: setUser
 })
-sample({ 
-    clock: deleteUserEvent.doneData, 
-    filter: response => response.status === 201, 
-    fn: response => response.data, 
+sample({
+    clock: deleteUserEvent.doneData,
+    filter: response => response.status === 201,
+    fn: response => response.data,
     target: setUser
 })
-sample({ 
-    clock: getEventById.doneData, 
-    filter: response => response.status === 201, 
-    fn: response => response.data, 
+sample({
+    clock: getEventById.doneData,
+    filter: response => response.status === 201,
+    fn: response => response.data,
     target: currentEventById
 })
-sample({ 
-    clock: getEvents.doneData, 
-    filter: response => response.status === 201, 
-    fn: response => response.data, 
+sample({
+    clock: getEvents.doneData,
+    filter: response => response.status === 201,
+    fn: response => response.data,
     target: currentEvents
 })
 
 sample({
-    clock: getUserOuterInvitesEventInfo.doneData, 
-    filter: response => response.status <= 217, 
-    fn: response => response.data, 
+    clock: getUserOuterInvitesEventInfo.doneData,
+    filter: response => response.status <= 217,
+    fn: response => response.data,
     target: setUnitedOuterInviteEvents
 })
-sample({ 
-    clock: [getUserInnerInvitesEventInfo.doneData], 
-    filter: response => response.status <= 217, 
-    fn: response => response.data, 
+sample({
+    clock: [getUserInnerInvitesEventInfo.doneData],
+    filter: response => response.status <= 217,
+    fn: response => response.data,
     target: setUnitedInnerInviteEvents
 })
-sample({ 
-    clock: getCommentsForEventById.doneData, 
-    filter: response => response.status <= 217, 
-    fn: response => response.data, 
+sample({
+    clock: getCommentsForEventById.doneData,
+    filter: response => response.status <= 217,
+    fn: response => response.data,
     target: setCurrentEventCommentsById
 })
-sample({ 
-    clock: addUserEvent.doneData, 
-    filter: response => response.status <= 217, 
+sample({
+    clock: addUserEvent.doneData,
+    filter: response => response.status <= 217,
     fn: (response) => {
         return { text: "Успешно добавлено в 'Закладки'", time: 3000, color: "green", textColor: "white" }
-    }, 
+    },
     target: addNotification
 })
 

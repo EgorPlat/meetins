@@ -11,14 +11,15 @@ export const setMyDialogs = createEvent<IMyDialog[]>();
 export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, (_, newMyDialogs) => {
     return newMyDialogs;
 })
-const handleIsUserUnReadMessagesExists = createEffect(( params: { myDialogs: IMyDialog[], authedUser: User }) => {
+
+const handleIsUserUnReadMessagesExists = createEffect((params: { myDialogs: IMyDialog[], authedUser: User }) => {
     setIsUserUnReadMessagesExists(false);
     params.myDialogs.map(dialog => {
         dialog.messages.map(message => {
             if (!message.isRead && params.authedUser.userId !== message.senderId) {
                 setIsUserUnReadMessagesExists(true);
                 return;
-            }   
+            }
         })
     })
 })
@@ -41,11 +42,11 @@ export const isMessageWithFileLoaded = createStore<boolean>(true).on(setIsMessag
     return isMessageLoaded;
 })
 
-export const sendFileAndUploadActiveChat = createEffect((params: { file: any, dataStore: {activeChat: IMyDialog } }) => {
+export const sendFileAndUploadActiveChat = createEffect((params: { file: any, dataStore: { activeChat: IMyDialog } }) => {
     setIsMessageWithFileLoaded(false);
     const actualActiveChat = params.dataStore.activeChat;
-    if(actualActiveChat) {
-        if(actualActiveChat.userId == undefined) {
+    if (actualActiveChat) {
+        if (actualActiveChat.userId == undefined) {
             const file = params.file;
             const formData = new FormData();
             formData.append('uploadedFile', file);
@@ -55,24 +56,24 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
                 formData
             ).then(res => {
                 if (res.status <= 217) {
-                    setActiveChat({...actualActiveChat, messages: [...actualActiveChat.messages, res.data], content: res.data.content});
+                    setActiveChat({ ...actualActiveChat, messages: [...actualActiveChat.messages, res.data], content: res.data.content });
                 }
                 setIsMessageWithFileLoaded(true);
             })
         }
     }
 })
-export const sendMessageAndUploadActiveChat = createEffect((params: { message: string, dataStore: {activeChat: IMyDialog} }) => {
+export const sendMessageAndUploadActiveChat = createEffect((params: { message: string, dataStore: { activeChat: IMyDialog } }) => {
     const actualActiveChat = params.dataStore.activeChat;
-    if(actualActiveChat) {
-        if(actualActiveChat.dialogId !== 'none') {
+    if (actualActiveChat) {
+        if (actualActiveChat.dialogId !== 'none') {
             sendMessageInDialog(
-                {dialogId: actualActiveChat.dialogId, content: params.message}
+                { dialogId: actualActiveChat.dialogId, content: params.message }
             ).then((response) => {
-                setActiveChat({...actualActiveChat, messages: [...actualActiveChat.messages, response?.data], content: params.message});
+                setActiveChat({ ...actualActiveChat, messages: [...actualActiveChat.messages, response?.data], content: params.message });
             })
         } else {
-            startNewDialog({userId: actualActiveChat.userId, messageContent: params.message}).then((response) => {
+            startNewDialog({ userId: actualActiveChat.userId, messageContent: params.message }).then((response) => {
                 setActiveChat({
                     dialogId: response?.data.dialogId,
                     userName: actualActiveChat.userName,
@@ -85,20 +86,20 @@ export const sendMessageAndUploadActiveChat = createEffect((params: { message: s
             });
         }
     }
-}); 
+});
 export const createdSendMessageAndUploadActiveChat = attach({
     effect: sendMessageAndUploadActiveChat,
-    source: {activeChat: activeChat},
+    source: { activeChat: activeChat },
     mapParams: (message: string, dataStore) => {
-      return {message: message, dataStore: dataStore}
+        return { message: message, dataStore: dataStore }
     },
-  })
+})
 
 export const createdSendFileAndUploadActiveChat = attach({
     effect: sendFileAndUploadActiveChat,
-    source: {activeChat: activeChat},
+    source: { activeChat: activeChat },
     mapParams: (file: any, dataStore) => {
-      return {file: file, dataStore: dataStore}
+        return { file: file, dataStore: dataStore }
     },
 })
 
@@ -112,30 +113,30 @@ export const getMyDialogs = createEffect(async (isFirstGetDialogs: boolean) => {
         const response = await instance.get('chat/my-dialogs');
         if (isFirstGetDialogs) setIsMyDialogsLoaded(true);
         return response;
-    }  
-    catch(error) {
+    }
+    catch (error) {
         console.log(error);
     }
 });
 
 export const checkDialog = createEffect(async (user: User) => {
     try {
-        const response = await instance.post('chat/check-dialog', {userId: user.userId});
-        if(response.data.length !== 0) {
+        const response = await instance.post('chat/check-dialog', { userId: user.userId });
+        if (response.data.length !== 0) {
             setActiveChat({
                 ...defaultDialog,
                 userId: user.userId,
-                dialogId: response.data[0].dialogId, 
-                userAvatar: user.avatar, 
+                dialogId: response.data[0].dialogId,
+                userAvatar: user.avatar,
                 userName: user.name,
                 messages: response.data[0].messages
             });
             return response;
         } else {
-            setActiveChat({...defaultDialog, userName: user.name, userAvatar: user.avatar, userId: user.userId, dialogId: "none"});
+            setActiveChat({ ...defaultDialog, userName: user.name, userAvatar: user.avatar, userId: user.userId, dialogId: "none" });
         }
-    }  
-    catch(error) {
+    }
+    catch (error) {
         console.log(error);
     }
 });
@@ -143,14 +144,14 @@ export const checkDialog = createEffect(async (user: User) => {
 
 export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) => {
     try {
-        const response = await instance.post('chat/messages', JSON.stringify({dialogId: chosedDialog.dialogId}) );
-        if(response.status === 200) {
-            const activeDialogWithMessages: IMyDialog = {...chosedDialog, messages: response.data};
+        const response = await instance.post('chat/messages', JSON.stringify({ dialogId: chosedDialog.dialogId }));
+        if (response.status === 200) {
+            const activeDialogWithMessages: IMyDialog = { ...chosedDialog, messages: response.data };
             setActiveChat(activeDialogWithMessages);
             return response;
         }
     }
-    catch(error) {
+    catch (error) {
         console.log(error);
     }
 })
@@ -167,41 +168,41 @@ export const sendFileInDialog = createEffect(async (message: FormData) => {
 export const sendMessageInDialog = createEffect(async (message: IDialogMessage) => {
     try {
         const response = await instance.post('chat/send-message', message);
-        if(response.status === 200) {
+        if (response.status === 200) {
             return response;
         }
     }
-    catch(error) {
+    catch (error) {
         console.log(error);
     }
 })
 export const startNewDialog = createEffect(async (newDialog: INewDialog) => {
     try {
         const response = await instance.post('chat/start-dialog', newDialog);
-        if(response.status === 200) {
+        if (response.status === 200) {
             return response;
         }
     }
-    catch(error) {
+    catch (error) {
         console.log(error);
     }
 })
 
 sample({
-	clock: getDialogMessages.doneData,
-	filter: response => response.status === 200,
-	fn: response => response.data[0].dialogId,
-	target: updatedIsReadMessagesInActiveDialog
+    clock: getDialogMessages.doneData,
+    filter: response => response.status === 200,
+    fn: response => response.data[0].dialogId,
+    target: updatedIsReadMessagesInActiveDialog
 })
 sample({
-	clock: updatedIsReadMessagesInActiveDialog.doneData,
-	filter: response => response.status <= 217,
-	fn: response => response.data,
-	target: setMyDialogs
+    clock: updatedIsReadMessagesInActiveDialog.doneData,
+    filter: response => response.status <= 217,
+    fn: response => response.data,
+    target: setMyDialogs
 })
 sample({
-	clock: getMyDialogs.doneData,
-	filter: response => response.status === 200,
-	fn: response => response.data,
-	target: setMyDialogs
+    clock: getMyDialogs.doneData,
+    filter: response => response.status === 200,
+    fn: response => response.data,
+    target: setMyDialogs
 })

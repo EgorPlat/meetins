@@ -1,20 +1,20 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
-import { 
-    addActiveGroupTalkMessage, 
-    getGroupById, 
-    getGroupMembersInfo, 
-    groupInfo, 
+import {
+    addActiveGroupTalkMessage,
+    getGroupById,
+    getGroupMembersInfo,
+    groupInfo,
     groupMembersInfo,
     isGroupInfoLoaded,
     likePostInGroup,
     setIsGroupInfoLoaded,
     unlikePostInGroup
 } from "../../global/store/groups_model";
+import { destrucutreFilesInGroupPost } from "../../global/helpers/helper";
 import { useStore } from "effector-react";
 import { $user } from "../../global/store/store";
 import { IGroupPost, IGroupTalkMessage } from "../../global/interfaces/groups";
-import { destrucutreFilesInGroupPost } from "../../global/helpers/helper";
 import CustomModal from "../../components-ui/CustomModal/CustomModal";
 import ManageGroup from "../../global/forms/ManageGroup/Index";
 import AddNewPostIntoGroupForm from "../../global/forms/AddNewPostIntoGroup/Index";
@@ -126,33 +126,33 @@ export default function Groups() {
 
     useEffect(() => {
         setIsGroupInfoLoaded(false);
-        if(router.query?.id) {
+        if (router.query?.id) {
             getGroupById(+router.query.id);
             getGroupMembersInfo(+router.query.id);
         }
     }, [router.query.id]);
-    
+
     return (
         <PageContainer>
             <>
                 {
                     isGroupInfoLoaded$ ?
-                    <GroupInfoPageView
-                        authedUser={authedUser$}
-                        groupInfo={groupInfo$}
-                        isAutherUserCreator={isAutherUserCreator}
-                        handleOpenGroupSettings={handleOpenGroupSettings}
-                        isSettingsGroupOpen={modals.isSettingsGroupOpen}
-                        groupMembersInfo={groupMembersInfo$}
-                        handleOpenComments={handleOpenComments}
-                        handleOpenAddingPost={handleOpenAddingPost}
-                        handleOpenTalks={handleOpenTalks}
-                        handleOpenPhotos={handleOpenPhotos}
-                        handleLikePost={handleLikePost}
-                        handleOpenVideos={handleOpenVideos}
-                        videoPhotoAttachmentsInfo={videoPhotoAttachmentsInfo}
-                    /> :
-                    <CustomLoader />
+                        <GroupInfoPageView
+                            authedUser={authedUser$}
+                            groupInfo={groupInfo$}
+                            isAutherUserCreator={isAutherUserCreator}
+                            handleOpenGroupSettings={handleOpenGroupSettings}
+                            isSettingsGroupOpen={modals.isSettingsGroupOpen}
+                            groupMembersInfo={groupMembersInfo$}
+                            handleOpenComments={handleOpenComments}
+                            handleOpenAddingPost={handleOpenAddingPost}
+                            handleOpenTalks={handleOpenTalks}
+                            handleOpenPhotos={handleOpenPhotos}
+                            handleLikePost={handleLikePost}
+                            handleOpenVideos={handleOpenVideos}
+                            videoPhotoAttachmentsInfo={videoPhotoAttachmentsInfo}
+                        /> :
+                        <CustomLoader />
                 }
                 <CustomModal
                     isDisplay={modals.isSettingsGroupOpen}
@@ -170,7 +170,7 @@ export default function Groups() {
                     typeOfActions="none"
                     title="Комментарии"
                 >
-                    <GroupCommentsView 
+                    <GroupCommentsView
                         groupInfo={groupInfo$}
                         activePostId={activePostId}
                     />
@@ -212,7 +212,7 @@ export default function Groups() {
                     }
                     title="Обсуждение"
                 >
-                    <GroupTalksMessagesView 
+                    <GroupTalksMessagesView
                         talkId={selectedTalkId}
                         groupId={groupInfo$.groupId}
                     />
@@ -224,7 +224,7 @@ export default function Groups() {
                     typeOfActions="none"
                     title="Создать обсуждение"
                 >
-                    <AddNewTalkInGroup 
+                    <AddNewTalkInGroup
                         groupId={String(router.query.id)}
                         successSubmit={handleSuccessSubmitTalkCreation}
                     />

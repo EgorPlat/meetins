@@ -26,17 +26,17 @@ export const groupInfo = createStore<IGroup>({} as IGroup).on(setActiveGroup, (_
 export const addActiveGroupTalkMessage = createEvent<IGroupTalkMessage>();
 export const setActiveGroupTalkMessage = createEvent<IGroupTalkMessage[]>();
 export const activeGroupTalksMessages = createStore<IGroupTalkMessage[]>([] as IGroupTalkMessage[])
-.on(addActiveGroupTalkMessage, (prevMessages, newMessage) => {
-    return [...prevMessages, newMessage];
-})
-.on(setActiveGroupTalkMessage, (_, messages) => {
-    return messages;
-})
+    .on(addActiveGroupTalkMessage, (prevMessages, newMessage) => {
+        return [...prevMessages, newMessage];
+    })
+    .on(setActiveGroupTalkMessage, (_, messages) => {
+        return messages;
+    })
 export const setActiveGroupMembersInfo = createEvent<IGroupMembersInfo[]>();
 export const groupMembersInfo = createStore<IGroupMembersInfo[]>([] as IGroupMembersInfo[])
-.on(setActiveGroupMembersInfo, (_, newGroupMembersInfo) => {
-    return newGroupMembersInfo;
-})
+    .on(setActiveGroupMembersInfo, (_, newGroupMembersInfo) => {
+        return newGroupMembersInfo;
+    })
 
 export const getGroupsList = createEffect(async () => {
     const response = await instance.get(
@@ -91,8 +91,8 @@ export const getGroupById = createEffect(async (id: number) => {
     return response;
 });
 
-export const getGroupTalkMessageByTalkId = createEffect(async (groupData: { 
-    groupId: number, 
+export const getGroupTalkMessageByTalkId = createEffect(async (groupData: {
+    groupId: number,
     talkId: number,
 }) => {
     const response = await instance.post(
@@ -126,17 +126,17 @@ export const addNewCommentIntoGroupPost = createEffect(async (params: {
     return response;
 });
 
-export const createNewMessageInGroupTalk = createEffect(async (groupData: { 
-    groupId: number, 
+export const createNewMessageInGroupTalk = createEffect(async (groupData: {
+    groupId: number,
     talkId: number,
     text: string
 }) => {
     const response = await instance.post(
-        'groups/create-new-message-in-group-talk', { 
-            groupId: groupData.groupId, 
-            talkId: groupData.talkId,
-            text: groupData.text
-        }
+        'groups/create-new-message-in-group-talk', {
+        groupId: groupData.groupId,
+        talkId: groupData.talkId,
+        text: groupData.text
+    }
     );
     return response;
 });
@@ -161,48 +161,48 @@ export const unlikePostInGroup = createEffect(async (params: {
     return response;
 });
 
-sample({ 
+sample({
     clock: [
-        manageGroup.doneData, 
-        createNewTalkInGroup.doneData, 
-        createNewPostInGroup.doneData, 
+        manageGroup.doneData,
+        createNewTalkInGroup.doneData,
+        createNewPostInGroup.doneData,
         getGroupById.doneData,
         addNewCommentIntoGroupPost.doneData,
         likePostInGroup.doneData,
         unlikePostInGroup.doneData
-    ], 
+    ],
     filter: response => response.status <= 217,
-    fn: response => response.data, 
+    fn: response => response.data,
     target: setActiveGroup
 });
 
-sample({ 
+sample({
     clock: [
         getGroupById.doneData
-    ], 
+    ],
     filter: response => response.status <= 217,
-    fn: response => true, 
+    fn: response => true,
     target: setIsGroupInfoLoaded
 });
 
 
-sample({ 
-    clock: createNewGroup.doneData, 
+sample({
+    clock: createNewGroup.doneData,
     filter: response => response.status <= 217,
-    fn: response => response.data, 
+    fn: response => response.data,
     target: addNewGroup
 });
 
-sample({ 
-    clock: getGroupsList.doneData, 
+sample({
+    clock: getGroupsList.doneData,
     filter: response => response.status <= 217,
-    fn: response => response.data, 
+    fn: response => response.data,
     target: setGroupsList
 });
 
-sample({ 
-    clock: getGroupMembersInfo.doneData, 
+sample({
+    clock: getGroupMembersInfo.doneData,
     filter: response => response.status <= 217,
-    fn: response => response.data, 
+    fn: response => response.data,
     target: setActiveGroupMembersInfo
 });

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { validateFilesFromInputAndStructuring } from "../../../global/helpers/helper";
 
 export default function AddingPosts(): JSX.Element {
-    
+
     const ref = useRef(null);
     const { t } = useTranslation();
     const [addMode, setAddMode] = useState(true);
@@ -25,14 +25,14 @@ export default function AddingPosts(): JSX.Element {
             sendNewUserPost(formData);
         }
     }
-    return(
+    return (
         <div className={s.addingPosts}>
             {
-                addMode && 
+                addMode &&
                 <div className={s.addingPostsForm}>
                     <div className={s.addingPostsFormMain}>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             placeholder={t("Название поста")}
                             onChange={(e) => setPostFormData({ ...postFormData, title: e.target.value })}
                         />
@@ -41,8 +41,8 @@ export default function AddingPosts(): JSX.Element {
                         <a className={s.addingPostsFormMainFile} onClick={chooseFile}>
                             {!isMobile$ ? t('Добавить изображение к публикации') : t('Добавить изображение')}
                             ({postFormData.currentFiles?.length ? postFormData.currentFiles?.length : 0} / 5)
-                            <input 
-                                ref={ref} 
+                            <input
+                                ref={ref}
                                 type="file"
                                 accept=".png, .jpeg, .mp4, .mp3, .jpg"
                                 multiple
@@ -51,14 +51,14 @@ export default function AddingPosts(): JSX.Element {
                         </a>
                     </div>
                     <div className={s.addingPostsFormDescription}>
-                        <textarea 
+                        <textarea
                             placeholder={t('Введите описание к посту')}
                             onChange={(e) => setPostFormData({ ...postFormData, description: e.target.value })}
                         />
                         <button onClick={sendNewPost}>{t('Добавить')}</button>
                     </div>
                 </div>
-            } 
+            }
         </div>
     )
 }

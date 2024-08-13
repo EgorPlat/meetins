@@ -5,8 +5,8 @@ import { attach, createEffect, createEvent, createStore, sample } from 'effector
 
 type LoginDetailsType = {
 	email: string,
-	password: string 
-} | null 
+	password: string
+} | null
 
 export const sendLogData = createEffect((async (logDetails: LoginDetailsType) => {
 	const response = await instance.post('auth/login', logDetails);
@@ -22,17 +22,17 @@ export const $loginDetails = createStore<LoginDetailsType>(null).on(
 	setLoginDetails,
 	(_, newLogDetails) => {
 		return newLogDetails
-	}  
+	}
 )
 export const setLoginLoading = createEvent<boolean>()
 export const $loginLoading = createStore<boolean>(false).on(
 	setLoginLoading,
 	(_, status) => {
 		return status
-	}  
-) 
+	}
+)
 
-export const handlePushUserToLoginPage = createEffect((params: { router: any, data: any }) => {	
+export const handlePushUserToLoginPage = createEffect((params: { router: any, data: any }) => {
 	params.router.push(`/login`);
 })
 

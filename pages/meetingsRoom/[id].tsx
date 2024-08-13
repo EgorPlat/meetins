@@ -11,7 +11,7 @@ import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MeetingsRoomPageView from "./components/MeetingsRoomPageView/MeetingsRoomPageView";
 
 export default function MeetingsRoom() {
-    
+
     const router = useRouter();
     const selectedMeeting$ = useStore(selectedMeeting);
     const [isAddCommentModal, setIsAddCommentModal] = useState<boolean>(false);

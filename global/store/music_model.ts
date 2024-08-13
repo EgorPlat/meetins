@@ -3,9 +3,9 @@ import { IActiveMusic, IMatch, IMusicAuthors, IMusicAuthorsStatistics, IMyMusicS
 import { instance } from "./store";
 
 export const setActiveMusicTimeData = createEvent<{ currentTime: number, duration: number }>();
-export const activeMusicTimeData = createStore<{ currentTime: number, duration: number }>({ 
-    currentTime: 0, 
-    duration: 0 
+export const activeMusicTimeData = createStore<{ currentTime: number, duration: number }>({
+    currentTime: 0,
+    duration: 0
 }).on(
     setActiveMusicTimeData,
     (_, newActiveMusicTimeData) => {

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import {  
-    getAllMusic, 
-    getAuthorsStatistic, 
-    authorsStatistic, 
+import {
+    getAllMusic,
+    getAuthorsStatistic,
+    authorsStatistic,
     musicList,
-    setMusicList, 
-    getMatchesList, 
-    matchesList, 
+    setMusicList,
+    getMatchesList,
+    matchesList,
     activeMusicId
 } from "../../global/store/music_model";
 import { useStore } from "effector-react";
@@ -42,7 +42,7 @@ export default function Music() {
         getAuthorsStatistic();
         getMatchesList();
     }, []);
-    
+
     useEffect(() => {
         if (debouncedSearchMusic.length === 0) {
             getAllMusic()

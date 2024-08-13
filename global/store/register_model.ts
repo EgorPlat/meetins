@@ -4,12 +4,12 @@ import { createEffect, createEvent, createStore, sample } from 'effector'
 type RegisterDetailsType = {
 	name: string
 	email: string | null
-	password: string 
+	password: string
 	gender: string
 	city: string
 } | null
 type ConfirmationData = {
-	email: string, 
+	email: string,
 	code: number
 }
 

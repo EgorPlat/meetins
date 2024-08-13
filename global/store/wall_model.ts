@@ -4,7 +4,7 @@ import { IWall } from "../interfaces/wall";
 
 export const setCurrentWall = createEvent<IWall[]>();
 export const currentWall$ = createStore<IWall[]>(null).on(setCurrentWall, (_, currentWall) => {
-	return currentWall;
+    return currentWall;
 })
 
 

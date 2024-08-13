@@ -53,10 +53,11 @@ export default function Settings(): JSX.Element {
     };
 
     const handleSwipeTheme = (theme: string) => {
-        localStorage.setItem('data-theme', theme);
+        localStorage.setItem("data-theme", theme);
         document.documentElement.setAttribute("data-theme", theme);
-    }
-    return(
+    };
+
+    return (
         <PageContainer>
             <div className={`${s.settings}`}>
                 <div className={`${s.formAndInfo}`}>
@@ -80,14 +81,14 @@ export default function Settings(): JSX.Element {
                         <h4>{t("Выбрать язык")}</h4>
                         <div className={s.locales}>
                             <div className={s.localeImg}>
-                                <Image src={us} width="62px" height="50px" onClick={() => handleChangeLocale('en')}/>
+                                <Image src={us} width="62px" height="50px" onClick={() => handleChangeLocale('en')} />
                             </div>
                             <div className={s.localeImg}>
-                                <Image src={ru} width="62px" height="50px" onClick={() => handleChangeLocale('ru')}/>
+                                <Image src={ru} width="62px" height="50px" onClick={() => handleChangeLocale('ru')} />
                             </div>
                         </div>
                     </div>
-                    <div className={s.themes}> 
+                    <div className={s.themes}>
                         <h4>{t("Темы")}</h4>
                         <button className={s.swipeTheme} onClick={() => handleSwipeTheme('black')}>
                             {t('Черная')}
@@ -96,11 +97,11 @@ export default function Settings(): JSX.Element {
                             {t('Белая')}
                         </button>
                     </div>
-                    <div className={s.info}> 
+                    <div className={s.info}>
                         <h4>{t("Информация профиля")}</h4>
-                            { isLoad ? <div className={s.profileForm}>
-                            <ProfileInfoForm /> 
-                            </div> : <CustomLoader />}
+                        {isLoad ? <div className={s.profileForm}>
+                            <ProfileInfoForm />
+                        </div> : <CustomLoader />}
                     </div>
                     <div className={s.management}>
                         <h4>{t("Управление аккаунтом")}</h4>
@@ -124,7 +125,7 @@ export default function Settings(): JSX.Element {
                 </div>
                 <CustomModal
                     title="Удаление аккаунта"
-                    isDisplay={isModal} 
+                    isDisplay={isModal}
                     changeModal={changeModal}
                     actionConfirmed={deleteAccount}
                     typeOfActions="default"
@@ -133,5 +134,5 @@ export default function Settings(): JSX.Element {
                 </CustomModal>
             </div>
         </PageContainer>
-    ) 
+    )
 }

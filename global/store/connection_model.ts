@@ -11,10 +11,10 @@ export const connection = createStore<Socket | null>(null).on(
         return newConnection
     }
 );
-export const connectionWatcher = createEffect((obj: {connection: Socket, activeChat: IMyDialog}) => {
+export const connectionWatcher = createEffect((obj: { connection: Socket, activeChat: IMyDialog }) => {
     obj.connection.removeAllListeners();
     obj.connection.on('message', (message: any) => {
-        if(message.dialogId === obj.activeChat.dialogId) {
+        if (message.dialogId === obj.activeChat.dialogId) {
             if (obj.activeChat.userName === message.senderName) {
                 setActiveChat({
                     ...obj.activeChat,
@@ -34,6 +34,6 @@ export const connectionWatcher = createEffect((obj: {connection: Socket, activeC
     });
 })
 sample({
-    source: {connection: connection, activeChat: activeChat},
+    source: { connection: connection, activeChat: activeChat },
     target: connectionWatcher
 })

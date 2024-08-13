@@ -1,9 +1,9 @@
 import { useStore } from "effector-react";
 import { useEffect } from "react";
-import { 
-    getUserInnerInvitesEventInfo, 
+import {
+    getUserInnerInvitesEventInfo,
     unitedInviteEvents,
-    getUserOuterInvitesEventInfo, 
+    getUserOuterInvitesEventInfo,
     loadedStatus,
     declineInnerInvite
 } from "../../global/store/events_model";
@@ -23,7 +23,7 @@ export default function Invites() {
     const handleWatch = (eventId: number) => {
         router.push(`/eventInfo/${eventId}`);
     };
-    
+
     const handleDecline = (event: IInnerInvites) => {
         declineInnerInvite(event);
     };
@@ -36,7 +36,7 @@ export default function Invites() {
         getUserInnerInvitesEventInfo();
         getUserOuterInvitesEventInfo();
     }, []);
-    
+
     return (
         <PageContainer>
             <InvitesPageView

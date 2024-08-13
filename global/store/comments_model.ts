@@ -6,7 +6,7 @@ import { instance } from "./store";
 export const setCurrentPostComments = createEvent<PostComment[]>();
 export const addCurrentPostComment = createEvent<PostComment>();
 export const currentPostComments = createStore<PostComment[]>([]).on(setCurrentPostComments, (_, currentComments) => {
-	return currentComments;
+    return currentComments;
 });
 currentPostComments.on(addCurrentPostComment, (comments, newComment) => {
     return [...comments, newComment];
@@ -14,7 +14,7 @@ currentPostComments.on(addCurrentPostComment, (comments, newComment) => {
 
 export const setIsCurrentPostCommentsLoaded = createEvent<boolean>();
 export const isCurrentPostCommentsLoaded = createStore<boolean>(false).on(setIsCurrentPostCommentsLoaded, (_, newStatus) => {
-	return newStatus;
+    return newStatus;
 });
 
 export const addNewCommentToCurrentPost = createEffect(async (data: NewComment) => {
@@ -24,7 +24,7 @@ export const addNewCommentToCurrentPost = createEffect(async (data: NewComment) 
 
 export const getCurrentPostsComments = createEffect(async (postId: string) => {
     setIsCurrentPostCommentsLoaded(false);
-	const response = await instance.post('posts/get-all-comments', { postId: postId });
+    const response = await instance.post('posts/get-all-comments', { postId: postId });
     if (response.data) {
         setCurrentPostComments(response.data);
         setIsCurrentPostCommentsLoaded(true);

@@ -13,19 +13,19 @@ export default function Marks(): JSX.Element {
     const user$ = useStore($user);
     const markedUsersInfo$ = useStore($markedUsersInfo);
     const markedEventsInfo$ = useStore(userEvents);
-    
+
     useEffect(() => {
         getMarkedUsersInfo();
         getUserEventsInfo();
     }, [user$]);
 
-    return(
+    return (
         <PageContainer>
             <div className={s.content}>
                 <CustomStepper
                     steps={[
-                        {title: "Люди", component: <MarkedUsers markedUsers={markedUsersInfo$} />},
-                        {title: "События", component: <MarkedEvents markedEvents={markedEventsInfo$} />}
+                        { title: "Люди", component: <MarkedUsers markedUsers={markedUsersInfo$} /> },
+                        { title: "События", component: <MarkedEvents markedEvents={markedEventsInfo$} /> }
                     ]}
                 />
             </div>

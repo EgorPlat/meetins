@@ -15,7 +15,7 @@ export default function Meetings() {
 
     const furtherMeetings = currentMeetings$.furtherMeetings;
     const completedMeetings = currentMeetings$.previousMeetings;
-    const myMeetings = currentMeetings$.furtherMeetings.filter(el => el.creatorId === authedUser$?.userId); 
+    const myMeetings = currentMeetings$.furtherMeetings.filter(el => el.creatorId === authedUser$?.userId);
 
     const handleGoToMeetingRoom = (meeting: IMeeting) => {
         setSelectedMeeting(meeting);
@@ -25,7 +25,7 @@ export default function Meetings() {
     useEffect(() => {
         getAllMeetings();
     }, []);
-    
+
     return (
         <PageContainer>
             <MeetingsContentView
