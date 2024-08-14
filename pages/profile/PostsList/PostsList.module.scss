@@ -4,45 +4,52 @@
     justify-items: center;
     grid-template-columns: 1fr;
     font-family: Nunito;
+
     & .post {
         width: 50%;
         display: grid;
         grid-template-columns: 1fr;
+
         & .postTitle {
             display: grid;
             grid-template-columns: 65% 35%;
             font-weight: 600;
+
             & .date {
                 display: flex;
                 align-items: center;
                 justify-content: right;
                 text-align: right;
-                font-weight: 300;
                 font-size: 16px;
                 color: grey;
             }
         }
+
         & .postFiles {
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         & .postDescription {
             padding-top: 5px;
             padding-bottom: 5px;
             text-align: justify;
             width: 100%;
+
             & pre {
                 white-space: pre-wrap;
                 font-size: 16px;
                 font-family: Nunito;
             }
         }
+
         & .postActions {
             font-weight: 300;
             display: flex;
             column-gap: 15px;
             align-items: center;
             position: relative;
+
             & .postActionsLikes {
                 font-size: 18px;
                 cursor: pointer;
@@ -52,6 +59,7 @@
                 justify-content: center;
                 justify-items: center;
             }
+
             & .postActionsComments {
                 font-size: 18px;
                 cursor: pointer;
@@ -61,17 +69,20 @@
                 justify-content: center;
                 justify-items: center;
             }
+
             & .postActionsViews {
                 display: flex;
                 align-items: center;
                 position: absolute;
                 right: 0;
+
                 & .postActionsViewsCount {
                     font-size: 16px;
                 }
             }
         }
     }
+
     & .block {
         padding: 15px;
         margin-bottom: 10px;
@@ -88,11 +99,13 @@
         }
     }
 }
+
 @media screen and (max-width: 450px) {
     .postsList {
         & .post {
             & .postTitle {
                 font-size: 20px;
+
                 & .date {
                     font-size: 14px;
                 }
@@ -100,19 +113,23 @@
         }
     }
 }
+
 @media screen and (max-width: 350px) {
     .postsList {
         & .post {
             & .postTitle {
                 font-size: 18px;
+
                 & .date {
                     font-size: 13px;
                 }
             }
+
             & .postActions {
                 & .postActionsLikes {
                     font-size: 16px;
                 }
+
                 & .postActionsComments {
                     font-size: 16px;
                 }

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import s from "./interests.module.scss";
-import Image from "next/image";
-import like from "../../../public/images/interesting.svg";
-import { getUserInterests, setCurrentProfileUser, updateInterests } from "../../../global/store/store";
+import { getUserInterests, updateInterests } from "../../../global/store/store";
 import { User } from "../../../global/interfaces";
-import ChangingInterests from "./ChangingInterests/ChangingInterests";
 import { MdInterests } from 'react-icons/md';
 import { useTranslation } from "react-i18next";
+import ChangingInterests from "./ChangingInterests/ChangingInterests";
+import s from "./interests.module.scss";
+import CustomModal from "../../../components-ui/CustomModal/CustomModal";
 
 export default function Interests(props: {
     user: User,
@@ -15,7 +14,8 @@ export default function Interests(props: {
 
     const { t } = useTranslation();
     const [currentUserInterests, setCurrentUserInterests] = useState([]);
-    const [isChangeMode, setIsChangeMode] = useState(false);
+    const [isChangeMode, setIsChangeMode] = useState<boolean>(false);
+
     const isAuthedUserAreCurrentUser = props.authedUser?.userId === props.user?.userId;
     const isCurrentInterestsAvailable = currentUserInterests?.length > 0;
 
@@ -41,7 +41,7 @@ export default function Interests(props: {
                 setCurrentUserInterests(res);
             });
         }
-    }, [props.user?.userId]);
+    }, [props.user?.userId, props.user?.interests]);
 
     return (
         <>
@@ -55,7 +55,16 @@ export default function Interests(props: {
                 </div>
                 {
                     isChangeMode
-                        ? <ChangingInterests currentInterests={props.authedUser.interests} handleSaveClick={handleSaveClick} />
+                        ?
+                        <CustomModal
+                            title="Изменить интересы"
+                            isDisplay={isChangeMode}
+                            changeModal={setIsChangeMode}
+                            actionConfirmed={setIsChangeMode}
+                            typeOfActions="none"
+                        >
+                            <ChangingInterests currentInterests={props.authedUser.interests} handleSaveClick={handleSaveClick} />
+                        </CustomModal>
                         : isCurrentInterestsAvailable
                             ? currentUserInterests.map((elem) =>
                                 <button type="button" className={`${s.interest}`} key={elem.title}>{elem.title}</button>

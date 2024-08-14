@@ -1,25 +1,34 @@
 .markedEventInfo {
-    width: 300px;
+    min-width: 300px;
     min-height: 300px;
     border-radius: 5px;
     background-color: var(--bg-color-block);
     padding: 20px;
+
     & .markedEventInfoContent {
+        display: grid;
+        row-gap: 10px;
+        width: 270px;
+
         & .image {
             display: flex;
             justify-content: center;
+
             & img {
                 width: 270px;
                 height: 270px;
                 border-radius: 5px;
             }
         }
+
         & .name {
             font-size: 13px;
         }
+
         & .actions {
             display: flex;
             column-gap: 5px;
+
             button {
                 font-size: 13px;
                 background-color: #3DB2FF;
@@ -28,12 +37,14 @@
                 border: none;
                 border-radius: 5px;
             }
+
             button:hover {
                 background-color: rgb(255, 197, 88);
                 color: black;
             }
         }
     }
+
     & .markedEventInfoContent:hover {
         cursor: pointer;
     }
@@ -42,7 +53,9 @@
 @keyframes rotateMini {
     from {
         transform: rotate(0deg);
-    } to {
+    }
+
+    to {
         transform: rotate(360deg);
         border-bottom-color: rgb(0, 153, 255);
     }

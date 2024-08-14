@@ -3,13 +3,13 @@ import { useStore } from "effector-react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IPeople, Params } from "../../../../global/interfaces";
-import { 
-    allPeoples, 
+import {
+    allPeoples,
     filterParams,
     fullUpdatePeoples,
-    getAllPeoplesByPageNumber, 
-    isPagePending, 
-    maxPageOfPeople, 
+    getAllPeoplesByPageNumber,
+    isPagePending,
+    maxPageOfPeople,
     setFilterParams,
     setMaxPageOfPeople
 } from "../../../../global/store/peoples_model";
@@ -65,7 +65,7 @@ export default function SearchingPeople(): JSX.Element {
     useEffect(() => {
         getAllPeoplesByPageNumber({
             pageNumber: 0,
-            pageSize: 10, 
+            pageSize: 10,
             filters: filterParams$
         });
         setCurrentPageNumber(0);
@@ -74,12 +74,12 @@ export default function SearchingPeople(): JSX.Element {
     useEffect(() => {
         getAllPeoplesByPageNumber({
             pageNumber: currentPageNumber,
-            pageSize: 10, 
+            pageSize: 10,
             filters: filterParams$
         });
     }, [currentPageNumber]);
 
-    return(
+    return (
         <div className={s.searching}>
             <div className={s.params}>
                 <div className={s.gender}>
@@ -90,11 +90,11 @@ export default function SearchingPeople(): JSX.Element {
                     </div>
                     <div className={s.part}>
                         <h3 className={s.title}>Возраст</h3>
-                        <Slider 
-                            onChangeCommitted={(event, newValue) => updateFilters("age", newValue)} 
-                            defaultValue={50} 
-                            aria-label="Default" 
-                            valueLabelDisplay="auto" 
+                        <Slider
+                            onChangeCommitted={(event, newValue) => updateFilters("age", newValue)}
+                            defaultValue={50}
+                            aria-label="Default"
+                            valueLabelDisplay="auto"
                         />
                     </div>
                     <div className={s.part}>
@@ -104,7 +104,7 @@ export default function SearchingPeople(): JSX.Element {
                 </div>
                 <div className={s.goal}>
                     <h3 className={s.title}>Цель</h3>
-                    { goals.map((goal) => <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>)}
+                    {goals.map((goal) => <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>)}
                 </div>
                 <div className={s.events}>
                     <h3 className={s.title}>События</h3>
@@ -114,10 +114,10 @@ export default function SearchingPeople(): JSX.Element {
                     {
                         currentEventsInfoLoaded$ &&
                         <div className={s.list}>
-                            { events$.map((event) => 
-                                <div 
-                                    onClick={() => updateFilters("event", event.id)} 
-                                    className={s.eachEvent} 
+                            {events$.map((event) =>
+                                <div
+                                    onClick={() => updateFilters("event", event.id)}
+                                    className={s.eachEvent}
                                     key={event.id}
                                 >{event.title}</div>
                             )}
@@ -130,11 +130,11 @@ export default function SearchingPeople(): JSX.Element {
                 <div className={s.interests}>
                     <h3 className={s.title}>Интересы</h3>
                     <div className={s.list}>
-                        { 
+                        {
                             interests$.map((interest) => (
-                                <div 
-                                    onClick={() => updateFilters("interests", interest.title)} 
-                                    className={s.eachPopular} 
+                                <div
+                                    onClick={() => updateFilters("interests", interest.title)}
+                                    className={s.eachPopular}
                                     key={interest.interestId}
                                 >{interest.title}</div>
                             ))
@@ -145,29 +145,29 @@ export default function SearchingPeople(): JSX.Element {
             <div className={s.result}>
                 <div className={s.users}>
                     <div className={s.usersList}>
-                        <InfinityScroll 
-                            maxPage={maxPage$} 
+                        <InfinityScroll
+                            maxPage={maxPage$}
                             handleIncreaseCurrentPage={handleIncreaseCurrentPage}
                             handleUpdateCurrentPage={handleUpdateCurrentPage}
                         >
                             <>
-                                {peoplesList$.map( user => <UserList key={user.login} user={user}/>)}
+                                {peoplesList$.map(user => <UserList key={user.login} user={user} />)}
                             </>
                         </InfinityScroll>
                     </div>
-                    { 
-                        maxPage$ === 0 && !pending ? 
-                        <div>
-                            <h3>Никого не найдено.</h3>
-                            <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
-                        </div>
-                        : null 
+                    {
+                        maxPage$ === 0 && !pending ?
+                            <div>
+                                <div>Никого не найдено.</div>
+                                <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
+                            </div>
+                            : null
                     }
                     {
                         pending && <div>Загрузка...</div>
                     }
                 </div>
             </div>
-        </div> 
+        </div>
     )
 }

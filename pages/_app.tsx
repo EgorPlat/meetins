@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile } from '../global/store/store';
 import { connection } from '../global/store/connection_model';
 import { useStore } from 'effector-react';
@@ -28,14 +28,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const connection$ = useStore(connection);
 	const isScrollPageBlocked = useStore($scrollPageBlocked)
 
-	const [isNotifyAdaptive, setIsNotifyAdaptive] = useState<boolean>();
 	const router = useRouter();
 	const isVideoCallOpened$ = useStore(isVideoCallOpened);
-	const {isMobile, isUnAdaptive} = useResize();
-	const currentTheme = useTheme();
-	const isConnected = useAuthAndInithialSocket();
-	
+	const { isMobile, isUnAdaptive } = useResize();
 
+	useTheme();
+	useAuthAndInithialSocket();
 	useBlockBodyScroll(isScrollPageBlocked);
 
 	useEffect(() => {
@@ -47,13 +45,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 			connection$?.disconnect();
 		}
 	}, []);
-	
 
 	useEffect(() => {
 		setIsMobile(isMobile);
-		setIsNotifyAdaptive(isUnAdaptive);
 	}, [isMobile, isUnAdaptive]);
-	
+
 	return (
 		<Layout>
 			<Head>

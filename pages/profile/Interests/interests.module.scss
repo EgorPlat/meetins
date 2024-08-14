@@ -1,39 +1,35 @@
-@keyframes rotate {
-    100% {
-        transform: rotateX(360deg);
-    }
-}
-
 .interests {
-    perspective: 200px;
-    transform-style: flat;
     font-family: Nunito;
     font-size: 18px;
     border: none;
+
     & .title {
         display: flex;
         align-items: center;
         column-gap: 10px;
+
         & .changeStatus {
             cursor: pointer;
             font-size: 16px;
             color: gray;
         }
     }
+
     & .interest {
         border-radius: 5px;
         padding: 3px;
         border: 2px solid rgb(44, 142, 255);
     }
+
     button {
         outline: none;
         cursor: pointer;
         margin-right: 5px;
         margin-top: 5px;
         background-color: transparent;
-        animation: rotate 1s;
     }
 }
+
 @media screen and (max-width: 1720px) {
     .interests {
         & .interest {
@@ -41,6 +37,7 @@
         }
     }
 }
+
 @media screen and (max-width: 380px) {
     .interests {
         & .interest {
@@ -48,6 +45,7 @@
         }
     }
 }
+
 @media screen and (max-width: 350px) {
     .interests {
         & .interest {

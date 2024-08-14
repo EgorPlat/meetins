@@ -3,7 +3,7 @@ import { $currentInterestsList, getInterests } from '../../../../global/store/st
 import s from './ChangingInterests.module.scss';
 import { useStore } from 'effector-react';
 
-export default function ChangingInterests(props: { 
+export default function ChangingInterests(props: {
     currentInterests: string[],
     handleSaveClick: (interestList) => void
 }) {
@@ -27,21 +27,23 @@ export default function ChangingInterests(props: {
                 return { ...el, selected: true }
             }
             return { ...el, selected: false }
-        } 
+        }
         ));
-    }, [currentInterests])
+    }, [currentInterests]);
 
     return (
         <div className={s.changingInterests}>
-            {
-                interestsList.map((el, index) => (
-                    <button
-                        key={el.title}
-                        className={ el.selected ? s.active : s.inactive } 
-                        onClick={() => selectNewInterest(index)}
-                    >{el.title}</button>
-                ))
-            }
+            <div className={s.changingInterestsList}>
+                {
+                    interestsList.map((el, index) => (
+                        <button
+                            key={el.title}
+                            className={el.selected ? s.active : s.inactive}
+                            onClick={() => selectNewInterest(index)}
+                        >{el.title}</button>
+                    ))
+                }
+            </div>
             <div className={s.changingInterestsActions}>
                 <button className={s.save} onClick={() => props.handleSaveClick(interestsList)}>Сохранить</button>
             </div>

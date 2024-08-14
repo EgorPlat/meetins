@@ -1,22 +1,41 @@
+@keyframes rotate {
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
 .changingInterests {
     width: 100%;
     height: 100%;
     font-size: 16px;
     perspective: 200px;
     transform-style: flat;
-    & button {
-        outline: none;
+
+    & .changingInterestsList {
+        perspective: 200px;
+        transform-style: flat;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        & button {
+            outline: none;
+            animation: rotate 1s;
+        }
+
+        & .active {
+            border-radius: 5px;
+            border: 2px solid rgb(44, 142, 255);
+            padding: 3px;
+        }
+
+        & .inactive {
+            border-radius: 5px;
+            border: 2px solid rgb(55, 170, 9);
+            padding: 3px;
+        }
     }
-    & .active {
-        border-radius: 5px;
-        border: 2px solid rgb(44, 142, 255);
-        padding: 3px;
-    }
-    & .inactive {
-        border-radius: 5px;
-        border: 2px solid rgb(55, 170, 9);
-        padding: 3px;
-    }
+
     & .changingInterestsActions {
         & .save {
             margin-top: 5px;
@@ -26,6 +45,7 @@
             border-radius: 5px;
             padding: 5px
         }
+
         & .save:hover {
             background-color: rgb(255, 232, 28);
             color: black;
@@ -38,6 +58,7 @@
         font-size: 15px;
     }
 }
+
 @media screen and (max-width: 380px) {
     .changingInterests {
         font-size: 14px;
