@@ -2,14 +2,17 @@
     from {
         margin-left: 240px;
     }
+
     to {
         margin-left: -10px;
     }
 }
+
 @keyframes hide {
     from {
         margin-left: -10px;
     }
+
     to {
         margin-left: 240px;
     }
@@ -18,7 +21,7 @@
 .eachError {
     padding: 5px;
     box-shadow: 0px 0px 3px 1px white;
-    background-color: var(--bg-color);
+    background-color: rgba(32, 32, 40, 0.816);
     color: white;
     border-radius: 7px;
     display: flex;
@@ -30,11 +33,13 @@
     width: 100%;
     min-height: 40px;
 }
+
 .errorShowUp {
     @extend .eachError;
     animation: showUp 1s;
     animation-fill-mode: forwards;
 }
+
 .errorHide {
     @extend .eachError;
     animation: hide 1s;
