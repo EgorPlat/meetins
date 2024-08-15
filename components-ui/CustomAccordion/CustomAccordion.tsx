@@ -9,21 +9,21 @@ interface ICustomAccordionProps {
 export default function CustomAccordion({ text, subText }: ICustomAccordionProps) {
 
     const [isSubTextNeeded, setIsSubTextNeeded] = useState<boolean>(false);
-    
-    const styles = isSubTextNeeded ? { height: "auto" } : { height: "40px" }
+
+    const styles = isSubTextNeeded ? { maxHeight: "300px" } : { maxHeight: "50px" }
 
     return (
-        <div 
+        <div
             className={s.customAccordion}
             style={styles}
         >
             <div className={s.customAccordionText} onClick={() => setIsSubTextNeeded(!isSubTextNeeded)}>
-                { text } { isSubTextNeeded ? "-" : "+" }
+                {text} {isSubTextNeeded ? "-" : "+"}
             </div>
             {
                 isSubTextNeeded &&
                 <div className={s.customAccordionSubText}>
-                    { subText }
+                    {subText}
                 </div>
             }
         </div>

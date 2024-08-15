@@ -53,18 +53,20 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
     }, [isMobile$]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            if (activeImageId === files.length - 1) {
-                setActiveImageId(0);
+        if (autoSwapTime) {
+            const interval = setInterval(() => {
+                if (activeImageId === files.length - 1) {
+                    setActiveImageId(0);
+                }
+                else if (activeImageId < files.length) {
+                    setActiveImageId(() => activeImageId + 1);
+                }
+            }, autoSwapTime);
+            return () => {
+                clearInterval(interval);
             }
-            else if (activeImageId < files.length) {
-                setActiveImageId(() => activeImageId + 1);
-            }
-        }, autoSwapTime);
-        return () => {
-            clearInterval(interval);
         }
-    }, [activeImageId]);
+    }, [activeImageId, autoSwapTime]);
 
     return (
         <div className={s.customSlider}>

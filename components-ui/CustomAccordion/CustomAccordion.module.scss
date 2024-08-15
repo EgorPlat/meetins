@@ -1,15 +1,30 @@
+@keyframes smoothOpacity {
+    0% {
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .customAccordion {
-    display: flex;
-    flex-direction: column;
     background-color: var(--bg-color-block);
     border-radius: 5px;
     padding: 10px;
     margin: 5px 5px 5px 5px;
     cursor: pointer;
 
-    transition: 3s;
+    transition: max-height .5s linear;
+
     & .customAccordionSubText {
         margin-top: 5px;
         padding-top: 5px;
+
+        animation: smoothOpacity .5s forwards;
     }
 }

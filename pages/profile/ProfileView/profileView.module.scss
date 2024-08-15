@@ -2,16 +2,19 @@
     height: 100vh;
     font-family: Nunito;
 }
+
 .navCol {
     font-size: 32px;
     height: 570px;
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     padding-top: 1%;
 }
+
 .bodyCol {
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     display: grid;
     grid-template-columns: 98%;
+
     & .block {
         min-height: 50px;
         padding: 2%;
@@ -19,12 +22,13 @@
         border-radius: 10px;
         background-color: var(--bg-color-block);
     }
+
     & .mainBlock {
         display: grid;
         grid-template-columns: 30% calc(70% - 40px) 40px;
-        & .moreActions {
 
-        }
+        & .moreActions {}
+
         & .bodyInfo {
             & .avatar {
                 box-shadow: 0 0 7px #666;
@@ -34,36 +38,46 @@
                 height: 190px;
             }
         }
+
         & .userInfo {
             display: grid;
             grid-template-columns: 1fr;
             font-family: Nunito;
             font-size: 16px;
+
             & .town {
-                color: grey; 
+                color: grey;
             }
+
             & .dateRegister {
-                color: grey; 
+                color: grey;
             }
+
             & .lastActivity {
                 color: rgb(35, 193, 255);
             }
+
             & .vied {
                 color: gray;
+
                 & .count {
                     color: rgb(32, 200, 35);
                 }
             }
+
             & .userStatus {
                 color: gray;
+
                 & .title {
                     color: var(--default-color);
                 }
             }
+
             & .userName {
                 display: flex;
                 align-items: center;
                 font-size: 36px;
+
                 & .userTag {
                     display: flex;
                     column-gap: 5px;
@@ -76,12 +90,14 @@
                     font-size: 16px;
                 }
             }
+
             & .status {
                 padding-left: 10px;
                 background-color: rgb(73, 73, 248);
                 border-radius: 10px;
                 max-height: 60px;
             }
+
             & .activityInfo {
                 height: 50px;
                 display: flex;
@@ -89,8 +105,10 @@
                 column-gap: 5px;
                 font-size: 16px;
             }
+
             & .actions {
                 display: flex;
+
                 & .actionsBtn {
                     width: 150px;
                     height: 35px;
@@ -104,19 +122,24 @@
             }
         }
     }
-    & .moreInfo { 
+
+    & .moreInfo {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 15px;
+
         & .interests {
             padding: 4%;
         }
+
         & .places {
             padding: 4%;
         }
     }
+
     & .addingPosts {
         margin-bottom: 5px;
+
         & button {
             font-family: Nunito;
             font-size: 15px;
@@ -129,6 +152,7 @@
             border-radius: 5px;
         }
     }
+
     & .postsList {
         display: grid;
         grid-template-columns: 1fr;
@@ -139,27 +163,33 @@
     .navCol {
         min-height: 50px;
     }
+
     .profile {
         & .bodyCol {
             & .mainBlock {
                 grid-template-columns: 1fr;
+
                 & .bodyInfo {
                     display: grid;
                     justify-content: center;
                     justify-items: center;
+
                     & .avatar {
                         width: 100px;
                         height: 100px;
                     }
-                } 
+                }
+
                 & .userInfo {
                     & .actionsBtn {
                         width: 150px;
                         height: 30px;
                     }
+
                     & .userName {
                         font-size: 32px;
                     }
+
                     & .actions {
                         display: grid;
                         flex-direction: column;

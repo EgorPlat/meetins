@@ -11,24 +11,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	const isMobile$ = useStore(isMobile);
 	const currentPage = useStore($currentPage)
 	const background = ['/login', '/register'].includes(currentPage) ? s.loginPage : s.mainPage;
-	const isNeededRouteToShowMenu = 
-		route.asPath !== '/confirmation' 
-		&& route.asPath !== '/login' 
-		&& route.asPath !== '/register' 
+	const isNeededRouteToShowMenu =
+		route.asPath !== '/confirmation'
+		&& route.asPath !== '/login'
+		&& route.asPath !== '/register'
 		&& route.asPath !== '/';
 
 	useEffect(() => {
-		if(route.asPath !== '/' && !route.asPath.includes("[")) {
+		if (route.asPath !== '/' && !route.asPath.includes("[")) {
 			setCurrentPage(route.asPath);
 			localStorage.setItem('previousPage', route.asPath);
 		}
 	}, [route.asPath]);
 
-	
-	return ( 
+
+	return (
 		<div className={`${s.container} ${background}`}>
-			{ isNeededRouteToShowMenu && <Header /> }
-			{ 	
+			{isNeededRouteToShowMenu && <Header />}
+			{
 				<div className={s.main}>
 					{children}
 				</div>
