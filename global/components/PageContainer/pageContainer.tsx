@@ -5,15 +5,15 @@ import { isMobile } from "../../store/store";
 import { useStore } from "effector-react";
 import MobileNavMenu from "../MobileNavMenu/MobileNavMenu";
 
-export default function PageContainer(props: {children: ReactChild}): JSX.Element {
+export default function PageContainer(props: { children: ReactChild }): JSX.Element {
 
     const isMobile$ = useStore(isMobile);
-    
+
     return (
         <div className={s.page}>
             <div className={s.menu}>
                 {
-                    !isMobile$ ? <LeftNavMenu/> : <MobileNavMenu />
+                    !isMobile$ ? <LeftNavMenu /> : <MobileNavMenu />
                 }
             </div>
             <div className={s.content}>

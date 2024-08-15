@@ -17,14 +17,15 @@ export default function EventBlock(props: {
     const event = props.currentEventById;
     const { t } = useTranslation();
     const isMobile$ = useStore(isMobile);
-    
-	if (event) {
-        return(
+
+    if (event) {
+        return (
             <div className={s.eventBlockContent}>
                 <div className={s.eventBlockTitle}>{t('Информация про')} {event.title}</div>
                 <div className={s.eventBlockMainInfo}>
                     <div className={s.eventInfo}>
-                        <CustomSlider 
+                        <CustomSlider
+                            autoSwapTime={3000}
                             files={props.currentEventById.images.map((el) => {
                                 return {
                                     src: el.image,
@@ -38,7 +39,7 @@ export default function EventBlock(props: {
                     <div className={s.help}>
                         <div>{event.title}, {event.age_restriction}+</div>
                         <div dangerouslySetInnerHTML={{ __html: event.description }} className={s.description} />
-                        <EventMoreInfo 
+                        <EventMoreInfo
                             price={event.price}
                             tags={event.tags}
                             siteUrl={event.site_url}
@@ -50,7 +51,7 @@ export default function EventBlock(props: {
                         </div>
                     </div>
                 </div>
-                {   props.currentEventById.participants.length > 0 &&
+                {props.currentEventById.participants.length > 0 &&
                     <div>В ролях: </div>
                 }
                 <div className={s.actorsInfo}>
@@ -68,28 +69,28 @@ export default function EventBlock(props: {
                                 </div>
                             </div>
                         ))
-                    }      
+                    }
                 </div>
                 <div className={s.commentsWrapper}>
-                    { props.commentsEvent.length === 0 ? 'Отзывов пока нет' : 'Отзывы'}
+                    {props.commentsEvent.length === 0 ? 'Отзывов пока нет' : 'Отзывы'}
                     {
                         props.commentsEvent.map(comment => (
                             <div className={s.wrapper} key={comment.id}>
                                 <div className={s.userInfo}>
                                     {
                                         comment.user.avatar.length !== 0
-                                        ? <Image
-                                            className={s.avatar}
-                                            src={comment.user.avatar}
-                                            width={50}
-                                            height={50}
-                                        />
-                                        : <Image
-                                            className={s.avatar}
-                                            src={baseURL + 'no-avatar.jpg'}
-                                            width={50}
-                                            height={50}
-                                        />
+                                            ? <Image
+                                                className={s.avatar}
+                                                src={comment.user.avatar}
+                                                width={50}
+                                                height={50}
+                                            />
+                                            : <Image
+                                                className={s.avatar}
+                                                src={baseURL + 'no-avatar.jpg'}
+                                                width={50}
+                                                height={50}
+                                            />
                                     }
                                 </div>
                                 <div className={s.commentInfo}>

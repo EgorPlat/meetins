@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { TouchEventHandler, useEffect, useState } from 'react';
 import s from './CustomSlider.module.scss';
 import { useStore } from 'effector-react';
 import { isMobile } from '../../global/store/store';
@@ -11,9 +10,10 @@ interface ICustomSliderProps {
     }[],
     width: string,
     height: string
+    autoSwapTime?: number
 }
 
-export default function CustomSlider({ files, width, height }: ICustomSliderProps) {
+export default function CustomSlider({ files, width, height, autoSwapTime }: ICustomSliderProps) {
 
     const [activeImageId, setActiveImageId] = useState<number>(0);
     const [touchXData, setTouchXData] = useState<number>(0);
@@ -30,16 +30,17 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
 
     const handleTouchEnd = (e) => {
         const differense = e.changedTouches[0].pageX - touchXData;
+
         if (differense >= -15 && differense <= 0) return;
         if (differense <= 15 && differense >= 0) return;
         if (e.changedTouches[0].pageX < touchXData) {
-            if (files.length - 1 === activeImageId){
+            if (files.length - 1 === activeImageId) {
                 setActiveImageId(() => 0);
             } else {
                 setActiveImageId((prev) => prev + 1);
             }
         } else {
-            if (activeImageId === 0){
+            if (activeImageId === 0) {
                 setActiveImageId(() => files.length - 1);
             } else {
                 setActiveImageId((prev) => prev - 1);
@@ -48,8 +49,22 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
     };
 
     useEffect(() => {
-        if (isMobile$) setParams({ ...params, width: "300px "});
-    }, [isMobile$])
+        if (isMobile$) setParams({ ...params, width: "300px " });
+    }, [isMobile$]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (activeImageId === files.length - 1) {
+                setActiveImageId(0);
+            }
+            else if (activeImageId < files.length) {
+                setActiveImageId(() => activeImageId + 1);
+            }
+        }, autoSwapTime);
+        return () => {
+            clearInterval(interval);
+        }
+    }, [activeImageId]);
 
     return (
         <div className={s.customSlider}>
@@ -58,7 +73,7 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
             >
                 {
                     files.map(el => (
-                        <div 
+                        <div
                             className={s.customSliderCurrentImage}
                             style={{
                                 transform: `translateX(-${activeImageId * 100}%)`,
@@ -69,44 +84,44 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
                             {
                                 el.type.includes('image') ?
                                     <img
-                                        src={el.src} 
-                                        width={params.width} 
-                                        height={height} 
-                                        alt="Главное изображение" 
-                                        onTouchStart={handleTouchStart}
-                                        onTouchEnd={handleTouchEnd}
-                                        onClick={(e) => e.preventDefault()}
-                                    />
-                                : el.type.includes('video') ?
-                                    <video
-                                        src={el.src} 
+                                        src={el.src}
                                         width={params.width}
                                         height={height}
+                                        alt="Главное изображение"
                                         onTouchStart={handleTouchStart}
                                         onTouchEnd={handleTouchEnd}
-                                        controls={true}
                                         onClick={(e) => e.preventDefault()}
                                     />
-                                : el.type.includes('audio') ? 
-                                    <audio
-                                        style={{ width: params.width, height }}
-                                        src={el.src} 
-                                        onTouchStart={handleTouchStart}
-                                        onTouchEnd={handleTouchEnd}
-                                        controls
-                                    />
-                                : 
-                                <div 
-                                    style={{ 
-                                        width: params.width, 
-                                        textAlign: "center", 
-                                    }}
-                                    onTouchStart={handleTouchStart}
-                                    onTouchEnd={handleTouchEnd}
-                                >
-                                    <div>Вложение (файл) - {el.type}</div>
-                                    <a href={el.src} target='__blank'>Скачать</a>
-                                </div>
+                                    : el.type.includes('video') ?
+                                        <video
+                                            src={el.src}
+                                            width={params.width}
+                                            height={height}
+                                            onTouchStart={handleTouchStart}
+                                            onTouchEnd={handleTouchEnd}
+                                            controls={true}
+                                            onClick={(e) => e.preventDefault()}
+                                        />
+                                        : el.type.includes('audio') ?
+                                            <audio
+                                                style={{ width: params.width, height }}
+                                                src={el.src}
+                                                onTouchStart={handleTouchStart}
+                                                onTouchEnd={handleTouchEnd}
+                                                controls
+                                            />
+                                            :
+                                            <div
+                                                style={{
+                                                    width: params.width,
+                                                    textAlign: "center",
+                                                }}
+                                                onTouchStart={handleTouchStart}
+                                                onTouchEnd={handleTouchEnd}
+                                            >
+                                                <div>Вложение (файл) - {el.type}</div>
+                                                <a href={el.src} target='__blank'>Скачать</a>
+                                            </div>
                             }
                         </div>
                     ))
@@ -115,7 +130,7 @@ export default function CustomSlider({ files, width, height }: ICustomSliderProp
             <div className={s.customSliderState}>
                 {
                     files.map((el, index) => (
-                        <div 
+                        <div
                             className={
                                 index === activeImageId ? s.customSliderRoundActive : s.customSliderRoundInactive
                             }
