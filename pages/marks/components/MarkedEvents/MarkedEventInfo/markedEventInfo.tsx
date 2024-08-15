@@ -17,8 +17,8 @@ export default function MarkedEventInfo(props: { event: IShortEventInfo }): JSX.
         deleteUserEvent(+props.event.id);
     };
 
-    return(
-        <div className={s.markedEventInfo}>     
+    return (
+        <div className={s.markedEventInfo}>
             {props.event &&
                 <div className={s.markedEventInfoContent}>
                     <div className={s.image} onClick={goToEventInfo}>

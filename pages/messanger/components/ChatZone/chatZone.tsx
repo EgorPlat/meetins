@@ -29,7 +29,7 @@ interface IChatZoneProps {
     activeChat$: IMyDialog
 }
 export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
-    
+
     const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
     const [videoMessageActive, setVideoMessageActive] = useState<boolean>();
 
@@ -40,12 +40,12 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
-    
+
     const router = useRouter();
     const isUserOnline = onlineUsers.filter(el => el.userId === activeChat$.userId).length !== 0;
     const { t } = useTranslation();
 
-    const { handleActivateMedia, mediaChunks } = useUserMediaTracks({ 
+    const { handleActivateMedia, mediaChunks } = useUserMediaTracks({
         video: { width: 200, height: 200 },
         audio: true,
         htmlElementIdForStopMedia: 'videoMessageStop'
@@ -61,7 +61,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     };
 
     const sendForm = (inputValue: string) => {
-        if(inputValue.length > 0) {
+        if (inputValue.length > 0) {
             createdSendMessageAndUploadActiveChat(inputValue);
         };
     };
@@ -76,7 +76,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                     addNotification({
                         time: 3000,
                         textColor: "white",
-                        color: "yellow",
+                        type: "warning",
                         text: "Пользователь не в сети."
                     })
                 }
@@ -104,20 +104,21 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
             createdSendFileAndUploadActiveChat(blob);
         }
     }, [mediaChunks]);
-    
+
     useEffect(() => {
-        return () => { 
+        return () => {
             setActiveChat(defaultDialog);
         }
     }, []);
-    
-    
+
+
     if (activeChat$) {
-        return(
-            <div className={s.chat}>  
+        return (
+            <div className={s.chat}>
                 <div className={`${s.user} ${s.block}`}>
                     <div className={s.avatar} style={{
-                        backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`}}>
+                        backgroundImage: `url('${baseURL + activeChat$.userAvatar}')`
+                    }}>
                     </div>
                     <div className={s.userTextInfo}>
                         <div className={s.name}>
@@ -125,7 +126,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                             <MdOutlineOndemandVideo
                                 cursor="pointer"
                                 fontSize={26}
-                                style={{cursor: "pointer"}}
+                                style={{ cursor: "pointer" }}
                                 onClick={() => setShowVideoModal(true)}
                             />
                         </div>
@@ -134,7 +135,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                         </div>
                     </div>
                     <div className={s.moreActions}>
-                        <CustomEditMenu 
+                        <CustomEditMenu
                             data={[
                                 { menuTitle: "Профиль", menuFunction: () => handleGoToProfile(activeChat$.userLogin) },
                                 { menuTitle: "Назад", menuFunction: handleBack },
@@ -145,32 +146,32 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                 </div>
                 <div className={`${s.messages} ${s.block}`}>
                     {
-                        activeChat$.messages.length === 0 && 
+                        activeChat$.messages.length === 0 &&
                         <div className={s.notificationMessage}>Чтобы начать диалог напишите какое-то сообщение.</div>
                     }
                     {activeChat$.messages
                         ? activeChat$.messages.map((message, index) => {
                             const isMyMessage = message.senderId === authedUser?.userId;
-                            const isDateAlreadyExist = 
+                            const isDateAlreadyExist =
                                 getDateInDMFormat(message.sendAt) !== getDateInDMFormat(activeChat$.messages[index - 1]?.sendAt);
                             return (
                                 <div className={s.messageWrapper} key={message.messageId}>
                                     <div className={s.messageDateWrapper}>
-                                        { isDateAlreadyExist && 
-                                            <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div> 
+                                        {isDateAlreadyExist &&
+                                            <div className={s.messageDate}>{getDateInDMFormat(message.sendAt)}</div>
                                         }
                                     </div>
                                     <div className={isMyMessage ? s.myMessageBlock : s.notMyMessageBlock}>
-                                            <div 
-                                                className={isMyMessage ? s.myMessage : s.notMyMessage}
-                                            >
+                                        <div
+                                            className={isMyMessage ? s.myMessage : s.notMyMessage}
+                                        >
                                             {
-                                                isTypeOfFileAreImage(message.type) 
-                                                && 
+                                                isTypeOfFileAreImage(message.type)
+                                                &&
                                                 <div className={s.messageWithFile}>
-                                                    <img 
-                                                        src={baseURL + message.content} 
-                                                        width="100px" 
+                                                    <img
+                                                        src={baseURL + message.content}
+                                                        width="100px"
                                                         height="100px"
                                                     />
                                                     <a href={baseURL + message.content} target="_blank">{t('Открыть полностью')}</a>
@@ -178,9 +179,9 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                             }
                                             {
                                                 isTypeOfFileAreVideo(message.type)
-                                                && 
+                                                &&
                                                 <div className={s.messageWithVideo}>
-                                                    <video 
+                                                    <video
                                                         controls
                                                         src={baseURL + message.content}
                                                         width="200px"
@@ -196,22 +197,22 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                                 <audio controls src={baseURL + message.content}></audio>
                                             }
                                             {
-                                                message.type === 'text' && 
+                                                message.type === 'text' &&
                                                 <pre className={s.textMessage}>
                                                     {message.content}
                                                 </pre>
                                             }
                                             <div className={s.messageInfo}>
                                                 <div className={s.messageTime}>
-                                                    { getMinutesAndHoursFromString(message.sendAt) }
+                                                    {getMinutesAndHoursFromString(message.sendAt)}
                                                 </div>
                                                 <div className={s.messageReadStatus}>
-                                                    { 
-                                                        isMyMessage 
-                                                        ? message.isRead
-                                                            ? <IoCheckmarkDoneOutline color="blue" fontSize={18} />
-                                                            : <IoCheckmarkDoneOutline color="black" fontSize={18} />
-                                                        : null
+                                                    {
+                                                        isMyMessage
+                                                            ? message.isRead
+                                                                ? <IoCheckmarkDoneOutline color="blue" fontSize={18} />
+                                                                : <IoCheckmarkDoneOutline color="black" fontSize={18} />
+                                                            : null
                                                     }
                                                 </div>
                                             </div>
@@ -220,21 +221,21 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                 </div>
                             )
                         })
-                        : <Loader/>
+                        : <Loader />
                     }
                     <div ref={messagesEndRef}></div>
                 </div>
                 <div className={`${s.form} ${s.block}`}>
-                    <ChatMessageForm 
-                        isLoaded={isMessageWithFileLoaded$} 
-                        placeholder="Введите сообщение" 
+                    <ChatMessageForm
+                        isLoaded={isMessageWithFileLoaded$}
+                        placeholder="Введите сообщение"
                         onClickForm={(inputValue) => sendForm(inputValue)}
                         isChatExists={!activeChat$.userId}
                     />
                 </div>
                 {
                     showVideoModal &&
-                    <CustomModal 
+                    <CustomModal
                         isDisplay={showVideoModal}
                         title="Подтвердите действие"
                         typeOfActions="default"
@@ -246,7 +247,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                 }
                 {
                     videoMessageActive &&
-                    <CustomModal 
+                    <CustomModal
                         isDisplay={videoMessageActive}
                         title="Видео-сообщение"
                         typeOfActions="none"
@@ -255,10 +256,10 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                     >
                         <div className={s.videoMessageWrapper}>
                             <video
-                                className="video" 
-                                width="200px" 
-                                height="200px" 
-                                ref={videoMessageStreamRef} 
+                                className="video"
+                                width="200px"
+                                height="200px"
+                                ref={videoMessageStreamRef}
                                 autoPlay
                                 muted
                             ></video>

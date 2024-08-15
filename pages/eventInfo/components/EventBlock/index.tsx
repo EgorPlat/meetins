@@ -14,11 +14,13 @@ export default function EventBlock(props: {
     addUserEvent: (id: number) => void,
     commentsEvent: IEventComments[]
 }): JSX.Element {
+
     const event = props.currentEventById;
     const { t } = useTranslation();
     const isMobile$ = useStore(isMobile);
 
-    if (event) {
+
+    if (event && props.commentsEvent) {
         return (
             <div className={s.eventBlockContent}>
                 <div className={s.eventBlockTitle}>{t('Информация про')} {event.title}</div>
@@ -74,14 +76,14 @@ export default function EventBlock(props: {
                 <div className={s.commentsWrapper}>
                     {props.commentsEvent.length === 0 ? 'Отзывов пока нет' : 'Отзывы'}
                     {
-                        props.commentsEvent.map(comment => (
+                        props.commentsEvent?.map(comment => (
                             <div className={s.wrapper} key={comment.id}>
                                 <div className={s.userInfo}>
                                     {
-                                        comment.user.avatar.length !== 0
+                                        comment.user?.avatar.length !== 0
                                             ? <Image
                                                 className={s.avatar}
-                                                src={comment.user.avatar}
+                                                src={comment.user?.avatar}
                                                 width={50}
                                                 height={50}
                                             />
@@ -95,7 +97,7 @@ export default function EventBlock(props: {
                                 </div>
                                 <div className={s.commentInfo}>
                                     <div className={s.name}>
-                                        {comment.user.name}
+                                        {comment.user?.name}
                                     </div>
                                     <div className={s.text}>
                                         {comment.text}

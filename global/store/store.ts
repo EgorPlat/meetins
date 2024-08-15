@@ -5,6 +5,7 @@ import { instanseRouter } from './router_model';
 import { handleLogOut } from './login_model';
 import { addNotification } from './notifications_model';
 import { IInterest } from '../interfaces/interest';
+import { INotification } from '../interfaces/notification';
 
 export const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
 
@@ -34,7 +35,7 @@ instance.interceptors.response.use((response) => {
 		if (message) {
 			addNotification({
 				text: message,
-				color: "orange",
+				type: "warning",
 				textColor: "black",
 				time: 3000
 			});
@@ -215,7 +216,7 @@ export const sendNewUserPost = createEffect(async (formData: FormData) => {
 	const response = await instance.post('users/addUserPost', formData);
 	if (response.status === 200) {
 		setUser(response.data);
-		addNotification({ text: 'Пост успешно создан на вашей странице!', color: 'green', time: 3000, textColor: "white" })
+		addNotification({ text: 'Пост успешно создан на вашей странице!', type: "success", time: 3000, textColor: "white" })
 	}
 	return response;
 })
@@ -267,7 +268,8 @@ sample({
 	clock: [updateUserTag.doneData],
 	filter: (res) => res.status <= 217,
 	fn: () => {
-		return { time: 3000, color: "green", textColor: "white", text: "Изменения вступят после перезахода в профиль." }
+		const notification: INotification = { text: "Изменения вступят после перезахода в профиль.", time: 3000, type: "success", textColor: "white" };
+		return notification
 	},
 	target: addNotification
 })

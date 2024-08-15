@@ -18,14 +18,14 @@ export default function Interests() {
             addInterest(titleRef.current.value);
             addNotification({
                 time: 3000,
-                color: "green",
+                type: "success",
                 textColor: "white",
                 text: "Ваша заявка успешно отправлена!"
             })
         } else {
             addNotification({
                 time: 3000,
-                color: "orange",
+                type: "warning",
                 textColor: "white",
                 text: "Название интереса не менее 3 симв."
             })

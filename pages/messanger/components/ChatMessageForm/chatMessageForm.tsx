@@ -14,17 +14,17 @@ export default function ChatMessageForm(
         isLoaded: boolean,
         isChatExists: boolean
     }
-): JSX.Element { 
+): JSX.Element {
 
     const messageRef = useRef<HTMLTextAreaElement>();
     const [isMediaRecorderActive, setIsMediaRecorderActive] = useState<boolean>(false);
     const { t } = useTranslation();
-    const { handleActivateMedia, mediaChunks } = useUserMediaTracks({ 
-        video: false, 
-        audio: true, 
-        htmlElementIdForStopMedia: 'audioMessageStop' 
+    const { handleActivateMedia, mediaChunks } = useUserMediaTracks({
+        video: false,
+        audio: true,
+        htmlElementIdForStopMedia: 'audioMessageStop'
     });
-    
+
     const sendForm = () => {
         props.onClickForm(messageRef.current.value);
         messageRef.current.value = "";
@@ -38,7 +38,7 @@ export default function ChatMessageForm(
         if (!props.isChatExists) {
             addNotification({
                 text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
-                color: "black",
+                type: "info",
                 textColor: 'black',
                 time: 3000
             });
@@ -66,7 +66,7 @@ export default function ChatMessageForm(
         } else {
             addNotification({
                 text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
-                color: "black",
+                type: "info",
                 textColor: 'black',
                 time: 3000
             });
@@ -79,28 +79,28 @@ export default function ChatMessageForm(
         )
     };
 
-    return(
+    return (
         <div className={s.form}>
             <div className={s.formInput}>
-                <textarea ref={messageRef} placeholder={t(props.placeholder)}/>
+                <textarea ref={messageRef} placeholder={t(props.placeholder)} />
                 <div className={s.fileInput}>
                     <AiOutlineFileText fontSize={35} color="gray" />
-                    <input type="file" onChange={(e) => onSendNewFile(e)}/>
+                    <input type="file" onChange={(e) => onSendNewFile(e)} />
                 </div>
                 <Emoji addSmileHandler={addSmileHandler} />
                 {
                     !isMediaRecorderActive
-                    ? 
-                    <AiOutlineAudio
-                        color="gray"
-                        fontSize={35}  
-                        onClick={handleMediaRecorder}
-                    />
-                    : 
-                    <span id="audioMessageStop">Stop</span>
+                        ?
+                        <AiOutlineAudio
+                            color="gray"
+                            fontSize={35}
+                            onClick={handleMediaRecorder}
+                        />
+                        :
+                        <span id="audioMessageStop">Stop</span>
                 }
                 {
-                    props.isLoaded 
+                    props.isLoaded
                         ? <AiOutlineSend fontSize={35} onClick={sendForm} color="gray" />
                         : <Loader />
                 }

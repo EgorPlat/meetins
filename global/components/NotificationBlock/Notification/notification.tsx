@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import s from './notification.module.scss';
-import { ICreatedNotification } from '../../../interfaces/notification';
+import { ICreatedNotification, NOTIFICATION_COLOR_TYPES } from '../../../interfaces/notification';
 
-export const Notification = (props: { 
-    notification: ICreatedNotification, 
+export const Notification = (props: {
+    notification: ICreatedNotification,
     handleRemove: (error: ICreatedNotification) => void
 }) => {
     const { notification } = props;
@@ -20,10 +20,12 @@ export const Notification = (props: {
             clearTimeout(visibleTimeout);
         }
     }, []);
+
+    /*NOTIFICATION_COLOR_TYPES[props.notification.type]*/
     return (
         <div
-            className={`${ visible ? s.errorShowUp : s.errorHide}`} 
-            style={{ boxShadow: `0px 0px 5px 2px ${notification.color}` }}
+            className={`${visible ? s.errorShowUp : s.errorHide}`}
+            style={{ backgroundColor: NOTIFICATION_COLOR_TYPES[props.notification.type] }}
         >
             {notification.text}
         </div>

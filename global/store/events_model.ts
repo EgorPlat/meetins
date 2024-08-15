@@ -4,6 +4,7 @@ import { instance, setUser } from "./store";
 import { sample } from 'effector';
 import { addNotification } from "./notifications_model";
 import { IInnerInvites } from "../interfaces";
+import { INotification } from "../interfaces/notification";
 
 export const setCurrentEvents = createEvent<IShortEventInfo[]>();
 export const currentEvents = createStore<IShortEventInfo[]>([]).on(setCurrentEvents, (_, newEvents) => {
@@ -184,11 +185,22 @@ sample({
     fn: response => response.data,
     target: setCurrentEventCommentsById
 })
+
 sample({
     clock: addUserEvent.doneData,
     filter: response => response.status <= 217,
-    fn: (response) => {
-        return { text: "Успешно добавлено в 'Закладки'", time: 3000, color: "green", textColor: "white" }
+    fn: response => response.data,
+    target: setUser
+})
+
+sample({
+    clock: addUserEvent.doneData,
+    filter: response => response.status <= 217,
+    fn: () => {
+        const notification: INotification = { text: "Успешно добавлено в 'Закладки'", time: 3000, type: "success", textColor: "white" };
+        console.log(notification);
+
+        return notification
     },
     target: addNotification
 })

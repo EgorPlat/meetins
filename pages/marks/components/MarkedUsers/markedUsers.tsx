@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router';
-import { IMarkedUserInfo } from '../../../../global/interfaces';
-import { baseURL, removeUserFromMarkedList } from '../../../../global/store/store';
+import { $markedUsersInfo, baseURL, removeUserFromMarkedList } from '../../../../global/store/store';
 import s from './markedUsers.module.scss';
+import { useStore } from 'effector-react';
 
-export default function MarkedUsers(props: {
-    markedUsers: IMarkedUserInfo[]
-}) {
+export default function MarkedUsers() {
 
     const router = useRouter();
+    const markedUsersInfo$ = useStore($markedUsersInfo);
 
     const handleRemoveUser = (userId: string) => {
         removeUserFromMarkedList(userId);
@@ -21,20 +20,20 @@ export default function MarkedUsers(props: {
         <div className={s.markedUsers} >
             <div className={s.list} >
                 {
-                    props.markedUsers?.length === 0 && 
+                    markedUsersInfo$?.length === 0 &&
                     <div className={s.warning}>
                         <h5 className={s.title}>У Вас нет пользователей в закладках.</h5>
                         <div className={s.subTitle}>Чтобы добавить пользователя в закладки перейдите в профиль.</div>
                     </div>
                 }
                 {
-                    props.markedUsers?.map(el => (
+                    markedUsersInfo$?.map(el => (
                         <div className={s.markedUser} key={el.userId} onClick={() => handleGoToUser(el.login)}>
                             <img src={baseURL + el.avatar} className={s.avatar} />
                             <div className={s.name} >{el.name}</div>
                             <div className={s.actions} >
-                                <button 
-                                    className={s.actionRemove} 
+                                <button
+                                    className={s.actionRemove}
                                     onClick={() => handleRemoveUser(el.userId)}
                                 >x</button>
                             </div>

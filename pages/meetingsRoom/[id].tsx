@@ -34,7 +34,7 @@ export default function MeetingsRoom() {
                 text: "Вы уже в списке участников.",
                 textColor: "white",
                 time: 3000,
-                color: 'orange'
+                type: "warning",
             })
         }
     };
@@ -47,7 +47,7 @@ export default function MeetingsRoom() {
                 text: "Сначала запишитесь на встречу.",
                 textColor: "white",
                 time: 3000,
-                color: 'orange'
+                type: "warning",
             })
         }
     };

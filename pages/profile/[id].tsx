@@ -79,7 +79,7 @@ function Profile(): JSX.Element {
         if (authedUser.markedUsers.includes(currentUser.userId)) {
             addNotification({
                 textColor: "white",
-                color: "orange",
+                type: "warning",
                 time: 3000,
                 text: "Уже в избранных."
             })
