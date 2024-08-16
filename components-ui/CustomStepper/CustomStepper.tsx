@@ -1,7 +1,7 @@
-import { ReactNode, useState } from 'react';
+import { useEffect, useState } from 'react';
 import s from './CustomStepper.module.scss';
 
-interface IStep { title: string, component: ReactNode };
+interface IStep { title: string, component: any, props?: any };
 interface ICustomStepperProps {
     steps: IStep[],
     center?: boolean
@@ -10,6 +10,17 @@ interface ICustomStepperProps {
 export default function CustomStepper({ steps, center }: ICustomStepperProps) {
 
     const [activeStep, setActiveStep] = useState<IStep>(steps[0]);
+    const { component: CustomComponent } = activeStep;
+    const { props: CustomComponentProps } = activeStep;
+
+    useEffect(() => {
+        steps.map(el => {
+            if (el.title === activeStep.title) {
+                setActiveStep(el);
+                return;
+            }
+        })
+    }, [steps]);
 
     return (
         <div className={s.customStepper}>
@@ -27,7 +38,9 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
                 }
             </div>
             <div className={s.activeStepContent}>
-                {activeStep && activeStep.component}
+                {
+                    !CustomComponentProps ? <CustomComponent /> : <CustomComponent {...CustomComponentProps} />
+                }
             </div>
         </div>
     )

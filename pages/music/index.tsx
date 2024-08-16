@@ -73,9 +73,9 @@ export default function Music() {
                 >
                     <CustomStepper
                         steps={[
-                            { title: "Основное", component: <StatsView /> },
-                            { title: "Вычисляемое", component: <StatsTimeView /> },
-                            { title: "Гео-данные", component: <StatsGeoView /> }
+                            { title: "Основное", component: StatsView },
+                            { title: "Вычисляемое", component: StatsTimeView },
+                            { title: "Гео-данные", component: StatsGeoView }
                         ]}
                     />
                 </CustomModal>

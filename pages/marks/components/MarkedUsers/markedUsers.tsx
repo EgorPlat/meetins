@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { $markedUsersInfo, baseURL, removeUserFromMarkedList } from '../../../../global/store/store';
-import s from './markedUsers.module.scss';
 import { useStore } from 'effector-react';
+import s from './markedUsers.module.scss';
 
 export default function MarkedUsers() {
 

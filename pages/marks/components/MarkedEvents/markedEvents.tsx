@@ -1,8 +1,8 @@
+import { useStore } from "effector-react";
+import { userEvents } from "../../../../global/store/events_model";
 import React from "react";
 import MarkedEventInfo from "./MarkedEventInfo/markedEventInfo";
 import s from "./markedEvents.module.scss";
-import { useStore } from "effector-react";
-import { userEvents } from "../../../../global/store/events_model";
 
 export default function MarkedEvents(): JSX.Element {
 

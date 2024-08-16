@@ -13,14 +13,14 @@ export default function MyMeetings({
     data: IMeeting[],
     handleGoToMeeting: (meeting: IMeeting) => void
 }) {
-       
+
     const [isAddModalShown, setIsAddModalShown] = useState<boolean>(false);
-    
+
     return (
         <div className={s.myMeetings}>
             <div className={s.title}>
                 Здесь видны встречи, которые запланированны лично Вами.
-                <BsCalendarPlus 
+                <BsCalendarPlus
                     style={{ cursor: "pointer" }}
                     fontSize={24}
                     onClick={() => setIsAddModalShown(true)}

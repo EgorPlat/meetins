@@ -49,9 +49,9 @@ export default function Peoples(): JSX.Element {
                 <CustomStepper
                     center={isMobile$}
                     steps={[
-                        { title: "Поиск людей", component: <SearchingPeople /> },
-                        { title: "Сообщества", component: <GroupsList /> },
-                        { title: "Новости", component: <LentaList wallPosts={currentWall} handleGoToLink={handleGoToLink} /> }
+                        { title: "Поиск людей", component: SearchingPeople },
+                        { title: "Сообщества", component: GroupsList },
+                        { title: "Новости", component: LentaList, props: { wallPosts: currentWall, handleGoToLink: handleGoToLink } }
                     ]}
                 />
             </div>

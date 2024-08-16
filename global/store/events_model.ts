@@ -198,8 +198,6 @@ sample({
     filter: response => response.status <= 217,
     fn: () => {
         const notification: INotification = { text: "Успешно добавлено в 'Закладки'", time: 3000, type: "success", textColor: "white" };
-        console.log(notification);
-
         return notification
     },
     target: addNotification
