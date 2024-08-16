@@ -5,12 +5,12 @@ import { RiDiscussLine } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
 import { BiComment, BiPhotoAlbum } from 'react-icons/bi';
 import { customizeDateToYYYYMMDDHHMMFormat } from '../../../../global/helpers/helper';
-import s from './GroupInfoPageView.module.scss';
 import { FiSettings } from 'react-icons/fi';
-import CustomSlider from '../../../../components-ui/CustomSlider/CustomSlider';
 import { User } from '../../../../global/interfaces';
+import CustomSlider from '../../../../components-ui/CustomSlider/CustomSlider';
+import s from './GroupInfoPageView.module.scss';
 
-export default function GroupInfoPageView (props: {
+export default function GroupInfoPageView(props: {
     authedUser: User,
     groupInfo: IGroup,
     groupMembersInfo: IGroupMembersInfo[],
@@ -28,23 +28,23 @@ export default function GroupInfoPageView (props: {
     const postsFromNewToPrevious = props.groupInfo?.posts?.sort((p, n) => {
         if (p.date > n.date) return -1; else 1
     });
-    
+
     if (props.groupInfo) {
         return (
             <div className={s.groupInfo}>
-                <div 
+                <div
                     className={s.head}
                     style={{ backgroundImage: `url(${baseURL}${props.groupInfo?.headAvatar})` }}
                 >
                     <div className={s.subHead}>
-                        <div 
+                        <div
                             className={s.mainAvatar}
                             style={{ backgroundImage: `url(${baseURL}${props.groupInfo?.mainAvatar})` }}
                         ></div>
                         <div className={s.title}>{props.groupInfo?.name}</div>
                         <div className={s.settings}>
                             {
-                                props.isAutherUserCreator && 
+                                props.isAutherUserCreator &&
                                 <span onClick={props.handleOpenGroupSettings}>
                                     Управление <FiSettings fontSize={18} />
                                 </span>
@@ -83,13 +83,13 @@ export default function GroupInfoPageView (props: {
                             postsFromNewToPrevious?.map(post => (
                                 <div className={s.post} key={post.id}>
                                     <div className={s.title}>
-                                        {post.id}. {post.title} 
+                                        {post.id}. {post.title}
                                         <span className={s.date}>Опубликовано: {customizeDateToYYYYMMDDHHMMFormat(post.date)}</span>
                                     </div>
                                     <div className={s.file}>
                                         {
                                             post.files?.length > 0 &&
-                                            <CustomSlider 
+                                            <CustomSlider
                                                 files={
                                                     post.files.map(el => {
                                                         return {
@@ -97,9 +97,9 @@ export default function GroupInfoPageView (props: {
                                                             src: baseURL + el.src
                                                         }
                                                     })
-                                                } 
-                                                width='450px' 
-                                                height='300px' 
+                                                }
+                                                width='450px'
+                                                height='300px'
                                             />
                                         }
                                     </div>
@@ -109,10 +109,10 @@ export default function GroupInfoPageView (props: {
                                     <div className={s.actions}>
                                         <div className={s.likes}>
                                             {post.likes.length}
-                                            <AiFillHeart 
+                                            <AiFillHeart
                                                 onClick={() => props.handleLikePost(post, props.groupInfo?.groupId)}
-                                                fontSize={25} 
-                                                color={post.likes.includes(props.authedUser.userId) ? 'red': ''}
+                                                fontSize={25}
+                                                color={post.likes.includes(props.authedUser.userId) ? 'red' : ''}
                                             />
                                         </div>
                                         <div className={s.comments} onClick={() => props.handleOpenComments(post.id)}>
@@ -121,13 +121,13 @@ export default function GroupInfoPageView (props: {
                                             Комментарии
                                         </div>
                                         <div className={s.views}>
-                                            Просм. 
+                                            Просм.
                                             <AiOutlineEye fontSize={25} />
                                             1.728
                                         </div>
                                     </div>
                                 </div>
-                            ))  
+                            ))
                         }
                     </div>
                     <div className={s.leftInfo}>
@@ -138,8 +138,8 @@ export default function GroupInfoPageView (props: {
                         <div className={s.members}>
                             {
                                 props.groupMembersInfo?.slice(0, 3)?.map(el => (
-                                    <div 
-                                        className={s.member} 
+                                    <div
+                                        className={s.member}
                                         key={el.login}
                                         style={{ backgroundImage: `url(${baseURL}${el.avatar})` }}
                                     >

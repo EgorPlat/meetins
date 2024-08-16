@@ -4,6 +4,7 @@
     justify-content: center;
     justify-items: center;
     width: 98%;
+
     & .wallPost {
         width: 800px;
         min-height: 100px;
@@ -12,25 +13,33 @@
         border-radius: 10px;
         display: grid;
         row-gap: 15px;
-        position: relative;
+
         & .postAuthor {
-            display: flex;
+            display: grid;
+            grid-template-columns: 50px calc(100% - 100px) 30px;
             column-gap: 10px;
+
             & .name {
                 font-size: 16px;
             }
+
             & .avatar {
                 width: 50px;
                 height: 50px;
                 border-radius: 10px;
             }
+
+            & .postActions {}
         }
+
         & .postContent {
             font-size: 16px;
         }
+
         & .postDescription {
             font-size: 16px;
         }
+
         & .postMoreInfo {
             color: var(--default-color);
             display: flex;
@@ -38,23 +47,20 @@
             align-items: center;
             font-size: 17px;
             position: relative;
+
             & .postLikes {
                 display: flex;
                 align-items: center;
                 color: white;
                 column-gap: 5px;
             }
+
             & .postDate {
                 position: absolute;
                 right: 10px;
                 font-size: 14px;
                 color: gray;
             }
-        }
-        & .postActions {
-            position: absolute;
-            top: 7px;
-            right: 5px;
         }
     }
 }

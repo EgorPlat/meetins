@@ -115,6 +115,7 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
                                             :
                                             <div
                                                 style={{
+                                                    minHeight: "100px",
                                                     width: params.width,
                                                     textAlign: "center",
                                                 }}

@@ -12,7 +12,7 @@ export default function LentaList(props: {
     wallPosts: IWall[],
     handleGoToLink: (isGroup: boolean, linkId: number) => void
 }): JSX.Element {
-    return(
+    return (
         <div className={s.lentaList}>
             {
                 props.wallPosts?.map(el => (
@@ -24,22 +24,36 @@ export default function LentaList(props: {
                                     {el.isGroup && "Сообщество: "}
                                     {el.name} - {el.postTitle}
                                 </div>
+                                <div className={s.postActions}>
+                                    <CustomEditMenu
+                                        data={[
+                                            {
+                                                menuTitle: "Не получать уведомления",
+                                                menuFunction: () => console.log(2)
+                                            },
+                                            {
+                                                menuTitle: "Перейти к источнику",
+                                                menuFunction: () => props.handleGoToLink(el.isGroup, el.linkId)
+                                            }
+                                        ]}
+                                    />
+                                </div>
                             </div>
                             <div className={s.postContent}>
                                 {
                                     el.postFiles?.length > 0 &&
-                                        <CustomSlider 
-                                            files={
-                                                el.postFiles.map(el => {
-                                                    return {
-                                                        ...el,
-                                                        src: baseURL + el.src
-                                                    }
-                                                })
-                                            } 
-                                            width='350px' 
-                                            height='300px' 
-                                        />
+                                    <CustomSlider
+                                        files={
+                                            el.postFiles.map(el => {
+                                                return {
+                                                    ...el,
+                                                    src: baseURL + el.src
+                                                }
+                                            })
+                                        }
+                                        width='350px'
+                                        height='300px'
+                                    />
                                 }
                             </div>
                             <div className={s.postDescription}>
@@ -53,20 +67,6 @@ export default function LentaList(props: {
                                 <div className={s.postDate}>
                                     Опубликовано: {customizeDateToYYYYMMDDHHMMFormat(el.postDate)}
                                 </div>
-                            </div>
-                            <div className={s.postActions}>
-                                <CustomEditMenu
-                                    data={[
-                                        { 
-                                            menuTitle: "Не получать уведомления", 
-                                            menuFunction: () => console.log(2) 
-                                        },
-                                        { 
-                                            menuTitle: "Перейти к источнику", 
-                                            menuFunction: () => props.handleGoToLink(el.isGroup, el.linkId) 
-                                        }
-                                    ]}
-                                />
                             </div>
                         </div>
                     </LazyLoad>

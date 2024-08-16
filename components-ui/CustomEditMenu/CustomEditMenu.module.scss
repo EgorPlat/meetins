@@ -5,20 +5,23 @@
     font-size: 14px;
     font-family: Nunito;
     direction: rtl;
+
     & .round {
         width: 8px;
         height: 8px;
         border-radius: 50%;
         background-color: gray;
     }
+
     & .contentWrapper {
         position: absolute;
         left: 0px;
         top: 0px;
         width: 100%;
         z-index: 99;
-        background-color: rgba(65, 65, 65, 0.474);
+        background-color: transparent;
     }
+
     & .content {
         border-radius: 5px;
         background-color: var(--bg-color);
@@ -28,12 +31,14 @@
         z-index: 100;
         margin-top: 35px;
         direction: ltr;
+
         & .menuElement {
             white-space: nowrap;
             min-width: 170px;
             padding: 2px;
             border-radius: 5px;
         }
+
         & .menuElement:hover {
             background-color: rgba(222, 222, 222, 0.455);
         }

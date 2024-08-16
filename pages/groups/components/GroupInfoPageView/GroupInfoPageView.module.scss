@@ -3,6 +3,7 @@
     font-size: 15px;
     row-gap: 10px;
     width: 98%;
+
     & .head {
         display: flex;
         align-items: center;
@@ -11,6 +12,7 @@
         border-radius: 10px;
         border: 1px solid rgba(128, 128, 128, 0.784);
         position: relative;
+
         & .subHead {
             display: flex;
             align-items: center;
@@ -20,10 +22,12 @@
             left: 10px;
             height: 100px;
             width: 98%;
+
             & .title {
                 font-size: 20px;
                 margin-top: 10px;
             }
+
             & .mainAvatar {
                 width: 100px;
                 height: 100px;
@@ -31,6 +35,7 @@
                 border: 1px solid rgba(128, 128, 128, 0.784);
                 background-size: cover;
             }
+
             & .settings {
                 cursor: pointer;
                 position: absolute;
@@ -39,30 +44,39 @@
             }
         }
     }
+
     & .description {
         margin-top: 60px;
+
         & .title {
             color: var(--default-color);
         }
+
         text-align: justify;
     }
+
     & .talks {
         column-gap: 10px;
         display: flex;
+
         & .item:hover {
             color: rgb(0, 128, 255);
             cursor: pointer;
         }
+
         & .count {
             font-weight: 800;
         }
     }
+
     & .postForm {
         color: gray;
+
         & .countPosts {
             float: right;
         }
     }
+
     & .content {
         display: flex;
         min-height: 100px;
@@ -70,6 +84,7 @@
         padding: 5px;
         align-items: start;
         justify-content: center;
+
         & .postList {
             display: grid;
             grid-template-columns: 1fr;
@@ -77,6 +92,7 @@
             width: 70%;
             border-radius: 10px;
             margin-bottom: 10px;
+
             & .post {
                 display: grid;
                 row-gap: 10px;
@@ -84,21 +100,28 @@
                 background-color: var(--bg-color-block);
                 padding: 10px;
                 width: 100%;
+
                 & .title {
                     & .date {
                         color: gray;
                         float: right;
                     }
                 }
+
                 & .descriptionPost {
                     padding-left: 15px;
                     padding-right: 15px;
                     text-align: justify;
+                    min-height: 100px;
+                    display: flex;
+                    align-items: center;
                 }
+
                 & .file {
                     padding-left: 15px;
                     padding-right: 15px;
                 }
+
                 & .actions {
                     display: flex;
                     align-items: center;
@@ -106,14 +129,17 @@
                     color: var(--text-color);
                     position: relative;
                     cursor: pointer;
+
                     & .likes {
                         display: flex;
                         column-gap: 5px;
                     }
+
                     & .comments {
                         display: flex;
                         column-gap: 5px;
                     }
+
                     & .views {
                         display: flex;
                         align-items: center;
@@ -125,20 +151,24 @@
                 }
             }
         }
+
         & .leftInfo {
             background-color: var(--bg-color-block);
             border-radius: 10px;
             width: 250px;
             padding: 10px 5px 10px 5px;
             margin-left: 5px;
+
             & .allMembers {
                 color: rgb(52, 187, 254);
                 font-size: 14px;
             }
+
             & .allMembers:hover {
                 cursor: pointer;
                 color: orange;
             }
+
             & .members {
                 display: flex;
                 flex-wrap: wrap;
@@ -146,6 +176,7 @@
                 row-gap: 20px;
                 padding-bottom: 20px;
                 padding-top: 5px;
+
                 & .member {
                     position: relative;
                     width: 75px;
@@ -153,6 +184,7 @@
                     border-radius: 50%;
                     border: 1px solid gray;
                     background-size: cover;
+
                     & .memberName {
                         width: 100%;
                         text-align: center;
@@ -164,6 +196,7 @@
         }
     }
 }
+
 .actionBtn {
     border: none;
     margin-left: 5px;
@@ -177,6 +210,7 @@
             display: grid;
             grid-template-columns: 1fr;
             row-gap: 10px;
+
             & .postList {
                 width: 100%;
             }
