@@ -48,7 +48,7 @@ export default function Login(): JSX.Element {
         const nameArr = data.name.split(" ")
 		
         const passwordWOSpace = data.password.split("").filter(e => e !== " ").join("");
-        if (passwordWOSpace.length === data.password.length) {
+        if (passwordWOSpace.length !== data.password.length) {
             addNotification({
                 text: "В пароле нельзя использовать пробелы",
                 type: "warning",
