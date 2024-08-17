@@ -1,19 +1,19 @@
-import Image from 'next/image'
-import React, { ReactElement } from 'react'
-import { UseFormRegisterReturn } from 'react-hook-form'
-import s from './input.module.scss'
+import Image from "next/image"
+import React, { ReactElement } from "react"
+import { UseFormRegisterReturn } from "react-hook-form"
+import s from "./input.module.scss"
 
 export default function Input({
-	icon,
-	className,
-	id,
-	placeholder,
-	type,
-	pattern,
-	style,
-	register,
-	children,
-	autocomplete,
+    icon,
+    className,
+    id,
+    placeholder,
+    type,
+    pattern,
+    style,
+    register,
+    children,
+    autocomplete,
 }: {
 	icon: any
 	className?: string
@@ -24,27 +24,33 @@ export default function Input({
 	style?: { marginTop: string }
 	register: UseFormRegisterReturn
 	children?: ReactElement<any, any>
-	autocomplete?: 'off' | 'on'
+	autocomplete?: "off" | "on"
 }): JSX.Element {
-	return (
-		<label
-			style={style}
-			className={`${s.customInput} ${className ? className : ''}`}
-			htmlFor={id}>
-			{icon && (
-				<Image src={icon} width='21' height='25' alt='login icon' />
-			)}
 
-			<input
-				placeholder={placeholder}
-				type={type}
-				id={id}
-				autoComplete={autocomplete}
-				pattern={pattern}
-				{...register}
-			/>
+    const handleKeyDown = (e) => {
+        if (e.code === "Space") e.preventDefault();
+    };
+	
+    return (
+        <label
+            style={style}
+            className={`${s.customInput} ${className ? className : ""}`}
+            htmlFor={id}>
+            {icon && (
+                <Image src={icon} width='21' height='25' alt='login icon' />
+            )}
 
-			<div className={s.secondIcon}>{children}</div>
-		</label>
-	)
+            <input
+                placeholder={placeholder}
+                type={type}
+                id={id}
+                autoComplete={autocomplete}
+                pattern={pattern}
+                {...register}
+                onKeyDown={handleKeyDown}
+            />
+
+            <div className={s.secondIcon}>{children}</div>
+        </label>
+    )
 }
