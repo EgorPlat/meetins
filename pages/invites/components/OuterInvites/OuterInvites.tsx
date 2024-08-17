@@ -1,6 +1,6 @@
 import { IOuterInviteEvent } from "../../../../global/interfaces/events";
 import { baseURL } from "../../../../global/store/store";
-import s from './OuterInvites.module.scss';
+import s from "./OuterInvites.module.scss";
 
 interface IOuterInviteWrapperProps {
     invites: IOuterInviteEvent[],

@@ -35,11 +35,12 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
     "@types/node": "^16.11.41",
     "@types/react": "^18.0.18",
-    "@typescript-eslint/eslint-plugin": "^8.1.0",
-    "@typescript-eslint/parser": "^8.1.0",
-    "eslint": "^9.9.0"
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
+    "typescript-eslint": "^8.1.0"
   },
   "resolutions": {
     "react-dom": "17.0.2",
