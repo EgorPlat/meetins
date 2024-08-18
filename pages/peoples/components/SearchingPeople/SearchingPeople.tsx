@@ -36,7 +36,7 @@ export default function SearchingPeople(): JSX.Element {
     const currentEventsInfoLoaded$ = useStore(currentEventsInfoLoaded);
 
     const showAllPeoples = () => {
-        setFilterParams({ ...filterParams$, gender: 'all', age: 0, event: null });
+        setFilterParams({ ...filterParams$, gender: "all", age: 0, event: null });
     };
 
     const updateFilters = async (param: string, data: any) => {
@@ -56,7 +56,7 @@ export default function SearchingPeople(): JSX.Element {
     useEffect(() => {
         getUserEventsInfo();
         return () => {
-            setFilterParams({ ...filterParams$, gender: 'all', age: 0, event: null });
+            setFilterParams({ ...filterParams$, gender: "all", age: 0, event: null });
             setMaxPageOfPeople(0);
             fullUpdatePeoples([]);
         }
@@ -157,9 +157,9 @@ export default function SearchingPeople(): JSX.Element {
                     </div>
                     {
                         maxPage$ === 0 && !pending ?
-                            <div>
-                                <div>Никого не найдено.</div>
-                                <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t('Показать всех')}</button>
+                            <div className={s.nothingFound}>
+                                Никого не найдено.
+                                <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t("Показать всех")}</button>
                             </div>
                             : null
                     }

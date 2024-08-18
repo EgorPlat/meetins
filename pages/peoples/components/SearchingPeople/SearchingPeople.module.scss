@@ -99,17 +99,26 @@
     }
     & .result {
         padding-top: 20px;
-        & .showAllBtn {
-            border: none;
-            background-color: var(--default-color);
-            border-radius: 10px;
-        }
+        padding-bottom: 40px;
         & .users {
             & .usersList {
                 display: flex;
                 flex-direction: column;
                 row-gap: 5px;
                 text-align: center;
+            }
+            & .nothingFound {
+                display: flex;
+                column-gap: 10px;
+                & .showAllBtn {
+                    border: none;
+                    background-color: var(--default-color);
+                    border-radius: 5px;
+                }
+                & .showAllBtn:hover {
+                    color: black;
+                    background-color: orange;
+                }
             }
         }
     }

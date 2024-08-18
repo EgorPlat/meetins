@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import s from './CustomStepper.module.scss';
+import { useEffect, useState } from "react";
+import s from "./CustomStepper.module.scss";
 
-interface IStep { title: string, component: any, props?: any };
+interface IStep { title: string, component: any, props?: Record<string, any> };
 interface ICustomStepperProps {
     steps: IStep[],
     center?: boolean

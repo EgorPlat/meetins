@@ -134,7 +134,7 @@ export default function Login(): JSX.Element {
                     <Input
                         icon={passIcon}
                         placeholder={t("Пароль")}
-                        type='password'
+                        type={showPassword ? "text" : "password"}
                         id='pass'
                         style={{ marginTop: "25px" }}
                         register={register("pass", {
