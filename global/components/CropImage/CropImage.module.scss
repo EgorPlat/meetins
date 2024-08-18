@@ -1,0 +1,22 @@
+.cropperContent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    & .cropImage {
+        & img {
+            height: auto;
+            width: 100%;
+        }
+    }
+    & button {
+        background-color: var(--default-color);
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+    }
+    & button:hover {
+        background-color: orange;
+        color: black;
+    }
+}

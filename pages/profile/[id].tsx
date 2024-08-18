@@ -38,7 +38,8 @@ function Profile(): JSX.Element {
     const [isInviteModal, setIsInviteModal] = useState<boolean>(false);
     const [choosedEventForInvite, setChoosedEventForInvite] = useState<number>();
     const [isEditTagOpen, setIsEditTagOpen] = useState<boolean>(false);
-
+    const [newAvatarForCrop, setNewAvatarForCrop] = useState<string>(null);
+    
     const isCurrentUserOnline = onlineUsers.filter(el => el.userId === currentUser.userId).length !== 0;
 
     const changeAddingImageStatus = (status: boolean) => {
@@ -48,10 +49,16 @@ function Profile(): JSX.Element {
     };
 
     const onChangeInputImage = (event: ChangeEvent<HTMLInputElement>) => {
-        updateUserAvatar(event).then((res: User) => {
+        const imgForCrop = URL.createObjectURL(event.target.files[0]);
+        setNewAvatarForCrop(imgForCrop);
+    };
+
+    const handleGetCroppedAvatar = (blob: Blob) => {
+        updateUserAvatar(blob).then((res: User) => {
             setCurrentProfileUser(res)
             setUser(res);
         })
+        setNewAvatarForCrop(null);
     };
 
     const handleSaveNewStatus = (userStatus: string) => {
@@ -63,7 +70,7 @@ function Profile(): JSX.Element {
 
     const handleStartDialog = () => {
         checkDialog(currentUser);
-        Router.push('/messanger')
+        Router.push("/messanger")
     };
 
     const onAddingModalClick = () => {
@@ -90,7 +97,7 @@ function Profile(): JSX.Element {
 
     const handleSwapEditTag = (status: boolean) => {
         if (authedUser.userId === currentUser.userId) setIsEditTagOpen(status);
-    }
+    };
 
     useEffect(() => {
         return () => {
@@ -132,8 +139,11 @@ function Profile(): JSX.Element {
                     changeAddingImageStatus={changeAddingImageStatus}
                     onAddingModalClick={onAddingModalClick}
                     handleAddUserIntoMarked={handleAddUserIntoMarked}
+                    handleGetCroppedAvatar={handleGetCroppedAvatar}
+                    setNewAvatarForCrop={setNewAvatarForCrop}
                     currentUserPlaces={currentUserPlaces}
                     isCurrentUserOnline={isCurrentUserOnline}
+                    newAvatarForCrop={newAvatarForCrop}
                 />
             </PageContainer>
         )

@@ -1,22 +1,23 @@
-import { useTranslation } from 'react-i18next';
-import { User } from '../../../global/interfaces';
-import { baseURL } from '../../../global/store/store';
-import { getDateInDMYFormat } from '../../../global/functions/getDateInDMFormat';
-import { getIsUserMale } from '../../../global/functions/getIsUserMale';
-import { MdEdit } from 'react-icons/md';
-import s from './profileView.module.scss';
-import About from '../About/About';
-import Interests from '../Interests/interests';
-import PostsList from '../PostsList/PostsList';
-import AddingPosts from '../AddingPosts/AddingPosts';
-import ChoosingEvents from '../СhoosingEvents/choosingEvents';
-import Places from '../Places/places';
-import CustomEditMenu from '../../../components-ui/CustomEditMenu/CustomEditMenu';
-import InputFile from '../../../components-ui/InputFile/InputFile';
-import Loader from '../../../components-ui/Loader/Loader';
-import CustomModal from '../../../components-ui/CustomModal/CustomModal';
-import EditUserTag from '../../../global/forms/EditUserTag/Index';
-import Head from 'next/head';
+import { useTranslation } from "react-i18next";
+import { User } from "../../../global/interfaces";
+import { baseURL } from "../../../global/store/store";
+import { getDateInDMYFormat } from "../../../global/functions/getDateInDMFormat";
+import { getIsUserMale } from "../../../global/functions/getIsUserMale";
+import { MdEdit } from "react-icons/md";
+import s from "./profileView.module.scss";
+import About from "../About/About";
+import Interests from "../Interests/interests";
+import PostsList from "../PostsList/PostsList";
+import AddingPosts from "../AddingPosts/AddingPosts";
+import ChoosingEvents from "../СhoosingEvents/choosingEvents";
+import Places from "../Places/places";
+import CustomEditMenu from "../../../components-ui/CustomEditMenu/CustomEditMenu";
+import InputFile from "../../../components-ui/InputFile/InputFile";
+import Loader from "../../../components-ui/Loader/Loader";
+import CustomModal from "../../../components-ui/CustomModal/CustomModal";
+import EditUserTag from "../../../global/forms/EditUserTag/Index";
+import Head from "next/head";
+import ImageCropper from "../../../global/components/CropImage/CropImage";
 
 export default function ProfileView(props: {
     asyncLoaded: boolean,
@@ -28,6 +29,7 @@ export default function ProfileView(props: {
     isEditTagOpen: boolean,
     currentUserPlaces: string[],
     isCurrentUserOnline: boolean,
+    newAvatarForCrop: string,
     handleSaveNewStatus: (status: string) => void,
     changeAddingImageStatus: (status: boolean) => void,
     onChangeInputImage: (event: any) => void,
@@ -39,6 +41,8 @@ export default function ProfileView(props: {
     onAddingModalClick: (status: boolean) => void,
     handleSendInvite: () => void,
     handleAddUserIntoMarked: () => void,
+    handleGetCroppedAvatar: (blob: Blob) => void,
+    setNewAvatarForCrop: (image: string | null) => void
 }) {
 
     const { t } = useTranslation();
@@ -47,99 +51,99 @@ export default function ProfileView(props: {
     return (
         <div className={s.profile}>
             <Head>
-				<title>Meetins - Профиль</title>
-				<link rel='icon' href='/images/logo.svg' />
-				<meta name="description" content="User profile" key="desc" />
-				<meta property="og:title" content="Social Media Meetins for cool persons" />
-				<meta
-				property="og:description"
-				content="Join us and get a lot of fun and new friends"
-				/>
-			</Head>
+                <title>Meetins - Профиль</title>
+                <link rel='icon' href='/images/logo.svg' />
+                <meta name="description" content="User profile" key="desc" />
+                <meta property="og:title" content="Social Media Meetins for cool persons" />
+                <meta
+                    property="og:description"
+                    content="Join us and get a lot of fun and new friends"
+                />
+            </Head>
             {   
                 props.asyncLoaded && activeUser && props.authedUser ? 
-                <div className={`${s.bodyCol}`}>
-                    <div className={`${s.block} ${s.mainBlock}`}>
-                        <div className={`${s.bodyInfo}`}>
-                            {
-                                !props.addingImageStatus && activeUser.avatar ?
-                                <img 
-                                    onMouseEnter={() => props.changeAddingImageStatus(true)}
-                                    src={baseURL + activeUser.avatar}
-                                    alt="Аватарка" 
-                                    className={`${s.avatar}`}
-                                    /> : 
-                                <InputFile 
-                                    onChange={(event) => props.onChangeInputImage(event)} 
-                                    onMouseLeave={() => props.changeAddingImageStatus(false)}
-                                />
-                            }
-                        </div>
-                        <div className={`${s.userInfo}`}>
-                            <div>
-                                <div className={`${s.userName}`}>
-                                    {activeUser.name + ', ' + activeUser.age}
-                                    <div
-                                        onClick={() => props.handleSwapEditTag(true)}
-                                        className={s.userTag}
-                                        style={{
-                                            backgroundColor: `${activeUser.tag?.color}`,
-                                        }}
-                                    >
-                                        {activeUser.tag?.title}
-                                        {
-                                            activeUser.login === props.authedUser.login && 
+                    <div className={`${s.bodyCol}`}>
+                        <div className={`${s.block} ${s.mainBlock}`}>
+                            <div className={`${s.bodyInfo}`}>
+                                {
+                                    !props.addingImageStatus && activeUser.avatar ?
+                                        <img 
+                                            onMouseEnter={() => props.changeAddingImageStatus(true)}
+                                            src={baseURL + activeUser.avatar}
+                                            alt="Аватарка" 
+                                            className={`${s.avatar}`}
+                                        /> : 
+                                        <InputFile 
+                                            onChange={(event) => props.onChangeInputImage(event)} 
+                                            onMouseLeave={() => props.changeAddingImageStatus(false)}
+                                        />
+                                }
+                            </div>
+                            <div className={`${s.userInfo}`}>
+                                <div>
+                                    <div className={`${s.userName}`}>
+                                        {activeUser.name + ", " + activeUser.age}
+                                        <div
+                                            onClick={() => props.handleSwapEditTag(true)}
+                                            className={s.userTag}
+                                            style={{
+                                                backgroundColor: `${activeUser.tag?.color}`,
+                                            }}
+                                        >
+                                            {activeUser.tag?.title}
+                                            {
+                                                activeUser.login === props.authedUser.login && 
                                             <MdEdit 
                                                 fontSize={18}
                                             />
-                                        }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className={s.town}>
+                                    г. {activeUser.city}
+                                    </div>
+                                    <div className={s.dateRegister}>
+                                        <span>
+                                            {
+                                                getIsUserMale(activeUser.gender) 
+                                                    ? `${t("зарегистрирован")}: ` 
+                                                    : `${t("зарегистрирована")}: `
+                                            }
+                                        </span>
+                                        {getDateInDMYFormat(activeUser.dateRegister)}
+                                    </div>
+                                    <div className={s.userStatus}>
+                                        {t("статус")}: 
+                                        <span className={s.title}> {props.isCurrentUserOnline ? "В сети" : "Не в сети"}</span>
+                                    </div>
+                                    <div className={s.vied}>
+                                        {t("за последние 24 часа профиль просмотрен")}:
+                                        <span className={s.count}> 150 {t("раз")}</span>
                                     </div>
                                 </div>
-                                <div className={s.town}>
-                                    г. {activeUser.city}
-                                </div>
-                                <div className={s.dateRegister}>
-                                    <span>
-                                        {
-                                        getIsUserMale(activeUser.gender) 
-                                            ? `${t('зарегистрирован')}: ` 
-                                            : `${t('зарегистрирована')}: `
-                                        }
-                                    </span>
-                                    {getDateInDMYFormat(activeUser.dateRegister)}
-                                </div>
-                                <div className={s.userStatus}>
-                                    {t('статус')}: 
-                                    <span className={s.title}> {props.isCurrentUserOnline ? "В сети" : "Не в сети"}</span>
-                                </div>
-                                <div className={s.vied}>
-                                    {t('за последние 24 часа профиль просмотрен')}:
-                                    <span className={s.count}> 150 {t("раз")}</span>
-                                </div>
+                                { 
+                                    activeUser.login !== props.authedUser.login ?
+                                        <div className={`${s.actions}`}>
+                                            <button 
+                                                type="button" 
+                                                className={`${s.actionsBtn}`} 
+                                                onClick={props.handleStartDialog}
+                                            >
+                                                {t("Диалог")}
+                                            </button>
+                                            <button 
+                                                type="button" 
+                                                className={`${s.actionsBtn}`} 
+                                                onClick={() => props.setIsInviteModal(true)}
+                                            >
+                                                {t("Пригласить")}
+                                            </button>
+                                        </div> : null
+                                }
                             </div>
-                            { 
-                                activeUser.login !== props.authedUser.login ?
-                                <div className={`${s.actions}`}>
-                                    <button 
-                                        type="button" 
-                                        className={`${s.actionsBtn}`} 
-                                        onClick={props.handleStartDialog}
-                                    >
-                                        {t('Диалог')}
-                                    </button>
-                                    <button 
-                                        type="button" 
-                                        className={`${s.actionsBtn}`} 
-                                        onClick={() => props.setIsInviteModal(true)}
-                                    >
-                                        {t('Пригласить')}
-                                    </button>
-                                </div> : null
-                            }
-                        </div>
-                        <div className={s.moreActions}>
-                            {
-                                activeUser.login !== props.authedUser.login &&
+                            <div className={s.moreActions}>
+                                {
+                                    activeUser.login !== props.authedUser.login &&
                                 <CustomEditMenu
                                     data={[
                                         { menuTitle: "Пометить важным", menuFunction: () => props.handleAddUserIntoMarked() },
@@ -147,37 +151,37 @@ export default function ProfileView(props: {
                                         { menuTitle: "Посмотреть статистику", menuFunction: () => console.log(3) }
                                     ]}
                                 />
-                            }
+                                }
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={`${s.block}`}>
-                        <div className={`${s.text}`}>
-                            <About saveNewUserStatus={props.handleSaveNewStatus} user={activeUser}/>
+                        <div className={`${s.block}`}>
+                            <div className={`${s.text}`}>
+                                <About saveNewUserStatus={props.handleSaveNewStatus} user={activeUser}/>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={`${s.moreInfo}`}>
-                        <div className={`${s.block} ${s.interests}`}>
-                            <Interests user={activeUser} authedUser={props.authedUser} />
-                        </div>
-                        <div className={`${s.block} ${s.places}`}>
-                            {
-                                <Places places={props.currentUserPlaces}/>
-                            }
-                        </div>
-                    </div> 
+                        <div className={`${s.moreInfo}`}>
+                            <div className={`${s.block} ${s.interests}`}>
+                                <Interests user={activeUser} authedUser={props.authedUser} />
+                            </div>
+                            <div className={`${s.block} ${s.places}`}>
+                                {
+                                    <Places places={props.currentUserPlaces}/>
+                                }
+                            </div>
+                        </div> 
 
-                    {
-                        activeUser.login === props.authedUser.login &&
+                        {
+                            activeUser.login === props.authedUser.login &&
                         <div className={s.addingPosts}>
-                            <button onClick={() => props.setIsAddPostModal(true)}>{t('Добавить новую запись')}</button>
+                            <button onClick={() => props.setIsAddPostModal(true)}>{t("Добавить новую запись")}</button>
                         </div>
-                    }
-                    <div className={s.postsList}>
-                        { props.authedUser && <PostsList currentUser={activeUser} authedUser={props.authedUser} /> }
-                    </div>
-                </div> : <Loader/>
+                        }
+                        <div className={s.postsList}>
+                            { props.authedUser && <PostsList currentUser={activeUser} authedUser={props.authedUser} /> }
+                        </div>
+                    </div> : <Loader/>
             }
             <CustomModal 
                 isDisplay={props.isAddPostModal} 
@@ -205,6 +209,18 @@ export default function ProfileView(props: {
                 typeOfActions="none"
             >
                 <EditUserTag />
+            </CustomModal>
+            <CustomModal 
+                isDisplay={props.newAvatarForCrop ? true : false} 
+                changeModal={() => props.setNewAvatarForCrop(null)} 
+                actionConfirmed={() => props.setNewAvatarForCrop(null)}
+                title="Настройте Ваше фото"
+                typeOfActions="none"
+            >
+                <ImageCropper 
+                    imageForCrop={props.newAvatarForCrop}
+                    handleGetCropperImageBlob={props.handleGetCroppedAvatar}
+                />
             </CustomModal>
         </div>
     )
