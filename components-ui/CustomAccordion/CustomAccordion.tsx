@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import s from './CustomAccordion.module.scss';
+import { useState } from "react";
+import s from "./CustomAccordion.module.scss";
 
 interface ICustomAccordionProps {
     text: string,

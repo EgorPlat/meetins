@@ -137,7 +137,7 @@ export default function Login(): JSX.Element {
                         type={showPassword ? "text" : "password"}
                         id='pass'
                         style={{ marginTop: "25px" }}
-                        register={register("pass", {
+                        register={register("password", {
                             required: true,
                             validate: (value) =>
                                 value.length >= 6 && value.length <= 12
