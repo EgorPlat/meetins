@@ -5,8 +5,6 @@ import FormContainer from "../../components/FormContainer/FormContainer";
 import { ICreateGroup } from "../../interfaces/groups";
 import { useStore } from "effector-react";
 import { $currentInterestsList } from "../../store/store";
-import { MenuItem, Select } from "@mui/material";
-import { log } from "console";
 import { createNewGroup } from "../../store/groups_model";
  
 export default function CreateNewGroupForm(): JSX.Element {
@@ -29,8 +27,8 @@ export default function CreateNewGroupForm(): JSX.Element {
                         placeholder="Введите название сообщества" 
                         {...register("name", {required: false, validate: (value) => 
                             value.length >= 40 || value.length <= 5
-                            ? 'Не менее 5-ти и не более 40-ти символов'
-                            : true,
+                                ? "Не менее 5-ти и не более 40-ти символов"
+                                : true,
                         })}
                     />
                     {errors.name ? <span>{errors.name.message}</span> : null}
@@ -41,8 +39,8 @@ export default function CreateNewGroupForm(): JSX.Element {
                         id="description"
                         placeholder={t("Краткое описание Вашего сообщества")}
                         {...register("description", {required: false, validate: (value) =>
-                        value.length === 0 ? "Нельзя оставить пустым" : true
-                    })}/>
+                            value.length === 0 ? "Нельзя оставить пустым" : true
+                        })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}
                 </div>
                 <div>

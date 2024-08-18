@@ -19,9 +19,9 @@ export default function AddNewPostIntoGroupForm(props: {
             return el.file;
         });
         const mediaData = validateFilesFromInputAndStructuring(filesFromInput);
-        mediaData.dataForServer.append('name', data.name);
-        mediaData.dataForServer.append('description', data.description);
-        mediaData.dataForServer.append('groupId', props.groupId);
+        mediaData.dataForServer.append("name", data.name);
+        mediaData.dataForServer.append("description", data.description);
+        mediaData.dataForServer.append("groupId", props.groupId);
         createNewPostInGroup(mediaData.dataForServer);
         props.handleCloseModal();
     };
@@ -45,48 +45,48 @@ export default function AddNewPostIntoGroupForm(props: {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangePost)}>
-            <div>
-                <label htmlFor="name">{t("Заголовок")}</label>
-                <input 
-                    type="text" 
-                    id="name"
-                    placeholder="Заголовок" 
-                    {...register("name", {
-                        required: false, 
-                        validate: (value) => 
-                            value.length >= 20 || value.length <= 5
-                            ? 'Не менее 5-ти и не более 20-ти символов'
-                            : true,
-                    })}
-                />
-                {errors.name ? <span>{errors.name.message}</span> : null}
-            </div>
-            <div>
-                <label htmlFor="description">{t("Описание публикации")}</label>
-                <textarea
-                    id="description"
-                    placeholder={t("Описание публикации")}
-                    {...register("description", {required: false, validate: (value) =>
-                    value.length === 0 ? "Нельзя оставить пустым" : true
-                })}/>
-                {errors.description ? <span>{errors.description.message}</span> : null}
-            </div>
-            <div>
-                <label htmlFor="media">{t("Медиа-контент")}</label>
-                <input
-                    multiple
-                    accept=".mp3,.ape,.jpg,.jpeg,.mp4,.png,.doc,.docx,.zip,.rar,.pdf"
-                    id="media"
-                    type="file"
-                    style={{ color: "transparent" }}
-                    {...register("media", {
-                        required: false,
-                        onChange: (e) => onFileChanges(e.target.files)
-                    })} />
-                {errors.media ? <span>{errors.media.message}</span> : null}
-            </div>
-            {
-                selectedMediaContent.length > 0 &&
+                <div>
+                    <label htmlFor="name">{t("Заголовок")}</label>
+                    <input 
+                        type="text" 
+                        id="name"
+                        placeholder="Заголовок" 
+                        {...register("name", {
+                            required: false, 
+                            validate: (value) => 
+                                value.length >= 20 || value.length <= 5
+                                    ? "Не менее 5-ти и не более 20-ти символов"
+                                    : true,
+                        })}
+                    />
+                    {errors.name ? <span>{errors.name.message}</span> : null}
+                </div>
+                <div>
+                    <label htmlFor="description">{t("Описание публикации")}</label>
+                    <textarea
+                        id="description"
+                        placeholder={t("Описание публикации")}
+                        {...register("description", {required: false, validate: (value) =>
+                            value.length === 0 ? "Нельзя оставить пустым" : true
+                        })}/>
+                    {errors.description ? <span>{errors.description.message}</span> : null}
+                </div>
+                <div>
+                    <label htmlFor="media">{t("Медиа-контент")}</label>
+                    <input
+                        multiple
+                        accept=".mp3,.ape,.jpg,.jpeg,.mp4,.png,.doc,.docx,.zip,.rar,.pdf"
+                        id="media"
+                        type="file"
+                        style={{ color: "transparent" }}
+                        {...register("media", {
+                            required: false,
+                            onChange: (e) => onFileChanges(e.target.files)
+                        })} />
+                    {errors.media ? <span>{errors.media.message}</span> : null}
+                </div>
+                {
+                    selectedMediaContent.length > 0 &&
                 <div style={{ display: "flex", columnGap: "5px" }}>
                     {
                         selectedMediaContent.map(el => (
@@ -116,8 +116,8 @@ export default function AddNewPostIntoGroupForm(props: {
                         ))
                     }
                 </div>
-            }
-            <button type="submit">{t("Добавить публикацию")}</button>
+                }
+                <button type="submit">{t("Добавить публикацию")}</button>
             </form>
         </FormContainer>
     )

@@ -21,25 +21,25 @@ export default function AddNewTalkInGroup(props: {
     }
     return (
         <FormContainer>
-                <form onSubmit={handleSubmit(onAddNewTalkInGroup)}>
-                    <div>
-                        <label htmlFor="title">
-                            {t("Тема обсуждения")}
-                        </label>
-                        <input 
-                            type="text" 
-                            id="title"
-                            placeholder="Тема обсуждения" 
-                            {...register("title", {required: false, validate: (value) => 
-                                value.length >= 20 || value.length <= 5
-                                ? 'Не менее 5-ти и не более 20-ти символов'
+            <form onSubmit={handleSubmit(onAddNewTalkInGroup)}>
+                <div>
+                    <label htmlFor="title">
+                        {t("Тема обсуждения")}
+                    </label>
+                    <input 
+                        type="text" 
+                        id="title"
+                        placeholder="Тема обсуждения" 
+                        {...register("title", {required: false, validate: (value) => 
+                            value.length >= 20 || value.length <= 5
+                                ? "Не менее 5-ти и не более 20-ти символов"
                                 : true,
-                            })}
-                        />
-                        {errors.title ? <span>{errors.title.message}</span> : null}
-                    </div>
-                    <button type="submit">{t("Начать обсуждение")}</button>
-                </form>
+                        })}
+                    />
+                    {errors.title ? <span>{errors.title.message}</span> : null}
+                </div>
+                <button type="submit">{t("Начать обсуждение")}</button>
+            </form>
         </FormContainer>
     )
 }

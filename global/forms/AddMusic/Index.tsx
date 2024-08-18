@@ -31,8 +31,8 @@ export default function AddMusic(): JSX.Element {
             });
         } else {
             if (
-                (data.composition[0].type.includes('image') && data.composition[1].type.includes('audio')) ||
-                (data.composition[1].type.includes('image') && data.composition[0].type.includes('audio'))
+                (data.composition[0].type.includes("image") && data.composition[1].type.includes("audio")) ||
+                (data.composition[1].type.includes("image") && data.composition[0].type.includes("audio"))
             ) {
                 const musicMedia = validateFilesFromInputAndStructuring(data.composition);
 
@@ -70,7 +70,7 @@ export default function AddMusic(): JSX.Element {
                         {...register("name", {
                             required: false, validate: (value) =>
                                 value.length >= 25 || value.length <= 5
-                                    ? 'Не менее 5-ти и не более 25-ти символов'
+                                    ? "Не менее 5-ти и не более 25-ти символов"
                                     : true,
                         })}
                     />
@@ -96,14 +96,14 @@ export default function AddMusic(): JSX.Element {
                         {...register("title", {
                             required: false, validate: (value) =>
                                 value.length >= 20 || value.length <= 5
-                                    ? 'Не менее 5-ти и не более 20-ти символов'
+                                    ? "Не менее 5-ти и не более 20-ти символов"
                                     : true,
                         })}
                     />
                     {errors.title ? <span>{errors.title.message}</span> : null}
                 </div>
                 <div>
-                    <label htmlFor="phone">{t("Файлы композиции (1 картинка и 1 звуковая дорожка)")}</label>
+                    <label htmlFor="composition">{t("Файлы композиции (1 картинка и 1 звуковая дорожка)")}</label>
                     <input
                         accept=".mp3,.ape,.png,.jpg,.jpeg"
                         id="composition"

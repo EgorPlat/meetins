@@ -20,32 +20,32 @@ export default function EditUserTag(): JSX.Element {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeTag)}>
-            <div>
-                <label htmlFor="title">{t("Содержимое")}</label>
-                <input
-                    defaultValue={user$.tag.title}
-                    type="text" 
-                    id="title"
-                    placeholder="Содержимое" 
-                    {...register("title", {required: false, validate: (value) => 
+                <div>
+                    <label htmlFor="title">{t("Содержимое")}</label>
+                    <input
+                        defaultValue={user$.tag.title}
+                        type="text" 
+                        id="title"
+                        placeholder="Содержимое" 
+                        {...register("title", {required: false, validate: (value) => 
 			            value.length >= 20 || value.length <= 5
-				        ? 'Не менее 5-ти и не более 20-ти символов'
+				        ? "Не менее 5-ти и не более 20-ти символов"
 				        : true,
-                    })}
-                />
-                {errors.title ? <span>{errors.title.message}</span> : null}
-            </div> 
-            <div>
-                <label htmlFor="color">{t("Цвет фона")}</label>
-                <input 
-                    defaultValue={user$.tag.color}
-                    type="color" 
-                    id="color" 
-                    {...register("color", {required: false})} 
-                />
-                {errors.color ? <span>{errors.color.message}</span> : null}
-            </div>
-            <button type="submit">{t("Сохранить изменения")}</button>
+                        })}
+                    />
+                    {errors.title ? <span>{errors.title.message}</span> : null}
+                </div> 
+                <div>
+                    <label htmlFor="color">{t("Цвет фона")}</label>
+                    <input 
+                        defaultValue={user$.tag.color}
+                        type="color" 
+                        id="color" 
+                        {...register("color", {required: false})} 
+                    />
+                    {errors.color ? <span>{errors.color.message}</span> : null}
+                </div>
+                <button type="submit">{t("Сохранить изменения")}</button>
             </form>
         </FormContainer>
     )

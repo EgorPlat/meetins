@@ -18,25 +18,25 @@ export default function AddCommentIntoMeeting(): JSX.Element {
     }
     return (
         <FormContainer>
-                <form onSubmit={handleSubmit(onChangeComment)}>
-                    <div>
-                        <label htmlFor="name">
-                            {t("Тект комментария")}
-                        </label>
-                        <input 
-                            type="text" 
-                            id="text"
-                            placeholder="Текст комментария" 
-                            {...register("text", {required: false, validate: (value) => 
-                                value.length >= 600 || value.length <= 5
-                                ? 'Не менее 5-ти и не более 600 символов'
+            <form onSubmit={handleSubmit(onChangeComment)}>
+                <div>
+                    <label htmlFor="text">
+                        {t("Тект комментария")}
+                    </label>
+                    <input 
+                        type="text" 
+                        id="text"
+                        placeholder="Текст комментария" 
+                        {...register("text", {required: false, validate: (value) => 
+                            value.length >= 600 || value.length <= 5
+                                ? "Не менее 5-ти и не более 600 символов"
                                 : true,
-                            })}
-                        />
-                        {errors.text ? <span>{errors.text.message}</span> : null}
-                    </div>
-                    <button type="submit">{t("Добавить комментарий")}</button>
-                </form>
+                        })}
+                    />
+                    {errors.text ? <span>{errors.text.message}</span> : null}
+                </div>
+                <button type="submit">{t("Добавить комментарий")}</button>
+            </form>
         </FormContainer>
     )
 }

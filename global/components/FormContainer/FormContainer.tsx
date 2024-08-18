@@ -1,5 +1,5 @@
-import { ReactChild } from 'react';
-import s from './FormContainer.module.scss';
+import { ReactChild } from "react";
+import s from "./FormContainer.module.scss";
 
 export default function FormContainer(props: {
     children: ReactChild,
