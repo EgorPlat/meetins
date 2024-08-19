@@ -1,14 +1,15 @@
-import { useRouter } from 'next/router';
-import { $markedUsersInfo, baseURL, removeUserFromMarkedList } from '../../../../global/store/store';
-import { useStore } from 'effector-react';
-import s from './markedUsers.module.scss';
+import { useRouter } from "next/router";
+import { $markedUsersInfo, baseURL, removeUserFromMarkedList } from "../../../../global/store/store";
+import { useStore } from "effector-react";
+import s from "./markedUsers.module.scss";
 
 export default function MarkedUsers() {
 
     const router = useRouter();
     const markedUsersInfo$ = useStore($markedUsersInfo);
 
-    const handleRemoveUser = (userId: string) => {
+    const handleRemoveUser = (e, userId: string) => {
+        e.stopPropagation();
         removeUserFromMarkedList(userId);
     };
 
@@ -28,13 +29,12 @@ export default function MarkedUsers() {
                 }
                 {
                     markedUsersInfo$?.map(el => (
-                        <div className={s.markedUser} key={el.userId} onClick={() => handleGoToUser(el.login)}>
+                        <div className={s.markedUser} key={el.userId} onClick={(e) => handleRemoveUser(e, el.userId)}>
                             <img src={baseURL + el.avatar} className={s.avatar} />
-                            <div className={s.name} >{el.name}</div>
+                            <div className={s.name} onClick={() => handleGoToUser(el.login)}>{el.name}</div>
                             <div className={s.actions} >
                                 <button
                                     className={s.actionRemove}
-                                    onClick={() => handleRemoveUser(el.userId)}
                                 >x</button>
                             </div>
                         </div>

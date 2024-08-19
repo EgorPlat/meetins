@@ -15,18 +15,18 @@ export default function LeftNavMenu(): JSX.Element {
     return(
         <div className={s.ul}>        
             <div className={s.messangerLink}>
-                <Link href="/messanger">{t('Мессенджер')}</Link>
+                <Link href="/messanger">{t("Мессенджер")}</Link>
                 {isUserUnReadMessagesExists$ && <div className={s.count}></div>}
             </div>
             <div>
-                <Link href="/invites">{t('Приглашения')}</Link>
+                <Link href="/invites">{t("Приглашения")}</Link>
             </div>
             <div className={s.marksLink}>
-                <Link href="/marks">{t('Закладки')}</Link>
-                <div className={s.countMarks}>{user?.events?.length + user?.markedUsers?.length}</div>
+                <Link href="/marks">{t("Закладки")}</Link>
+                <div className={s.countMarks}>{user?.events.length + user?.markedUsers.length}</div>
             </div>
             <div className={s.musicLink}>
-                <Link href="/music">{t('Музыка')}</Link>
+                <Link href="/music">{t("Музыка")}</Link>
             </div>
         </div> 
     )
