@@ -4,8 +4,8 @@
     row-gap: 10px;
     & .cropImage {
         & img {
-            height: auto;
-            width: 100%;
+            max-height: 300px;
+            max-width: 300px;
         }
     }
     & button {

@@ -35,7 +35,7 @@ export const deleteUserAccount = async () => {
 export const updateUserAvatar = createEffect();
 updateUserAvatar.use(async (blob: Blob) => {
     const formData = new FormData();
-    const image = new File([blob], "image.png", { type: "image/png" });
+    const image = new File([blob], "image.jpeg", { type: "image/jpeg" });
     
     formData.append("uploadedFile", image);
 
