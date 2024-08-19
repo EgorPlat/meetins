@@ -1,8 +1,7 @@
-import React, { DragEvent, useState } from 'react';
-import s from './dragAndDropList.module.scss';
+import React, { useState } from "react";
+import s from "./dragAndDropList.module.scss";
 
 interface IDndElement { id: string | number, component: React.ReactElement }
-
 interface IDragAndDropProps {
     data: IDndElement[],
     handleGetSortedData: (sortedList: IDndElement[]) => void
@@ -34,7 +33,7 @@ export default function DragAndDropList (props: IDragAndDropProps) {
         handleSwapElements(activeElement, el);
     };
     
-    const handleDragEnd = (e: DragEvent<HTMLDivElement>) => {
+    const handleDragEnd = () => {
         setActiveElement(null);
         props.handleGetSortedData(sortedList);
     };
@@ -42,14 +41,21 @@ export default function DragAndDropList (props: IDragAndDropProps) {
     return (
         <div className={s.dragAndDropList}>
             {
-                sortedList.map(el => (
+                sortedList.map((el) => (
                     <div
-                        style={activeElement?.id === el.id ? { opacity: 1.5 } : { opacity: 1 }}
+                        className={s.dragAndDropListElement}
+                        style={
+                            activeElement?.id === el.id ? { 
+                                opacity: .1,
+                            } : { 
+                                opacity: 1,
+                            }
+                        }
                         key={el.id} 
                         draggable
                         onDragStart={() => handleDragStart(el)}
                         onDragOver={() => handleDragOver(el)}
-                        onDragEnd={(e) => handleDragEnd(e)}
+                        onDragEnd={() => handleDragEnd()}
                     >
                         {el.component}
                     </div>
