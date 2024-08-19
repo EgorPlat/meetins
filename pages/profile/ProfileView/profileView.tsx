@@ -18,6 +18,7 @@ import CustomModal from "../../../components-ui/CustomModal/CustomModal";
 import EditUserTag from "../../../global/forms/EditUserTag/Index";
 import Head from "next/head";
 import ImageCropper from "../../../global/components/CropImage/CropImage";
+import CustomButton from "../../../components-ui/CustomButton/CustomButton";
 
 export default function ProfileView(props: {
     asyncLoaded: boolean,
@@ -82,25 +83,39 @@ export default function ProfileView(props: {
                             <div className={`${s.userInfo}`}>
                                 <div>
                                     <div className={`${s.userName}`}>
-                                        {activeUser.name + ", " + activeUser.age}
-                                        <div
-                                            onClick={() => props.handleSwapEditTag(true)}
-                                            className={s.userTag}
-                                            style={{
-                                                backgroundColor: `${activeUser.tag?.color}`,
-                                            }}
-                                        >
-                                            {activeUser.tag?.title}
+                                        <div className={s.userNameAndTag}>
+                                            {activeUser.name + ", " + activeUser.age}
+                                            <div
+                                                onClick={() => props.handleSwapEditTag(true)}
+                                                className={s.userTag}
+                                                style={{
+                                                    backgroundColor: `${activeUser.tag?.color}`,
+                                                }}
+                                            >
+                                                {activeUser.tag?.title}
+                                                {
+                                                    activeUser.login === props.authedUser.login && 
+                                                    <MdEdit 
+                                                        fontSize={18}
+                                                    />
+                                                }
+                                            </div>
+                                        </div>
+                                        <div className={s.moreActions}>
                                             {
-                                                activeUser.login === props.authedUser.login && 
-                                            <MdEdit 
-                                                fontSize={18}
-                                            />
+                                                activeUser.login !== props.authedUser.login &&
+                                                <CustomEditMenu
+                                                    data={[
+                                                        { menuTitle: "Пометить важным", menuFunction: () => props.handleAddUserIntoMarked() },
+                                                        { menuTitle: "Не получать уведомления", menuFunction: () => console.log(2) },
+                                                        { menuTitle: "Посмотреть статистику", menuFunction: () => console.log(3) }
+                                                    ]}
+                                                />
                                             }
                                         </div>
                                     </div>
                                     <div className={s.town}>
-                                    г. {activeUser.city}
+                                        г. {activeUser.city}
                                     </div>
                                     <div className={s.dateRegister}>
                                         <span>
@@ -124,33 +139,15 @@ export default function ProfileView(props: {
                                 { 
                                     activeUser.login !== props.authedUser.login ?
                                         <div className={`${s.actions}`}>
-                                            <button 
-                                                type="button" 
-                                                className={`${s.actionsBtn}`} 
-                                                onClick={props.handleStartDialog}
-                                            >
-                                                {t("Диалог")}
-                                            </button>
-                                            <button 
-                                                type="button" 
-                                                className={`${s.actionsBtn}`} 
+                                            <CustomButton
+                                                text={t("Пригласить")}
                                                 onClick={() => props.setIsInviteModal(true)}
-                                            >
-                                                {t("Пригласить")}
-                                            </button>
+                                            />
+                                            <CustomButton
+                                                text={t("Диалог")}
+                                                onClick={props.handleStartDialog}
+                                            />
                                         </div> : null
-                                }
-                            </div>
-                            <div className={s.moreActions}>
-                                {
-                                    activeUser.login !== props.authedUser.login &&
-                                <CustomEditMenu
-                                    data={[
-                                        { menuTitle: "Пометить важным", menuFunction: () => props.handleAddUserIntoMarked() },
-                                        { menuTitle: "Не получать уведомления", menuFunction: () => console.log(2) },
-                                        { menuTitle: "Посмотреть статистику", menuFunction: () => console.log(3) }
-                                    ]}
-                                />
                                 }
                             </div>
                         </div>
@@ -166,16 +163,14 @@ export default function ProfileView(props: {
                                 <Interests user={activeUser} authedUser={props.authedUser} />
                             </div>
                             <div className={`${s.block} ${s.places}`}>
-                                {
-                                    <Places places={props.currentUserPlaces}/>
-                                }
+                                <Places places={props.currentUserPlaces}/>
                             </div>
                         </div> 
 
                         {
                             activeUser.login === props.authedUser.login &&
                         <div className={s.addingPosts}>
-                            <button onClick={() => props.setIsAddPostModal(true)}>{t("Добавить новую запись")}</button>
+                            <CustomButton text={t("Добавить новую запись")} onClick={() => props.setIsAddPostModal(true)} />
                         </div>
                         }
                         <div className={s.postsList}>

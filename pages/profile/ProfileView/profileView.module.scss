@@ -25,9 +25,7 @@
 
     & .mainBlock {
         display: grid;
-        grid-template-columns: 30% calc(70% - 40px) 40px;
-
-        & .moreActions {}
+        grid-template-columns: 30% 70%;
 
         & .bodyInfo {
             & .avatar {
@@ -74,21 +72,29 @@
             }
 
             & .userName {
-                display: flex;
+                display: grid;
+                grid-template-columns: calc(100% - 10px) 10px;
                 align-items: center;
                 font-size: 36px;
 
-                & .userTag {
+                & .userNameAndTag {
                     display: flex;
                     column-gap: 5px;
                     align-items: center;
-                    cursor: pointer;
-                    color: black;
-                    border-radius: 50px;
-                    padding: 5px 15px 5px 15px;
-                    margin-left: 10px;
-                    font-size: 16px;
+                    & .userTag {
+                        display: flex;
+                        column-gap: 5px;
+                        align-items: center;
+                        cursor: pointer;
+                        color: black;
+                        border-radius: 50px;
+                        padding: 5px 15px 5px 15px;
+                        margin-left: 10px;
+                        font-size: 16px;
+                    }
                 }
+                
+                & .moreActions {}
             }
 
             & .status {
@@ -108,17 +114,7 @@
 
             & .actions {
                 display: flex;
-
-                & .actionsBtn {
-                    width: 150px;
-                    height: 35px;
-                    margin-right: 1%;
-                    border: none;
-                    border-radius: 10px;
-                    margin-top: 1%;
-                    background: #3DB2FF;
-                    color: white;
-                }
+                column-gap: 10px;
             }
         }
     }
@@ -138,19 +134,8 @@
     }
 
     & .addingPosts {
+        font-size: 16px;
         margin-bottom: 5px;
-
-        & button {
-            font-family: Nunito;
-            font-size: 15px;
-            height: 40px;
-            background-color: #3DB2FF;
-            outline: none;
-            border: none;
-            color: white;
-            font-weight: 600;
-            border-radius: 5px;
-        }
     }
 
     & .postsList {

@@ -99,7 +99,7 @@
     }
     & .result {
         padding-top: 20px;
-        padding-bottom: 40px;
+        margin-bottom: 40px;
         & .users {
             & .usersList {
                 display: flex;
@@ -110,15 +110,6 @@
             & .nothingFound {
                 display: flex;
                 column-gap: 10px;
-                & .showAllBtn {
-                    border: none;
-                    background-color: var(--default-color);
-                    border-radius: 5px;
-                }
-                & .showAllBtn:hover {
-                    color: black;
-                    background-color: orange;
-                }
             }
         }
     }

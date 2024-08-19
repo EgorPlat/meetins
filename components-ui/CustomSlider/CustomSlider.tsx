@@ -1,7 +1,7 @@
-import { TouchEventHandler, useEffect, useState } from 'react';
-import s from './CustomSlider.module.scss';
-import { useStore } from 'effector-react';
-import { isMobile } from '../../global/store/store';
+import { TouchEventHandler, useEffect, useState } from "react";
+import s from "./CustomSlider.module.scss";
+import { useStore } from "effector-react";
+import { isMobile } from "../../global/store/store";
 
 interface ICustomSliderProps {
     files: {
@@ -79,12 +79,12 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
                             className={s.customSliderCurrentImage}
                             style={{
                                 transform: `translateX(-${activeImageId * 100}%)`,
-                                transition: '0.5s'
+                                transition: "0.5s"
                             }}
                             key={el.src}
                         >
                             {
-                                el.type.includes('image') ?
+                                el.type.includes("image") ?
                                     <img
                                         src={el.src}
                                         width={params.width}
@@ -94,7 +94,7 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
                                         onTouchEnd={handleTouchEnd}
                                         onClick={(e) => e.preventDefault()}
                                     />
-                                    : el.type.includes('video') ?
+                                    : el.type.includes("video") ?
                                         <video
                                             src={el.src}
                                             width={params.width}
@@ -104,7 +104,7 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
                                             controls={true}
                                             onClick={(e) => e.preventDefault()}
                                         />
-                                        : el.type.includes('audio') ?
+                                        : el.type.includes("audio") ?
                                             <audio
                                                 style={{ width: params.width, height }}
                                                 src={el.src}

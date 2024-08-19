@@ -20,6 +20,7 @@ import { $currentInterestsList } from "../../../../global/store/store";
 import { currentEventsInfoLoaded, getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
 import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
 import InfinityScroll from "../../../../global/components/InfinityScroll/InfinityScroll";
+import CustomButton from "../../../../components-ui/CustomButton/CustomButton";
 
 export default function SearchingPeople(): JSX.Element {
 
@@ -159,7 +160,7 @@ export default function SearchingPeople(): JSX.Element {
                         maxPage$ === 0 && !pending ?
                             <div className={s.nothingFound}>
                                 Никого не найдено.
-                                <button onClick={() => showAllPeoples()} className={s.showAllBtn}>{t("Показать всех")}</button>
+                                <CustomButton onClick={() => showAllPeoples()} text={t("Показать всех")} />
                             </div>
                             : null
                     }

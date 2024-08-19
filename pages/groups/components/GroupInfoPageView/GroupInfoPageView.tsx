@@ -1,14 +1,14 @@
-import { IGroup, IGroupFile, IGroupMembersInfo, IGroupPost } from '../../../../global/interfaces/groups';
-import { baseURL } from '../../../../global/store/store';
-import { AiFillHeart, AiOutlineEye, AiOutlineVideoCamera } from 'react-icons/ai';
-import { RiDiscussLine } from 'react-icons/ri';
-import { ImAttachment } from 'react-icons/im';
-import { BiComment, BiPhotoAlbum } from 'react-icons/bi';
-import { customizeDateToYYYYMMDDHHMMFormat } from '../../../../global/helpers/helper';
-import { FiSettings } from 'react-icons/fi';
-import { User } from '../../../../global/interfaces';
-import CustomSlider from '../../../../components-ui/CustomSlider/CustomSlider';
-import s from './GroupInfoPageView.module.scss';
+import { IGroup, IGroupFile, IGroupMembersInfo, IGroupPost } from "../../../../global/interfaces/groups";
+import { baseURL } from "../../../../global/store/store";
+import { AiFillHeart, AiOutlineEye, AiOutlineVideoCamera } from "react-icons/ai";
+import { RiDiscussLine } from "react-icons/ri";
+import { ImAttachment } from "react-icons/im";
+import { BiComment, BiPhotoAlbum } from "react-icons/bi";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
+import { FiSettings } from "react-icons/fi";
+import { User } from "../../../../global/interfaces";
+import CustomSlider from "../../../../components-ui/CustomSlider/CustomSlider";
+import s from "./GroupInfoPageView.module.scss";
 
 export default function GroupInfoPageView(props: {
     authedUser: User,
@@ -98,7 +98,7 @@ export default function GroupInfoPageView(props: {
                                                         }
                                                     })
                                                 }
-                                                width='450px'
+                                                width='300px'
                                                 height='300px'
                                             />
                                         }
@@ -112,7 +112,7 @@ export default function GroupInfoPageView(props: {
                                             <AiFillHeart
                                                 onClick={() => props.handleLikePost(post, props.groupInfo?.groupId)}
                                                 fontSize={25}
-                                                color={post.likes.includes(props.authedUser.userId) ? 'red' : ''}
+                                                color={post.likes.includes(props.authedUser.userId) ? "red" : ""}
                                             />
                                         </div>
                                         <div className={s.comments} onClick={() => props.handleOpenComments(post.id)}>
