@@ -1,12 +1,12 @@
-import { baseURL } from '../../../../global/store/store';
+import { baseURL } from "../../../../global/store/store";
 import { CiBookmarkPlus, CiSquarePlus } from "react-icons/ci";
-import s from './MeetingsRoomPageView.module.scss';
-import CustomProgressBar from '../../../../components-ui/CustomProgressBar/CustomProgressBar';
-import { IMeeting } from '../../../../global/interfaces/meetings';
-import CustomLoader from '../../../../components-ui/CustomLoader/CustomLoader';
-import { customizeDateToYYYYMMDDHHMMFormat } from '../../../../global/helpers/helper';
-import { ChangeEvent, useRef } from 'react';
-import Link from 'next/link';
+import s from "./MeetingsRoomPageView.module.scss";
+import CustomProgressBar from "../../../../components-ui/CustomProgressBar/CustomProgressBar";
+import { IMeeting } from "../../../../global/interfaces/meetings";
+import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
+import { ChangeEvent, useRef } from "react";
+import Link from "next/link";
 
 export default function MeetingsRoomPageView(props: {
     selectedMeeting: IMeeting,
@@ -99,17 +99,17 @@ export default function MeetingsRoomPageView(props: {
                             }
                             {
                                 props.selectedMeeting.files.slice(0, 9).map(el => (
-                                    el.type.includes('image') 
+                                    el.type.includes("image") 
                                         ? <img 
                                             key={el.src} 
                                             src={baseURL + el.src} 
                                         /> :
-                                    el.type.includes('video') 
+                                        el.type.includes("video") 
                                         && <video
-                                                key={el.src} 
-                                                src={baseURL + el.src}
-                                                controls
-                                            />
+                                            key={el.src} 
+                                            src={baseURL + el.src}
+                                            controls
+                                        />
                                 ))
                             }
                             {
@@ -137,31 +137,31 @@ export default function MeetingsRoomPageView(props: {
                             }
                             {
                                 props.isUserInParticipants 
-                                ? props.selectedMeeting.comments.map(comment => {
-                                    const { name, avatar } = 
+                                    ? props.selectedMeeting.comments.map(comment => {
+                                        const { name, avatar } = 
                                     props.selectedMeeting.participants.filter(el => el.userId === comment.userId)[0]
-                                    return (
-                                        <div className={s.comment} key={String(comment.date)}>
-                                            <div className={s.userInfo}>
-                                                <div className={s.avatar}>
-                                                    <img src={baseURL + avatar} />
+                                        return (
+                                            <div className={s.comment} key={String(comment.date)}>
+                                                <div className={s.userInfo}>
+                                                    <div className={s.avatar}>
+                                                        <img src={baseURL + avatar} />
+                                                    </div>
+                                                    <div className={s.name}>
+                                                        {name}
+                                                    </div>
                                                 </div>
-                                                <div className={s.name}>
-                                                    {name}
+                                                <div className={s.commentContent}>
+                                                    {
+                                                        comment.text
+                                                    }
                                                 </div>
                                             </div>
-                                            <div className={s.commentContent}>
-                                                {
-                                                    comment.text
-                                                }
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                                : 
-                                <span
-                                    style={{textAlign: "center", fontSize: "15px"}}
-                                >Перед тем как принять участие в обсуждении, запишитесь на встречу.</span>
+                                        )
+                                    })
+                                    : 
+                                    <span
+                                        style={{textAlign: "center", fontSize: "15px"}}
+                                    >Перед тем как принять участие в обсуждении, запишитесь на встречу.</span>
                             }
                         </div>
                     </div>
