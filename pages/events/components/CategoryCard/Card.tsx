@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import s from "./card.module.scss";
+import s from "./Card.module.scss";
 
 interface ICardProps {
 	img_src: string,
