@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUserInterests, updateInterests } from "../../../global/store/store";
 import { User } from "../../../global/interfaces";
-import { MdInterests } from 'react-icons/md';
+import { MdInterests } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import ChangingInterests from "./ChangingInterests/ChangingInterests";
 import s from "./interests.module.scss";
@@ -48,7 +48,7 @@ export default function Interests(props: {
             <div className={s.interests}>
                 <div className={s.title}>
                     <MdInterests fontSize={34} />
-                    <b>{t('Интересы')}</b>
+                    <b>{t("Интересы")}</b>
                     {isAuthedUserAreCurrentUser &&
                         <span className={s.changeStatus} onClick={openChangeInterests}> (изм.)</span>
                     }
@@ -69,7 +69,7 @@ export default function Interests(props: {
                             ? currentUserInterests.map((elem) =>
                                 <button type="button" className={`${s.interest}`} key={elem.title}>{elem.title}</button>
                             )
-                            : <p>{t('Хобби пока нет')}.</p>
+                            : <p>{t("Хобби пока нет")}.</p>
                 }
             </div>
         </>

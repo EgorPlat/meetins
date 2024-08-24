@@ -1,7 +1,7 @@
-import { IGroupFile } from '../../../../global/interfaces/groups';
-import { baseURL } from '../../../../global/store/store';
-import MeetingFileView from './MeetingFileView/MeetingFileView';
-import s from './MeetingsFilesList.module.scss';
+import { IGroupFile } from "../../../../global/interfaces/groups";
+import { baseURL } from "../../../../global/store/store";
+import MeetingFileView from "./MeetingFileView/MeetingFileView";
+import s from "./MeetingsFilesList.module.scss";
 
 export default function MeetingsFilesList(props: {
     files: IGroupFile[],

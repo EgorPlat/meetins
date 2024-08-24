@@ -1,6 +1,6 @@
-import { IMeeting } from '../../../../../global/interfaces/meetings';
-import MeetingWrapper from '../MeetingWrapper/MeetingWrapper';
-import s from './CompletedMeetings.module.scss';
+import { IMeeting } from "../../../../../global/interfaces/meetings";
+import MeetingWrapper from "../MeetingWrapper/MeetingWrapper";
+import s from "./CompletedMeetings.module.scss";
 
 export default function CompletedMeetings(props: {
     data: IMeeting[],

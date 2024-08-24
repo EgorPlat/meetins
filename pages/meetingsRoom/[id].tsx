@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useStore } from "effector-react";
 import { handleRegInMeeting, selectedMeeting, uploadFileToMediaMeeting } from "../../global/store/meetings_model";
 import { ChangeEvent, useState } from "react";
@@ -12,7 +11,6 @@ import MeetingsRoomPageView from "./components/MeetingsRoomPageView/MeetingsRoom
 
 export default function MeetingsRoom() {
 
-    const router = useRouter();
     const selectedMeeting$ = useStore(selectedMeeting);
     const [isAddCommentModal, setIsAddCommentModal] = useState<boolean>(false);
     const [isOpenAllFilesModal, setIsOpenAllFilesModal] = useState<boolean>(false);

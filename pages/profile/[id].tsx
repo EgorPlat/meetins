@@ -20,7 +20,7 @@ import { User } from "../../global/interfaces";
 import { addNotification } from "../../global/store/notifications_model";
 import { currentUserPlaces$, getUserPlaces } from "../../global/store/meetings_model";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
-import ProfileView from "./ProfileView/profileView";
+import ProfileView from "./components/ProfileView/profileView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 
 function Profile(): JSX.Element {

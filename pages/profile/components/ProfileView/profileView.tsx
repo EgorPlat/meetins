@@ -1,24 +1,26 @@
 import { useTranslation } from "react-i18next";
-import { User } from "../../../global/interfaces";
-import { baseURL } from "../../../global/store/store";
-import { getDateInDMYFormat } from "../../../global/functions/getDateInDMFormat";
-import { getIsUserMale } from "../../../global/functions/getIsUserMale";
+import { User } from "../../../../global/interfaces";
+import { baseURL } from "../../../../global/store/store";
+import { getDateInDMYFormat } from "../../../../global/functions/getDateInDMFormat";
+import { getIsUserMale } from "../../../../global/functions/getIsUserMale";
 import { MdEdit } from "react-icons/md";
 import s from "./profileView.module.scss";
 import About from "../About/About";
-import Interests from "../Interests/interests";
-import PostsList from "../PostsList/PostsList";
-import AddingPosts from "../AddingPosts/AddingPosts";
-import ChoosingEvents from "../СhoosingEvents/choosingEvents";
+import Interests from "../../Interests/interests";
+import PostsList from "../../PostsList/PostsList";
 import Places from "../Places/places";
-import CustomEditMenu from "../../../components-ui/CustomEditMenu/CustomEditMenu";
-import InputFile from "../../../components-ui/InputFile/InputFile";
-import Loader from "../../../components-ui/Loader/Loader";
-import CustomModal from "../../../components-ui/CustomModal/CustomModal";
-import EditUserTag from "../../../global/forms/EditUserTag/Index";
+import Loader from "../../../../components-ui/Loader/Loader";
+import CustomModal from "../../../../components-ui/CustomModal/CustomModal";
 import Head from "next/head";
-import ImageCropper from "../../../global/components/CropImage/CropImage";
-import CustomButton from "../../../components-ui/CustomButton/CustomButton";
+import React, { Suspense } from "react";
+import CustomButton from "../../../../components-ui/CustomButton/CustomButton";
+import InputFile from "../../../../components-ui/InputFile/InputFile";
+import CustomEditMenu from "../../../../components-ui/CustomEditMenu/CustomEditMenu";
+import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+const EditUserTag = React.lazy(() => import("../../../../global/forms/EditUserTag/Index"));
+const ChoosingEvents = React.lazy(() => import("../СhoosingEvents/choosingEvents"));
+const AddingPosts = React.lazy(() => import("../AddingPosts/AddingPosts"));
+const ImageCropper = React.lazy(() => import("../../../../global/components/CropImage/CropImage"));
 
 export default function ProfileView(props: {
     asyncLoaded: boolean,
@@ -169,9 +171,9 @@ export default function ProfileView(props: {
 
                         {
                             activeUser.login === props.authedUser.login &&
-                        <div className={s.addingPosts}>
-                            <CustomButton text={t("Добавить новую запись")} onClick={() => props.setIsAddPostModal(true)} />
-                        </div>
+                            <div className={s.addingPosts}>
+                                <CustomButton text={t("Добавить новую запись")} onClick={() => props.setIsAddPostModal(true)} />
+                            </div>
                         }
                         <div className={s.postsList}>
                             { props.authedUser && <PostsList currentUser={activeUser} authedUser={props.authedUser} /> }
@@ -185,7 +187,9 @@ export default function ProfileView(props: {
                 title="Добавить новую запись"
                 typeOfActions="none"
             >
-                <AddingPosts />
+                <Suspense fallback={<CustomLoader />}>
+                    <AddingPosts />
+                </Suspense>
             </CustomModal>
             <CustomModal 
                 isDisplay={props.isInviteModal} 
@@ -194,7 +198,9 @@ export default function ProfileView(props: {
                 title="Выберите событие"
                 typeOfActions="default"
             >
-                <ChoosingEvents choosedEvent={props.setChoosedEventForInvite} />
+                <Suspense fallback={<CustomLoader />}>
+                    <ChoosingEvents choosedEvent={props.setChoosedEventForInvite} />
+                </Suspense>
             </CustomModal>
             <CustomModal 
                 isDisplay={props.isEditTagOpen} 
@@ -203,7 +209,9 @@ export default function ProfileView(props: {
                 title="Настройте Ваш тэг"
                 typeOfActions="none"
             >
-                <EditUserTag />
+                <Suspense fallback={<CustomLoader />}>
+                    <EditUserTag />
+                </Suspense>
             </CustomModal>
             <CustomModal 
                 isDisplay={props.newAvatarForCrop ? true : false} 
@@ -212,10 +220,12 @@ export default function ProfileView(props: {
                 title="Настройте Ваше фото"
                 typeOfActions="none"
             >
-                <ImageCropper 
-                    imageForCrop={props.newAvatarForCrop}
-                    handleGetCropperImageBlob={props.handleGetCroppedAvatar}
-                />
+                <Suspense fallback={<CustomLoader />}>
+                    <ImageCropper 
+                        imageForCrop={props.newAvatarForCrop}
+                        handleGetCropperImageBlob={props.handleGetCroppedAvatar}
+                    />
+                </Suspense>
             </CustomModal>
         </div>
     )

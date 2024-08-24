@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import GroupsListView from './GroupsListView/GroupsListView';
-import { useStore } from 'effector-react';
-import { useRouter } from 'next/router';
-import { getGroupsList, groupsList, joinToGroup } from '../../../../global/store/groups_model';
-import { $user, getInterests } from '../../../../global/store/store';
-import { IGroup } from '../../../../global/interfaces/groups';
-import CustomModal from '../../../../components-ui/CustomModal/CustomModal';
-import CreateNewGroupForm from '../../../../global/forms/CreateNewGroup/Index';
+import { useEffect, useState } from "react";
+import GroupsListView from "./GroupsListView/GroupsListView";
+import { useStore } from "effector-react";
+import { useRouter } from "next/router";
+import { getGroupsList, groupsList, joinToGroup } from "../../../../global/store/groups_model";
+import { $user, getInterests } from "../../../../global/store/store";
+import { IGroup } from "../../../../global/interfaces/groups";
+import CustomModal from "../../../../components-ui/CustomModal/CustomModal";
+import CreateNewGroupForm from "../../../../global/forms/CreateNewGroup/Index";
 
 export default function GroupsList () {
 

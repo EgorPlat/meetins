@@ -1,8 +1,8 @@
 import s from "./header.module.scss"
 import Image from "next/image"
 import logo from "../../../public/images/full-new-logo.svg"
-import { useStore } from "effector-react"
 import MainNavbar from "../MainNavbar"
+import { useStore } from "effector-react"
 import { useRouter } from "next/router"
 import { $currentPage } from "../../store/store"
 import "bootstrap/dist/css/bootstrap.min.css";

@@ -1,10 +1,10 @@
-import CustomStepper from '../../../../components-ui/CustomStepper/CustomStepper';
-import { User } from '../../../../global/interfaces';
-import { IMeeting, ISplitedMeetings } from '../../../../global/interfaces/meetings';
-import CompletedMeetings from './CompletedMeetings/CompletedMeetings';
-import FurtherMeetings from './FurtherMeetings/FurtherMeetings';
-import MyMeetings from './MyMeetings/MyMeetings';
-import s from './MeetingsContentView.module.scss';
+import CustomStepper from "../../../../components-ui/CustomStepper/CustomStepper";
+import { User } from "../../../../global/interfaces";
+import { IMeeting } from "../../../../global/interfaces/meetings";
+import CompletedMeetings from "./CompletedMeetings/CompletedMeetings";
+import FurtherMeetings from "./FurtherMeetings/FurtherMeetings";
+import MyMeetings from "./MyMeetings/MyMeetings";
+import s from "./MeetingsContentView.module.scss";
 
 export default function MeetingsContentView(props: {
     completedMeetings: IMeeting[],

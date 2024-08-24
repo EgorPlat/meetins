@@ -15,7 +15,7 @@ import {
 } from "../../../../global/store/peoples_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
-import { goals } from "../../../../global/constants";
+import { GOALS } from "../../../../global/constants";
 import { $currentInterestsList } from "../../../../global/store/store";
 import { currentEventsInfoLoaded, getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
 import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
@@ -105,7 +105,10 @@ export default function SearchingPeople(): JSX.Element {
                 </div>
                 <div className={s.goal}>
                     <h3 className={s.title}>Цель</h3>
-                    {goals.map((goal) => <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>)}
+                    {GOALS
+                        .map((goal) => 
+                            <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>
+                        )}
                 </div>
                 <div className={s.events}>
                     <h3 className={s.title}>События</h3>
@@ -125,7 +128,8 @@ export default function SearchingPeople(): JSX.Element {
                         </div>
                     }
                     {
-                        currentEventsInfoLoaded$ && events$.length === 0 && <span className={s.warning}>У вас нет событий в закладках.</span>
+                        currentEventsInfoLoaded$ && 
+                            events$.length === 0 && <span className={s.warning}>У вас нет событий в закладках.</span>
                     }
                 </div>
                 <div className={s.interests}>

@@ -8,8 +8,8 @@ import { User } from "../../global/interfaces";
 import React from "react";
 import ProfileInfoForm from "../../global/forms/ProfileInfo/Index";
 import ManageAccountForm from "../../global/forms/ManageAccount/Index";
-import ru from '../../public/images/ru.png';
-import us from '../../public/images/us.png';
+import ru from "../../public/images/ru.png";
+import us from "../../public/images/us.png";
 import Image from "next/image";
 import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
 import TurnOffOn from "../../components-ui/TurnOffOn/TurnOffOn";
@@ -72,7 +72,7 @@ export default function Settings(): JSX.Element {
                                 fontSize={14}
                                 title="?"
                                 hintTitle={
-                                    `Фильтры контента - это функция, которая дает Вам возможность активировать алгоритм подбора контента на сайте (сообщества, люди, встречи, лента и т.д.) исходя из Ваших настроек профиля (например интересов, закладок, активности). Включая данную функцию важно понимать что количество контента на сайте может уменьшиться, при этом вероятность того что Вам попадется что-то не нужное или Вам не интерсное крайне мала`
+                                    "Фильтры контента - это функция, которая дает Вам возможность активировать алгоритм подбора контента на сайте (сообщества, люди, встречи, лента и т.д.) исходя из Ваших настроек профиля (например интересов, закладок, активности). Включая данную функцию важно понимать что количество контента на сайте может уменьшиться, при этом вероятность того что Вам попадется что-то не нужное или Вам не интерсное крайне мала"
                                 }
                             />
                         </div>
@@ -81,20 +81,20 @@ export default function Settings(): JSX.Element {
                         <h4>{t("Выбрать язык")}</h4>
                         <div className={s.locales}>
                             <div className={s.localeImg}>
-                                <Image src={us} width="62px" height="50px" onClick={() => handleChangeLocale('en')} />
+                                <Image src={us} width="62px" height="50px" onClick={() => handleChangeLocale("en")} />
                             </div>
                             <div className={s.localeImg}>
-                                <Image src={ru} width="62px" height="50px" onClick={() => handleChangeLocale('ru')} />
+                                <Image src={ru} width="62px" height="50px" onClick={() => handleChangeLocale("ru")} />
                             </div>
                         </div>
                     </div>
                     <div className={s.themes}>
                         <h4>{t("Темы")}</h4>
-                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme('black')}>
-                            {t('Черная')}
+                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme("black")}>
+                            {t("Черная")}
                         </button>
-                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme('white')}>
-                            {t('Белая')}
+                        <button className={s.swipeTheme} onClick={() => handleSwipeTheme("white")}>
+                            {t("Белая")}
                         </button>
                     </div>
                     <div className={s.info}>
@@ -112,10 +112,10 @@ export default function Settings(): JSX.Element {
                         </div>
                         <div className={`${s.infoText}`}>
                             <div className={`${s.description}`}>
-                                {t('Вы можете изменить адрес аккаунта на более привлекательный')}.<br />
-                                {t('Другие пользователи смогут найти Вас по адресу')} <b>meetins.ru/{t('адрес')}</b><br />
-                                {t('Вы можете удалить свой аккаунт, тогда другие пользователи больше не смогут')}<br />
-                                {t('Вас найти на нашем сайте')}.
+                                {t("Вы можете изменить адрес аккаунта на более привлекательный")}.<br />
+                                {t("Другие пользователи смогут найти Вас по адресу")} <b>meetins.ru/{t("адрес")}</b><br />
+                                {t("Вы можете удалить свой аккаунт, тогда другие пользователи больше не смогут")}<br />
+                                {t("Вас найти на нашем сайте")}.
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@ export default function Settings(): JSX.Element {
                     actionConfirmed={deleteAccount}
                     typeOfActions="default"
                 >
-                    <h6>{t('Подвердите действие - Удаление аккаунта')}.</h6>
+                    <h6>{t("Подвердите действие - Удаление аккаунта")}.</h6>
                 </CustomModal>
             </div>
         </PageContainer>

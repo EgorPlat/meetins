@@ -27,7 +27,7 @@ export default function MeetingWrapper(props: {
                             className={s.meetingImage}
                             style={{backgroundImage: `url(${baseURL + props.meeting?.preview})`}}
                         >
-                    </div>
+                        </div>
                     </div>
                     <div className={s.meetingCreator}>
                         <span>Организатор: </span>
@@ -53,13 +53,13 @@ export default function MeetingWrapper(props: {
                         Будет доступна:
                         {
                             !isMeetingEnded
-                            ? <CustomTimer 
-                                dateTo={props.meeting?.date} 
-                                dateFrom={Date.now()}
-                                color="black"
-                                backgroundColor="#73fa97"
-                            />
-                            : <span className={s.meetingOver}>Завершилась</span>
+                                ? <CustomTimer 
+                                    dateTo={props.meeting?.date} 
+                                    dateFrom={Date.now()}
+                                    color="black"
+                                    backgroundColor="#73fa97"
+                                />
+                                : <span className={s.meetingOver}>Завершилась</span>
                         }
                     </div>
                     <div className={s.date}>{props.meeting?.address}</div>
@@ -109,13 +109,13 @@ export default function MeetingWrapper(props: {
                         Будет доступна:
                         {
                             !isMeetingEnded
-                            ? <CustomTimer 
-                                dateTo={props.meeting?.date} 
-                                dateFrom={Date.now()}
-                                color="black"
-                                backgroundColor="#73fa97"
-                            />
-                            : <span className={s.meetingOver}>Завершилась</span>
+                                ? <CustomTimer 
+                                    dateTo={props.meeting?.date} 
+                                    dateFrom={Date.now()}
+                                    color="black"
+                                    backgroundColor="#73fa97"
+                                />
+                                : <span className={s.meetingOver}>Завершилась</span>
                         }
                     </div>
                     <div className={s.meetingGoal}>

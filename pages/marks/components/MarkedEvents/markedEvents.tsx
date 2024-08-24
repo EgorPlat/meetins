@@ -1,8 +1,9 @@
 import { useStore } from "effector-react";
 import { userEvents } from "../../../../global/store/events_model";
-import React from "react";
-import MarkedEventInfo from "./MarkedEventInfo/markedEventInfo";
+import React, { Suspense } from "react";
 import s from "./markedEvents.module.scss";
+import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+const MarkedEventInfo = React.lazy(() => import("./MarkedEventInfo/markedEventInfo"));
 
 export default function MarkedEvents(): JSX.Element {
 
@@ -21,7 +22,11 @@ export default function MarkedEvents(): JSX.Element {
     if (markedEventsInfo$) {
         return (
             <div className={s.markedEvents}>
-                {markedEventsInfo$?.map(event => <MarkedEventInfo event={event} key={event.id} />)}
+                {markedEventsInfo$?.map(event => (
+                    <Suspense fallback={<CustomLoader />}>
+                        <MarkedEventInfo event={event} key={event.id} />
+                    </Suspense>
+                ))}
             </div>
         )
     } else {

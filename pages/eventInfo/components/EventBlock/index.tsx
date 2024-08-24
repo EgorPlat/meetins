@@ -23,7 +23,7 @@ export default function EventBlock(props: {
     if (event && props.commentsEvent) {
         return (
             <div className={s.eventBlockContent}>
-                <div className={s.eventBlockTitle}>{t('Информация про')} {event.title}</div>
+                <div className={s.eventBlockTitle}>{t("Информация про")} {event.title}</div>
                 <div className={s.eventBlockMainInfo}>
                     <div className={s.eventInfo}>
                         <CustomSlider
@@ -48,8 +48,8 @@ export default function EventBlock(props: {
                             favoritesCount={event.favorites_count}
                         />
                         <div className={s.actions}>
-                            <button onClick={() => props.addUserEvent(event.id)}>{t('Я пойду')}!</button>
-                            <button>{t('Понравилось')}!</button>
+                            <button onClick={() => props.addUserEvent(event.id)}>{t("Я пойду")}!</button>
+                            <button>{t("Понравилось")}!</button>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ export default function EventBlock(props: {
                         props.currentEventById.participants.map(el => (
                             <div className={s.actor} key={el.agent.title}>
                                 <div className={s.avatar}>
-                                    <img src={baseURL + '/no-avatar.jpg'} className={s.image} />
+                                    <img src={baseURL + "/no-avatar.jpg"} className={s.image} />
                                 </div>
                                 <div className={s.name}>
                                     <a href={el.agent.site_url} target="__blank">{el.agent.title}</a>
@@ -74,7 +74,7 @@ export default function EventBlock(props: {
                     }
                 </div>
                 <div className={s.commentsWrapper}>
-                    {props.commentsEvent.length === 0 ? 'Отзывов пока нет' : 'Отзывы'}
+                    {props.commentsEvent.length === 0 ? "Отзывов пока нет" : "Отзывы"}
                     {
                         props.commentsEvent?.map(comment => (
                             <div className={s.wrapper} key={comment.id}>
@@ -89,7 +89,7 @@ export default function EventBlock(props: {
                                             />
                                             : <Image
                                                 className={s.avatar}
-                                                src={baseURL + 'no-avatar.jpg'}
+                                                src={baseURL + "no-avatar.jpg"}
                                                 width={50}
                                                 height={50}
                                             />

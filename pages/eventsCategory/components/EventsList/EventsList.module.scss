@@ -2,8 +2,107 @@
     width: 98%;
     & .title {
         font-size: 18px;
-        margin-left: 20px;
+        margin: 10px 0 0 10px;
     }
+    .list {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-bottom: 20px;
+        & .eventBody {
+            background-color: var(--bg-color-block);
+            padding: 5px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            min-height: 150px;
+            margin-top: 10px;
+            margin-left: 1%;
+            column-gap: 10px;
+            border-radius: 10px;
+            & .eventImage {
+                border-radius: 10px;
+            }
+            & .eventDescription {
+                display: flex;
+                flex-direction: column;
+                row-gap: 5px;
+                font-size: 18px;
+                & .eventTitle {
+                    color: var(--text-color);
+                    font-size: 20px;
+                    margin-bottom: 10px;
+                }
+                & .eventPrice {
+                    display: flex;
+                    align-content: center;
+                    column-gap: 10px;
+                    & .free {
+                        display: flex;
+                        align-items: center;
+                        padding: 0px 5px 0px 5px;
+                        font-size: 15px;
+                        border: none;
+                        border-radius: 100px;
+                        background-color: rgba(43, 255, 43, 0.697);
+                    }
+                    & .notFree {
+                        display: flex;
+                        align-items: center;
+                        padding: 0px 5px 0px 5px;
+                        font-size: 15px;
+                        border: none;
+                        border-radius: 100px;
+                        background-color: rgba(59, 160, 255, 0.538);
+                    }
+                }
+                & .eventAge {
+                    display: flex;
+                    align-content: center;
+                    column-gap: 10px;
+                    & .age {
+                        display: flex;
+                        align-items: center;
+                        font-size: 15px;
+                        min-width: 40px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        color: black;
+                        background-color: rgb(255, 229, 127);
+                        border-radius: 100px;
+                        text-align: center;
+                    }
+                }
+                & .eventDates {
+                    display: flex;
+                    align-content: center;
+                    column-gap: 5px;
+                    & .date {
+                        display: flex;
+                        align-items: center;
+                        font-size: 15px;
+                        background-color: rgba(11, 125, 212, 0.586);
+                        color: white;
+                        padding: 0px 10px 0px 10px;
+                        border-radius: 100px;
+                    }
+                }
+                & .eventActions {
+                    display: flex;
+                    justify-content: right;
+                    margin-right: 10px;
+                    & a {
+                        color: var(--default-color);
+                    }
+                    & a:hover {
+                        color: orange;
+                    }
+                }
+            }
+        }
+        & .eventBody:hover {
+            cursor: pointer;
+        }
+    }
+    
     & .errorMessage {
         font-size: 18px;
         text-align: center;
@@ -11,10 +110,18 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .content {
         & .title {
             font-size: 18px;
+        }
+        & .list {
+            & .eventBody {
+                grid-template-columns: 1fr;
+                & .eventDescription {
+                    font-size: 15px;
+                }
+            }
         }
     }
 }

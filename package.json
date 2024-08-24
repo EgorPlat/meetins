@@ -21,7 +21,7 @@
     "next-env": "^1.1.1",
     "node": "^22.6.0",
     "peerjs": "^1.5.4",
-    "react": "17.0.2",
+    "react": "^17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.32.2",
     "react-i18next": "^12.1.4",

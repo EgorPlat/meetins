@@ -1,16 +1,15 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { currentWall$, getCurrentWall } from "../../global/store/wall_model";
 import { useStore } from "effector-react";
 import { getInterests, isMobile } from "../../global/store/store";
 import { useRouter } from "next/router";
-import React from "react";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
-import LentaList from "./components/LentaList/LentaList";
-import SearchingPeople from "./components/SearchingPeople/SearchingPeople";
 import Head from "next/head";
-import GroupsList from "./components/GroupsList/GroupsList";
 import s from "./peoples.module.scss";
 import CustomStepper from "../../components-ui/CustomStepper/CustomStepper";
+import SearchingPeople from "./components/SearchingPeople/SearchingPeople";
+import GroupsList from "./components/GroupsList/GroupsList";
+import LentaList from "./components/LentaList/LentaList";
 
 export default function Peoples(): JSX.Element {
 

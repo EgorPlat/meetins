@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import s from './PostCommentForm.module.scss';
-import { addNotification } from '../../../../global/store/notifications_model';
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import s from "./PostCommentForm.module.scss";
+import { addNotification } from "../../../../global/store/notifications_model";
 
 export default function PostCommentForm(props: {
     onSubmitComment: (commentText: string) => void
@@ -21,10 +21,10 @@ export default function PostCommentForm(props: {
         <div className={s.postCommentForm}>
             <input
                 type="text"
-                placeholder={t('Введите текст комментария')}
+                placeholder={t("Введите текст комментария")}
                 onChange={(e) => setCommentText(e.target.value)}
             />
-            <button onClick={handleSubmit}>{`>`}</button>
+            <button onClick={handleSubmit}>{">"}</button>
         </div>
     )
 }

@@ -1,46 +1,46 @@
-export const emoji = [
+export const EMOJI = [
     {dec: 128512,   hex: 0x1F600}, 	
-	{dec: 128513,	hex: 0x1F601},	 	
-	{dec: 128514,	hex: 0x1F602},	 	
-	{dec: 128515,	hex: 0x1F603},	 	
+    {dec: 128513,	hex: 0x1F601},	 	
+    {dec: 128514,	hex: 0x1F602},	 	
+    {dec: 128515,	hex: 0x1F603},	 	
     {dec: 128516,	hex: 0x1F604},	 	
     {dec: 128517,	hex: 0x1F605},	 	
     {dec: 128518,	hex: 0x1F606},	 	
     {dec: 128519,	hex: 0x1F607},	 	
     {dec: 128520,	hex: 0x1F608},	 	
-	{dec: 128521,	hex: 0x1F609},	 	
-	{dec: 128522,	hex: 0x1F60A},	 	
-	{dec: 128523,	hex: 0x1F60B},	 	
-	{dec: 128524,	hex: 0x1F60C},	 	
-	{dec: 128525,	hex: 0x1F60D},	 	
-	{dec: 128526,	hex: 0x1F60E},	 	
-	{dec: 128527,	hex: 0x1F60F},	 	
-	{dec: 128528,	hex: 0x1F610},	 	
-	{dec: 128529,	hex: 0x1F611},	 	
-	{dec: 128530,	hex: 0x1F612},	 	
-	{dec: 128531,	hex: 0x1F613},	 	
-	{dec: 128532,	hex: 0x1F614},	 	
-	{dec: 128533,	hex: 0x1F615},	 	
-	{dec: 128534,	hex: 0x1F616},	 	
-	{dec: 128535,	hex: 0x1F617},	 	
-	{dec: 128536,	hex: 0x1F618},	 	
-	{dec: 128537,	hex: 0x1F619},	 	
-	{dec: 128538,	hex: 0x1F61A},
-	{dec: 128539,	hex: 0x1F61B},
-	{dec: 128540,	hex: 0x1F61C},
-	{dec: 128541,	hex: 0x1F61D},
-	{dec: 128542,	hex: 0x1F61E},
-	{dec: 128543,	hex: 0x1F61F},
-	{dec: 128544,	hex: 0x1F620},
-	{dec: 128545,	hex: 0x1F621},
-	{dec: 128546,	hex: 0x1F622},
-	{dec: 128547,	hex: 0x1F623},
-	{dec: 128548,	hex: 0x1F624},
-	{dec: 128549,	hex: 0x1F625},
-	{dec: 128550,	hex: 0x1F626},
+    {dec: 128521,	hex: 0x1F609},	 	
+    {dec: 128522,	hex: 0x1F60A},	 	
+    {dec: 128523,	hex: 0x1F60B},	 	
+    {dec: 128524,	hex: 0x1F60C},	 	
+    {dec: 128525,	hex: 0x1F60D},	 	
+    {dec: 128526,	hex: 0x1F60E},	 	
+    {dec: 128527,	hex: 0x1F60F},	 	
+    {dec: 128528,	hex: 0x1F610},	 	
+    {dec: 128529,	hex: 0x1F611},	 	
+    {dec: 128530,	hex: 0x1F612},	 	
+    {dec: 128531,	hex: 0x1F613},	 	
+    {dec: 128532,	hex: 0x1F614},	 	
+    {dec: 128533,	hex: 0x1F615},	 	
+    {dec: 128534,	hex: 0x1F616},	 	
+    {dec: 128535,	hex: 0x1F617},	 	
+    {dec: 128536,	hex: 0x1F618},	 	
+    {dec: 128537,	hex: 0x1F619},	 	
+    {dec: 128538,	hex: 0x1F61A},
+    {dec: 128539,	hex: 0x1F61B},
+    {dec: 128540,	hex: 0x1F61C},
+    {dec: 128541,	hex: 0x1F61D},
+    {dec: 128542,	hex: 0x1F61E},
+    {dec: 128543,	hex: 0x1F61F},
+    {dec: 128544,	hex: 0x1F620},
+    {dec: 128545,	hex: 0x1F621},
+    {dec: 128546,	hex: 0x1F622},
+    {dec: 128547,	hex: 0x1F623},
+    {dec: 128548,	hex: 0x1F624},
+    {dec: 128549,	hex: 0x1F625},
+    {dec: 128550,	hex: 0x1F626},
 ]
 
-export const MeetingsContent = {
+export const MEETINGS_CONTENT = {
     title: "Встречи",
     subTitle: "Встречайся с другими людьми и посещай мероприятия",
     description: `
@@ -51,6 +51,6 @@ export const MeetingsContent = {
     `
 }
 
-export const goals = ['Новые отношения','Друзей','Новые Интересы','Встречи','События','Общение в сети'];
-export const events = ['По Москве на автобусе','История любви','"Энканто"','Green DAY'];
-export const popularInterests = ['Программирование', 'Бизнес', 'Кухня', 'Природа'];
+export const GOALS = ["Новые отношения","Друзей","Новые Интересы","Встречи","События","Общение в сети"];
+export const EVENTS = ["По Москве на автобусе","История любви","\"Энканто\"","Green DAY"];
+export const POPULAR_INTERESTS = ["Программирование", "Бизнес", "Кухня", "Природа"];
