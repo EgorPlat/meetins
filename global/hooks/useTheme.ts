@@ -5,7 +5,7 @@ export const useTheme = () => {
     const [currentTheme, setCurrentTheme] = useState<string>("");
     
     useEffect(() => {
-        if (localStorage.getItem('data-theme') === 'white') {
+        if (localStorage.getItem("data-theme") === "white") {
             setCurrentTheme("white");
         } else {
             setCurrentTheme("black");
@@ -13,8 +13,8 @@ export const useTheme = () => {
     }, []);
 
     useEffect(() => {
-		document.documentElement.setAttribute("data-theme", currentTheme);
-	}, [currentTheme]);
+        document.documentElement.setAttribute("data-theme", currentTheme);
+    }, [currentTheme]);
 
     return currentTheme;
 }
