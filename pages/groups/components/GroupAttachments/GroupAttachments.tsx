@@ -1,6 +1,6 @@
-import { IGroupFile } from '../../../../global/interfaces/groups';
-import { baseURL } from '../../../../global/store/store';
-import s from './GroupAttachments.module.scss';
+import { IGroupFile } from "../../../../global/interfaces/groups";
+import { baseURL } from "../../../../global/store/store";
+import s from "./GroupAttachments.module.scss";
 
 export default function GroupPhotos(props: {
     images?: IGroupFile[]

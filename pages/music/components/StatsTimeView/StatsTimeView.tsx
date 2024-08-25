@@ -1,4 +1,4 @@
-import s from './StatsTimeView.module.scss';
+import s from "./StatsTimeView.module.scss";
 
 export default function StatsTimeView() {
     return (

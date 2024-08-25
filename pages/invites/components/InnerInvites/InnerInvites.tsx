@@ -1,7 +1,7 @@
 import { IInnerInvites } from "../../../../global/interfaces";
 import { IInnerInviteEvent } from "../../../../global/interfaces/events";
 import { baseURL } from "../../../../global/store/store";
-import s from './InnerInvites.module.scss';
+import s from "./InnerInvites.module.scss";
 
 interface IInnerInvitesProps {
     invites: IInnerInviteEvent[],

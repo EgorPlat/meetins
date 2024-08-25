@@ -1,7 +1,7 @@
-import AddCommentIntoGroupPost from '../../../../global/forms/AddCommentIntoGroupPost/Index';
-import { IGroup, IGroupPostComment } from '../../../../global/interfaces/groups';
-import { baseURL } from '../../../../global/store/store';
-import s from './groupCommentsView.module.scss';
+import AddCommentIntoGroupPost from "../../../../global/forms/AddCommentIntoGroupPost/Index";
+import { IGroup } from "../../../../global/interfaces/groups";
+import { baseURL } from "../../../../global/store/store";
+import s from "./groupCommentsView.module.scss";
 
 export default function GroupCommentsView(props: {
     groupInfo: IGroup,

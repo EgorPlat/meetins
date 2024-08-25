@@ -22,7 +22,7 @@ export default function ChatMessageForm(
     const { handleActivateMedia, mediaChunks } = useUserMediaTracks({
         video: false,
         audio: true,
-        htmlElementIdForStopMedia: 'audioMessageStop'
+        htmlElementIdForStopMedia: "audioMessageStop"
     });
 
     const sendForm = () => {
@@ -39,7 +39,7 @@ export default function ChatMessageForm(
             addNotification({
                 text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
                 type: "info",
-                textColor: 'black',
+                textColor: "black",
                 time: 3000
             });
             return;
@@ -52,7 +52,7 @@ export default function ChatMessageForm(
     useEffect(() => {
         if (mediaChunks) {
             const voiceBlob = new Blob(mediaChunks, {
-                type: 'audio/mp3'
+                type: "audio/mp3"
             });
             setIsMediaRecorderActive(false);
             createdSendFileAndUploadActiveChat(voiceBlob);
@@ -67,7 +67,7 @@ export default function ChatMessageForm(
             addNotification({
                 text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
                 type: "info",
-                textColor: 'black',
+                textColor: "black",
                 time: 3000
             });
         }

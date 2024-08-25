@@ -48,7 +48,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const { handleActivateMedia, mediaChunks } = useUserMediaTracks({
         video: { width: 200, height: 200 },
         audio: true,
-        htmlElementIdForStopMedia: 'videoMessageStop'
+        htmlElementIdForStopMedia: "videoMessageStop"
     });
 
 
@@ -68,7 +68,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
 
     const handleOpenVideoCall = () => {
         if (connection$) {
-            connection$.emit('get-peerID-for-call', { userId: activeChat$.userId }, (res: string) => {
+            connection$.emit("get-peerID-for-call", { userId: activeChat$.userId }, (res: string) => {
                 if (res.length !== 0) {
                     setPeerIDForCall(res);
                     setIsVideoCallOpened(true);
@@ -99,7 +99,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
         if (mediaChunks) {
             setVideoMessageActive(false);
             const blob = new Blob(mediaChunks, {
-                type: 'video/mp4',
+                type: "video/mp4",
             });
             createdSendFileAndUploadActiveChat(blob);
         }
@@ -131,7 +131,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                             />
                         </div>
                         <div className={isUserOnline ? s.statusOnline : s.status}>
-                            {isUserOnline ? t('В сети') : t('Не в сети')}
+                            {isUserOnline ? t("В сети") : t("Не в сети")}
                         </div>
                     </div>
                     <div className={s.moreActions}>
@@ -174,7 +174,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                                         width="100px"
                                                         height="100px"
                                                     />
-                                                    <a href={baseURL + message.content} target="_blank">{t('Открыть полностью')}</a>
+                                                    <a href={baseURL + message.content} target="_blank">{t("Открыть полностью")}</a>
                                                 </div>
                                             }
                                             {
@@ -189,15 +189,15 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                                 </div>
                                             }
                                             {
-                                                message.type.includes('application') &&
+                                                message.type.includes("application") &&
                                                 <a href={`${baseURL + message.content}`}>{message.content}</a>
                                             }
                                             {
-                                                message.type.includes('audio') &&
+                                                message.type.includes("audio") &&
                                                 <audio controls src={baseURL + message.content}></audio>
                                             }
                                             {
-                                                message.type === 'text' &&
+                                                message.type === "text" &&
                                                 <pre className={s.textMessage}>
                                                     {message.content}
                                                 </pre>

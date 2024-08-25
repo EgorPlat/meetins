@@ -1,33 +1,28 @@
-import { useStore } from "effector-react";
-import { useEffect } from "react";
-import { currentEvents, getEvents, loadedStatus } from "../../../../global/store/events_model";
-import { getCategoryName } from "../../../../global/helpers/utils/getCategoryName";
 import s from "./EventsList.module.scss";
 import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
 import { customizeDateToYYYYMMDDFormat } from "../../../../global/helpers/helper";
 import Link from "next/link";
 import Image from "next/image";
+import { IShortEventInfo } from "../../../../global/interfaces/events";
 
-export default function EventsList(props: {category: string}): JSX.Element {
-
-    const currentEvents$ = useStore(currentEvents);
-    const loadedStatus$ = useStore(loadedStatus);
-    const categoryName = getCategoryName(props.category);
-
-    useEffect(() => {
-        getEvents({categoryName: props.category, page: 1});
-    }, []);
+export default function EventsList(props: {
+    categoryName: string,
+    currentEvents: IShortEventInfo[],
+    loadedStatus: boolean
+}): JSX.Element {
     
+    const { categoryName, currentEvents, loadedStatus } = props;
+
     return (
         <div className={s.content}>
             <div className={s.title}>
                 Текущая категория: {categoryName}
             </div>
             <div className={s.list}>
-                {loadedStatus$ ? 
+                {loadedStatus ? 
                     <div className={s.list}>
                         {
-                            currentEvents$?.slice(currentEvents$.length - 50, currentEvents$.length).map((event) => (
+                            currentEvents?.slice(currentEvents.length - 50, currentEvents.length).map((event) => (
                                 <div 
                                     className={s.eventBody} 
                                     key={event.id}
@@ -74,7 +69,7 @@ export default function EventsList(props: {category: string}): JSX.Element {
                     : <CustomLoader marginTop={100} />
                 }
                 {
-                    loadedStatus$ && currentEvents$.length === 0 
+                    loadedStatus && currentEvents.length === 0 
                         ? <div className={s.errorMessage}>В данной категории пока что нет запланированных мероприятий.</div> 
                         : null
                 }

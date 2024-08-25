@@ -6,7 +6,6 @@ import InterestsPageView from "./components/InterestsPageView/InterestsPageView"
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
-import DragAndDropList from "../../global/components/DragAndDropList/dragAndDropList";
 
 export default function Interests() {
 

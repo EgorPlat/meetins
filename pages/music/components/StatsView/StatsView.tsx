@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import s from './StatsView.module.scss';
-import { getMyMusicStatistic, myStatistic } from '../../../../global/store/music_model';
-import { useStore } from 'effector-react';
-import { baseURL } from '../../../../global/store/store';
+import { useEffect } from "react";
+import s from "./StatsView.module.scss";
+import { getMyMusicStatistic, myStatistic } from "../../../../global/store/music_model";
+import { useStore } from "effector-react";
+import { baseURL } from "../../../../global/store/store";
 
 export default function StatsView() {
 

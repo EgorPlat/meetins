@@ -1,4 +1,4 @@
-import s from './StatsGeoView.module.scss';
+import s from "./StatsGeoView.module.scss";
 
 export default function StatsTGeoView() {
     return (

@@ -30,7 +30,7 @@ export default function Invites() {
 
     const handleVisit = (login: number) => {
         router.push(`/profile/${login}`);
-    }
+    };
 
     useEffect(() => {
         getUserInnerInvitesEventInfo();
