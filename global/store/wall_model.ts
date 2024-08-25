@@ -9,7 +9,7 @@ export const currentWall$ = createStore<IWall[]>(null).on(setCurrentWall, (_, cu
 
 
 export const getCurrentWall = createEffect(async () => {
-    const response = await instance.get('/wall');
+    const response = await instance.get("/wall");
     return response;
 })
 

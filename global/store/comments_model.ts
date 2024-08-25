@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore, sample } from "effector";
+import { createEffect, createEvent, createStore } from "effector";
 import { PostComment } from "../interfaces/comment";
 import { NewComment } from "../interfaces/newComment";
 import { instance } from "./store";
@@ -18,13 +18,13 @@ export const isCurrentPostCommentsLoaded = createStore<boolean>(false).on(setIsC
 });
 
 export const addNewCommentToCurrentPost = createEffect(async (data: NewComment) => {
-    const response = await instance.post('posts/add-new-comment', data);
+    const response = await instance.post("posts/add-new-comment", data);
     addCurrentPostComment(response.data);
 });
 
 export const getCurrentPostsComments = createEffect(async (postId: string) => {
     setIsCurrentPostCommentsLoaded(false);
-    const response = await instance.post('posts/get-all-comments', { postId: postId });
+    const response = await instance.post("posts/get-all-comments", { postId: postId });
     if (response.data) {
         setCurrentPostComments(response.data);
         setIsCurrentPostCommentsLoaded(true);

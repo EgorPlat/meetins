@@ -2,10 +2,10 @@ import { IMyDialog } from "../interfaces";
 
 export const defaultDialog: IMyDialog = {
     dialogId: null, 
-    userName: '',
-    userAvatar: '',
+    userName: "",
+    userAvatar: "",
     isRead: true,
-    content: 'Сообщение',
+    content: "Сообщение",
     messages: [],
     status: true,
     userId: undefined

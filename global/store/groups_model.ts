@@ -40,14 +40,14 @@ export const groupMembersInfo = createStore<IGroupMembersInfo[]>([] as IGroupMem
 
 export const getGroupsList = createEffect(async () => {
     const response = await instance.get(
-        'groups/get-all-groups'
+        "groups/get-all-groups"
     );
     return response;
 });
 
 export const joinToGroup = createEffect(async (groupId: number) => {
     const response = await instance.post(
-        'groups/join-to-group', { groupId: groupId }
+        "groups/join-to-group", { groupId: groupId }
     );
     return response;
 });
@@ -55,7 +55,7 @@ export const joinToGroup = createEffect(async (groupId: number) => {
 
 export const createNewPostInGroup = createEffect(async (data: FormData) => {
     const response = await instance.post(
-        'groups/create-new-post-in-group',
+        "groups/create-new-post-in-group",
         data
     );
     return response;
@@ -63,7 +63,7 @@ export const createNewPostInGroup = createEffect(async (data: FormData) => {
 
 export const createNewGroup = createEffect(async (data: ICreateGroup) => {
     const response = await instance.post(
-        'groups/create-new-group',
+        "groups/create-new-group",
         data
     );
     return response;
@@ -71,7 +71,7 @@ export const createNewGroup = createEffect(async (data: ICreateGroup) => {
 
 export const createNewTalkInGroup = createEffect(async (data: { title: string, groupId: string }) => {
     const response = await instance.post(
-        'groups/create-new-talk-in-group',
+        "groups/create-new-talk-in-group",
         data
     );
     return response;
@@ -79,14 +79,14 @@ export const createNewTalkInGroup = createEffect(async (data: { title: string, g
 
 export const getGroupMembersInfo = createEffect(async (id: number) => {
     const response = await instance.post(
-        'groups/get-group-members-info', { id: id }
+        "groups/get-group-members-info", { id: id }
     );
     return response;
 });
 
 export const getGroupById = createEffect(async (id: number) => {
     const response = await instance.post(
-        'groups/get-group-by-id', { id: id }
+        "groups/get-group-by-id", { id: id }
     );
     return response;
 });
@@ -96,21 +96,21 @@ export const getGroupTalkMessageByTalkId = createEffect(async (groupData: {
     talkId: number,
 }) => {
     const response = await instance.post(
-        'groups/get-group-talk-messages-by-id', { groupId: groupData.groupId, talkId: groupData.talkId }
+        "groups/get-group-talk-messages-by-id", { groupId: groupData.groupId, talkId: groupData.talkId }
     );
     return response;
 });
 
 export const getGroupTalksList = createEffect(async (groupId: number) => {
     const response = await instance.post(
-        'groups/get-group-talks-by-id', { groupId }
+        "groups/get-group-talks-by-id", { groupId }
     );
     return response;
 });
 
 export const manageGroup = createEffect(async (formData: FormData) => {
     const response = await instance.post(
-        'groups/manage-group-by-id', formData
+        "groups/manage-group-by-id", formData
     );
     return response;
 });
@@ -132,11 +132,11 @@ export const createNewMessageInGroupTalk = createEffect(async (groupData: {
     text: string
 }) => {
     const response = await instance.post(
-        'groups/create-new-message-in-group-talk', {
-        groupId: groupData.groupId,
-        talkId: groupData.talkId,
-        text: groupData.text
-    }
+        "groups/create-new-message-in-group-talk", {
+            groupId: groupData.groupId,
+            talkId: groupData.talkId,
+            text: groupData.text
+        }
     );
     return response;
 });

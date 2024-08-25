@@ -30,7 +30,7 @@ selectedMeeting.on(addCommentToSelectedMeeting, (meeting, comment) => {
 })
 
 export const getAllMeetings = createEffect(async () => {
-    const meetings = await instance.get('meetings/get-all-meetings');
+    const meetings = await instance.get("meetings/get-all-meetings");
     return meetings;
 })
 
@@ -41,22 +41,22 @@ export const uploadFileToMediaMeeting = createEffect(async (params: {
 ) => {
     const file = params.event.target.files[0];
     const formData = new FormData();
-    formData.append('uploadedFile', file);
-    formData.append('meetingId', params.meetingId)
+    formData.append("uploadedFile", file);
+    formData.append("meetingId", params.meetingId)
 
-    const response = await instance.post<IMeeting>('/meetings/upload-media', formData);
+    const response = await instance.post<IMeeting>("/meetings/upload-media", formData);
     return response;
 });
 
 export const handleCreateNewMeeting = createEffect(async (meeting: ICreateMeeting) => {
-    const response = await instance.post<IMeeting>('/meetings/create-meeting', meeting);
+    const response = await instance.post<IMeeting>("/meetings/create-meeting", meeting);
     return response;
 });
 
 export const handleSendCommentIntoMeeting = createEffect(async (params: {
     meetingId: string, text: string
 }) => {
-    const response = await instance.post<IMeeting>('/meetings/send-comment', {
+    const response = await instance.post<IMeeting>("/meetings/send-comment", {
         meetingId: params.meetingId,
         text: params.text
     });

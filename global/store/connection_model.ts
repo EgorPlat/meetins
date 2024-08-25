@@ -13,7 +13,7 @@ export const connection = createStore<Socket | null>(null).on(
 );
 export const connectionWatcher = createEffect((obj: { connection: Socket, activeChat: IMyDialog }) => {
     obj.connection.removeAllListeners();
-    obj.connection.on('message', (message: any) => {
+    obj.connection.on("message", (message: any) => {
         if (message.dialogId === obj.activeChat.dialogId) {
             if (obj.activeChat.userName === message.senderName) {
                 setActiveChat({
@@ -26,11 +26,11 @@ export const connectionWatcher = createEffect((obj: { connection: Socket, active
             setIsUserUnReadMessagesExists(true);
         }
     });
-    obj.connection.on('updateUsers', (message: any) => {
+    obj.connection.on("updateUsers", (message: any) => {
         setOnlineUsers(message.users);
     });
-    obj.connection.on('connect', () => {
-        console.log('connect');
+    obj.connection.on("connect", () => {
+        console.log("connect");
     });
 })
 sample({

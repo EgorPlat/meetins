@@ -33,7 +33,7 @@ export const isPagePending = createStore<boolean>(false).on(setIsPagePending, (_
 
 export const getAllPeoplesByPageNumber = createEffect(async (data: { pageNumber: number, pageSize: number, filters: any }) => {
     setIsPeoplesLoaded(false);
-    const response = await instance.post('/users/getUserListByPageNumber', {
+    const response = await instance.post("/users/getUserListByPageNumber", {
         pageNumber: data.pageNumber,
         pageSize: data.pageSize,
         filters: data.filters
@@ -56,7 +56,7 @@ sample({
 })
 
 export const getAllPeoples = createEffect(async () => {
-    const response = await instance.get('/users/getUserList');
+    const response = await instance.get("/users/getUserList");
     if (response.status === 200) {
         setAllPeoples(response.data);
         return response.data;

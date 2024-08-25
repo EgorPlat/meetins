@@ -83,28 +83,28 @@ activeMusic.on(setActiveMusicCurrentTime, (prevActiveMusic, currentTime) => {
 
 export const addNewMusic = createEffect(async (data: FormData) => {
     const response = await instance.post(
-        'music/add', data
+        "music/add", data
     );
     return response;
 })
 
 export const getAllMusic = createEffect(async () => {
     const response = await instance.get(
-        'music/getAll'
+        "music/getAll"
     );
     return response;
 })
 
 export const getMyMusicStatistic = createEffect(async () => {
     const response = await instance.get(
-        'music/mine-statistic'
+        "music/mine-statistic"
     );
     return response;
 })
 
 export const getAuthorsStatistic = createEffect(async () => {
     const response = await instance.get(
-        'music/statistic'
+        "music/statistic"
     );
     return response;
 })
@@ -118,14 +118,14 @@ export const addPlaysToComposition = createEffect(async (params: { authorId: str
 
 export const getMatchesList = createEffect(async () => {
     const response = await instance.get(
-        `music/matches`
+        "music/matches"
     );
     return response;
 })
 
 export const getAuthorCurrentName = createEffect(async () => {
     const response = await instance.get(
-        `music/getAuthorCurrentName`
+        "music/getAuthorCurrentName"
     );
     return response;
 })
