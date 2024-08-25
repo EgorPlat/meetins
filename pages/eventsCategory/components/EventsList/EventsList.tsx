@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { currentEvents, getEvents, loadedStatus } from "../../../../global/store/events_model";
 import { getCategoryName } from "../../../../global/helpers/utils/getCategoryName";
 import s from "./EventsList.module.scss";
-import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
 import { customizeDateToYYYYMMDDFormat } from "../../../../global/helpers/helper";
 import Link from "next/link";
 import Image from "next/image";

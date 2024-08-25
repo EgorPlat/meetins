@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./MarkedPageView.module.scss";
-import CustomStepper from "../../../../components-ui/CustomStepper/CustomStepper";
+import CustomStepper from "../../../../global/components-ui/CustomStepper/CustomStepper";
 import MarkedUsers from "../MarkedUsers/markedUsers";
 import MarkedEvents from "../MarkedEvents/markedEvents";
 

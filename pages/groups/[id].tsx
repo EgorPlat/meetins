@@ -15,7 +15,7 @@ import { destrucutreFilesInGroupPost } from "../../global/helpers/helper";
 import { useStore } from "effector-react";
 import { $user } from "../../global/store/store";
 import { IGroupPost, IGroupTalkMessage } from "../../global/interfaces/groups";
-import CustomModal from "../../components-ui/CustomModal/CustomModal";
+import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
 import ManageGroup from "../../global/forms/ManageGroup/Index";
 import AddNewPostIntoGroupForm from "../../global/forms/AddNewPostIntoGroup/Index";
 import GroupTalksMessagesView from "./components/GroupTalksMessagesView/GroupTalksMessagesView";
@@ -24,7 +24,7 @@ import AddNewTalkInGroup from "../../global/forms/AddNewTalkInGroup/Index";
 import AddNewMessageIntoGroupTalk from "../../global/forms/AddNewMessageIntoGroupTalk";
 import GroupCommentsView from "./components/GroupCommentsView";
 import GroupAttachments from "./components/GroupAttachments/GroupAttachments";
-import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
 import GroupInfoPageView from "./components/GroupInfoPageView/GroupInfoPageView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 

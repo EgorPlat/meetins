@@ -10,11 +10,11 @@ import {
     activeMusicId
 } from "../../global/store/music_model";
 import { useStore } from "effector-react";
-import CustomModal from "../../components-ui/CustomModal/CustomModal";
+import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
 import StatsView from "./components/StatsView/StatsView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MusicPageView from "./components/MusicPageView/MusicPageView";
-import CustomStepper from "../../components-ui/CustomStepper/CustomStepper";
+import CustomStepper from "../../global/components-ui/CustomStepper/CustomStepper";
 import StatsTimeView from "./components/StatsTimeView/StatsTimeView";
 import StatsGeoView from "./components/StatsGeoView/StatsGeoView";
 import useDebounce from "../../global/hooks/useDebounce";

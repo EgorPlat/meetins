@@ -1,7 +1,7 @@
 import { FaGithub, FaTelegram } from "react-icons/fa6";
 import { BiLogoGmail } from "react-icons/bi";
 import Link from "next/link";
-import CustomShowUpComponent from "../../../../components-ui/CustomShowUpText/CustomShowUpComponent";
+import CustomShowUpComponent from "../../../../global/components-ui/CustomShowUpText/CustomShowUpComponent";
 import s from "./AboutPageView.module.scss";
 
 export default function AboutPageView() {

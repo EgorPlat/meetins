@@ -1,7 +1,7 @@
 import s from './CustomTimer.module.scss';
-import { useCountDown } from '../../global/hooks/useCountDown';
+import { useCountDown } from '../../hooks/useCountDown';
 import { useEffect, useState } from 'react';
-import useDebounce from '../../global/hooks/useDebounce';
+import useDebounce from '../../hooks/useDebounce';
 
 interface ICustomTimerProps {
     dateFrom: string | number | Date,

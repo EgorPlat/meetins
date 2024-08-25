@@ -4,7 +4,7 @@ import { TfiStatsUp } from "react-icons/tfi";
 import { IActiveMusic, IMatch, IMusicAuthors, IMusicAuthorsStatistics } from '../../../../global/interfaces/music';
 import { PiMusicNotesPlus } from 'react-icons/pi';
 import { MusicPlayer } from '../../../../global/components/MusicPlayer/MusicPlayer';
-import CustomModal from '../../../../components-ui/CustomModal/CustomModal';
+import CustomModal from '../../../../global/components-ui/CustomModal/CustomModal';
 import AddMusic from '../../../../global/forms/AddMusic/Index';
 import { baseURL } from '../../../../global/store/store';
 import Link from 'next/link';

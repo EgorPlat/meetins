@@ -5,7 +5,7 @@ import { getMyDialogs, isMyDialogsLoaded, myDialogs, setMyDialogs } from "../../
 import { $user } from "../../../../global/store/store";
 import UserChatCard from "../UserChatCard/userChatCard";
 import s from "./chatList.module.scss";
-import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
  
 export default function ChatList(): JSX.Element {
 

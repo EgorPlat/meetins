@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import s from './buttonWithHint.module.scss';
-import { setIsScrollPageBlocked } from '../../global/store/store';
+import { setIsScrollPageBlocked } from '../../store/store';
 import { useTranslation } from 'react-i18next';
 
 interface IHintProps {

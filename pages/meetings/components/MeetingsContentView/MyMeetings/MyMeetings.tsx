@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import s from './MyMeetings.module.scss';
 import { BsCalendarPlus } from 'react-icons/bs';
-import CustomModal from '../../../../../components-ui/CustomModal/CustomModal';
+import CustomModal from '../../../../../global/components-ui/CustomModal/CustomModal';
 import AddNewMeetingForm from '../../../../../global/forms/AddNewMeeting/Index';
 import { IMeeting } from '../../../../../global/interfaces/meetings';
 import MeetingWrapper from '../MeetingWrapper/MeetingWrapper';

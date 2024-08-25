@@ -5,7 +5,7 @@ import { $user } from "../../global/store/store";
 import { addNotification } from "../../global/store/notifications_model";
 import MeetingsFilesList from "./components/MeetingsFilesList/MeetingsFilesList";
 import AddCommentIntoMeeting from "../../global/forms/AddCommentIntoMeeting/Index";
-import CustomModal from "../../components-ui/CustomModal/CustomModal";
+import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MeetingsRoomPageView from "./components/MeetingsRoomPageView/MeetingsRoomPageView";
 

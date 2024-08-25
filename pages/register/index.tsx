@@ -22,7 +22,7 @@ import {
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next"
-import Input from "../../components-ui/Input/Input"
+import Input from "../../global/components-ui/Input/Input"
 import Link from "next/link"
 import { addNotification } from "../../global/store/notifications_model"
 

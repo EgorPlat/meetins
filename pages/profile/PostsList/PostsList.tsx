@@ -10,8 +10,8 @@ import { FaComments } from "react-icons/fa";
 import { CgCalendarDates } from "react-icons/cg";
 import CurrentPostComments from "./CurrentPostComments/CurrentPostComments";
 import PostCommentForm from "./PostCommentForm/PostCommentForm";
-import CustomModal from "../../../components-ui/CustomModal/CustomModal";
-import CustomSlider from "../../../components-ui/CustomSlider/CustomSlider";
+import CustomModal from "../../../global/components-ui/CustomModal/CustomModal";
+import CustomSlider from "../../../global/components-ui/CustomSlider/CustomSlider";
 
 export default function PostsList(props: { currentUser: User, authedUser: User }): JSX.Element {
 

@@ -11,12 +11,12 @@ import ManageAccountForm from "../../global/forms/ManageAccount/Index";
 import ru from "../../public/images/ru.png";
 import us from "../../public/images/us.png";
 import Image from "next/image";
-import CustomLoader from "../../components-ui/CustomLoader/CustomLoader";
-import TurnOffOn from "../../components-ui/TurnOffOn/TurnOffOn";
-import ButtonWithHint from "../../components-ui/Hint/buttonWithHint";
+import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
+import TurnOffOn from "../../global/components-ui/TurnOffOn/TurnOffOn";
+import ButtonWithHint from "../../global/components-ui/Hint/buttonWithHint";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import s from "./settings.module.scss";
-import CustomModal from "../../components-ui/CustomModal/CustomModal";
+import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
 
 export default function Settings(): JSX.Element {
 

@@ -7,7 +7,7 @@ import { PostComment } from "../../../../global/interfaces/comment";
 import { currentPostComments, getCurrentPostsComments, isCurrentPostCommentsLoaded } from "../../../../global/store/comments_model";
 import { baseURL } from "../../../../global/store/store";
 import s from "./CurrentPostComments.module.scss";
-import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
 
 export default function CurrentPostComments (props: {post: Post}) {
 

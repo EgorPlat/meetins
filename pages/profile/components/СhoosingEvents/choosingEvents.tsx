@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from "./choosingEvents.module.scss";
 import { useStore } from "effector-react";
 import { getUserEventsInfo, loadedStatus, setUserEvents, userEvents } from "../../../../global/store/events_model";
-import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
 
 export default function ChoosingEvents(props: {
     choosedEvent: (eventId: number) => void

@@ -1,5 +1,5 @@
-import CustomLoader from '../../../../components-ui/CustomLoader/CustomLoader';
-import CustomStepper from '../../../../components-ui/CustomStepper/CustomStepper';
+import CustomLoader from '../../../../global/components-ui/CustomLoader/CustomLoader';
+import CustomStepper from '../../../../global/components-ui/CustomStepper/CustomStepper';
 import { IInnerInvites, User } from '../../../../global/interfaces';
 import { IUnitedInvitesEvent } from '../../../../global/interfaces/events';
 import InnerInvites from '../InnerInvites/InnerInvites';

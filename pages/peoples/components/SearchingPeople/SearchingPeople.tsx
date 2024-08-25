@@ -18,9 +18,9 @@ import s from "./SearchingPeople.module.scss";
 import { GOALS } from "../../../../global/constants";
 import { $currentInterestsList } from "../../../../global/store/store";
 import { currentEventsInfoLoaded, getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
-import CustomLoader from "../../../../components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
 import InfinityScroll from "../../../../global/components/InfinityScroll/InfinityScroll";
-import CustomButton from "../../../../components-ui/CustomButton/CustomButton";
+import CustomButton from "../../../../global/components-ui/CustomButton/CustomButton";
 
 export default function SearchingPeople(): JSX.Element {
 

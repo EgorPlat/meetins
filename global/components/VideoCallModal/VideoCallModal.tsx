@@ -3,7 +3,7 @@ import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from '..
 import { connection } from '../../store/connection_model';
 import { useStore } from 'effector-react';
 import { FaCamera, FaMicrophone } from 'react-icons/fa6';
-import CustomModal from '../../../components-ui/CustomModal/CustomModal';
+import CustomModal from '../../components-ui/CustomModal/CustomModal';
 import Peer, { MediaConnection } from 'peerjs';
 import s from './VideoCallModal.module.scss';
 

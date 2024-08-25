@@ -1,8 +1,8 @@
-import { Ref } from 'react';
-import ButtonWithHint from '../../../../components-ui/Hint/buttonWithHint';
-import { IInterest } from '../../../../global/interfaces/interest';
-import s from './InterestsPageView.module.scss';
-import CustomAccordion from '../../../../components-ui/CustomAccordion/CustomAccordion';
+import { Ref } from "react";
+import ButtonWithHint from "../../../../global/components-ui/Hint/buttonWithHint";
+import { IInterest } from "../../../../global/interfaces/interest";
+import s from "./InterestsPageView.module.scss";
+import CustomAccordion from "../../../../global/components-ui/CustomAccordion/CustomAccordion";
 
 export default function InterestsPageView ({ handleSendForm, currentInterests, titleRef }: {
     handleSendForm: () => void,
@@ -28,7 +28,7 @@ export default function InterestsPageView ({ handleSendForm, currentInterests, t
                         <ButtonWithHint 
                             title='?'
                             hintTitle={
-                                `Здесь указаны все интересы, которые могут быть использованы на сайте.`
+                                "Здесь указаны все интересы, которые могут быть использованы на сайте."
                             }
                             fontSize={13}
                         />

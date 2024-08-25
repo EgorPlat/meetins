@@ -7,7 +7,7 @@ import { BiComment, BiPhotoAlbum } from "react-icons/bi";
 import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
 import { FiSettings } from "react-icons/fi";
 import { User } from "../../../../global/interfaces";
-import CustomSlider from "../../../../components-ui/CustomSlider/CustomSlider";
+import CustomSlider from "../../../../global/components-ui/CustomSlider/CustomSlider";
 import s from "./GroupInfoPageView.module.scss";
 
 export default function GroupInfoPageView(props: {

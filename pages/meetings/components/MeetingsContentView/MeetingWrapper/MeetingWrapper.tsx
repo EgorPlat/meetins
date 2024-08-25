@@ -3,7 +3,7 @@ import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../../global/helpers
 import { IMeeting } from "../../../../../global/interfaces/meetings";
 import { baseURL, isMobile } from "../../../../../global/store/store";
 import s from "./MeetingWrapper.module.scss";
-import CustomTimer from "../../../../../components-ui/CustomTimer/CustomTimer";
+import CustomTimer from "../../../../../global/components-ui/CustomTimer/CustomTimer";
 import Link from "next/link";
 
 export default function MeetingWrapper(props: {

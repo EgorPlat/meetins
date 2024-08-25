@@ -13,7 +13,7 @@ import { $user } from "../../global/store/store";
 import { addNotification } from "../../global/store/notifications_model";
 import EventBlock from "./components/EventBlock";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
-import Loader from "../../components-ui/Loader/Loader";
+import Loader from "../../global/components-ui/Loader/Loader";
 
 
 export default function EventInfo(): JSX.Element {

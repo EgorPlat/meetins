@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import Head from "next/head";
 import s from "./peoples.module.scss";
-import CustomStepper from "../../components-ui/CustomStepper/CustomStepper";
+import CustomStepper from "../../global/components-ui/CustomStepper/CustomStepper";
 import SearchingPeople from "./components/SearchingPeople/SearchingPeople";
 import GroupsList from "./components/GroupsList/GroupsList";
 import LentaList from "./components/LentaList/LentaList";

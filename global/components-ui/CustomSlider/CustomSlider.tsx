@@ -1,7 +1,7 @@
 import { TouchEventHandler, useEffect, useState } from "react";
 import s from "./CustomSlider.module.scss";
 import { useStore } from "effector-react";
-import { isMobile } from "../../global/store/store";
+import { isMobile } from "../../store/store";
 
 interface ICustomSliderProps {
     files: {

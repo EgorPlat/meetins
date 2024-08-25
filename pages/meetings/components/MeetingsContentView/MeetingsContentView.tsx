@@ -1,4 +1,4 @@
-import CustomStepper from "../../../../components-ui/CustomStepper/CustomStepper";
+import CustomStepper from "../../../../global/components-ui/CustomStepper/CustomStepper";
 import { User } from "../../../../global/interfaces";
 import { IMeeting } from "../../../../global/interfaces/meetings";
 import CompletedMeetings from "./CompletedMeetings/CompletedMeetings";

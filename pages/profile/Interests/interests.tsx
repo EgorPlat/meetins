@@ -5,7 +5,7 @@ import { MdInterests } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import ChangingInterests from "./ChangingInterests/ChangingInterests";
 import s from "./interests.module.scss";
-import CustomModal from "../../../components-ui/CustomModal/CustomModal";
+import CustomModal from "../../../global/components-ui/CustomModal/CustomModal";
 
 export default function Interests(props: {
     user: User,
