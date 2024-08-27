@@ -4,7 +4,7 @@ import s from "./MeetingsRoomPageView.module.scss";
 import CustomProgressBar from "../../../../global/components-ui/CustomProgressBar/CustomProgressBar";
 import { IMeeting } from "../../../../global/interfaces/meetings";
 import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
-import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/functions/getDateInYYYYMMDDHHFormat";
 import { ChangeEvent, useRef } from "react";
 import Link from "next/link";
 

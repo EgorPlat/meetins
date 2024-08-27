@@ -15,7 +15,7 @@ import {
 } from "../../../../global/store/peoples_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
-import { GOALS } from "../../../../global/constants";
+import { GOALS } from "../../../../global/helpers/constants";
 import { $currentInterestsList } from "../../../../global/store/store";
 import { currentEventsInfoLoaded, getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
 import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";

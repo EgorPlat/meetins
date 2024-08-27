@@ -1,12 +1,12 @@
-import Image from "next/image"
 import { useForm } from "react-hook-form"
+import { useState } from "react"
+import Image from "next/image"
 import loginIcon from "../../public/images/login.svg"
 import passIcon from "../../public/images/pass.svg"
 import phoneIcon from "../../public/images/phone.svg"
 import femaleIcon from "../../public/images/female.svg"
 import maleIcon from "../../public/images/male.svg"
 import s from "../../styles/pageStyles/auth.module.scss"
-import { useState } from "react"
 import EyeIcon from "../../global/helpers/Icons/EyeIcon"
 import logo from "../../public/images/logo.svg";
 

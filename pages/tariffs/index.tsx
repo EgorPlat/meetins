@@ -14,7 +14,7 @@ export default function Tariffs({ tarrifs }) {
 }
 
 export const getStaticProps = async () => {
-    const response = await fetch(baseURL + 'tariffs/getTariffsInfo');
+    const response = await fetch(baseURL + "tariffs/getTariffsInfo");
     const tarrifs = await response.json();
     return {
         props: { tarrifs: tarrifs }

@@ -1,7 +1,7 @@
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { customizeDateToYYYYMMDDFormat } from "../../../../global/helpers/helper";
+import { customizeDateToYYYYMMDDFormat } from "../../../../global/functions/getDateInYYYYMMDDFormat";
 import { Post } from "../../../../global/interfaces";
 import { PostComment } from "../../../../global/interfaces/comment";
 import { currentPostComments, getCurrentPostsComments, isCurrentPostCommentsLoaded } from "../../../../global/store/comments_model";

@@ -4,9 +4,9 @@ import { AiFillHeart, AiOutlineEye, AiOutlineVideoCamera } from "react-icons/ai"
 import { RiDiscussLine } from "react-icons/ri";
 import { ImAttachment } from "react-icons/im";
 import { BiComment, BiPhotoAlbum } from "react-icons/bi";
-import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
 import { FiSettings } from "react-icons/fi";
 import { User } from "../../../../global/interfaces";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/functions/getDateInYYYYMMDDHHFormat";
 import CustomSlider from "../../../../global/components-ui/CustomSlider/CustomSlider";
 import s from "./GroupInfoPageView.module.scss";
 

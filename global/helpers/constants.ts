@@ -54,3 +54,12 @@ export const MEETINGS_CONTENT = {
 export const GOALS = ["Новые отношения","Друзей","Новые Интересы","Встречи","События","Общение в сети"];
 export const EVENTS = ["По Москве на автобусе","История любви","\"Энканто\"","Green DAY"];
 export const POPULAR_INTERESTS = ["Программирование", "Бизнес", "Кухня", "Природа"];
+
+export const CATEGORY_NAMES = [
+    {en: "theater", ru: "Театр"},
+    {en: "cinema", ru: "Кино"},
+    {en: "concert", ru: "Концерты"},
+    {en: "exhibition", ru: "Выставки"},
+    {en: "tour", ru: "Экскурсии"},
+    {en: "quest", ru: "Квесты"},
+]

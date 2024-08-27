@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../../global/helpers/helper";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../../global/functions/getDateInYYYYMMDDHHFormat";
 import { IMeeting } from "../../../../../global/interfaces/meetings";
 import { baseURL, isMobile } from "../../../../../global/store/store";
 import s from "./MeetingWrapper.module.scss";

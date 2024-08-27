@@ -4,7 +4,7 @@ import { IWall } from "../../../../global/interfaces/wall";
 import { baseURL } from "../../../../global/store/store";
 import CustomSlider from "../../../../global/components-ui/CustomSlider/CustomSlider";
 import CustomEditMenu from "../../../../global/components-ui/CustomEditMenu/CustomEditMenu";
-import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/helpers/helper";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/functions/getDateInYYYYMMDDHHFormat";
 import { AiFillHeart } from "react-icons/ai";
 import LazyLoad from "../../../../global/components/LazyLoadViewport";
 

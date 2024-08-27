@@ -1,5 +1,5 @@
 
-import { EMOJI } from "../../../../../global/constants"
+import { EMOJI } from "../../../../../global/helpers/constants"
 import s from "./emojiList.module.scss"
 
 export default function EmojiList(props: {

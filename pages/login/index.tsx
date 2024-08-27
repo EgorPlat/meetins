@@ -1,10 +1,10 @@
-import Head from "next/head";
 import { useForm } from "react-hook-form";
 import { isEmail } from "../../global/helpers/validate";
 import { $loginLoading, sendLogData } from "../../global/store/login_model";
-import { useState } from "react";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
+import { addNotification } from "../../global/store/notifications_model";
+import Head from "next/head";
 import Input from "../../global/components-ui/Input/Input";
 import Link from "next/link";
 import logo from "../../public/images/logo.svg";
@@ -12,14 +12,11 @@ import Image from "next/image";
 import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
 import loginIcon from "../../public/images/login.svg";
 import passIcon from "../../public/images/pass.svg";
-import "bootstrap/dist/css/bootstrap.min.css";
 import s from "../../styles/pageStyles/auth.module.scss";
-import { addNotification } from "../../global/store/notifications_model";
 
 export default function Login(): JSX.Element {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const [errorMessage, setErrorMessage] = useState<string>("");
     const loginLoading = useStore($loginLoading);
     const { t } = useTranslation();
 
@@ -81,10 +78,6 @@ export default function Login(): JSX.Element {
                         })}
                     />
                     {errors.password && <span className={s.errorSpan}>{t("Не менее 6-ти символов, не более 12-ти символов")}</span>}
-                    {errorMessage !== "" ?
-                        <div className={`row ${s.errorBlock}`}>
-                            {t("Вы ввели неверные данные. Пожалуйста проверьте правильность и попробуйте снова")}
-                        </div> : null}
                     <button type='submit' className={`${s.submitBtn} btn`} >
                         {
                             loginLoading ? <CustomLoader /> : t("Войти")
