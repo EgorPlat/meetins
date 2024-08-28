@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import s from "./CustomStepper.module.scss";
+import CustomLoader from "../CustomLoader/CustomLoader";
 
 interface IStep { title: string, component: any, props?: Record<string, any> };
 interface ICustomStepperProps {
@@ -39,7 +40,9 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
             </div>
             <div className={s.activeStepContent}>
                 {
-                    !CustomComponentProps ? <CustomComponent /> : <CustomComponent {...CustomComponentProps} />
+                    !CustomComponentProps 
+                        ? <CustomComponent />
+                        : <CustomComponent {...CustomComponentProps} />
                 }
             </div>
         </div>

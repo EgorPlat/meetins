@@ -6,6 +6,7 @@ import { isAccountUpdated, updateUserAccountData } from "../../store/settings_mo
 import { $user } from "../../store/store";
 import s from "./manageAccount.module.scss";
 import FormContainer from "../../components/FormContainer/FormContainer";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
 
 export default function ManageAccountForm(): JSX.Element {
 
@@ -58,7 +59,7 @@ export default function ManageAccountForm(): JSX.Element {
                         ? <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (email, адрес)</div>
                         : null 
                 }
-                <button type="submit">{t("Сохранить")}</button>
+                <CustomButton type="submit" text={t("Сохранить")} />
             </form>
         </FormContainer>
     )

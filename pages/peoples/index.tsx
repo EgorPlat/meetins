@@ -7,9 +7,18 @@ import PageContainer from "../../global/components/PageContainer/pageContainer";
 import Head from "next/head";
 import s from "./peoples.module.scss";
 import CustomStepper from "../../global/components-ui/CustomStepper/CustomStepper";
-import SearchingPeople from "./components/SearchingPeople/SearchingPeople";
-import GroupsList from "./components/GroupsList/GroupsList";
-import LentaList from "./components/LentaList/LentaList";
+import dynamic from "next/dynamic";
+import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
+
+const SearchingPeople = dynamic(() => import("./components/SearchingPeople/SearchingPeople"), {
+    loading: () => <CustomLoader />
+});
+const GroupsList = dynamic(() => import("./components/GroupsList/GroupsList"), {
+    loading: () => <CustomLoader />
+});
+const LentaList = dynamic(() => import("./components/LentaList/LentaList"), {
+    loading: () => <CustomLoader />
+});
 
 export default function Peoples(): JSX.Element {
 

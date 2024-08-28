@@ -1,6 +1,6 @@
-import { IGroup } from '../../../../../global/interfaces/groups';
-import { baseURL } from '../../../../../global/store/store';
-import s from './GroupsListView.module.scss';
+import { IGroup } from "../../../../../global/interfaces/groups";
+import { baseURL } from "../../../../../global/store/store";
+import s from "./GroupsListView.module.scss";
 
 export default function GroupsListView (props: {
     groupsList: IGroup[],

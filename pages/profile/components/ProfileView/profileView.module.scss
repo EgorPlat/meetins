@@ -32,8 +32,10 @@
                 box-shadow: 0 0 7px #666;
                 border-radius: 50%;
                 border: 2px solid white;
-                width: 190px;
-                height: 190px;
+                min-width: 190px;
+                min-height: 190px;
+                max-width: 190px;
+                max-height: 190px;
             }
         }
 
@@ -160,8 +162,10 @@
                     justify-items: center;
 
                     & .avatar {
-                        width: 100px;
-                        height: 100px;
+                        min-width: 140px;
+                        min-height: 140px;
+                        max-width: 140px;
+                        max-height: 140px;
                     }
                 }
 

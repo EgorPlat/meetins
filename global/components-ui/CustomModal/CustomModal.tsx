@@ -8,7 +8,7 @@ const CustomModal = (props: {
     changeModal: (status: boolean) => void
     actionConfirmed: (status: boolean) => void,
     title: string,
-    typeOfActions: 'default' | 'none' | 'custom'
+    typeOfActions: "default" | "none" | "custom"
     actionsComponent?: any,
 }): JSX.Element | null => {
 
@@ -31,20 +31,20 @@ const CustomModal = (props: {
                 </div>
                 <div className={s.manageCustomModal}>
                     { 
-                        props.typeOfActions === 'default' 
+                        props.typeOfActions === "default" 
                         &&
                         <>
-                            <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>{t('Подтвердить')}</button>
-                            <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>{t('Закрыть')}</button>
+                            <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>{t("Подтвердить")}</button>
+                            <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>{t("Закрыть")}</button>
                         </>
                     }
                     {
-                        props.typeOfActions === 'custom'
+                        props.typeOfActions === "custom"
                         &&
                         {...props.actionsComponent}
                     }
                     {
-                        props.typeOfActions === 'none'
+                        props.typeOfActions === "none"
                         &&
                         null
                     }

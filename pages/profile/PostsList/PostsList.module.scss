@@ -1,3 +1,16 @@
+.actions {
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+.actions:hover {
+    color: var(--default-color);
+}
+
 .postsList {
     display: grid;
     justify-content: center;
@@ -51,23 +64,11 @@
             position: relative;
 
             & .postActionsLikes {
-                font-size: 18px;
-                cursor: pointer;
-                display: flex;
-                column-gap: 5px;
-                align-items: center;
-                justify-content: center;
-                justify-items: center;
+                @extend .actions;
             }
 
             & .postActionsComments {
-                font-size: 18px;
-                cursor: pointer;
-                display: flex;
-                column-gap: 5px;
-                align-items: center;
-                justify-content: center;
-                justify-items: center;
+                @extend .actions;
             }
 
             & .postActionsViews {

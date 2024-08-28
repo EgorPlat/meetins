@@ -17,7 +17,7 @@ i18n
         ns: ["translations"],
         defaultNS: "translations",
         react: {
-            useSuspense: false,
+            useSuspense: false
         }
     })
 i18n.languages = ["en", "ru"];

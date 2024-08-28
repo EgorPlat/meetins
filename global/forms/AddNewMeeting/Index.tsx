@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import { ICreateMeeting } from "../../interfaces/meetings";
 import { handleCreateNewMeeting } from "../../store/meetings_model";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function AddNewMeetingForm(): JSX.Element {
 
@@ -75,7 +76,7 @@ export default function AddNewMeetingForm(): JSX.Element {
                         })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}
                 </div>
-                <button type="submit">{t("Создать встречу")}</button>
+                <CustomButton type="submit" text={t("Создать встречу")} />
             </form>
         </FormContainer>
     )

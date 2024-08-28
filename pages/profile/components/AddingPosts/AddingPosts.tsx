@@ -5,12 +5,12 @@ import { validatePost } from "../../../../global/helpers/validate";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 import { validateFilesFromInputAndStructuring } from "../../../../global/helpers/helper";
+import CustomButton from "../../../../global/components-ui/CustomButton/CustomButton";
 
 export default function AddingPosts(): JSX.Element {
 
     const ref = useRef(null);
     const { t } = useTranslation();
-    //const [addMode, setAddMode] = useState(true);
     const [postFormData, setPostFormData] = useState({ title: "", description: "", currentFiles: null });
     const isMobile$ = useStore(isMobile);
 
@@ -30,7 +30,6 @@ export default function AddingPosts(): JSX.Element {
     return (
         <div className={s.addingPosts}>
             {
-                //addMode &&
                 <div className={s.addingPostsForm}>
                     <div className={s.addingPostsFormMain}>
                         <input
@@ -57,7 +56,7 @@ export default function AddingPosts(): JSX.Element {
                             placeholder={t("Введите описание к посту")}
                             onChange={(e) => setPostFormData({ ...postFormData, description: e.target.value })}
                         />
-                        <button onClick={sendNewPost}>{t("Добавить")}</button>
+                        <CustomButton onClick={sendNewPost} text={t("Добавить")} />
                     </div>
                 </div>
             }

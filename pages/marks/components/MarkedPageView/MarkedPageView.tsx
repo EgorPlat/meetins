@@ -1,8 +1,11 @@
 import React from "react";
 import s from "./MarkedPageView.module.scss";
 import CustomStepper from "../../../../global/components-ui/CustomStepper/CustomStepper";
-import MarkedUsers from "../MarkedUsers/markedUsers";
-import MarkedEvents from "../MarkedEvents/markedEvents";
+import dynamic from "next/dynamic";
+import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+
+const MarkedUsers = dynamic(() => import("../MarkedUsers/markedUsers"), { loading: () => <CustomLoader /> });
+const MarkedEvents = dynamic(() => import("../MarkedEvents/markedEvents"), { loading: () => <CustomLoader /> });
 
 export default function MarkedPageView(): JSX.Element {
 

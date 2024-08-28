@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import { useStore } from "effector-react";
 import { addNewCommentIntoGroupPost, groupInfo } from "../../store/groups_model";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function AddCommentIntoGroupPost(props: {
     postId: number
@@ -34,7 +35,7 @@ export default function AddCommentIntoGroupPost(props: {
                     />
                     {errors.text ? <span>{errors.text.message}</span> : null}
                 </div>
-                <button type="submit">{t("Добавить комментарий")}</button>
+                <CustomButton type="submit" text={t("Добавить комментарий")} />
             </form>
         </FormContainer>
     )

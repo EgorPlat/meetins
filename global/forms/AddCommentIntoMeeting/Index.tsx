@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import { useStore } from "effector-react";
 import { handleSendCommentIntoMeeting, selectedMeeting } from "../../store/meetings_model";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function AddCommentIntoMeeting(): JSX.Element {
 
@@ -35,7 +36,7 @@ export default function AddCommentIntoMeeting(): JSX.Element {
                     />
                     {errors.text ? <span>{errors.text.message}</span> : null}
                 </div>
-                <button type="submit">{t("Добавить комментарий")}</button>
+                <CustomButton type="submit" text={t("Добавить комментарий")} />
             </form>
         </FormContainer>
     )

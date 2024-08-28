@@ -1,10 +1,12 @@
-import CustomLoader from '../../../../global/components-ui/CustomLoader/CustomLoader';
-import CustomStepper from '../../../../global/components-ui/CustomStepper/CustomStepper';
-import { IInnerInvites, User } from '../../../../global/interfaces';
-import { IUnitedInvitesEvent } from '../../../../global/interfaces/events';
-import InnerInvites from '../InnerInvites/InnerInvites';
-import OuterInvites from '../OuterInvites/OuterInvites';
-import s from './InvitesPageView.module.scss';
+import dynamic from "next/dynamic";
+import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+import CustomStepper from "../../../../global/components-ui/CustomStepper/CustomStepper";
+import { IInnerInvites, User } from "../../../../global/interfaces";
+import { IUnitedInvitesEvent } from "../../../../global/interfaces/events";
+
+const InnerInvites = dynamic(() => import("../InnerInvites/InnerInvites"), { loading: () => <CustomLoader /> });
+const OuterInvites = dynamic(() => import("../OuterInvites/OuterInvites"), { loading: () => <CustomLoader /> });
+import s from "./InvitesPageView.module.scss";
 
 interface IInvitesPageView {
     authedUser: User,

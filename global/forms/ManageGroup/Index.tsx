@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import { useStore } from "effector-react";
 import { groupInfo, manageGroup } from "../../store/groups_model";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function ManageGroup(): JSX.Element {
 
@@ -61,7 +62,7 @@ export default function ManageGroup(): JSX.Element {
                         })}/>
                     {errors.headImage ? <span>{errors.headImage.message}</span> : null}
                 </div>
-                <button type="submit">{t("Сохранить настройки")}</button>
+                <CustomButton type="submit" text={t("Сохранить настройки")} />
             </form>
         </FormContainer>
     )

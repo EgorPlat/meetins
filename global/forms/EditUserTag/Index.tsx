@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import { useStore } from "effector-react";
 import { $user, updateUserTag } from "../../store/store";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function EditUserTag(): JSX.Element {
 
@@ -45,7 +46,7 @@ export default function EditUserTag(): JSX.Element {
                     />
                     {errors.color ? <span>{errors.color.message}</span> : null}
                 </div>
-                <button type="submit">{t("Сохранить изменения")}</button>
+                <CustomButton type="submit" text={t("Сохранить изменения")} />
             </form>
         </FormContainer>
     )

@@ -11,13 +11,16 @@ import {
 } from "../../global/store/music_model";
 import { useStore } from "effector-react";
 import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
-import StatsView from "./components/StatsView/StatsView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import MusicPageView from "./components/MusicPageView/MusicPageView";
 import CustomStepper from "../../global/components-ui/CustomStepper/CustomStepper";
-import StatsTimeView from "./components/StatsTimeView/StatsTimeView";
-import StatsGeoView from "./components/StatsGeoView/StatsGeoView";
 import useDebounce from "../../global/hooks/useDebounce";
+import dynamic from "next/dynamic";
+import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
+
+const StatsView = dynamic(() => import("./components/StatsView/StatsView"), { loading: () => <CustomLoader />});
+const StatsTimeView = dynamic(() => import("./components/StatsTimeView/StatsTimeView"), { loading: () => <CustomLoader />});
+const StatsGeoView = dynamic(() => import("./components/StatsGeoView/StatsGeoView"), { loading: () => <CustomLoader />});
 
 export default function Music() {
 

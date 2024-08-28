@@ -1,10 +1,13 @@
 import CustomStepper from "../../../../global/components-ui/CustomStepper/CustomStepper";
 import { User } from "../../../../global/interfaces";
 import { IMeeting } from "../../../../global/interfaces/meetings";
-import CompletedMeetings from "./CompletedMeetings/CompletedMeetings";
-import FurtherMeetings from "./FurtherMeetings/FurtherMeetings";
-import MyMeetings from "./MyMeetings/MyMeetings";
 import s from "./MeetingsContentView.module.scss";
+import dynamic from "next/dynamic";
+import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+
+const CompletedMeetings = dynamic(() => import("./CompletedMeetings/CompletedMeetings"), { loading: () => <CustomLoader />});
+const FurtherMeetings = dynamic(() => import("./FurtherMeetings/FurtherMeetings"), { loading: () => <CustomLoader />});
+const MyMeetings = dynamic(() => import("./MyMeetings/MyMeetings"), { loading: () => <CustomLoader />});
 
 export default function MeetingsContentView(props: {
     completedMeetings: IMeeting[],

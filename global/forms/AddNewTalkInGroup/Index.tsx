@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import { createNewTalkInGroup } from "../../store/groups_model";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function AddNewTalkInGroup(props: {
     groupId: string,
@@ -38,7 +39,7 @@ export default function AddNewTalkInGroup(props: {
                     />
                     {errors.title ? <span>{errors.title.message}</span> : null}
                 </div>
-                <button type="submit">{t("Начать обсуждение")}</button>
+                <CustomButton type="submit" text={t("Начать обсуждение")} />
             </form>
         </FormContainer>
     )

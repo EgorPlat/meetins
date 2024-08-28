@@ -6,6 +6,7 @@ import { addNotification } from "../../store/notifications_model";
 import { addNewMusic, currentAuthorName, getAuthorCurrentName } from "../../store/music_model";
 import { validateFilesFromInputAndStructuring } from "../../helpers/helper";
 import { useStore } from "effector-react";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
 
 export default function AddMusic(): JSX.Element {
 
@@ -117,7 +118,7 @@ export default function AddMusic(): JSX.Element {
                         })} />
                     {errors.composition ? <span>{errors.composition.message}</span> : null}
                 </div>
-                <button type="submit">{t("Добавить композицию")}</button>
+                <CustomButton type="submit" text={t("Добавить композицию")} />
             </form>
         </FormContainer>
     )

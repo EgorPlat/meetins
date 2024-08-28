@@ -6,6 +6,7 @@ import { ICreateGroup } from "../../interfaces/groups";
 import { useStore } from "effector-react";
 import { $currentInterestsList } from "../../store/store";
 import { createNewGroup } from "../../store/groups_model";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function CreateNewGroupForm(): JSX.Element {
 
@@ -59,7 +60,7 @@ export default function CreateNewGroupForm(): JSX.Element {
                     </select>
                     {errors.interestsId ? <span>{errors.interestsId.message}</span> : null}
                 </div>
-                <button type="submit">{t("Создать сообщество")}</button>
+                <CustomButton type="submit" text={t("Создать сообщество")} />
             </form>
         </FormContainer>
     )

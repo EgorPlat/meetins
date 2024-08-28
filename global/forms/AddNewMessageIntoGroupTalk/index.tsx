@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import { createNewMessageInGroupTalk } from "../../store/groups_model";
 import { IGroupTalkMessage } from "../../interfaces/groups";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function AddNewMessageIntoGroupTalk(props: {
     groupId: number,
@@ -40,7 +41,7 @@ export default function AddNewMessageIntoGroupTalk(props: {
                     />
                     {errors.text ? <span>{errors.text.message}</span> : null}
                 </div>
-                <button type="submit">{t("Отправить сообщение")}</button>
+                <CustomButton type="submit" text={t("Отправить сообщение")} />
             </form>
         </FormContainer>
     )

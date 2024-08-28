@@ -8,6 +8,7 @@ import { $user } from "../../store/store";
 import s from "./profileInfo.module.scss";
 import { customizeDateToInputFormatFromDBFormat } from "../../helpers/helper";
 import FormContainer from "../../components/FormContainer/FormContainer";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
 
 export default function ProfileInfoForm(): JSX.Element {
 
@@ -63,7 +64,7 @@ export default function ProfileInfoForm(): JSX.Element {
                             ? <div className={s.successActionDiv}>Данные успешно сохранены!</div> 
                             : <div className={s.unSuccessActionDiv}>Пожалуйста введите уникальные данные (телефон)</div> 
                 }
-                <button type="submit">{t("Сохранить")}</button>
+                <CustomButton type="submit" text={t("Сохранить")} />
             </form>
         </FormContainer>
     )

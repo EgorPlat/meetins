@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { validateFilesFromInputAndStructuring } from "../../helpers/helper";
 import { createNewPostInGroup } from "../../store/groups_model";
 import FormContainer from "../../components/FormContainer/FormContainer";
+import CustomButton from "../../components-ui/CustomButton/CustomButton";
  
 export default function AddNewPostIntoGroupForm(props: { 
     groupId: string,
@@ -117,7 +118,7 @@ export default function AddNewPostIntoGroupForm(props: {
                     }
                 </div>
                 }
-                <button type="submit">{t("Добавить публикацию")}</button>
+                <CustomButton type="submit" text={t("Добавить публикацию")} />
             </form>
         </FormContainer>
     )
