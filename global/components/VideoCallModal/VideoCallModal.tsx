@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from '../../store/store';
-import { connection } from '../../store/connection_model';
-import { useStore } from 'effector-react';
-import { FaCamera, FaMicrophone } from 'react-icons/fa6';
-import CustomModal from '../../components-ui/CustomModal/CustomModal';
-import Peer, { MediaConnection } from 'peerjs';
-import s from './VideoCallModal.module.scss';
+import { useEffect, useRef, useState } from "react";
+import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from "../../store/store";
+import { connection } from "../../store/connection_model";
+import { useStore } from "effector-react";
+import { FaCamera, FaMicrophone } from "react-icons/fa6";
+import CustomModal from "../../components-ui/CustomModal/CustomModal";
+import Peer, { MediaConnection } from "peerjs";
+import s from "./VideoCallModal.module.scss";
 
 interface IVideoCallModalProps {
     isOpen: boolean,
@@ -16,7 +16,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     const [peer, setPeer] = useState<Peer>(null);
     const [peerCall, setPeerCall] = useState<MediaConnection>(null);
     const [isUserAcceptedCall, setIsUserAcceptedCall] = useState<boolean>(false);
-    const [isMediaActive, setIsMediaActive] = useState<{ video: boolean, audio: boolean }>({ video: true, audio: true });
+    const [isMediaActive, setIsMediaActive] = useState<{ video: boolean, audio: boolean }>({ video: false, audio: true });
 
     const myStreamRef = useRef<HTMLVideoElement>(null);
     const commingStreamRef = useRef<HTMLVideoElement>(null);
@@ -43,11 +43,11 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         if (peerCall) {
             peerCall.close();
         }
-        setIsMediaActive({ video: true, audio: true });
+        setIsMediaActive({ video: false, audio: true });
     };
 
     const handleCloseVideoModal = () => {
-        setIsMediaActive({ video: true, audio: true });
+        setIsMediaActive({ video: false, audio: true });
         setIsVideoCallOpened(false);
         setIsUserAcceptedCall(false);
         handleCloseAllLocalMediaTracks();
@@ -87,7 +87,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 if (peerIDForCall$) {
                     const newPeerCall = peer.call(peerIDForCall$, mediaStream);
                     setPeerCall(newPeerCall);
-                    newPeerCall.on('stream', function (remoteStream) {
+                    newPeerCall.on("stream", function (remoteStream) {
                         setIsUserAcceptedCall(true);
                         if (commingStreamRef && commingStreamRef.current) {
                             commingStreamRef.current.srcObject = remoteStream;
@@ -97,7 +97,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                         };
                     });
 
-                    newPeerCall.on('close', () => {
+                    newPeerCall.on("close", () => {
                         mediaStream.getTracks().forEach(function(track) {
                             track.stop();
                         });
@@ -117,7 +117,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
   
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
         setIsUserAcceptedCall(true);
-        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
             .then(function(mediaStream: MediaStream) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
@@ -131,14 +131,14 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                         myStreamRef.current?.play();
                     };
                 }
-                peerCall.on('close', () => {
+                peerCall.on("close", () => {
                     mediaStream.getTracks().forEach(function(track) {
                         track.stop();
                     });
                     handleCloseVideoModal();
                 });
 
-                peerCall.on('stream', (remoteStream) => {
+                peerCall.on("stream", (remoteStream) => {
                     if (commingStreamRef && commingStreamRef.current) {
                         commingStreamRef.current.srcObject = remoteStream;
                         commingStreamRef.current.onloadedmetadata = function(e) {
@@ -159,14 +159,14 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     useEffect(() => {
         if (connection$) {
             const newPeer: Peer = new Peer();
-            newPeer.on('open', function(peerID) {
-                connection$?.emit('send-peer-id', { userId: authedUser$.userId, peerID: peerID })
+            newPeer.on("open", function(peerID) {
+                connection$?.emit("send-peer-id", { userId: authedUser$.userId, peerID: peerID })
             });
-            newPeer.on('call', function(call: MediaConnection) {
-                const isUserConfirmedCall = confirm('Входящий звонок от пользователя. Принять?');
+            newPeer.on("call", function(call: MediaConnection) {
+                const isUserConfirmedCall = confirm("Входящий звонок от пользователя. Принять?");
                 if (isUserConfirmedCall) {
-                    setIsVideoCallOpened(true);
                     handleAcceptCallFromUser(call);
+                    setIsVideoCallOpened(true);
                 } else {
                     call.close();
                 }
