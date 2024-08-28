@@ -52,16 +52,19 @@
         }
         & .management {
             margin-top: 10px;
-            & .description {
-                font-size: 16px;
-                margin-top: 2px;
-            }
             & .updateSatus {
                 color: green;
                 background-color: rgba(65, 223, 86, 0.3);
                 padding: 5px;
                 width: 50%;
                 margin-top: 2px;
+            }
+            & .infoText {
+                margin-top: 15px;
+                & .description {
+                    font-size: 16px;
+                    margin: 10px 0px 10px 0px;
+                }
             }
         }
         & .filters {
@@ -70,9 +73,6 @@
                 column-gap: 5px;
             }
             margin-bottom: 10px;
-        }
-        & .infoText {
-            margin-top: 5px;
         }
     }
     & .deleteBtn {

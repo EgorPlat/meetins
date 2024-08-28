@@ -17,6 +17,7 @@ import ButtonWithHint from "../../global/components-ui/Hint/buttonWithHint";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import s from "./settings.module.scss";
 import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
+import CustomButton from "../../global/components-ui/CustomButton/CustomButton";
 
 export default function Settings(): JSX.Element {
 
@@ -110,17 +111,15 @@ export default function Settings(): JSX.Element {
                                 <ManageAccountForm />
                             </div> : <CustomLoader />}
                         </div>
-                        <div className={`${s.infoText}`}>
-                            <div className={`${s.description}`}>
+                        <div className={s.infoText}>
+                            <div className={s.description}>
                                 {t("Вы можете изменить адрес аккаунта на более привлекательный")}.<br />
                                 {t("Другие пользователи смогут найти Вас по адресу")} <b>meetins.ru/{t("адрес")}</b><br />
                                 {t("Вы можете удалить свой аккаунт, тогда другие пользователи больше не смогут")}<br />
                                 {t("Вас найти на нашем сайте")}.
                             </div>
+                            <CustomButton text={t("Удалить аккаунт")} onClick={() => changeModal(true)} />
                         </div>
-                    </div>
-                    <div>
-                        <button className={s.deleteBtn} onClick={() => changeModal(true)}>{t("Удалить аккаунт")}</button>
                     </div>
                 </div>
                 <CustomModal

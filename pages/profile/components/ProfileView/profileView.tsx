@@ -130,13 +130,19 @@ export default function ProfileView(props: {
                                         {getDateInDMYFormat(activeUser.dateRegister)}
                                     </div>
                                     <div className={s.userStatus}>
-                                        {t("статус")}: 
-                                        <span className={s.title}> {props.isCurrentUserOnline ? "В сети" : "Не в сети"}</span>
+                                        <p>{t("статус")}:</p>
+                                        <p className={s.title}>                                        
+                                            {
+                                                props.isCurrentUserOnline || activeUser.login === props.authedUser.login
+                                                    ? "В сети" 
+                                                    : "Не в сети"
+                                            }
+                                        </p>
                                     </div>
-                                    <div className={s.vied}>
+                                    <p className={s.views}>
                                         {t("за последние 24 часа профиль просмотрен")}:
-                                        <span className={s.count}> 150 {t("раз")}</span>
-                                    </div>
+                                        <p className={s.count}> 150 {t("раз")}</p>
+                                    </p>
                                 </div>
                                 { 
                                     activeUser.login !== props.authedUser.login ?

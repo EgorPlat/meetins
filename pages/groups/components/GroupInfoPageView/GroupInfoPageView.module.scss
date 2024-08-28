@@ -140,10 +140,16 @@
                         display: flex;
                         column-gap: 5px;
                     }
+                    & .likes:hover {
+                        color: var(--default-color);
+                    }
 
                     & .comments {
                         display: flex;
                         column-gap: 5px;
+                    }
+                    & .comments:hover {
+                        color: var(--default-color);
                     }
 
                     & .views {
