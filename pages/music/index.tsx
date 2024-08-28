@@ -18,6 +18,7 @@ import useDebounce from "../../global/hooks/useDebounce";
 import dynamic from "next/dynamic";
 import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
 
+const AddMusic = dynamic(() => import("../../global/forms/AddMusic/Index"), { loading: () => <CustomLoader />})
 const StatsView = dynamic(() => import("./components/StatsView/StatsView"), { loading: () => <CustomLoader />});
 const StatsTimeView = dynamic(() => import("./components/StatsTimeView/StatsTimeView"), { loading: () => <CustomLoader />});
 const StatsGeoView = dynamic(() => import("./components/StatsGeoView/StatsGeoView"), { loading: () => <CustomLoader />});
@@ -60,7 +61,6 @@ export default function Music() {
                 <MusicPageView
                     matchesList={matchesList$}
                     setSearchMusic={setSearchMusic}
-                    addMusicModal={addMusicModal}
                     handleSwapMusicModal={handleSwapMusicModal}
                     musicList={musicList$}
                     authorsStatistic={authorsStatistic$}
@@ -81,6 +81,15 @@ export default function Music() {
                             { title: "Гео-данные", component: StatsGeoView }
                         ]}
                     />
+                </CustomModal>
+                <CustomModal 
+                    isDisplay={addMusicModal} 
+                    changeModal={(status) => handleSwapMusicModal(status)} 
+                    actionConfirmed={() => handleSwapMusicModal(true)}
+                    title='Добавить новую композицию'
+                    typeOfActions="none"
+                >
+                    <AddMusic />
                 </CustomModal>
             </>
         </PageContainer>

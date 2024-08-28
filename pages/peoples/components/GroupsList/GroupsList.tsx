@@ -8,6 +8,7 @@ import GroupsListView from "./GroupsListView/GroupsListView";
 import CustomModal from "../../../../global/components-ui/CustomModal/CustomModal";
 import dynamic from "next/dynamic";
 import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+
 const CreateNewGroupForm = dynamic(() => import("../../../../global/forms/CreateNewGroup/Index"));
 
 export default function GroupsList () {

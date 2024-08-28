@@ -5,7 +5,6 @@ import { getInterests, isMobile } from "../../global/store/store";
 import { useRouter } from "next/router";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
 import Head from "next/head";
-import s from "./peoples.module.scss";
 import CustomStepper from "../../global/components-ui/CustomStepper/CustomStepper";
 import dynamic from "next/dynamic";
 import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
@@ -41,7 +40,7 @@ export default function Peoples(): JSX.Element {
 
     return (
         <PageContainer>
-            <div className={s.peoples}>
+            <div style={{ fontSize: "18px" }}>
                 <Head>
                     <title>Meetins - Люди</title>
                     <meta name="description" content="Ищите новые знакомства!" key="desc" />

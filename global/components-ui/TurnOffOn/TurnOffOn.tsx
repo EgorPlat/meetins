@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import s from './TurnOffOn.module.scss';
+import { useState } from "react";
+import s from "./TurnOffOn.module.scss";
 
 export default function TurnOffOn (props: {
     inithialStatus: boolean,
@@ -9,19 +9,12 @@ export default function TurnOffOn (props: {
 
     const handleChangeStatus = () => {
         props.onChange(!animation);
-        setAnimation(!animation);
+        setAnimation((prev) => !prev);
     };
 
     return (
         <div className={s.wrapper}>
-            <div 
-                className={
-                    animation ? s.activeBlockOff : s.activeBlockOn
-                }
-                onClick={handleChangeStatus}
-            >
-
-            </div>
+            <div className={ animation ? s.activeBlockOff : s.activeBlockOn } onClick={handleChangeStatus} ></div>
         </div>
     )
 }

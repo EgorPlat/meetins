@@ -1,22 +1,3 @@
-@keyframes smoothTransitionOn {
-    from {
-        background-color: var(--default-color);
-    }
-    to {
-        background-color: gray;
-        left: 55px;
-    }
-}
-@keyframes smoothTransitionOff {
-    from {
-        background-color: gray;
-        left: 55px;
-    }
-    to {
-        background-color: var(--default-color);
-        left: 3px;
-    }
-}
 .wrapper {
     width: 100px;
     height: 40px;
@@ -25,30 +6,24 @@
     border-radius: 5px;
     cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
     & .activeBlockOn {
-        border-radius: 5px;
+        border-radius: 3px;
         position: absolute;
-        left: 3px;
-        top: 2.7px;
+        left: 2px;
         width: 40px;
         height: 31px;
-
-        animation-duration: 1s;
-        animation-name: smoothTransitionOn;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
+        background-color: gray;
+        transition: 1s;
     }
     & .activeBlockOff {
-        border-radius: 5px;
+        border-radius: 3px;
         position: absolute;
-        left: 3px;
-        top: 2.7px;
+        left: 55px;
         width: 40px;
         height: 31px;
-
-        animation-duration: 1s;
-        animation-name: smoothTransitionOff;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
+        background-color: var(--default-color);
+        transition: 1s;
     }
 }

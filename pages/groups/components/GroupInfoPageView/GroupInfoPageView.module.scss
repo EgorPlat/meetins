@@ -54,10 +54,17 @@
         text-align: justify;
     }
 
-    & .talks {
+    & .sections {
         column-gap: 10px;
         display: flex;
+        align-items: center;
 
+        & .item {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+        }
+        
         & .item:hover {
             color: rgb(0, 128, 255);
             cursor: pointer;

@@ -16,17 +16,19 @@ import { useStore } from "effector-react";
 import { $user } from "../../global/store/store";
 import { IGroupPost, IGroupTalkMessage } from "../../global/interfaces/groups";
 import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
-import ManageGroup from "../../global/forms/ManageGroup/Index";
-import AddNewPostIntoGroupForm from "../../global/forms/AddNewPostIntoGroup/Index";
-import GroupTalksMessagesView from "./components/GroupTalksMessagesView/GroupTalksMessagesView";
-import GroupTalks from "./components/GroupTalks/GroupTalks";
-import AddNewTalkInGroup from "../../global/forms/AddNewTalkInGroup/Index";
-import AddNewMessageIntoGroupTalk from "../../global/forms/AddNewMessageIntoGroupTalk";
-import GroupCommentsView from "./components/GroupCommentsView";
-import GroupAttachments from "./components/GroupAttachments/GroupAttachments";
 import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
 import GroupInfoPageView from "./components/GroupInfoPageView/GroupInfoPageView";
 import PageContainer from "../../global/components/PageContainer/pageContainer";
+import dynamic from "next/dynamic";
+
+const ManageGroup = dynamic(() => import("../../global/forms/ManageGroup/Index"), { loading: () => <CustomLoader /> });
+const GroupCommentsView = dynamic(() => import("./components/GroupCommentsView"), { loading: () => <CustomLoader /> });
+const AddNewPostIntoGroupForm = dynamic(() => import("../../global/forms/AddNewPostIntoGroup/Index"), { loading: () => <CustomLoader /> });
+const GroupTalks = dynamic(() => import("./components/GroupTalks/GroupTalks"), { loading: () => <CustomLoader /> });
+const AddNewMessageIntoGroupTalk = dynamic(() => import("../../global/forms/AddNewMessageIntoGroupTalk"), { loading: () => <CustomLoader /> });
+const GroupTalksMessagesView = dynamic(() => import("./components/GroupTalksMessagesView/GroupTalksMessagesView"), { loading: () => <CustomLoader /> });
+const AddNewTalkInGroup = dynamic(() => import("../../global/forms/AddNewTalkInGroup/Index"), { loading: () => <CustomLoader /> });
+const GroupAttachments = dynamic(() => import("./components/GroupAttachments/GroupAttachments"), { loading: () => <CustomLoader /> });
 
 export default function Groups() {
 

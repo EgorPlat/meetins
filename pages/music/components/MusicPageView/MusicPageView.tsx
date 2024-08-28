@@ -2,14 +2,11 @@ import s from "./MusicPageView.module.scss";
 import { TfiStatsUp } from "react-icons/tfi";
 import { IMatch, IMusicAuthors, IMusicAuthorsStatistics } from "../../../../global/interfaces/music";
 import { MusicPlayer } from "../../../../global/components/MusicPlayer/MusicPlayer";
-import CustomModal from "../../../../global/components-ui/CustomModal/CustomModal";
-import AddMusic from "../../../../global/forms/AddMusic/Index";
 import { baseURL } from "../../../../global/store/store";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 interface IMusicPageViewProps {
-    addMusicModal: boolean,
     musicList: IMusicAuthors[],
     authorsStatistic: IMusicAuthorsStatistics[],
     handleSwapMusicModal: (status: boolean) => void,
@@ -19,7 +16,6 @@ interface IMusicPageViewProps {
     activeMusicId: number,
 }
 export default function MusicPageView({
-    addMusicModal,
     handleSwapMusicModal,
     musicList,
     authorsStatistic,
@@ -110,15 +106,6 @@ export default function MusicPageView({
                     </div>
                 </div>
             </div>
-            <CustomModal 
-                isDisplay={addMusicModal} 
-                changeModal={(status) => handleSwapMusicModal(status)} 
-                actionConfirmed={() => handleSwapMusicModal(true)}
-                title='Добавить новую композицию'
-                typeOfActions="none"
-            >
-                <AddMusic />
-            </CustomModal>
         </div>
     )
 }

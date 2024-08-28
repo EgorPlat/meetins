@@ -55,7 +55,7 @@ export default function GroupInfoPageView(props: {
                 <div className={s.description}>
                     <span className={s.title}>Описание: </span>{props.groupInfo?.description}
                 </div>
-                <div className={s.talks}>
+                <div className={s.sections}>
                     <div className={s.item} onClick={props.handleOpenTalks}>
                         Обсуждения
                         <RiDiscussLine fontSize={20} />
