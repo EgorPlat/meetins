@@ -79,7 +79,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     };
 
     function handleCallToUser() {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
             .then(function(mediaStream: MediaStream) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
@@ -91,7 +91,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                         setIsUserAcceptedCall(true);
                         if (commingStreamRef && commingStreamRef.current) {
                             commingStreamRef.current.srcObject = remoteStream;
-                            commingStreamRef.current.onloadedmetadata = function(e) {
+                            commingStreamRef.current.onloadedmetadata = function() {
                                 commingStreamRef.current?.play();
                             }
                         };
@@ -106,7 +106,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 	  
                     if (myStreamRef && myStreamRef.current) {
                         myStreamRef.current.srcObject = mediaStream;
-                        myStreamRef.current.onloadedmetadata = function(e) {
+                        myStreamRef.current.onloadedmetadata = function() {
                             myStreamRef.current?.play();
                         };
                     }
@@ -127,7 +127,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 
                 if (myStreamRef && myStreamRef.current) {
                     myStreamRef.current.srcObject = mediaStream;
-                    myStreamRef.current.onloadedmetadata = function(e) {
+                    myStreamRef.current.onloadedmetadata = function() {
                         myStreamRef.current?.play();
                     };
                 }
@@ -141,7 +141,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 peerCall.on("stream", (remoteStream) => {
                     if (commingStreamRef && commingStreamRef.current) {
                         commingStreamRef.current.srcObject = remoteStream;
-                        commingStreamRef.current.onloadedmetadata = function(e) {
+                        commingStreamRef.current.onloadedmetadata = function() {
                             commingStreamRef.current?.play();
                         };
                     }
