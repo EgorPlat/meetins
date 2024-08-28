@@ -16,7 +16,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     const [peer, setPeer] = useState<Peer>(null);
     const [peerCall, setPeerCall] = useState<MediaConnection>(null);
     const [isUserAcceptedCall, setIsUserAcceptedCall] = useState<boolean>(false);
-    const [isMediaActive, setIsMediaActive] = useState<{ video: boolean, audio: boolean }>({ video: false, audio: true });
+    const [isMediaActive, setIsMediaActive] = useState<{ video: boolean, audio: boolean }>({ video: true, audio: true });
 
     const myStreamRef = useRef<HTMLVideoElement>(null);
     const commingStreamRef = useRef<HTMLVideoElement>(null);
@@ -43,11 +43,11 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         if (peerCall) {
             peerCall.close();
         }
-        setIsMediaActive({ video: false, audio: true });
+        setIsMediaActive({ video: true, audio: true });
     };
 
     const handleCloseVideoModal = () => {
-        setIsMediaActive({ video: false, audio: true });
+        setIsMediaActive({ video: true, audio: true });
         setIsVideoCallOpened(false);
         setIsUserAcceptedCall(false);
         handleCloseAllLocalMediaTracks();
@@ -79,7 +79,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     };
 
     function handleCallToUser() {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
             .then(function(mediaStream: MediaStream) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
@@ -117,7 +117,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
   
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
         setIsUserAcceptedCall(true);
-        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
             .then(function(mediaStream: MediaStream) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
