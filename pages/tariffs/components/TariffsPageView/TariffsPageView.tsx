@@ -1,5 +1,6 @@
-import { ITariff } from '../../../../global/interfaces/tariffs';
-import s from './TariffsPageView.module.scss';
+import CustomButton from "../../../../global/components-ui/CustomButton/CustomButton";
+import { ITariff } from "../../../../global/interfaces/tariffs";
+import s from "./TariffsPageView.module.scss";
 
 export default function TariffsPageView(props: {
     tariffsData: ITariff[]
@@ -36,7 +37,7 @@ export default function TariffsPageView(props: {
                                 {tariff.price} руб
                             </div>
                             <div className={s.actions}>
-                                <button className={s.buyAction}>Приобрести</button>
+                                <CustomButton text="Приобрести" />
                             </div>
                         </div>
                     ))

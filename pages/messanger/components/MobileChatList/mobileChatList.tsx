@@ -1,6 +1,7 @@
 import { useStore } from "effector-react";
 import { useEffect, useRef } from "react";
 import { 
+    getDialogMessages,
     getMyDialogs, 
     isMyDialogsLoaded, 
     myDialogs 
@@ -8,6 +9,7 @@ import {
 import { $user } from "../../../../global/store/store";
 import UserChatCard from "../UserChatCard/userChatCard";
 import s from "./mobileChatList.module.scss";
+import { IMyDialog } from "../../../../global/interfaces";
 
 export default function MobileChatList(): JSX.Element {
 
@@ -16,12 +18,17 @@ export default function MobileChatList(): JSX.Element {
     const authedUser$ = useStore($user);
     const ref = useRef(null);
 
+    const handleGetDialogMessages = (dialog: IMyDialog) => {
+        getDialogMessages(dialog);
+    };
+
     useEffect(() => {
         getMyDialogs(false);
         if (ref.current && window.screen.height <= 670) {
             ref.current.scrollIntoView({ behaviour: "smooth" });
         }
     }, []);
+    
     
     return(
         <div className={s.mobileChatList} ref={ref}>
@@ -37,7 +44,10 @@ export default function MobileChatList(): JSX.Element {
                                 dialog={dialog}
                                 authedUser={authedUser$}
                             />
-                            <div className={s.mobileUserChatCardLastMessage}>
+                            <div 
+                                className={s.mobileUserChatCardLastMessage} 
+                                onClick={() => handleGetDialogMessages(dialog)}
+                            >
                                 <div>
                                     {!lastMessage.isRead && isUnreadMessageMy && <div className={s.mobileNotMyChatRound}></div> }
                                     {!lastMessage.isRead && !isUnreadMessageMy && <div className={s.mobileMyChatRound}></div> }

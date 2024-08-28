@@ -49,8 +49,8 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
         if (actualActiveChat.userId == undefined) {
             const file = params.file;
             const formData = new FormData();
-            formData.append('uploadedFile', file);
-            formData.append('dialogId', actualActiveChat.dialogId);
+            formData.append("uploadedFile", file);
+            formData.append("dialogId", actualActiveChat.dialogId);
 
             sendFileInDialog(
                 formData
@@ -66,7 +66,7 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
 export const sendMessageAndUploadActiveChat = createEffect((params: { message: string, dataStore: { activeChat: IMyDialog } }) => {
     const actualActiveChat = params.dataStore.activeChat;
     if (actualActiveChat) {
-        if (actualActiveChat.dialogId !== 'none') {
+        if (actualActiveChat.dialogId !== "none") {
             sendMessageInDialog(
                 { dialogId: actualActiveChat.dialogId, content: params.message }
             ).then((response) => {
@@ -110,7 +110,7 @@ export const createdSendFileAndUploadActiveChat = attach({
 export const getMyDialogs = createEffect(async (isFirstGetDialogs: boolean) => {
     if (isFirstGetDialogs) setIsMyDialogsLoaded(false);
     try {
-        const response = await instance.get('chat/my-dialogs');
+        const response = await instance.get("chat/my-dialogs");
         if (isFirstGetDialogs) setIsMyDialogsLoaded(true);
         return response;
     }
@@ -121,7 +121,7 @@ export const getMyDialogs = createEffect(async (isFirstGetDialogs: boolean) => {
 
 export const checkDialog = createEffect(async (user: User) => {
     try {
-        const response = await instance.post('chat/check-dialog', { userId: user.userId });
+        const response = await instance.post("chat/check-dialog", { userId: user.userId });
         if (response.data.length !== 0) {
             setActiveChat({
                 ...defaultDialog,
@@ -144,7 +144,7 @@ export const checkDialog = createEffect(async (user: User) => {
 
 export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) => {
     try {
-        const response = await instance.post('chat/messages', JSON.stringify({ dialogId: chosedDialog.dialogId }));
+        const response = await instance.post("chat/messages", JSON.stringify({ dialogId: chosedDialog.dialogId }));
         if (response.status === 200) {
             const activeDialogWithMessages: IMyDialog = { ...chosedDialog, messages: response.data };
             setActiveChat(activeDialogWithMessages);
@@ -157,17 +157,17 @@ export const getDialogMessages = createEffect(async (chosedDialog: IMyDialog) =>
 })
 
 export const updatedIsReadMessagesInActiveDialog = createEffect(async (dialogId: string) => {
-    const response = await instance.post('chat/mark-messages-as-readed', { dialogId: dialogId });
+    const response = await instance.post("chat/mark-messages-as-readed", { dialogId: dialogId });
     return response;
 })
 export const sendFileInDialog = createEffect(async (message: FormData) => {
-    const response = await instance.post('chat/send-file-to-chat', message);
+    const response = await instance.post("chat/send-file-to-chat", message);
     return response;
 })
 
 export const sendMessageInDialog = createEffect(async (message: IDialogMessage) => {
     try {
-        const response = await instance.post('chat/send-message', message);
+        const response = await instance.post("chat/send-message", message);
         if (response.status === 200) {
             return response;
         }
@@ -178,7 +178,7 @@ export const sendMessageInDialog = createEffect(async (message: IDialogMessage) 
 })
 export const startNewDialog = createEffect(async (newDialog: INewDialog) => {
     try {
-        const response = await instance.post('chat/start-dialog', newDialog);
+        const response = await instance.post("chat/start-dialog", newDialog);
         if (response.status === 200) {
             return response;
         }
