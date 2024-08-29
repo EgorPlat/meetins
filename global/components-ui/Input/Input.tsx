@@ -1,10 +1,10 @@
-import Image from "next/image"
 import React, { ReactElement } from "react"
 import { UseFormRegisterReturn } from "react-hook-form"
 import s from "./input.module.scss"
+import { IconType } from "react-icons"
 
 export default function Input({
-    icon,
+    Icon,
     className,
     id,
     placeholder,
@@ -15,7 +15,7 @@ export default function Input({
     children,
     autocomplete,
 }: {
-	icon: any
+	Icon: IconType
 	className?: string
 	id: string
 	placeholder: string
@@ -30,16 +30,17 @@ export default function Input({
     const handleKeyDown = (e) => {
         if (e.code === "Space") e.preventDefault();
     };
-	
+
     return (
         <label
             style={style}
             className={`${s.customInput} ${className ? className : ""}`}
             htmlFor={id}>
-            {icon && (
-                <Image src={icon} width='21' height='25' alt='login icon' />
-            )}
-
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                {
+                    <Icon fontSize={20} color="black" /> 
+                }
+            </div>
             <input
                 placeholder={placeholder}
                 type={type}

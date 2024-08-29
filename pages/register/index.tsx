@@ -1,13 +1,10 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react"
+import { IoIosEyeOff, IoIosEye } from "react-icons/io";
 import Image from "next/image"
-import loginIcon from "../../public/images/login.svg"
-import passIcon from "../../public/images/pass.svg"
-import phoneIcon from "../../public/images/phone.svg"
 import femaleIcon from "../../public/images/female.svg"
 import maleIcon from "../../public/images/male.svg"
 import s from "../../styles/pageStyles/auth.module.scss"
-import EyeIcon from "../../global/helpers/Icons/EyeIcon"
 import logo from "../../public/images/logo.svg";
 
 import {
@@ -25,6 +22,7 @@ import { useTranslation } from "react-i18next"
 import Input from "../../global/components-ui/Input/Input"
 import Link from "next/link"
 import { addNotification } from "../../global/store/notifications_model"
+import { FaCity, FaEnvelope, FaLock, FaUser } from "react-icons/fa6"
 
 export default function Login(): JSX.Element {
     const {
@@ -98,7 +96,7 @@ export default function Login(): JSX.Element {
                 </h1>
                 <form autoComplete='off' onSubmit={handleSubmit(sendLoginData)}>
                     <Input
-                        icon={loginIcon}
+                        Icon={FaUser}
                         placeholder={t("Имя")}
                         type='text'
                         id='login'	
@@ -116,7 +114,7 @@ export default function Login(): JSX.Element {
                         <span className={s.errorSpan}>Следуйте формату Имя: </span>
                     )}
                     <Input
-                        icon={phoneIcon}
+                        Icon={FaEnvelope}
                         placeholder={t("Email")}
                         type='text' 
                         id='phoneOrEmail'
@@ -132,7 +130,7 @@ export default function Login(): JSX.Element {
                     )}
 					
                     <Input
-                        icon={passIcon}
+                        Icon={FaLock}
                         placeholder={t("Пароль")}
                         type={showPassword ? "text" : "password"}
                         id='pass'
@@ -142,21 +140,18 @@ export default function Login(): JSX.Element {
                             validate: (value) =>
                                 value.length >= 6 && value.length <= 12
                         })}>
-                        <EyeIcon
-                            onClick={() => {
-                                setShowPassword(!showPassword)
-                            }}
-                            width={25}
-                            height={25}
-                            style={{ cursor: "pointer" }}
-                        />
+                        {
+                            showPassword 
+                                ? <IoIosEye fontSize={20} color="black" onClick={() => setShowPassword(prev => !prev)} /> 
+                                : <IoIosEyeOff fontSize={20} color="black" onClick={() => setShowPassword(prev => !prev)} />
+                        }
                     </Input>
                     {errors.pass && (
                         <span className={s.errorSpan}>{t("Введите пароль от 6 до 12 символов")}</span>
                     )}
 
                     <Input
-                        icon={phoneIcon}
+                        Icon={FaCity}
                         placeholder={t("City")}
                         type='text' 
                         id='city'

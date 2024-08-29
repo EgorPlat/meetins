@@ -10,9 +10,8 @@ import Link from "next/link";
 import logo from "../../public/images/logo.svg";
 import Image from "next/image";
 import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
-import loginIcon from "../../public/images/login.svg";
-import passIcon from "../../public/images/pass.svg";
 import s from "../../styles/pageStyles/auth.module.scss";
+import { FaUnlock, FaUser } from "react-icons/fa6";
 
 export default function Login(): JSX.Element {
 
@@ -53,7 +52,7 @@ export default function Login(): JSX.Element {
                 </h1>
                 <form onSubmit={handleSubmit(sendLoginData)}>
                     <Input
-                        icon={loginIcon}
+                        Icon={FaUser}
                         placeholder={t("Логин")}
                         type='text'
                         id='login'
@@ -66,7 +65,7 @@ export default function Login(): JSX.Element {
                     />
                     {errors.login && <span className={s.errorSpan}>{t("Введите корректный e-mail в формате *@gmail.com")}</span>}
                     <Input
-                        icon={passIcon}
+                        Icon={FaUnlock}
                         placeholder={t("Пароль")}
                         type='password'
                         id='pass'
