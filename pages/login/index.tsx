@@ -20,6 +20,7 @@ export default function Login(): JSX.Element {
     const { t } = useTranslation();
 
     const sendLoginData = (data: { login: string, password: string }) => {
+        console.log(navigator.cookieEnabled);
         const login = data.login;
         const pass = data.password;
         const passwordWOSpace = pass.split("").filter(e => e !== " ").join("");
@@ -36,7 +37,8 @@ export default function Login(): JSX.Element {
             email: login,
             password: pass,
         });
-    }
+    };
+
     return (
         <div className={s.cardWrapper}>
             <div className={s.card}>
