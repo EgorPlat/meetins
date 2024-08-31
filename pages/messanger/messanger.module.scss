@@ -27,6 +27,7 @@
 
 .mobileMessangerContent {
     width: 98%;
+    height: calc(100vh - 60px);
 }
 
 .notificationModalText {
@@ -38,11 +39,5 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 3fr;
         grid-row-gap: 10px;
-    }
-}
-
-@media screen and (max-width: 810px) {
-    .mobileMessangerContent {
-        height: calc(100vh - 60px);
     }
 }

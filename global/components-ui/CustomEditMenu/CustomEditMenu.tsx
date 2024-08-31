@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import s from './CustomEditMenu.module.scss';
+import { useState } from "react";
+import s from "./CustomEditMenu.module.scss";
 
 export default function CustomEditMenu(props: {
     data: {
@@ -18,7 +18,7 @@ export default function CustomEditMenu(props: {
             {
                 isContent &&
                 <>
-                    <div className={s.contentWrapper} style={{ height: document.getElementsByTagName('body')[0].scrollHeight }}></div>
+                    <div className={s.contentWrapper} style={{ height: document.getElementsByTagName("body")[0].scrollHeight }}></div>
                     <div className={s.content}>
                         {
                             props.data.map(el => (
