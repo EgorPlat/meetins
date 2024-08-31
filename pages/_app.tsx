@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile } from "../global/store/store";
 import { connection } from "../global/store/connection_model";
 import { useStore } from "effector-react";
@@ -22,6 +22,7 @@ import "../styles/app.css";
 import "../styles/themes.css";
 import "regenerator-runtime/runtime";
 import "../node_modules/reseter.css/css/reseter.min.css";
+import CustomModal from "../global/components-ui/CustomModal/CustomModal";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -31,6 +32,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
     const isVideoCallOpened$ = useStore(isVideoCallOpened);
     const { isMobile, isUnAdaptive } = useResize();
+    const isCookieModalNeededToShow =
+        router.asPath === "/login" ||
+        router.asPath === "/register";
+    const [isCookieModalOpened, setIsCookieModalOpened] = useState<boolean>(isCookieModalNeededToShow);
 
     useTheme();
     useAuthAndInithialSocket();
@@ -66,6 +71,24 @@ function MyApp({ Component, pageProps }: AppProps) {
             <NotificationBlock />
             <MusicControlBlock />
             <VideoCallModal isOpen={isVideoCallOpened$} />
+            <CustomModal
+                title="Настройка cookie-файлов"
+                isDisplay={isCookieModalOpened}
+                changeModal={setIsCookieModalOpened}
+                actionConfirmed={(status) => setIsCookieModalOpened(!status)}
+                typeOfActions="default"
+            >
+                <p>
+                    Для дальнейшей работы с сайтом, убедитесь, что у Вас
+                    разрешены для использования сторонние cookie файлы, иначе авторизоваться
+                    на нашем сайте не получится.
+                    <p>
+                        Чтобы разрешить использование cookie, перейдите в настройки браузера, затем
+                        найдите меню настройки сайтов или безопасности и конфиденциальности и включите
+                        использование cookie.
+                    </p>
+                </p>
+            </CustomModal>
         </Layout>
     )
 }
