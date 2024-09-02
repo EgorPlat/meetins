@@ -31,6 +31,7 @@
 .searching {
     display: grid;
     grid-auto-rows: min-content;
+    margin-bottom: 20px;
     & .params {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -99,7 +100,6 @@
     }
     & .result {
         padding-top: 20px;
-        margin-bottom: 40px;
         & .users {
             & .usersList {
                 display: flex;

@@ -92,6 +92,7 @@ export default function SearchingPeople(): JSX.Element {
                     <div className={s.part}>
                         <h3 className={s.title}>Возраст</h3>
                         <Slider
+                            style={{ color: "var(--default-color)" }}
                             onChangeCommitted={(event, newValue) => updateFilters("age", newValue)}
                             defaultValue={50}
                             aria-label="Default"
@@ -100,7 +101,13 @@ export default function SearchingPeople(): JSX.Element {
                     </div>
                     <div className={s.part}>
                         <h3>Расстояние</h3>
-                        <Slider defaultValue={10} max={150} aria-label="Default" valueLabelDisplay="auto" />
+                        <Slider 
+                            defaultValue={10} 
+                            max={150} 
+                            aria-label="Default" 
+                            valueLabelDisplay="auto" 
+                            style={{ color: "var(--default-color)" }}
+                        />
                     </div>
                 </div>
                 <div className={s.goal}>
@@ -168,9 +175,7 @@ export default function SearchingPeople(): JSX.Element {
                             </div>
                             : null
                     }
-                    {
-                        pending && <div>Загрузка...</div>
-                    }
+                    <div style={pending ? { opacity: 1 } : { opacity: 0 }}>Загрузка...</div>
                 </div>
             </div>
         </div>

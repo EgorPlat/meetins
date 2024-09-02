@@ -34,7 +34,7 @@ export default function AboutPageView() {
             <div className={s.contactsBlock}>
                 <CustomShowUpComponent side='right' transitionType='ease-out'>
                     <div className={s.contactsBlockTitle}>
-                            Связь с разработчиком (контакты)
+                        Связь с разработчиком (контакты)
                     </div>
                 </CustomShowUpComponent>
                 <CustomShowUpComponent side='top' transitionType='ease-out'>
@@ -43,21 +43,21 @@ export default function AboutPageView() {
                             <FaTelegram color='var(--default-color)' />
                             <Link 
                                 href="https://t.me/jarv1s_fr" 
-                                about='__blank'
+                                target='_blank'
                             >Telegram</Link>
                         </div>
                         <div className={s.contactsBlockLinksEach}>
                             <FaGithub color='orange' />
                             <Link 
                                 href="https://github.com/EgorPlat" 
-                                about='__blank'
+                                target='_blank'
                             >Github</Link>
                         </div>
                         <div className={s.contactsBlockLinksEach}>
                             <BiLogoGmail color='red' />
                             <Link 
                                 href="https://github.com/EgorPlat" 
-                                about='__blank'
+                                target='_blank'
                             >Email</Link>
                         </div>
                     </div>

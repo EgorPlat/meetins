@@ -6,6 +6,9 @@
     margin: 1%;
     color: white;
     position: relative;
+    perspective: 200px;
+    transform-style: preserve-3d;
+    transition: .5s;
     & h2 {
         background-color: var(--bg-color);
         color: var(--text-color);
@@ -13,10 +16,16 @@
         position: absolute;
         left: 0px;
         top: 0px;
-        border-radius: 5px 0 5px 0;
+        border-radius: 9px 0 5px 0;
     }
     &:hover {
         border-color: 1px solid black;
         cursor: pointer;
     }    
+}
+
+.card:hover {
+    transform: perspective(800px) rotateY(15deg);
+    transition: .5s;
+    border: 3px solid var(--default-color);
 }
