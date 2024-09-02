@@ -1,5 +1,5 @@
-import CustomButton from "../../../../global/components-ui/CustomButton/CustomButton";
-import { ITariff } from "../../../../global/interfaces/tariffs";
+import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
+import { ITariff } from "../../../../entities/tariffs";
 import s from "./TariffsPageView.module.scss";
 
 export default function TariffsPageView(props: {

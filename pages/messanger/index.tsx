@@ -2,7 +2,7 @@ import { useStore } from "effector-react";
 import { activeChat } from "../../global/store/chat_model";
 import { isMobile } from "../../global/store/store";
 import React, { useEffect } from "react";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import ChatList from "./components/ChatList/chatList";
 import ChatZone from "./components/ChatZone/chatZone";
 import s from "./messanger.module.scss";

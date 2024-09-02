@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { IEventComments, IEventInfoCard } from "../../../../global/interfaces/events";
+import { IEventComments, IEventInfoCard } from "../../../../entities/events";
 import s from "./eventBlock.module.scss";
 import EventMoreInfo from "../EventMoreInfo";
-import CustomSlider from "../../../../global/components-ui/CustomSlider/CustomSlider";
+import CustomSlider from "../../../../shared/ui/CustomSlider/CustomSlider";
 import Image from "next/image";
 import { baseURL, isMobile } from "../../../../global/store/store";
 import { useStore } from "effector-react";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
 
 export default function EventBlock(props: {

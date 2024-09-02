@@ -1,5 +1,5 @@
-import { IInnerInvites } from "../../../../global/interfaces";
-import { IInnerInviteEvent } from "../../../../global/interfaces/events";
+import { IInnerInvites } from "../../../../entities";
+import { IInnerInviteEvent } from "../../../../entities/events";
 import { baseURL } from "../../../../global/store/store";
 import s from "./InnerInvites.module.scss";
 

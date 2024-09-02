@@ -1,4 +1,4 @@
-import { IGroupFile } from "../../../../global/interfaces/groups";
+import { IGroupFile } from "../../../../entities/groups";
 import { baseURL } from "../../../../global/store/store";
 import MeetingFileView from "./MeetingFileView/MeetingFileView";
 import s from "./MeetingsFilesList.module.scss";

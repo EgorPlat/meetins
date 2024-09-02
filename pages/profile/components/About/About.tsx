@@ -2,7 +2,7 @@ import { useStore } from "effector-react";
 import React from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { User } from "../../../../global/interfaces";
+import { User } from "../../../../entities";
 import { $user } from "../../../../global/store/store";
 import s from "./About.module.scss";
 

@@ -4,7 +4,7 @@ import { $currentInterestsList, addInterest, getInterests } from "../../global/s
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import InterestsPageView from "./components/InterestsPageView/InterestsPageView";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import Head from "next/head";
 
 export default function Interests() {

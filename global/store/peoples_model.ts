@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
-import { IPeople, Params } from "../interfaces";
+import { IPeople, Params } from "../../entities";
 import { instance } from "./store";
 
 export const setAllPeoples = createEvent<IPeople[]>();

@@ -1,10 +1,10 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getDateInDMFormat } from "../../../../global/functions/getDateInDMFormat";
-import { getMinutesAndHoursFromString } from "../../../../global/functions/getMinutesAndHoursFromString";
-import { isTypeOfFileAreImage, isTypeOfFileAreVideo } from "../../../../global/helpers/validate";
-import { IMyDialog } from "../../../../global/interfaces";
+import { getDateInDMFormat } from "../../../../shared/functions/getDateInDMFormat";
+import { getMinutesAndHoursFromString } from "../../../../shared/functions/getMinutesAndHoursFromString";
+import { isTypeOfFileAreImage, isTypeOfFileAreVideo } from "../../../../shared/helpers/validate";
+import { IMyDialog } from "../../../../entities";
 import {
     createdSendFileAndUploadActiveChat,
     createdSendMessageAndUploadActiveChat,
@@ -14,13 +14,13 @@ import {
 import { $onlineUsers, $user, baseURL, setIsVideoCallOpened, setPeerIDForCall } from "../../../../global/store/store";
 import { defaultDialog } from "../../../../global/mock/defaultDialog";
 import { MdOutlineOndemandVideo } from "react-icons/md";
-import { useUserMediaTracks } from "../../../../global/hooks/useUserMediaTracks";
+import { useUserMediaTracks } from "../../../../shared/hooks/useUserMediaTracks";
 import { useRouter } from "next/router";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
-import CustomEditMenu from "../../../../global/components-ui/CustomEditMenu/CustomEditMenu";
-import CustomModal from "../../../../global/components-ui/CustomModal/CustomModal";
+import CustomEditMenu from "../../../../shared/ui/CustomEditMenu/CustomEditMenu";
+import CustomModal from "../../../../shared/ui/CustomModal/CustomModal";
 import ChatMessageForm from "../ChatMessageForm/chatMessageForm";
-import Loader from "../../../../global/components-ui/Loader/Loader";
+import Loader from "../../../../shared/ui/Loader/Loader";
 import s from "./chatZone.module.scss";
 import { connection } from "../../../../global/store/connection_model";
 import { addNotification } from "../../../../global/store/notifications_model";

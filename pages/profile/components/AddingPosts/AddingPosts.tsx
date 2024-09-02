@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import s from "./AddingPosts.module.scss";
 import { isMobile, sendNewUserPost } from "../../../../global/store/store";
-import { validatePost } from "../../../../global/helpers/validate";
+import { validatePost } from "../../../../shared/helpers/validate";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
-import { validateFilesFromInputAndStructuring } from "../../../../global/helpers/helper";
-import CustomButton from "../../../../global/components-ui/CustomButton/CustomButton";
+import { validateFilesFromInputAndStructuring } from "../../../../shared/helpers/helper";
+import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
 
 export default function AddingPosts(): JSX.Element {
 

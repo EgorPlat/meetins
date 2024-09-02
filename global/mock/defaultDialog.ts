@@ -1,4 +1,4 @@
-import { IMyDialog } from "../interfaces";
+import { IMyDialog } from "../../entities";
 
 export const defaultDialog: IMyDialog = {
     dialogId: null, 

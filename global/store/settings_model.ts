@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore } from "effector";
-import { AccountData, ProfileData, User } from "../interfaces";
+import { AccountData, ProfileData, User } from "../../entities";
 import { instance, setUser } from "./store";
 
 export const setIsProfileUpdated = createEvent<boolean | null>();

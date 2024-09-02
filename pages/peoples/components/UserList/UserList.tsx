@@ -1,8 +1,8 @@
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import React from "react";
-import { findUserInOnlineList } from "../../../../global/helpers/helper";
-import { IPeople } from "../../../../global/interfaces";
+import { findUserInOnlineList } from "../../../../shared/helpers/helper";
+import { IPeople } from "../../../../entities";
 import { $onlineUsers, baseURL } from "../../../../global/store/store";
 import s from "./UserList.module.scss";
 

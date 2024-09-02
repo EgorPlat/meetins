@@ -1,9 +1,9 @@
 import s from "./EventsList.module.scss";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 import Link from "next/link";
 import Image from "next/image";
-import { IShortEventInfo } from "../../../../global/interfaces/events";
-import { customizeDateToYYYYMMDDFormat } from "../../../../global/functions/getDateInYYYYMMDDFormat";
+import { IShortEventInfo } from "../../../../entities/events";
+import { customizeDateToYYYYMMDDFormat } from "../../../../shared/functions/getDateInYYYYMMDDFormat";
 
 export default function EventsList(props: {
     categoryName: string,

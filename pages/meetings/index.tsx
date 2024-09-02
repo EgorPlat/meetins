@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { currentMeetings, getAllMeetings, setSelectedMeeting } from "../../global/store/meetings_model";
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
-import { IMeeting } from "../../global/interfaces/meetings";
+import { IMeeting } from "../../entities/meetings";
 import { $user } from "../../global/store/store";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import MeetingsContentView from "./components/MeetingsContentView/MeetingsContentView";
 
 export default function Meetings() {

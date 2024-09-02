@@ -1,7 +1,7 @@
 import s from "./MusicPageView.module.scss";
 import { TfiStatsUp } from "react-icons/tfi";
-import { IMatch, IMusicAuthors, IMusicAuthorsStatistics } from "../../../../global/interfaces/music";
-import { MusicPlayer } from "../../../../global/components/MusicPlayer/MusicPlayer";
+import { IMatch, IMusicAuthors, IMusicAuthorsStatistics } from "../../../../entities/music";
+import { MusicPlayer } from "../../../../widgets/MusicPlayer/MusicPlayer";
 import { baseURL } from "../../../../global/store/store";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";

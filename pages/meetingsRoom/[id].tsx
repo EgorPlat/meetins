@@ -4,9 +4,9 @@ import { ChangeEvent, useState } from "react";
 import { $user } from "../../global/store/store";
 import { addNotification } from "../../global/store/notifications_model";
 import MeetingsFilesList from "./components/MeetingsFilesList/MeetingsFilesList";
-import AddCommentIntoMeeting from "../../global/forms/AddCommentIntoMeeting/Index";
-import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import AddCommentIntoMeeting from "../../features/forms/AddCommentIntoMeeting/Index";
+import CustomModal from "../../shared/ui/CustomModal/CustomModal";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import MeetingsRoomPageView from "./components/MeetingsRoomPageView/MeetingsRoomPageView";
 
 export default function MeetingsRoom() {

@@ -1,11 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios"
 import { createEffect, createEvent, createStore, sample } from "effector"
-import { IMarkedUserInfo, IOnlineUser, IUserTag, User } from "../interfaces";
+import { IMarkedUserInfo, IOnlineUser, IUserTag, User } from "../../entities";
 import { instanseRouter } from "./router_model";
 import { handleLogOut } from "./login_model";
 import { addNotification } from "./notifications_model";
-import { IInterest } from "../interfaces/interest";
-import { INotification } from "../interfaces/notification";
+import { IInterest } from "../../entities/interest";
+import { INotification } from "../../entities/notification";
 
 export const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
 

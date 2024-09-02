@@ -1,26 +1,26 @@
 import { useTranslation } from "react-i18next";
-import { User } from "../../../../global/interfaces";
+import { User } from "../../../../entities";
 import { baseURL } from "../../../../global/store/store";
-import { getDateInDMYFormat } from "../../../../global/functions/getDateInDMFormat";
-import { getIsUserMale } from "../../../../global/functions/getIsUserMale";
+import { getDateInDMYFormat } from "../../../../shared/functions/getDateInDMFormat";
+import { getIsUserMale } from "../../../../shared/functions/getIsUserMale";
 import { MdEdit } from "react-icons/md";
 import s from "./profileView.module.scss";
 import About from "../About/About";
 import Interests from "../../Interests/interests";
 import PostsList from "../../PostsList/PostsList";
 import Places from "../Places/places";
-import Loader from "../../../../global/components-ui/Loader/Loader";
-import CustomModal from "../../../../global/components-ui/CustomModal/CustomModal";
+import Loader from "../../../../shared/ui/Loader/Loader";
+import CustomModal from "../../../../shared/ui/CustomModal/CustomModal";
 import Head from "next/head";
 import React, { Suspense } from "react";
-import CustomButton from "../../../../global/components-ui/CustomButton/CustomButton";
-import InputFile from "../../../../global/components-ui/InputFile/InputFile";
-import CustomEditMenu from "../../../../global/components-ui/CustomEditMenu/CustomEditMenu";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
-const EditUserTag = React.lazy(() => import("../../../../global/forms/EditUserTag/Index"));
+import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
+import InputFile from "../../../../shared/ui/InputFile/InputFile";
+import CustomEditMenu from "../../../../shared/ui/CustomEditMenu/CustomEditMenu";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
+const EditUserTag = React.lazy(() => import("../../../../features/forms/EditUserTag/Index"));
 const ChoosingEvents = React.lazy(() => import("../СhoosingEvents/choosingEvents"));
 const AddingPosts = React.lazy(() => import("../AddingPosts/AddingPosts"));
-const ImageCropper = React.lazy(() => import("../../../../global/components/CropImage/CropImage"));
+const ImageCropper = React.lazy(() => import("../../../../widgets/CropImage/CropImage"));
 
 export default function ProfileView(props: {
     asyncLoaded: boolean,

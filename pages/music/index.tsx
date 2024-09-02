@@ -10,15 +10,15 @@ import {
     activeMusicId
 } from "../../global/store/music_model";
 import { useStore } from "effector-react";
-import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import CustomModal from "../../shared/ui/CustomModal/CustomModal";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import MusicPageView from "./components/MusicPageView/MusicPageView";
-import CustomStepper from "../../global/components-ui/CustomStepper/CustomStepper";
-import useDebounce from "../../global/hooks/useDebounce";
+import CustomStepper from "../../shared/ui/CustomStepper/CustomStepper";
+import useDebounce from "../../shared/hooks/useDebounce";
 import dynamic from "next/dynamic";
-import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 
-const AddMusic = dynamic(() => import("../../global/forms/AddMusic/Index"), { loading: () => <CustomLoader />})
+const AddMusic = dynamic(() => import("../../features/forms/AddMusic/Index"), { loading: () => <CustomLoader />})
 const StatsView = dynamic(() => import("./components/StatsView/StatsView"), { loading: () => <CustomLoader />});
 const StatsTimeView = dynamic(() => import("./components/StatsTimeView/StatsTimeView"), { loading: () => <CustomLoader />});
 const StatsGeoView = dynamic(() => import("./components/StatsGeoView/StatsGeoView"), { loading: () => <CustomLoader />});

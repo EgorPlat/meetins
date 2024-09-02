@@ -1,5 +1,5 @@
 import { attach, createEffect, createEvent, createStore, sample } from "effector";
-import { IDialogMessage, IMyDialog, INewDialog, User } from "../interfaces";
+import { IDialogMessage, IMyDialog, INewDialog, User } from "../../entities";
 import { defaultDialog } from "../mock/defaultDialog";
 import { $user, instance } from "./store";
 

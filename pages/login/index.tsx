@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
-import { isEmail } from "../../global/helpers/validate";
+import { isEmail } from "../../shared/helpers/validate";
 import { $loginLoading, sendLogData } from "../../global/store/login_model";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 import { addNotification } from "../../global/store/notifications_model";
 import Head from "next/head";
-import Input from "../../global/components-ui/Input/Input";
+import Input from "../../shared/ui/Input/Input";
 import Link from "next/link";
 import logo from "../../public/images/logo.svg";
 import Image from "next/image";
-import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 import s from "../../styles/pageStyles/auth.module.scss";
 import { FaUnlock, FaUser } from "react-icons/fa6";
 

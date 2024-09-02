@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./markedEventInfo.module.scss";
 import { useRouter } from "next/router";
-import { IShortEventInfo } from "../../../../../global/interfaces/events";
+import { IShortEventInfo } from "../../../../../entities/events";
 import { deleteUserEvent, setCurrentEventById } from "../../../../../global/store/events_model";
 
 export default function MarkedEventInfo(props: { event: IShortEventInfo }): JSX.Element {

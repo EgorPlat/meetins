@@ -2,7 +2,7 @@ import { useStore } from "effector-react";
 import { userEvents } from "../../../../global/store/events_model";
 import React, { Suspense } from "react";
 import s from "./markedEvents.module.scss";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 const MarkedEventInfo = React.lazy(() => import("./MarkedEventInfo/markedEventInfo"));
 
 export default function MarkedEvents(): JSX.Element {

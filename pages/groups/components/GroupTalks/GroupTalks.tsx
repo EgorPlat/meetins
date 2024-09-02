@@ -1,7 +1,7 @@
 import Link from "next/link";
 import s from "./GroupTalks.module.scss";
-import { IGroupTalk } from "../../../../global/interfaces/groups";
-import { customizeDateToYYYYMMDDFormat } from "../../../../global/functions/getDateInYYYYMMDDFormat";
+import { IGroupTalk } from "../../../../entities/groups";
+import { customizeDateToYYYYMMDDFormat } from "../../../../shared/functions/getDateInYYYYMMDDFormat";
 
 export default function GroupTalks(props: {
     handleOpenTalkMessages: (groupId: number) => void,

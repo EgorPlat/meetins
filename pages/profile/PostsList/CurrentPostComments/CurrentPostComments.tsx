@@ -1,13 +1,13 @@
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { customizeDateToYYYYMMDDFormat } from "../../../../global/functions/getDateInYYYYMMDDFormat";
-import { Post } from "../../../../global/interfaces";
-import { PostComment } from "../../../../global/interfaces/comment";
+import { customizeDateToYYYYMMDDFormat } from "../../../../shared/functions/getDateInYYYYMMDDFormat";
+import { Post } from "../../../../entities";
+import { PostComment } from "../../../../entities/comment";
 import { currentPostComments, getCurrentPostsComments, isCurrentPostCommentsLoaded } from "../../../../global/store/comments_model";
 import { baseURL } from "../../../../global/store/store";
 import s from "./CurrentPostComments.module.scss";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
 export default function CurrentPostComments (props: {post: Post}) {
 

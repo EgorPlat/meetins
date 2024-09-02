@@ -9,7 +9,7 @@ import {
 import { $user } from "../../../../global/store/store";
 import UserChatCard from "../UserChatCard/userChatCard";
 import s from "./mobileChatList.module.scss";
-import { IMyDialog } from "../../../../global/interfaces";
+import { IMyDialog } from "../../../../entities";
 
 export default function MobileChatList(): JSX.Element {
 

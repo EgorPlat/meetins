@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
-import { ICreateGroup, IGroup, IGroupMembersInfo, IGroupTalkMessage, IManageGroup } from "../interfaces/groups";
+import { ICreateGroup, IGroup, IGroupMembersInfo, IGroupTalkMessage } from "../../entities/groups";
 import { instance } from "./store";
 
 export const setGroupsList = createEvent<IGroup[]>();

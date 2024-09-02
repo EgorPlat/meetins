@@ -1,5 +1,5 @@
 import { createEvent, createStore } from "effector";
-import { ICreatedNotification, INotification } from "../interfaces/notification";
+import { ICreatedNotification, INotification } from "../../entities/notification";
 
 export const addNotification = createEvent<INotification>();
 export const removeNotification = createEvent<number>();

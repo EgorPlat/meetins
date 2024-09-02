@@ -1,4 +1,4 @@
-import { IOuterInviteEvent } from "../../../../global/interfaces/events";
+import { IOuterInviteEvent } from "../../../../entities/events";
 import { baseURL } from "../../../../global/store/store";
 import s from "./OuterInvites.module.scss";
 

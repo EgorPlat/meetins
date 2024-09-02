@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { customizeDateToInputFormatFromDBFormat } from "../../../../global/helpers/helper";
+import { customizeDateToInputFormatFromDBFormat } from "../../../../shared/helpers/helper";
 import { baseURL } from "../../../../global/store/store";
 import s from "./GroupTalksMessagesView.module.scss";
 import { activeGroupTalksMessages, getGroupTalkMessageByTalkId, setActiveGroupTalkMessage } from "../../../../global/store/groups_model";

@@ -4,20 +4,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { setIsAccountUpdated, setIsProfileUpdated, updateUserFilterStatus } from "../../global/store/settings_model";
 import { useTranslation } from "react-i18next";
-import { User } from "../../global/interfaces";
+import { User } from "../../entities";
 import React from "react";
-import ProfileInfoForm from "../../global/forms/ProfileInfo/Index";
-import ManageAccountForm from "../../global/forms/ManageAccount/Index";
+import ProfileInfoForm from "../../features/forms/ProfileInfo/Index";
+import ManageAccountForm from "../../features/forms/ManageAccount/Index";
 import ru from "../../public/images/ru.png";
 import us from "../../public/images/us.png";
 import Image from "next/image";
-import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
-import TurnOffOn from "../../global/components-ui/TurnOffOn/TurnOffOn";
-import ButtonWithHint from "../../global/components-ui/Hint/buttonWithHint";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
+import TurnOffOn from "../../shared/ui/TurnOffOn/TurnOffOn";
+import ButtonWithHint from "../../shared/ui/Hint/buttonWithHint";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import s from "./settings.module.scss";
-import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
-import CustomButton from "../../global/components-ui/CustomButton/CustomButton";
+import CustomModal from "../../shared/ui/CustomModal/CustomModal";
+import CustomButton from "../../shared/ui/CustomButton/CustomButton";
 
 export default function Settings(): JSX.Element {
 

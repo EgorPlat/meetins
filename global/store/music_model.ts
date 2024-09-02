@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
-import { IActiveMusic, IMatch, IMusicAuthors, IMusicAuthorsStatistics, IMyMusicStatistic } from "../interfaces/music";
+import { IActiveMusic, IMatch, IMusicAuthors, IMusicAuthorsStatistics, IMyMusicStatistic } from "../../entities/music";
 import { instance } from "./store";
 
 export const setActiveMusicTimeData = createEvent<{ currentTime: number, duration: number }>();

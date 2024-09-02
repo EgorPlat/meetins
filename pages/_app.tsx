@@ -3,26 +3,26 @@ import { useEffect, useState } from "react";
 import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile } from "../global/store/store";
 import { connection } from "../global/store/connection_model";
 import { useStore } from "effector-react";
-import { detectUserLanguage } from "../global/helpers/helper";
-import { useResize } from "../global/hooks/useResize";
+import { detectUserLanguage } from "../shared/helpers/helper";
+import { useResize } from "../shared/hooks/useResize";
 import { setRouter } from "../global/store/router_model";
 import { useRouter } from "next/router";
 import { getMyDialogs } from "../global/store/chat_model";
-import { MusicControlBlock } from "../global/components/MusicControlBlock/musicControlBlock";
-import { useAuthAndInithialSocket } from "../global/hooks/useAuthAndInithialSocket";
-import { useTheme } from "../global/hooks/useTheme";
-import { useBlockBodyScroll } from "../global/hooks/useBlockScroll";
+import { useAuthAndInithialSocket } from "../shared/hooks/useAuthAndInithialSocket";
+import { useTheme } from "../shared/hooks/useTheme";
+import { useBlockBodyScroll } from "../shared/hooks/useBlockScroll";
 import Head from "next/head";
 import i18n from "../i18n";
-import NotificationBlock from "../global/components/NotificationBlock/notificationBlock";
-import Layout from "../global/components/Layout/Layout";
-import VideoCallModal from "../global/components/VideoCallModal/VideoCallModal";
+import NotificationBlock from "../widgets/NotificationBlock/notificationBlock";
+import Layout from "../widgets/Layout/Layout";
+import VideoCallModal from "../widgets/VideoCallModal/VideoCallModal";
 import "../i18n";
 import "../styles/app.css";
 import "../styles/themes.css";
 import "regenerator-runtime/runtime";
 import "../node_modules/reseter.css/css/reseter.min.css";
-import CustomModal from "../global/components-ui/CustomModal/CustomModal";
+import CustomModal from "../shared/ui/CustomModal/CustomModal";
+import { MusicControlBlock } from "../widgets/MusicControlBlock/musicControlBlock";
 
 function MyApp({ Component, pageProps }: AppProps) {
 

@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
-import CustomStepper from "../../../../global/components-ui/CustomStepper/CustomStepper";
-import { IInnerInvites, User } from "../../../../global/interfaces";
-import { IUnitedInvitesEvent } from "../../../../global/interfaces/events";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
+import CustomStepper from "../../../../shared/ui/CustomStepper/CustomStepper";
+import { IInnerInvites, User } from "../../../../entities";
+import { IUnitedInvitesEvent } from "../../../../entities/events";
 
 const InnerInvites = dynamic(() => import("../InnerInvites/InnerInvites"), { loading: () => <CustomLoader /> });
 const OuterInvites = dynamic(() => import("../OuterInvites/OuterInvites"), { loading: () => <CustomLoader /> });

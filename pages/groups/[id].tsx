@@ -11,23 +11,23 @@ import {
     setIsGroupInfoLoaded,
     unlikePostInGroup
 } from "../../global/store/groups_model";
-import { destrucutreFilesInGroupPost } from "../../global/helpers/helper";
+import { destrucutreFilesInGroupPost } from "../../shared/helpers/helper";
 import { useStore } from "effector-react";
 import { $user } from "../../global/store/store";
-import { IGroupPost, IGroupTalkMessage } from "../../global/interfaces/groups";
-import CustomModal from "../../global/components-ui/CustomModal/CustomModal";
-import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
+import { IGroupPost, IGroupTalkMessage } from "../../entities/groups";
+import CustomModal from "../../shared/ui/CustomModal/CustomModal";
+import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 import GroupInfoPageView from "./components/GroupInfoPageView/GroupInfoPageView";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import dynamic from "next/dynamic";
 
-const ManageGroup = dynamic(() => import("../../global/forms/ManageGroup/Index"), { loading: () => <CustomLoader /> });
+const ManageGroup = dynamic(() => import("../../features/forms/ManageGroup/Index"), { loading: () => <CustomLoader /> });
 const GroupCommentsView = dynamic(() => import("./components/GroupCommentsView"), { loading: () => <CustomLoader /> });
-const AddNewPostIntoGroupForm = dynamic(() => import("../../global/forms/AddNewPostIntoGroup/Index"), { loading: () => <CustomLoader /> });
+const AddNewPostIntoGroupForm = dynamic(() => import("../../features/forms/AddNewPostIntoGroup/Index"), { loading: () => <CustomLoader /> });
 const GroupTalks = dynamic(() => import("./components/GroupTalks/GroupTalks"), { loading: () => <CustomLoader /> });
-const AddNewMessageIntoGroupTalk = dynamic(() => import("../../global/forms/AddNewMessageIntoGroupTalk"), { loading: () => <CustomLoader /> });
+const AddNewMessageIntoGroupTalk = dynamic(() => import("../../features/forms/AddNewMessageIntoGroupTalk"), { loading: () => <CustomLoader /> });
 const GroupTalksMessagesView = dynamic(() => import("./components/GroupTalksMessagesView/GroupTalksMessagesView"), { loading: () => <CustomLoader /> });
-const AddNewTalkInGroup = dynamic(() => import("../../global/forms/AddNewTalkInGroup/Index"), { loading: () => <CustomLoader /> });
+const AddNewTalkInGroup = dynamic(() => import("../../features/forms/AddNewTalkInGroup/Index"), { loading: () => <CustomLoader /> });
 const GroupAttachments = dynamic(() => import("./components/GroupAttachments/GroupAttachments"), { loading: () => <CustomLoader /> });
 
 export default function Groups() {

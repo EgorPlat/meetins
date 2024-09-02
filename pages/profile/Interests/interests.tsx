@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getUserInterests, updateInterests } from "../../../global/store/store";
-import { User } from "../../../global/interfaces";
+import { User } from "../../../entities";
 import { MdInterests } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import ChangingInterests from "./ChangingInterests/ChangingInterests";
 import s from "./interests.module.scss";
-import CustomModal from "../../../global/components-ui/CustomModal/CustomModal";
+import CustomModal from "../../../shared/ui/CustomModal/CustomModal";
 
 export default function Interests(props: {
     user: User,

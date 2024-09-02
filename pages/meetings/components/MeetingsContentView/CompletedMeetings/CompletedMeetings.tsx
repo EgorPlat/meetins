@@ -1,4 +1,4 @@
-import { IMeeting } from "../../../../../global/interfaces/meetings";
+import { IMeeting } from "../../../../../entities/meetings";
 import MeetingWrapper from "../MeetingWrapper/MeetingWrapper";
 import s from "./CompletedMeetings.module.scss";
 

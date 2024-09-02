@@ -1,5 +1,5 @@
-import AddCommentIntoGroupPost from "../../../../global/forms/AddCommentIntoGroupPost/Index";
-import { IGroup } from "../../../../global/interfaces/groups";
+import AddCommentIntoGroupPost from "../../../../features/forms/AddCommentIntoGroupPost/Index";
+import { IGroup } from "../../../../entities/groups";
 import { baseURL } from "../../../../global/store/store";
 import s from "./groupCommentsView.module.scss";
 

@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore } from "effector";
-import { PostComment } from "../interfaces/comment";
-import { NewComment } from "../interfaces/newComment";
+import { PostComment } from "../../entities/comment";
+import { NewComment } from "../../entities/newComment";
 import { instance } from "./store";
 
 export const setCurrentPostComments = createEvent<PostComment[]>();

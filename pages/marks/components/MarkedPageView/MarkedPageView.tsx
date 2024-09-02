@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./MarkedPageView.module.scss";
-import CustomStepper from "../../../../global/components-ui/CustomStepper/CustomStepper";
+import CustomStepper from "../../../../shared/ui/CustomStepper/CustomStepper";
 import dynamic from "next/dynamic";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
 const MarkedUsers = dynamic(() => import("../MarkedUsers/markedUsers"), { loading: () => <CustomLoader /> });
 const MarkedEvents = dynamic(() => import("../MarkedEvents/markedEvents"), { loading: () => <CustomLoader /> });

@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
 import { instance } from "./store";
-import { IWall } from "../interfaces/wall";
+import { IWall } from "../../entities/wall";
 
 export const setCurrentWall = createEvent<IWall[]>();
 export const currentWall$ = createStore<IWall[]>(null).on(setCurrentWall, (_, currentWall) => {

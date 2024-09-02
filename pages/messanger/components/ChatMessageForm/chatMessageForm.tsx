@@ -5,7 +5,7 @@ import Emoji from "../Emoji/emoji";
 import s from "./chatMessageForm.module.scss";
 import { AiOutlineAudio, AiOutlineFileText, AiOutlineSend } from "react-icons/ai";
 import { addNotification } from "../../../../global/store/notifications_model";
-import { useUserMediaTracks } from "../../../../global/hooks/useUserMediaTracks";
+import { useUserMediaTracks } from "../../../../shared/hooks/useUserMediaTracks";
 
 export default function ChatMessageForm(
     props: {

@@ -3,11 +3,11 @@ import { currentWall$, getCurrentWall } from "../../global/store/wall_model";
 import { useStore } from "effector-react";
 import { getInterests, isMobile } from "../../global/store/store";
 import { useRouter } from "next/router";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import Head from "next/head";
-import CustomStepper from "../../global/components-ui/CustomStepper/CustomStepper";
+import CustomStepper from "../../shared/ui/CustomStepper/CustomStepper";
 import dynamic from "next/dynamic";
-import CustomLoader from "../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 
 const SearchingPeople = dynamic(() => import("./components/SearchingPeople/SearchingPeople"), {
     loading: () => <CustomLoader />

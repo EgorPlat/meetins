@@ -1,12 +1,12 @@
 import React from "react";
 import s from "./LentaList.module.scss";
-import { IWall } from "../../../../global/interfaces/wall";
+import { IWall } from "../../../../entities/wall";
 import { baseURL } from "../../../../global/store/store";
-import CustomSlider from "../../../../global/components-ui/CustomSlider/CustomSlider";
-import CustomEditMenu from "../../../../global/components-ui/CustomEditMenu/CustomEditMenu";
-import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/functions/getDateInYYYYMMDDHHFormat";
+import CustomSlider from "../../../../shared/ui/CustomSlider/CustomSlider";
+import CustomEditMenu from "../../../../shared/ui/CustomEditMenu/CustomEditMenu";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../shared/functions/getDateInYYYYMMDDHHFormat";
 import { AiFillHeart } from "react-icons/ai";
-import LazyLoad from "../../../../global/components/LazyLoadViewport";
+import LazyLoad from "../../../../widgets/LazyLoadViewport";
 
 export default function LentaList(props: {
     wallPosts: IWall[],

@@ -3,13 +3,13 @@ import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import { getGroupsList, groupsList, joinToGroup } from "../../../../global/store/groups_model";
 import { $user, getInterests } from "../../../../global/store/store";
-import { IGroup } from "../../../../global/interfaces/groups";
+import { IGroup } from "../../../../entities/groups";
 import GroupsListView from "./GroupsListView/GroupsListView";
-import CustomModal from "../../../../global/components-ui/CustomModal/CustomModal";
+import CustomModal from "../../../../shared/ui/CustomModal/CustomModal";
 import dynamic from "next/dynamic";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
-const CreateNewGroupForm = dynamic(() => import("../../../../global/forms/CreateNewGroup/Index"));
+const CreateNewGroupForm = dynamic(() => import("../../../../features/forms/CreateNewGroup/Index"));
 
 export default function GroupsList () {
 

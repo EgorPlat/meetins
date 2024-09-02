@@ -1,8 +1,8 @@
 import { Ref } from "react";
-import ButtonWithHint from "../../../../global/components-ui/Hint/buttonWithHint";
-import { IInterest } from "../../../../global/interfaces/interest";
+import ButtonWithHint from "../../../../shared/ui/Hint/buttonWithHint";
+import { IInterest } from "../../../../entities/interest";
 import s from "./InterestsPageView.module.scss";
-import CustomAccordion from "../../../../global/components-ui/CustomAccordion/CustomAccordion";
+import CustomAccordion from "../../../../shared/ui/CustomAccordion/CustomAccordion";
 
 export default function InterestsPageView ({ handleSendForm, currentInterests, titleRef }: {
     handleSendForm: () => void,

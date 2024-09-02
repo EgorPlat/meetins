@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
 import { Socket } from "socket.io-client";
-import { IMyDialog } from "../interfaces";
+import { IMyDialog } from "../../entities";
 import { activeChat, setActiveChat, setIsUserUnReadMessagesExists, updatedIsReadMessagesInActiveDialog } from "./chat_model";
 import { setOnlineUsers } from "./store";
 

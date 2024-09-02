@@ -2,7 +2,7 @@ import { Slider } from "@mui/material";
 import { useStore } from "effector-react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { IPeople, Params } from "../../../../global/interfaces";
+import { IPeople, Params } from "../../../../entities";
 import {
     allPeoples,
     filterParams,
@@ -15,12 +15,12 @@ import {
 } from "../../../../global/store/peoples_model";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";
-import { GOALS } from "../../../../global/helpers/constants";
+import { GOALS } from "../../../../shared/helpers/constants";
 import { $currentInterestsList } from "../../../../global/store/store";
 import { currentEventsInfoLoaded, getUserEventsInfo, userEvents } from "../../../../global/store/events_model";
-import CustomLoader from "../../../../global/components-ui/CustomLoader/CustomLoader";
-import InfinityScroll from "../../../../global/components/InfinityScroll/InfinityScroll";
-import CustomButton from "../../../../global/components-ui/CustomButton/CustomButton";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
+import InfinityScroll from "../../../../widgets/InfinityScroll/InfinityScroll";
+import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
 
 export default function SearchingPeople(): JSX.Element {
 

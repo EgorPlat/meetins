@@ -1,4 +1,4 @@
-import { IGroup } from "../../../../../global/interfaces/groups";
+import { IGroup } from "../../../../../entities/groups";
 import { baseURL } from "../../../../../global/store/store";
 import s from "./GroupsListView.module.scss";
 

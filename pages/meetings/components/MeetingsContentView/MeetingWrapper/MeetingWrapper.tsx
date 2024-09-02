@@ -1,9 +1,9 @@
 import { useStore } from "effector-react";
-import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../../global/functions/getDateInYYYYMMDDHHFormat";
-import { IMeeting } from "../../../../../global/interfaces/meetings";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../../shared/functions/getDateInYYYYMMDDHHFormat";
+import { IMeeting } from "../../../../../entities/meetings";
 import { baseURL, isMobile } from "../../../../../global/store/store";
 import s from "./MeetingWrapper.module.scss";
-import CustomTimer from "../../../../../global/components-ui/CustomTimer/CustomTimer";
+import CustomTimer from "../../../../../shared/ui/CustomTimer/CustomTimer";
 import Link from "next/link";
 
 export default function MeetingWrapper(props: {

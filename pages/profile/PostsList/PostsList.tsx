@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import s from "./PostsList.module.scss";
-import { Post, User } from "../../../global/interfaces";
+import { Post, User } from "../../../entities";
 import { baseURL, likeUserPost, unlikeUserPost } from "../../../global/store/store";
-import { NewComment } from "../../../global/interfaces/newComment";
+import { NewComment } from "../../../entities/newComment";
 import { addNewCommentToCurrentPost } from "../../../global/store/comments_model";
 import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
 import { FaComments } from "react-icons/fa";
 import { CgCalendarDates } from "react-icons/cg";
-import { customizeDateToYYYYMMDDHHMMFormat } from "../../../global/functions/getDateInYYYYMMDDHHFormat";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../shared/functions/getDateInYYYYMMDDHHFormat";
 import CurrentPostComments from "./CurrentPostComments/CurrentPostComments";
 import PostCommentForm from "./PostCommentForm/PostCommentForm";
-import CustomModal from "../../../global/components-ui/CustomModal/CustomModal";
-import CustomSlider from "../../../global/components-ui/CustomSlider/CustomSlider";
+import CustomModal from "../../../shared/ui/CustomModal/CustomModal";
+import CustomSlider from "../../../shared/ui/CustomSlider/CustomSlider";
 
 export default function PostsList(props: { currentUser: User, authedUser: User }): JSX.Element {
 

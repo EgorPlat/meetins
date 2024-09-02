@@ -1,10 +1,10 @@
 import { createEffect, createEvent, createStore } from "effector";
-import { IShortEventInfo, IEventInfoCard, IUnitedInvitesEvent, IInnerInviteEvent, IOuterInviteEvent, IEventComments } from "../interfaces/events";
+import { IShortEventInfo, IEventInfoCard, IUnitedInvitesEvent, IInnerInviteEvent, IOuterInviteEvent, IEventComments } from "../../entities/events";
 import { instance, setUser } from "./store";
 import { sample } from "effector";
 import { addNotification } from "./notifications_model";
-import { IInnerInvites } from "../interfaces";
-import { INotification } from "../interfaces/notification";
+import { IInnerInvites } from "../../entities";
+import { INotification } from "../../entities/notification";
 
 export const setCurrentEvents = createEvent<IShortEventInfo[]>();
 export const currentEvents = createStore<IShortEventInfo[]>([]).on(setCurrentEvents, (_, newEvents) => {

@@ -1,13 +1,13 @@
-import { IGroup, IGroupFile, IGroupMembersInfo, IGroupPost } from "../../../../global/interfaces/groups";
+import { IGroup, IGroupFile, IGroupMembersInfo, IGroupPost } from "../../../../entities/groups";
 import { baseURL } from "../../../../global/store/store";
 import { AiFillHeart, AiOutlineEye, AiOutlineVideoCamera } from "react-icons/ai";
 import { RiDiscussLine } from "react-icons/ri";
 import { ImAttachment } from "react-icons/im";
 import { BiComment, BiPhotoAlbum } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
-import { User } from "../../../../global/interfaces";
-import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../global/functions/getDateInYYYYMMDDHHFormat";
-import CustomSlider from "../../../../global/components-ui/CustomSlider/CustomSlider";
+import { User } from "../../../../entities";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../shared/functions/getDateInYYYYMMDDHHFormat";
+import CustomSlider from "../../../../shared/ui/CustomSlider/CustomSlider";
 import s from "./GroupInfoPageView.module.scss";
 
 export default function GroupInfoPageView(props: {

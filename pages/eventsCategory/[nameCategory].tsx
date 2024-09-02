@@ -2,8 +2,8 @@ import { useRouter } from "next/router"
 import { useEffect } from "react";
 import { currentEvents, getEvents, loadedStatus } from "../../global/store/events_model";
 import { useStore } from "effector-react";
-import { getCategoryName } from "../../global/helpers/helper";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import { getCategoryName } from "../../shared/helpers/helper";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import EventsList from "./components/EventsList/EventsList";
 
 export default function CategoryEventInfo(): JSX.Element {

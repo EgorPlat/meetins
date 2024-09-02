@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
-import { ICreateMeeting, IMeeting, ISplitedMeetings, MeetingComment } from "../interfaces/meetings";
+import { ICreateMeeting, IMeeting, ISplitedMeetings, MeetingComment } from "../../entities/meetings";
 import { instance } from "./store";
 import { ChangeEvent } from "react";
 

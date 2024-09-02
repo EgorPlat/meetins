@@ -1,8 +1,8 @@
 import React from "react";
-import { IMyDialog, User } from "../../../../global/interfaces";
+import { IMyDialog, User } from "../../../../entities";
 import { getDialogMessages } from "../../../../global/store/chat_model";
 import { baseURL } from "../../../../global/store/store";
-import calculateCountOfUnredMessageInDialog from "../../../../global/helpers/helper";
+import calculateCountOfUnredMessageInDialog from "../../../../shared/helpers/helper";
 import s from "./userChatCard.module.scss";
 
 export default function UserChatCard(props: { dialog: IMyDialog, authedUser: User }): JSX.Element {

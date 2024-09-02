@@ -9,8 +9,8 @@ import {
 } from "../../global/store/events_model";
 import { $user } from "../../global/store/store";
 import { useRouter } from "next/router";
-import { IInnerInvites } from "../../global/interfaces";
-import PageContainer from "../../global/components/PageContainer/pageContainer";
+import { IInnerInvites } from "../../entities";
+import PageContainer from "../../widgets/PageContainer/pageContainer";
 import InvitesPageView from "./components/InvitesPageView/InvitesPageView";
 
 export default function Invites() {

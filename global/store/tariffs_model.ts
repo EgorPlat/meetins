@@ -1,5 +1,5 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
-import { ITariff } from "../interfaces/tariffs";
+import { ITariff } from "../../entities/tariffs";
 import { instance } from "./store";
 
 export const setTariffs = createEvent<ITariff[]>();
