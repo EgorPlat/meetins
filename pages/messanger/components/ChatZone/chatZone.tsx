@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getDateInDMFormat } from "../../../../shared/functions/getDateInDMFormat";
@@ -33,10 +33,10 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
     const [videoMessageActive, setVideoMessageActive] = useState<boolean>();
 
-    const authedUser = useUnit($user);
-    const isMessageWithFileLoaded$ = useUnit(isMessageWithFileLoaded);
-    const onlineUsers = useUnit($onlineUsers);
-    const connection$ = useUnit(connection);
+    const authedUser = useStore($user);
+    const isMessageWithFileLoaded$ = useStore(isMessageWithFileLoaded);
+    const onlineUsers = useStore($onlineUsers);
+    const connection$ = useStore(connection);
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
@@ -104,6 +104,12 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
             createdSendFileAndUploadActiveChat(blob);
         }
     }, [mediaChunks]);
+
+    useEffect(() => {
+        return () => {
+            setActiveChat(defaultDialog);
+        }
+    }, []);
 
 
     if (activeChat$) {

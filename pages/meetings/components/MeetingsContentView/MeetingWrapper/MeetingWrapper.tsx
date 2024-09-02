@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../../shared/functions/getDateInYYYYMMDDHHFormat";
 import { IMeeting } from "../../../../../entities/meetings";
 import { baseURL, isMobile } from "../../../../../global/store/store";
@@ -11,7 +11,7 @@ export default function MeetingWrapper(props: {
     handleGoToMeeting: (meeting: IMeeting) => void
 }) {
 
-    const isMobile$ = useUnit(isMobile);
+    const isMobile$ = useStore(isMobile);
     const isMeetingEnded = new Date(props.meeting?.date) <= new Date();
     const meetingCreator = props.meeting?.participants.filter(el => el.userId === props.meeting.creatorId)[0];
 

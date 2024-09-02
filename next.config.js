@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const config = {
+module.exports = {
     reactStrictMode: true,
     typescript: {
         ignoreBuildErrors: true
@@ -16,5 +16,3 @@ const config = {
         domains: ["media.kudago.com", "localhost", "meetins-egorplat.amvera.io"]
     }
 }
-
-module.exports = config;

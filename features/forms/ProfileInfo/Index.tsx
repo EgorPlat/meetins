@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -13,8 +13,8 @@ import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 export default function ProfileInfoForm(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const isUpdated: boolean | null = useUnit(isProfileUpdated);
-    const user = useUnit($user);
+    const isUpdated: boolean | null = useStore(isProfileUpdated);
+    const user = useStore($user);
     const { t } = useTranslation();
     
     const onChangeProfile = (data: {name: string, birthDate: string, phoneNumber: string}) => {

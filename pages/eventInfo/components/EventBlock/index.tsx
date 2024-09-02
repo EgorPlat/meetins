@@ -5,7 +5,7 @@ import EventMoreInfo from "../EventMoreInfo";
 import CustomSlider from "../../../../shared/ui/CustomSlider/CustomSlider";
 import Image from "next/image";
 import { baseURL, isMobile } from "../../../../global/store/store";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
 
@@ -17,7 +17,7 @@ export default function EventBlock(props: {
 
     const event = props.currentEventById;
     const { t } = useTranslation();
-    const isMobile$ = useUnit(isMobile);
+    const isMobile$ = useStore(isMobile);
 
 
     if (event && props.commentsEvent) {

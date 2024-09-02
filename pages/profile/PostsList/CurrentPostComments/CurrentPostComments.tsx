@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { customizeDateToYYYYMMDDFormat } from "../../../../shared/functions/getDateInYYYYMMDDFormat";
@@ -11,8 +11,8 @@ import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
 export default function CurrentPostComments (props: {post: Post}) {
 
-    const currentPostComments$ = useUnit(currentPostComments);
-    const isCurrentPostCommentsLoaded$ = useUnit(isCurrentPostCommentsLoaded);
+    const currentPostComments$ = useStore(currentPostComments);
+    const isCurrentPostCommentsLoaded$ = useStore(isCurrentPostCommentsLoaded);
     const router = useRouter();
     
     const handleCommentAvatarClick = (comment: PostComment) => {

@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import {
     $currentProfileUser,
     $onlineUsers,
@@ -12,7 +12,7 @@ import {
     setIsCurrentUserLoaded,
     setUser
 } from "../../global/store/store";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { updateUserAvatar, updateUserStatus } from "../../global/store/settings_model";
 import { checkDialog } from "../../global/store/chat_model";
 import { sendInviteToUser } from "../../global/store/events_model";
@@ -26,12 +26,12 @@ import PageContainer from "../../widgets/PageContainer/pageContainer";
 function Profile(): JSX.Element {
 
     const route = useRouter();
-    const userLoaded = useUnit(isUserLoaded);
-    const currentUserLoaded = useUnit(isCurrentUserLoaded);
-    const currentUser = useUnit($currentProfileUser);
-    const authedUser = useUnit($user);
-    const currentUserPlaces = useUnit(currentUserPlaces$);
-    const onlineUsers = useUnit($onlineUsers);
+    const userLoaded = useStore(isUserLoaded);
+    const currentUserLoaded = useStore(isCurrentUserLoaded);
+    const currentUser = useStore($currentProfileUser);
+    const authedUser = useStore($user);
+    const currentUserPlaces = useStore(currentUserPlaces$);
+    const onlineUsers = useStore($onlineUsers);
 
     const [addingImageStatus, setAddingImageStatus] = useState<boolean>(false);
     const [isAddPostModal, setIsAddPostModal] = useState<boolean>(false);

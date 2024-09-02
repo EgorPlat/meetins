@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import s from "./StatsView.module.scss";
 import { getMyMusicStatistic, myStatistic } from "../../../../global/store/music_model";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { baseURL } from "../../../../global/store/store";
 
 export default function StatsView() {
 
-    const myStatistic$ = useUnit(myStatistic);
+    const myStatistic$ = useStore(myStatistic);
     
     useEffect(() => {
         getMyMusicStatistic();

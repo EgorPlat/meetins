@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { $currentInterestsList, getInterests } from "../../../../global/store/store";
 import s from "./ChangingInterests.module.scss";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 
 export default function ChangingInterests(props: {
     currentInterests: string[],
@@ -9,7 +9,7 @@ export default function ChangingInterests(props: {
 }) {
 
     const [interestsList, setInterestsList] = useState([]);
-    const currentInterests = useUnit($currentInterestsList);
+    const currentInterests = useStore($currentInterestsList);
 
     const selectNewInterest = (index: number) => {
         const updatedInterests = interestsList;

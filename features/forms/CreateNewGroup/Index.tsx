@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import { ICreateGroup } from "../../../entities/groups";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { $currentInterestsList } from "../../../global/store/store";
 import { createNewGroup } from "../../../global/store/groups_model";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
@@ -12,7 +12,7 @@ export default function CreateNewGroupForm(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
-    const currentInterestsList$ = useUnit($currentInterestsList);
+    const currentInterestsList$ = useStore($currentInterestsList);
     
     const onChangeGroup = (data: ICreateGroup) => {
         createNewGroup(data);

@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { $user, updateUserTag } from "../../../global/store/store";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
  
@@ -10,7 +10,7 @@ export default function EditUserTag(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
-    const user$ = useUnit($user);
+    const user$ = useStore($user);
 
     const onChangeTag = (data: {
         color: string,    

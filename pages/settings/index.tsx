@@ -1,10 +1,11 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { $user, isUserLoaded, setUser } from "../../global/store/store";
 import { useEffect } from "react";
 import { useState } from "react";
 import { setIsAccountUpdated, setIsProfileUpdated, updateUserFilterStatus } from "../../global/store/settings_model";
 import { useTranslation } from "react-i18next";
 import { User } from "../../entities";
+import React from "react";
 import ProfileInfoForm from "../../features/forms/ProfileInfo/Index";
 import ManageAccountForm from "../../features/forms/ManageAccount/Index";
 import ru from "../../public/images/ru.png";
@@ -20,10 +21,10 @@ import CustomButton from "../../shared/ui/CustomButton/CustomButton";
 
 export default function Settings(): JSX.Element {
 
-    const isLoad = useUnit(isUserLoaded);
+    const isLoad = useStore(isUserLoaded);
     const [isModal, setIsModal] = useState<boolean>(false);
     const { t, i18n } = useTranslation();
-    const user$ = useUnit($user);
+    const user$ = useStore($user);
 
     useEffect(() => {
         return () => {
@@ -81,10 +82,10 @@ export default function Settings(): JSX.Element {
                         <h4>{t("Выбрать язык")}</h4>
                         <div className={s.locales}>
                             <div className={s.localeImg}>
-                                <Image alt="En flag" src={us} width={62} height={50} onClick={() => handleChangeLocale("en")} />
+                                <Image src={us} width="62px" height="50px" onClick={() => handleChangeLocale("en")} />
                             </div>
                             <div className={s.localeImg}>
-                                <Image alt="En flag" src={ru} width={62} height={50} onClick={() => handleChangeLocale("ru")} />
+                                <Image src={ru} width="62px" height="50px" onClick={() => handleChangeLocale("ru")} />
                             </div>
                         </div>
                     </div>

@@ -76,7 +76,7 @@ export default function GroupInfoPageView(props: {
                 <div className={s.postForm}>
                     <button className={s.actionBtn} onClick={props.handleOpenAddingPost}>Добавить публикацию</button>
                     <span className={s.countPosts}>Публикаций в сообществе - {props.groupInfo?.posts?.length}</span>
-                </div> 
+                </div>
                 <div className={s.content}>
                     <div className={s.postList}>
                         {

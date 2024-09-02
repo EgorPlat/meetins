@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { useEffect } from "react";
 import {
     getUserInnerInvitesEventInfo,
@@ -15,9 +15,9 @@ import InvitesPageView from "./components/InvitesPageView/InvitesPageView";
 
 export default function Invites() {
 
-    const authedUser$ = useUnit($user);
-    const unitedEventsInfo$ = useUnit(unitedInviteEvents);
-    const loadedStatus$ = useUnit(loadedStatus);
+    const authedUser$ = useStore($user);
+    const unitedEventsInfo$ = useStore(unitedInviteEvents);
+    const loadedStatus$ = useStore(loadedStatus);
     const router = useRouter();
 
     const handleWatch = (eventId: number) => {

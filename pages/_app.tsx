@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile } from "../global/store/store";
 import { connection } from "../global/store/connection_model";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { detectUserLanguage } from "../shared/helpers/helper";
 import { useResize } from "../shared/hooks/useResize";
 import { setRouter } from "../global/store/router_model";
@@ -23,15 +23,14 @@ import "regenerator-runtime/runtime";
 import "../node_modules/reseter.css/css/reseter.min.css";
 import CustomModal from "../shared/ui/CustomModal/CustomModal";
 import { MusicControlBlock } from "../widgets/MusicControlBlock/musicControlBlock";
-import React from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-    const connection$ = useUnit(connection);
-    const isScrollPageBlocked = useUnit($scrollPageBlocked);
+    const connection$ = useStore(connection);
+    const isScrollPageBlocked = useStore($scrollPageBlocked);
 
     const router = useRouter();
-    const isVideoCallOpened$ = useUnit(isVideoCallOpened);
+    const isVideoCallOpened$ = useStore(isVideoCallOpened);
     const { isMobile, isUnAdaptive } = useResize();
     const isCookieModalNeededToShow =
         router.asPath === "/login" ||

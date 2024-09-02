@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import React from "react";
 import { findUserInOnlineList } from "../../../../shared/helpers/helper";
@@ -9,7 +9,7 @@ import s from "./UserList.module.scss";
 export default function UserList(props: {user: IPeople}): JSX.Element {
 
     const router = useRouter();
-    const userOnlineList = useUnit($onlineUsers);
+    const userOnlineList = useStore($onlineUsers);
 
     const goToProfile = (user: IPeople) => {
         router.push(`profile/${user.login}`)
