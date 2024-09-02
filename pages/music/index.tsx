@@ -9,7 +9,7 @@ import {
     matchesList,
     activeMusicId
 } from "../../global/store/music_model";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import CustomModal from "../../shared/ui/CustomModal/CustomModal";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import MusicPageView from "./components/MusicPageView/MusicPageView";
@@ -30,10 +30,10 @@ export default function Music() {
     const [showMyStatistic, setShowMyStatistic] = useState<boolean>(false);
     const [searchMusic, setSearchMusic] = useState<string>("");
     const debouncedSearchMusic = useDebounce(searchMusic, 300);
-    const musicList$ = useStore(musicList);
-    const authorsStatistic$ = useStore(authorsStatistic);
-    const matchesList$ = useStore(matchesList);
-    const activeMusicId$ = useStore(activeMusicId);
+    const musicList$ = useUnit(musicList);
+    const authorsStatistic$ = useUnit(authorsStatistic);
+    const matchesList$ = useUnit(matchesList);
+    const activeMusicId$ = useUnit(activeMusicId);
 
     const handleSwapMusicModal = (status: boolean) => {
         setAddMusicModal(() => status);

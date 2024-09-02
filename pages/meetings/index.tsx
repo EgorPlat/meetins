@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { currentMeetings, getAllMeetings, setSelectedMeeting } from "../../global/store/meetings_model";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { useRouter } from "next/router";
 import { IMeeting } from "../../entities/meetings";
 import { $user } from "../../global/store/store";
@@ -10,8 +10,8 @@ import React from "react";
 
 export default function Meetings() {
 
-    const currentMeetings$ = useStore(currentMeetings);
-    const authedUser$ = useStore($user);
+    const currentMeetings$ = useUnit(currentMeetings);
+    const authedUser$ = useUnit($user);
     const router = useRouter();
 
     const furtherMeetings = currentMeetings$.furtherMeetings;

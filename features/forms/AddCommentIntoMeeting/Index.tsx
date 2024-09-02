@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { handleSendCommentIntoMeeting, selectedMeeting } from "../../../global/store/meetings_model";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
@@ -10,7 +10,7 @@ export default function AddCommentIntoMeeting(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
-    const selectedMeeting$ = useStore(selectedMeeting);
+    const selectedMeeting$ = useUnit(selectedMeeting);
 
     const onChangeComment = (data: {
         text: string, 

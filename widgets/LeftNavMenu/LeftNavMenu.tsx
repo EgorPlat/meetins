@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import Link from "next/link";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -9,8 +9,8 @@ import { isUserUnReadMessagesExists } from "../../global/store/chat_model";
 export default function LeftNavMenu(): JSX.Element {
 
     const { t } = useTranslation();
-    const isUserUnReadMessagesExists$ = useStore(isUserUnReadMessagesExists);
-    const user = useStore($user);
+    const isUserUnReadMessagesExists$ = useUnit(isUserUnReadMessagesExists);
+    const user = useUnit($user);
     
     return(
         <div className={s.ul}>        

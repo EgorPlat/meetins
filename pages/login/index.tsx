@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { isEmail } from "../../shared/helpers/validate";
 import { $loginLoading, sendLogData } from "../../global/store/login_model";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { useTranslation } from "react-i18next";
 import { addNotification } from "../../global/store/notifications_model";
 import Head from "next/head";
@@ -17,7 +17,7 @@ import React from "react";
 export default function Login(): JSX.Element {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const loginLoading = useStore($loginLoading);
+    const loginLoading = useUnit($loginLoading);
     const { t } = useTranslation();
 
     const sendLoginData = (data: { login: string, password: string }) => {

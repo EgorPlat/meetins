@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { groupInfo, manageGroup } from "../../../global/store/groups_model";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
  
@@ -10,7 +10,7 @@ export default function ManageGroup(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
-    const groupInfo$ = useStore(groupInfo);
+    const groupInfo$ = useUnit(groupInfo);
 
     const onChangeGroup = (data: {name: string, headImage: File, description: string}) => {
         const formData = new FormData();

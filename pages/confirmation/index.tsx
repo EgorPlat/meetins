@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { useRouter } from "next/router";
 import { $emailForConfirmation, sendConfirmationCodeForAccept } from "../../global/store/register_model";
 import ConfirmationView from "./components/confirmationView";
@@ -6,7 +6,7 @@ import React from "react";
 
 export default function Confirmation() {
 
-    const emailForConfirmation$ = useStore($emailForConfirmation);
+    const emailForConfirmation$ = useUnit($emailForConfirmation);
     const router = useRouter();
 
     const sendConfirmationCode = (code: number) => {
