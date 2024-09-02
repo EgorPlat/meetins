@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { currentWall$, getCurrentWall } from "../../global/store/wall_model";
 import { useUnit } from "effector-react";
 import { getInterests, isMobile } from "../../global/store/store";

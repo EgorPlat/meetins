@@ -12,7 +12,6 @@ import Image from "next/image";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 import s from "../../styles/pageStyles/auth.module.scss";
 import { FaUnlock, FaUser } from "react-icons/fa6";
-import React from "react";
 
 export default function Login(): JSX.Element {
 
@@ -48,6 +47,9 @@ export default function Login(): JSX.Element {
                 </Head>
                 <h1 style={{ display: "grid" }}>
                     <Image
+                        width={50}
+                        height={50}
+                        alt="Вход"
                         src={logo}
                     />
                     {t("Вход")}

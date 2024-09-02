@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import {
     $currentProfileUser,
     $onlineUsers,

@@ -5,7 +5,6 @@ import { useState } from "react";
 import { setIsAccountUpdated, setIsProfileUpdated, updateUserFilterStatus } from "../../global/store/settings_model";
 import { useTranslation } from "react-i18next";
 import { User } from "../../entities";
-import React from "react";
 import ProfileInfoForm from "../../features/forms/ProfileInfo/Index";
 import ManageAccountForm from "../../features/forms/ManageAccount/Index";
 import ru from "../../public/images/ru.png";

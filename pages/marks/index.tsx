@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useUnit } from "effector-react";
 import { $user, getMarkedUsersInfo } from "../../global/store/store";
 import { getUserEventsInfo } from "../../global/store/events_model";

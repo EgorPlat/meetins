@@ -8,7 +8,6 @@ import AddCommentIntoMeeting from "../../features/forms/AddCommentIntoMeeting/In
 import CustomModal from "../../shared/ui/CustomModal/CustomModal";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import MeetingsRoomPageView from "./components/MeetingsRoomPageView/MeetingsRoomPageView";
-import React from "react";
 
 export default function MeetingsRoom() {
 

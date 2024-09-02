@@ -23,7 +23,6 @@ import Input from "../../shared/ui/Input/Input"
 import Link from "next/link"
 import { addNotification } from "../../global/store/notifications_model"
 import { FaCity, FaEnvelope, FaLock, FaUser } from "react-icons/fa6"
-import React from "react";
 
 export default function Login(): JSX.Element {
     const {
@@ -91,6 +90,9 @@ export default function Login(): JSX.Element {
                 </Head>
                 <h1 style={{ display:"grid" }}>
                     <Image
+                        width={50}
+                        height={50}
+                        alt="Регистрация"
                         src={logo}
                     />
                     {t("Регистрация")}

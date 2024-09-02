@@ -12,7 +12,6 @@ import { useRouter } from "next/router";
 import { IInnerInvites } from "../../entities";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import InvitesPageView from "./components/InvitesPageView/InvitesPageView";
-import React from "react";
 
 export default function Invites() {
 

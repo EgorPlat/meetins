@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import InterestsPageView from "./components/InterestsPageView/InterestsPageView";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import Head from "next/head";
-import React from "react";
 
 export default function Interests() {
 
