@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot for Confirmation page is valid 1`] = `
+<div>
+  <div>
+    <div>
+      <img
+        data-nimg="1"
+        decoding="async"
+        height="NaN"
+        src=""
+        style="color: transparent;"
+        width="NaN"
+      />
+    </div>
+    <div>
+      Пожалуйста, для успешной процедуры подтверждения не перезагружайте страницу. На указанную Вами при регистрации почту был выслан код подтверждения. Пожалуйста впишите его в поле и нажмите "Отправить"
+    </div>
+    <div>
+      <input
+        placeholder="Введите код"
+        type="number"
+      />
+    </div>
+    <div>
+      <button>
+        Отправить
+      </button>
+      <a
+        href="/login"
+      >
+        Вернуться назад
+      </a>
+    </div>
+  </div>
+</div>
+`;
