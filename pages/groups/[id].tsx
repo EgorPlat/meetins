@@ -20,6 +20,7 @@ import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 import GroupInfoPageView from "./components/GroupInfoPageView/GroupInfoPageView";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import dynamic from "next/dynamic";
+import React from "react";
 
 const ManageGroup = dynamic(() => import("../../features/forms/ManageGroup/Index"), { loading: () => <CustomLoader /> });
 const GroupCommentsView = dynamic(() => import("./components/GroupCommentsView"), { loading: () => <CustomLoader /> });

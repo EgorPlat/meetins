@@ -23,6 +23,7 @@ import "regenerator-runtime/runtime";
 import "../node_modules/reseter.css/css/reseter.min.css";
 import CustomModal from "../shared/ui/CustomModal/CustomModal";
 import { MusicControlBlock } from "../widgets/MusicControlBlock/musicControlBlock";
+import React from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
 

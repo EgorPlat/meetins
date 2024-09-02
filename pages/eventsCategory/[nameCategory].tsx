@@ -5,6 +5,7 @@ import { useStore } from "effector-react";
 import { getCategoryName } from "../../shared/helpers/helper";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import EventsList from "./components/EventsList/EventsList";
+import React from "react";
 
 export default function CategoryEventInfo(): JSX.Element {
 

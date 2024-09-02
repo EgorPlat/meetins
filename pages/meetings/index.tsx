@@ -6,6 +6,7 @@ import { IMeeting } from "../../entities/meetings";
 import { $user } from "../../global/store/store";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import MeetingsContentView from "./components/MeetingsContentView/MeetingsContentView";
+import React from "react";
 
 export default function Meetings() {
 

@@ -14,7 +14,7 @@ import { addNotification } from "../../global/store/notifications_model";
 import EventBlock from "./components/EventBlock";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import Loader from "../../shared/ui/Loader/Loader";
-
+import React from "react";
 
 export default function EventInfo(): JSX.Element {
 

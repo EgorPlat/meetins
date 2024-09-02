@@ -17,6 +17,7 @@ import CustomStepper from "../../shared/ui/CustomStepper/CustomStepper";
 import useDebounce from "../../shared/hooks/useDebounce";
 import dynamic from "next/dynamic";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
+import React from "react";
 
 const AddMusic = dynamic(() => import("../../features/forms/AddMusic/Index"), { loading: () => <CustomLoader />})
 const StatsView = dynamic(() => import("./components/StatsView/StatsView"), { loading: () => <CustomLoader />});

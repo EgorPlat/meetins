@@ -23,6 +23,7 @@ import Input from "../../shared/ui/Input/Input"
 import Link from "next/link"
 import { addNotification } from "../../global/store/notifications_model"
 import { FaCity, FaEnvelope, FaLock, FaUser } from "react-icons/fa6"
+import React from "react";
 
 export default function Login(): JSX.Element {
     const {

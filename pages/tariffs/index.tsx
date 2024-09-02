@@ -1,6 +1,7 @@
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import TariffsPageView from "./components/TariffsPageView/TariffsPageView";
 import { baseURL } from "../../global/store/store";
+import React from "react";
 
 export default function Tariffs({ tarrifs }) {
 

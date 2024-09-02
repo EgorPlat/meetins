@@ -12,6 +12,7 @@ import Image from "next/image";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 import s from "../../styles/pageStyles/auth.module.scss";
 import { FaUnlock, FaUser } from "react-icons/fa6";
+import React from "react";
 
 export default function Login(): JSX.Element {
 
