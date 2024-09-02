@@ -12,7 +12,7 @@
     color: black;
 }
 .chat {
-    //height: calc(100vh - 55px);
+    height: calc(100vh - 55px);
     height: 100%;
     display: grid;
     grid-template-rows: 95px calc(100% - 200px) 80px;
