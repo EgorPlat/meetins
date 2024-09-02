@@ -82,10 +82,10 @@ export default function Settings(): JSX.Element {
                         <h4>{t("Выбрать язык")}</h4>
                         <div className={s.locales}>
                             <div className={s.localeImg}>
-                                <Image src={us} width="62px" height="50px" onClick={() => handleChangeLocale("en")} />
+                                <Image alt="En flag" src={us} width={62} height={50} onClick={() => handleChangeLocale("en")} />
                             </div>
                             <div className={s.localeImg}>
-                                <Image src={ru} width="62px" height="50px" onClick={() => handleChangeLocale("ru")} />
+                                <Image alt="En flag" src={ru} width={62} height={50} onClick={() => handleChangeLocale("ru")} />
                             </div>
                         </div>
                     </div>

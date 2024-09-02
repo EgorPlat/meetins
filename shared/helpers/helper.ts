@@ -86,10 +86,5 @@ export const destrucutreFilesInGroupPost = (groupInfo: IGroup) => {
 };
 
 export const getCategoryName = (categoryName: string) => {
-    const findedCategoryName = CATEGORY_NAMES.filter(category => category.en === categoryName)[0];
-    if (findedCategoryName) {
-        return findedCategoryName;
-    } else {
-        return null;
-    }
+    return CATEGORY_NAMES.filter(category => category.en === categoryName)[0]?.ru;
 }
