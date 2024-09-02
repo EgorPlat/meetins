@@ -8,6 +8,6 @@ it("getTimerFromSeconds(number) => `minutes:seconds` ", () => {
 
 it("getCategoryName(string) => { ru: string, en: string } || null", () => {
     CATEGORY_NAMES.forEach(category => {
-        expect(getCategoryName(category.en)).toEqual(category);
+        expect(getCategoryName(category.en)).toEqual(category.ru);
     });
 });
