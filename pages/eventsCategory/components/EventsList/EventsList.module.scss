@@ -19,7 +19,9 @@
             column-gap: 10px;
             border-radius: 10px;
             & .eventImage {
-                border-radius: 10px;
+                width: 100%;
+                min-height: 200px;
+                position: relative;
             }
             & .eventDescription {
                 display: flex;

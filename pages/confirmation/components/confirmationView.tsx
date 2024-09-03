@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import Image from 'next/image';
-import logo from '../../../public/images/logo.svg';
-import s from './confirmation.module.scss';
-import Link from 'next/link';
+import { useRef } from "react";
+import Image from "next/image";
+import logo from "../../../public/images/logo.svg";
+import s from "./confirmation.module.scss";
+import Link from "next/link";
 
 interface IConfirmationViewProps {
     sendConfirmationCode: (code: number) => void
@@ -14,7 +14,7 @@ export default function ConfirmationView({ sendConfirmationCode }: IConfirmation
     return (
         <div className={s.confirmation}>
             <div className={s.title}>
-                <Image src={logo} width="50px" height="50px" />
+                <Image src={logo} width={50} height={50} alt="Логотип" />
             </div>
             <div className={s.description}>
                 Пожалуйста, для успешной процедуры подтверждения не перезагружайте страницу.
