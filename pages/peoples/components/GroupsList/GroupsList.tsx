@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useState } from "react";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { useRouter } from "next/router";
 import { getGroupsList, groupsList, joinToGroup } from "../../../../global/store/groups_model";
 import { $user, getInterests } from "../../../../global/store/store";
@@ -13,10 +13,10 @@ const CreateNewGroupForm = dynamic(() => import("../../../../features/forms/Crea
 
 export default function GroupsList () {
 
-    const groupsList$ = useStore(groupsList);
+    const groupsList$ = useUnit(groupsList);
     const router = useRouter();
     const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
-    const user$ = useStore($user);
+    const user$ = useUnit($user);
 
     const handleJoinToGroup = (group: IGroup) => {
         if (!group.membersId.includes(user$.userId)) {

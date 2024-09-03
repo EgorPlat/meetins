@@ -3,13 +3,13 @@ import { customizeDateToInputFormatFromDBFormat } from "../../../../shared/helpe
 import { baseURL } from "../../../../global/store/store";
 import s from "./GroupTalksMessagesView.module.scss";
 import { activeGroupTalksMessages, getGroupTalkMessageByTalkId, setActiveGroupTalkMessage } from "../../../../global/store/groups_model";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 
 export default function GroupTalksMessagesView(props: {
     talkId: number,
     groupId: number
 }) {
-    const activeGroupTalksMessages$ = useStore(activeGroupTalksMessages);
+    const activeGroupTalksMessages$ = useUnit(activeGroupTalksMessages);
     
     useEffect(() => {
         getGroupTalkMessageByTalkId({

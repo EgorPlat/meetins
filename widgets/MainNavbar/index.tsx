@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -16,11 +16,11 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
     const { t } = useTranslation();
 
     const [select, setSelect] = useState<string>("");
-    const user = useStore($user);
+    const user = useUnit($user);
     const router = useRouter();
     const ref = useRef<any>();
     const userAvatar = user?.avatar || "no-avatar.jpg";
-    const connection$ = useStore(connection);
+    const connection$ = useUnit(connection);
 
     const handleAvatarClick = () => {
         setSelect("name");

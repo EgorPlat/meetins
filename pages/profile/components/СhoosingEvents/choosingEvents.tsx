@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import s from "./choosingEvents.module.scss";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { getUserEventsInfo, loadedStatus, setUserEvents, userEvents } from "../../../../global/store/events_model";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
@@ -8,8 +8,8 @@ export default function ChoosingEvents(props: {
     choosedEvent: (eventId: number) => void
 }): JSX.Element {
 
-    const userEvents$ = useStore(userEvents);
-    const userEventsLoaded = useStore(loadedStatus);
+    const userEvents$ = useUnit(userEvents);
+    const userEventsLoaded = useUnit(loadedStatus);
     const [selectedEvent, setSelectedEvent] = useState(null);
 
     useEffect(() => {

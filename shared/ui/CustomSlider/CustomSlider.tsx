@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import s from "./CustomSlider.module.scss";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { isMobile } from "../../../global/store/store";
 
 interface ICustomSliderProps {
@@ -18,7 +18,7 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
     const [activeImageId, setActiveImageId] = useState<number>(0);
     const [touchXData, setTouchXData] = useState<number>(0);
     const [params, setParams] = useState({ width, height });
-    const isMobile$ = useStore(isMobile);
+    const isMobile$ = useUnit(isMobile);
 
     const updateActiveImage = (newActiveImageId: number) => {
         setActiveImageId(() => newActiveImageId);

@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { activeChat, setActiveChat } from "../../global/store/chat_model";
 import { isMobile } from "../../global/store/store";
 import React, { useEffect } from "react";
@@ -11,8 +11,8 @@ import { defaultDialog } from "../../global/mock/defaultDialog";
 
 export default function Messanger(): JSX.Element {
 
-    const activeChat$ = useStore(activeChat);
-    const isMobile$ = useStore(isMobile);
+    const activeChat$ = useUnit(activeChat);
+    const isMobile$ = useUnit(isMobile);
 
     const isChatNeededToShow = Boolean(activeChat$.dialogId);
     

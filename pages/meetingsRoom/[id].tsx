@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { handleRegInMeeting, selectedMeeting, uploadFileToMediaMeeting } from "../../global/store/meetings_model";
 import { ChangeEvent, useState } from "react";
 import { $user } from "../../global/store/store";
@@ -11,10 +11,10 @@ import MeetingsRoomPageView from "./components/MeetingsRoomPageView/MeetingsRoom
 
 export default function MeetingsRoom() {
 
-    const selectedMeeting$ = useStore(selectedMeeting);
+    const selectedMeeting$ = useUnit(selectedMeeting);
     const [isAddCommentModal, setIsAddCommentModal] = useState<boolean>(false);
     const [isOpenAllFilesModal, setIsOpenAllFilesModal] = useState<boolean>(false);
-    const user$ = useStore($user);
+    const user$ = useUnit($user);
     const isUserInParticipants = selectedMeeting$?.participants.filter(el => el.userId === user$.userId).length !== 0;
 
     const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
