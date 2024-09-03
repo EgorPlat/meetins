@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import {
@@ -18,9 +18,9 @@ import Loader from "../../shared/ui/Loader/Loader";
 
 export default function EventInfo(): JSX.Element {
 
-    const currentEventById$ = useStore(currentEventById);
-    const currentEventCommentsById$ = useStore(currentEventCommentsById);
-    const authedUser$ = useStore($user);
+    const currentEventById$ = useUnit(currentEventById);
+    const currentEventCommentsById$ = useUnit(currentEventCommentsById);
+    const authedUser$ = useUnit($user);
 
     const { query } = useRouter();
 

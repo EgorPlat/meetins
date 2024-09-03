@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { useEffect, useRef } from "react";
 import { 
     getDialogMessages,
@@ -13,9 +13,9 @@ import { IMyDialog } from "../../../../entities";
 
 export default function MobileChatList(): JSX.Element {
 
-    const myDialogs$ = useStore(myDialogs);
-    const isLoaded$ = useStore(isMyDialogsLoaded);
-    const authedUser$ = useStore($user);
+    const myDialogs$ = useUnit(myDialogs);
+    const isLoaded$ = useUnit(isMyDialogsLoaded);
+    const authedUser$ = useUnit($user);
     const ref = useRef(null);
 
     const handleGetDialogMessages = (dialog: IMyDialog) => {

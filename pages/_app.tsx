@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile } from "../global/store/store";
 import { connection } from "../global/store/connection_model";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { detectUserLanguage } from "../shared/helpers/helper";
 import { useResize } from "../shared/hooks/useResize";
 import { setRouter } from "../global/store/router_model";
@@ -26,11 +26,11 @@ import { MusicControlBlock } from "../widgets/MusicControlBlock/musicControlBloc
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-    const connection$ = useStore(connection);
-    const isScrollPageBlocked = useStore($scrollPageBlocked);
+    const connection$ = useUnit(connection);
+    const isScrollPageBlocked = useUnit($scrollPageBlocked);
 
     const router = useRouter();
-    const isVideoCallOpened$ = useStore(isVideoCallOpened);
+    const isVideoCallOpened$ = useUnit(isVideoCallOpened);
     const { isMobile, isUnAdaptive } = useResize();
     const isCookieModalNeededToShow =
         router.asPath === "/login" ||

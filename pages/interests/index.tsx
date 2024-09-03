@@ -1,5 +1,5 @@
 import { addNotification } from "../../global/store/notifications_model";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { $currentInterestsList, addInterest, getInterests } from "../../global/store/store";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
@@ -9,7 +9,7 @@ import Head from "next/head";
 
 export default function Interests() {
 
-    const currentInterests$ = useStore($currentInterestsList);
+    const currentInterests$ = useUnit($currentInterestsList);
     const titleRef = useRef<HTMLInputElement>(null);
     const { t } = useTranslation();
 

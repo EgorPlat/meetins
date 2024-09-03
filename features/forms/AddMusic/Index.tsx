@@ -5,14 +5,14 @@ import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import { addNotification } from "../../../global/store/notifications_model";
 import { addNewMusic, currentAuthorName, getAuthorCurrentName } from "../../../global/store/music_model";
 import { validateFilesFromInputAndStructuring } from "../../../shared/helpers/helper";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 
 export default function AddMusic(): JSX.Element {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
-    const currentAuthorName$ = useStore(currentAuthorName);
+    const currentAuthorName$ = useUnit(currentAuthorName);
 
     const onChangeMusic = (data: {
         name: string,
