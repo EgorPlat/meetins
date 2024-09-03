@@ -27,13 +27,14 @@ export default function EventsList(props: {
                                     className={s.eventBody} 
                                     key={event.id}
                                 >
-                                    <div className={s.eventImage}>
-                                        <Image
-                                            src={event.images[0].image}
-                                            fill
-                                            alt="Изображение с события"
-                                        />
-                                    </div>
+                                    <Image
+                                        src={event.images[0].image}
+                                        width="100px"
+                                        height="40px"
+                                        layout="responsive"
+                                        className={s.eventImage}
+                                    ></Image>
+                                    
                                     <div className={s.eventDescription}>
                                         <div className={s.eventTitle}>{event.title}</div>
                                         <div className={s.eventPrice}>

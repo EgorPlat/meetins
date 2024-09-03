@@ -23,12 +23,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         }
     }, [route.asPath]);
 
+
     return (
         <div className={`${s.container} ${background}`}>
             {isNeededRouteToShowMenu && <Header />}
-            <div className={s.main}>
-                {children}
-            </div>
+            {
+                <div className={s.main}>
+                    {children}
+                </div>
+            }
         </div>
     )
 }

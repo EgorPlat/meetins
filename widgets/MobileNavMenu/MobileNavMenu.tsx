@@ -22,8 +22,7 @@ export default function MobileNavMenu() {
 
     const handleLogOutClick = () => {
         handleLogOut();
-    };
-    
+    }
     return (
         <div className={s.mobileMenu}>
             <RxHamburgerMenu className={s.mobileMenuIcon} fontSize={36} onClick={() => setIsOpened(true)} />
@@ -31,14 +30,11 @@ export default function MobileNavMenu() {
                 isOpened &&
                 <div className={s.mobileMenuWrapper} onClick={handleCloseMenu}>
                     <div className={s.mobileMenuWrapperShown} onClick={(e) => e.stopPropagation()}>
-                        <div  className={s.logoImage}>
-                            <Image
-                                width={75}
-                                height={75}
-                                src={logo}
-                                alt="company logo"
-                            />
-                        </div>
+                        <Image  
+                            className={s.logoImage}
+                            src={logo}
+                            alt='company logo'
+                        />
                         <LeftNavMenu />
                         <div className={s.exitIcon} onClick={handleLogOutClick}>
                             <span className={s.exitTitle}>Выход</span>
