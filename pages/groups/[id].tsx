@@ -12,7 +12,7 @@ import {
     unlikePostInGroup
 } from "../../global/store/groups_model";
 import { destrucutreFilesInGroupPost } from "../../shared/helpers/helper";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { $user } from "../../global/store/store";
 import { IGroupPost, IGroupTalkMessage } from "../../entities/groups";
 import CustomModal from "../../shared/ui/CustomModal/CustomModal";
@@ -33,10 +33,10 @@ const GroupAttachments = dynamic(() => import("./components/GroupAttachments/Gro
 export default function Groups() {
 
     const router = useRouter();
-    const groupInfo$ = useUnit(groupInfo);
-    const groupMembersInfo$ = useUnit(groupMembersInfo);
-    const authedUser$ = useUnit($user);
-    const isGroupInfoLoaded$ = useUnit(isGroupInfoLoaded);
+    const groupInfo$ = useStore(groupInfo);
+    const groupMembersInfo$ = useStore(groupMembersInfo);
+    const authedUser$ = useStore($user);
+    const isGroupInfoLoaded$ = useStore(isGroupInfoLoaded);
     const isAutherUserCreator = authedUser$?.userId === groupInfo$?.creatorId;
     const [modals, setModals] = useState({
         isSettingsGroupOpen: false,

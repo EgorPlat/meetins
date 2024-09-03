@@ -1,5 +1,5 @@
 import { Slider } from "@mui/material";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IPeople, Params } from "../../../../entities";
@@ -26,15 +26,15 @@ export default function SearchingPeople(): JSX.Element {
 
     const { t } = useTranslation();
 
-    const maxPage$ = useUnit(maxPageOfPeople);
-    const peoplesList$: IPeople[] = useUnit(allPeoples);
-    const filterParams$: Params = useUnit(filterParams);
-    const pending: boolean = useUnit(isPagePending);
+    const maxPage$ = useStore(maxPageOfPeople);
+    const peoplesList$: IPeople[] = useStore(allPeoples);
+    const filterParams$: Params = useStore(filterParams);
+    const pending: boolean = useStore(isPagePending);
     const [currentPageNumber, setCurrentPageNumber] = useState<number>(0);
 
-    const interests$ = useUnit($currentInterestsList);
-    const events$ = useUnit(userEvents);
-    const currentEventsInfoLoaded$ = useUnit(currentEventsInfoLoaded);
+    const interests$ = useStore($currentInterestsList);
+    const events$ = useStore(userEvents);
+    const currentEventsInfoLoaded$ = useStore(currentEventsInfoLoaded);
 
     const showAllPeoples = () => {
         setFilterParams({ ...filterParams$, gender: "all", age: 0, event: null });

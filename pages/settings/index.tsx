@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { $user, isUserLoaded, setUser } from "../../global/store/store";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -21,10 +21,10 @@ import CustomButton from "../../shared/ui/CustomButton/CustomButton";
 
 export default function Settings(): JSX.Element {
 
-    const isLoad = useUnit(isUserLoaded);
+    const isLoad = useStore(isUserLoaded);
     const [isModal, setIsModal] = useState<boolean>(false);
     const { t, i18n } = useTranslation();
-    const user$ = useUnit($user);
+    const user$ = useStore($user);
 
     useEffect(() => {
         return () => {

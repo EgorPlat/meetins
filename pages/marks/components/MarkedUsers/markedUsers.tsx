@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { $markedUsersInfo, baseURL, removeUserFromMarkedList } from "../../../../global/store/store";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import s from "./markedUsers.module.scss";
 
 export default function MarkedUsers() {
 
     const router = useRouter();
-    const markedUsersInfo$ = useUnit($markedUsersInfo);
+    const markedUsersInfo$ = useStore($markedUsersInfo);
 
     const handleRemoveUser = (e, userId: string) => {
         e.stopPropagation();

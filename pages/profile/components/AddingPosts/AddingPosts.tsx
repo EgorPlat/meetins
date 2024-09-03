@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import s from "./AddingPosts.module.scss";
 import { isMobile, sendNewUserPost } from "../../../../global/store/store";
 import { validatePost } from "../../../../shared/helpers/validate";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 import { validateFilesFromInputAndStructuring } from "../../../../shared/helpers/helper";
 import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
@@ -12,7 +12,7 @@ export default function AddingPosts(): JSX.Element {
     const ref = useRef(null);
     const { t } = useTranslation();
     const [postFormData, setPostFormData] = useState({ title: "", description: "", currentFiles: null });
-    const isMobile$ = useUnit(isMobile);
+    const isMobile$ = useStore(isMobile);
 
     const chooseFile = () => {
         ref.current.click();

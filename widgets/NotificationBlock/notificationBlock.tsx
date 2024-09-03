@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { Notification } from "./Notification/notification";
 import s from "./notificationBlock.module.scss";
 import { ICreatedNotification } from "../../entities/notification";
@@ -6,7 +6,7 @@ import { currentNotifications, removeNotification } from "../../global/store/not
 
 export default function NotificationBlock() {
 
-    const currentNotifications$ = useUnit(currentNotifications);
+    const currentNotifications$ = useStore(currentNotifications);
 
     const handleRemove = (error: ICreatedNotification) => {
         removeNotification(error.id);    

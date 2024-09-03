@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -11,8 +11,8 @@ import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 export default function ManageAccountForm(): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const user = useUnit($user);
-    const isUpdated: boolean | null = useUnit(isAccountUpdated);
+    const user = useStore($user);
+    const isUpdated: boolean | null = useStore(isAccountUpdated);
     const { t } = useTranslation();
 
     const onChangeAccount = (data: {email: string, password: string, login: string}) => {

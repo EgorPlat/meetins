@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useStore } from "effector-react";
 import { addNewCommentIntoGroupPost, groupInfo } from "../../../global/store/groups_model";
-import { useUnit } from "effector-react";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
  
@@ -12,7 +12,7 @@ export default function AddCommentIntoGroupPost(props: {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
-    const activeGroup$ = useUnit(groupInfo);
+    const activeGroup$ = useStore(groupInfo);
 
     const onChangeComment = (data: {
         text: string, 

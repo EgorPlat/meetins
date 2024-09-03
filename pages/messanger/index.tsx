@@ -1,4 +1,4 @@
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { activeChat } from "../../global/store/chat_model";
 import { isMobile } from "../../global/store/store";
 import React, { useEffect } from "react";
@@ -10,8 +10,8 @@ import MobileChatList from "./components/MobileChatList/mobileChatList";
 
 export default function Messanger(): JSX.Element {
 
-    const activeChat$ = useUnit(activeChat);
-    const isMobile$ = useUnit(isMobile);
+    const activeChat$ = useStore(activeChat);
+    const isMobile$ = useStore(isMobile);
 
     const isChatNeededToShow = Boolean(activeChat$.dialogId);
 

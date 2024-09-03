@@ -2,14 +2,14 @@ import s from "./header.module.scss"
 import Image from "next/image"
 import logo from "../../public/images/full-new-logo.svg";
 import MainNavbar from "../MainNavbar"
-import { useUnit } from "effector-react"
+import { useStore } from "effector-react"
 import { useRouter } from "next/router"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { $currentPage } from "../../global/store/store"
 
 export default function Header(): JSX.Element {
 	
-    const currentPage = useUnit($currentPage);
+    const currentPage = useStore($currentPage);
     const router = useRouter();
 	
     let headerBgClass

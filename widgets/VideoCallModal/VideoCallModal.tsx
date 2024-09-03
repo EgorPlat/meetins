@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from "../../global/store/store";
 import { connection } from "../../global/store/connection_model";
-import { useUnit } from "effector-react";
+import { useStore } from "effector-react";
 import { FaCamera, FaMicrophone } from "react-icons/fa6";
 import CustomModal from "../../shared/ui/CustomModal/CustomModal";
 import Peer, { MediaConnection } from "peerjs";
@@ -22,9 +22,9 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     const commingStreamRef = useRef<HTMLVideoElement>(null);
     const myMediaDeviceStream = useRef<MediaStream>(null);
 
-    const peerIDForCall$ = useUnit(peerIDForCall);
-    const connection$ = useUnit(connection);
-    const authedUser$ = useUnit($user);
+    const peerIDForCall$ = useStore(peerIDForCall);
+    const connection$ = useStore(connection);
+    const authedUser$ = useStore($user);
 
     const handleConfirmVideoCall = () => {
         

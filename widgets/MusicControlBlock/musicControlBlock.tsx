@@ -1,11 +1,11 @@
-import { useUnit } from "effector-react"
+import { useStore } from "effector-react"
 import { MusicControlBlockView } from "./MusicControlBlockView/MusicControlBlockView"
 import { activeMusic, isMusicNeededOnBackground } from "../../global/store/music_model"
 
 export const MusicControlBlock = () => {
 
-    const activeMusic$ = useUnit(activeMusic); 
-    const isMusicNeededOnBackground$ = useUnit(isMusicNeededOnBackground);
+    const activeMusic$ = useStore(activeMusic); 
+    const isMusicNeededOnBackground$ = useStore(isMusicNeededOnBackground);
 
     if (activeMusic$ && isMusicNeededOnBackground$) {
         return (
