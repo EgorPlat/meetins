@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile } from "../global/store/store";
 import { connection } from "../global/store/connection_model";
-import { useStore } from "effector-react";
+import { useUnit, Provider } from "effector-react";
 import { detectUserLanguage } from "../shared/helpers/helper";
 import { useResize } from "../shared/hooks/useResize";
 import { setRouter } from "../global/store/router_model";
@@ -23,19 +23,22 @@ import "regenerator-runtime/runtime";
 import "../node_modules/reseter.css/css/reseter.min.css";
 import CustomModal from "../shared/ui/CustomModal/CustomModal";
 import { MusicControlBlock } from "../widgets/MusicControlBlock/musicControlBlock";
+import { fork } from "effector";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-    const connection$ = useStore(connection);
-    const isScrollPageBlocked = useStore($scrollPageBlocked);
+    const connection$ = useUnit(connection);
+    const isScrollPageBlocked = useUnit($scrollPageBlocked);
 
     const router = useRouter();
-    const isVideoCallOpened$ = useStore(isVideoCallOpened);
+    const isVideoCallOpened$ = useUnit(isVideoCallOpened);
     const { isMobile, isUnAdaptive } = useResize();
     const isCookieModalNeededToShow =
         router.asPath === "/login" ||
         router.asPath === "/register";
     const [isCookieModalOpened, setIsCookieModalOpened] = useState<boolean>(isCookieModalNeededToShow);
+
+    const scope = fork();
 
     useTheme();
     useAuthAndInithialSocket();
@@ -56,40 +59,42 @@ function MyApp({ Component, pageProps }: AppProps) {
     }, [isMobile, isUnAdaptive]);
 
     return (
-        <Layout>
-            <Head>
-                <title>Meetins</title>
-                <link rel='icon' href='/images/logo.svg' />
-                <meta name="description" content="Checkout our service" key="desc" />
-                <meta property="og:title" content="Social Media Meetins for persons who want to find new relations with other peoples and go forward together." />
-                <meta
-                    property="og:description"
-                    content="Join us and get a lot of fun and new friends."
-                />
-            </Head>
-            <Component {...pageProps} />
-            <NotificationBlock />
-            <MusicControlBlock />
-            <VideoCallModal isOpen={isVideoCallOpened$} />
-            <CustomModal
-                title="Настройка cookie-файлов"
-                isDisplay={isCookieModalOpened}
-                changeModal={setIsCookieModalOpened}
-                actionConfirmed={(status) => setIsCookieModalOpened(!status)}
-                typeOfActions="default"
-            >
-                <p>
+        <Provider value={scope}>
+            <Layout>
+                <Head>
+                    <title>Meetins</title>
+                    <link rel='icon' href='/images/logo.svg' />
+                    <meta name="description" content="Checkout our service" key="desc" />
+                    <meta property="og:title" content="Social Media Meetins for persons who want to find new relations with other peoples and go forward together." />
+                    <meta
+                        property="og:description"
+                        content="Join us and get a lot of fun and new friends."
+                    />
+                </Head>
+                <Component {...pageProps} />
+                <NotificationBlock />
+                <MusicControlBlock />
+                <VideoCallModal isOpen={isVideoCallOpened$} />
+                <CustomModal
+                    title="Настройка cookie-файлов"
+                    isDisplay={isCookieModalOpened}
+                    changeModal={setIsCookieModalOpened}
+                    actionConfirmed={(status) => setIsCookieModalOpened(!status)}
+                    typeOfActions="default"
+                >
+                    <p>
                     Для дальнейшей работы с сайтом, убедитесь, что у Вас
                     разрешены для использования сторонние cookie файлы, иначе авторизоваться
                     на нашем сайте не получится.
-                    <p>
+                        <p>
                         Чтобы разрешить использование cookie, перейдите в настройки браузера, затем
                         найдите меню настройки сайтов или безопасности и конфиденциальности и включите
                         использование cookie.
+                        </p>
                     </p>
-                </p>
-            </CustomModal>
-        </Layout>
+                </CustomModal>
+            </Layout>
+        </Provider>
     )
 }
 

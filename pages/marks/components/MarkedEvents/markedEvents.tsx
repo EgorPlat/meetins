@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { userEvents } from "../../../../global/store/events_model";
 import React, { Suspense } from "react";
 import s from "./markedEvents.module.scss";
@@ -7,7 +7,7 @@ const MarkedEventInfo = React.lazy(() => import("./MarkedEventInfo/markedEventIn
 
 export default function MarkedEvents(): JSX.Element {
 
-    const markedEventsInfo$ = useStore(userEvents);
+    const markedEventsInfo$ = useUnit(userEvents);
 
     if (markedEventsInfo$?.length === 0) {
         return (

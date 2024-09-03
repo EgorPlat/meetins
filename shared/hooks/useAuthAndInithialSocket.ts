@@ -2,14 +2,14 @@ import { useEffect } from "react"
 import { io } from "socket.io-client";
 import { $user, baseURL } from "../../global/store/store";
 import { useRouter } from "next/router";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { connection, setNewConnection } from "../../global/store/connection_model";
 
 export const useAuthAndInithialSocket = () => {
 
-    const socketConnection = useStore(connection);
+    const socketConnection = useUnit(connection);
     const router = useRouter();
-    const authedUser$ = useStore($user);
+    const authedUser$ = useUnit($user);
 
     useEffect(() => {
         if (authedUser$ && socketConnection === null) {

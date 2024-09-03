@@ -1,4 +1,4 @@
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import React from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ export default React.memo(function About(props: {
     const { t } = useTranslation();
     const [changingStatus, setChangingStatus] = useState<boolean>(false);
     const [userStatus, setUserStatus] = useState<string>("");
-    const authedUser = useStore($user);
+    const authedUser = useUnit($user);
     const isAuthedProfile = props.user?.login === authedUser?.login;
 
     const newChangeSatus = (status: boolean) => {

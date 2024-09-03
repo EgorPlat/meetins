@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { currentWall$, getCurrentWall } from "../../global/store/wall_model";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { getInterests, isMobile } from "../../global/store/store";
 import { useRouter } from "next/router";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
@@ -21,9 +21,9 @@ const LentaList = dynamic(() => import("./components/LentaList/LentaList"), {
 
 export default function Peoples(): JSX.Element {
 
-    const currentWall = useStore(currentWall$);
+    const currentWall = useUnit(currentWall$);
     const router = useRouter();
-    const isMobile$ = useStore(isMobile);
+    const isMobile$ = useUnit(isMobile);
 
     const handleGoToLink = (isGroup: boolean, linkId: number) => {
         if (isGroup) {
