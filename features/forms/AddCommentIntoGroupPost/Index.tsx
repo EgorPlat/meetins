@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useStore } from "effector-react";
 import { addNewCommentIntoGroupPost, groupInfo } from "../../../global/store/groups_model";
+import { useStore } from "effector-react";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
  
