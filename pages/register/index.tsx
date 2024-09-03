@@ -90,6 +90,9 @@ export default function Login(): JSX.Element {
                 </Head>
                 <h1 style={{ display:"grid" }}>
                     <Image
+                        width={75}
+                        height={75}
+                        alt="Logo"
                         src={logo}
                     />
                     {t("Регистрация")}

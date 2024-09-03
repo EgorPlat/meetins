@@ -86,12 +86,14 @@ export default function EventBlock(props: {
                                                 src={comment.user?.avatar}
                                                 width={50}
                                                 height={50}
+                                                alt="Avatar"
                                             />
                                             : <Image
                                                 className={s.avatar}
                                                 src={baseURL + "no-avatar.jpg"}
                                                 width={50}
                                                 height={50}
+                                                alt="Avatar"
                                             />
                                     }
                                 </div>
