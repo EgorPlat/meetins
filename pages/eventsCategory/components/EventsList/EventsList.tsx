@@ -31,9 +31,8 @@ export default function EventsList(props: {
                                         <Image
                                             src={event.images[0].image}
                                             fill
-                                            sizes="100% 100%"
                                             alt="Изображение с события"
-                                        ></Image>
+                                        />
                                     </div>
                                     <div className={s.eventDescription}>
                                         <div className={s.eventTitle}>{event.title}</div>
