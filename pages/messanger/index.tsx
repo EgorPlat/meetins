@@ -28,8 +28,19 @@ export default function Messanger(): JSX.Element {
 
     return (
         <PageContainer>
-            {!isMobile$
+            {isMobile$
                 ?
+                <div className={s.mobileMessangerContent}>
+                    {
+                        !isChatNeededToShow
+                            ? <MobileChatList />
+                            :
+                            <div className={`${s.mobileChatZone}`}>
+                                <ChatZone activeChat$={activeChat$} />
+                            </div>
+                    }
+                </div>
+                :
                 <div className={s.messangerContent}>
                     <div className={`${s.chatList}`}>
                         <ChatList />
@@ -41,17 +52,6 @@ export default function Messanger(): JSX.Element {
                             </div>
                         }
                     </div>
-                </div>
-                :
-                <div className={s.mobileMessangerContent}>
-                    {
-                        !isChatNeededToShow
-                            ? <MobileChatList />
-                            :
-                            <div className={`${s.mobileChatZone}`}>
-                                <ChatZone activeChat$={activeChat$} />
-                            </div>
-                    }
                 </div>
             }
         </PageContainer>

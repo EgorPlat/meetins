@@ -13,7 +13,7 @@ export default function PageContainer(props: { children: ReactChild }): JSX.Elem
         <div className={s.page}>
             <div className={s.menu}>
                 {
-                    !isMobile$ ? <LeftNavMenu /> : <MobileNavMenu />
+                    isMobile$ ? <MobileNavMenu /> : <LeftNavMenu />
                 }
             </div>
             <div className={s.content}>
