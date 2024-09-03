@@ -14,5 +14,9 @@ module.exports = {
     },
     images: {
         domains: ["media.kudago.com", "localhost", "meetins-egorplat.amvera.io"]
-    }
+    },
+    experimental: {
+        concurrentFeatures: true,
+        serverComponents: true,
+    },
 }
