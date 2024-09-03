@@ -33,8 +33,10 @@ export default function MobileNavMenu() {
                     <div className={s.mobileMenuWrapperShown} onClick={(e) => e.stopPropagation()}>
                         <div  className={s.logoImage}>
                             <Image
+                                width={75}
+                                height={75}
                                 src={logo}
-                                alt='company logo'
+                                alt="company logo"
                             />
                         </div>
                         <LeftNavMenu />

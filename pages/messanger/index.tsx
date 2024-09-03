@@ -34,10 +34,7 @@ export default function Messanger(): JSX.Element {
                     {
                         !isChatNeededToShow
                             ? <MobileChatList />
-                            :
-                            <div className={`${s.mobileChatZone}`}>
-                                <ChatZone activeChat$={activeChat$} />
-                            </div>
+                            : <div className={`${s.mobileChatZone}`}> <ChatZone activeChat$={activeChat$} /> </div>
                     }
                 </div>
                 :
@@ -46,10 +43,10 @@ export default function Messanger(): JSX.Element {
                         <ChatList />
                     </div>
                     <div className={`${s.chatZone}`}>
-                        {isChatNeededToShow ? <ChatZone activeChat$={activeChat$} /> :
-                            <div className={s.noChat}>
-                                <h3 className={s.alert}>Выберите диалог...</h3>
-                            </div>
+                        {
+                            isChatNeededToShow 
+                                ? <ChatZone activeChat$={activeChat$} /> 
+                                : <div className={s.noChat}> <h3 className={s.alert}>Выберите диалог...</h3> </div>
                         }
                     </div>
                 </div>
