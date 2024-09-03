@@ -141,7 +141,7 @@ export default function ProfileView(props: {
                                     </div>
                                     <p className={s.views}>
                                         {t("за последние 24 часа профиль просмотрен")}:
-                                        <p className={s.count}> 150 {t("раз")}</p>
+                                        <span className={s.count}> 150 {t("раз")}</span>
                                     </p>
                                 </div>
                                 { 
