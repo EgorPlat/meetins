@@ -39,11 +39,11 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
         if( select === "settings" ) {
             router.push("/settings");
         }
-        if(select === "name") {
-            if (router.asPath !== `/profile/${user?.login}`) router.push(`/profile/${user?.login}`);
+        if(select === "name" && user) {
+            if (router.asPath !== `/profile/${user?.login}`) router.push(`/profile/${user.login}`);
         }
-        if(select === "comeBack") {
-            router.push(`/profile/${user?.login}`);
+        if(select === "comeBack" && user) {
+            router.push(`/profile/${user.login}`);
         }
         ref.current.selectedIndex = ref.current.options[0];
         setSelect("");

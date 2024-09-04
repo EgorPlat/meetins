@@ -1,15 +1,16 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/images/logo.svg";
 import s from "./confirmation.module.scss";
 import Link from "next/link";
+import CustomSplitedInput from "../../../shared/ui/CustomSplitedInput/CustomSplitedInput";
 
 interface IConfirmationViewProps {
     sendConfirmationCode: (code: number) => void
 }
 export default function ConfirmationView({ sendConfirmationCode }: IConfirmationViewProps) {
 
-    const ref = useRef(null);
+    const [code, setCode] = useState<number>(0);
 
     return (
         <div className={s.confirmation}>
@@ -22,10 +23,10 @@ export default function ConfirmationView({ sendConfirmationCode }: IConfirmation
                 Пожалуйста впишите его в поле и нажмите "Отправить"
             </div>
             <div className={s.content}>
-                <input type="number" placeholder="Введите код" ref={ref} />
+                <CustomSplitedInput count={6} handleChangeValue={value => setCode(+value)} />
             </div>
             <div className={s.actions}>
-                <button onClick={() => sendConfirmationCode(ref.current.value)}>Отправить</button>
+                <button onClick={() => sendConfirmationCode(code)}>Отправить</button>
                 <Link href="/login" className={s.goBack}>Вернуться назад</Link>
             </div>
         </div>
