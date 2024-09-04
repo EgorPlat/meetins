@@ -13,26 +13,21 @@ export default function CustomSplitedInput({ count, handleChangeValue }: ICustom
     const [currentSliceInput, setCurrentSliceInput] = useState<string>(`customSplitedItem${0}`);
     const [currentRefs, setCurrentRefs] = useState<React.RefObject<HTMLInputElement>[]>([]);
 
-    const handleChangeInputItem = (e: any, index: number) => {
-        if (e.target.value.length === 0 && index - 1 >= 0) {
-            setCurrentSliceInput(`customSplitedItem${index - 1}`);
-            setTimeout(() => currentRefs[index - 1]?.current?.focus());
-        }
-        if (e.target.value.length !== 0 && index + 1 < count) {
-            setCurrentSliceInput(`customSplitedItem${index + 1}`);
-            setTimeout(() => currentRefs[index + 1]?.current?.focus());
-        }
-        handleChangeValue(handleGetCurrentValueFromSlices());
-    };
-
     const handleKeyDown = (e: any, index: number) => {        
-        if (e.key === "Backspace" && e.target.value.length === 0 && index - 1 > 0) {   
+        if (e.key === "Backspace" && e.target.value.length === 0 && index - 1 >= 0) {   
             setCurrentSliceInput(`customSplitedItem${index - 1}`);
             setTimeout(() => currentRefs[index - 1]?.current?.focus());
         }
-        if (e.target.value.length !== 0 && index + 1 < count && ALLOWED_SYMBOLS.includes(e.key.toLowerCase())) {   
-            setCurrentSliceInput(`customSplitedItem${index + 1}`);
-            setTimeout(() => currentRefs[index + 1]?.current?.focus());
+        if (e.target.value.length !== 0) {
+            if (index + 1 < count && ALLOWED_SYMBOLS.includes(e.key.toLowerCase())) {
+                setCurrentSliceInput(`customSplitedItem${index + 1}`);
+                if (currentRefs[index + 1]) {
+                    currentRefs[index + 1].current.value = e.key;
+                    setTimeout(() => currentRefs[index + 1].current.focus());
+                }   
+            }
+        } else if(ALLOWED_SYMBOLS.includes(e.key.toLowerCase())) {
+            e.target.value = e.key;
         }
         handleChangeValue(handleGetCurrentValueFromSlices());
     };
@@ -63,7 +58,6 @@ export default function CustomSplitedInput({ count, handleChangeValue }: ICustom
                             placeholder=""
                             key={index}
                             disabled={disabled}
-                            onChange={e => handleChangeInputItem(e, index)}
                             onKeyDown={e => handleKeyDown(e, index)}
                             style={disabled ? {border: "1px solid gray"} : {border: "2px solid var(--default-color)"}}
                         />
