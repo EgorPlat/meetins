@@ -5,12 +5,10 @@ exports[`Snapshot for Confirmation page is valid 1`] = `
   <div>
     <div>
       <img
-        data-nimg="1"
-        decoding="async"
-        height="NaN"
-        src=""
-        style="color: transparent;"
-        width="NaN"
+        alt="Logo"
+        height="50"
+        src="[object Object]"
+        width="50"
       />
     </div>
     <div>
