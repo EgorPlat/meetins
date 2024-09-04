@@ -27,7 +27,7 @@ instance.interceptors.response.use((response) => {
     const ec: AxiosRequestConfig = error.config;
     const ers: number | undefined = error.response?.status;
     if (ers === 401) {
-        // handleLogOut();
+        handleLogOut();
         setIsInithialDataLoaded(true);
     }
     if (ers >= 400 && ers <= 499) {
@@ -182,7 +182,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
                 instanseRouter$?.push(savedRoute);
             }
         } else {
-            //instanseRouter$?.push("/login");
+            instanseRouter$?.push("/login");
         }
     })
 });
