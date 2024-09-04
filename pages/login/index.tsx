@@ -47,6 +47,9 @@ export default function Login(): JSX.Element {
                 </Head>
                 <h1 style={{ display: "grid" }}>
                     <Image
+                        alt="Вход"
+                        width={75}
+                        height={75}
                         src={logo}
                     />
                     {t("Вход")}

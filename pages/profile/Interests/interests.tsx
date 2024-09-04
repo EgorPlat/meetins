@@ -41,7 +41,7 @@ export default function Interests(props: {
                 setCurrentUserInterests(res);
             });
         }
-    }, [props.user?.userId, props.user?.interests]);
+    }, [props.user.interests]);
 
     return (
         <>

@@ -5,17 +5,14 @@
         padding: 10px;
         background-color: var(--bg-color-block);
         border-radius: 10px;
-        & .example {
-            margin-top: 5px;
-            & .interestExample {
-                border-radius: 5px;
-                margin-left: 10px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                outline: none;
-                background-color: transparent;
-                border: 2px solid rgb(44, 142, 255);
-            }
+        & .interestExample {
+            border-radius: 5px;
+            margin-left: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            outline: none;
+            background-color: transparent;
+            border: 2px solid rgb(44, 142, 255);
         }
     }
     & .formInterest {
@@ -68,7 +65,7 @@
         font-size: 16px;
         & .formInterest {
             display: grid;
-                grid-template-columns: 1fr;
+            grid-template-columns: 1fr;
         }
     }
 }
