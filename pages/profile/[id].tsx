@@ -107,6 +107,7 @@ function Profile(): JSX.Element {
     }, []);
 
     useEffect(() => {
+        if (!route.isReady) return;
         if (route.query.id) {
             getDataForProfilePage(String(route.query.id));
         }
