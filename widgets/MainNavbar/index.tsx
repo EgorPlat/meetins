@@ -23,8 +23,9 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
     const connection$ = useUnit(connection);
 
     const handleAvatarClick = () => {
-        setSelect("name");
+        setSelect("");
         ref.current.selectedIndex = ref.current.options[0];
+        router.push(`/profile/${user.login}`);
     };
 
     useEffect(() => {
