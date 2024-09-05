@@ -12,19 +12,21 @@ export default function CustomSplitedInput({ count, handleChangeValue }: ICustom
 
     const [currentSliceInput, setCurrentSliceInput] = useState<string>(`customSplitedItem${0}`);
     const [currentRefs, setCurrentRefs] = useState<React.RefObject<HTMLInputElement>[]>([]);
+    const [currentFoucIndex, setCurrentFocusIndex] = useState<number>(0);
 
-    const handleKeyDown = (e: any, index: number) => {        
-        if (e.key === "Backspace" && e.target.value.length === 0 && index - 1 >= 0) {   
-            setCurrentSliceInput(`customSplitedItem${index - 1}`);
-            setTimeout(() => currentRefs[index - 1]?.current?.focus());
+    const handleKeyDown = (e: any, index: number) => {
+        if (e.key === "Backspace") {
+            e.target.value = "";
+            if (index - 1 >= 0) {
+                setCurrentSliceInput(`customSplitedItem${index - 1}`);
+                setCurrentFocusIndex(index - 1);
+            }
         }
         if (e.target.value.length !== 0) {
-            if (index + 1 < count && ALLOWED_SYMBOLS.includes(e.key.toLowerCase())) {
+            if (index + 1 < count && ALLOWED_SYMBOLS.includes(e.key.toLowerCase()) && currentRefs[index + 1]) {
+                currentRefs[index + 1].current.value = e.key;
                 setCurrentSliceInput(`customSplitedItem${index + 1}`);
-                if (currentRefs[index + 1]) {
-                    currentRefs[index + 1].current.value = e.key;
-                    setTimeout(() => currentRefs[index + 1].current.focus());
-                }   
+                setCurrentFocusIndex(index + 1);
             }
         } else if(ALLOWED_SYMBOLS.includes(e.key.toLowerCase())) {
             e.target.value = e.key;
@@ -40,7 +42,17 @@ export default function CustomSplitedInput({ count, handleChangeValue }: ICustom
     };
 
     useEffect(() => {
-        setCurrentRefs((refs) => Array(count).fill(null).map((_, index) => refs[index] || React.createRef()));
+        if (currentRefs[currentFoucIndex]) {
+            currentRefs[currentFoucIndex].current.focus();
+        }
+    }, [currentFoucIndex, currentRefs]);
+
+    useEffect(() => {
+        setCurrentRefs(() => {
+            return Array(count)
+                .fill(null)
+                .map(() => React.createRef())
+        });
     }, [count]);
 
     return (
