@@ -13,7 +13,7 @@ import us from "../../public/images/us.png";
 import Image from "next/image";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 import TurnOffOn from "../../shared/ui/TurnOffOn/TurnOffOn";
-import ButtonWithHint from "../../shared/ui/Hint/buttonWithHint";
+import CustomButtonWithHint from "../../shared/ui/CustomButtonWithHint/CustomButtonWithHint";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import s from "./settings.module.scss";
 import CustomModal from "../../shared/ui/CustomModal/CustomModal";
@@ -69,7 +69,7 @@ export default function Settings(): JSX.Element {
                                 inithialStatus={user$?.isFilter}
                                 onChange={handleChangeStatus}
                             />
-                            <ButtonWithHint
+                            <CustomButtonWithHint
                                 fontSize={14}
                                 title="?"
                                 hintTitle={

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import s from "./buttonWithHint.module.scss";
+import s from "./CustomButtonWithHint.module.scss";
 import { setIsScrollPageBlocked } from "../../../global/store/store";
 import { useTranslation } from "react-i18next";
 
@@ -9,7 +9,7 @@ interface IHintProps {
     fontSize: number
 }
 
-export default function ButtonWithHint({ title, hintTitle, fontSize }: IHintProps) {
+export default function CustomButtonWithHint({ title, hintTitle, fontSize }: IHintProps) {
 
     const [isHint, setIsHint] = useState<boolean>(false);
     const { t } = useTranslation();

@@ -13,7 +13,7 @@ import { $user } from "../../global/store/store";
 import { addNotification } from "../../global/store/notifications_model";
 import EventBlock from "./components/EventBlock";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
-import Loader from "../../shared/ui/Loader/Loader";
+import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 
 
 export default function EventInfo(): JSX.Element {
@@ -47,14 +47,16 @@ export default function EventInfo(): JSX.Element {
 
     return (
         <PageContainer>
-            {currentEventById$
-                ?
-                <EventBlock
-                    addUserEvent={addUserEventHandler}
-                    currentEventById={currentEventById$}
-                    commentsEvent={currentEventCommentsById$}
-                />
-                : <Loader />}
+            {
+                currentEventById$
+                    ?
+                    <EventBlock
+                        addUserEvent={addUserEventHandler}
+                        currentEventById={currentEventById$}
+                        commentsEvent={currentEventCommentsById$}
+                    />
+                    : <CustomLoader />
+            }
         </PageContainer>
     )
 };

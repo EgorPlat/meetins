@@ -20,10 +20,10 @@ import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import CustomEditMenu from "../../../../shared/ui/CustomEditMenu/CustomEditMenu";
 import CustomModal from "../../../../shared/ui/CustomModal/CustomModal";
 import ChatMessageForm from "../ChatMessageForm/chatMessageForm";
-import Loader from "../../../../shared/ui/Loader/Loader";
 import s from "./chatZone.module.scss";
 import { connection } from "../../../../global/store/connection_model";
 import { addNotification } from "../../../../global/store/notifications_model";
+import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -214,7 +214,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                 </div>
                             )
                         })
-                        : <Loader />
+                        : <CustomLoader />
                     }
                     <div ref={messagesEndRef}></div>
                 </div>

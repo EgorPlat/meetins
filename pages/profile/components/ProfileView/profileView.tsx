@@ -9,7 +9,6 @@ import About from "../About/About";
 import Interests from "../../Interests/interests";
 import PostsList from "../../PostsList/PostsList";
 import Places from "../Places/places";
-import Loader from "../../../../shared/ui/Loader/Loader";
 import CustomModal from "../../../../shared/ui/CustomModal/CustomModal";
 import Head from "next/head";
 import React, { Suspense } from "react";
@@ -184,7 +183,7 @@ export default function ProfileView(props: {
                         <div className={s.postsList}>
                             { props.authedUser && <PostsList currentUser={activeUser} authedUser={props.authedUser} /> }
                         </div>
-                    </div> : <Loader/>
+                    </div> : <CustomLoader/>
             }
             <CustomModal 
                 isDisplay={props.isAddPostModal} 

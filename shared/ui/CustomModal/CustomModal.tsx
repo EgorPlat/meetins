@@ -24,7 +24,7 @@ const CustomModal = (props: {
                 <div className={s.customModalTitle}>
                     <p>{t(props.title)}</p>
                     <div className={s.customModalClose} onClick={() => props.changeModal(false)}>
-                x
+                        x
                     </div>
                 </div>
                 <div className={s.customModalChildrenContent}>
@@ -33,21 +33,21 @@ const CustomModal = (props: {
                 <div className={s.manageCustomModal}>
                     { 
                         props.typeOfActions === "default" 
-                &&
-                <>
-                    <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>{t("Подтвердить")}</button>
-                    <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>{t("Закрыть")}</button>
-                </>
+                        &&
+                        <>
+                            <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>{t("Подтвердить")}</button>
+                            <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>{t("Закрыть")}</button>
+                        </>
                     }
                     {
                         props.typeOfActions === "custom"
-                &&
-                {...props.actionsComponent}
+                        &&
+                        {...props.actionsComponent}
                     }
                     {
                         props.typeOfActions === "none"
-                &&
-                null
+                        &&
+                        null
                     }
                 </div>
             </div>

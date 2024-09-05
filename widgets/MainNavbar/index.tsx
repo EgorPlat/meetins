@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { $user, baseURL } from "../../global/store/store";
 import { connection, setNewConnection } from "../../global/store/connection_model";
 import { handleLogOut } from "../../global/store/login_model";
-import ButtonWithHint from "../../shared/ui/Hint/buttonWithHint";
+import CustomButtonWithHint from "../../shared/ui/CustomButtonWithHint/CustomButtonWithHint";
 
 export default function MainNavbar(props: {currentPage: string}): JSX.Element {
 
@@ -59,7 +59,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
                 <Link href="/meetings">{t("Встречи")}</Link>
             </div>
             <div className={s.userBlock}>
-                <ButtonWithHint
+                <CustomButtonWithHint
                     fontSize={20}
                     title={t("Пригласить")} 
                     hintTitle={

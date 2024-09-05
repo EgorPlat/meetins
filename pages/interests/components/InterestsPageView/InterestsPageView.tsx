@@ -1,4 +1,4 @@
-import ButtonWithHint from "../../../../shared/ui/Hint/buttonWithHint";
+import CustomButtonWithHint from "../../../../shared/ui/CustomButtonWithHint/CustomButtonWithHint";
 import { IInterest } from "../../../../entities/interest";
 import s from "./InterestsPageView.module.scss";
 import CustomAccordion from "../../../../shared/ui/CustomAccordion/CustomAccordion";
@@ -21,7 +21,7 @@ export default function InterestsPageView ({ currentInterests }: {
                     <div className={s.interestsList}>
                         <div className={s.title}>
                             Текущий список интересов людей 
-                            <ButtonWithHint 
+                            <CustomButtonWithHint 
                                 title='?'
                                 hintTitle={
                                     "Здесь указаны все интересы, которые могут быть использованы на сайте."
