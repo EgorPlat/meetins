@@ -19,42 +19,39 @@ const CustomModal = (props: {
         return null;
     }
     return(
-        createPortal(
-            <div className={s.customModal}>
-                <div className={`${s.customModalContent} customModal`}>
-                    <div className={s.customModalTitle}>
-                        <p>{t(props.title)}</p>
-                        <div className={s.customModalClose} onClick={() => props.changeModal(false)}>
-                        x
-                        </div>
-                    </div>
-                    <div className={s.customModalChildrenContent}>
-                        {props.children}
-                    </div>
-                    <div className={s.manageCustomModal}>
-                        { 
-                            props.typeOfActions === "default" 
-                        &&
-                        <>
-                            <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>{t("Подтвердить")}</button>
-                            <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>{t("Закрыть")}</button>
-                        </>
-                        }
-                        {
-                            props.typeOfActions === "custom"
-                        &&
-                        {...props.actionsComponent}
-                        }
-                        {
-                            props.typeOfActions === "none"
-                        &&
-                        null
-                        }
+        <div className={s.customModal}>
+            <div className={`${s.customModalContent} customModal`}>
+                <div className={s.customModalTitle}>
+                    <p>{t(props.title)}</p>
+                    <div className={s.customModalClose} onClick={() => props.changeModal(false)}>
+                x
                     </div>
                 </div>
+                <div className={s.customModalChildrenContent}>
+                    {props.children}
+                </div>
+                <div className={s.manageCustomModal}>
+                    { 
+                        props.typeOfActions === "default" 
+                &&
+                <>
+                    <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>{t("Подтвердить")}</button>
+                    <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>{t("Закрыть")}</button>
+                </>
+                    }
+                    {
+                        props.typeOfActions === "custom"
+                &&
+                {...props.actionsComponent}
+                    }
+                    {
+                        props.typeOfActions === "none"
+                &&
+                null
+                    }
+                </div>
             </div>
-            ,document.body
-        )
+        </div>
     )
 }
 
