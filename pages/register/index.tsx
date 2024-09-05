@@ -23,6 +23,7 @@ import Input from "../../shared/ui/Input/Input"
 import Link from "next/link"
 import { addNotification } from "../../global/store/notifications_model"
 import { FaCity, FaEnvelope, FaLock, FaUser } from "react-icons/fa6"
+import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 
 export default function Login(): JSX.Element {
     const {
@@ -30,8 +31,9 @@ export default function Login(): JSX.Element {
         handleSubmit,
         formState: { errors },
     } = useForm()
-    const [gender, setGender] = useState<string>("")
-    const [showPassword, setShowPassword] = useState<boolean>(false)
+    const [gender, setGender] = useState<string>("");
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const router = useRouter();
     const { t } = useTranslation();
 
@@ -62,6 +64,7 @@ export default function Login(): JSX.Element {
             gender: data.gender,
             city: data.city
         })
+        setIsLoading(true);
         sendRegData({
             name: nameArr[0],
             email: email,
@@ -69,6 +72,7 @@ export default function Login(): JSX.Element {
             gender: data.gender,
             city: data.city
         }).then( (res: any) => {
+            setIsLoading(false);
             if(res.data?.statusCode <= 217) {
                 setEmailForConfirmation(email);
                 router.push("/confirmation");
@@ -208,7 +212,9 @@ export default function Login(): JSX.Element {
                         <span className={s.errorSpan}>{t("Пожалуйста укажите пол")}</span>
                     )}
                     <button type='submit' className={` btn ${s.submitBtn}`}>
-                        {t("Регистрация")}
+                        {
+                            isLoading ? <CustomLoader /> : t("Регистрация")
+                        }
                     </button>
                     <div className={s.navActions}>
                         <Link href="/login">Уже есть аккаунт?</Link>
