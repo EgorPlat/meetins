@@ -1,29 +1,34 @@
 .tariffsPageView {
     & .tarrifsList {
+        margin-top: 15px;
         display: flex;
         column-gap: 15px;
-        justify-content: center;
-        justify-items: center;
         align-items: flex-start;
         row-gap: 15px;
         & .tariffView {
-            border-radius: 15px;
-            border: 1px solid var(--text-color);
-            width: 300px;
+            background-color: var(--bg-color-block);
+            border-radius: 5px;
+            width: 350px;
             min-height: 200px;
-            padding: 5px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            align-items: center;
             cursor: pointer;
             text-align: justify;
+            & .number {
+                font-size: 32px;
+                font-weight: 200;
+                text-transform: uppercase;
+            }
             & .title {
                 
             }
             & .period {
+                text-align: right;
                 font-size: 15px;
             }
             & .oppotunitiesList {
+                margin-top: 15px;
                 display: flex;
                 flex-direction: column;
                 justify-items: center;
@@ -31,7 +36,7 @@
                 justify-items: center;
                 font-size: 17px;
                 & .oppotunity {
-                    width: 280px;
+                    width: 320px;
                     color: var(--text-color);
                     margin-top: 2.5px;
                     & .title {
@@ -45,29 +50,25 @@
                 }
             }
             & .price {
-                font-weight: 700;
+                margin-top: 15px;
+                & .lastPrice {
+                    text-decoration: line-through;
+                    text-decoration-thickness: 1px;
+                    color: gray;
+                    font-size: 32px;
+                    font-weight: 100;
+                }
+                & .currentPrice {
+                    text-align: right;
+                    font-size: 42px;
+                    font-weight: 100;
+                    letter-spacing: -3px;
+                }
             }
             & .actions {
                 margin-top: auto;
                 font-size: 18px;
-                & .buyAction {
-                    border-radius: 15px;
-                    outline: none;
-                    border: none;
-                    background-color: rgba(68, 149, 255, 0.837);
-                    color: white;
-                    padding: 5px;
-                    min-width: 150px
-                }
-                & .buyAction:hover {
-                    background-color: rgba(255, 205, 24, 0.999);
-                    color: black;
-                }
             }
-        }
-        & .tariffView:hover {
-            transition: .3s;
-            box-shadow: 0px 0px 10px 1px var(--default-color);
         }
     }
 }
@@ -86,7 +87,7 @@
                 & .oppotunitiesList {
                     font-size: 20px;
                     & .oppotunity {
-                        width: 90%;
+                        width: 100%;
                         & .description {
                             font-size: 14px;
                         }

@@ -10,16 +10,16 @@ export default function TariffsPageView(props: {
         <div className={s.tariffsPageView}>
             <div className={s.tarrifsList}>
                 {
-                    props.tariffsData?.map((tariff) => (
-                        <div className={s.tariffView} key={tariff.title} >
+                    props.tariffsData?.map((tariff, index) => (
+                        <div className={s.tariffView} key={tariff.title}>
+                            <div className={s.number}>Тариф {index + 1}</div>
                             <div className={s.title}>
                                 {tariff.title}
                             </div>
                             <div className={s.period}>
-                                {tariff.periodMonth} Мес.
+                                {tariff.periodMonth} мес.
                             </div>
                             <div className={s.oppotunitiesList}>
-                                Преимущества:
                                 {
                                     tariff.opportunities?.map(oppotunity => (
                                         <div className={s.oppotunity} key={oppotunity.title}>
@@ -34,7 +34,8 @@ export default function TariffsPageView(props: {
                                 }
                             </div>
                             <div className={s.price}>
-                                {tariff.price} руб
+                                <div className={s.lastPrice}>3500 Р</div>
+                                <div className={s.currentPrice}>{tariff.price} Р</div>
                             </div>
                             <div className={s.actions}>
                                 <CustomButton text="Приобрести" />

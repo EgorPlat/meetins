@@ -1,15 +1,13 @@
 import { useRouter } from "next/router";
-import s from "./layout.module.scss";
-import { $currentPage, setCurrentPage } from "../../global/store/store";
-import { useUnit } from "effector-react";
+import { setCurrentPage } from "../../global/store/store";
 import { useEffect } from "react";
 import Header from "../Header";
+import s from "./layout.module.scss";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
     const route = useRouter();
-    const currentPage = useUnit($currentPage)
-    const background = ["/login", "/register"].includes(currentPage) ? s.loginPage : s.mainPage;
+    const background = ["/login", "/register"].includes(route.asPath) ? s.loginPage : s.mainPage;
     const isNeededRouteToShowMenu =
 		route.asPath !== "/confirmation"
 		&& route.asPath !== "/login"
