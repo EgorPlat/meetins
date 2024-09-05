@@ -173,7 +173,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
     getUserData().then((res) => {
         if (res.status === 200) {
             setIsInithialDataLoaded(true);
-            setIsUserLoaded(true);
+            setIsUserLoaded(true); 
             if (
                 instanseRouter$.asPath.includes("login") ||
 				instanseRouter$.asPath.includes("register") ||
