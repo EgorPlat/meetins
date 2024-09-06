@@ -16,6 +16,7 @@ import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
 import InputFile from "../../../../shared/ui/InputFile/InputFile";
 import CustomEditMenu from "../../../../shared/ui/CustomEditMenu/CustomEditMenu";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
+
 const EditUserTag = React.lazy(() => import("../../../../features/forms/EditUserTag/Index"));
 const ChoosingEvents = React.lazy(() => import("../СhoosingEvents/choosingEvents"));
 const AddingPosts = React.lazy(() => import("../AddingPosts/AddingPosts"));
@@ -172,8 +173,7 @@ export default function ProfileView(props: {
                             <div className={`${s.block} ${s.places}`}>
                                 <Places places={props.currentUserPlaces}/>
                             </div>
-                        </div> 
-
+                        </div>
                         {
                             activeUser.login === props.authedUser.login &&
                             <div className={s.addingPosts}>

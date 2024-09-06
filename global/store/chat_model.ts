@@ -126,6 +126,7 @@ export const checkDialog = createEffect(async (user: User) => {
             setActiveChat({
                 ...defaultDialog,
                 userId: user.userId,
+                userLogin: +user.login,
                 dialogId: response.data[0].dialogId,
                 userAvatar: user.avatar,
                 userName: user.name,
@@ -133,7 +134,14 @@ export const checkDialog = createEffect(async (user: User) => {
             });
             return response;
         } else {
-            setActiveChat({ ...defaultDialog, userName: user.name, userAvatar: user.avatar, userId: user.userId, dialogId: "none" });
+            setActiveChat({ 
+                ...defaultDialog, 
+                userLogin: +user.login, 
+                userName: user.name, 
+                userAvatar: user.avatar, 
+                userId: user.userId, 
+                dialogId: "none" 
+            });
         }
     }
     catch (error) {

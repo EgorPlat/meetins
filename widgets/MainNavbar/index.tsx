@@ -11,7 +11,7 @@ import { connection, setNewConnection } from "../../global/store/connection_mode
 import { handleLogOut } from "../../global/store/login_model";
 import CustomButtonWithHint from "../../shared/ui/CustomButtonWithHint/CustomButtonWithHint";
 
-export default function MainNavbar(props: {currentPage: string}): JSX.Element {
+export default function MainNavbar(): JSX.Element {
 
     const { t } = useTranslation();
 
@@ -29,25 +29,27 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
     };
 
     useEffect(() => {
-        if( select === "logOut" ) {
-            handleLogOut();
-            if (connection$) {
-                connection$.disconnect();
+        if (user) {
+            if( select === "logOut" ) {
+                handleLogOut();
+                if (connection$) {
+                    connection$.disconnect();
+                }
+                router.push("/login");
+                setNewConnection(null);	
             }
-            router.push("/login");
-            setNewConnection(null);	
+            if( select === "settings" ) {
+                router.push("/settings");
+            }
+            if(select === "name" && user) {
+                if (router.asPath !== `/profile/${user?.login}`) router.push(`/profile/${user.login}`);
+            }
+            if(select === "comeBack" && user) {
+                router.push(`/profile/${user.login}`);
+            }
+            ref.current.selectedIndex = ref.current.options[0];
+            setSelect("");
         }
-        if( select === "settings" ) {
-            router.push("/settings");
-        }
-        if(select === "name" && user) {
-            if (router.asPath !== `/profile/${user?.login}`) router.push(`/profile/${user.login}`);
-        }
-        if(select === "comeBack" && user) {
-            router.push(`/profile/${user.login}`);
-        }
-        ref.current.selectedIndex = ref.current.options[0];
-        setSelect("");
     }, [select]);
 
     return(
@@ -60,7 +62,7 @@ export default function MainNavbar(props: {currentPage: string}): JSX.Element {
             </div>
             <div className={s.userBlock}>
                 <CustomButtonWithHint
-                    fontSize={20}
+                    fontSize={18}
                     title={t("Пригласить")} 
                     hintTitle={
                         t("Вы можете приглашать пользователей на мерпориятия которые есть в ваших закладках, для этого перейдите к ним в профиль и нажмите кнопку 'Пригласить'")

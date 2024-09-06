@@ -12,17 +12,17 @@ export default function ChoosingEvents(props: {
     const userEventsLoaded = useUnit(loadedStatus);
     const [selectedEvent, setSelectedEvent] = useState(null);
 
+    const updateInvitingEvent = (eventId: number) => {
+        setSelectedEvent(eventId);
+        props.choosedEvent(eventId);
+    };
+
     useEffect(() => {
         getUserEventsInfo();
         return () => {
             setUserEvents([]);
         }
-    }, [])
-
-    const updateInvitingEvent = (eventId: number) => {
-        setSelectedEvent(eventId);
-        props.choosedEvent(eventId);
-    }
+    }, []);
 
     if (!userEventsLoaded) {
         return (
@@ -40,26 +40,28 @@ export default function ChoosingEvents(props: {
         return (
             <div className={s.choosingEvents}>
                 <table>
-                    <tr>
-                        <td>Название</td>
-                        <td>Цена</td>
-                        <td>Выбрать</td>
-                    </tr>
-                    {
-                        userEvents$.map(el => (
-                            <tr key={el.title}>
-                                <td>{el.title}</td>
-                                <td>{+el.price === 0 ? "Бесплатно" : el.price + "+"}</td>
-                                <td>
-                                    <input 
-                                        type="checkbox" 
-                                        checked={selectedEvent === el.id} 
-                                        onChange={() => updateInvitingEvent(el.id)} 
-                                    />
-                                </td>
-                            </tr>
-                        ))
-                    }
+                    <tbody>
+                        <tr>
+                            <td>Название</td>
+                            <td>Цена</td>
+                            <td>Выбрать</td>
+                        </tr>
+                        {
+                            userEvents$.map(el => (
+                                <tr key={el.title}>
+                                    <td>{el.title}</td>
+                                    <td>{+el.price === 0 ? "Бесплатно" : el.price + "+"}</td>
+                                    <td>
+                                        <input 
+                                            type="checkbox" 
+                                            checked={selectedEvent === el.id} 
+                                            onChange={() => updateInvitingEvent(el.id)} 
+                                        />
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
                 </table>
             </div>
         )

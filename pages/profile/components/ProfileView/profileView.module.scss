@@ -79,10 +79,11 @@
             }
 
             & .userName {
+                margin-top: 20px;
                 display: grid;
                 grid-template-columns: calc(100% - 10px) 10px;
                 align-items: center;
-                font-size: 36px;
+                font-size: 30px;
 
                 & .userNameAndTag {
                     display: flex;
@@ -181,15 +182,11 @@
                     }
 
                     & .userName {
-                        font-size: 32px;
+                        font-size: 26px;
                     }
 
                     & .actions {
-                        display: grid;
-                        flex-direction: column;
                         justify-content: center;
-                        justify-items: center;
-                        row-gap: 5px;
                     }
                 }
             }

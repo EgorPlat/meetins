@@ -41,7 +41,7 @@ export default function GroupInfoPageView(props: {
                             className={s.mainAvatar}
                             style={{ backgroundImage: `url(${baseURL}${props.groupInfo?.mainAvatar})` }}
                         ></div>
-                        <div className={s.title}>{props.groupInfo?.name}</div>
+                        <span className={s.title}>{props.groupInfo?.name}</span>
                         <div className={s.settings}>
                             {
                                 props.isAutherUserCreator &&

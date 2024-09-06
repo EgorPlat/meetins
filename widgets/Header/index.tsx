@@ -32,7 +32,7 @@ export default function Header(): JSX.Element {
                     width={190}
                 />
             </div>
-            <MainNavbar currentPage={currentPage} />
+            <MainNavbar />
         </div>
     )
 }

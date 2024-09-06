@@ -18,7 +18,8 @@ export default function GroupTalksMessagesView(props: {
         }).then(res => {
             setActiveGroupTalkMessage(res.data);
         })
-    }, [])
+    }, []);
+    
     return (
         <div className={s.groupTalksMessagesView}>
             {

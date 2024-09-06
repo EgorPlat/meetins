@@ -8,6 +8,7 @@
         display: grid;
         grid-template-columns: 350px calc(100% - 370px);
         column-gap: 20px;
+        font-weight: 100;
         & .aboutBlockImage {
             & .aboutBlockImageContent {
                 width: 350px;
@@ -19,6 +20,30 @@
             text-align: justify;
             display: grid;
             align-items: center;
+        }
+    }
+    & .aboutSecBlock {
+        & .content {
+            background-size: 100% 100%;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            justify-items: center;
+            & .image {
+                width: 100%;
+                height: 300px;
+                border-radius: 2px;
+            }
+            & .text {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                row-gap: 10px;
+                text-align: center;
+                font-weight: 100;
+                text-transform: uppercase;
+            }
         }
     }
     & .contactsBlock {
