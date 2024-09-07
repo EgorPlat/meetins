@@ -3,7 +3,6 @@ import LeftNavMenu from "../LeftNavMenu/LeftNavMenu";
 import s from "./pageContainer.module.scss";
 import { isMobile } from "../../global/store/store";
 import { useUnit } from "effector-react";
-import MobileNavMenu from "../MobileNavMenu/MobileNavMenu";
 
 export default function PageContainer(props: { children: ReactChild }): JSX.Element {
 
@@ -11,11 +10,18 @@ export default function PageContainer(props: { children: ReactChild }): JSX.Elem
 
     return (
         <div className={s.page}>
-            <div className={s.menu}>
-                {
-                    !isMobile$ ? <LeftNavMenu /> : <MobileNavMenu />
-                }
-            </div>
+            {
+                /*
+                <div className={s.menu}>
+                    {
+                        !isMobile$ ? <LeftNavMenu /> : <MobileNavMenu />
+                    }
+                </div>
+            */
+                !isMobile$ && (
+                    <div className={s.menu}><LeftNavMenu /></div>
+                )
+            }
             <div className={s.content}>
                 {props.children}
             </div>

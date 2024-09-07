@@ -23,7 +23,7 @@ export default function MarkedEvents(): JSX.Element {
         return (
             <div className={s.markedEvents}>
                 {markedEventsInfo$?.map(event => (
-                    <Suspense fallback={<CustomLoader />}>
+                    <Suspense key={event.id} fallback={<CustomLoader />}>
                         <MarkedEventInfo event={event} key={event.id} />
                     </Suspense>
                 ))}

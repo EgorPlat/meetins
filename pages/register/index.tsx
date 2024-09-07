@@ -92,7 +92,7 @@ export default function Login(): JSX.Element {
                         content="Регистрируйтесь и общайтесь!"
                     />
                 </Head>
-                <h1 style={{ display:"grid" }}>
+                <h1 style={{ display: "grid", justifyItems: "center" }}>
                     <Image
                         width={75}
                         height={75}

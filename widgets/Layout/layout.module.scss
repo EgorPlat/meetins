@@ -21,3 +21,46 @@
 	background-attachment: fixed;
 	background-size: cover;
 }
+
+.mobileContainer {
+	display: grid;
+	grid-template-rows: 60px calc(100vh - 140px) 80px;
+	& header {
+		display: grid;
+		grid-template-columns: 40px calc(100% - 120px) 40px;
+		column-gap: 10px;
+		justify-items: center;
+		padding-left: 10px;
+		align-items: center;
+		background-color: var(--bg-color-mobile-menu);
+		height: 100%;
+		& .title {
+			font-size: 26px;
+		}
+		& .avatar {
+			border-radius: 50%;
+		}
+	}
+	& main {
+		background-color: var(--bg-color);
+		position: relative;
+		overflow-y: scroll;
+	}
+	& footer {
+		padding-left: 10px;
+		padding-top: 10px;
+		background-color: var(--bg-color-mobile-menu);
+		height: 100%;
+		& .nav {
+			display: flex;
+			align-items: normal;
+			column-gap: 15px;
+			& .elem {
+				flex-grow: 1;
+				display: grid;
+				justify-content: center;
+				justify-items: center;
+			}
+		}
+	}
+}

@@ -18,7 +18,6 @@ export default function CustomEditMenu(props: {
             {
                 isContent &&
                 <>
-                    <div className={s.contentWrapper} style={{ height: document.getElementsByTagName("body")[0].scrollHeight }}></div>
                     <div className={s.content}>
                         {
                             props.data.map(el => (
@@ -29,6 +28,10 @@ export default function CustomEditMenu(props: {
                                 >{el.menuTitle}</div>
                             ))
                         }
+                        <div
+                            onClick={() => setIsContent(false)}
+                            className={s.menuElement}
+                        >Закрыть</div>
                     </div>
                 </>
             }

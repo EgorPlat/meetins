@@ -13,15 +13,6 @@
         background-color: gray;
     }
 
-    & .contentWrapper {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        z-index: 99;
-        background-color: transparent;
-    }
-
     & .content {
         border-radius: 5px;
         background-color: var(--bg-color);

@@ -12,9 +12,9 @@
     color: black;
 }
 .chat {
-    height: calc(100vh - 55px);
+    height: calc(100vh - 130px);
     display: grid;
-    grid-template-rows: 95px calc(100% - 200px) 80px;
+    grid-template-rows: 95px calc(100% - 175px) 80px;
     row-gap: 5px;
     & .notificationMessage {
         text-align: center;
@@ -170,7 +170,7 @@
 
 @media screen and (max-width: 1000px) {
     .chat {
-        height: calc(100vh - 40px);
+        height: calc(100vh - 170px);
         & .messages {
             font-size: 15px;
             & .textMessage {

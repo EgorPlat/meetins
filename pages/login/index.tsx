@@ -45,7 +45,7 @@ export default function Login(): JSX.Element {
                     <title>{t("Вход")}</title>
                     <meta name="keywords" content="meetins, meetin-s, Meetins, Meetin-s, знакомства, meetings, meet" />
                 </Head>
-                <h1 style={{ display: "grid" }}>
+                <h1 style={{ display: "grid", alignItems: "center" }}>
                     <Image
                         alt="Вход"
                         width={75}
