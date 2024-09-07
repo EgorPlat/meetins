@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import LeftNavMenu from "../LeftNavMenu/LeftNavMenu";
 import logo from "../../public/images/logo.svg";
 import Image from "next/image";
-import { setIsScrollPageBlocked } from "../../global/store/store";
+import { setIsMobile, setIsScrollPageBlocked } from "../../global/store/store";
 import { handleLogOut } from "../../global/store/login_model";
 import { AiOutlineMenu } from "react-icons/ai";
 
@@ -21,6 +21,7 @@ export default function MobileNavMenu() {
     };
 
     const handleLogOutClick = () => {
+        setIsOpened(false);
         handleLogOut();
     };
     

@@ -22,9 +22,11 @@
 	background-size: cover;
 }
 
+.mobileContainerGrid {
+	grid-template-rows: 60px calc(100vh - 140px) 80px;
+}
 .mobileContainer {
 	display: grid;
-	grid-template-rows: 60px calc(100vh - 140px) 80px;
 	& header {
 		display: grid;
 		grid-template-columns: 40px calc(100% - 120px) 40px;
