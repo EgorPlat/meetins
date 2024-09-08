@@ -23,11 +23,10 @@
 }
 
 .mobileContainerGrid {
-	grid-template-rows: 60px calc(100vh - 140px) 80px;
+	grid-template-rows: 60px calc(100dvh - 140px) 80px;
 }
 .mobileContainer {
 	display: grid;
-	height: 100dvh;
 	& header {
 		display: grid;
 		grid-template-columns: 40px calc(100% - 120px) 40px;
