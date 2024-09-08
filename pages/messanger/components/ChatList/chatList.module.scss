@@ -1,6 +1,6 @@
 .chatList {
     overflow-y: scroll;
-    height: calc(100dvh - 120px);
+    height: 100%;
     border-radius: 10px;
     background-color: var(--bg-color-block);
     & .list {

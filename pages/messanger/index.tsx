@@ -47,10 +47,7 @@ export default function Messanger(): JSX.Element {
                     {
                         !isChatNeededToShow
                             ? <MobileChatList />
-                            :
-                            <div className={`${s.mobileChatZone}`}>
-                                <ChatZone activeChat$={activeChat$} />
-                            </div>
+                            : <ChatZone activeChat$={activeChat$} />
                     }
                 </div>
             }
