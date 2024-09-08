@@ -4,10 +4,10 @@
     column-gap: 5px;
     min-height: 500px;
     & .chatList {
-        height: calc(100vh - 120px); 
+        height: calc(100dvh - 120px); 
     }
     & .chatZone {
-        height: calc(100vh - 120px);
+        height: calc(100dvh - 120px);
         & .noChat {
             display: grid;
             grid-template-columns: 1fr;
@@ -28,7 +28,7 @@
 
 .mobileMessangerContent {
     width: 98%;
-    height: calc(100vh - 160px);
+    height: calc(100dvh - 160px);
 }
 
 .notificationModalText {
