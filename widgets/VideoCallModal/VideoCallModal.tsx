@@ -6,6 +6,7 @@ import { FaCamera, FaMicrophone } from "react-icons/fa6";
 import CustomModal from "../../shared/ui/CustomModal/CustomModal";
 import Peer, { MediaConnection } from "peerjs";
 import s from "./VideoCallModal.module.scss";
+import useDebounceFunction from "../../shared/hooks/useDebounceFunction";
 
 interface IVideoCallModalProps {
     isOpen: boolean,
@@ -53,7 +54,8 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         handleCloseAllLocalMediaTracks();
     };
 
-    const handleSwapMediaStatus = (audio: boolean, video: boolean) => {
+    const handleSwapMediaStatus = useDebounceFunction((audio: boolean, video: boolean) => {
+        if (!audio && !video) return;
         handleCloseAllLocalMediaTracks();
         setIsMediaActive(() => {
             return { audio, video };
@@ -76,7 +78,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                 myStreamRef.current.play();
             }
         });
-    };
+    }, 1000);
 
     function handleCallToUser() {
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
@@ -115,6 +117,8 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             .catch(function(err) { console.log(err.name + ": " + err.message); });
     }
   
+    
+
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
         setIsUserAcceptedCall(true);
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
