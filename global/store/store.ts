@@ -45,7 +45,7 @@ instance.interceptors.response.use((response) => {
 })
 
 export const setIsMobile = createEvent<boolean>();
-export const isMobile = createStore<boolean>(false).on(setIsMobile, (_, isMobile) => {
+export const isMobile = createStore<boolean>(null).on(setIsMobile, (_, isMobile) => {
     return isMobile;
 })
 

@@ -55,7 +55,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     };
 
     const handleSwapMediaStatus = useDebounceFunction((audio: boolean, video: boolean) => {
-        if (!audio && !video) return;
+        if (audio === false && video === false) return;
         handleCloseAllLocalMediaTracks();
         setIsMediaActive(() => {
             return { audio, video };

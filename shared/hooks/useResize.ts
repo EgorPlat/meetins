@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 export const useResize = () => {
 
-    const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [isMobile, setIsMobile] = useState<boolean>(null);
     const [isUnAdaptive, setIsUnAdaptive] = useState<boolean>(false);
 
     const handleResize = () => {
@@ -13,15 +13,18 @@ export const useResize = () => {
         }
         if (window.innerWidth > 1900) {
             setIsUnAdaptive(true);
-        }
+        } 
     };
+
+    console.log(isMobile);
+    
 
     useEffect(() => {
         handleResize();
         window.addEventListener("resize", handleResize);
         return () => {
 		    window.removeEventListener("resize", handleResize);
-        };  
+        };
     }, []);
 
     return { isMobile, isUnAdaptive };

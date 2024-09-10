@@ -11,6 +11,7 @@ import { GoPersonFill } from "react-icons/go";
 import { MdSettings } from "react-icons/md";
 import MobileNavMenu from "../MobileNavMenu/MobileNavMenu";
 import { IoPeopleSharp } from "react-icons/io5";
+import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
@@ -31,9 +32,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         }
         document.getElementById("mobileMainContent")?.scrollTo(0, 0);
     }, [route.asPath]);
-
-
-    if (isMobile$) {
+    
+    if (isMobile$ === true) {
         return (
             <div 
                 className={`${s.mobileContainer} ${!isNeededRouteToShowMenu ? background : s.mobileContainerGrid}`}
@@ -75,14 +75,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div> 
         )
     }
-    return (
-        <div className={`${s.container} ${background}`}>
-            {isNeededRouteToShowMenu && <Header />}
-            {
-                <div className={s.main}>
-                    {children}
-                </div>
-            }
-        </div>
-    )
+    else if (isMobile$ === false) {
+        return (
+            <div className={`${s.container} ${background}`}>
+                {isNeededRouteToShowMenu && <Header />}
+                {
+                    <div className={s.main}>
+                        {children}
+                    </div>
+                }
+            </div>
+        )
+    } else {
+        return <CustomLoader />
+    }
 }
