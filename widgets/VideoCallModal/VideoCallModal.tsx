@@ -41,6 +41,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     const handleCallClose = () => {
         handleCloseAllLocalMediaTracks();
+        setIsVideoCallOpened(false);
         if (peerCall) {
             peerCall.close();
         }
@@ -81,7 +82,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
     }, 1000);
 
     function handleCallToUser() {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 330, height: 200 } })
             .then(function(mediaStream: MediaStream) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
@@ -121,7 +122,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     const handleAcceptCallFromUser = (peerCall: MediaConnection) => {
         setIsUserAcceptedCall(true);
-        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 330, height: 200 } })
             .then(function(mediaStream: MediaStream) {
                 if (myMediaDeviceStream) {
                     myMediaDeviceStream.current = mediaStream;
@@ -191,33 +192,37 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             isDisplay={isOpen}
             changeModal={handleCallClose}
             actionConfirmed={handleConfirmVideoCall}
-            typeOfActions='none'
+            typeOfActions='custom'
+            actionsComponent={
+                <div className={s.modalActions}>
+                    {!isUserAcceptedCall && <div className={s.watingMessage}>Ожидание ответа...</div>}
+                    {isUserAcceptedCall &&
+                        <div className={s.actions}>
+                            <div 
+                                className={s.actionsMicrophone}
+                                onClick={() => handleSwapMediaStatus(!isMediaActive.audio, isMediaActive.video)}
+                            >
+                                <FaMicrophone fontSize={28} color={isMediaActive.audio ? "gray" : "red"} />
+                            </div>
+                            <div 
+                                className={s.actionsCamera}
+                                onClick={() => handleSwapMediaStatus(isMediaActive.audio, !isMediaActive.video)}
+                            >
+                                <FaCamera fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
         >
             <div className={s.videoCallModal}>
-                <video ref={myStreamRef} muted width="200px" height="200px"></video>
+                <video ref={myStreamRef} muted width="330px" height="200px"></video>
                 <video 
                     style={isUserAcceptedCall ? {opacity: 1} : {opacity: 0}} 
                     ref={commingStreamRef} 
-                    width="200px" 
+                    width="330px" 
                     height="200px"
                 ></video>
-                {!isUserAcceptedCall && <div className={s.watingMessage}>Ожидание ответа...</div>}
-                {isUserAcceptedCall &&
-                    <div className={s.actions}>
-                        <div 
-                            className={s.actionsMicrophone}
-                            onClick={() => handleSwapMediaStatus(!isMediaActive.audio, isMediaActive.video)}
-                        >
-                            <FaMicrophone fontSize={28} color={isMediaActive.audio ? "gray" : "red"} />
-                        </div>
-                        <div 
-                            className={s.actionsCamera}
-                            onClick={() => handleSwapMediaStatus(isMediaActive.audio, !isMediaActive.video)}
-                        >
-                            <FaCamera fontSize={28} color={isMediaActive.video ? "gray" : "red"} />
-                        </div>
-                    </div>
-                }
             </div>
         </CustomModal>
     )
