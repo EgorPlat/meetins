@@ -12,7 +12,7 @@ export default function CustomShowUpComponent(props: ICustomShowUpComponentProps
 
     const isHorizontal = props.side === "left" || props.side === "right";
     const [once, setOnce] = useState<boolean>(false);
-    const {ref, inView, entry} = useInView({ threshold: 0.5 });
+    const {ref, inView, entry} = useInView({ threshold: 0.25 });
 
     useEffect(() => {
         if (!once && inView) {

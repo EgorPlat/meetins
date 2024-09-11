@@ -1,0 +1,21 @@
+.nav {
+    display: flex;
+    align-items: normal;
+    column-gap: 15px;
+    & .elem {
+        flex-grow: 1;
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+        position: relative;
+        & .round {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background-color: rgb(137, 255, 27);
+            position: absolute;
+            right: 25px;
+            top: 0;
+        }
+    }
+}

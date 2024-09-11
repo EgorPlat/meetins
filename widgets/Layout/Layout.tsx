@@ -7,31 +7,28 @@ import s from "./layout.module.scss";
 import { useUnit } from "effector-react";
 import Image from "next/image";
 import logo from "../../public/images/logo.svg";
-import { GoPersonFill } from "react-icons/go";
-import { MdSettings } from "react-icons/md";
-import MobileNavMenu from "../MobileNavMenu/MobileNavMenu";
-import { IoPeopleSharp } from "react-icons/io5";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
+import MobileBottomMenu from "../MobileBottomMenu/MobileBottomMenu";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
-    const route = useRouter();
+    const router = useRouter();
     const isMobile$ = useUnit(isMobile);
     const authedUser$ = useUnit($user);
-    const background = ["/login", "/register"].includes(route.asPath) ? s.loginPage : s.mainPage;
+    const background = ["/login", "/register"].includes(router.asPath) ? s.loginPage : s.mainPage;
     const isNeededRouteToShowMenu =
-		route.asPath !== "/confirmation"
-		&& route.asPath !== "/login"
-		&& route.asPath !== "/register"
-		&& route.asPath !== "/";
+        router.asPath !== "/confirmation"
+            && router.asPath !== "/login"
+            && router.asPath !== "/register"
+            && router.asPath !== "/";
 
     useEffect(() => {
-        if (route.asPath !== "/" && !route.asPath.includes("[")) {
-            setCurrentPage(route.asPath);
-            localStorage.setItem("previousPage", route.asPath);
+        if (router.asPath !== "/" && !router.asPath.includes("[")) {
+            setCurrentPage(router.asPath);
+            localStorage.setItem("previousPage", router.asPath);
         }
         document.getElementById("mobileMainContent")?.scrollTo(0, 0);
-    }, [route.asPath]);
+    }, [router.asPath]);
     
     if (isMobile$ === true) {
         return (
@@ -42,30 +39,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     isNeededRouteToShowMenu ?
                         <>
                             <header>
-                                <Image width={40} height={40} src={logo} alt="Логотип" />
+                                <Image 
+                                    width={40} 
+                                    height={40} 
+                                    src={logo} 
+                                    alt="Логотип"
+                                    onClick={() => router.push("/about")}
+                                />
                                 <div className={s.title}>Meetins</div>
-                                <Image className={s.avatar} width={40} height={40} src={baseURL + authedUser$?.avatar} alt="Аватар" />
+                                <Image 
+                                    className={s.avatar} 
+                                    width={40} 
+                                    height={40} 
+                                    src={baseURL + authedUser$?.avatar} 
+                                    alt="Аватар"
+                                    onClick={() => router.push(`/profile/${authedUser$?.login}`)}
+                                />
                             </header>
                             <main id="mobileMainContent">{children}</main>
                             <footer>
-                                <nav className={s.nav}>
-                                    <div className={s.elem}>
-                                        <MobileNavMenu />
-                                        <p>Меню</p>
-                                    </div>
-                                    <div className={s.elem}>
-                                        <IoPeopleSharp fontSize={28} onClick={() => route.push("/peoples")} />
-                                        <p>Люди</p>
-                                    </div>
-                                    <div className={s.elem}>
-                                        <GoPersonFill fontSize={28} onClick={() => route.push(`/profile/${authedUser$?.login}`)} />
-                                        <p>Профиль</p>
-                                    </div>
-                                    <div className={s.elem}>
-                                        <MdSettings fontSize={28} onClick={() => route.push("/settings")} />
-                                        <p>Настройки</p>
-                                    </div>
-                                </nav>
+                                <MobileBottomMenu authedUser={authedUser$} />
                             </footer>
                         </> :
                         <div className={s.main}>

@@ -15,10 +15,7 @@ export const useResize = () => {
             setIsUnAdaptive(true);
         } 
     };
-
-    console.log(isMobile);
     
-
     useEffect(() => {
         handleResize();
         window.addEventListener("resize", handleResize);

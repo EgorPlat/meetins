@@ -8,23 +8,25 @@ export default function PageContainer(props: { children: ReactChild }): JSX.Elem
 
     const isMobile$ = useUnit(isMobile);
 
-    return (
-        <div className={s.page}>
-            {
-                
-                /*<div className={s.menu}>
-                    {
-                        !isMobile$ ? <LeftNavMenu /> : <MobileNavMenu />
-                    }
-                </div>*/
-            
-                !isMobile$ && (
-                    <div className={s.menu}><LeftNavMenu /></div>
-                )
-            }
-            <div className={s.content}>
-                {props.children}
+    if (isMobile$ === true) {
+        return (
+            <div className={s.mobilePage}>
+                <div className={s.mobileContent}>
+                    {props.children}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+    else if (isMobile$ === false) {
+        return (
+            <div className={s.page}>
+                <div className={s.menu}>
+                    <LeftNavMenu />
+                </div>
+                <div className={s.content}>
+                    {props.children}
+                </div>
+            </div>
+        )
+    }
 }

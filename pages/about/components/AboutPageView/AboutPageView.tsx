@@ -8,11 +8,6 @@ export default function AboutPageView() {
     return (
         <div className={s.about}>
             <div className={s.aboutBlock}>
-                <div className={s.aboutBlockImage}>
-                    <CustomShowUpComponent side='bottom' transitionType='ease-out'>
-                        <img className={s.aboutBlockImageContent} src="/images/social_1.jpg"></img>
-                    </CustomShowUpComponent>
-                </div>
                 <div className={s.aboutBlockText}>
                     <div className={s.aboutBlockTextParagraph}>
                         <CustomShowUpComponent side='left' transitionType='ease-out'>
@@ -29,6 +24,11 @@ export default function AboutPageView() {
                             предпочтений и выбранных настроек пользователя.
                         </CustomShowUpComponent>
                     </div>
+                </div>
+                <div className={s.aboutBlockImage}>
+                    <CustomShowUpComponent side='bottom' transitionType='ease-out'>
+                        <img className={s.aboutBlockImageContent} src="/images/social_1.jpg"></img>
+                    </CustomShowUpComponent>
                 </div>
             </div>
             <div className={s.aboutSecBlock}>

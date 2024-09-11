@@ -13,6 +13,15 @@
     }
 }
 
+.mobilePage {
+    width: 100%;
+    & .mobileContent {
+        padding-top: 10px;
+        padding-left: 2%;
+        font-size: 24px;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .page {
         grid-template-columns: 100%;

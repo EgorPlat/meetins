@@ -54,16 +54,5 @@
 		padding-top: 10px;
 		background-color: var(--bg-color-mobile-menu);
 		height: 100%;
-		& .nav {
-			display: flex;
-			align-items: normal;
-			column-gap: 15px;
-			& .elem {
-				flex-grow: 1;
-				display: grid;
-				justify-content: center;
-				justify-items: center;
-			}
-		}
 	}
 }

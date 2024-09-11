@@ -6,7 +6,7 @@
     & .aboutBlock {
         width: 100%;
         display: grid;
-        grid-template-columns: 350px calc(100% - 370px);
+        grid-template-columns: calc(100% - 370px) 350px;
         column-gap: 20px;
         font-weight: 100;
         & .aboutBlockImage {
