@@ -18,8 +18,10 @@ export default function MobileBottomMenu({ authedUser }: IMobileBottomMenuProps)
         <nav className={s.nav}>
             <div className={s.elem}>
                 <MobileNavMenu />
-                <p>Меню</p>
-                <div className={s.round}></div>
+                <div className={s.menuElem}>
+                    <p>Меню</p>
+                    <div className={s.round}></div>
+                </div>
             </div>
             <div className={s.elem}>
                 <IoPeopleSharp fontSize={28} onClick={() => router.push("/peoples")} />

@@ -7,15 +7,17 @@
         display: grid;
         justify-content: center;
         justify-items: center;
-        position: relative;
-        & .round {
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background-color: rgb(137, 255, 27);
-            position: absolute;
-            right: 25px;
-            top: 0;
+        & .menuElem {
+            position: relative;
+            & .round {
+                position: absolute;
+                top: -28px;
+                right: 4px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: rgb(137, 255, 27);
+            }
         }
     }
 }
