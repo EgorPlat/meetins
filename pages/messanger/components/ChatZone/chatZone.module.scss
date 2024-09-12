@@ -107,11 +107,10 @@
                     padding: 5px;
                     background-color: #d0ecff4c;
                     border-radius: 100px;
-                    font-size: 13px;
+                    font-size: 14px;
                 }
             }
             & .messageInfo {
-                font-size: 13px;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 & .messageTime {
@@ -171,10 +170,7 @@
 @media screen and (max-width: 1000px) {
     .chat {
         & .messages {
-            font-size: 15px;
-            & .textMessage {
-                font-size: 15px;
-            }
+            font-size: 16px;
             & .messageWrapper {
                 & .messageDateWrapper {
                     & .messageDate {
@@ -204,20 +200,20 @@
 }
 @media screen and (max-width: 500px) {
     .chat {
-        & .messages {
-            & .messageWrapper {
-                & .myMessageBlock {
-                    & .myMessage {
-                        max-width: 250px;
-                    }
+        grid-template-rows: 75px calc(100% - 150px) 70px;
+        & .user {
+            grid-template-columns: 55px calc(100% - 95px) 30px;
+            & .userTextInfo {
+                & .name {
+                    font-size: 18px;
+                }
+                & .statusOnline, & .status {
+                    font-size: 14px;
                 }
             }
         }
-    }
-}
-@media screen and (max-width: 450px) {
-    .chat {
         & .messages {
+            font-size: 14px;
             & .messageWrapper {
                 & .myMessageBlock {
                     & .myMessage {

@@ -21,7 +21,6 @@ export const Notification = (props: {
         }
     }, []);
 
-    /*NOTIFICATION_COLOR_TYPES[props.notification.type]*/
     return (
         <div
             className={`${visible ? s.errorShowUp : s.errorHide}`}

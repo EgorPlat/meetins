@@ -6,10 +6,10 @@ export interface INotification {
 };
 
 export const NOTIFICATION_COLOR_TYPES = {
-    success: "rgb(59, 187, 72)",
-    warning: "rgb(255, 200, 0)",
-    error: "rgb(235, 53, 86)",
-    info: "rgb(0, 174, 255)"
+    success: "rgb(155, 255, 109)",
+    warning: "rgb(245, 255, 109)",
+    error: "rgb(255, 128, 109)",
+    info: "rgb(109, 206, 255)"
 };
 
 export interface ICreatedNotification {
