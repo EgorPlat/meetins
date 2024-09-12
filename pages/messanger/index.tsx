@@ -16,7 +16,6 @@ export default function Messanger(): JSX.Element {
 
     const isChatNeededToShow = Boolean(activeChat$?.userId);
     
-    console.log(activeChat$.userId)
     useEffect(() => {
         window.scrollTo({
             top: document.body.scrollHeight,
