@@ -37,27 +37,16 @@ export default function ChatMessageForm(
     const handleMediaRecorder = () => {
         if (!props.isChatExists) {
             addNotification({
-                text: "Медиа-файлы можно отправлять только есть в диалоге есть текстовые сообщения",
+                text: "Медиа-файлы можно отправлять только если в диалоге есть текстовые сообщения",
                 type: "info",
                 textColor: "black",
                 time: 3000
             });
             return;
         }
-        handleActivateMedia((stream: MediaStream) => {
-            setIsMediaRecorderActive(true);
-        });
+        setIsMediaRecorderActive(true);
+        handleActivateMedia(() => {});
     };
-
-    useEffect(() => {
-        if (mediaChunks) {
-            const voiceBlob = new Blob(mediaChunks, {
-                type: "audio/mp3"
-            });
-            setIsMediaRecorderActive(false);
-            createdSendFileAndUploadActiveChat(voiceBlob);
-        }
-    }, [mediaChunks]);
 
     const onSendNewFile = async (event: ChangeEvent<HTMLInputElement>) => {
         if (props.isChatExists) {
@@ -72,6 +61,16 @@ export default function ChatMessageForm(
             });
         }
     };
+
+    useEffect(() => {
+        if (mediaChunks) {
+            const voiceBlob = new Blob(mediaChunks, {
+                type: "audio/mp3"
+            });
+            setIsMediaRecorderActive(false);
+            createdSendFileAndUploadActiveChat(voiceBlob);
+        }
+    }, [mediaChunks]);
 
     const Loader = () => {
         return (

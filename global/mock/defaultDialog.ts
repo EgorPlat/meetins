@@ -1,7 +1,7 @@
 import { IMyDialog } from "../../entities";
 
 export const defaultDialog: IMyDialog = {
-    dialogId: null, 
+    dialogId: "none", 
     userName: "",
     userAvatar: "",
     isRead: true,

@@ -86,13 +86,22 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
 
     const handleVideoMessageConfirmed = () => {
         setShowVideoModal(false);
-        handleActivateMedia((stream: MediaStream) => {
+        if (activeChat$.dialogId !== "none") {
             setVideoMessageActive(true);
-            if (videoMessageStreamRef.current) {
-                videoMessageStreamRef.current.srcObject = stream;
-                videoMessageStreamRef.current.play();
-            }
-        })
+            handleActivateMedia((stream: MediaStream) => {
+                if (videoMessageStreamRef.current) {
+                    videoMessageStreamRef.current.srcObject = stream;
+                    videoMessageStreamRef.current.play();
+                }
+            })
+        } else {
+            addNotification({
+                time: 3000,
+                type: "warning",
+                text: "Записывать видеосообщения можно только если чат уже начат",
+                textColor: "black"
+            });
+        }
     };
 
     useEffect(() => {
@@ -104,7 +113,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
             createdSendFileAndUploadActiveChat(blob);
         }
     }, [mediaChunks]);
-
+    
     if (activeChat$) {
         return (
             <div className={s.chat}>
@@ -223,7 +232,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                         isLoaded={isMessageWithFileLoaded$}
                         placeholder="Введите сообщение"
                         onClickForm={(inputValue) => sendForm(inputValue)}
-                        isChatExists={!activeChat$.userId}
+                        isChatExists={activeChat$.dialogId !== "none"}
                     />
                 </div>
                 {

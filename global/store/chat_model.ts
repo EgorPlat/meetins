@@ -46,12 +46,12 @@ export const sendFileAndUploadActiveChat = createEffect((params: { file: any, da
     setIsMessageWithFileLoaded(false);
     const actualActiveChat = params.dataStore.activeChat;
     if (actualActiveChat) {
-        if (actualActiveChat.userId == undefined) {
+        if (actualActiveChat.userId !== undefined) {
             const file = params.file;
             const formData = new FormData();
             formData.append("uploadedFile", file);
             formData.append("dialogId", actualActiveChat.dialogId);
-
+            
             sendFileInDialog(
                 formData
             ).then(res => {
@@ -81,7 +81,8 @@ export const sendMessageAndUploadActiveChat = createEffect((params: { message: s
                     isRead: true,
                     content: params.message,
                     messages: [response?.data],
-                    status: true
+                    status: true,
+                    userId: actualActiveChat.userId
                 });
             });
         }
@@ -140,7 +141,7 @@ export const checkDialog = createEffect(async (user: User) => {
                 userName: user.name, 
                 userAvatar: user.avatar, 
                 userId: user.userId, 
-                dialogId: "none" 
+                dialogId: "none"
             });
         }
     }

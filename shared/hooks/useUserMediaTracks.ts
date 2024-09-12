@@ -25,6 +25,7 @@ export const useUserMediaTracks = ({
                 mediaChunks.push(blob);
             }
             onActivate(currentStream);
+
             document.getElementById(htmlElementIdForStopMedia)?.addEventListener("click", () => {
                 currentStream.getTracks().forEach(function(track) {
                     track.stop();
