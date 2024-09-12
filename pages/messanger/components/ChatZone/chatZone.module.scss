@@ -114,6 +114,7 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 & .messageTime {
+                    font-size: 12px;
                     color: black;
                 }
                 & .messageReadStatus {
