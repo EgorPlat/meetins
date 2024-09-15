@@ -40,7 +40,7 @@ export default function Login(): JSX.Element {
     const sendLoginData = (data: {
 		name: string
 		email: string | null
-		pass: string
+		password: string
 		gender: string
 		city: string
 	} | any) => {
@@ -60,7 +60,7 @@ export default function Login(): JSX.Element {
         setRegisterDetails({
             name: nameArr[0],
             email: email,
-            password: data.pass,
+            password: passwordWOSpace,
             gender: data.gender,
             city: data.city
         })
@@ -68,7 +68,7 @@ export default function Login(): JSX.Element {
         sendRegData({
             name: nameArr[0],
             email: email,
-            password: data.pass,
+            password: passwordWOSpace,
             gender: data.gender,
             city: data.city
         }).then( (res: any) => {
@@ -153,7 +153,7 @@ export default function Login(): JSX.Element {
                                 : <IoIosEyeOff fontSize={20} color="black" onClick={() => setShowPassword(prev => !prev)} />
                         }
                     </Input>
-                    {errors.pass && (
+                    {errors.password && (
                         <span className={s.errorSpan}>{t("Введите пароль от 6 до 12 символов")}</span>
                     )}
 
