@@ -37,9 +37,7 @@ export default function Input({
             className={`${s.customInput} ${className ? className : ""}`}
             htmlFor={id}>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
-                {
-                    <Icon fontSize={20} color="black" /> 
-                }
+                <Icon fontSize={20} color="black" />
             </div>
             <input
                 placeholder={placeholder}

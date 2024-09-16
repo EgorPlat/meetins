@@ -22,8 +22,9 @@ import { useTranslation } from "react-i18next"
 import Input from "../../shared/ui/Input/Input"
 import Link from "next/link"
 import { addNotification } from "../../global/store/notifications_model"
-import { FaCity, FaEnvelope, FaLock, FaUser } from "react-icons/fa6"
+import { FaCity, FaEnvelope, FaLock, FaQuestion, FaUser } from "react-icons/fa6"
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
+import CustomButtonWithHint from "../../shared/ui/CustomButtonWithHint/CustomButtonWithHint";
 
 export default function Login(): JSX.Element {
     const {
@@ -131,7 +132,15 @@ export default function Login(): JSX.Element {
                             required: true,
                             validate: (value) => validateEmailOrPhone(value),
                         })}
-                    />
+                    >
+                        <CustomButtonWithHint 
+                            title={
+                                <FaQuestion fontSize={13} color="black" />
+                            }
+                            hintTitle="Убедитесь, что Ваш почтовый ящик не полный и что он существует"
+                            fontSize={14}
+                        />
+                    </Input>
                     {errors.email && (
                         <span className={s.errorSpan}>{t("Введите валидную почту")}</span>
                     )}

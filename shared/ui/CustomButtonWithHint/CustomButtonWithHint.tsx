@@ -4,7 +4,7 @@ import { setIsScrollPageBlocked } from "../../../global/store/store";
 import { useTranslation } from "react-i18next";
 
 interface IHintProps {
-    title: string,
+    title: string | React.ReactElement,
     hintTitle: string,
     fontSize: number
 }
@@ -26,7 +26,7 @@ export default function CustomButtonWithHint({ title, hintTitle, fontSize }: IHi
         <div className={s.hintBackground}>
             <div className={s.hintWrapper} style={{ fontSize: fontSize }}>
                 <button onClick={() => setIsHint(prev => !prev)}>
-                    {t(`${title}`)}
+                    {typeof title === "string" ? t(`${title}`) : title }
                 </button>
                 {
                     isHint &&

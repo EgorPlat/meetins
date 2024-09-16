@@ -6,8 +6,14 @@ export const useBlockBodyScroll = (isBlockNeeded: boolean) => {
         const body = document.getElementsByTagName("body")[0];
         if (isBlockNeeded) {
             body.style.overflowY = "hidden";
+            if (document.getElementById("mobileMainContent")) {
+                document.getElementById("mobileMainContent").style.overflowY = "hidden";
+            }
         } else {
             body.style.overflowY = "scroll";
+            if (document.getElementById("mobileMainContent")) {
+                document.getElementById("mobileMainContent").style.overflowY = "hidden";
+            }
         }
     }, [isBlockNeeded]);
 
