@@ -31,11 +31,17 @@ export default function Input({
         if (e.code === "Space") e.preventDefault();
     };
 
+    const handleClickSecondIcon = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
     return (
         <label
             style={style}
             className={`${s.customInput} ${className ? className : ""}`}
-            htmlFor={id}>
+            htmlFor={id}
+        >
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
                 <Icon fontSize={20} color="black" />
             </div>
@@ -49,7 +55,7 @@ export default function Input({
                 onKeyDown={handleKeyDown}
             />
 
-            <div className={s.secondIcon}>{children}</div>
+            <div className={s.secondIcon} onClick={handleClickSecondIcon}>{children}</div>
         </label>
     )
 }
