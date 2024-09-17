@@ -7,13 +7,10 @@ export async function middleware(req: NextRequest) {
     if (url.match(/\.(css|js|png|jpg|jpeg|gif|ico)$/) || url.includes("/_next/")) {
         return NextResponse.next();
     }
-    if (url.includes("/login") || url.includes("/register") || url.includes("/confirmation")) {
-        return NextResponse.next();
-    }
     if (token && token.value) {
         return NextResponse.next();
     }
-    else if (url.includes("/login")) {
+    if (url.includes("/login") || url.includes("/register") || url.includes("/confirmation")) {
         return NextResponse.next();
     }
     else {
