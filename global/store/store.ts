@@ -24,7 +24,6 @@ instance.interceptors.request.use((config: AxiosRequestConfig) => {
 instance.interceptors.response.use((response) => {
     return response;
 }, (error: AxiosError) => {
-    const ec: AxiosRequestConfig = error.config;
     const ers: number | undefined = error.response?.status;
     if (ers === 401) {
         handleLogOut();
@@ -187,13 +186,6 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
     })
 });
 
-export const getUserDataByUserId = createEffect(async (userId: string | number) => {
-    const response = await instance.post("users/getUserByUserId");
-    if (response.data) {
-        return response.data;
-    }
-})
-
 export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | number) => {
     setIsUserLoaded(false);
     const response = await instance.get(`profile/by-login/${loginUrl}`);
@@ -201,7 +193,8 @@ export const getUserDataByLoginUrl = createEffect(async (loginUrl: string | numb
         setIsUserLoaded(true);
     }
     return response;
-})
+});
+
 export const getDataForProfilePage = createEffect((userId: string) => {
     setIsCurrentUserLoaded(false);
     getUserDataByLoginUrl(userId).then((res) => {
@@ -210,7 +203,7 @@ export const getDataForProfilePage = createEffect((userId: string) => {
             setIsCurrentUserLoaded(true);
         }
     })
-})
+});
 
 export const sendNewUserPost = createEffect(async (formData: FormData) => {
     const response = await instance.post("users/addUserPost", formData);

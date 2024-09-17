@@ -1,6 +1,6 @@
 import { instanseRouter } from "./router_model";
 import { instance, setUser } from "./store"
-import { attach, createEffect, createEvent, createStore, sample } from "effector"
+import { createEffect, createEvent, createStore, sample } from "effector"
 
 
 type LoginDetailsType = {
@@ -36,10 +36,10 @@ export const handlePushUserToLoginPage = createEffect((params: { router: any, da
     params.router.push("/login");
 })
 
-export const saveDataAfterLogin = createEffect((params: { router: any, data: any }) => {
+/*export const saveDataAfterLogin = createEffect((params: { router: any, data: any }) => {
     setUser(params.data.profile.user);
     params.router.push(`profile/${params.data.profile.user.login}`);
-});
+});*/
 
 sample({
     clock: sendLogData.pending,
@@ -53,13 +53,13 @@ sample({
     target: setLoginLoading
 });
 
-sample({
+/*sample({
     source: { router: instanseRouter },
     clock: sendLogData.doneData,
     filter: (router, response) => response.status <= 201,
     fn: (routerState, response) => { return { router: routerState.router, data: response.data } },
     target: saveDataAfterLogin
-});
+});*/
 
 sample({
     source: { router: instanseRouter },
