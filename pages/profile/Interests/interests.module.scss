@@ -1,16 +1,16 @@
 .interests {
     font-family: Nunito;
-    font-size: 19px;
+    font-size: 20px;
     border: none;
 
     & .title {
         display: flex;
         align-items: center;
+        margin-bottom: 10px;
         column-gap: 10px;
 
         & .changeStatus {
             cursor: pointer;
-            font-size: 16px;
             color: gray;
         }
     }
@@ -34,6 +34,11 @@
     .interests {
         & .interest {
             font-size: 16px;
+        }
+        & .title {
+            & .changeStatus {
+                font-size: 16px;
+            }
         }
     }
 }
