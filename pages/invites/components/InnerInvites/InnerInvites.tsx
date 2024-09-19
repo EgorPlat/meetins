@@ -24,7 +24,6 @@ export default function InnerInvites(props: IInnerInvitesProps) {
                 {
                     invites.map(invite => (
                         <div className={s.wrapper} key={invite.id}>
-                            <div className={s.title}>Входящее приглашение</div> 
                             <div className={s.content}>
                                 <div className={s.image}>
                                     <img src={invite?.images[0].image} />

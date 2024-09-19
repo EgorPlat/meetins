@@ -69,11 +69,13 @@ export default function MeetingWrapper(props: {
                         {t("Цель встречи")}: <span className={s.hint}>{props.meeting?.goal}</span>
                     </div>
                     <div className={s.meetingActions}>
-                        <button 
-                            className={s.actionBtn}
-                            onClick={() => props.handleGoToMeeting(props.meeting)}
-                        >{t("Перейти на страницу встречи")}</button>
-                        <button className={s.actionBtn}>{t("Связь с организатором")}</button>
+                        {
+                            !isMeetingEnded &&
+                                <button 
+                                    className={s.actionBtn}
+                                    onClick={() => props.handleGoToMeeting(props.meeting)}
+                                >{t("Перейти на страницу встречи")}</button>
+                        }
                     </div>
                 </div>
             </div>        
@@ -89,7 +91,7 @@ export default function MeetingWrapper(props: {
                 <div className={s.meetingDescription}>
                     <div className={s.meetingTitle}>
                         <div>{props.meeting?.title}</div>
-                        <div className={s.date}>{props.meeting?.address}</div>
+                        <div className={s.address}>{props.meeting?.address}</div>
                     </div>
                     <div className={s.meetingCreator}>
                         <span>{t("Организатор")}: </span>

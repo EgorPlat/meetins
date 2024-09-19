@@ -8,8 +8,14 @@
         margin-bottom: 10px;
     }
     & .list {
+        display: flex;
+        column-gap: 5px;
+        row-gap: 5px;
         font-size: 20px;
         & .item {
+            padding: 2px;
+            border: 2px solid rgb(128, 0, 102);
+            border-radius: 5px;
             float: left;
         }
     }

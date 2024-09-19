@@ -15,8 +15,8 @@
             border-radius: 10px;
             & .image {
                 & img {
-                    width: 100px;
-                    height: 100px;
+                    width: 250px;
+                    height: 100%;
                     border-radius: 10px;
                 }
             }
@@ -79,16 +79,24 @@
     text-align: center;
 }
 
+@media screen and (max-width: 700px) {
+    .list {
+        & .wrapper {
+            & .content {
+                display: grid;
+                grid-template-columns: 1fr;
+                & .image {
+                    & img {
+                        max-height: 250px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
 @media screen and (max-width: 625px) {
     .wrapper {
         width: calc(100vw - 15px);
-    }
-}
-
-@media screen and (max-width: 450px) {
-    .wrapper {
-        & .title {
-            font-size: 18px;
-        }
     }
 }
