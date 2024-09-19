@@ -1,7 +1,6 @@
 import React, { ReactChild } from "react";
 import s from "./CustomModal.module.scss";
 import { useTranslation } from "react-i18next";
-import { createPortal } from "react-dom";
 
 const CustomModal = (props: {
     children: ReactChild, 
