@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { IShortEventInfo } from "../../../../entities/events";
 import { customizeDateToYYYYMMDDFormat } from "../../../../shared/functions/getDateInYYYYMMDDFormat";
+import { useTranslation } from "react-i18next";
 
 export default function EventsList(props: {
     categoryName: string,
@@ -12,11 +13,12 @@ export default function EventsList(props: {
 }): JSX.Element {
     
     const { categoryName, currentEvents, loadedStatus } = props;
+    const { t } = useTranslation();
 
     return (
         <div className={s.content}>
             <div className={s.title}>
-                Текущая категория: {categoryName}
+                {t("Текущая категория")}: {categoryName}
             </div>
             <div className={s.list}>
                 {loadedStatus ? 

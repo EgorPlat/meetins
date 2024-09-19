@@ -30,7 +30,7 @@ export default function MusicPageView({
     return (
         <div className={s.music}>
             <div className={s.addMusic}>
-                <span onClick={() => handleSwapMusicModal(true)}>{t("Добавить свою композицию?")}</span>
+                <span onClick={() => handleSwapMusicModal(true)}>{t("Добавить свою композицию")}?</span>
                 <TfiStatsUp className={s.myStatistic} fontSize={28} onClick={handleOpenMyStatistic} />
             </div>
             <div className={s.musicSearch}>

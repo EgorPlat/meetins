@@ -3,17 +3,19 @@ import s from "./StatsView.module.scss";
 import { getMyMusicStatistic, myStatistic } from "../../../../global/store/music_model";
 import { useUnit } from "effector-react";
 import { baseURL } from "../../../../global/store/store";
+import { useTranslation } from "react-i18next";
 
 export default function StatsView() {
 
     const myStatistic$ = useUnit(myStatistic);
-    
+    const { t } = useTranslation();
+
     useEffect(() => {
         getMyMusicStatistic();
     }, []);
 
     if (myStatistic$.length === 0) {
-        return <span>У Вас нет опубликованных композиций.</span>
+        return <span>{t("У Вас нет опубликованных композиций")}</span>
     }
     return (
         <div className={s.statsView}>
@@ -24,11 +26,11 @@ export default function StatsView() {
                         <div className={s.info}>
                             <div className={s.author}>{el.author}</div>
                             <div className={s.title}>
-                                <span className={s.header}>Трек: </span>
+                                <span className={s.header}>{t("Трек")}: </span>
                                 {el.title}
                             </div>
-                            <div className={s.playsNumber}>Количество прослушиваний: {el.playsNumber}</div>
-                            <div className={s.listenersCount}>Количество слушателей: 1</div>
+                            <div className={s.playsNumber}>{t("Количество прослушиваний")}: {el.playsNumber}</div>
+                            <div className={s.listenersCount}>{t("Количество слушателей")}: 1</div>
                         </div>
                     </div>
                 ))

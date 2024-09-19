@@ -4,6 +4,7 @@ import { IMeeting } from "../../../../entities/meetings";
 import s from "./MeetingsContentView.module.scss";
 import dynamic from "next/dynamic";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
+import { useTranslation } from "react-i18next";
 
 const CompletedMeetings = dynamic(() => import("./CompletedMeetings/CompletedMeetings"), { loading: () => <CustomLoader />});
 const FurtherMeetings = dynamic(() => import("./FurtherMeetings/FurtherMeetings"), { loading: () => <CustomLoader />});
@@ -16,6 +17,8 @@ export default function MeetingsContentView(props: {
     authedUser: User,
     handleGoToMeetingRoom: (meetingId: IMeeting) => void,
 }) {
+    const { t } = useTranslation();
+
     return (
         <div className={s.meetingsContentView}>
             <CustomStepper

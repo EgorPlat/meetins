@@ -117,7 +117,7 @@ export default function ProfileView(props: {
                                         </div>
                                     </div>
                                     <div className={s.town}>
-                                        г. {activeUser.city}
+                                        {t("город")}: {activeUser.city}
                                     </div>
                                     <div className={s.dateRegister}>
                                         <span>
@@ -134,8 +134,8 @@ export default function ProfileView(props: {
                                         <p className={s.title}>                                        
                                             {
                                                 props.isCurrentUserOnline || activeUser.login === props.authedUser.login
-                                                    ? "В сети" 
-                                                    : "Не в сети"
+                                                    ? t("В сети")
+                                                    : t("Не в сети")
                                             }
                                         </p>
                                     </div>

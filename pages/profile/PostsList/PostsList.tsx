@@ -12,11 +12,13 @@ import CurrentPostComments from "./CurrentPostComments/CurrentPostComments";
 import PostCommentForm from "./PostCommentForm/PostCommentForm";
 import CustomModal from "../../../shared/ui/CustomModal/CustomModal";
 import CustomSlider from "../../../shared/ui/CustomSlider/CustomSlider";
+import { useTranslation } from "react-i18next";
 
 export default function PostsList(props: { currentUser: User, authedUser: User }): JSX.Element {
 
     const [isCommentsOpen, setIsCommentsOpen] = useState(false);
     const [currentPost, setCurrentPost] = useState(null);
+    const { t } = useTranslation();
 
     const handleComments = (el: Post) => {
         setCurrentPost(el);
@@ -64,18 +66,18 @@ export default function PostsList(props: { currentUser: User, authedUser: User }
                             <div className={s.postFiles}>
                                 {
                                     el.files?.length > 0 &&
-                  <CustomSlider
-                      files={
-                          el.files.map(el => {
-                              return {
-                                  ...el,
-                                  src: baseURL + el.src
-                              }
-                          })
-                      }
-                      width='450px'
-                      height='300px'
-                  />
+                                        <CustomSlider
+                                            files={
+                                                el.files.map(el => {
+                                                    return {
+                                                        ...el,
+                                                        src: baseURL + el.src
+                                                    }
+                                                })
+                                            }
+                                            width='450px'
+                                            height='300px'
+                                        />
                                 }
                             </div>
                             <div className={s.postDescription}>
@@ -91,7 +93,7 @@ export default function PostsList(props: { currentUser: User, authedUser: User }
                                 </div>
                                 <div className={s.postActionsComments} onClick={() => handleComments(el)}>
                                     <FaComments />
-                                    <span>Комментарии</span>
+                                    <span>{t("Комментарии")}</span>
                                 </div>
                                 <div className={s.postActionsViews}>
                                     <AiOutlineEye />
@@ -103,20 +105,20 @@ export default function PostsList(props: { currentUser: User, authedUser: User }
                 })
             }
             {isCommentsOpen &&
-        <CustomModal
-            isDisplay={isCommentsOpen}
-            changeModal={handleModalAction}
-            actionConfirmed={handleModalAction}
-            title={`Комментарии к - ${currentPost.title}`}
-            typeOfActions="custom"
-            actionsComponent={
-                <PostCommentForm onSubmitComment={handleSubmitComment} />
-            }
-        >
-            <div className={s.commentsModalContent}>
-                <CurrentPostComments post={currentPost} />
-            </div>
-        </CustomModal>
+                <CustomModal
+                    isDisplay={isCommentsOpen}
+                    changeModal={handleModalAction}
+                    actionConfirmed={handleModalAction}
+                    title={`Комментарии к - ${currentPost.title}`}
+                    typeOfActions="custom"
+                    actionsComponent={
+                        <PostCommentForm onSubmitComment={handleSubmitComment} />
+                    }
+                >
+                    <div className={s.commentsModalContent}>
+                        <CurrentPostComments post={currentPost} />
+                    </div>
+                </CustomModal>
             }
         </div>
     )

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IInnerInvites } from "../../../../entities";
 import { IInnerInviteEvent } from "../../../../entities/events";
 import { baseURL } from "../../../../global/store/store";
@@ -10,10 +11,12 @@ interface IInnerInvitesProps {
     handleVisit: (login: number) => void
 }
 export default function InnerInvites(props: IInnerInvitesProps) {
+
     const invites = props.invites;
+    const { t } = useTranslation();
 
     if (invites?.length === 0) {
-        return <div className={s.warning}>У вас пока нет приглашений на мероприятия.</div>
+        return <div className={s.warning}>{t("У вас пока нет приглашений на мероприятия")}.</div>
     }
     if (invites) {
         return (
