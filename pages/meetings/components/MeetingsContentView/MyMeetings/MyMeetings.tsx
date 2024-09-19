@@ -5,6 +5,7 @@ import CustomModal from "../../../../../shared/ui/CustomModal/CustomModal";
 import AddNewMeetingForm from "../../../../../features/forms/AddNewMeeting/Index";
 import { IMeeting } from "../../../../../entities/meetings";
 import MeetingWrapper from "../MeetingWrapper/MeetingWrapper";
+import { useTranslation } from "react-i18next";
 
 export default function MyMeetings({
     data,
@@ -15,11 +16,12 @@ export default function MyMeetings({
 }) {
 
     const [isAddModalShown, setIsAddModalShown] = useState<boolean>(false);
+    const { t } = useTranslation();
 
     return (
         <div className={s.myMeetings}>
             <div className={s.title}>
-                Здесь видны встречи, которые запланированны лично Вами.
+                {t("Здесь видны встречи, которые запланированны лично Вами")}
                 <BsCalendarPlus
                     style={{ cursor: "pointer" }}
                     fontSize={24}

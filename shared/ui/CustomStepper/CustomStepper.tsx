@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import s from "./CustomStepper.module.scss";
+import { useTranslation } from "react-i18next";
 
 interface IStep { title: string, component: any, props?: Record<string, any> };
 interface ICustomStepperProps {
@@ -12,6 +13,7 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
     const [activeStep, setActiveStep] = useState<IStep>(steps[0]);
     const { component: CustomComponent } = activeStep;
     const { props: CustomComponentProps } = activeStep;
+    const { t } = useTranslation();
 
     useEffect(() => {
         steps.map(el => {
@@ -32,7 +34,7 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
                             className={step.title === activeStep?.title ? s.activeStep : s.commonStep}
                             onClick={() => setActiveStep(step)}
                         >
-                            {step.title}
+                            {t(step.title)}
                         </div>
                     ))
                 }

@@ -133,9 +133,10 @@ export default function Login(): JSX.Element {
                             validate: (value) => validateEmailOrPhone(value),
                         })}
                     >
-                        <CustomButtonWithHint 
+                        <CustomButtonWithHint
+                            bordered={false}
                             title={
-                                <FaQuestion fontSize={13} color="black" />
+                                <FaQuestion fontSize={16} color="black" />
                             }
                             hintTitle="Убедитесь, что Ваш почтовый ящик не полный и что он существует"
                             fontSize={14}

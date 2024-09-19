@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IGroup } from "../../../../../entities/groups";
 import { baseURL } from "../../../../../global/store/store";
 import s from "./GroupsListView.module.scss";
@@ -8,10 +9,13 @@ export default function GroupsListView (props: {
     handleGoToCheckGroup: (groupId: number) => void,
     handleCrateNewGroup: () => void
 }) {
+
+    const { t } = useTranslation();
+
     return (
         <div className={s.groupsListView}>
             <div className={s.groupsFilters}>
-                <span className={s.option} onClick={props.handleCrateNewGroup}>Создать сообщество</span>
+                <span className={s.option} onClick={props.handleCrateNewGroup}>{t("Создать сообщество")}</span>
             </div>
             <div className={s.groupsContent}>
                 <div className={s.list}>
@@ -27,15 +31,15 @@ export default function GroupsListView (props: {
                                     <div className={s.name}>{el.name}</div>
                                     <div className={s.type}>Рисование, искусство, живопись</div>
                                     <div className={s.followers}> 
-                                        <span>Участников: {el.membersId.length}</span>
+                                        <span>{t("Участников")}: {el.membersId.length}</span>
                                         <div className={s.actions}>
                                             <button
                                                 onClick={() => props.handleJoinToGroup(el)}    
-                                            >Присоединиться</button>
+                                            >{t("Присоединиться")}</button>
                                             |
                                             <button
                                                 onClick={() => props.handleGoToCheckGroup(el.groupId)} 
-                                            >Перейти</button>
+                                            >{t("Перейти")}</button>
                                         </div>
                                     </div>
                                 </div>

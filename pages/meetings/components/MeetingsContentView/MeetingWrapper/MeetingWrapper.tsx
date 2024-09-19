@@ -5,6 +5,7 @@ import { baseURL, isMobile } from "../../../../../global/store/store";
 import s from "./MeetingWrapper.module.scss";
 import CustomTimer from "../../../../../shared/ui/CustomTimer/CustomTimer";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function MeetingWrapper(props: {
     meeting: IMeeting,
@@ -14,6 +15,7 @@ export default function MeetingWrapper(props: {
     const isMobile$ = useUnit(isMobile);
     const isMeetingEnded = new Date(props.meeting?.date) <= new Date();
     const meetingCreator = props.meeting?.participants.filter(el => el.userId === props.meeting.creatorId)[0];
+    const { t } = useTranslation();
 
     if (isMobile$) {
         return (
@@ -30,7 +32,7 @@ export default function MeetingWrapper(props: {
                         </div>
                     </div>
                     <div className={s.meetingCreator}>
-                        <span>Организатор: </span>
+                        <span>{t("Организатор")}</span>
                         {
                             meetingCreator && 
                             <>
@@ -42,7 +44,7 @@ export default function MeetingWrapper(props: {
                         }
                     </div>
                     <div className={s.meetingDate}>
-                        <span>Дата проведения: </span>
+                        <span>{t("Дата проведения")}: </span>
                         <span className={s.dateTime}> 
                             {
                                 customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))
@@ -50,7 +52,7 @@ export default function MeetingWrapper(props: {
                         </span>
                     </div>
                     <div className={s.meetingTimer}>
-                        Будет доступна:
+                        {t("Будет доступна")}:
                         {
                             !isMeetingEnded
                                 ? <CustomTimer 
@@ -59,19 +61,19 @@ export default function MeetingWrapper(props: {
                                     color="black"
                                     backgroundColor="#73fa97"
                                 />
-                                : <span className={s.meetingOver}>Завершилась</span>
+                                : <span className={s.meetingOver}>{t("Завершилась")}</span>
                         }
                     </div>
                     <div className={s.date}>{props.meeting?.address}</div>
                     <div className={s.meetingGoal}>
-                        Цель встречи: <span className={s.hint}>{props.meeting?.goal}</span>
+                        {t("Цель встречи")}: <span className={s.hint}>{props.meeting?.goal}</span>
                     </div>
                     <div className={s.meetingActions}>
                         <button 
                             className={s.actionBtn}
                             onClick={() => props.handleGoToMeeting(props.meeting)}
-                        >Перейти</button>
-                        <button className={s.actionBtn}>Связь с организатором</button>
+                        >{t("Перейти на страницу встречи")}</button>
+                        <button className={s.actionBtn}>{t("Связь с организатором")}</button>
                     </div>
                 </div>
             </div>        
@@ -90,7 +92,7 @@ export default function MeetingWrapper(props: {
                         <div className={s.date}>{props.meeting?.address}</div>
                     </div>
                     <div className={s.meetingCreator}>
-                        <span>Организатор: </span>
+                        <span>{t("Организатор")}: </span>
                         {
                             meetingCreator && 
                             <>
@@ -102,11 +104,11 @@ export default function MeetingWrapper(props: {
                         }
                     </div>
                     <div className={s.meetingDate}>
-                        Дата проведения: 
+                        {t("Дата проведения")}: 
                         <span className={s.dateTime}> {customizeDateToYYYYMMDDHHMMFormat(String(props.meeting?.date))}</span>
                     </div>
                     <div className={s.meetingTimer}>
-                        Будет доступна:
+                        {t("Будет доступна")}:
                         {
                             !isMeetingEnded
                                 ? <CustomTimer 
@@ -115,11 +117,11 @@ export default function MeetingWrapper(props: {
                                     color="black"
                                     backgroundColor="#73fa97"
                                 />
-                                : <span className={s.meetingOver}>Завершилась</span>
+                                : <span className={s.meetingOver}>{t("Завершилась")}</span>
                         }
                     </div>
                     <div className={s.meetingGoal}>
-                        Цель встречи: <span className={s.hint}>{props.meeting?.goal}</span>
+                        {t("Цель встречи")}: <span className={s.hint}>{props.meeting?.goal}</span>
                     </div>
                     {
                         !isMeetingEnded &&
@@ -127,7 +129,7 @@ export default function MeetingWrapper(props: {
                             <button 
                                 className={s.actionBtn}
                                 onClick={() => props.handleGoToMeeting(props.meeting)}
-                            >Перейти на страницу встречи</button>
+                            >{t("Перейти на страницу встречи")}</button>
                         </div>
                     }
                 </div>

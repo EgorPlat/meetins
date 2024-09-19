@@ -18,6 +18,7 @@ import PageContainer from "../../widgets/PageContainer/pageContainer";
 import s from "./settings.module.scss";
 import CustomModal from "../../shared/ui/CustomModal/CustomModal";
 import CustomButton from "../../shared/ui/CustomButton/CustomButton";
+import { GoQuestion } from "react-icons/go";
 
 export default function Settings(): JSX.Element {
 
@@ -49,7 +50,7 @@ export default function Settings(): JSX.Element {
         })
     };
 
-    const deleteAccount = (status: boolean) => {
+    const deleteAccount = () => {
         setIsModal(() => false);
     };
 
@@ -70,8 +71,9 @@ export default function Settings(): JSX.Element {
                                 onChange={handleChangeStatus}
                             />
                             <CustomButtonWithHint
+                                bordered={false}
                                 fontSize={14}
-                                title="?"
+                                title={<GoQuestion fontSize={20} />}
                                 hintTitle={
                                     "Фильтры контента - это функция, которая дает Вам возможность активировать алгоритм подбора контента на сайте (сообщества, люди, встречи, лента и т.д.) исходя из Ваших настроек профиля (например интересов, закладок, активности). Включая данную функцию важно понимать что количество контента на сайте может уменьшиться, при этом вероятность того что Вам попадется что-то не нужное или Вам не интерсное крайне мала"
                                 }

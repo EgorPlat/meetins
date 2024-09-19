@@ -6,10 +6,11 @@ import { useTranslation } from "react-i18next";
 interface IHintProps {
     title: string | React.ReactElement,
     hintTitle: string,
-    fontSize: number
+    fontSize: number,
+    bordered?: boolean
 }
 
-export default function CustomButtonWithHint({ title, hintTitle, fontSize }: IHintProps) {
+export default function CustomButtonWithHint({ title, hintTitle, fontSize, bordered }: IHintProps) {
 
     const [isHint, setIsHint] = useState<boolean>(false);
     const { t } = useTranslation();
@@ -25,7 +26,10 @@ export default function CustomButtonWithHint({ title, hintTitle, fontSize }: IHi
     return (
         <div className={s.hintBackground}>
             <div className={s.hintWrapper} style={{ fontSize: fontSize }}>
-                <button onClick={() => setIsHint(prev => !prev)}>
+                <button 
+                    onClick={() => setIsHint(prev => !prev)} 
+                    style={bordered === false ? { border: "none" } : { border: "1px solid var(--border-color)" }}
+                >
                     {typeof title === "string" ? t(`${title}`) : title }
                 </button>
                 {
