@@ -23,8 +23,9 @@ export function customizeDateToInputFormatFromDBFormat(date: string) {
 };
 
 export function detectUserLanguage() {
-    if (window.navigator.language === "ru") return "ru";
-    return "en";
+    /*if (window.navigator.language === "ru") return "ru";
+    return "en";*/
+    return "ru";
 };
 
 export function validateFilesFromInputAndStructuring (inputFiles: File[]) {
