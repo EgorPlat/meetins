@@ -26,10 +26,10 @@ export default function AddCommentIntoGroupPost(props: {
                     <input  
                         type="text" 
                         id="text"
-                        placeholder="Введите комментарий" 
+                        placeholder={t("Введите комментарий")}
                         {...register("text", {required: false, validate: (value) => 
                             value.length >= 600 || value.length <= 5
-                                ? "Не менее 5-ти и не более 600 символов"
+                                ? t("Не менее 5-ти и не более 600 символов")
                                 : true,
                         })}
                     />

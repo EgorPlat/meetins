@@ -27,10 +27,10 @@ export default function AddCommentIntoMeeting(): JSX.Element {
                     <input 
                         type="text" 
                         id="text"
-                        placeholder="Текст комментария" 
+                        placeholder={t("Текст комментария")} 
                         {...register("text", {required: false, validate: (value) => 
                             value.length >= 600 || value.length <= 5
-                                ? "Не менее 5-ти и не более 600 символов"
+                                ? t("Не менее 5-ти и не более 600 символов")
                                 : true,
                         })}
                     />

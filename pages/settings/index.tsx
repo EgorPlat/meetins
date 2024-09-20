@@ -84,20 +84,28 @@ export default function Settings(): JSX.Element {
                         <h4>{t("Выбрать язык")}</h4>
                         <div className={s.locales}>
                             <div className={s.localeImg}>
-                                <Image src={us} width="62" height="50" alt="English" onClick={() => handleChangeLocale("en")} />
+                                <Image src={us} quality={100} width="70" height="50" alt="English" onClick={() => handleChangeLocale("en")} />
                             </div>
                             <div className={s.localeImg}>
-                                <Image src={ru} width="62" height="50" alt="Russian" onClick={() => handleChangeLocale("ru")} />
+                                <Image src={ru} quality={100} width="70" height="50" alt="Russian" onClick={() => handleChangeLocale("ru")} />
                             </div>
+                            <CustomButtonWithHint
+                                bordered={false}
+                                fontSize={14}
+                                title={<GoQuestion fontSize={20} />}
+                                hintTitle={
+                                    "Пожалуйста, учитывайте, что при выборе языка, переводится только стандартная часть сайта (подсказки, навигационные меню, заголовки и т.п.). Это значит, что контентная часть страниц, созданная другими пользователями (новости, посты, комментарии и т.п.) переведена не будет."
+                                }
+                            />
                         </div>
                     </div>
                     <div className={s.themes}>
                         <h4>{t("Темы")}</h4>
                         <button className={s.swipeTheme} onClick={() => handleSwipeTheme("black")}>
-                            {t("Черная")}
+                            {t("Тёмная")}
                         </button>
                         <button className={s.swipeTheme} onClick={() => handleSwipeTheme("white")}>
-                            {t("Белая")}
+                            {t("Светлая")}
                         </button>
                     </div>
                     <div className={s.info}>

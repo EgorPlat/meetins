@@ -27,11 +27,11 @@ export default function EditUserTag(): JSX.Element {
                         defaultValue={user$.tag.title}
                         type="text" 
                         id="title"
-                        placeholder="Содержимое" 
+                        placeholder={t("Содержимое")} 
                         {...register("title", {required: false, validate: (value) => 
-			            value.length >= 20 || value.length <= 5
-				        ? "Не менее 5-ти и не более 20-ти символов"
-				        : true,
+                            value.length >= 20 || value.length <= 5
+                                ? t("Не менее 5-ти и не более 20-ти символов")
+                                : true,
                         })}
                     />
                     {errors.title ? <span>{errors.title.message}</span> : null}

@@ -26,7 +26,7 @@ export default function AddMusic(): JSX.Element {
         ) {
             addNotification({
                 type: "error",
-                text: "Вы должны загрузить 2 файла: картинку и звуковую дорожку",
+                text: t("Вы должны загрузить 2 файла: картинку и звуковую дорожку"),
                 textColor: "white",
                 time: 3000
             });
@@ -44,7 +44,7 @@ export default function AddMusic(): JSX.Element {
             } else {
                 addNotification({
                     type: "error",
-                    text: "Вы должны загрузить 2 файла: картинку и звуковую дорожку",
+                    text: t("Вы должны загрузить 2 файла: картинку и звуковую дорожку"),
                     textColor: "white",
                     time: 3000
                 });
@@ -67,11 +67,11 @@ export default function AddMusic(): JSX.Element {
                         type="text"
                         id="name"
                         defaultValue={currentAuthorName$}
-                        placeholder="Псевдоним автора"
+                        placeholder={t("Псевдоним автора")}
                         {...register("name", {
                             required: false, validate: (value) =>
                                 value.length >= 25 || value.length <= 5
-                                    ? "Не менее 5-ти и не более 25-ти символов"
+                                    ? t("Не менее 5-ти и не более 25-ти символов")
                                     : true,
                         })}
                     />
@@ -84,7 +84,7 @@ export default function AddMusic(): JSX.Element {
                         placeholder={t("Краткое описание композиции")}
                         {...register("description", {
                             required: false, validate: (value) =>
-                                value.length === 0 ? "Нельзя оставить пустым" : true
+                                value.length === 0 ? t("Нельзя оставить пустым") : true
                         })} />
                     {errors.description ? <span>{errors.description.message}</span> : null}
                 </div>
@@ -93,11 +93,11 @@ export default function AddMusic(): JSX.Element {
                     <input
                         type="text"
                         id="title"
-                        placeholder="Название композиции"
+                        placeholder={t("Название композиции")}
                         {...register("title", {
                             required: false, validate: (value) =>
                                 value.length >= 20 || value.length <= 5
-                                    ? "Не менее 5-ти и не более 20-ти символов"
+                                    ? t("Не менее 5-ти и не более 20-ти символов")
                                     : true,
                         })}
                     />
@@ -114,7 +114,7 @@ export default function AddMusic(): JSX.Element {
                         placeholder={t("Краткое описание композиции")}
                         {...register("composition", {
                             required: false, validate: (value) =>
-                                value.length === 0 ? "Нельзя оставить пустым" : true
+                                value.length === 0 ? t("Нельзя оставить пустым") : true
                         })} />
                     {errors.composition ? <span>{errors.composition.message}</span> : null}
                 </div>

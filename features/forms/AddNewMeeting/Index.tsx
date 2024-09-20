@@ -23,10 +23,10 @@ export default function AddNewMeetingForm(): JSX.Element {
                     <input 
                         type="text" 
                         id="title"
-                        placeholder="Название встречи" 
+                        placeholder={t("Название встречи")}
                         {...register("title", {required: false, validate: (value) => 
 			            value.length >= 40 || value.length <= 5
-				        ? "Не менее 5-ти и не более 40-ти символов"
+				        ? t("Не менее 5-ти и не более 40-ти символов")
 				        : true,
                         })}
                     />
@@ -38,9 +38,9 @@ export default function AddNewMeetingForm(): JSX.Element {
                         type="datetime-local" 
                         id="date" 
                         {...register("date", {required: false, validate: (value) =>
-                            value.length === 0 ? "Это поле обязательно к заполнению." : true
+                            value.length === 0 ? t("Это поле обязательно к заполнению") : true
                         })} 
-                        placeholder={t("Дата мероприятия")}
+                        placeholder={t("Дата встречи")}
                     />
                     {errors.date ? <span>{errors.date.message}</span> : null}
                 </div>
@@ -50,9 +50,9 @@ export default function AddNewMeetingForm(): JSX.Element {
                         type="text" 
                         id="address" 
                         {...register("address", {required: false, validate: (value) =>
-                            value.length === 0 ? "Это поле обязательно к заполнению." : true
+                            value.length === 0 ? t("Это поле обязательно к заполнению") : true
                         })} 
-                        placeholder={t("Место проведения мероприятия")}
+                        placeholder={t("Место встречи")}
                     />
                     {errors.address ? <span>{errors.address.message}</span> : null}
                 </div>
@@ -62,17 +62,17 @@ export default function AddNewMeetingForm(): JSX.Element {
                         id="goal"
                         placeholder={t("В чем цель встречи?")}
                         {...register("goal", {required: false, validate: (value) =>
-                            value.length === 0 ? "Нельзя оставить пустым" : true
+                            value.length === 0 ? t("Нельзя оставить пустым") : true
                         })}/>
                     {errors.goal ? <span>{errors.goal.message}</span> : null}
                 </div>
                 <div>
-                    <label htmlFor="description">{t("Описание встречи?")}</label>
+                    <label htmlFor="description">{t("Описание встречи")}</label>
                     <textarea
                         id="description"
                         placeholder={t("Краткое описание событий на встрече")}
                         {...register("description", {required: false, validate: (value) =>
-                            value.length === 0 ? "Нельзя оставить пустым" : true
+                            value.length === 0 ? t("Нельзя оставить пустым") : true
                         })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}
                 </div>
