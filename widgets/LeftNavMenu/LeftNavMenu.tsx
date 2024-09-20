@@ -24,7 +24,7 @@ export default function LeftNavMenu(): JSX.Element {
             </div>
             <div className={s.marksLink}>
                 <Link href="/marks">{t("Закладки")}</Link>
-                <div className={s.countMarks}>{user && user.events.length + user.markedUsers.length}</div>
+                <div className={s.countMarks}></div>
             </div>
             <div className={s.musicLink}>
                 <Link href="/music">{t("Музыка")}</Link>

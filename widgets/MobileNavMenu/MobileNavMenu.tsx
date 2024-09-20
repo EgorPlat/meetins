@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import LeftNavMenu from "../LeftNavMenu/LeftNavMenu";
 import logo from "../../public/images/logo.svg";
 import Image from "next/image";
-import { setIsMobile, setIsScrollPageBlocked } from "../../global/store/store";
+import { setIsScrollPageBlocked } from "../../global/store/store";
 import { handleLogOut } from "../../global/store/login_model";
 import { AiOutlineMenu } from "react-icons/ai";
 
@@ -32,14 +32,16 @@ export default function MobileNavMenu() {
                 isOpened &&
                 <div className={s.mobileMenuWrapper} onClick={handleCloseMenu}>
                     <div className={s.mobileMenuWrapperShown} onClick={(e) => e.stopPropagation()}>
-                        <Image  
-                            className={s.logoImage}
-                            src={logo}
-                            width={60}
-                            height={60}
-                            alt='company logo'
-                        />
-                        <div onClick={() => setIsOpened(false)}>
+                        <div className={s.logoWrapper}>
+                            <Image  
+                                className={s.logoImage}
+                                src={logo}
+                                width={55}
+                                height={55}
+                                alt='company logo'
+                            />
+                        </div>
+                        <div className={s.leftNavMenu} onClick={() => setIsOpened(false)}>
                             <LeftNavMenu />
                         </div>
                         <div className={s.exitIcon} onClick={handleLogOutClick}>
