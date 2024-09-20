@@ -17,6 +17,7 @@
     }
 }
 .mobileMenu {
+    z-index: 1000;
     padding-left: 2%;
     & .mobileMenuIcon {
         z-index: 10;

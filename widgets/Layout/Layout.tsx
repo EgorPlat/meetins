@@ -1,6 +1,6 @@
 // eslint disable
 import { useRouter } from "next/router";
-import { $user, baseURL, isMobile, setCurrentPage } from "../../global/store/store";
+import { $user, baseURL, isMobile, setCurrentPage, setIsScrollPageBlocked } from "../../global/store/store";
 import { useEffect } from "react";
 import Header from "../Header";
 import s from "./layout.module.scss";
@@ -27,6 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             setCurrentPage(router.asPath);
             localStorage.setItem("previousPage", router.asPath);
         }
+        setIsScrollPageBlocked(false);
         document.getElementById("mobileMainContent")?.scrollTo(0, 0);
     }, [router.asPath]);
     

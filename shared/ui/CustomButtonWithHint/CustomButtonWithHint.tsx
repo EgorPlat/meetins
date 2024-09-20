@@ -24,16 +24,15 @@ export default function CustomButtonWithHint({ title, hintTitle, fontSize, borde
     }, [isHint]);
 
     return (
-        <div className={s.hintBackground}>
-            <div className={s.hintWrapper} style={{ fontSize: fontSize }}>
-                <button 
-                    onClick={() => setIsHint(prev => !prev)} 
-                    style={bordered === false ? { border: "none" } : { border: "1px solid var(--border-color)" }}
-                >
-                    {typeof title === "string" ? t(`${title}`) : title }
-                </button>
-                {
-                    isHint &&
+        <div className={s.hintWrapper} style={{ fontSize: fontSize }}>
+            <button 
+                onClick={() => setIsHint(prev => !prev)} 
+                style={bordered === false ? { border: "none" } : { border: "1px solid var(--border-color)" }}
+            >
+                {typeof title === "string" ? t(`${title}`) : title }
+            </button>
+            {
+                isHint &&
                     <>
                         <div 
                             className={s.bluredBlock}
@@ -45,8 +44,7 @@ export default function CustomButtonWithHint({ title, hintTitle, fontSize, borde
                         </div>
                     </>
                     
-                }
-            </div>
+            }
         </div>
     )
 }

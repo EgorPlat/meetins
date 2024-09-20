@@ -32,10 +32,12 @@
 
 @media screen and (max-width: 1720px) {
     .interests {
+        font-size: 16px;
         & .interest {
             font-size: 16px;
         }
         & .title {
+            font-size: 19px;
             & .changeStatus {
                 font-size: 16px;
             }
