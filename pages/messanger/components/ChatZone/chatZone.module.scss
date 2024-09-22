@@ -2,7 +2,7 @@
     display: inline;
     max-width: 400px;
     min-width: 100px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     margin-right: 10px;
     min-height: 20px;
@@ -14,7 +14,7 @@
 .chat {
     height: 100%;
     display: grid;
-    grid-template-rows: 95px calc(100% - 180px) 80px;
+    grid-template-rows: 95px calc(100% - 175px) 70px;
     row-gap: 5px;
     & .notificationMessage {
         text-align: center;
@@ -85,7 +85,7 @@
                 justify-content: right;
                 & .myMessage {
                     @extend .message;
-                    background-color: rgba($color: #53ff7b, $alpha: 1);
+                    background-color: #77ff97;
                 }
             }
             & .notMyMessageBlock {
@@ -95,17 +95,17 @@
                 & .notMyMessage {
                     margin-left: 10px;
                     @extend .message;
-                    background-color: var(--default-color);
+                    background-color: #76d4ff;
                 }
             }
             & .messageDateWrapper {
                 display: flex;
                 justify-content: center;
                 justify-items: center;
-                margin-bottom: 5px;
+                margin: 5px;
                 & .messageDate {
                     padding: 5px;
-                    background-color: #d0ecff4c;
+                    background-color: rgba(151, 151, 151, 0.453);
                     border-radius: 100px;
                     font-size: 14px;
                 }
@@ -201,7 +201,7 @@
 }
 @media screen and (max-width: 500px) {
     .chat {
-        grid-template-rows: 75px calc(100% - 150px) 70px;
+        grid-template-rows: 75px calc(100% - 155px) 70px;
         & .user {
             grid-template-columns: 55px calc(100% - 95px) 30px;
             & .userTextInfo {

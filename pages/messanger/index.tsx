@@ -33,7 +33,7 @@ export default function Messanger(): JSX.Element {
                     <div className={`${s.chatZone}`}>
                         {isChatNeededToShow ? <ChatZone activeChat$={activeChat$} /> :
                             <div className={s.noChat}>
-                                <h3 className={s.alert}>Выберите диалог...</h3>
+                                <h5 className={s.alert}>Выберите диалог...</h5>
                             </div>
                         }
                     </div>

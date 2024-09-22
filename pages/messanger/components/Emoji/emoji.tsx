@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { AiOutlineSmile } from "react-icons/ai";
 import s from "./emoji.module.scss"
 import EmojiList from "./EmojiList/emojiList";
+import { GoSmiley } from "react-icons/go";
 
 export default function Emoji(props: {addSmileHandler: (emoji) => void}): JSX.Element {
 
@@ -18,7 +18,7 @@ export default function Emoji(props: {addSmileHandler: (emoji) => void}): JSX.El
 
     return (
         <div className={s.emoji}>
-            <AiOutlineSmile fontSize={30} onClick={onWrapperClick} color="gray"/>
+            <GoSmiley fontSize={28} onClick={onWrapperClick} color="gray"/>
             <div className={s.emojiListWrapper}>
                 { isEmojiListOpen && <EmojiList onAddSmile={onAddSmile}/> }
             </div>

@@ -27,7 +27,7 @@ export default function MobileNavMenu() {
     
     return (
         <div className={s.mobileMenu}>
-            <AiOutlineMenu className={s.mobileMenuIcon} fontSize={28} onClick={() => setIsOpened(true)} />
+            <AiOutlineMenu className={s.mobileMenuIcon} fontSize={22} onClick={() => setIsOpened(true)} />
             {
                 isOpened &&
                 <div className={s.mobileMenuWrapper} onClick={handleCloseMenu}>

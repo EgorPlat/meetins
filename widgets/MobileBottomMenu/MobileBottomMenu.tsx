@@ -19,21 +19,21 @@ export default function MobileBottomMenu({ authedUser }: IMobileBottomMenuProps)
             <div className={s.elem}>
                 <MobileNavMenu />
                 <div className={s.menuElem}>
-                    <p>Меню</p>
+                    <span>Меню</span>
                     <div className={s.round}></div>
                 </div>
             </div>
             <div className={s.elem}>
-                <IoPeopleSharp fontSize={28} onClick={() => router.push("/peoples")} />
-                <p>Люди</p>
+                <IoPeopleSharp fontSize={22} onClick={() => router.push("/peoples")} />
+                <span>Люди</span>
             </div>
             <div className={s.elem}>
-                <GoPersonFill fontSize={28} onClick={() => router.push(`/profile/${authedUser?.login}`)} />
-                <p>Профиль</p>
+                <GoPersonFill fontSize={22} onClick={() => router.push(`/profile/${authedUser?.login}`)} />
+                <span>Профиль</span>
             </div>
             <div className={s.elem}>
-                <MdSettings fontSize={28} onClick={() => router.push("/settings")} />
-                <p>Настройки</p>
+                <MdSettings fontSize={22} onClick={() => router.push("/settings")} />
+                <span>Настройки</span>
             </div>
         </nav>
     )

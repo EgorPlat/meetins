@@ -6,6 +6,8 @@ import s from "./chatMessageForm.module.scss";
 import { AiOutlineAudio, AiOutlineFileText, AiOutlineSend } from "react-icons/ai";
 import { addNotification } from "../../../../global/store/notifications_model";
 import { useUserMediaTracks } from "../../../../shared/hooks/useUserMediaTracks";
+import { CiFileOn, CiMicrophoneOn } from "react-icons/ci";
+import { VscSend } from "react-icons/vsc";
 
 export default function ChatMessageForm(
     props: {
@@ -83,16 +85,16 @@ export default function ChatMessageForm(
             <div className={s.formInput}>
                 <textarea ref={messageRef} placeholder={t(props.placeholder)} />
                 <div className={s.fileInput}>
-                    <AiOutlineFileText fontSize={30} color="gray" />
+                    <CiFileOn fontSize={30} color="gray" />
                     <input type="file" onChange={(e) => onSendNewFile(e)} />
                 </div>
                 <Emoji addSmileHandler={addSmileHandler} />
                 {
                     !isMediaRecorderActive
                         ?
-                        <AiOutlineAudio
+                        <CiMicrophoneOn
                             color="gray"
-                            fontSize={30}
+                            fontSize={32}
                             onClick={handleMediaRecorder}
                         />
                         :
@@ -100,7 +102,7 @@ export default function ChatMessageForm(
                 }
                 {
                     props.isLoaded
-                        ? <AiOutlineSend fontSize={30} onClick={sendForm} color="gray" />
+                        ? <VscSend fontSize={30} onClick={sendForm} color="gray" />
                         : <Loader />
                 }
             </div>

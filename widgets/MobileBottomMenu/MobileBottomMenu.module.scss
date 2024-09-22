@@ -1,18 +1,22 @@
 .nav {
     display: flex;
-    align-items: normal;
+    align-items: center;
     column-gap: 15px;
+    width: 100%;
     & .elem {
         flex-grow: 1;
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
         justify-items: center;
         & .menuElem {
             position: relative;
             & .round {
                 position: absolute;
+                z-index: 10;
                 top: -28px;
-                right: 4px;
+                right: -4px;
                 width: 12px;
                 height: 12px;
                 border-radius: 50%;

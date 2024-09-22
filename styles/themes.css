@@ -20,7 +20,7 @@ body {
 	--h4BG-color: rgba(231, 231, 231, 0.181);
 	--inp-text-color: gray;
 	--default-color: #3db2ff;
-	--bg-color-block: rgba(35, 35, 35, 0.814);
+	--bg-color-block: rgb(34, 34, 34);
 	--bg-color-mobile-menu: rgb(37, 39, 51);
 	::-webkit-calendar-picker-indicator {
 		filter: invert(1);

@@ -23,7 +23,7 @@
 }
 
 .mobileContainerGrid {
-	grid-template-rows: 60px calc(100dvh - 140px) 80px;
+	grid-template-rows: 60px calc(100dvh - 130px) 70px;
 }
 .mobileContainer {
 	display: grid;
@@ -50,8 +50,8 @@
 		padding-bottom: 5px;
 	}
 	& footer {
-		padding-left: 10px;
-		padding-top: 10px;
+		display: flex;
+		align-items: center;
 		background-color: var(--bg-color-mobile-menu);
 		height: 100%;
 	}
