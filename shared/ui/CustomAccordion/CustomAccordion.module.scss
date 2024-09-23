@@ -16,6 +16,7 @@
     background-color: var(--bg-color-block);
     border-radius: 5px;
     cursor: pointer;
+    display: grid;
 
     transition: max-height .5s linear;
 
