@@ -1,14 +1,10 @@
-@keyframes smoothOpacity {
+@keyframes smoothShown {
     0% {
-        opacity: 0;
-    }
-
-    99% {
-        opacity: 0;
+        height: 0%;
     }
 
     100% {
-        opacity: 1;
+        height: 95%;
     }
 }
 
@@ -16,12 +12,18 @@
     background-color: var(--bg-color-block);
     border-radius: 5px;
     cursor: pointer;
+    width: 90%;
     display: grid;
 
     transition: max-height .5s linear;
 
     & .customAccordionSubText {
         margin-top: 10px;
-        animation: smoothOpacity .25s 1 forwards;
+        display: -webkit-box;
+        -webkit-line-clamp: 5; // количество строк
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        animation: smoothShown .5s forwards;
     }
 }
