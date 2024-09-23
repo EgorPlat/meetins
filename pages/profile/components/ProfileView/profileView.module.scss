@@ -29,9 +29,8 @@
 
         & .bodyInfo {
             & .avatar {
-                box-shadow: 0 0 7px #666;
                 border-radius: 50%;
-                border: 2px solid white;
+                border: 2px solid rgb(218, 218, 218);
                 min-width: 190px;
                 min-height: 190px;
                 max-width: 190px;
@@ -46,11 +45,11 @@
             font-size: 16px;
 
             & .town {
-                color: grey;
+                
             }
 
             & .dateRegister {
-                color: grey;
+                
             }
 
             & .lastActivity {
@@ -61,7 +60,6 @@
                 display: flex;
                 column-gap: 5px;
                 flex-wrap: wrap;
-                color: gray;
 
                 & .count {
                     color: rgb(32, 200, 35);
@@ -71,7 +69,6 @@
             & .userStatus {
                 display: flex;
                 column-gap: 5px;
-                color: gray;
 
                 & .title {
                     color: var(--default-color);

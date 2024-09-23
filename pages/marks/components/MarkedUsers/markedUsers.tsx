@@ -29,12 +29,13 @@ export default function MarkedUsers() {
                 }
                 {
                     markedUsersInfo$?.map(el => (
-                        <div className={s.markedUser} key={el.userId} onClick={(e) => handleRemoveUser(e, el.userId)}>
-                            <img src={baseURL + el.avatar} className={s.avatar} />
-                            <div className={s.name} onClick={() => handleGoToUser(el.login)}>{el.name}</div>
+                        <div className={s.markedUser} key={el.userId} >
+                            <img src={baseURL + el.avatar} className={s.avatar} onClick={() => handleGoToUser(el.login)} />
+                            <div className={s.name}>{el.name}</div>
                             <div className={s.actions} >
                                 <button
                                     className={s.actionRemove}
+                                    onClick={(e) => handleRemoveUser(e, el.userId)}
                                 >x</button>
                             </div>
                         </div>

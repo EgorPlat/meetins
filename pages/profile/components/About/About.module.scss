@@ -21,8 +21,7 @@
         cursor: pointer;
     }
     & button {
-        min-width: 30px;
-        height: 30px;
+        height: 35px;
         color: white;
         border: none;
         outline: none;
@@ -30,12 +29,14 @@
         margin-right: 5px;
         border-radius: 5px;
     }
+    & button:hover {
+        background-color: orange;
+        color: black;
+    }
     & .confirmBtn {
-        width: 80px;
         background-color: var(--default-color);
     }
     & .cancelBtn {
-        width: 80px;
         background-color: rgb(64, 80, 81);
     }
 }

@@ -1,5 +1,5 @@
 .markedEventInfo {
-    min-width: 300px;
+    width: 300px;
     min-height: 300px;
     border-radius: 5px;
     background-color: var(--bg-color-block);
@@ -8,14 +8,13 @@
     & .markedEventInfoContent {
         display: grid;
         row-gap: 10px;
-        width: 270px;
 
         & .image {
             display: flex;
             justify-content: center;
 
             & img {
-                width: 270px;
+                width: 100%;
                 height: 270px;
                 border-radius: 5px;
             }
@@ -50,13 +49,8 @@
     }
 }
 
-@keyframes rotateMini {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-        border-bottom-color: rgb(0, 153, 255);
+@media screen and (max-width: 1000px) {
+    .markedEventInfo {
+        width: 98%;
     }
 }

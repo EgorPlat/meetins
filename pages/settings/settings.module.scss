@@ -18,7 +18,8 @@
         font-size: 20px;
         padding-top: 1%;
         font-family: Nunito;
-        h4 {
+        & .title {
+            display: flex;
             padding: 7px;
             width: 96%;
             border-radius: 5px;

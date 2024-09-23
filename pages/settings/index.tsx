@@ -64,12 +64,8 @@ export default function Settings(): JSX.Element {
             <div className={`${s.settings}`}>
                 <div className={`${s.formAndInfo}`}>
                     <div className={s.filters}>
-                        <h4>{t("Управление фильтрами контента")}</h4>
-                        <div className={s.filter}>
-                            <TurnOffOn
-                                inithialStatus={user$?.isFilter}
-                                onChange={handleChangeStatus}
-                            />
+                        <h4 className={s.title}>
+                            {t("Управление фильтрами контента")}
                             <CustomButtonWithHint
                                 bordered={false}
                                 fontSize={14}
@@ -78,17 +74,17 @@ export default function Settings(): JSX.Element {
                                     "Фильтры контента - это функция, которая дает Вам возможность активировать алгоритм подбора контента на сайте (сообщества, люди, встречи, лента и т.д.) исходя из Ваших настроек профиля (например интересов, закладок, активности). Включая данную функцию важно понимать что количество контента на сайте может уменьшиться, при этом вероятность того что Вам попадется что-то не нужное или Вам не интерсное крайне мала"
                                 }
                             />
+                        </h4>
+                        <div className={s.filter}>
+                            <TurnOffOn
+                                inithialStatus={user$?.isFilter}
+                                onChange={handleChangeStatus}
+                            />
                         </div>
                     </div>
                     <div className={s.locale}>
-                        <h4>{t("Выбрать язык")}</h4>
-                        <div className={s.locales}>
-                            <div className={s.localeImg}>
-                                <Image src={us} quality={100} width="70" height="50" alt="English" onClick={() => handleChangeLocale("en")} />
-                            </div>
-                            <div className={s.localeImg}>
-                                <Image src={ru} quality={100} width="70" height="50" alt="Russian" onClick={() => handleChangeLocale("ru")} />
-                            </div>
+                        <h4 className={s.title}>
+                            {t("Выбрать язык")}
                             <CustomButtonWithHint
                                 bordered={false}
                                 fontSize={14}
@@ -97,10 +93,18 @@ export default function Settings(): JSX.Element {
                                     "Пожалуйста, учитывайте, что при выборе языка, переводится только стандартная часть сайта (подсказки, навигационные меню, заголовки и т.п.). Это значит, что контентная часть страниц, созданная другими пользователями (новости, посты, комментарии и т.п.) переведена не будет."
                                 }
                             />
+                        </h4>
+                        <div className={s.locales}>
+                            <div className={s.localeImg}>
+                                <Image src={us} quality={100} width="70" height="50" alt="English" onClick={() => handleChangeLocale("en")} />
+                            </div>
+                            <div className={s.localeImg}>
+                                <Image src={ru} quality={100} width="70" height="50" alt="Russian" onClick={() => handleChangeLocale("ru")} />
+                            </div>
                         </div>
                     </div>
                     <div className={s.themes}>
-                        <h4>{t("Темы")}</h4>
+                        <h4 className={s.title}>{t("Темы")}</h4>
                         <button className={s.swipeTheme} onClick={() => handleSwipeTheme("black")}>
                             {t("Тёмная")}
                         </button>
@@ -109,13 +113,13 @@ export default function Settings(): JSX.Element {
                         </button>
                     </div>
                     <div className={s.info}>
-                        <h4>{t("Информация профиля")}</h4>
+                        <h4 className={s.title}>{t("Информация профиля")}</h4>
                         {isLoad ? <div className={s.profileForm}>
                             <ProfileInfoForm />
                         </div> : <CustomLoader />}
                     </div>
                     <div className={s.management}>
-                        <h4>{t("Управление аккаунтом")}</h4>
+                        <h4 className={s.title}>{t("Управление аккаунтом")}</h4>
                         <div className={s.manageAcc}>
                             {isLoad ? <div className={s.accountForm}>
                                 <ManageAccountForm />

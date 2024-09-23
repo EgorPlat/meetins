@@ -1,13 +1,14 @@
 .chatList {
-    overflow-y: scroll;
-    height: 100%;
+    display: grid;
     border-radius: 10px;
+    height: 100%;
     background-color: var(--bg-color-block);
     & .list {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        height: 100%;
+        display: grid;
+        justify-content: center;
+        overflow-y: scroll;
         & .noDialogsMessage {
             font-size: 15px;
             color: gray;
@@ -17,41 +18,5 @@
         padding: 3px;
         text-align: center;
         font-size: 16px;
-    }
-}
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    } to {
-        transform: rotate(360deg);
-    }
-}
-
-
-@media screen and (max-width: 1430px) {
-    .chatList {
-        & .menu {
-            & button {
-                font-size: 18px;
-            }
-        }
-    }
-}
-@media screen and (max-width: 1300px) {
-    .chatList {
-        & .menu {
-            & button {
-                font-size: 16px;
-            }
-        }
-    }
-}
-@media screen and (max-width: 1180px) {
-    .chatList {
-        & .menu {
-            & button {
-                font-size: 14px;
-            }
-        }
     }
 }

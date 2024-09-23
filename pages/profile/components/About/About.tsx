@@ -38,9 +38,15 @@ export default React.memo(function About(props: {
                 {changingStatus
                     ?
                     <div>
-                        <textarea autoFocus className={s.textChange} placeholder={t("Введите текст")} onChange={(event) => setUserStatus(event.target.value)}></textarea>
-                        <button className={s.confirmBtn} onClick={saveNewStatus}>ОК</button>
-                        <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>Х</button>
+                        <textarea 
+                            autoFocus 
+                            className={s.textChange} 
+                            placeholder={t("Введите текст")}
+                            defaultValue={props.user.status} 
+                            onChange={(event) => setUserStatus(event.target.value)}
+                        ></textarea>
+                        <button className={s.confirmBtn} onClick={saveNewStatus}>{t("Сохранить")}</button>
+                        <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>{t("Отменить")}</button>
                     </div>
                     : <p className={s.status}>{props.user.status}</p>
                 }
