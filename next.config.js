@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
     reactStrictMode: true,
     typescript: {
         ignoreBuildErrors: true
@@ -16,3 +16,9 @@ module.exports = {
         domains: ["media.kudago.com", "localhost", "meetins-egorplat.amvera.io"]
     }
 }
+
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+    enabled: process.env.ANALYZE === "true",
+});
+
+module.exports = withBundleAnalyzer(nextConfig);
