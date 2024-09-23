@@ -30,7 +30,7 @@ export const connectionWatcher = createEffect((obj: { connection: Socket, active
         setOnlineUsers(message.users);
     });
     obj.connection.on("connect", () => {
-        console.log("connect");
+        console.log("Successfully connected to socket");
     });
 })
 sample({

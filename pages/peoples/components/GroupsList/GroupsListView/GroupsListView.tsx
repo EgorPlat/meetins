@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { IGroup } from "../../../../../entities/groups";
 import { baseURL } from "../../../../../global/store/store";
 import s from "./GroupsListView.module.scss";
+import CustomAccordion from "../../../../../shared/ui/CustomAccordion/CustomAccordion";
 
 export default function GroupsListView (props: {
     groupsList: IGroup[],
@@ -30,6 +31,12 @@ export default function GroupsListView (props: {
                                 <div className={s.info}>
                                     <div className={s.name}>{el.name}</div>
                                     <div className={s.type}>Рисование, искусство, живопись</div>
+                                    <div className={s.description}>
+                                        <CustomAccordion
+                                            text="Описание"
+                                            subText={el.description}
+                                        />
+                                    </div>
                                     <div className={s.followers}> 
                                         <span>{t("Участников")}: {el.membersId.length}</span>
                                         <div className={s.actions}>

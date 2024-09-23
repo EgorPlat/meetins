@@ -34,13 +34,15 @@ export default function InterestsPageView ({ currentInterests }: {
                         <div className={s.list}>
                             {
                                 currentInterests?.map((el) => (
-                                    <CustomAccordion
-                                        key={el.interestId}
-                                        text={el.title}
-                                        subText={`
+                                    <div className={s.listElem}>
+                                        <CustomAccordion
+                                            key={el.interestId}
+                                            text={el.title}
+                                            subText={`
                                             Описание для выбранного Вами интереса
                                         `}
-                                    />
+                                        />
+                                    </div>
                                 ))
                             }
                         </div>

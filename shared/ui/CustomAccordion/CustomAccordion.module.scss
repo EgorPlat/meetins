@@ -3,7 +3,7 @@
         opacity: 0;
     }
 
-    90% {
+    99% {
         opacity: 0;
     }
 
@@ -15,16 +15,12 @@
 .customAccordion {
     background-color: var(--bg-color-block);
     border-radius: 5px;
-    padding: 10px;
-    margin: 5px 5px 5px 5px;
     cursor: pointer;
 
     transition: max-height .5s linear;
 
     & .customAccordionSubText {
-        margin-top: 5px;
-        padding-top: 5px;
-
-        animation: smoothOpacity .5s forwards;
+        margin-top: 10px;
+        animation: smoothOpacity .25s 1 forwards;
     }
 }

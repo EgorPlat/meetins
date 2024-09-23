@@ -47,7 +47,8 @@
                     cursor: pointer;
                     padding: 10px;
                     border-radius: 5px;
-                    min-height: 50px;
+                    max-height: 300px;
+                    transition: 1s;
                     display: flex;
                     align-items: center;
                     background-color: var(--bg-color-block);
