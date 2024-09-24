@@ -15,10 +15,11 @@
         padding: 20px;
         border-radius: 5px;
         max-height: 600px;
+        width: 500px;
         & .customModalTitle {
             display: grid;
             grid-template-columns: 95% 5%;
-            font-size: 16px;
+            font-size: 18px;
             min-height: 20px;
             & .customModalClose {
                 display: flex;
@@ -80,7 +81,7 @@
     }
 }
 
-@media screen and (max-width: 1920px) {
+/*@media screen and (max-width: 1920px) {
     .customModal {
         & .customModalContent {
             width: 700px;
@@ -98,7 +99,7 @@
             }
         }
     }
-}
+}*/
 @media screen and (max-width: 1536px) {
     .customModal {
         & .customModalContent {
