@@ -7,7 +7,6 @@
         left: 0px;
         top: 0px;
         width: 100%;
-        z-index: 10;
         background-color: rgba(33, 33, 33, 0.845);
     }
     & button {
@@ -18,7 +17,6 @@
     & .hint {
         direction: ltr;
         border-radius: 5px;
-        z-index: 999;
         font-size: 12px;
         max-width: 200px;
         max-height: 250px;

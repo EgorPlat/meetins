@@ -6,12 +6,10 @@
     border-radius: 5px;
     border: 1px solid gray;
     & .title {
-        z-index: 4;
         font-size: 16px;
     }
     & .progress {
         left: 0;
-        z-index: 3;
         position: absolute;
         display: flex;
         background-color: rgb(26, 133, 255);
