@@ -2,11 +2,13 @@ import { useRouter } from "next/router";
 import { $markedUsersInfo, baseURL, removeUserFromMarkedList } from "../../../../global/store/store";
 import { useUnit } from "effector-react";
 import s from "./markedUsers.module.scss";
+import { useTranslation } from "react-i18next";
 
 export default function MarkedUsers() {
 
     const router = useRouter();
     const markedUsersInfo$ = useUnit($markedUsersInfo);
+    const { t } = useTranslation();
 
     const handleRemoveUser = (e, userId: string) => {
         e.stopPropagation();
@@ -23,8 +25,10 @@ export default function MarkedUsers() {
                 {
                     markedUsersInfo$?.length === 0 &&
                     <div className={s.warning}>
-                        <h5 className={s.title}>У Вас нет пользователей в закладках.</h5>
-                        <div className={s.subTitle}>Чтобы добавить пользователя в закладки перейдите в профиль.</div>
+                        <h5 className={s.title}>{t("У Вас нет пользователей в закладках")}</h5>
+                        <div className={s.subTitle}>
+                            {t("Чтобы добавить пользователя в закладки, перейдите к нему в профиль и нажмите кнопку 'Пометить важным'")}
+                        </div>
                     </div>
                 }
                 {

@@ -166,6 +166,12 @@ sample({
     fn: response => response.data,
     target: currentEvents
 })
+sample({
+    clock: getEvents.doneData,
+    filter: response => response.status <= 217,
+    fn: response => true,
+    target: setLoadedStatus
+})
 
 sample({
     clock: getUserOuterInvitesEventInfo.doneData,

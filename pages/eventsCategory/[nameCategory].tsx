@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect } from "react";
-import { currentEvents, getEvents, loadedStatus } from "../../global/store/events_model";
+import { currentEvents, getEvents, loadedStatus, setLoadedStatus } from "../../global/store/events_model";
 import { useUnit } from "effector-react";
 import { getCategoryName } from "../../shared/helpers/helper";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
@@ -18,6 +18,12 @@ export default function CategoryEventInfo(): JSX.Element {
     useEffect(() => {
         getEvents({categoryName: nameCategory?.toString(), page: 1});
     }, [nameCategory]);
+
+    useEffect(() => {
+        return () => {
+            setLoadedStatus(false);
+        }
+    }, []);
     
     return (
         <PageContainer>

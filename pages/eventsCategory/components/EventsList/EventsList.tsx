@@ -14,7 +14,7 @@ export default function EventsList(props: {
     
     const { categoryName, currentEvents, loadedStatus } = props;
     const { t } = useTranslation();
-
+    
     return (
         <div className={s.content}>
             <div className={s.title}>
@@ -32,8 +32,9 @@ export default function EventsList(props: {
                                     <div className={s.eventImage}>
                                         <Image
                                             src={event.images[0].image}
-                                            fill
-                                            sizes="100% 100%"
+                                            //fill
+                                            //sizes="100% 100%"
+                                            layout="fill"
                                             alt="Category img"
                                         />
                                     </div>

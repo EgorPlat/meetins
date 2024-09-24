@@ -176,6 +176,12 @@
     "Не менее 5-ти и не более 20-ти символов": "5 symbols is min. 20 symbols is max.",
     "Это поле обязательно к заполнению": "This field is required",
     "Текущий список интересов людей": "Current interests list",
+    "Если Вы хотите сохранить событие в закладках, перейдите на страницу 'События', выберите категорию мероприятия и само мероприятие из списка и нажмите на кнопку 'Я пойду'":
+    "If you want to save some event in your marked list you should go to the 'Events' page, choose the category and some event from the events list and then click the 'I will go' button",
+    "У вас пока нет событий в закладках": "You dont dont have any events in your marked list",
+    "У Вас нет пользователей в закладках": "You dont have any users in your marks",
+    "Чтобы добавить пользователя в закладки, перейдите к нему в профиль и нажмите кнопку 'Пометить важным'":
+    "If u want to add some user into your marked list you should go to his profile and click the 'Mark as important' button",
     "Интересы - это критерий для поиска людей, с помощью которого Вы можете понять есть ли у Вас что-то общее или нет . По умолчанию мы предлагаем Вам несколько стандартных интересов которые Вы можете настроить у себя в профиле (пример)":
     "Interests - is a criterion for searching people. With the help of this criterion you can understand is there any matches between you and other user of our site. By default we are offering you a small list of interests. You can set it up in you profile (example below)",
     "Место встречи": "Place for meeting",
