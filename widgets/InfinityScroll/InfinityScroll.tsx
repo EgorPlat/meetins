@@ -19,9 +19,12 @@ export default function InfinityScroll({
   
     const handleScroll = () => {
         if (scrollRef.current) {
-            const isScrollEnded =
-          scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
-          scrollRef.current.clientHeight;
+            const isScrollEnded = Math.floor(
+                scrollRef.current.scrollHeight - 
+                scrollRef.current.scrollTop - 
+                scrollRef.current.clientHeight
+            ) === 0;
+            
             if (isScrollEnded) {
                 handleIncreaseCurrentPage();
             }
