@@ -133,7 +133,6 @@ export const checkDialog = createEffect(async (user: User) => {
                 userName: user.name,
                 messages: response.data[0].messages
             });
-            return response;
         } else {
             setActiveChat({ 
                 ...defaultDialog, 
@@ -144,9 +143,10 @@ export const checkDialog = createEffect(async (user: User) => {
                 dialogId: "none"
             });
         }
+        return response;
     }
     catch (error) {
-        console.log(error);
+        return error;
     }
 });
 

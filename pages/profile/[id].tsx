@@ -1,4 +1,4 @@
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import {
     $currentProfileUser,
@@ -25,7 +25,7 @@ import PageContainer from "../../widgets/PageContainer/pageContainer";
 
 function Profile(): JSX.Element {
 
-    const route = useRouter();
+    const router = useRouter();
     const userLoaded = useUnit(isUserLoaded);
     const currentUserLoaded = useUnit(isCurrentUserLoaded);
     const currentUser = useUnit($currentProfileUser);
@@ -69,8 +69,11 @@ function Profile(): JSX.Element {
     };
 
     const handleStartDialog = () => {
-        checkDialog(currentUser);
-        Router.push("/messanger")
+        checkDialog(currentUser).then(res => {
+            if (res.data) {
+                router.push("/messanger")
+            }
+        })
     };
 
     const onAddingModalClick = () => {
@@ -107,11 +110,11 @@ function Profile(): JSX.Element {
     }, []);
 
     useEffect(() => {
-        if (!route.isReady) return;
-        if (route.query.id) {
-            getDataForProfilePage(String(route.query.id));
+        if (!router.isReady) return;
+        if (router.query.id) {
+            getDataForProfilePage(String(router.query.id));
         }
-    }, [route.query.id]);
+    }, [router.query.id]);
 
     useEffect(() => {
         if (currentUser.userId) {
