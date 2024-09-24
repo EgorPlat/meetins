@@ -32,9 +32,8 @@ export default function EventsList(props: {
                                     <div className={s.eventImage}>
                                         <Image
                                             src={event.images[0].image}
-                                            //fill
-                                            //sizes="100% 100%"
-                                            layout="fill"
+                                            fill
+                                            sizes="100% 100%"
                                             alt="Category img"
                                         />
                                     </div>
