@@ -19,9 +19,9 @@
         border: 1px solid gray;
         padding: 5px;
         position: absolute;
-        z-index: 100;
         margin-top: 35px;
         direction: ltr;
+        z-index: 1;
 
         & .menuElement {
             white-space: nowrap;

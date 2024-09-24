@@ -1,6 +1,7 @@
 import React, { ReactChild } from "react";
 import s from "./CustomModal.module.scss";
 import { useTranslation } from "react-i18next";
+import { createPortal } from "react-dom";
 
 const CustomModal = (props: {
     children: ReactChild, 
@@ -17,7 +18,7 @@ const CustomModal = (props: {
     if(!props.isDisplay) {
         return null;
     }
-    return(
+    return createPortal(
         <div className={s.customModal}>
             <div className={`${s.customModalContent} customModal`}>
                 <div className={s.customModalTitle}>
@@ -51,7 +52,7 @@ const CustomModal = (props: {
                 </div>
             </div>
         </div>
-    )
+        , document.body)
 }
 
 export default CustomModal;
