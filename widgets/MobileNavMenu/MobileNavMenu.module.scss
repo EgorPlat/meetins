@@ -6,6 +6,7 @@
     }
 }
 .mobileMenu {
+    z-index: 5;
     & .mobileMenuWrapper {
         position: fixed;
         top: 0;
