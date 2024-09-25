@@ -15,12 +15,14 @@
         perspective: 200px;
         transform-style: flat;
         display: flex;
+        gap: 5px;
         flex-wrap: wrap;
         justify-content: center;
 
         & button {
             outline: none;
             animation: rotate 1s;
+            background-color: transparent;
         }
 
         & .active {
