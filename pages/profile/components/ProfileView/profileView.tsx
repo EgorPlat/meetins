@@ -67,7 +67,7 @@ export default function ProfileView(props: {
                 props.asyncLoaded && activeUser && props.authedUser ? 
                     <div className={`${s.bodyCol}`}>
                         <div className={`${s.block} ${s.mainBlock}`}>
-                            <div className={`${s.bodyInfo}`}>
+                            <div className={`${s.avatarInfo}`}>
                                 {
                                     !props.addingImageStatus && activeUser.avatar ?
                                         <img 
@@ -83,29 +83,28 @@ export default function ProfileView(props: {
                                 }
                             </div>
                             <div className={`${s.userInfo}`}>
-                                <div>
-                                    <div className={`${s.userName}`}>
-                                        <div className={s.userNameAndTag}>
-                                            {activeUser.name + ", " + activeUser.age}
-                                            <div
-                                                onClick={() => props.handleSwapEditTag(true)}
-                                                className={s.userTag}
-                                                style={{
-                                                    backgroundColor: `${activeUser.tag?.color}`,
-                                                }}
-                                            >
-                                                {activeUser.tag?.title}
-                                                {
-                                                    activeUser.login === props.authedUser.login && 
+                                <div className={`${s.userName}`}>
+                                    <div className={s.userNameAndTag}>
+                                        {activeUser.name + ", " + activeUser.age}
+                                        <div
+                                            onClick={() => props.handleSwapEditTag(true)}
+                                            className={s.userTag}
+                                            style={{
+                                                backgroundColor: `${activeUser.tag?.color}`,
+                                            }}
+                                        >
+                                            {activeUser.tag?.title}
+                                            {
+                                                activeUser.login === props.authedUser.login && 
                                                     <MdEdit 
                                                         fontSize={18}
                                                     />
-                                                }
-                                            </div>
+                                            }
                                         </div>
-                                        <div className={s.moreActions}>
-                                            {
-                                                activeUser.login !== props.authedUser.login &&
+                                    </div>
+                                    <div className={s.moreActions}>
+                                        {
+                                            activeUser.login !== props.authedUser.login &&
                                                 <CustomEditMenu
                                                     data={[
                                                         { menuTitle: "Пометить важным", menuFunction: () => props.handleAddUserIntoMarked() },
@@ -113,37 +112,36 @@ export default function ProfileView(props: {
                                                         { menuTitle: "Посмотреть статистику", menuFunction: () => console.log(3) }
                                                     ]}
                                                 />
-                                            }
-                                        </div>
+                                        }
                                     </div>
-                                    <div className={s.town}>
-                                        {t("город")}: {activeUser.city}
-                                    </div>
-                                    <div className={s.dateRegister}>
-                                        <span>
-                                            {
-                                                getIsUserMale(activeUser.gender) 
-                                                    ? `${t("зарегистрирован")}: ` 
-                                                    : `${t("зарегистрирована")}: `
-                                            }
-                                        </span>
-                                        {getDateInDMYFormat(activeUser.dateRegister)}
-                                    </div>
-                                    <div className={s.userStatus}>
-                                        <p>{t("статус")}:</p>
-                                        <p className={s.title}>                                        
-                                            {
-                                                props.isCurrentUserOnline || activeUser.login === props.authedUser.login
-                                                    ? t("В сети")
-                                                    : t("Не в сети")
-                                            }
-                                        </p>
-                                    </div>
-                                    <p className={s.views}>
-                                        {t("за последние 24 часа профиль просмотрен")}:
-                                        <span className={s.count}> 150 {t("раз")}</span>
+                                </div>
+                                <div className={s.town}>
+                                    {t("город")}: {activeUser.city}
+                                </div>
+                                <div className={s.dateRegister}>
+                                    <span>
+                                        {
+                                            getIsUserMale(activeUser.gender) 
+                                                ? `${t("зарегистрирован")}: ` 
+                                                : `${t("зарегистрирована")}: `
+                                        }
+                                    </span>
+                                    {getDateInDMYFormat(activeUser.dateRegister)}
+                                </div>
+                                <div className={s.userStatus}>
+                                    <p>{t("статус")}:</p>
+                                    <p className={s.title}>                                        
+                                        {
+                                            props.isCurrentUserOnline || activeUser.login === props.authedUser.login
+                                                ? t("В сети")
+                                                : t("Не в сети")
+                                        }
                                     </p>
                                 </div>
+                                <p className={s.views}>
+                                    {t("за последние 24 часа профиль просмотрен")}:
+                                    <span className={s.count}> 150 {t("раз")}</span>
+                                </p>
                                 { 
                                     activeUser.login !== props.authedUser.login ?
                                         <div className={`${s.actions}`}>
