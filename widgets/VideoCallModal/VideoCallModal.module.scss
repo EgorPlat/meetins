@@ -4,8 +4,20 @@
     justify-items: center;
     align-items: center;
     row-gap: 15px;
+    position: relative;
     & video {
         transform: scaleX(-1);
+    }
+    & .myVideo {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+    }
+    & .remoteVideo {
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -15,6 +27,7 @@
         text-align: center;
     }
     & .actions {
+        margin-top: 15px;
         display: flex;
         column-gap: 10px;
         cursor: pointer;
