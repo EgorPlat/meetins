@@ -221,7 +221,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
                     className={s.remoteVideo}
                     style={isUserAcceptedCall ? {opacity: 1} : {opacity: 0}} 
                     ref={commingStreamRef} 
-                    width="330px" 
+                    width="330px"
                     height="200px"
                 ></video>
             </div>
