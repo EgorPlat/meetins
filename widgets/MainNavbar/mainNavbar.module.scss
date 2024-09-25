@@ -2,7 +2,6 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	& .navBlock {
-		font-size: 32px;
 		font-family: Nunito;
 		display: flex;
 		flex-wrap: wrap;
@@ -12,7 +11,7 @@
 		justify-items: center;
 		& a {
 			text-decoration: none;
-			font-size: 24px;
+			font-size: 20px;
 		}
 		& a:hover {
 			color: var(--default-color);
@@ -20,7 +19,8 @@
 	}
 	& .userBlock {
 		display: flex;
-		justify-content: center;
+		justify-content: right;
+		padding-right: 15%;
 		align-items: center;
 		column-gap: 10px;
 		& .customSelect {
