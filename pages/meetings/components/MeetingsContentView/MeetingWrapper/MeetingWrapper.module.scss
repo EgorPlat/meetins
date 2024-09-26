@@ -88,7 +88,7 @@
         font-size: 18px;
         display: flex;
         flex-direction: column;
-        row-gap: 5px;
+        row-gap: 15px;
         & .meetingTitle {
             display: grid;
             grid-template-columns: calc(100% - 50px) 50px;
@@ -102,6 +102,11 @@
         }
         & .meetingCreator {
             font-size: 15px;
+            display: flex;
+            column-gap: 5px;
+            & .creatorMeeting {
+                border-radius: 5px;
+            }
         }
         & .meetingTimer {
             display: flex;
@@ -113,6 +118,9 @@
                 border-radius: 5px;
                 padding: 0px 10px 0px 10px;
             }
+        }
+        & .meetingAddress {
+            font-size: 15px;
         }
         & .meetingDate {
             font-size: 15px;

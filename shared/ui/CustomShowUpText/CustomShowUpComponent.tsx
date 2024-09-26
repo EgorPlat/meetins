@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 interface ICustomShowUpComponentProps {
     children: ReactNode,
     side: "left" | "right" | "top" | "bottom"
-    transitionType: "linear" | "ease" | "ease-in" | "ease-in-out" | "ease-out"
+    transitionType: "linear" | "ease" | "ease-in" | "ease-in-out" | "ease-out",
 }
 
 export default function CustomShowUpComponent(props: ICustomShowUpComponentProps) {

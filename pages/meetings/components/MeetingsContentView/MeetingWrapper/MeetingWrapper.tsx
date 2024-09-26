@@ -6,6 +6,7 @@ import s from "./MeetingWrapper.module.scss";
 import CustomTimer from "../../../../../shared/ui/CustomTimer/CustomTimer";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import CustomButton from "../../../../../shared/ui/CustomButton/CustomButton";
 
 export default function MeetingWrapper(props: {
     meeting: IMeeting,
@@ -32,11 +33,11 @@ export default function MeetingWrapper(props: {
                         </div>
                     </div>
                     <div className={s.meetingCreator}>
-                        <span>{t("Организатор")}</span>
+                        <span>{t("Организатор")}: </span>
                         {
                             meetingCreator && 
                             <>
-                                <img src={baseURL + meetingCreator?.avatar} width="25px" height="25px" />
+                                <img className={s.creatorMeeting} src={baseURL + meetingCreator?.avatar} width="25px" height="25px" />
                                 <Link href={`/profile/${meetingCreator?.login}`}>
                                     {meetingCreator?.name}
                                 </Link>
@@ -64,17 +65,17 @@ export default function MeetingWrapper(props: {
                                 : <span className={s.meetingOver}>{t("Завершилась")}</span>
                         }
                     </div>
-                    <div className={s.date}>{props.meeting?.address}</div>
+                    <div className={s.meetingAddress}>{t("Адрес")}: {props.meeting?.address}</div>
                     <div className={s.meetingGoal}>
                         {t("Цель встречи")}: <span className={s.hint}>{props.meeting?.goal}</span>
                     </div>
                     <div className={s.meetingActions}>
                         {
                             !isMeetingEnded &&
-                                <button 
-                                    className={s.actionBtn}
-                                    onClick={() => props.handleGoToMeeting(props.meeting)}
-                                >{t("Перейти на страницу встречи")}</button>
+                            <CustomButton 
+                                text={t("Перейти на страницу встречи")}
+                                onClick={() => props.handleGoToMeeting(props.meeting)}
+                            />
                         }
                     </div>
                 </div>
@@ -128,10 +129,10 @@ export default function MeetingWrapper(props: {
                     {
                         !isMeetingEnded &&
                         <div className={s.meetingActions}>
-                            <button 
-                                className={s.actionBtn}
+                            <CustomButton 
+                                text={t("Перейти на страницу встречи")}
                                 onClick={() => props.handleGoToMeeting(props.meeting)}
-                            >{t("Перейти на страницу встречи")}</button>
+                            />
                         </div>
                     }
                 </div>

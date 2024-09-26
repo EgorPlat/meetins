@@ -16,3 +16,9 @@
     background-color: rgb(255, 189, 57);
     color: black;
 }
+
+@media screen and (max-width: 800px) {
+    .customButton {
+        font-size: 14px;
+    }
+}

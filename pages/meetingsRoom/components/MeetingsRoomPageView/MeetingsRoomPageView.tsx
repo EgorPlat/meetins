@@ -7,6 +7,7 @@ import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../shared/functions/getDateInYYYYMMDDHHFormat";
 import { ChangeEvent, useRef } from "react";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function MeetingsRoomPageView(props: {
     selectedMeeting: IMeeting,
@@ -17,7 +18,8 @@ export default function MeetingsRoomPageView(props: {
     isUserInParticipants: boolean
 }) {
     const mediaRef = useRef<HTMLInputElement>(null);
-    
+    const { t } = useTranslation();
+
     if (props.selectedMeeting) {
         return (
             <div className={s.meetingsRoom}>
@@ -35,27 +37,27 @@ export default function MeetingsRoomPageView(props: {
                         <div className={s.activityBar}>
                             <CustomProgressBar
                                 text='Люди, записавшиеся на встречу: '
-                                width='calc(100% - 30px)'
+                                width='100%'
                                 height='30px'
                                 max={25}
                                 value={props.selectedMeeting.participants.length}
                             />
-                            <CiBookmarkPlus
-                                className={s.addMember}
-                                title='Записаться на встречу'
-                                fontSize={37}
-                                onClick={() => props.handleRegInMeeting(props.selectedMeeting.meetingId)}
-                            />
                         </div>
+                        <button
+                            className={s.addMember}
+                            onClick={() => props.handleRegInMeeting(props.selectedMeeting.meetingId)}
+                        >
+                            Записаться на встречу
+                        </button>
                         <div className={s.tags}>
-                            Цели: {props.selectedMeeting.goal}
+                            {t("Цели")}: {props.selectedMeeting.goal}
                         </div>
                         <div className={s.dates}>
-                            Даты проведения: {customizeDateToYYYYMMDDHHMMFormat(String(props.selectedMeeting.date))}
+                            {t("Даты проведения")}: {customizeDateToYYYYMMDDHHMMFormat(String(props.selectedMeeting.date))}
                         </div>
                         <div className={s.description}>
-                            Описание: {props.selectedMeeting.description}
-                            <span> Приходите по адресу: {props.selectedMeeting.address}</span>
+                            {t("Описание")}: {props.selectedMeeting.description}
+                            <span> {t("Приходите по адресу")}: {props.selectedMeeting.address}</span>
                         </div>
                         <div className={s.members}>
                             <div className={s.list}>

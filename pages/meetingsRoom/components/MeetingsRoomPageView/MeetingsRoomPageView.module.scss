@@ -26,8 +26,17 @@
             & .activityBar {
                 display: flex;
                 align-items: center;
-                & .addMember {
-                    cursor: pointer;
+            }
+            & .addMember {
+                display: flex;
+                justify-content: center;
+                background-color: transparent;
+                font-size: 16px;
+                border-radius: 3px;
+                padding: 0;
+                max-width: 180px;
+                &:hover {
+                    border-color: var(--default-color);
                 }
             }
             & .tags {
