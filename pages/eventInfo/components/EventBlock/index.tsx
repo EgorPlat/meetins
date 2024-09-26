@@ -54,7 +54,7 @@ export default function EventBlock(props: {
                     </div>
                 </div>
                 {props.currentEventById.participants.length > 0 &&
-                    <div>В ролях: </div>
+                    <div className={s.rolesTitle}>В ролях: </div>
                 }
                 <div className={s.actorsInfo}>
                     {
@@ -74,7 +74,7 @@ export default function EventBlock(props: {
                     }
                 </div>
                 <div className={s.commentsWrapper}>
-                    {props.commentsEvent.length === 0 ? "Отзывов пока нет" : "Отзывы"}
+                    {props.commentsEvent.length === 0 ? <p>Отзывов пока нет...</p> : <p>Отзывы</p>}
                     {
                         props.commentsEvent?.map(comment => (
                             <div className={s.wrapper} key={comment.id}>

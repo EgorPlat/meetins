@@ -30,7 +30,8 @@
                 font-size: 18px;
                 & .eventTitle {
                     color: var(--text-color);
-                    font-size: 20px;
+                    font-size: 17px;
+                    text-align: justify;
                     margin-bottom: 10px;
                 }
                 & .eventPrice {
@@ -47,6 +48,11 @@
                         background-color: rgba(43, 255, 43, 0.697);
                     }
                     & .notFree {
+                        max-width: 200px;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow-x: hidden;
+
                         display: flex;
                         align-items: center;
                         padding: 0px 5px 0px 5px;
@@ -114,9 +120,6 @@
 
 @media screen and (max-width: 600px) {
     .content {
-        & .title {
-            font-size: 18px;
-        }
         & .list {
             & .eventBody {
                 grid-template-columns: 1fr;
