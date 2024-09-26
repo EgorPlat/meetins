@@ -1,27 +1,16 @@
 .settings {
-    width: 100%;
+    width: 98%;
     min-height: 100%;
     font-family: Nunito;
     font-size: 18px;
     padding-bottom: 5px;
-    & .menu {
-        height: 570px;
-        font-size: 26px;
-        padding-top: 1%;
-        padding-left: 40px;
-        & a {
-            text-decoration: none;
-            font-family: Nunito;
-        }
-    }
     & .formAndInfo {
         font-size: 20px;
-        padding-top: 1%;
         font-family: Nunito;
         & .title {
+            background-color: var(--bg-color-block-light);
             display: flex;
             padding: 7px;
-            width: 96%;
             border-radius: 5px;
         }
         & .locale {
@@ -75,12 +64,6 @@
             }
             margin-bottom: 10px;
         }
-    }
-    & .deleteBtn {
-        margin-top: 2px;
-        background-color: rgb(46, 52, 53);
-        border-radius: 5px;
-        color: white;
     }
 }
 

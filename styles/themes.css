@@ -10,6 +10,7 @@ body {
 	--inp-text-color: black;
 	--default-color: #3db2ff;
 	--bg-color-block: white;
+	--bg-color-block-light: white;
 	--bg-color-mobile-menu: rgb(249, 249, 249);
 }
   
@@ -21,6 +22,7 @@ body {
 	--inp-text-color: gray;
 	--default-color: #3db2ff;
 	--bg-color-block: rgb(37, 37, 37);
+	--bg-color-block-light: rgb(53, 53, 53);
 	--bg-color-mobile-menu: rgb(37, 39, 51);
 	::-webkit-calendar-picker-indicator {
 		filter: invert(1);
@@ -49,10 +51,6 @@ textarea {
 }
 button {
 	color: var(--text-color);;
-}
-h4 {
-	color: var(--text-color);
-	background-color: var(--h4BG-color);
 }
 a {
 	text-decoration: none;

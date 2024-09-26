@@ -9,6 +9,7 @@ import { User } from "../../../../entities";
 import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../shared/functions/getDateInYYYYMMDDHHFormat";
 import CustomSlider from "../../../../shared/ui/CustomSlider/CustomSlider";
 import s from "./GroupInfoPageView.module.scss";
+import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
 
 export default function GroupInfoPageView(props: {
     authedUser: User,
@@ -53,7 +54,7 @@ export default function GroupInfoPageView(props: {
                     </div>
                 </div>
                 <div className={s.description}>
-                    <span className={s.title}>Описание: </span>{props.groupInfo?.description}
+                    {props.groupInfo?.description}
                 </div>
                 <div className={s.sections}>
                     <div className={s.item} onClick={props.handleOpenTalks}>
@@ -74,7 +75,7 @@ export default function GroupInfoPageView(props: {
                     </div>
                 </div>
                 <div className={s.postForm}>
-                    <button className={s.actionBtn} onClick={props.handleOpenAddingPost}>Добавить публикацию</button>
+                    <CustomButton text="Добавить публикацию" onClick={props.handleOpenAddingPost} />
                     <span className={s.countPosts}>Публикаций в сообществе - {props.groupInfo?.posts?.length}</span>
                 </div>
                 <div className={s.content}>
@@ -83,7 +84,7 @@ export default function GroupInfoPageView(props: {
                             postsFromNewToPrevious?.map(post => (
                                 <div className={s.post} key={post.id}>
                                     <div className={s.title}>
-                                        {post.id}. {post.title}
+                                        {post.title}
                                         <span className={s.date}>Опубликовано: {customizeDateToYYYYMMDDHHMMFormat(post.date)}</span>
                                     </div>
                                     <div className={s.file}>
