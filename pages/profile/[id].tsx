@@ -102,6 +102,19 @@ function Profile(): JSX.Element {
         if (authedUser.userId === currentUser.userId) setIsEditTagOpen(status);
     };
 
+    const handleShowUserStatistic = () => {
+        addNotification({ textColor: "white", type: "info", time: 3000, text: "Статистика пока не сформирована" });
+    };
+
+    const handleRemoveNotifyFromUser = () => {
+        addNotification({ 
+            textColor: "white", 
+            type: "info", 
+            time: 3000, 
+            text: "В скором времени Вы не будете видеть активность этого пользователя" 
+        });
+    };
+
     useEffect(() => {
         return () => {
             setIsCurrentUserLoaded(false);
@@ -146,6 +159,8 @@ function Profile(): JSX.Element {
                     handleAddUserIntoMarked={handleAddUserIntoMarked}
                     handleGetCroppedAvatar={handleGetCroppedAvatar}
                     setNewAvatarForCrop={setNewAvatarForCrop}
+                    handleRemoveNotifyFromUser={handleRemoveNotifyFromUser}
+                    handleShowUserStatistic={handleShowUserStatistic}
                     currentUserPlaces={currentUserPlaces}
                     isCurrentUserOnline={isCurrentUserOnline}
                     newAvatarForCrop={newAvatarForCrop}

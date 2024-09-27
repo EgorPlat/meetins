@@ -45,7 +45,9 @@ export default function ProfileView(props: {
     handleSendInvite: () => void,
     handleAddUserIntoMarked: () => void,
     handleGetCroppedAvatar: (blob: Blob) => void,
-    setNewAvatarForCrop: (image: string | null) => void
+    setNewAvatarForCrop: (image: string | null) => void,
+    handleRemoveNotifyFromUser: () => void,
+    handleShowUserStatistic: () => void,
 }) {
 
     const { t } = useTranslation();
@@ -107,9 +109,9 @@ export default function ProfileView(props: {
                                             activeUser.login !== props.authedUser.login &&
                                                 <CustomEditMenu
                                                     data={[
-                                                        { menuTitle: "Пометить важным", menuFunction: () => props.handleAddUserIntoMarked() },
-                                                        { menuTitle: "Не получать уведомления", menuFunction: () => console.log(2) },
-                                                        { menuTitle: "Посмотреть статистику", menuFunction: () => console.log(3) }
+                                                        { menuTitle: "Пометить важным", menuFunction: props.handleAddUserIntoMarked },
+                                                        { menuTitle: "Не получать уведомления", menuFunction: props.handleRemoveNotifyFromUser },
+                                                        { menuTitle: "Посмотреть статистику", menuFunction: props.handleShowUserStatistic }
                                                     ]}
                                                 />
                                         }
