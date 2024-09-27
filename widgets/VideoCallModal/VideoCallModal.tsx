@@ -184,7 +184,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
         if (peerIDForCall$) {
             handleCallToUser();
         }
-    }, [peerIDForCall$])
+    }, [peerIDForCall$]);
 
     return (
         <CustomModal

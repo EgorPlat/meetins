@@ -72,17 +72,3 @@ option {
 	background-color: white;
 	border-radius: 50%;
 }
-
-
-
-@keyframes testAnim {
-	100% {stroke-dashoffset: 0;}
-}
-.test {
-	stroke-dasharray: 510;
-	stroke-dashoffset: 510;
-}
-.start
-.test {
-	animation: testAnim 3333ms linear 0ms forwards;
-}

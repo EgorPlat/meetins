@@ -6,12 +6,12 @@
         border-radius: 5px;
         width: 100%;
         margin-bottom: 10px;
+        background-color: var(--bg-color-block);
+        padding: 10px;
         & .content {
             display: flex;
             column-gap: 10px;
             width: 100%;
-            background-color: var(--bg-color-block);
-            padding: 10px;
             border-radius: 10px;
             & .image {
                 & img {
@@ -21,6 +21,9 @@
                 }
             }
             & .mainInfo {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
                 & .eventTitle {
                     font-size: 16px;
                     color: gray;
@@ -31,7 +34,6 @@
                 & .eventSender {
                     display: flex;
                     font-size: 14px;
-                    color: gray;
                     align-items: center;
                     & .eventSenderName {
                         display: flex;
