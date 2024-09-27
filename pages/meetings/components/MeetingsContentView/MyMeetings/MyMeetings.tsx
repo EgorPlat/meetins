@@ -46,7 +46,7 @@ export default function MyMeetings({
                 title="Добавление новой встречи"
                 typeOfActions="none"
             >
-                <AddNewMeetingForm />
+                <AddNewMeetingForm handleCloseForm={() => setIsAddModalShown(false)} />
             </CustomModal>
         </div>
     )

@@ -6,13 +6,16 @@ import { ICreateMeeting } from "../../../entities/meetings";
 import { handleCreateNewMeeting } from "../../../global/store/meetings_model";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
  
-export default function AddNewMeetingForm(): JSX.Element {
+export default function AddNewMeetingForm({ handleCloseForm }: {
+    handleCloseForm: () => void
+}): JSX.Element {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const { t } = useTranslation();
     
     const onChangeMeeting = (data: ICreateMeeting) => {
         handleCreateNewMeeting(data);
+        handleCloseForm();
     };
     
     return (
