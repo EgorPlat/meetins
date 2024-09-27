@@ -3,14 +3,13 @@ import Link from "next/link";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import s from "./LeftNavMenu.module.scss";
-import { $user, isMobile } from "../../global/store/store";
+import { isMobile } from "../../global/store/store";
 import { isUserUnReadMessagesExists } from "../../global/store/chat_model";
 
 export default function LeftNavMenu(): JSX.Element {
 
     const { t } = useTranslation();
     const isUserUnReadMessagesExists$ = useUnit(isUserUnReadMessagesExists);
-    const user = useUnit($user);
     const isMobile$ = useUnit(isMobile);
 
     return(

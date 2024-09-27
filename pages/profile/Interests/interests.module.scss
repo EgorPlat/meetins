@@ -1,13 +1,11 @@
 .interests {
     font-family: Nunito;
     font-size: 20px;
-    border: none;
-
     & .title {
         display: flex;
         align-items: center;
         margin-bottom: 10px;
-        column-gap: 10px;
+        column-gap: 5px;
 
         & .changeStatus {
             cursor: pointer;
@@ -16,7 +14,7 @@
     }
 
     & .interest {
-        border-radius: 5px;
+        border-radius: 10px;
         padding: 3px;
         border: 2px solid rgb(44, 142, 255);
     }

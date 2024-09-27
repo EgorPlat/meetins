@@ -8,10 +8,10 @@
         font-size: 20px;
         font-family: Nunito;
         & .title {
-            background-color: var(--bg-color-block-light);
+            background-color: var(--bg-color-block);
             display: flex;
-            padding: 7px;
-            border-radius: 5px;
+            padding: 10px;
+            border-radius: 10px;
         }
         & .locale {
             cursor: pointer;

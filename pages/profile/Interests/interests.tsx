@@ -50,7 +50,7 @@ export default function Interests(props: {
                     <MdInterests fontSize={34} />
                     <b>{t("Интересы")}</b>
                     {isAuthedUserAreCurrentUser &&
-                        <span className={s.changeStatus} onClick={openChangeInterests}> (изм.)</span>
+                        <span className={s.changeStatus} onClick={openChangeInterests}>изм.</span>
                     }
                 </div>
                 {
