@@ -23,6 +23,7 @@ export default function GroupInfoPageView(props: {
     handleOpenPhotos: () => void,
     handleOpenVideos: () => void,
     handleLikePost: (post: IGroupPost, groupId: number) => void,
+    handleOpenMembersList: () => void,
     isSettingsGroupOpen: boolean,
     videoPhotoAttachmentsInfo: { images: IGroupFile[], videos: IGroupFile[], attachments: any[] }
 }) {
@@ -134,7 +135,8 @@ export default function GroupInfoPageView(props: {
                     <div className={s.leftInfo}>
                         <span>Участники: {props.groupMembersInfo?.length}</span>
                         {
-                            props.groupMembersInfo?.length >= 3 && <span className={s.allMembers}> Посмотреть всех</span>
+                            props.groupMembersInfo?.length >= 3 && 
+                            <span className={s.allMembers} onClick={props.handleOpenMembersList}> Посмотреть всех</span>
                         }
                         <div className={s.members}>
                             {

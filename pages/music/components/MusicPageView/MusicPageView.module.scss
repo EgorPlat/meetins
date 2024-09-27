@@ -36,9 +36,9 @@
             position: absolute;
             right: 0;
         }
-    }
-    & .addMusic:hover {
-        color: var(--default-color);
+        & :hover {
+            color: var(--default-color);
+        }
     }
     & .musicContent {
         display: grid;

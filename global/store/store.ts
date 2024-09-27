@@ -256,12 +256,23 @@ sample({
     fn: (res) => res.data,
     target: setUser
 })
+sample({
+    clock: addUserIntoMarkedList.doneData,
+    filter: (res) => res.status <= 217,
+    fn: () => {
+        const notification: INotification = 
+            { time: 3000, type: "success", text: "Пользователь добавлен в закладки", textColor: "white" };
+        return notification;
+    },
+    target: addNotification
+})
 
 sample({
     clock: [updateUserTag.doneData],
     filter: (res) => res.status <= 217,
     fn: () => {
-        const notification: INotification = { text: "Изменения вступят после перезахода в профиль.", time: 3000, type: "success", textColor: "white" };
+        const notification: INotification = 
+            { text: "Изменения вступят после перезахода в профиль.", time: 3000, type: "success", textColor: "white" };
         return notification
     },
     target: addNotification

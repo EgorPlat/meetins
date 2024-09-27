@@ -8,6 +8,7 @@ import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../shared/functions/
 import { ChangeEvent, useRef } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
 
 export default function MeetingsRoomPageView(props: {
     selectedMeeting: IMeeting,
@@ -32,6 +33,10 @@ export default function MeetingsRoomPageView(props: {
                             className={s.photo}
                         />
                         <div className={s.title}>{props.selectedMeeting.title}</div>
+                        <CustomButton
+                            text="Записаться на встречу"
+                            onClick={() => props.handleRegInMeeting(props.selectedMeeting.meetingId)}
+                        />
                     </div>
                     <div className={s.moreInfo}>
                         <div className={s.activityBar}>
@@ -43,12 +48,6 @@ export default function MeetingsRoomPageView(props: {
                                 value={props.selectedMeeting.participants.length}
                             />
                         </div>
-                        <button
-                            className={s.addMember}
-                            onClick={() => props.handleRegInMeeting(props.selectedMeeting.meetingId)}
-                        >
-                            Записаться на встречу
-                        </button>
                         <div className={s.tags}>
                             {t("Цели")}: {props.selectedMeeting.goal}
                         </div>

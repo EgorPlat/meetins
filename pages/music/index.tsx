@@ -17,6 +17,7 @@ import CustomStepper from "../../shared/ui/CustomStepper/CustomStepper";
 import useDebounce from "../../shared/hooks/useDebounce";
 import dynamic from "next/dynamic";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
+import { addNotification } from "../../global/store/notifications_model";
 
 const AddMusic = dynamic(() => import("../../features/forms/AddMusic/Index"), { loading: () => <CustomLoader />})
 const StatsView = dynamic(() => import("./components/StatsView/StatsView"), { loading: () => <CustomLoader />});
@@ -36,10 +37,18 @@ export default function Music() {
 
     const handleSwapMusicModal = (status: boolean) => {
         setAddMusicModal(() => status);
-    }
+    };
     const handleOpenMyStatistic = () => {
         setShowMyStatistic(true);
-    }
+    };
+    const handleShowPopularityInfo = () => {
+        addNotification({
+            type: "info",
+            text: "Данных пока нет",
+            time: 3000,
+            textColor: "white"
+        });
+    };
 
     useEffect(() => {
         getAllMusic();
@@ -66,6 +75,7 @@ export default function Music() {
                     authorsStatistic={authorsStatistic$}
                     handleOpenMyStatistic={handleOpenMyStatistic}
                     activeMusicId={activeMusicId$}
+                    handleShowPopularityInfo={handleShowPopularityInfo}
                 />
                 <CustomModal
                     isDisplay={showMyStatistic}

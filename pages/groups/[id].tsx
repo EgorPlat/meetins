@@ -20,6 +20,7 @@ import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 import GroupInfoPageView from "./components/GroupInfoPageView/GroupInfoPageView";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import dynamic from "next/dynamic";
+import GroupMembersList from "./components/GroupMembersList/GroupMembersList";
 
 const ManageGroup = dynamic(() => import("../../features/forms/ManageGroup/Index"), { loading: () => <CustomLoader /> });
 const GroupCommentsView = dynamic(() => import("./components/GroupCommentsView"), { loading: () => <CustomLoader /> });
@@ -46,71 +47,50 @@ export default function Groups() {
         isTalkMessagesOpen: false,
         isTalkCreationOpen: false,
         isPhotosOpen: false,
-        isVideosOpen: false
+        isVideosOpen: false,
+        isMembersListOpen: false
     });
     const [selectedTalkId, setSelectedTalkId] = useState<number>();
     const [activePostId, setActivePostId] = useState<number>();
     const videoPhotoAttachmentsInfo = destrucutreFilesInGroupPost(groupInfo$);
 
     const handleOpenGroupSettings = () => {
-        setModals({
-            ...modals,
-            isSettingsGroupOpen: true
-        });
+        setModals({ ...modals, isSettingsGroupOpen: true });
     };
     const handleOpenComments = (postId: number) => {
         setActivePostId(postId);
-        setModals({
-            ...modals,
-            isCommentsModalOpen: true
-        });
+        setModals({ ...modals, isCommentsModalOpen: true });
     };
     const handleOpenAddingPost = () => {
-        setModals({
-            ...modals,
-            isAddingPostModalOpen: true
-        });
+        setModals({ ...modals, isAddingPostModalOpen: true });
     };
     const handleOpenTalks = () => {
-        setModals({
-            ...modals,
-            isTalksOpen: true
-        });
+        setModals({ ...modals, isTalksOpen: true });
     };
     const handleOpenTalkMessages = (talkId: number) => {
         setSelectedTalkId(talkId)
-        setModals({
-            ...modals,
-            isTalkMessagesOpen: true
-        });
+        setModals({ ...modals, isTalkMessagesOpen: true });
     };
     const handeOpenTalkCreation = () => {
-        setModals({
-            ...modals,
-            isTalkCreationOpen: true
-        });
+        setModals({ ...modals, isTalkCreationOpen: true });
     };
     const handleSuccessSubmitTalkCreation = () => {
-        setModals({
-            ...modals,
-            isTalkCreationOpen: false,
-            isTalksOpen: true
-        });
+        setModals({ ...modals, isTalkCreationOpen: false, isTalksOpen: true });
     };
     const handleAddNewMessage = (message: IGroupTalkMessage) => {
         addActiveGroupTalkMessage(message);
     };
     const handleOpenPhotos = () => {
-        setModals({
-            ...modals,
-            isPhotosOpen: true
-        });
+        setModals({ ...modals, isPhotosOpen: true });
     };
     const handleOpenVideos = () => {
-        setModals({
-            ...modals,
-            isVideosOpen: true
-        });
+        setModals({ ...modals, isVideosOpen: true });
+    };
+    const handleCloseAddingPostModal = () => {
+        setModals({ ...modals, isAddingPostModalOpen: false });
+    };
+    const handleOpenMembersList = () => {
+        setModals({ ...modals, isMembersListOpen: true });
     };
     const handleLikePost = (post: IGroupPost, groupId: number) => {
         if (post.likes.includes(authedUser$.userId)) {
@@ -118,12 +98,6 @@ export default function Groups() {
         } else {
             likePostInGroup({ groupId: groupId, postId: post.id });
         }
-    };
-    const handleCloseAddingPostModal = () => {
-        setModals({
-            ...modals,
-            isAddingPostModalOpen: false
-        });
     };
 
     useEffect(() => {
@@ -152,6 +126,7 @@ export default function Groups() {
                             handleOpenPhotos={handleOpenPhotos}
                             handleLikePost={handleLikePost}
                             handleOpenVideos={handleOpenVideos}
+                            handleOpenMembersList={handleOpenMembersList}
                             videoPhotoAttachmentsInfo={videoPhotoAttachmentsInfo}
                         /> :
                         <CustomLoader />
@@ -248,6 +223,17 @@ export default function Groups() {
                     title="Видео в сообществе"
                 >
                     <GroupAttachments videos={videoPhotoAttachmentsInfo.videos} />
+                </CustomModal>
+                <CustomModal
+                    isDisplay={modals.isMembersListOpen}
+                    changeModal={(status) => setModals({ ...modals, isMembersListOpen: status })}
+                    actionConfirmed={(status) => setModals({ ...modals, isMembersListOpen: status })}
+                    typeOfActions="none"
+                    title="Список участников"
+                >
+                    <GroupMembersList
+                        members={groupMembersInfo$}
+                    />
                 </CustomModal>
             </>
         </PageContainer>

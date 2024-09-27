@@ -1,0 +1,19 @@
+.groupMembersList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    & .wrapper {
+        display: grid;
+        row-gap: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        & .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        & .name {
+            text-align: center;
+        }
+    }
+}

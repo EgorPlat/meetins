@@ -17,6 +17,7 @@
     grid-template-rows: 85px calc(100% - 165px) 70px;
     row-gap: 5px;
     & .notificationMessage {
+        margin-top: 15px;
         text-align: center;
     }
     & .block {

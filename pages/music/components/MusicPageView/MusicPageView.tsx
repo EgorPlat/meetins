@@ -11,6 +11,7 @@ interface IMusicPageViewProps {
     authorsStatistic: IMusicAuthorsStatistics[],
     handleSwapMusicModal: (status: boolean) => void,
     handleOpenMyStatistic: () => void,
+    handleShowPopularityInfo: () => void,
     setSearchMusic: (value: string) => void,
     matchesList: IMatch[],
     activeMusicId: number,
@@ -21,6 +22,7 @@ export default function MusicPageView({
     authorsStatistic,
     handleOpenMyStatistic,
     setSearchMusic,
+    handleShowPopularityInfo,
     matchesList,
     activeMusicId
 }: IMusicPageViewProps) {   
@@ -67,7 +69,7 @@ export default function MusicPageView({
                                 <div className={s.songer} key={el.id}>
                                     <a href='#' className={s.name}>{el.name} - </a>
                                     <span>{t("Прослушивания")} {el.playsNumber} - </span>
-                                    <span className={s.mapBtn}>Узнать где популярен? </span>
+                                    <span className={s.mapBtn} onClick={handleShowPopularityInfo}>Узнать где популярен? </span>
                                 </div>
                             ))
                         }
