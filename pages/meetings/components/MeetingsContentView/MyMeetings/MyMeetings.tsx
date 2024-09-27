@@ -42,7 +42,7 @@ export default function MyMeetings({
             <CustomModal
                 isDisplay={isAddModalShown}
                 changeModal={setIsAddModalShown}
-                actionConfirmed={setIsAddModalShown}
+                actionConfirmed={() => setIsAddModalShown(false)}
                 title="Добавление новой встречи"
                 typeOfActions="none"
             >
