@@ -4,7 +4,7 @@
     & .title {
         display: flex;
         align-items: center;
-        column-gap: 10px;
+        column-gap: 5px;
         margin-bottom: 10px;
     }
     & .list {
@@ -41,23 +41,6 @@
     .places {
         & .list {
             font-size: 15px;
-        }
-    }
-}
-@media screen and (max-width: 380px) {
-    .places {
-        & .list {
-            font-size: 14px;
-        }
-    }
-}
-@media screen and (max-width: 350px) {
-    .places {
-        & .list {
-            font-size: 12px;
-        }
-        & .title {
-            font-size: 17px;
         }
     }
 }
