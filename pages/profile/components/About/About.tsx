@@ -6,7 +6,7 @@ import { User } from "../../../../entities";
 import { $user } from "../../../../global/store/store";
 import s from "./About.module.scss";
 import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
-import { CiSquareInfo } from "react-icons/ci";
+import { TbInfoSquareFilled } from "react-icons/tb";
 
 export default React.memo(function About(props: {
     user: User,
@@ -34,7 +34,7 @@ export default React.memo(function About(props: {
         return (
             <div className={s.about}>
                 <div className={s.title}>
-                    <CiSquareInfo fontSize={34} />
+                    <TbInfoSquareFilled fontSize={34} />
                     <b>{t("О себе")}</b>
                     {isAuthedProfile && <span onClick={() => newChangeSatus(true)} className={s.changeSpan}>{t("Изменить")}</span>}
                     {isAuthedProfile && authedUser.status === null || authedUser.status === ""

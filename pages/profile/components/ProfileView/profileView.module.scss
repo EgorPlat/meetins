@@ -12,7 +12,7 @@
         min-height: 50px;
         padding: 15px;
         margin-bottom: 10px;
-        border-radius: 20px;
+        border-radius: 10px;
         background-color: var(--bg-color-block);
     }
 
@@ -34,6 +34,7 @@
         & .userInfo {
             display: grid;
             grid-template-columns: 1fr;
+            row-gap: 10px;
             font-family: Nunito;
             font-size: 16px;
             font-weight: 400;
