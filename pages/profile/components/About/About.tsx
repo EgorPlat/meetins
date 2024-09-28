@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { User } from "../../../../entities";
 import { $user } from "../../../../global/store/store";
 import s from "./About.module.scss";
+import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
 
 export default React.memo(function About(props: {
     user: User,
@@ -13,7 +14,7 @@ export default React.memo(function About(props: {
 
     const { t } = useTranslation();
     const [changingStatus, setChangingStatus] = useState<boolean>(false);
-    const [userStatus, setUserStatus] = useState<string>("");
+    const [userStatus, setUserStatus] = useState<string>(props.user?.status);
     const authedUser = useUnit($user);
     const isAuthedProfile = props.user?.login === authedUser?.login;
 
@@ -21,11 +22,13 @@ export default React.memo(function About(props: {
         if (isAuthedProfile) {
             setChangingStatus(() => status);
         }
-    }
+    };
+    
     const saveNewStatus = async () => {
         props.saveNewUserStatus(userStatus);
         newChangeSatus(false);
-    }
+    };
+
     if (props.user && authedUser) {
         return (
             <div className={s.about}>
@@ -45,8 +48,17 @@ export default React.memo(function About(props: {
                             defaultValue={props.user.status} 
                             onChange={(event) => setUserStatus(event.target.value)}
                         ></textarea>
-                        <button className={s.confirmBtn} onClick={saveNewStatus}>{t("Сохранить")}</button>
-                        <button className={s.cancelBtn} onClick={() => newChangeSatus(false)}>{t("Отменить")}</button>
+                        <div className={s.actions}>
+                            <CustomButton 
+                                text={t("Сохранить")} 
+                                onClick={saveNewStatus} 
+                            />
+                            <CustomButton 
+                                text={t("Отменить")} 
+                                style={{ backgroundColor: "rgb(64, 80, 81)" }} 
+                                onClick={() => newChangeSatus(false)} 
+                            />
+                        </div>
                     </div>
                     : <p className={s.status}>{props.user.status}</p>
                 }

@@ -10,33 +10,37 @@
         margin-bottom: 20px;
         & .eventBody {
             background-color: var(--bg-color-block);
-            padding: 5px;
+            padding: 15px;
             display: grid;
             grid-template-columns: 1fr 2fr;
             min-height: 150px;
             margin-top: 10px;
             margin-left: 1%;
             column-gap: 10px;
-            border-radius: 10px;
+            border-radius: 15px;
             & .eventImage {
                 position: relative;
                 min-height: 200px;
-                border-radius: 10px;
+                & img {
+                    border-radius: 10px;
+                }
             }
             & .eventDescription {
-                display: flex;
-                flex-direction: column;
+                display: grid;
                 row-gap: 5px;
                 font-size: 18px;
                 & .eventTitle {
+                    display: flex;
+                    align-items: center;
                     color: var(--text-color);
                     font-size: 17px;
+                    text-transform: uppercase;
                     text-align: justify;
                     margin-bottom: 10px;
                 }
                 & .eventPrice {
                     display: flex;
-                    align-content: center;
+                    align-items: center;
                     column-gap: 10px;
                     & .free {
                         display: flex;
@@ -64,7 +68,7 @@
                 }
                 & .eventAge {
                     display: flex;
-                    align-content: center;
+                    align-items: center;
                     column-gap: 10px;
                     & .age {
                         display: flex;
@@ -123,6 +127,7 @@
         & .list {
             & .eventBody {
                 grid-template-columns: 1fr;
+                row-gap: 10px;
                 & .eventDescription {
                     font-size: 15px;
                 }

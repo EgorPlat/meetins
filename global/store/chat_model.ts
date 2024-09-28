@@ -75,6 +75,7 @@ export const sendMessageAndUploadActiveChat = createEffect((params: { message: s
         } else {
             startNewDialog({ userId: actualActiveChat.userId, messageContent: params.message }).then((response) => {
                 setActiveChat({
+                    userLogin: actualActiveChat.userLogin,
                     dialogId: response?.data.dialogId,
                     userName: actualActiveChat.userName,
                     userAvatar: actualActiveChat.userAvatar,
@@ -84,6 +85,7 @@ export const sendMessageAndUploadActiveChat = createEffect((params: { message: s
                     status: true,
                     userId: actualActiveChat.userId
                 });
+                getMyDialogs(false);
             });
         }
     }

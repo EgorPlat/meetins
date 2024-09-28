@@ -21,6 +21,9 @@
                 & .localeImg {
                     width: 60px;
                     height: 50px;
+                    & img {
+                        border-radius: 5px;
+                    }
                 }
             }
         }
