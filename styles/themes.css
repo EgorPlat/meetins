@@ -29,14 +29,6 @@ body {
 	}
 }
 
-.customModal {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-.modalContent {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
 input {
 	border: 1px solid gray;
 	outline: none;

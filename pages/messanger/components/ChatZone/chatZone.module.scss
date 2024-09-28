@@ -2,7 +2,7 @@
     display: inline;
     max-width: 400px;
     min-width: 100px;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     margin-right: 10px;
     min-height: 20px;
@@ -21,7 +21,7 @@
         text-align: center;
     }
     & .block {
-        border-radius: 8px;
+        border-radius: 10px;
         background-color: var(--bg-color-block);
     }
     & .user {

@@ -84,9 +84,14 @@ export default function PostsList(props: { currentUser: User, authedUser: User }
                                 <pre>{el.description}</pre>
                             </div>
                             <div className={s.postActions}>
-                                <div className={s.postActionsLikes}>
+                                <div 
+                                    className={s.postActionsLikes} 
+                                    style={el.likes.includes(props.authedUser.userId) 
+                                        ? { color: "red" }
+                                        : { color: "var(--text-color)"}
+                                    }
+                                >
                                     <AiFillHeart
-                                        color={el.likes.includes(props.authedUser.userId) ? "red" : undefined}
                                         onClick={() => handleLikeUserPost(el)}
                                     />
                                     <span>{el.likes.length}</span>

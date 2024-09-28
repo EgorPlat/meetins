@@ -11,7 +11,7 @@ export default function CustomButton(props: ICustomButtonProps) {
     const { text, style, ...restProps } = props;
 
     return (
-        <button style={style} className={s.customButton} {...restProps}>
+        <button className={s.customButton} {...restProps} style={style}>
             {text}
         </button>
     )

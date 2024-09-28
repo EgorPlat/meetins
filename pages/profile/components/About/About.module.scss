@@ -12,6 +12,7 @@
         cursor: pointer;
     }
     & .textChange {
+        margin-top: 10px;
         border-radius: 5px;
         width: 100%;
         font-size: 16px;
@@ -21,24 +22,10 @@
     & .status {
         cursor: pointer;
     }
-    & button {
-        height: 35px;
-        color: white;
-        border: none;
-        outline: none;
-        margin-top: 1%;
-        margin-right: 5px;
-        border-radius: 5px;
-    }
-    & button:hover {
-        background-color: orange;
-        color: black;
-    }
-    & .confirmBtn {
-        background-color: var(--default-color);
-    }
-    & .cancelBtn {
-        background-color: rgb(64, 80, 81);
+    & .actions {
+        display: flex;
+        column-gap: 10px;
+        margin-top: 10px;
     }
 }
 

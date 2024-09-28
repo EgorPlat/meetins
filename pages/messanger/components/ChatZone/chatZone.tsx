@@ -66,6 +66,8 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
         };
     };
 
+    console.log(activeChat$);
+    
     const handleOpenVideoCall = () => {
         if (connection$) {
             connection$.emit("get-peerID-for-call", { userId: activeChat$.userId }, (res: string) => {

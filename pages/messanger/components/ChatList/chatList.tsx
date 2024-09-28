@@ -25,7 +25,11 @@ export default function ChatList(): JSX.Element {
                 Диалоги
             </div>
             <div className={s.list}>
-                { isLoaded$ && myDialogs$?.length === 0 && <span className={s.noDialogsMessage}>У вас нет диалогов</span>}
+                { isLoaded$ && myDialogs$?.length === 0 && 
+                    <span className={s.noDialogsMessage}>
+                        <span style={{ color: "var(--text-color)"}}>У вас нет диалогов.</span> Перейдите в профиль к любому пользователю и нажмите "диалог"
+                    </span>
+                }
                 { isLoaded$ && myDialogs$ !== null ? myDialogs$.map( dialog => 
                     <UserChatCard
                         key={dialog.dialogId}
