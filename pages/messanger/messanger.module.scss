@@ -1,6 +1,7 @@
 .messangerContent {
+    width: 98%;
     display: grid;
-    grid-template-columns: 150px calc(95% - 150px);
+    grid-template-columns: 150px calc(100% - 155px);
     column-gap: 5px;
     min-height: 500px;
     & .chatList {
