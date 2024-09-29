@@ -2,7 +2,7 @@ export function customizeDateToYYYYMMDDHHMMFormat (date: string | number) {
     const newDate = new Date(date);
     let day = String(newDate.getDate());
     let month = String(newDate.getMonth() + 1);
-    const year = String(newDate.getFullYear());
+    const year = String(newDate.getFullYear()).slice(2,4);
     let hours = String(newDate.getHours());
     let minutes = String(newDate.getMinutes());
     if (+day < 10) {
@@ -17,5 +17,5 @@ export function customizeDateToYYYYMMDDHHMMFormat (date: string | number) {
     if (+minutes < 10) {
         minutes = "0" + `${minutes}`
     }
-    return `${year}-${month}-${day} ${hours}:${minutes}`
+    return `${day}-${month}-${year} ${hours}:${minutes}`
 }
