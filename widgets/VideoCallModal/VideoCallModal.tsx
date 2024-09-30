@@ -166,7 +166,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             const newPeer: Peer = new Peer({
                 host: peerURL,
                 path: "/peer",
-                secure: false
+                secure: true
             });
 
             newPeer.on("open", function(peerID) {
