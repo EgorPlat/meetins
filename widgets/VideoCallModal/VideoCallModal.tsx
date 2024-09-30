@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { $user, peerIDForCall, setIsVideoCallOpened, setPeerIDForCall } from "../../global/store/store";
+import { $user, baseURL, peerIDForCall, peerURL, setIsVideoCallOpened, setPeerIDForCall } from "../../global/store/store";
 import { connection } from "../../global/store/connection_model";
 import { useUnit } from "effector-react";
 import { FaCamera, FaMicrophone } from "react-icons/fa6";
@@ -163,7 +163,12 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
 
     useEffect(() => {
         if (connection$) {
-            const newPeer: Peer = new Peer();
+            const newPeer: Peer = new Peer({
+                host: peerURL,
+                path: "/peer",
+                secure: true
+            });
+
             newPeer.on("open", function(peerID) {
                 connection$?.emit("send-peer-id", { userId: authedUser$.userId, peerID: peerID })
             });

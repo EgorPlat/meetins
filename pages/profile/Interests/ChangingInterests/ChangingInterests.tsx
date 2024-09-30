@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { $currentInterestsList, getInterests } from "../../../../global/store/store";
 import s from "./ChangingInterests.module.scss";
 import { useUnit } from "effector-react";
+import { useTranslation } from "react-i18next";
 
 export default function ChangingInterests(props: {
     currentInterests: string[],
@@ -10,6 +11,7 @@ export default function ChangingInterests(props: {
 
     const [interestsList, setInterestsList] = useState([]);
     const currentInterests = useUnit($currentInterestsList);
+    const { t } = useTranslation();
 
     const selectNewInterest = (index: number) => {
         const updatedInterests = interestsList;
@@ -45,7 +47,7 @@ export default function ChangingInterests(props: {
                 }
             </div>
             <div className={s.changingInterestsActions}>
-                <button className={s.save} onClick={() => props.handleSaveClick(interestsList)}>Сохранить</button>
+                <button className={s.save} onClick={() => props.handleSaveClick(interestsList)}>{t("Сохранить")}</button>
             </div>
         </div>
     )

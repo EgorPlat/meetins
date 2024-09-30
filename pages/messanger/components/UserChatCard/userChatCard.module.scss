@@ -1,25 +1,16 @@
 .chat {
-    width: 105px;
-    max-height: 105px;
+    width: 85px;
+    height: 85px;
     margin-top: 0.5%;
     display: grid;
-    grid-template-rows: 80% 20%;
     align-items: center;
     justify-content: center;
     justify-items: center;
     & .avatar {
-        & .round {
-            width: 15px;
-            height: 15px;
-            background-color: rgb(151, 233, 151);
-            border-radius: 50%;
-            margin-left: 65px;
-            margin-top: 65px;
-        }
         border: 1px solid gray;
         border-radius: 50%;
-        width: 85px;
-        height: 85px;
+        width: 65px;
+        height: 65px;
         background-size: 100% 100%;
     }
     & .name {

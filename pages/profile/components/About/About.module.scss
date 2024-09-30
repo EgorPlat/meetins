@@ -4,12 +4,17 @@
     font-size: 16px;
     font-family: Nunito;
     text-align: justify;
-    & .changeSpan {
-        color: grey;
-        margin-left: 20px;
-    }
-    & .changeSpan:hover {
-        cursor: pointer;
+    & .title {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        & .changeSpan {
+            color: grey;
+            margin-left: 5px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
     & .textChange {
         margin-top: 10px;
@@ -21,6 +26,7 @@
     }
     & .status {
         cursor: pointer;
+        margin-top: 10px;
     }
     & .actions {
         display: flex;

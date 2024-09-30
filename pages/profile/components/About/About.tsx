@@ -6,6 +6,7 @@ import { User } from "../../../../entities";
 import { $user } from "../../../../global/store/store";
 import s from "./About.module.scss";
 import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
+import { TbInfoSquareFilled } from "react-icons/tb";
 
 export default React.memo(function About(props: {
     user: User,
@@ -32,12 +33,15 @@ export default React.memo(function About(props: {
     if (props.user && authedUser) {
         return (
             <div className={s.about}>
-                <b>{t("О себе")}:</b>
-                {isAuthedProfile && <span onClick={() => newChangeSatus(true)} className={s.changeSpan}>{t("Изменить")}</span>}
-                {isAuthedProfile && authedUser.status === null || authedUser.status === ""
-                    ? <p style={{ color: "grey" }} onClick={() => newChangeSatus(true)}>{t("Введите ваш статус")}...</p>
-                    : null
-                }
+                <div className={s.title}>
+                    <TbInfoSquareFilled fontSize={34} />
+                    <b>{t("О себе")}</b>
+                    {isAuthedProfile && <span onClick={() => newChangeSatus(true)} className={s.changeSpan}>{t("Изменить")}</span>}
+                    {isAuthedProfile && authedUser.status === null || authedUser.status === ""
+                        ? <p style={{ color: "grey" }} onClick={() => newChangeSatus(true)}>{t("Введите ваш статус")}...</p>
+                        : null
+                    }
+                </div>
                 {changingStatus
                     ?
                     <div>

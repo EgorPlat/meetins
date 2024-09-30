@@ -2,7 +2,6 @@
     display: inline;
     max-width: 400px;
     min-width: 100px;
-    border-radius: 10px;
     padding: 10px;
     margin-right: 10px;
     min-height: 20px;
@@ -85,6 +84,7 @@
                 justify-items: right;
                 justify-content: right;
                 & .myMessage {
+                    border-radius: 10px 0 10px 10px;
                     @extend .message;
                     background-color: #77ff97;
                 }
@@ -94,6 +94,7 @@
                 justify-items: left;
                 justify-content: left;
                 & .notMyMessage {
+                    border-radius: 0 10px 10px 10px;
                     margin-left: 10px;
                     @extend .message;
                     background-color: #76d4ff;
