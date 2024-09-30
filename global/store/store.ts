@@ -8,6 +8,7 @@ import { IInterest } from "../../entities/interest";
 import { INotification } from "../../entities/notification";
 
 export const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
+export const peerURL = process.env.NEXT_PUBLIC_BASE_PEER_SERVER_URL;
 
 export const instance = axios.create({
     baseURL: baseURL,
