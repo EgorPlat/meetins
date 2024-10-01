@@ -69,11 +69,8 @@ function Profile(): JSX.Element {
     };
 
     const handleStartDialog = () => {
-        checkDialog(currentUser).then(res => {
-            if (res.data) {
-                router.push("/messanger")
-            }
-        })
+        checkDialog(currentUser);
+        router.push("/messanger");
     };
 
     const onAddingModalClick = () => {
