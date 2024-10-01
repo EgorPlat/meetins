@@ -1,7 +1,7 @@
 import { useUnit } from "effector-react";
-import { activeChat } from "../../global/store/chat_model";
+import { activeChat, setActiveChat } from "../../global/store/chat_model";
 import { isMobile } from "../../global/store/store";
-import React from "react";
+import React, { useEffect } from "react";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import ChatList from "./components/ChatList/chatList";
 import ChatZone from "./components/ChatZone/chatZone";
@@ -12,8 +12,13 @@ export default function Messanger(): JSX.Element {
 
     const activeChat$ = useUnit(activeChat);
     const isMobile$ = useUnit(isMobile);
-
     const isChatNeededToShow = Boolean(activeChat$?.userId);
+
+    useEffect(() => {
+        return () => {
+            setActiveChat(null);
+        }
+    }, []);
 
     return (
         <PageContainer>

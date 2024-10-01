@@ -15,6 +15,7 @@ export default function EventsList(props: {
     const { categoryName, currentEvents, loadedStatus } = props;
     const { t } = useTranslation();
     
+    if (!currentEvents) return <CustomLoader />
     return (
         <div className={s.content}>
             <div className={s.title}>
