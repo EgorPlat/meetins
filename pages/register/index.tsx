@@ -151,6 +151,7 @@ export default function Login(): JSX.Element {
                         placeholder={t("Пароль")}
                         type={showPassword ? "text" : "password"}
                         id='pass'
+                        autocomplete="on"
                         style={{ marginTop: "25px" }}
                         register={register("password", {
                             required: true,

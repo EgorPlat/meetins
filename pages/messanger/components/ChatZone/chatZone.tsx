@@ -24,6 +24,7 @@ import s from "./chatZone.module.scss";
 import { connection } from "../../../../global/store/connection_model";
 import { addNotification } from "../../../../global/store/notifications_model";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
+import CustomAudioTrack from "../../../../shared/ui/CustomAudioTrack/CustomAudioTrack";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -196,7 +197,12 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                             }
                                             {
                                                 message.type.includes("audio") &&
-                                                <audio controls src={baseURL + message.content}></audio>
+                                                <CustomAudioTrack
+                                                    autoPlay={false}
+                                                    muted={false}
+                                                    preload="auto"
+                                                    src={baseURL + message.content} 
+                                                />
                                             }
                                             {
                                                 message.type === "text" &&

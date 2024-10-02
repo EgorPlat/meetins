@@ -1,0 +1,11 @@
+.customAudioTrack {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    & audio {
+        display: none;
+    }
+    & .fakeAudio {
+        height: 15px;
+    }
+}
