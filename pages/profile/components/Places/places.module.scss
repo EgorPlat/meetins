@@ -13,9 +13,11 @@
         column-gap: 5px;
         row-gap: 5px;
         font-size: 20px;
+        margin-top: 15px;
         & .item {
-            padding: 2px;
-            border: 2px solid rgb(102, 0, 128);
+            min-height: 35px;
+            padding: 3px;
+            border: 2px solid rgb(255, 162, 63);
             border-radius: 10px;
             float: left;
         }
