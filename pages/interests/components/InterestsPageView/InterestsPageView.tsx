@@ -34,7 +34,7 @@ export default function InterestsPageView ({ currentInterests }: {
                         <div className={s.list}>
                             {
                                 currentInterests?.map((el) => (
-                                    <div className={s.listElem}>
+                                    <div className={s.listElem} key={el.interestId}>
                                         <CustomAccordion
                                             key={el.interestId}
                                             text={el.title}

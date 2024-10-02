@@ -36,7 +36,8 @@ export default function ManageAccountForm(): JSX.Element {
                     <label htmlFor="password">{t("Пароль")}</label>
                     <input 
                         type="password" 
-                        id="password" 
+                        id="password"
+                        autoComplete="on"
                         placeholder="******" {...register("password", {required: false, validate: (value) =>
                             value.length === 0 ? "Это поле обязательно к заполнению." : true})} 
                     />

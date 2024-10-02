@@ -15,7 +15,11 @@ export default function StatsView() {
     }, []);
 
     if (myStatistic$.length === 0) {
-        return <span>{t("У Вас нет опубликованных композиций")}</span>
+        return (
+            <div className={s.noStatsView}>
+                <span>{t("У Вас нет опубликованных композиций")}</span>
+            </div>
+        )
     }
     return (
         <div className={s.statsView}>

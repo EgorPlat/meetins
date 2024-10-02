@@ -24,14 +24,14 @@
         row-gap: 10px;
         & .interestsList {
             display: grid;
-            grid-template-rows: 20px calc(100% - 20px);
+            grid-template-rows: 1fr;
             row-gap: 10px;
             font-size: 15px;
             width: 100%;
             height: 100%;
-            padding: 15px;
             border-radius: 10px;
             & .title {
+                margin: 10px 0px 10px 0px;
                 display: flex;
                 column-gap: 5px;
                 height: 20px;
