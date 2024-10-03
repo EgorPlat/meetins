@@ -2,7 +2,7 @@
     width: 98%;
     min-height: 100%;
     font-family: Nunito;
-    font-size: 18px;
+    font-size: 16px;
     padding-bottom: 5px;
     & .formAndInfo {
         font-size: 20px;
@@ -82,41 +82,6 @@
             column-gap: 15px;
             height: 50px;
             font-size: 20px;
-        }
-        & .formAndInfo {
-            padding-left: 3%;
-            & .info {
-                & label {
-                    display: inline;
-                    width: 95%;
-                    margin-top: 10%;
-                    margin-left: 1%;
-                    font-size: 20px;
-                }
-                & input {
-                    display: inline;
-                    width: 95%;
-                    margin-left: 1%;
-                    font-size: 18px;
-                }
-            }
-            & .management {
-                & .manageAcc {
-                    & label {
-                        display: inline;
-                        width: 95%;
-                        margin-top: 10%;
-                        margin-left: 1%;
-                        font-size: 20px;
-                    }
-                    & input {
-                        display: inline;
-                        width: 95%;
-                        margin-left: 1%;
-                        font-size: 18px;
-                    } 
-                }
-            }
         }
     }
 }

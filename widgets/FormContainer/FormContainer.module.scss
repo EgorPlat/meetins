@@ -2,12 +2,11 @@
     & label {
         display: inline-block;
         width: 100%;
-        margin-top: 10px;
         font-size: 17px;
+        margin-top: 10px;
     }
     & input {
         display: inline;
-        margin-top: 10px;
         font-size: 15px;
         width: 100%;
         max-width: 700px;
@@ -23,7 +22,6 @@
         outline: none;
     }
     & textarea {
-        margin-top: 10px;
         width: 100%;
         max-width: 700px;
         resize: none;
@@ -40,6 +38,7 @@
         background-color: var(--default-color);
         color: white;
         padding: 5px;
+        display: inline;
     }
     & button:hover {
         background-color: orange;
@@ -61,9 +60,9 @@
 }
 
 @media screen and (max-width: 600px){
-    .info {
+    .formContainer {
         & label {
-            font-size: 16px;
+            font-size: 18px;
         }
     }
 }
