@@ -42,7 +42,6 @@ export default function MusicPageView({
                     placeholder={t("Введите псевдоним автора")}
                     onChange={(e) => setSearchMusic(e.target.value)}
                 />
-                <button className={s.musicSearchBtn}>{t("Искать")}</button>
             </div>
             <div className={s.musicContent}>
                 <div className={s.musicList}>
