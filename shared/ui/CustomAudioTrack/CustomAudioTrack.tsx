@@ -16,45 +16,49 @@ export default function CustomAudioTrack(props) {
 
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [timeData, setTimeData] = useState<{ currentTime: number, duration: number }>(
-        { currentTime: 0, duration: 1 }
+        { currentTime: 0, duration: 0 }
     );
-    const audioRef = useRef<HTMLAudioElement>(null);
+    const audioRef = useRef<HTMLAudioElement>();
     
+    const handleUpdateTimeData = (audio) => {
+        if (audioRef.current) {
+            setTimeData({ 
+                currentTime: audio.target.currentTime, 
+                duration: audio.target.duration 
+            });
+            if (audio.target.currentTime === audio.target.duration) {
+                setTimeData({ 
+                    currentTime: 0, 
+                    duration: 0 
+                });
+                setIsPlaying(false);
+            }
+        }
+    };
+
     const handleStartPlaying = () => {
-        setIsPlaying(true);
-        if (audioRef && audioRef.current) {
+        if (audioRef.current) {
+            setIsPlaying(true);
+            audioRef.current.currentTime = 0;
             audioRef.current.play();
+            audioRef.current.addEventListener("timeupdate", handleUpdateTimeData);
         }
     };
     
     const handleStopPlaying = () => {
-        setIsPlaying(false);
-        if (audioRef && audioRef.current) {
+        if (audioRef.current) {
+            setIsPlaying(false);
+            audioRef.current.currentTime = 0;
             audioRef.current.pause();
-        }
-    };
-
-    const handleUpdateTimeData = () => {
-        if (audioRef && audioRef.current) {
-            const { currentTime, duration } = audioRef.current;
-            console.log(currentTime, duration);
-            if (currentTime !== duration) {
-                if (duration !== Infinity) {
-                    setTimeData({ currentTime, duration });
-                }
-            } else {
-                setTimeData({ currentTime: 0, duration });
-                setIsPlaying(false);
-            }
+            audioRef.current.removeEventListener("timeupdate", handleUpdateTimeData);
         }
     };
 
     return (
         <div className={s.customAudioTrack}>
             <audio
-                onTimeUpdate={handleUpdateTimeData}
-                ref={audioRef}
                 src={src}
+                ref={audioRef}
                 controls={controls}
                 autoPlay={autoPlay}
                 muted={muted}

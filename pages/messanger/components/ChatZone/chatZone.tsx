@@ -169,6 +169,15 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                             className={isMyMessage ? s.myMessage : s.notMyMessage}
                                         >
                                             {
+                                                message.type.includes("audio") &&
+                                                <CustomAudioTrack
+                                                    autoPlay={false}
+                                                    muted={false}
+                                                    preload="metadata"
+                                                    src={baseURL + message.content} 
+                                                />
+                                            }
+                                            {
                                                 isTypeOfFileAreImage(message.type)
                                                 &&
                                                 <div className={s.messageWithFile}>
@@ -194,15 +203,6 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                             {
                                                 message.type.includes("application") &&
                                                 <a href={`${baseURL + message.content}`}>{message.content}</a>
-                                            }
-                                            {
-                                                message.type.includes("audio") &&
-                                                <CustomAudioTrack
-                                                    autoPlay={false}
-                                                    muted={false}
-                                                    preload="auto"
-                                                    src={baseURL + message.content} 
-                                                />
                                             }
                                             {
                                                 message.type === "text" &&

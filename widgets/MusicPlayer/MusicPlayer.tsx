@@ -1,11 +1,11 @@
-import { BsPlay } from "react-icons/bs";
 import { getTimerFromSeconds } from "../../shared/helpers/helper";
 import s from "./MusicPlayer.module.scss";
 import { IMusic, IMusicAuthors } from "../../entities/music";
-import { LuStretchVertical } from "react-icons/lu";
 import { baseURL } from "../../global/store/store";
 import { useEffect, useRef, useState } from "react";
 import { setActiveMusic, setActiveMusicId, setIsMusicNeededOnBackground } from "../../global/store/music_model";
+import { FaPlay } from "react-icons/fa6";
+import { FaPause } from "react-icons/fa";
 
 export const MusicPlayer = (props: {
     musicInfo: IMusic,
@@ -116,15 +116,15 @@ export const MusicPlayer = (props: {
                 {
                     !isMusicSelected 
                         ?
-                        <BsPlay
+                        <FaPlay
                             className={s.controls}
-                            fontSize={30}
+                            fontSize={20}
                             onClick={handleStartMusic}
                         />
                         : 
-                        <LuStretchVertical
+                        <FaPause
                             className={s.controls}
-                            fontSize={22}
+                            fontSize={20}
                             onClick={handleStopMusic}
                         />
                 }

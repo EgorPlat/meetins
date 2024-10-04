@@ -2,7 +2,7 @@
     & label {
         display: inline-block;
         width: 100%;
-        font-size: 17px;
+        font-size: 16px;
         margin-top: 10px;
     }
     & input {
@@ -56,13 +56,5 @@
         border-radius: 5px;
         cursor: pointer;
         outline: none;
-    }
-}
-
-@media screen and (max-width: 600px){
-    .formContainer {
-        & label {
-            font-size: 18px;
-        }
     }
 }
