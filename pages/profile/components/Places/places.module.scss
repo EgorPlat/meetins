@@ -1,6 +1,6 @@
 .places {
     font-family: Nunito;
-    font-size: 20px;
+    font-size: 18px;
     & .title {
         display: flex;
         align-items: center;
@@ -12,7 +12,7 @@
         flex-wrap: wrap;
         column-gap: 5px;
         row-gap: 5px;
-        font-size: 20px;
+        font-size: 18px;
         margin-top: 15px;
         & .item {
             min-height: 35px;
