@@ -3,11 +3,12 @@ import { useTranslation } from "react-i18next";
 import { createdSendFileAndUploadActiveChat } from "../../../../global/store/chat_model";
 import Emoji from "../Emoji/emoji";
 import s from "./chatMessageForm.module.scss";
-import { AiOutlineAudio, AiOutlineFileText, AiOutlineSend } from "react-icons/ai";
 import { addNotification } from "../../../../global/store/notifications_model";
 import { useUserMediaTracks } from "../../../../shared/hooks/useUserMediaTracks";
 import { CiFileOn, CiMicrophoneOn } from "react-icons/ci";
 import { VscSend } from "react-icons/vsc";
+import { type } from "os";
+import { blob } from "stream/consumers";
 
 export default function ChatMessageForm(
     props: {
@@ -64,13 +65,27 @@ export default function ChatMessageForm(
         }
     };
 
+    function blobToBase64(blob) {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        return new Promise(resolve => {
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+        });
+    };
+
     useEffect(() => {
         if (mediaChunks) {
             const voiceBlob = new Blob(mediaChunks, {
                 type: "audio/mp3"
             });
+        
+            const voiceFile = new File([voiceBlob], "voice.mp3", {
+                type: "audio/mp3"
+            });
             setIsMediaRecorderActive(false);
-            createdSendFileAndUploadActiveChat(voiceBlob);
+            createdSendFileAndUploadActiveChat(voiceFile);
         }
     }, [mediaChunks]);
 

@@ -171,9 +171,6 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                             {
                                                 message.type.includes("audio") &&
                                                 <CustomAudioTrack
-                                                    autoPlay={false}
-                                                    muted={false}
-                                                    preload="metadata"
                                                     src={baseURL + message.content} 
                                                 />
                                             }

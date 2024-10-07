@@ -5,15 +5,6 @@ import { useRef, useState } from "react";
 
 export default function CustomAudioTrack(props) {
 
-    const {
-        src,
-        controls,
-        autoPlay,
-        muted,
-        preload,
-        ...restProps
-    } = props;
-
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [timeData, setTimeData] = useState<{ currentTime: number, duration: number }>(
         { currentTime: 0, duration: 0 }
@@ -57,13 +48,10 @@ export default function CustomAudioTrack(props) {
     return (
         <div className={s.customAudioTrack}>
             <audio
-                src={src}
+                src={props.src}
                 ref={audioRef}
-                controls={controls}
-                autoPlay={autoPlay}
-                muted={muted}
-                preload={preload}
-                {...restProps}
+                controls
+                preload="auto"
             />
             <progress className={s.fakeAudio} value={timeData.currentTime} max={timeData.duration}></progress>
             {
