@@ -32,7 +32,9 @@ export default function AddingPosts(): JSX.Element {
             {
                 <div className={s.addingPostsForm}>
                     <div className={s.addingPostsFormMain}>
+                        <label htmlFor="addPostUserTitle">Заголовок</label>
                         <input
+                            id="addPostUserTitle"
                             type="text"
                             placeholder={t("Название поста")}
                             onChange={(e) => setPostFormData({ ...postFormData, title: e.target.value })}
@@ -43,6 +45,7 @@ export default function AddingPosts(): JSX.Element {
                             <span>{!isMobile$ ? t("Добавить изображение к публикации") : t("Добавить изображение")} </span>
                             <span>({postFormData.currentFiles?.length ? postFormData.currentFiles?.length : 0} / 5)</span>
                             <input
+                                id="addPostUserFiles"
                                 ref={ref}
                                 type="file"
                                 accept=".png, .jpeg, .mp4, .mp3, .jpg"
@@ -52,7 +55,9 @@ export default function AddingPosts(): JSX.Element {
                         </a>
                     </div>
                     <div className={s.addingPostsFormDescription}>
+                        <label htmlFor="addPostUserDescription">Описание</label>
                         <textarea
+                            id="addPostUserDescription"
                             placeholder={t("Введите описание к посту")}
                             onChange={(e) => setPostFormData({ ...postFormData, description: e.target.value })}
                         />

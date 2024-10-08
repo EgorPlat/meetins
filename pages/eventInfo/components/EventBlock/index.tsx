@@ -7,6 +7,7 @@ import Image from "next/image";
 import { baseURL, isMobile } from "../../../../global/store/store";
 import { useUnit } from "effector-react";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
+import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
 
 
 export default function EventBlock(props: {
@@ -48,8 +49,8 @@ export default function EventBlock(props: {
                             favoritesCount={event.favorites_count}
                         />
                         <div className={s.actions}>
-                            <button onClick={() => props.addUserEvent(event.id)}>{t("Я пойду")}!</button>
-                            <button>{t("Понравилось")}!</button>
+                            <CustomButton onClick={() => props.addUserEvent(event.id)} text={t("Я пойду")!} />
+                            <CustomButton text={t("Понравилось")!} />
                         </div>
                     </div>
                 </div>

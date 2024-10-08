@@ -5,6 +5,7 @@
     margin: 15px;
     & .eventMoreInfoData {
         display: flex;
+        row-gap: 10px;
         flex-wrap: wrap;
         column-gap: 10px;
         align-items: center;

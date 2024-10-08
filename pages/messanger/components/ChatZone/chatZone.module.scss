@@ -111,6 +111,7 @@
             & .messageInfo {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
+                column-gap: 5px;
                 & .messageTime {
                     font-size: 12px;
                     color: rgb(32, 32, 32);

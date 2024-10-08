@@ -59,8 +59,8 @@ export default function MeetingWrapper(props: {
                                 ? <CustomTimer 
                                     dateTo={props.meeting?.date} 
                                     dateFrom={Date.now()}
-                                    color="black"
-                                    backgroundColor="#73fa97"
+                                    color="white"
+                                    backgroundColor="rgba(175, 0, 175, 0.559)"
                                 />
                                 : <span className={s.meetingOver}>{t("Завершилась")}</span>
                         }
@@ -117,8 +117,8 @@ export default function MeetingWrapper(props: {
                                 ? <CustomTimer 
                                     dateTo={props.meeting?.date} 
                                     dateFrom={Date.now()}
-                                    color="black"
-                                    backgroundColor="#73fa97"
+                                    color="white"
+                                    backgroundColor="rgba(175, 0, 175, 0.559)"
                                 />
                                 : <span className={s.meetingOver}>{t("Завершилась")}</span>
                         }

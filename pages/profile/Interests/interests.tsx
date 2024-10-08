@@ -48,9 +48,9 @@ export default function Interests(props: {
             <div className={s.interests}>
                 <div className={s.title}>
                     <MdInterests fontSize={34} />
+                    <b className={s.main}>{t("Интересы")}</b> 
                     {isAuthedUserAreCurrentUser &&
                         <span className={s.head} onClick={openChangeInterests}>
-                            <b className={s.main}>{t("Интересы")}</b> 
                             <span className={s.change}>{t("Изменить")}</span>
                         </span>
                     }

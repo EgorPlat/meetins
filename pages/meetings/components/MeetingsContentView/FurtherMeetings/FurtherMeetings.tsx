@@ -14,7 +14,7 @@ export default function FurtherMeetings(props: {
         return (
             <div className={s.completedMeetings}>
                 <div className={s.title}>
-                    {t("Здесь видны активные встречи, на которые можно записаться")}
+                    {t("Здесь видны встречи, на которые можно записаться")}
                 </div>
                 <div className={s.meetingsList}>
                     {

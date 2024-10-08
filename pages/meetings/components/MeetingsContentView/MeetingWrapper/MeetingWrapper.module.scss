@@ -21,9 +21,6 @@
         & .meetingTitle {
             display: flex;
             column-gap: 5px;
-            & .date {
-                color: gray;
-            }
         }
         & .meetingTimer {
             display: flex;
@@ -57,7 +54,7 @@
         & .meetingGoal {
             font-size: 15px;
             & .hint {
-                color: var(--default-color);
+                //color: var(--default-color);
             }
         }
         & .meetingActions {
@@ -125,13 +122,13 @@
         & .meetingDate {
             font-size: 15px;
             & .dateTime {
-                color: gray;
+                //color: gray;
             }
         }
         & .meetingGoal {
             font-size: 15px;
             & .hint {
-                color: var(--default-color);
+                //color: var(--default-color);
             }
         }
         & .meetingActions {

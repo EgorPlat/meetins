@@ -1,5 +1,6 @@
 .completedMeetings {
     & .title {
+        min-height: 25px;
         justify-content: center;
         display: flex;
         align-items: center;

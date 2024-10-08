@@ -21,7 +21,7 @@ export default function MyMeetings({
     return (
         <div className={s.myMeetings}>
             <div className={s.title}>
-                {t("Здесь видны встречи, которые запланированны лично Вами")}
+                {t("Это встречи, которые запланированны Вами")}
                 <BsCalendarPlus
                     style={{ cursor: "pointer" }}
                     fontSize={24}
