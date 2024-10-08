@@ -133,20 +133,23 @@ export default function GroupInfoPageView(props: {
                         }
                     </div>
                     <div className={s.leftInfo}>
-                        <span>Участники: {props.groupMembersInfo?.length}</span>
-                        {
-                            props.groupMembersInfo?.length >= 3 && 
-                            <span className={s.allMembers} onClick={props.handleOpenMembersList}> Посмотреть всех</span>
-                        }
+                        <div className={s.title}>
+                            <span>Участники: {props.groupMembersInfo?.length}</span>
+                            {
+                                props.groupMembersInfo?.length >= 4 && 
+                                    <span className={s.allMembers} onClick={props.handleOpenMembersList}> Посмотреть всех</span>
+                            }
+                        </div>
                         <div className={s.members}>
                             {
-                                props.groupMembersInfo?.slice(0, 3)?.map(el => (
-                                    <div
-                                        className={s.member}
-                                        key={el.login}
-                                        style={{ backgroundImage: `url(${baseURL}${el.avatar})` }}
-                                    >
-                                        <span className={s.memberName}>{el.name}</span>
+                                props.groupMembersInfo?.slice(0, 4)?.map(el => (
+                                    <div className={s.member}>
+                                        <div
+                                            className={s.image}
+                                            key={el.login}
+                                            style={{ backgroundImage: `url(${baseURL}${el.avatar})` }}
+                                        ></div>
+                                        <div className={s.name}>{el.name}</div>
                                     </div>
                                 ))
                             }
