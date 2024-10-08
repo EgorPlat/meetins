@@ -103,6 +103,7 @@ select:-webkit-autofill:focus {
 	margin: 0;
 	::-webkit-scrollbar {
         width: 1.5px;
+		height: 5px;
     }
     ::-webkit-scrollbar-track {
         background: transparent;

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IShortEventInfo } from "../../../../entities/events";
 import { customizeDateToYYYYMMDDFormat } from "../../../../shared/functions/getDateInYYYYMMDDFormat";
 import { useTranslation } from "react-i18next";
+import CustomDatePicker from "../../../../shared/ui/CustomDatePicker/CustomDatePicker";
 
 export default function EventsList(props: {
     categoryName: string,
@@ -18,8 +19,15 @@ export default function EventsList(props: {
     if (!currentEvents) return <CustomLoader />
     return (
         <div className={s.content}>
-            <div className={s.title}>
-                {t("Текущая категория")}: {categoryName}
+            <div className={s.topMenu}>
+                <div className={s.title}>{t("Текущая категория")}: {categoryName}</div>
+                <div className={s.filters}>
+                    <CustomDatePicker 
+                        minDate={Date.now()} 
+                        maxDate={Date.now() + 30*24*60*60*1000 } 
+                        handleChangeDate={() => console.log()} 
+                    />
+                </div>
             </div>
             <div className={s.list}>
                 {loadedStatus ? 

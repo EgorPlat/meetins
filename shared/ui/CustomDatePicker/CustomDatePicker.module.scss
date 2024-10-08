@@ -1,0 +1,21 @@
+.customDatePicker {
+    display: grid;
+    & .list {
+        width: 100%;
+        display: flex;
+        column-gap: 10px;
+        overflow-x: scroll;
+        padding-bottom: 10px;
+        & .date {
+            display: grid;
+            text-align: center;
+            padding: 10px;
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            &:hover {
+                cursor: pointer;
+                background-color: var(--default-color);
+            }
+        }
+    }
+}

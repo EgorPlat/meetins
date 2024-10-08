@@ -1,8 +1,16 @@
 .content {
     width: 98%;
-    & .title {
+    & .topMenu {
+        display: grid;
+        row-gap: 10px;
         font-size: 18px;
-        margin: 10px 0 0 10px;
+        margin: 10px 0 0 0;
+        background-color: var(--bg-color-block);
+        padding: 20px;
+        border-radius: 10px;
+        & .title {
+            
+        }
     }
     .list {
         display: grid;
@@ -15,9 +23,8 @@
             grid-template-columns: 1fr 2fr;
             min-height: 150px;
             margin-top: 10px;
-            margin-left: 1%;
             column-gap: 10px;
-            border-radius: 15px;
+            border-radius: 10px;
             & .eventImage {
                 position: relative;
                 min-height: 200px;
