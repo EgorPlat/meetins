@@ -4,7 +4,7 @@ import tseslint from "typescript-eslint";
 
 export default [
     {files: ["**/*.{js,mjs,cjs,ts,tsx}"]},
-    {languageOptions: { globals: globals.browser }},
+    {languageOptions: {globals: globals.browser}},
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
     {
@@ -20,6 +20,7 @@ export default [
             "react/prop-types": "off",
             "quotes": ["error", "double"],
             "indent": ["error", 4],
+            "object-curly-spacing": ["error", "always"]
         },
     },
 ];

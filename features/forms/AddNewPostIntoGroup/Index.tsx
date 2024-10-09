@@ -11,7 +11,7 @@ export default function AddNewPostIntoGroupForm(props: {
     handleCloseModal: () => void
 }): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
     const [selectedMediaContent, setSelectedMediaContent] = useState<{ file: File, blob: string }[]>([]);
     
@@ -67,7 +67,7 @@ export default function AddNewPostIntoGroupForm(props: {
                     <textarea
                         id="description"
                         placeholder={t("Описание публикации")}
-                        {...register("description", {required: false, validate: (value) =>
+                        {...register("description", { required: false, validate: (value) =>
                             value.length === 0 ? "Нельзя оставить пустым" : true
                         })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}

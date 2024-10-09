@@ -10,7 +10,7 @@ import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 
 export default function ManageAccountForm(): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const user = useUnit($user);
     const isUpdated: boolean | null = useUnit(isAccountUpdated);
     const { t } = useTranslation();
@@ -27,8 +27,8 @@ export default function ManageAccountForm(): JSX.Element {
                     <label htmlFor="email">{t("Ваш Email")}</label>
                     <input type="text" id="email"
                         defaultValue={user?.email}
-                        placeholder={user?.email} {...register("email", {required: false, validate: (value) =>
-                            value.length === 0 ? "Это поле обязательно к заполнению." : true})}
+                        placeholder={user?.email} {...register("email", { required: false, validate: (value) =>
+                            value.length === 0 ? "Это поле обязательно к заполнению." : true })}
                     />
                     {errors.email ? <span>{errors.email.message}</span> : null}
                 </div>
@@ -36,9 +36,10 @@ export default function ManageAccountForm(): JSX.Element {
                     <label htmlFor="password">{t("Пароль")}</label>
                     <input 
                         type="password" 
-                        id="password" 
-                        placeholder="******" {...register("password", {required: false, validate: (value) =>
-                            value.length === 0 ? "Это поле обязательно к заполнению." : true})} 
+                        id="password"
+                        autoComplete="on"
+                        placeholder="******" {...register("password", { required: false, validate: (value) =>
+                            value.length === 0 ? "Это поле обязательно к заполнению." : true })} 
                     />
                     {errors.password ? <span>{errors.password.message}</span> : null}
                 </div>
@@ -47,7 +48,7 @@ export default function ManageAccountForm(): JSX.Element {
                     <input type="text" id="address"
                         defaultValue={user?.login}
                         placeholder={user?.login}
-                        {...register("login", {required: false, validate: (value) => 
+                        {...register("login", { required: false, validate: (value) => 
                             value === user?.login ? "Новый адрес не может совпадать со старым." : true
                         })}
                     />

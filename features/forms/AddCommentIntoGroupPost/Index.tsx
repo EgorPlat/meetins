@@ -10,7 +10,7 @@ export default function AddCommentIntoGroupPost(props: {
     postId: number
 }): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
     const activeGroup$ = useUnit(groupInfo);
 
@@ -27,7 +27,7 @@ export default function AddCommentIntoGroupPost(props: {
                         type="text" 
                         id="text"
                         placeholder={t("Введите комментарий")}
-                        {...register("text", {required: false, validate: (value) => 
+                        {...register("text", { required: false, validate: (value) => 
                             value.length >= 600 || value.length <= 5
                                 ? t("Не менее 5-ти и не более 600 символов")
                                 : true,

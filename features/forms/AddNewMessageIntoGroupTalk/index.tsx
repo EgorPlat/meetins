@@ -12,7 +12,7 @@ export default function AddNewMessageIntoGroupTalk(props: {
     onSaveMessage: (res: IGroupTalkMessage) => void
 }): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
     
     const handleCreateNewMessage = (data: { text: string }) => {
@@ -33,7 +33,7 @@ export default function AddNewMessageIntoGroupTalk(props: {
                         type="text" 
                         id="title"
                         placeholder="Текст сообщения" 
-                        {...register("text", {required: false, validate: (value) => 
+                        {...register("text", { required: false, validate: (value) => 
                             value.length >= 200 || value.length <= 5
                                 ? "Не менее 5-ти и не более 200-та символов"
                                 : true,

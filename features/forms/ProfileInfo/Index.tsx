@@ -12,7 +12,7 @@ import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 
 export default function ProfileInfoForm(): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const isUpdated: boolean | null = useUnit(isProfileUpdated);
     const user = useUnit($user);
     const { t } = useTranslation();
@@ -28,7 +28,7 @@ export default function ProfileInfoForm(): JSX.Element {
                     <label htmlFor="name">{t("Имя")}</label>
                     <input type="text" id="name"
                         defaultValue={user?.name}
-                        placeholder={user?.name} {...register("name", {required: false, validate: (value) => 
+                        placeholder={user?.name} {...register("name", { required: false, validate: (value) => 
 			        /^[a-zа-яё]+$/i.test(value) === false
 				    ? "Пожалуйста следуйте формату: Имя"
 				    : true,
@@ -40,7 +40,7 @@ export default function ProfileInfoForm(): JSX.Element {
                     <input 
                         type="date" 
                         id="date" 
-                        {...register("birthDate", {required: false, validate: (value) =>
+                        {...register("birthDate", { required: false, validate: (value) =>
                             value.length === 0 ? "Это поле обязательно к заполнению." : true
                         })} 
                         placeholder={user?.birthDate}
@@ -53,7 +53,7 @@ export default function ProfileInfoForm(): JSX.Element {
                     <input type="text" id="phone"
                         placeholder={user?.phoneNumber}
                         defaultValue={user?.phoneNumber}
-                        {...register("phoneNumber", {required: false, validate: (value) =>
+                        {...register("phoneNumber", { required: false, validate: (value) =>
                             isPhoneNumber(value) !== value ? "Введите телефон в формате 79693461718." : true
                         })}/>
                     {errors.phoneNumber ? <span>{errors.phoneNumber.message}</span> : null}

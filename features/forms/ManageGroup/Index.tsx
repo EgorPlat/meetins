@@ -8,7 +8,7 @@ import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
  
 export default function ManageGroup(): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
     const groupInfo$ = useUnit(groupInfo);
 
@@ -31,7 +31,7 @@ export default function ManageGroup(): JSX.Element {
                         type="text" 
                         id="name"
                         placeholder="Название группы" 
-                        {...register("name", {required: false, validate: (value) => 
+                        {...register("name", { required: false, validate: (value) => 
 			            value.length >= 40 || value.length <= 5
 				        ? "Не менее 5-ти и не более 40-ти символов"
 				        : true,
@@ -45,7 +45,7 @@ export default function ManageGroup(): JSX.Element {
                         defaultValue={groupInfo$.description}
                         id="description"
                         placeholder={t("Описание группы")}
-                        {...register("description", {required: false, validate: (value) =>
+                        {...register("description", { required: false, validate: (value) =>
                             value.length === 0 ? "Нельзя оставить пустым" : true
                         })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}
@@ -57,7 +57,7 @@ export default function ManageGroup(): JSX.Element {
                         id="headImage"
                         type="file"
                         placeholder={t("Шапка сообщества")}
-                        {...register("headImage", {required: false, validate: (value) =>
+                        {...register("headImage", { required: false, validate: (value) =>
                             value.length === 0 || !value ? "Файл для шапки соощества обязателен" : true
                         })}/>
                     {errors.headImage ? <span>{errors.headImage.message}</span> : null}

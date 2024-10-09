@@ -10,7 +10,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
     handleCloseForm: () => void
 }): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
     
     const onChangeMeeting = (data: ICreateMeeting) => {
@@ -27,7 +27,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
                         type="text" 
                         id="title"
                         placeholder={t("Название встречи")}
-                        {...register("title", {required: false, validate: (value) => 
+                        {...register("title", { required: false, validate: (value) => 
 			            value.length >= 40 || value.length <= 5
 				        ? t("Не менее 5-ти и не более 40-ти символов")
 				        : true,
@@ -40,7 +40,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
                     <input 
                         type="datetime-local" 
                         id="date" 
-                        {...register("date", {required: false, validate: (value) =>
+                        {...register("date", { required: false, validate: (value) =>
                             value.length === 0 ? t("Это поле обязательно к заполнению") : true
                         })} 
                         placeholder={t("Дата встречи")}
@@ -52,7 +52,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
                     <input 
                         type="text" 
                         id="address" 
-                        {...register("address", {required: false, validate: (value) =>
+                        {...register("address", { required: false, validate: (value) =>
                             value.length === 0 ? t("Это поле обязательно к заполнению") : true
                         })} 
                         placeholder={t("Место встречи")}
@@ -64,7 +64,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
                     <textarea
                         id="goal"
                         placeholder={t("В чем цель встречи?")}
-                        {...register("goal", {required: false, validate: (value) =>
+                        {...register("goal", { required: false, validate: (value) =>
                             value.length === 0 ? t("Нельзя оставить пустым") : true
                         })}/>
                     {errors.goal ? <span>{errors.goal.message}</span> : null}
@@ -74,7 +74,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
                     <textarea
                         id="description"
                         placeholder={t("Краткое описание событий на встрече")}
-                        {...register("description", {required: false, validate: (value) =>
+                        {...register("description", { required: false, validate: (value) =>
                             value.length === 0 ? t("Нельзя оставить пустым") : true
                         })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}

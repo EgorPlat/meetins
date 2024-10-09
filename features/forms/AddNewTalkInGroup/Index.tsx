@@ -10,7 +10,7 @@ export default function AddNewTalkInGroup(props: {
     successSubmit: () => void
 }): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
     
     const onAddNewTalkInGroup = (data: { title: string }) => {
@@ -31,7 +31,7 @@ export default function AddNewTalkInGroup(props: {
                         type="text" 
                         id="title"
                         placeholder="Тема обсуждения" 
-                        {...register("title", {required: false, validate: (value) => 
+                        {...register("title", { required: false, validate: (value) => 
                             value.length >= 20 || value.length <= 5
                                 ? "Не менее 5-ти и не более 20-ти символов"
                                 : true,

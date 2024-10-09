@@ -8,14 +8,14 @@ import FormContainer from "../../../widgets/FormContainer/FormContainer";
  
 export default function AddCommentIntoMeeting(): JSX.Element {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
     const selectedMeeting$ = useUnit(selectedMeeting);
 
     const onChangeComment = (data: {
         text: string, 
     }) => {
-        handleSendCommentIntoMeeting({ meetingId: selectedMeeting$.meetingId, text: data.text})
+        handleSendCommentIntoMeeting({ meetingId: selectedMeeting$.meetingId, text: data.text })
     }
     return (
         <FormContainer>
@@ -28,7 +28,7 @@ export default function AddCommentIntoMeeting(): JSX.Element {
                         type="text" 
                         id="text"
                         placeholder={t("Текст комментария")} 
-                        {...register("text", {required: false, validate: (value) => 
+                        {...register("text", { required: false, validate: (value) => 
                             value.length >= 600 || value.length <= 5
                                 ? t("Не менее 5-ти и не более 600 символов")
                                 : true,
