@@ -88,8 +88,8 @@
         display: grid;
         grid-template-columns: calc(100% - 250px) 250px;
         grid-template-rows: max-content;
+        column-gap: 10px;
         justify-content: center;
-        margin-top: 20px;
         & .postList {
             display: grid;
             grid-template-columns: 1fr;
@@ -167,7 +167,6 @@
             border-radius: 10px;
             width: 250px;
             padding: 10px 5px 10px 5px;
-            margin-left: 5px;
 
             & .title {
                 display: grid;
@@ -228,9 +227,11 @@
             row-gap: 10px;
 
             & .postList {
+                grid-row: 2;
                 width: 100%;
             }
             & .leftInfo {
+                grid-row: 1;
                 width: 100%;
             }
         }

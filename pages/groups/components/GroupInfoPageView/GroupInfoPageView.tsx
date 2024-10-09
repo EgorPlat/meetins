@@ -77,7 +77,7 @@ export default function GroupInfoPageView(props: {
                 </div>
                 <div className={s.postForm}>
                     <CustomButton text="Добавить публикацию" onClick={props.handleOpenAddingPost} />
-                    <span className={s.countPosts}>Публикаций в сообществе - {props.groupInfo?.posts?.length}</span>
+                    <span className={s.countPosts}>Публикаций - {props.groupInfo?.posts?.length}</span>
                 </div>
                 <div className={s.content}>
                     <div className={s.postList}>
@@ -86,7 +86,7 @@ export default function GroupInfoPageView(props: {
                                 <div className={s.post} key={post.id}>
                                     <div className={s.title}>
                                         {post.title}
-                                        <span className={s.date}>Опубликовано: {customizeDateToYYYYMMDDHHMMFormat(post.date)}</span>
+                                        <span className={s.date}>{customizeDateToYYYYMMDDHHMMFormat(post.date)}</span>
                                     </div>
                                     <div className={s.file}>
                                         {
@@ -143,10 +143,9 @@ export default function GroupInfoPageView(props: {
                         <div className={s.members}>
                             {
                                 props.groupMembersInfo?.slice(0, 4)?.map(el => (
-                                    <div className={s.member}>
+                                    <div className={s.member} key={el.login}>
                                         <div
                                             className={s.image}
-                                            key={el.login}
                                             style={{ backgroundImage: `url(${baseURL}${el.avatar})` }}
                                         ></div>
                                         <div className={s.name}>{el.name}</div>
