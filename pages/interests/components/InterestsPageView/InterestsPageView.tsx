@@ -14,7 +14,9 @@ export default function InterestsPageView ({ currentInterests }: {
         return (
             <div className={s.interests}>
                 <div className={s.block}>
-                    { t("Интересы - это критерий для поиска людей, с помощью которого Вы можете понять есть ли у Вас что-то общее или нет . По умолчанию мы предлагаем Вам несколько стандартных интересов которые Вы можете настроить у себя в профиле (пример)")}
+                    <span>
+                        { t("Интересы - это критерий для поиска людей, с помощью которого Вы можете понять есть ли у Вас что-то общее или нет . По умолчанию мы предлагаем Вам несколько стандартных интересов которые Вы можете настроить у себя в профиле (пример)")}.
+                    </span>
                     <button className={s.interestExample}>
                         Программирование
                     </button>
@@ -34,7 +36,7 @@ export default function InterestsPageView ({ currentInterests }: {
                         <div className={s.list}>
                             {
                                 currentInterests?.map((el) => (
-                                    <div className={s.listElem}>
+                                    <div className={s.listElem} key={el.interestId}>
                                         <CustomAccordion
                                             key={el.interestId}
                                             text={el.title}

@@ -46,7 +46,7 @@ export default function DragAndDropList (props: IDragAndDropProps) {
                         className={s.dragAndDropListElement}
                         style={
                             activeElement?.id === el.id ? { 
-                                opacity: .1,
+                                opacity: 0,
                             } : { 
                                 opacity: 1,
                             }
