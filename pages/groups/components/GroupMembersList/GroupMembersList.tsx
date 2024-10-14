@@ -16,7 +16,7 @@ export default function GroupMembersList(props: IGroupMembersListProps) {
             {
                 props.members.map(member => {
                     return (
-                        <div className={s.wrapper} onClick={() => router.push(`/profile/${member.login}`)}>
+                        <div key={member.login} className={s.wrapper} onClick={() => router.push(`/profile/${member.login}`)}>
                             <img src={baseURL + member.avatar} className={s.avatar} />
                             <div className={s.name}>{member.name}</div>
                         </div>

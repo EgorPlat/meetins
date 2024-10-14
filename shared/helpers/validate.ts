@@ -31,6 +31,28 @@ export const isTypeOfFileAreVideo = (value: string) => {
     return false;
 };
 
+export const isTypeOfFileAreAudio = (value: string) => {
+    if (!value) return;
+    const validTypes = ["audio/mp3", "audio/mp3"];
+    if (validTypes.includes(value)) {
+        return true;
+    }
+    return false;
+};
+
+export const isTypeOfFileAreNotVideoOrImageOrAudio = (value: string) => {
+    if (!value) return;
+    if (
+        !isTypeOfFileAreVideo(value) && 
+        !isTypeOfFileAreImage(value) &&
+        !isTypeOfFileAreAudio(value)
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
 export const validatePost = (post: { title: string, description: string, currentFiles: any }) => {
     if (post.currentFiles === null) {
         addNotification({ text: "Минимум 1 файл", time: 3000, type: "warning", textColor: "black" });

@@ -5,6 +5,7 @@ import { validateFilesFromInputAndStructuring } from "../../../shared/helpers/he
 import { createNewPostInGroup } from "../../../global/store/groups_model";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
+import { isTypeOfFileAreNotVideoOrImageOrAudio } from "../../../shared/helpers/validate";
  
 export default function AddNewPostIntoGroupForm(props: { 
     groupId: string,
@@ -16,7 +17,9 @@ export default function AddNewPostIntoGroupForm(props: {
     const [selectedMediaContent, setSelectedMediaContent] = useState<{ file: File, blob: string }[]>([]);
     
     const onChangePost = (data: {name: string, description: string, media: File[]}) => {
-        const filesFromInput = selectedMediaContent.map(el => { 
+        console.log(selectedMediaContent);
+        
+        /*const filesFromInput = selectedMediaContent.map(el => { 
             return el.file;
         });
         const mediaData = validateFilesFromInputAndStructuring(filesFromInput);
@@ -24,7 +27,7 @@ export default function AddNewPostIntoGroupForm(props: {
         mediaData.dataForServer.append("description", data.description);
         mediaData.dataForServer.append("groupId", props.groupId);
         createNewPostInGroup(mediaData.dataForServer);
-        props.handleCloseModal();
+        props.handleCloseModal();*/
     };
 
     const onFileChanges = (files: FileList) => {
@@ -96,23 +99,44 @@ export default function AddNewPostIntoGroupForm(props: {
                                     style={{ 
                                         position: "absolute", 
                                         top: 0, 
-                                        right: 5, 
-                                        color: "red", 
+                                        right: 0, 
                                         cursor: "pointer",
-                                        height: "15px",
                                         fontWeight: 700,
-                                        fontSize: "18px"
+                                        fontSize: "18px",
+                                        backgroundColor: "var(--bg-color)",
+                                        border: "1px solid gray",
+                                        borderTopRightRadius: "5px",
+                                        display: "flex",
+                                        width: "20px",
+                                        minHeight: "15px",
+                                        alignItems: "center",
+                                        justifyContent: "center"
                                     }}
                                     onClick={() => handleRemoveImgFile(el.blob)}
                                 >
-                                    <div>x</div>
+                                    x
                                 </div>
-                                <img 
-                                    src={el.blob} 
-                                    width="75px" 
-                                    height="75px"
-                                    style={{ borderRadius: "5px" }}
-                                />
+                                {
+                                    isTypeOfFileAreNotVideoOrImageOrAudio(el.file.type) 
+                                        ? <div 
+                                            style={{
+                                                border: "1px solid gray",
+                                                borderRadius: "5px",
+                                                padding: "3px",
+                                                width: "75px", 
+                                                height: "75px", 
+                                                fontSize: "12px",
+                                                wordBreak: "break-all",
+                                                overflow: "hidden",
+                                                textOverflow: "ellipsis"
+                                            }}>{el.file.name}</div>
+                                        : <img 
+                                            src={el.blob} 
+                                            width="75px" 
+                                            height="75px"
+                                            style={{ borderRadius: "5px" }}
+                                        />
+                                }
                             </div>
                         ))
                     }
