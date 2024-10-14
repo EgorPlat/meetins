@@ -8,15 +8,24 @@ import { $currentInterestsList } from "../../../global/store/store";
 import { createNewGroup } from "../../../global/store/groups_model";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
  
-export default function CreateNewGroupForm(): JSX.Element {
+export default function CreateNewGroupForm({ 
+    handleCloseForm 
+}: {
+    handleCloseForm: () => void
+}): JSX.Element {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { t } = useTranslation();
     const currentInterestsList$ = useUnit($currentInterestsList);
     
     const onChangeGroup = (data: ICreateGroup) => {
-        createNewGroup(data);
-    }
+        createNewGroup(data).then(res => {
+            if (res.data) {
+                handleCloseForm();
+            }
+        })
+    };
+    
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeGroup)}>

@@ -5,7 +5,7 @@
     font-size: 16px;
     padding-bottom: 5px;
     & .formAndInfo {
-        font-size: 20px;
+        font-size: 18px;
         font-family: Nunito;
         & .title {
             background-color: var(--bg-color-block);
@@ -13,11 +13,21 @@
             padding: 10px;
             border-radius: 10px;
         }
+        & .filters {
+            & .filter {
+                padding: 0px 10px 0px 10px;
+                margin: 10px 0px 10px 0px;
+                display: flex;
+                column-gap: 5px;
+            }
+        }
         & .locale {
             cursor: pointer;
             & .locales {
+                padding-left: 10px;
                 display: flex;
                 column-gap: 15px;
+                margin: 10px 0px 10px 0px;
                 & .localeImg {
                     width: 60px;
                     height: 50px;
@@ -28,12 +38,11 @@
             }
         }
         & .themes {
-            margin-top: 10px;
             cursor: pointer;
             & .swipeTheme {
+                margin: 10px 0 10px 10px;
                 background-color: transparent;
                 border-radius: 5px;
-                margin-right: 5px;
             }
             & .swipeTheme:hover {
                 background-color: rgb(255, 208, 0);
@@ -41,10 +50,15 @@
             }
         }
         & .info {
-            margin-top: 10px;
+            & .profileForm {
+                padding: 0px 10px 0px 10px;
+            }
         }
         & .management {
-            margin-top: 10px;
+            margin: 10px 0px 10px 0px;
+            & .accountForm {
+                padding: 0px 10px 0px 10px;
+            }
             & .updateSatus {
                 color: green;
                 background-color: rgba(65, 223, 86, 0.3);
@@ -53,35 +67,17 @@
                 margin-top: 2px;
             }
             & .infoText {
-                margin-top: 15px;
+                margin-top: 10px;
                 & .description {
+                    padding: 0px 10px 0px 10px;
+                    text-align: justify;
                     font-size: 16px;
                     margin: 10px 0px 10px 0px;
+                    & .actions {
+                        margin-top: 10px;
+                    }
                 }
             }
-        }
-        & .filters {
-            & .filter {
-                display: flex;
-                column-gap: 5px;
-            }
-            margin-bottom: 10px;
-        }
-    }
-}
-
-
-@media screen and (max-width: 600px) {
-    .settings {
-        & .settingsMenus {
-            grid-template-columns: 100%;
-        }
-        & .menu {
-            padding-left: 3%;
-            display: flex;
-            column-gap: 15px;
-            height: 50px;
-            font-size: 20px;
         }
     }
 }

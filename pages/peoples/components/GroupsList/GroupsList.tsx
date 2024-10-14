@@ -32,6 +32,10 @@ export default function GroupsList () {
     const handleCrateNewGroup = () => {
         setIsCreateModalOpen(true);
     };
+    
+    const handleCloseCreatingGroupForm = () => {
+        setIsCreateModalOpen(false);
+    };
 
     useEffect(() => {
         getGroupsList();
@@ -56,7 +60,7 @@ export default function GroupsList () {
                     typeOfActions='none'
                 >
                     <Suspense fallback={<CustomLoader />}>
-                        <CreateNewGroupForm />
+                        <CreateNewGroupForm handleCloseForm={handleCloseCreatingGroupForm} />
                     </Suspense>
                 </CustomModal>
             }

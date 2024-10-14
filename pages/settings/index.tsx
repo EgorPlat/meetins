@@ -64,7 +64,7 @@ export default function Settings(): JSX.Element {
             <div className={`${s.settings}`}>
                 <div className={`${s.formAndInfo}`}>
                     <div className={s.filters}>
-                        <h4 className={s.title}>
+                        <div className={s.title}>
                             {t("Управление фильтрами контента")}
                             <CustomButtonWithHint
                                 bordered={false}
@@ -74,7 +74,7 @@ export default function Settings(): JSX.Element {
                                     "Фильтры контента - это функция, которая дает Вам возможность активировать алгоритм подбора контента на сайте (сообщества, люди, встречи, лента и т.д.) исходя из Ваших настроек профиля (например интересов, закладок, активности). Включая данную функцию важно понимать что количество контента на сайте может уменьшиться, при этом вероятность того что Вам попадется что-то не нужное или Вам не интерсное крайне мала"
                                 }
                             />
-                        </h4>
+                        </div>
                         <div className={s.filter}>
                             <TurnOffOn
                                 inithialStatus={user$?.isFilter}
@@ -83,7 +83,7 @@ export default function Settings(): JSX.Element {
                         </div>
                     </div>
                     <div className={s.locale}>
-                        <h4 className={s.title}>
+                        <div className={s.title}>
                             {t("Выбрать язык")}
                             <CustomButtonWithHint
                                 bordered={false}
@@ -93,7 +93,7 @@ export default function Settings(): JSX.Element {
                                     "Пожалуйста, учитывайте, что при выборе языка, переводится только стандартная часть сайта (подсказки, навигационные меню, заголовки и т.п.). Это значит, что контентная часть страниц, созданная другими пользователями (новости, посты, комментарии и т.п.) переведена не будет."
                                 }
                             />
-                        </h4>
+                        </div>
                         <div className={s.locales}>
                             <div className={s.localeImg}>
                                 <Image src={us} quality={100} width="70" height="50" alt="English" onClick={() => handleChangeLocale("en")} />
@@ -104,7 +104,7 @@ export default function Settings(): JSX.Element {
                         </div>
                     </div>
                     <div className={s.themes}>
-                        <h4 className={s.title}>{t("Темы")}</h4>
+                        <div className={s.title}>{t("Темы")}</div>
                         <button className={s.swipeTheme} onClick={() => handleSwipeTheme("black")}>
                             {t("Тёмная")}
                         </button>
@@ -113,26 +113,29 @@ export default function Settings(): JSX.Element {
                         </button>
                     </div>
                     <div className={s.info}>
-                        <h4 className={s.title}>{t("Информация профиля")}</h4>
+                        <div className={s.title}>{t("Информация профиля")}</div>
                         {isLoad ? <div className={s.profileForm}>
                             <ProfileInfoForm />
                         </div> : <CustomLoader />}
                     </div>
                     <div className={s.management}>
-                        <h4 className={s.title}>{t("Управление аккаунтом")}</h4>
+                        <div className={s.title}>{t("Управление аккаунтом")}</div>
                         <div className={s.manageAcc}>
                             {isLoad ? <div className={s.accountForm}>
                                 <ManageAccountForm />
                             </div> : <CustomLoader />}
                         </div>
                         <div className={s.infoText}>
+                            <div className={s.title}>{t("Удаление аккаунта")}</div>
                             <div className={s.description}>
                                 {t("Вы можете изменить адрес аккаунта на более привлекательный")}.<br />
-                                {t("Другие пользователи смогут найти Вас по адресу")} <b>meetins.ru/{t("адрес")}</b><br />
+                                {t("Другие пользователи смогут найти Вас по адресу")} <b>https://meetins-seven.vercel.app/{t("адрес")}</b><br />
                                 {t("Вы можете удалить свой аккаунт, тогда другие пользователи больше не смогут")}<br />
                                 {t("Вас найти на нашем сайте")}.
+                                <div className={s.actions}>
+                                    <CustomButton text={t("Удалить аккаунт")} onClick={() => changeModal(true)} />
+                                </div>
                             </div>
-                            <CustomButton text={t("Удалить аккаунт")} onClick={() => changeModal(true)} />
                         </div>
                     </div>
                 </div>
