@@ -23,6 +23,7 @@ import "regenerator-runtime/runtime";
 import "../node_modules/reseter.css/css/reseter.min.css";
 import CustomModal from "../shared/ui/CustomModal/CustomModal";
 import { MusicControlBlock } from "../widgets/MusicControlBlock/musicControlBlock";
+import { currentNotifications } from "../global/store/notifications_model";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -31,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const router = useRouter();
     const isVideoCallOpened$ = useUnit(isVideoCallOpened);
+    const currentNotifications$ = useUnit(currentNotifications);
     const { isMobile, isUnAdaptive } = useResize();
     const isCookieModalNeededToShow =
         router.asPath === "/login" ||
@@ -68,7 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
             </Head>
             <Component {...pageProps} />
-            <NotificationBlock />
+            { currentNotifications$.length !== 0 && <NotificationBlock /> }
             <MusicControlBlock />
             <VideoCallModal isOpen={isVideoCallOpened$} />
             <CustomModal
@@ -92,4 +94,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-

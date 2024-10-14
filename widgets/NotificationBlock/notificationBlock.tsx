@@ -15,7 +15,7 @@ export default function NotificationBlock() {
     return (
         <div className={s.errorBlock}>
             {
-                currentNotifications$.map((notification, index) => (
+                currentNotifications$.map((notification) => (
                     <Notification
                         handleRemove={handleRemove}
                         notification={notification} 
