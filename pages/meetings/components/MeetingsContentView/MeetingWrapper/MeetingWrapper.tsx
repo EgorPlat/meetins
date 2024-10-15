@@ -28,7 +28,7 @@ export default function MeetingWrapper(props: {
                         </div>
                         <div
                             className={s.meetingImage}
-                            style={{backgroundImage: `url(${baseURL + props.meeting?.preview})`}}
+                            style={{ backgroundImage: `url(${baseURL + props.meeting?.preview})` }}
                         >
                         </div>
                     </div>
@@ -86,7 +86,7 @@ export default function MeetingWrapper(props: {
             <div className={s.meetingWrapper} key={String(props.meeting?.date)}>
                 <div 
                     className={s.meetingImage}
-                    style={{backgroundImage: `url(${baseURL + props.meeting?.preview})`}}
+                    style={{ backgroundImage: `url(${baseURL + props.meeting?.preview})` }}
                 >
                 </div>
                 <div className={s.meetingDescription}>

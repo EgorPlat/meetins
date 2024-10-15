@@ -115,6 +115,12 @@ export const $markedUsersInfo = createStore<IMarkedUserInfo[]>([]).on(setMarkedU
     return usersInfo;
 })
 
+export const setIsInithialUserDataLoaded = createEvent<boolean>()
+export const $isInithialUserDataLoaded = createStore<boolean>(false).on(setIsInithialUserDataLoaded, (_, status) => {
+    return status;
+})
+
+
 export const getUserInterests = createEffect(async (userInterests) => {
     const response = await instance.post("interests/get-ineterests-by-id", JSON.stringify({ interests: userInterests }));
     if (response.status <= 217) {
@@ -170,6 +176,7 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
     const instanseRouter$ = instanseRouter.getState();
     const savedRoute = localStorage.getItem("previousPage");
     setIsUserLoaded(false);
+    setIsInithialDataLoaded(false);
     getUserData().then((res) => {
         if (res.status === 200) {
             setIsInithialDataLoaded(true);

@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
-import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isVideoCallOpened, setIsMobile } from "../global/store/store";
+import { $scrollPageBlocked, getInitialUserDataAndCheckAuth, isInithialDataLoaded, isVideoCallOpened, setIsMobile } from "../global/store/store";
 import { connection } from "../global/store/connection_model";
 import { useUnit } from "effector-react";
 import { detectUserLanguage } from "../shared/helpers/helper";
@@ -24,15 +24,17 @@ import "../node_modules/reseter.css/css/reseter.min.css";
 import CustomModal from "../shared/ui/CustomModal/CustomModal";
 import { MusicControlBlock } from "../widgets/MusicControlBlock/musicControlBlock";
 import { currentNotifications } from "../global/store/notifications_model";
+import CustomLoader from "../shared/ui/CustomLoader/CustomLoader";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
     const connection$ = useUnit(connection);
     const isScrollPageBlocked = useUnit($scrollPageBlocked);
-
-    const router = useRouter();
     const isVideoCallOpened$ = useUnit(isVideoCallOpened);
     const currentNotifications$ = useUnit(currentNotifications);
+    const isInithialDataLoaded$ = useUnit(isInithialDataLoaded);
+
+    const router = useRouter();
     const { isMobile, isUnAdaptive } = useResize();
     const isCookieModalNeededToShow =
         router.asPath === "/login" ||
@@ -57,6 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         setIsMobile(isMobile);
     }, [isMobile, isUnAdaptive]);
 
+    if (!isInithialDataLoaded$) return <CustomLoader />
     return (
         <Layout>
             <Head>

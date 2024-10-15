@@ -26,10 +26,17 @@
             padding: 15px;
             position: relative;
             align-items: center;
-            & .logoWrapper {
+            & .headerWrapper {
+                font-size: 20px;
                 width: 100%;
                 display: grid;
-                justify-items: left;
+                align-items: center;
+                column-gap: 10px;
+                grid-template-columns: 55px calc(100% - 55px);
+                & .avatar {
+                    border-radius: 50%;
+                    border: 1px solid gray;
+                }
             }
             & .leftNavMenu {
                 margin-top: 30px;
@@ -39,7 +46,7 @@
                 right: 10px;
                 bottom: 10px;
                 & .exitTitle {
-                    font-size: 20px;
+                    font-size: 18px;
                 }
             }
         }

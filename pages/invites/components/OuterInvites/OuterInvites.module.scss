@@ -25,10 +25,12 @@
                 flex-direction: column;
                 row-gap: 10px;
                 & .eventTitle {
+                    text-align: justify;
                     font-size: 16px;
                     color: gray;
                 }
                 & .eventDescription {
+                    text-align: justify;
                     font-size: 14px;
                 }
                 & .eventSender {
