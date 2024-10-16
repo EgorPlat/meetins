@@ -17,7 +17,6 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
 
     const [activeImageId, setActiveImageId] = useState<number>(0);
     const [touchXData, setTouchXData] = useState<number>(0);
-    const [params, setParams] = useState({ width, height });
     const isMobile$ = useUnit(isMobile);
 
     const updateActiveImage = (newActiveImageId: number) => {
@@ -49,10 +48,6 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
     };
 
     useEffect(() => {
-        if (isMobile$) setParams({ ...params, width: "300px " });
-    }, [isMobile$]);
-
-    useEffect(() => {
         if (autoSwapTime) {
             const interval = setInterval(() => {
                 if (activeImageId === files.length - 1) {
@@ -69,79 +64,89 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
     }, [activeImageId, autoSwapTime]);
 
     return (
-        <div className={s.customSlider}>
-            <div className={s.customSliderSlides}
-                style={{ width: params.width }}
-            >
-                {
-                    files.map(el => (
-                        <div
-                            className={s.customSliderCurrentImage}
-                            style={{
-                                transform: `translateX(-${activeImageId * 100}%)`,
-                                transition: "0.5s"
-                            }}
-                            key={el.src}
-                        >
-                            {
-                                el.type.includes("image") ?
-                                    <img
-                                        src={el.src}
-                                        width={params.width}
-                                        height={height}
-                                        alt="Главное изображение"
-                                        onTouchStart={handleTouchStart}
-                                        onTouchEnd={handleTouchEnd}
-                                        onClick={(e) => e.preventDefault()}
-                                    />
-                                    : el.type.includes("video") ?
-                                        <video
-                                            src={el.src}
-                                            width={params.width}
-                                            height={height}
-                                            onTouchStart={handleTouchStart}
-                                            onTouchEnd={handleTouchEnd}
-                                            controls={true}
-                                            onClick={(e) => e.preventDefault()}
-                                        />
-                                        : el.type.includes("audio") ?
+        <div className={s.wrapper}>
+            <div className={s.slider} style={isMobile$ ? { width: "100%" } : { width }}>
+                <div className={s.slides}>
+                    <>
+                        {
+                            files.map(file => {
+                                const style = {
+                                    transform: `translateX(-${activeImageId * 100}%)`,
+                                    transition: "0.5s",
+                                };
+                                const key = file.src;
+
+                                if (file.type.includes("image")) {
+                                    return (
+                                        <div className={s.slide} key={key}>
+                                            <img
+                                                src={file.src}
+                                                style={style}
+                                                alt={`Изображение ${file.src}`}
+                                                onTouchStart={handleTouchStart}
+                                                onTouchEnd={handleTouchEnd}
+                                                onClick={(e) => e.preventDefault()}
+                                            />
+                                        </div>
+                                    )
+                                }
+                                if (file.type.includes("video")) {
+                                    return (
+                                        <div className={s.slide} key={key}>
+                                            <video
+                                                src={file.src}
+                                                style={style}
+                                                onTouchStart={handleTouchStart}
+                                                onTouchEnd={handleTouchEnd}
+                                                controls={true}
+                                                onClick={(e) => e.preventDefault()}
+                                            />
+                                        </div>
+                                    )
+                                }
+                                if (file.type.includes("audio")) {
+                                    return (
+                                        <div className={s.slide} key={key}>
                                             <audio
-                                                style={{ width: params.width, height }}
-                                                src={el.src}
+                                                src={file.src}
+                                                style={style}
                                                 onTouchStart={handleTouchStart}
                                                 onTouchEnd={handleTouchEnd}
                                                 controls
                                             />
-                                            :
-                                            <div
-                                                style={{
-                                                    minHeight: "100px",
-                                                    width: params.width,
-                                                    textAlign: "center",
-                                                }}
-                                                onTouchStart={handleTouchStart}
-                                                onTouchEnd={handleTouchEnd}
-                                            >
-                                                <div>Вложение (файл) - {el.type}</div>
-                                                <a href={el.src} target='__blank'>Скачать</a>
-                                            </div>
-                            }
-                        </div>
-                    ))
-                }
-            </div>
-            <div className={s.customSliderState}>
-                {
-                    files.map((el, index) => (
-                        <div
-                            className={
-                                index === activeImageId ? s.customSliderRoundActive : s.customSliderRoundInactive
-                            }
-                            onClick={() => updateActiveImage(index)}
-                            key={index}
-                        ></div>
-                    ))
-                }
+                                        </div>
+                                    )
+                                }
+                                return (
+                                    <div className={s.slide} key={key}>
+                                        <div
+                                            style={style}
+                                            className={s.addition}
+                                            onTouchStart={handleTouchStart}
+                                            onTouchEnd={handleTouchEnd}
+                                        >
+                                            <div>Вложение (файл) - {file.type}</div>
+                                            <a href={file.src} target='__blank'>Скачать</a>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                    </>
+                </div>
+                <div className={s.actions}>
+                    {
+                        files.map((el, index) => (
+                            <div
+                                className={
+                                    index === activeImageId ? s.activeRound : s.inActiveRound
+                                }
+                                onClick={() => updateActiveImage(index)}
+                                key={index}
+                            ></div>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     )

@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         setIsMobile(isMobile);
     }, [isMobile, isUnAdaptive]);
 
-    if (!isInithialDataLoaded$) return <CustomLoader />
+    if (!isInithialDataLoaded$) return <Layout><CustomLoader /></Layout>
     return (
         <Layout>
             <Head>

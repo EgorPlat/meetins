@@ -34,6 +34,7 @@
     display: grid;
     grid-auto-rows: min-content;
     margin-bottom: 20px;
+    width: 98%;
     & .params {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -120,7 +121,7 @@
     }
     .searching {
         & .params {
-            grid-template-columns: 49% 49%;
+            grid-template-columns: 1fr 1fr;
         }
     }
 }
