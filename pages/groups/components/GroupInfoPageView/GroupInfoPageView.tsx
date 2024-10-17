@@ -28,7 +28,7 @@ export default function GroupInfoPageView(props: {
     videoPhotoAttachmentsInfo: { images: IGroupFile[], videos: IGroupFile[], attachments: any[] }
 }) {
     const postsFromNewToPrevious = props.groupInfo?.posts?.sort((p, n) => {
-        if (p.date > n.date) return -1; else 1
+        if (p.date > n.date) return -1; else return 1;
     });
 
     if (props.groupInfo) {
@@ -36,8 +36,16 @@ export default function GroupInfoPageView(props: {
             <div className={s.groupInfo}>
                 <div
                     className={s.head}
-                    style={{ backgroundImage: `url(${baseURL}${props.groupInfo?.headAvatar})` }}
+                    style={
+                        props.groupInfo?.headAvatar 
+                            ? { backgroundImage: `url(${baseURL}${props.groupInfo?.headAvatar})` }
+                            : { border: "1px dashed var(--text-color)" }
+                    }
                 >
+                    { 
+                        !props.groupInfo?.headAvatar && 
+                        <span>Создатель сообщества не загрузил изображение...</span> 
+                    }
                     <div className={s.subHead}>
                         <div
                             className={s.mainAvatar}
@@ -81,6 +89,13 @@ export default function GroupInfoPageView(props: {
                 </div>
                 <div className={s.content}>
                     <div className={s.postList}>
+                        {
+                            postsFromNewToPrevious?.length === 0 &&
+                            <div className={s.noPosts}>
+                                <div className={s.main}>В сообществе пока нет ни одной публикации...</div>
+                                <div className={s.text}>Вы можете опубликовать запись, даже если Вы не являетесь участником.</div>
+                            </div>
+                        }
                         {
                             postsFromNewToPrevious?.map(post => (
                                 <div className={s.post} key={post.id}>
@@ -136,13 +151,13 @@ export default function GroupInfoPageView(props: {
                         <div className={s.title}>
                             <span>Участники: {props.groupMembersInfo?.length}</span>
                             {
-                                props.groupMembersInfo?.length >= 4 && 
+                                props.groupMembersInfo?.length >= 3 && 
                                     <span className={s.allMembers} onClick={props.handleOpenMembersList}> Посмотреть всех</span>
                             }
                         </div>
                         <div className={s.members}>
                             {
-                                props.groupMembersInfo?.slice(0, 4)?.map(el => (
+                                props.groupMembersInfo?.slice(0, 3)?.map(el => (
                                     <div className={s.member} key={el.login}>
                                         <div
                                             className={s.image}

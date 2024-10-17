@@ -17,9 +17,7 @@ export default function AddNewPostIntoGroupForm(props: {
     const [selectedMediaContent, setSelectedMediaContent] = useState<{ file: File, blob: string }[]>([]);
     
     const onChangePost = (data: {name: string, description: string, media: File[]}) => {
-        console.log(selectedMediaContent);
-        
-        /*const filesFromInput = selectedMediaContent.map(el => { 
+        const filesFromInput = selectedMediaContent.map(el => { 
             return el.file;
         });
         const mediaData = validateFilesFromInputAndStructuring(filesFromInput);
@@ -27,7 +25,7 @@ export default function AddNewPostIntoGroupForm(props: {
         mediaData.dataForServer.append("description", data.description);
         mediaData.dataForServer.append("groupId", props.groupId);
         createNewPostInGroup(mediaData.dataForServer);
-        props.handleCloseModal();*/
+        props.handleCloseModal();
     };
 
     const onFileChanges = (files: FileList) => {

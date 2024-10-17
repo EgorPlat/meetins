@@ -11,22 +11,20 @@
         min-height: 120px;
         border-radius: 10px;
         position: relative;
-
         & .subHead {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            grid-template-rows: auto auto;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            column-gap: 5px;
             align-items: center;
             position: absolute;
             top: 80px;
-            height: 100px;
-            width: 100%;
+            width: 100.3%;
 
             & .title {
                 font-size: 20px;
-                margin-top: 10px;
                 padding: 5px;
-                background-color: var(--bg-color);
+                margin-top: 5px;
                 border-radius: 5px;
             }
 
@@ -34,6 +32,7 @@
                 width: 100px;
                 height: 100px;
                 border-radius: 50%;
+                margin-left: 10px;
                 border: 1px solid rgba(128, 128, 128, 0.784);
                 background-size: cover;
             }
@@ -41,15 +40,15 @@
             & .settings {
                 cursor: pointer;
                 position: absolute;
-                bottom: -5px;
-                right: 5px;
+                bottom: 10px;
+                right: 10px;
             }
         }
     }
 
     & .description {
         text-indent: 25px;
-        margin-top: 70px;
+        margin-top: 80px;
         text-align: justify;
     }
 
@@ -90,6 +89,21 @@
         grid-template-rows: max-content;
         column-gap: 10px;
         justify-content: center;
+        & .noPosts {
+            height: 100%;
+            background-color: var(--bg-color-block);
+            border-radius: 10px;
+            padding: 34px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 5px;
+            align-items: center;
+            justify-content: center;
+            & .text {
+                color: gray;
+                text-align: center;
+            }
+        }
         & .postList {
             display: grid;
             grid-template-columns: 1fr;
@@ -165,8 +179,8 @@
             height: max-content;
             background-color: var(--bg-color-block);
             border-radius: 10px;
-            width: 250px;
-            padding: 10px 5px 10px 5px;
+            width: 245px;
+            padding: 10px;
 
             & .title {
                 display: grid;
@@ -202,7 +216,6 @@
                     }
 
                     & .name {
-                        margin-top: 5px;
                         width: 100%;
                         text-align: center;
                     }
@@ -238,8 +251,23 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 406px) {
     .groupInfo {
+        font-size: 14px;
+        & .head {
+            & .subHead {
+                & .mainAvatar {
+                    width: 80px;
+                    height: 80px;
+                }
+                & .title {
+                    font-size: 18px;
+                }
+            }
+        }
+        & .description {
+            margin-top: 60px;
+        }
         & .postForm {
             & .countPosts {
                 margin-top: 10px;

@@ -15,6 +15,9 @@ export default function GroupTalks(props: {
             <div className={s.createTalk} onClick={props.handeOpenTalkCreation}>Начать обсуждение</div>
             <div className={s.talksList}>
                 {
+                    props.groupTalks?.length === 0 && <span className={s.warning}>В сообществе пока нет обсуждений</span>
+                }
+                {
                     props.groupTalks?.map(el => (
                         <div 
                             className={s.talk} 
