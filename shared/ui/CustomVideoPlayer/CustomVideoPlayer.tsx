@@ -3,6 +3,8 @@ import s from "./CustomVideoPlayer.module.scss";
 import { IoIosPlay } from "react-icons/io";
 import { TbPlayerPauseFilled } from "react-icons/tb";
 import { getTimeDataString } from "../../helpers/helper";
+import { FaRegCirclePlay } from "react-icons/fa6";
+import { FaRegPauseCircle } from "react-icons/fa";
 
 interface ICustomVideoPlayerProps {
     src: string
@@ -55,6 +57,13 @@ export default function CustomVideoPlayer({
                 }
                 <progress value={timeData.currentTime} max={timeData.duration}></progress>
                 <span>{videoFullTimer}</span>
+            </div>
+            <div className={s.centerControl}>
+                {
+                    isPlaying
+                        ? <FaRegPauseCircle onClick={handleStopPlaying} fontSize={30} />
+                        : <FaRegCirclePlay onClick={handleStartPlaying} fontSize={30} />
+                }
             </div>
         </div>
     )
