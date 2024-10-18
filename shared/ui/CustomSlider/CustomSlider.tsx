@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import s from "./CustomSlider.module.scss";
 import { useUnit } from "effector-react";
 import { isMobile } from "../../../global/store/store";
+import CustomVideoPlayer from "../CustomVideoPlayer/CustomVideoPlayer";
 
 interface ICustomSliderProps {
     files: {
@@ -78,10 +79,9 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
 
                                 if (file.type.includes("image")) {
                                     return (
-                                        <div className={s.slide} key={key}>
+                                        <div className={s.slide} key={key} style={style}>
                                             <img
                                                 src={file.src}
-                                                style={style}
                                                 alt={`Изображение ${file.src}`}
                                                 onTouchStart={handleTouchStart}
                                                 onTouchEnd={handleTouchEnd}
@@ -92,24 +92,24 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
                                 }
                                 if (file.type.includes("video")) {
                                     return (
-                                        <div className={s.slide} key={key}>
-                                            <video
+                                        <div className={s.slide} key={key} style={style}>
+                                            {/*<video
                                                 src={file.src}
                                                 style={style}
                                                 onTouchStart={handleTouchStart}
                                                 onTouchEnd={handleTouchEnd}
                                                 controls={true}
                                                 onClick={(e) => e.preventDefault()}
-                                            />
+                                            />*/}
+                                            <CustomVideoPlayer src={file.src} />
                                         </div>
                                     )
                                 }
                                 if (file.type.includes("audio")) {
                                     return (
-                                        <div className={s.slide} key={key}>
+                                        <div className={s.slide} key={key} style={style}>
                                             <audio
                                                 src={file.src}
-                                                style={style}
                                                 onTouchStart={handleTouchStart}
                                                 onTouchEnd={handleTouchEnd}
                                                 controls
@@ -118,9 +118,8 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
                                     )
                                 }
                                 return (
-                                    <div className={s.slide} key={key}>
+                                    <div className={s.slide} key={key} style={style}>
                                         <div
-                                            style={style}
                                             className={s.addition}
                                             onTouchStart={handleTouchStart}
                                             onTouchEnd={handleTouchEnd}

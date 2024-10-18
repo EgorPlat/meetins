@@ -59,7 +59,7 @@
         }
 
         & .postActions {
-            font-weight: 300;
+            font-weight: 400;
             display: flex;
             column-gap: 15px;
             align-items: center;
@@ -78,7 +78,7 @@
                 align-items: center;
                 position: absolute;
                 right: 0;
-
+                font-weight: 500;
                 & .postActionsViewsCount {
                     font-size: 16px;
                 }

@@ -6,7 +6,6 @@
     margin: 1%;
     color: white;
     position: relative;
-    perspective: 200px;
     transform-style: preserve-3d;
     transition: .5s;
     & h2 {
@@ -25,7 +24,7 @@
 }
 
 .card:hover {
-    transform: perspective(800px) rotateY(15deg);
-    transition: transform .5s;
+    transform: perspective(2000px) rotateY(15deg);
+    transition: transform .3s;
     border: 3px solid var(--default-color);
 }

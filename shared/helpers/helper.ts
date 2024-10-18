@@ -56,6 +56,22 @@ export const getTimerFromSeconds = (seconds: number) => {
     return `${maxMinutes}:${maxSeconds}`;
 };
 
+export const getTimeDataString = (currentTime: number, duration: number) => {
+
+    let maxMinutes: string | number = Math.floor(duration / 60);
+    let maxSeconds: string | number = Math.floor(duration - maxMinutes * 60);
+
+    let currentMinutes: string | number = Math.floor(currentTime / 60);
+    let currentSeconds: string | number = Math.floor(currentTime - maxMinutes * 60);
+
+    if (maxMinutes <= 9) maxMinutes = `0${maxMinutes}`;
+    if (maxSeconds <= 9) maxSeconds = `0${maxSeconds}`;
+    if (currentMinutes <= 9) currentMinutes = `0${currentMinutes}`;
+    if (currentSeconds <= 9) currentSeconds = `0${currentSeconds}`;
+
+    return `${currentMinutes}:${currentSeconds} / ${maxMinutes}:${maxSeconds}`;
+};
+
 export const destrucutreFilesInGroupPost = (groupInfo: IGroup) => {
 
     let mainInfo = {

@@ -124,13 +124,16 @@ export default function GroupInfoPageView(props: {
                                         {post?.description}
                                     </div>
                                     <div className={s.actions}>
-                                        <div className={s.likes}>
+                                        <div 
+                                            className={
+                                                post.likes.includes(props.authedUser.userId)
+                                                    ? `${s.likes} ${s.active}`
+                                                    : `${s.likes} ${s.inActive}`
+                                            }
+                                            onClick={() => props.handleLikePost(post, props.groupInfo?.groupId)}
+                                        >
                                             {post.likes.length}
-                                            <AiFillHeart
-                                                onClick={() => props.handleLikePost(post, props.groupInfo?.groupId)}
-                                                fontSize={25}
-                                                color={post.likes.includes(props.authedUser.userId) ? "red" : ""}
-                                            />
+                                            <AiFillHeart fontSize={25} />
                                         </div>
                                         <div className={s.comments} onClick={() => props.handleOpenComments(post.id)}>
                                             {post.comments.length}

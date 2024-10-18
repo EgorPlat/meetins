@@ -16,7 +16,7 @@ export default function Card(props: ICardProps): JSX.Element {
 
     return (
         <div 
-            style = {{ backgroundImage: `url(${props.img_src})`, backgroundSize: "cover",}} 
+            style = {{ backgroundImage: `url(${props.img_src})`, backgroundSize: "cover" }} 
             className={s.card} 
             onClick = {pushToCategory}
         >

@@ -61,8 +61,8 @@ export default function LentaList(props: {
                             </div>
                             <div className={s.postMoreInfo}>
                                 <div className={s.postLikes}>
-                                    <AiFillHeart color="red" />
-                                    {el.postLikes.length}
+                                    <AiFillHeart fontSize={25} />
+                                    <span>{el.postLikes.length}</span>
                                 </div>
                                 <div className={s.postDate}>
                                     Опубликовано: {customizeDateToYYYYMMDDHHMMFormat(el.postDate)}

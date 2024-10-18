@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/images/logo.svg";
 import s from "./confirmation.module.scss";
