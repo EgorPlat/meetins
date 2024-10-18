@@ -7,8 +7,6 @@ import { addNotification } from "../../../../global/store/notifications_model";
 import { useUserMediaTracks } from "../../../../shared/hooks/useUserMediaTracks";
 import { CiFileOn, CiMicrophoneOn } from "react-icons/ci";
 import { VscSend } from "react-icons/vsc";
-import { type } from "os";
-import { blob } from "stream/consumers";
 
 export default function ChatMessageForm(
     props: {
@@ -51,7 +49,7 @@ export default function ChatMessageForm(
         handleActivateMedia(() => {});
     };
 
-    const onSendNewFile = async (event: ChangeEvent<HTMLInputElement>) => {
+    const onSendNewFile = (event: ChangeEvent<HTMLInputElement>) => {
         if (props.isChatExists) {
             const file = event.target.files[0];
             createdSendFileAndUploadActiveChat(file);
@@ -63,16 +61,6 @@ export default function ChatMessageForm(
                 time: 3000
             });
         }
-    };
-
-    function blobToBase64(blob) {
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        return new Promise(resolve => {
-            reader.onloadend = () => {
-                resolve(reader.result);
-            };
-        });
     };
 
     useEffect(() => {
@@ -100,7 +88,7 @@ export default function ChatMessageForm(
             <div className={s.formInput}>
                 <textarea ref={messageRef} placeholder={t(props.placeholder)} />
                 <div className={s.fileInput}>
-                    <CiFileOn fontSize={30} color="gray" />
+                    <CiFileOn className={s.fileIcon} fontSize={30} color="gray" />
                     <input type="file" onChange={(e) => onSendNewFile(e)} />
                 </div>
                 <Emoji addSmileHandler={addSmileHandler} />
@@ -108,6 +96,7 @@ export default function ChatMessageForm(
                     !isMediaRecorderActive
                         ?
                         <CiMicrophoneOn
+                            className={s.audioIcon}
                             color="gray"
                             fontSize={32}
                             onClick={handleMediaRecorder}
@@ -117,7 +106,7 @@ export default function ChatMessageForm(
                 }
                 {
                     props.isLoaded
-                        ? <VscSend fontSize={30} onClick={sendForm} color="gray" />
+                        ? <VscSend className={s.sendIcon} fontSize={30} onClick={sendForm} color="gray" />
                         : <Loader />
                 }
             </div>

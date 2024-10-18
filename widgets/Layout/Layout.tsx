@@ -1,4 +1,3 @@
-// eslint disable
 import { useRouter } from "next/router";
 import { $user, baseURL, isMobile, setCurrentPage, setIsScrollPageBlocked } from "../../global/store/store";
 import { useEffect } from "react";

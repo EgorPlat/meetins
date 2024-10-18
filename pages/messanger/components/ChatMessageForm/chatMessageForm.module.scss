@@ -13,6 +13,9 @@
         border: none;
         font-size: 16px;
         height: 50px;
+        & .audioIcon, .fileIcon, .sendIcon {
+            cursor: pointer;
+        }
         & textarea {
             width: calc(100% - 110px);
             border: none;
@@ -21,8 +24,8 @@
         }
         & .fileInput {
             position: relative;
-            & input[type='file'] {
-                width: 40px;
+            & input[type="file"] {
+                width: 30px;
                 left: 0;
                 position: absolute;
                 opacity: 0;

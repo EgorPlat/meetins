@@ -6,18 +6,13 @@
     overflow-y: scroll;
     border-radius: 5px;
     background-color: var(--bg-color);
+    display: flex;
+    flex-wrap: wrap;
     & .defaultEmojiInList:hover {
         cursor: pointer;
     }
     & .defaultEmojiInList {
         font-size: 22px;
-        float: left;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .emojiList { 
-        float: right;
     }
 }
 @media screen and (max-width: 810px) {
