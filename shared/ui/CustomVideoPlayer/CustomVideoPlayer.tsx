@@ -55,7 +55,7 @@ export default function CustomVideoPlayer({
                         ? <TbPlayerPauseFilled onClick={handleStopPlaying} fontSize={30} />
                         : <IoIosPlay onClick={handleStartPlaying} fontSize={30} />
                 }
-                <progress value={timeData.currentTime} max={timeData.duration}></progress>
+                <progress className={s.progress} value={timeData.currentTime} max={timeData.duration}></progress>
                 <span>{videoFullTimer}</span>
             </div>
             <div className={s.centerControl}>

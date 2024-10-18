@@ -75,7 +75,7 @@ export default function PostsList(props: { currentUser: User, authedUser: User }
                                                     }
                                                 })
                                             }
-                                            width='450px'
+                                            width='350px'
                                             height='300px'
                                         />
                                 }
@@ -88,7 +88,7 @@ export default function PostsList(props: { currentUser: User, authedUser: User }
                                     className={s.postActionsLikes} 
                                     style={el.likes.includes(props.authedUser.userId) 
                                         ? { color: "red" }
-                                        : { color: "var(--text-color)"}
+                                        : { color: "var(--text-color)" }
                                     }
                                 >
                                     <AiFillHeart
