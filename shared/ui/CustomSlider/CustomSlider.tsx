@@ -93,15 +93,13 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
                                 if (file.type.includes("video")) {
                                     return (
                                         <div className={s.slide} key={key} style={style}>
-                                            {/*<video
-                                                src={file.src}
-                                                style={style}
+                                            <div
+                                                className={s.videoWrapper}
                                                 onTouchStart={handleTouchStart}
                                                 onTouchEnd={handleTouchEnd}
-                                                controls={true}
-                                                onClick={(e) => e.preventDefault()}
-                                            />*/}
-                                            <CustomVideoPlayer src={file.src} />
+                                            >
+                                                <CustomVideoPlayer src={file.src} />
+                                            </div>
                                         </div>
                                     )
                                 }

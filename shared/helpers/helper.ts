@@ -58,6 +58,8 @@ export const getTimerFromSeconds = (seconds: number) => {
 
 export const getTimeDataString = (currentTime: number, duration: number) => {
 
+    if (!currentTime || !duration) return "00:00/00:00";
+
     let maxMinutes: string | number = Math.floor(duration / 60);
     let maxSeconds: string | number = Math.floor(duration - maxMinutes * 60);
 

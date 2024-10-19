@@ -25,6 +25,7 @@ import { connection } from "../../../../global/store/connection_model";
 import { addNotification } from "../../../../global/store/notifications_model";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 import CustomAudioTrack from "../../../../shared/ui/CustomAudioTrack/CustomAudioTrack";
+import CustomVideoPlayer from "../../../../shared/ui/CustomVideoPlayer/CustomVideoPlayer";
 
 interface IChatZoneProps {
     activeChat$: IMyDialog
@@ -190,11 +191,10 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                                                 isTypeOfFileAreVideo(message.type)
                                                 &&
                                                 <div className={s.messageWithVideo}>
-                                                    <video
-                                                        controls
+                                                    <CustomVideoPlayer
                                                         src={baseURL + message.content}
-                                                        width="200px"
-                                                    ></video>
+                                                    />
+                                                    
                                                 </div>
                                             }
                                             {

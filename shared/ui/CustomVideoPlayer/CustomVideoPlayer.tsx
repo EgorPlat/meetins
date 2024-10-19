@@ -5,13 +5,14 @@ import { TbPlayerPauseFilled } from "react-icons/tb";
 import { getTimeDataString } from "../../helpers/helper";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { FaRegPauseCircle } from "react-icons/fa";
+import { BsArrowsFullscreen } from "react-icons/bs";
 
 interface ICustomVideoPlayerProps {
-    src: string
+    src: string,
 }
 
 export default function CustomVideoPlayer({ 
-    src 
+    src,
 }: ICustomVideoPlayerProps) {
 
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -57,12 +58,15 @@ export default function CustomVideoPlayer({
                 }
                 <progress className={s.progress} value={timeData.currentTime} max={timeData.duration}></progress>
                 <span>{videoFullTimer}</span>
+                <div className={s.fullScreen}>
+                    <BsArrowsFullscreen fontSize={20} />
+                </div>
             </div>
             <div className={s.centerControl}>
                 {
                     isPlaying
-                        ? <FaRegPauseCircle onClick={handleStopPlaying} fontSize={30} />
-                        : <FaRegCirclePlay onClick={handleStartPlaying} fontSize={30} />
+                        ? <FaRegPauseCircle onClick={handleStopPlaying} fontSize={50} />
+                        : <FaRegCirclePlay onClick={handleStartPlaying} fontSize={50} />
                 }
             </div>
         </div>

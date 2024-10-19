@@ -2,31 +2,37 @@
     display: flex;
     width: 100%;
     height: 100%;
-    background-color: var(--bg-color);
+    background-color: black;
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    color: white;
     font-size: 16px;
     & video {
         width: 100%;
         height: 100%;
         flex: 1 0 100%;
-        object-fit: fill;
+        object-fit: contain;
         box-sizing: content-box;
     }
     & .controls {
-        display: flex;
+        display: grid;
+        grid-template-columns: 30px calc(100% - 185px) 100px 40px;
         align-items: center;
         column-gap: 5px;
         width: 100%;
         min-height: 30px;
-        background-color: rgba(47, 46, 46, 0.803);
+        background-color: rgb(47, 46, 46);
         position: absolute;
         bottom: 0px;
         padding: 5px;
-    }
-    & .progress {
-        width: 100px;
+        & .fullScreen {
+            display: flex;
+            justify-content: center;
+        }
+        & .progress {
+            width: 100%;
+        }
     }
     & .centerControl {
         display: flex;
