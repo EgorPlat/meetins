@@ -9,25 +9,32 @@ import { baseURL } from "../../../../global/store/store";
 import s from "./CurrentPostComments.module.scss";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 
-export default function CurrentPostComments (props: {post: Post}) {
+export default function CurrentPostComments (props: { 
+    post: Post, 
+    handleCloseCommentsModal: () => void
+}) {
 
     const currentPostComments$ = useUnit(currentPostComments);
     const isCurrentPostCommentsLoaded$ = useUnit(isCurrentPostCommentsLoaded);
     const router = useRouter();
     
     const handleCommentAvatarClick = (comment: PostComment) => {
+        props.handleCloseCommentsModal();
         router.push(`/profile/${comment.commentOwnerLogin}`);
-    }
+    };
+
     useEffect(() => {
         getCurrentPostsComments(props.post.id);
     }, []);
 
     if (!props.post) {
         return null;
-    }
+    };
+
     if (!isCurrentPostCommentsLoaded$) {
         return <CustomLoader />
-    }
+    };
+    
     return (
         <div className={s.commentsList}>
             {

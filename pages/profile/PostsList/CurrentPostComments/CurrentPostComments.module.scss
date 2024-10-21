@@ -13,6 +13,7 @@
         grid-template-columns: 10% 90%;
         grid-column-gap: 10px;
         margin-top: 5px;
+        cursor: pointer;
         & .commentAvatar {
             & img {
                 width: 100%;
@@ -46,6 +47,9 @@
                 white-space: pre-wrap;
             }
         }
+    }
+    & .comment:hover {
+        background-color: rgba(128, 128, 128, 0.241);
     }
 }
 
