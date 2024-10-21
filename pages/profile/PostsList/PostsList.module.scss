@@ -26,7 +26,7 @@
 
         & .postTitle {
             display: grid;
-            grid-template-columns: 65% 35%;
+            grid-template-columns: 60% 40%;
             font-weight: 600;
 
             & .date {
@@ -35,7 +35,9 @@
                 justify-content: right;
                 text-align: right;
                 font-size: 16px;
-                color: grey;
+                column-gap: 5px;
+                color: gray;
+                font-weight: 400;
             }
         }
 

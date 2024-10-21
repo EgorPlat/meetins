@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import s from "./CustomStepper.module.scss";
 import { useTranslation } from "react-i18next";
 
-interface IStep { title: string, component: any, props?: Record<string, any> };
+interface IStep { 
+    title: string,
+    component: any,
+    active?: boolean,
+    props?: Record<string, any>
+};
 interface ICustomStepperProps {
     steps: IStep[],
     center?: boolean

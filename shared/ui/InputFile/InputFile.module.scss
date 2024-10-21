@@ -9,7 +9,7 @@
     justify-content: center;
     justify-items: center;
     & .inputFileTitle {
-        margin-top: 30%;
+        margin-top: 40%;
         font-size: 18px;
     }
     & .inputTypeFile {
@@ -21,19 +21,5 @@
         opacity: 0;
         left: 0;
         top: 0;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .formGroup {
-        width: 100px;
-        height: 100px;
-        & .inputTypeFile {
-            width: 100px;
-            height: 100px;
-        }
-        & .inputFileTitle {
-            font-size: 12px;
-        }
     }
 }

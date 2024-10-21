@@ -13,6 +13,7 @@ import PostCommentForm from "./PostCommentForm/PostCommentForm";
 import CustomModal from "../../../shared/ui/CustomModal/CustomModal";
 import CustomSlider from "../../../shared/ui/CustomSlider/CustomSlider";
 import { useTranslation } from "react-i18next";
+import { GoCalendar } from "react-icons/go";
 
 export default function PostsList(props: { currentUser: User, authedUser: User }): JSX.Element {
 
@@ -57,9 +58,6 @@ export default function PostsList(props: { currentUser: User, authedUser: User }
                             <div className={s.postTitle}>
                                 {el.title}
                                 <span className={s.date}>
-                                    <CgCalendarDates
-                                        fontSize={24}
-                                    />
                                     {customizeDateToYYYYMMDDHHMMFormat(el.date)}
                                 </span>
                             </div>
