@@ -6,6 +6,9 @@ import { IShortEventInfo } from "../../../../entities/events";
 import { customizeDateToYYYYMMDDFormat } from "../../../../shared/functions/getDateInYYYYMMDDFormat";
 import { useTranslation } from "react-i18next";
 import CustomDatePicker from "../../../../shared/ui/CustomDatePicker/CustomDatePicker";
+import { Rating } from "@mui/material";
+import style from "styled-jsx/style";
+import { IoMdStarOutline } from "react-icons/io";
 
 export default function EventsList(props: {
     categoryName: string,
@@ -59,6 +62,18 @@ export default function EventsList(props: {
                                             <p>Возраст для посещения: </p>
                                             <p className={s.age}>
                                                 {event.age_restriction || "0+"} лет
+                                            </p>
+                                        </div>
+                                        <div className={s.eventRating}>
+                                            <p>Рейтинг мероприятия: </p>
+                                            <p className={s.rate}>
+                                                <Rating
+                                                    readOnly
+                                                    name="half-rating" 
+                                                    defaultValue={2.5} 
+                                                    precision={0.5}
+                                                    style={{ color: "var(--default-color)" }}
+                                                />
                                             </p>
                                         </div>
                                         {

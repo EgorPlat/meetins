@@ -8,14 +8,13 @@
     position: relative;
     transform-style: preserve-3d;
     transition: .5s;
-    & h2 {
-        background-color: var(--bg-color-block);
+    justify-content: center;
+    justify-items: center;
+    & .title {
         color: var(--text-color);
         padding: 5px;
-        position: absolute;
-        left: 0px;
-        top: 0px;
         border-radius: 9px 0 10px 0;
+        background-color: rgba(71, 71, 71, 0.592);
     }
     &:hover {
         border-color: 1px solid black;

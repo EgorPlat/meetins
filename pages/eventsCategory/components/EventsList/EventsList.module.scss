@@ -70,7 +70,7 @@
                         font-size: 15px;
                         border: none;
                         border-radius: 100px;
-                        background-color: rgba(59, 160, 255, 0.538);
+                        background-color: rgba(59, 160, 255, 0.695);
                     }
                 }
                 & .eventAge {
@@ -90,6 +90,13 @@
                         text-align: center;
                     }
                 }
+                & .eventRating {
+                    display: flex;
+                    column-gap: 5px;
+                    & .MuiSvgIcon-root {
+                        color: gray;
+                    }
+                }
                 & .eventDates {
                     display: flex;
                     align-content: center;
@@ -97,11 +104,10 @@
                     & .date {
                         display: flex;
                         align-items: center;
-                        font-size: 15px;
-                        background-color: rgba(11, 125, 212, 0.586);
-                        color: white;
-                        padding: 0px 10px 0px 10px;
-                        border-radius: 100px;
+                        font-size: 16px;
+                        //background-color: rgba(11, 125, 212, 0.586);
+                        //padding: 0px 10px 0px 10px;
+                        //border-radius: 100px;
                     }
                 }
                 & .eventActions {

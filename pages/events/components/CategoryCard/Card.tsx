@@ -20,7 +20,7 @@ export default function Card(props: ICardProps): JSX.Element {
             className={s.card} 
             onClick = {pushToCategory}
         >
-            <h2>{props.name}</h2>
+            <div className={s.title}>{props.name}</div>
         </div>
     )
 }
