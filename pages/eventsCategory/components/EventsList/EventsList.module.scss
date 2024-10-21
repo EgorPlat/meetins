@@ -12,7 +12,7 @@
             
         }
     }
-    .list {
+    & .list {
         display: grid;
         grid-template-columns: 1fr;
         margin-bottom: 20px;
@@ -93,8 +93,10 @@
                 & .eventRating {
                     display: flex;
                     column-gap: 5px;
-                    & .MuiSvgIcon-root {
-                        color: gray;
+                    & .icon {
+                        color: var(--default-color);
+                        stroke: var(--default-color);
+                        stroke-width: 0.5px;
                     }
                 }
                 & .eventDates {

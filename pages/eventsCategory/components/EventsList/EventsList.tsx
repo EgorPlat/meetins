@@ -72,7 +72,7 @@ export default function EventsList(props: {
                                                     name="half-rating" 
                                                     defaultValue={2.5} 
                                                     precision={0.5}
-                                                    style={{ color: "var(--default-color)" }}
+                                                    className={s.icon}
                                                 />
                                             </p>
                                         </div>
