@@ -1,14 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { IEventComments, IEventInfoCard } from "../../../../entities/events";
-import s from "./eventBlock.module.scss";
-import EventMoreInfo from "../EventMoreInfo";
+import s from "./EventBlock.module.scss";
 import CustomSlider from "../../../../shared/ui/CustomSlider/CustomSlider";
 import Image from "next/image";
 import { baseURL, isMobile } from "../../../../global/store/store";
 import { useUnit } from "effector-react";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
-
+import EventMoreInfo from "../EventMoreInfo/EventMoreInfo";
 
 export default function EventBlock(props: {
     currentEventById: IEventInfoCard,
@@ -35,7 +34,7 @@ export default function EventBlock(props: {
                                     type: "image"
                                 };
                             })}
-                            width={isMobile$ ? `${window.innerWidth - 20}px` : "300px"}
+                            width={isMobile$ ? "100%" : "85%"}
                             height="300px"
                         />
                     </div>
@@ -75,7 +74,7 @@ export default function EventBlock(props: {
                     }
                 </div>
                 <div className={s.commentsWrapper}>
-                    {props.commentsEvent.length === 0 ? <p>Отзывов пока нет...</p> : <p>Отзывы</p>}
+                    {props.commentsEvent.length === 0 ? <p>Отзывов пока нет...</p> : <p>Отзывы ({props.currentEventById.comments_count}) </p>}
                     {
                         props.commentsEvent?.map(comment => (
                             <div className={s.wrapper} key={comment.id}>

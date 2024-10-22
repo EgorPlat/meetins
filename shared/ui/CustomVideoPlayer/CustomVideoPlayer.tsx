@@ -9,10 +9,14 @@ import { BsArrowsFullscreen } from "react-icons/bs";
 
 interface ICustomVideoPlayerProps {
     src: string,
+    width?: string,
+    height?: string
 }
 
 export default function CustomVideoPlayer({ 
     src,
+    width,
+    height
 }: ICustomVideoPlayerProps) {
 
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -48,18 +52,18 @@ export default function CustomVideoPlayer({
     };
 
     return (
-        <div className={s.customVideoPlayer}>
+        <div className={s.customVideoPlayer} style={{ width: width, height: height }}>
             <video src={src} ref={videoRef} onTimeUpdate={handleTimeUpdate} />
             <div className={s.controls}>
                 {
                     isPlaying
-                        ? <TbPlayerPauseFilled onClick={handleStopPlaying} fontSize={30} />
-                        : <IoIosPlay onClick={handleStartPlaying} fontSize={30} />
+                        ? <TbPlayerPauseFilled onClick={handleStopPlaying} fontSize={20} />
+                        : <IoIosPlay onClick={handleStartPlaying} fontSize={20} />
                 }
                 <progress className={s.progress} value={timeData.currentTime} max={timeData.duration}></progress>
                 <span>{videoFullTimer}</span>
                 <div className={s.fullScreen}>
-                    <BsArrowsFullscreen fontSize={20} />
+                    <BsArrowsFullscreen fontSize={16} />
                 </div>
             </div>
             <div className={s.centerControl}>

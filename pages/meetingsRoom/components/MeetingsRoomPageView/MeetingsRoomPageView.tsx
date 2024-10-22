@@ -1,5 +1,5 @@
 import { baseURL } from "../../../../global/store/store";
-import { CiBookmarkPlus, CiSquarePlus } from "react-icons/ci";
+import { CiSquarePlus } from "react-icons/ci";
 import s from "./MeetingsRoomPageView.module.scss";
 import CustomProgressBar from "../../../../shared/ui/CustomProgressBar/CustomProgressBar";
 import { IMeeting } from "../../../../entities/meetings";
@@ -9,6 +9,7 @@ import { ChangeEvent, useRef } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
+import CustomVideoPlayer from "../../../../shared/ui/CustomVideoPlayer/CustomVideoPlayer";
 
 export default function MeetingsRoomPageView(props: {
     selectedMeeting: IMeeting,
@@ -106,11 +107,7 @@ export default function MeetingsRoomPageView(props: {
                                             src={baseURL + el.src} 
                                         /> :
                                         el.type.includes("video") 
-                                        && <video
-                                            key={el.src} 
-                                            src={baseURL + el.src}
-                                            controls
-                                        />
+                                        && <CustomVideoPlayer height="120px" width="200px" src={baseURL + el.src} key={el.src} />
                                 ))
                             }
                             {
@@ -161,7 +158,7 @@ export default function MeetingsRoomPageView(props: {
                                     })
                                     : 
                                     <span
-                                        style={{textAlign: "center", fontSize: "15px"}}
+                                        style={{ textAlign: "center", fontSize: "15px" }}
                                     >Перед тем как принять участие в обсуждении, запишитесь на встречу.</span>
                             }
                         </div>

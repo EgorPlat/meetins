@@ -8,6 +8,7 @@ import Head from "next/head";
 import CustomStepper from "../../shared/ui/CustomStepper/CustomStepper";
 import dynamic from "next/dynamic";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
+import { addNotification } from "../../global/store/notifications_model";
 
 const SearchingPeople = dynamic(() => import("./components/SearchingPeople/SearchingPeople"), {
     loading: () => <CustomLoader />
@@ -31,6 +32,15 @@ export default function Peoples(): JSX.Element {
         } else {
             router.push(`/profile/${linkId}`);
         }
+    };
+
+    const handleDontGetNotification = () => {
+        addNotification({ 
+            time: 3000,
+            type: "info",
+            text: "В скором времени Вы перестанете получать уведомления из этого источника",
+            textColor: "white"
+        })
     };
 
     useEffect(() => {
@@ -58,7 +68,15 @@ export default function Peoples(): JSX.Element {
                     steps={[
                         { title: "Поиск людей", component: SearchingPeople },
                         { title: "Сообщества", component: GroupsList },
-                        { title: "Новости", component: LentaList, props: { wallPosts: currentWall, handleGoToLink: handleGoToLink } }
+                        { 
+                            title: "Новости",
+                            component: LentaList,
+                            props: { 
+                                wallPosts: currentWall,
+                                handleGoToLink: handleGoToLink,
+                                handleDontGetNotification: handleDontGetNotification
+                            }
+                        }
                     ]}
                 />
             </div>

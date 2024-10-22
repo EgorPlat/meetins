@@ -10,7 +10,8 @@ import LazyLoad from "../../../../widgets/LazyLoadViewport";
 
 export default function LentaList(props: {
     wallPosts: IWall[],
-    handleGoToLink: (isGroup: boolean, linkId: number) => void
+    handleGoToLink: (isGroup: boolean, linkId: number) => void,
+    handleDontGetNotification: (isGroup: boolean, linkId: number) => void
 }): JSX.Element {
     return (
         <div className={s.lentaList}>
@@ -29,7 +30,7 @@ export default function LentaList(props: {
                                         data={[
                                             {
                                                 menuTitle: "Не получать уведомления",
-                                                menuFunction: () => console.log(2)
+                                                menuFunction: () => props.handleDontGetNotification(el.isGroup, el.linkId)
                                             },
                                             {
                                                 menuTitle: "Перейти к источнику",

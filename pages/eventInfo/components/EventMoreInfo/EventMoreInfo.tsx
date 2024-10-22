@@ -1,4 +1,4 @@
-import s from "./eventMoreInfo.module.scss";
+import s from "./EventMoreInfo.module.scss";
 
 export default function EventMoreInfo(props: {
     favoritesCount: number,

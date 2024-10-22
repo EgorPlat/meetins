@@ -5,7 +5,7 @@
     width: 98%;
     & .topContent {
         display: grid;
-        grid-template-columns: 200px calc(100% - 200px);
+        grid-template-columns: 200px calc(98% - 200px);
         column-gap: 20px;
         & .mainInfo {
             display: flex;
@@ -157,14 +157,16 @@
                     display: grid;
                     word-break: break-all;
                     border-radius: 5px;
-                    grid-template-columns: 65px calc(100% - 75px);
+                    grid-template-columns: 80px calc(100% - 100px);
                     column-gap: 10px;
                     & .userInfo {
+                        display: grid;
+                        justify-items: center;
                         & .avatar {
                             & img {
                                 border-radius: 10px;
-                                width: 65px;
-                                height: 65px;
+                                width: 40px;
+                                height: 40px;
                             }
                         }
                         & .name {

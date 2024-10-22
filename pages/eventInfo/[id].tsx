@@ -11,9 +11,9 @@ import {
 } from "../../global/store/events_model";
 import { $user } from "../../global/store/store";
 import { addNotification } from "../../global/store/notifications_model";
-import EventBlock from "./components/EventBlock";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
+import EventBlock from "./components/EventBlock/EventBlock";
 
 
 export default function EventInfo(): JSX.Element {

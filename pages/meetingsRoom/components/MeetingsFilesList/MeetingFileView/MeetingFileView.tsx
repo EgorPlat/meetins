@@ -1,5 +1,6 @@
 import { IGroupFile } from "../../../../../entities/groups"
 import { baseURL } from "../../../../../global/store/store";
+import CustomVideoPlayer from "../../../../../shared/ui/CustomVideoPlayer/CustomVideoPlayer";
 import s from "./MeetingFileView.module.scss";
 
 export default function MeetingsFilesList (props: {
@@ -16,7 +17,7 @@ export default function MeetingsFilesList (props: {
                 }
                 {
                     file.type.includes("video") &&
-                    <video controls className={s.video} src={baseURL + file.src} />
+                    <CustomVideoPlayer src={baseURL + file.src} />
                 }
             </div>
         )

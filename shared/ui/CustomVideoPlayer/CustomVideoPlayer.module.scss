@@ -7,7 +7,7 @@
     overflow: hidden;
     cursor: pointer;
     color: white;
-    font-size: 16px;
+    font-size: 12px;
     & video {
         width: 100%;
         height: 100%;
@@ -17,7 +17,7 @@
     }
     & .controls {
         display: grid;
-        grid-template-columns: 30px calc(100% - 185px) 100px 40px;
+        grid-template-columns: 20px calc(100% - 135px) 80px 20px;
         align-items: center;
         column-gap: 5px;
         width: 100%;
