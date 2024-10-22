@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { IOuterInviteEvent } from "../../../../entities/events";
 import { baseURL } from "../../../../global/store/store";
 import s from "./OuterInvites.module.scss";
-
 interface IOuterInviteWrapperProps {
     invites: IOuterInviteEvent[],
     handleWatch: (eventId: number) => void,
@@ -29,14 +28,14 @@ export default function OuterInvites(props: IOuterInviteWrapperProps) {
                                 <div className={s.mainInfo}>
                                     <div className={s.eventTitle}>{t("Мероприятие")}: {invite.title}</div>
                                     <div className={s.eventDescription} dangerouslySetInnerHTML={
-                                        {__html: invite.description}
+                                        { __html: invite.description }
                                     }>
                                     </div>
                                     <div className={s.eventSender}>
                                         {t("Отправлено к")}:
                                         {
                                             invite.inviteInfo.invitedUsers.map(user => (                                    
-                                                <div key={user.login}>
+                                                <div className={s.eventSender} key={user.login}>
                                                     <div className={s.eventSenderAvatar} onClick={() => props.handleVisit(user.login)}>
                                                         <img className={s.avatar} src={baseURL + user.avatar} />
                                                     </div>
@@ -51,7 +50,7 @@ export default function OuterInvites(props: IOuterInviteWrapperProps) {
                             </div>
                             <div className={s.actions}>
                                 <button className={s.action} onClick={() => props.handleWatch(invite.id)}>Посмотреть</button>
-                                <button className={s.action}>Отозвать приглашения</button>
+                                <button className={s.action}>Отменить</button>
                             </div> 
                         </div>
                     ))

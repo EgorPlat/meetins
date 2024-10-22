@@ -3,6 +3,7 @@ import { IInnerInvites } from "../../../../entities";
 import { IInnerInviteEvent } from "../../../../entities/events";
 import { baseURL } from "../../../../global/store/store";
 import s from "./InnerInvites.module.scss";
+import { customizeDateToYYYYMMDDHHMMFormat } from "../../../../shared/functions/getDateInYYYYMMDDHHFormat";
 
 interface IInnerInvitesProps {
     invites: IInnerInviteEvent[],
@@ -31,8 +32,12 @@ export default function InnerInvites(props: IInnerInvitesProps) {
                                 <div className={s.mainInfo}>
                                     <div className={s.eventTitle}>Мероприятие: {invite.title}</div>
                                     <div className={s.eventDescription} dangerouslySetInnerHTML={
-                                        {__html: invite.description}
+                                        { __html: invite.description }
                                     }>
+                                    </div>
+                                    <div className={s.inviteDate}>
+                                        <span>Дата приглашения: </span>
+                                        <span>{ customizeDateToYYYYMMDDHHMMFormat(invite.inviteInfo.dateOfSending) }</span>
                                     </div>
                                     <div className={s.eventSender}>
                                         <div className={s.eventSenderName}>Отправитель: {invite.inviteInfo.name}</div>

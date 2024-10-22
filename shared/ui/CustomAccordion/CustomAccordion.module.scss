@@ -15,15 +15,15 @@
     width: 90%;
     display: grid;
 
-    transition: max-height .5s linear;
+    transition: max-height .8s linear;
 
     & .customAccordionSubText {
         margin-top: 10px;
         display: -webkit-box;
-        -webkit-line-clamp: 5; // количество строк
+        -webkit-line-clamp: 10; // количество строк
         -webkit-box-orient: vertical;
         overflow: hidden;
 
-        animation: smoothShown .5s forwards;
+        animation: smoothShown 1s forwards;
     }
 }

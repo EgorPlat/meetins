@@ -21,21 +21,20 @@
                 }
             }
             & .mainInfo {
+                margin-top: 10px;
                 display: flex;
                 flex-direction: column;
                 row-gap: 10px;
+                font-size: 16px;
                 & .eventTitle {
                     text-align: justify;
-                    font-size: 16px;
-                    color: gray;
+                    text-transform: uppercase;
                 }
                 & .eventDescription {
                     text-align: justify;
-                    font-size: 14px;
                 }
                 & .eventSender {
                     display: flex;
-                    font-size: 14px;
                     align-items: center;
                     & .eventSenderName {
                         display: flex;
@@ -56,7 +55,9 @@
             }
         }
         & .actions {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 250px;
             column-gap: 10px;
             & .action {
                 font-size: 16px;
