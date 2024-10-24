@@ -28,7 +28,7 @@ export default function AddNewMessageIntoGroupTalk(props: {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(handleCreateNewMessage)}>
-                <div>
+                <div className="field">
                     <input 
                         type="text" 
                         id="title"

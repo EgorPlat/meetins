@@ -59,7 +59,7 @@ export default function AddMusic(): JSX.Element {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeMusic)}>
-                <div>
+                <div className="field">
                     <label htmlFor="name">
                         {t("Псевдоним автора")}
                     </label>
@@ -77,7 +77,7 @@ export default function AddMusic(): JSX.Element {
                     />
                     {errors.name ? <span>{errors.name.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="description">{t("Краткое описание композиции")}</label>
                     <textarea
                         id="description"
@@ -88,7 +88,7 @@ export default function AddMusic(): JSX.Element {
                         })} />
                     {errors.description ? <span>{errors.description.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="title">{t("Название композиции")}</label>
                     <input
                         type="text"
@@ -103,7 +103,7 @@ export default function AddMusic(): JSX.Element {
                     />
                     {errors.title ? <span>{errors.title.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="composition">{t("Файлы композиции (1 картинка и 1 звуковая дорожка)")}</label>
                     <input
                         accept=".mp3,.ape,.png,.jpg,.jpeg"

@@ -24,7 +24,7 @@ export default function ManageGroup(): JSX.Element {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeGroup)}>
-                <div>
+                <div className="field">
                     <label htmlFor="name">{t("Название группы")}</label>
                     <input
                         defaultValue={groupInfo$.name}
@@ -39,7 +39,7 @@ export default function ManageGroup(): JSX.Element {
                     />
                     {errors.name ? <span>{errors.name.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="description">{t("Описание группы")}</label>
                     <textarea
                         defaultValue={groupInfo$.description}
@@ -50,7 +50,7 @@ export default function ManageGroup(): JSX.Element {
                         })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="headImage">{t("Шапка сообщества")}</label>
                     <input
                         accept=".jpg,.png,.jpeg"

@@ -24,7 +24,7 @@ export default function ProfileInfoForm(): JSX.Element {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeProfile)}>
-                <div>
+                <div className={s.group}>
                     <label htmlFor="name">{t("Имя")}</label>
                     <input type="text" id="name"
                         defaultValue={user?.name}
@@ -35,7 +35,7 @@ export default function ProfileInfoForm(): JSX.Element {
                         })}/>
                     {errors.name ? <span>{errors.name.message}</span> : null}
                 </div> 
-                <div>
+                <div className={s.group}>
                     <label htmlFor="date">{t("Дата рождения")}</label>
                     <input 
                         type="date" 
@@ -48,7 +48,7 @@ export default function ProfileInfoForm(): JSX.Element {
                     />
                     {errors.birthDate ? <span>{errors.birthDate.message}</span> : null}
                 </div>
-                <div>
+                <div className={s.group}>
                     <label htmlFor="phone">{t("Мобильный телефон")}</label>
                     <input type="text" id="phone"
                         placeholder={user?.phoneNumber}

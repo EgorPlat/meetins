@@ -23,7 +23,7 @@ export default function AddNewTalkInGroup(props: {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onAddNewTalkInGroup)}>
-                <div>
+                <div className="field">
                     <label htmlFor="title">
                         {t("Тема обсуждения")}
                     </label>

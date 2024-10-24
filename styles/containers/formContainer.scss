@@ -1,4 +1,9 @@
 .formContainer {
+    & .field {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+    }
     & label {
         display: inline-block;
         width: 100%;

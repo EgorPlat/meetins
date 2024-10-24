@@ -21,21 +21,21 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeMeeting)}>
-                <div>
+                <div className="field">
                     <label htmlFor="title">{t("Название встречи")}</label>
                     <input 
                         type="text" 
                         id="title"
                         placeholder={t("Название встречи")}
                         {...register("title", { required: false, validate: (value) => 
-			            value.length >= 40 || value.length <= 5
-				        ? t("Не менее 5-ти и не более 40-ти символов")
-				        : true,
+                            value.length >= 40 || value.length <= 5
+                                ? t("Не менее 5-ти и не более 40-ти символов")
+                                : true,
                         })}
                     />
                     {errors.title ? <span>{errors.title.message}</span> : null}
                 </div> 
-                <div>
+                <div className="field">
                     <label htmlFor="date">{t("Дата встречи")}</label>
                     <input 
                         type="datetime-local" 
@@ -47,7 +47,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
                     />
                     {errors.date ? <span>{errors.date.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="address">{t("Место встречи")}</label>
                     <input 
                         type="text" 
@@ -59,7 +59,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
                     />
                     {errors.address ? <span>{errors.address.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="goal">{t("В чем цель встречи?")}</label>
                     <textarea
                         id="goal"
@@ -69,7 +69,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
                         })}/>
                     {errors.goal ? <span>{errors.goal.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="description">{t("Описание встречи")}</label>
                     <textarea
                         id="description"

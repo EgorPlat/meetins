@@ -21,7 +21,7 @@ export default function EditUserTag(): JSX.Element {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeTag)}>
-                <div>
+                <div className="field">
                     <label htmlFor="title">{t("Содержимое")}</label>
                     <input
                         defaultValue={user$.tag.title}
@@ -36,7 +36,7 @@ export default function EditUserTag(): JSX.Element {
                     />
                     {errors.title ? <span>{errors.title.message}</span> : null}
                 </div> 
-                <div>
+                <div className="field">
                     <label htmlFor="color">{t("Цвет фона")}</label>
                     <input 
                         defaultValue={user$.tag.color}

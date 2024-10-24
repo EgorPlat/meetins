@@ -4,10 +4,16 @@
     margin-bottom: 10px;
     color: green;
     padding: 5px;
-    width: 96%;
     border-radius: 5px;
     background-color: rgba($color: green, $alpha: 0.3);
+    padding: 5px 10px 5px 10px;
+    width: max-content;
 }
+
+.group {
+    display: grid;
+}
+
 .unSuccessActionDiv {
     margin-top: 5px;
     color: red;

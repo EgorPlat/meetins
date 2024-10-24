@@ -19,6 +19,7 @@ import VideoCallModal from "../widgets/VideoCallModal/VideoCallModal";
 import "../i18n";
 import "../styles/app.css";
 import "../styles/themes.css";
+import "../styles/containers/formContainer.scss";
 import "regenerator-runtime/runtime";
 import "../node_modules/reseter.css/css/reseter.min.css";
 import CustomModal from "../shared/ui/CustomModal/CustomModal";

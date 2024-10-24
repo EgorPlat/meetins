@@ -20,7 +20,7 @@ export default function AddCommentIntoMeeting(): JSX.Element {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeComment)}>
-                <div>
+                <div className="field">
                     <label htmlFor="text">
                         {t("Тект комментария")}
                     </label>

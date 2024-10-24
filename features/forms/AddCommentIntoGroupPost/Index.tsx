@@ -22,7 +22,7 @@ export default function AddCommentIntoGroupPost(props: {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeComment)}>
-                <div>
+                <div className="field">
                     <input  
                         type="text" 
                         id="text"

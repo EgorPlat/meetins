@@ -29,7 +29,7 @@ export default function CreateNewGroupForm({
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeGroup)}>
-                <div>
+                <div className="field">
                     <label htmlFor="name">{t("Название сообщества")}</label>
                     <input 
                         type="text" 
@@ -43,7 +43,7 @@ export default function CreateNewGroupForm({
                     />
                     {errors.name ? <span>{errors.name.message}</span> : null}
                 </div> 
-                <div>
+                <div className="field">
                     <label htmlFor="description">{t("Описание для сообщества")}</label>
                     <textarea
                         id="description"
@@ -53,7 +53,7 @@ export default function CreateNewGroupForm({
                         })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="interestsId">{t("Выберите интересы сообщества")}</label>
                     <select 
                         multiple

@@ -47,7 +47,7 @@ export default function AddNewPostIntoGroupForm(props: {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangePost)}>
-                <div>
+                <div className="field">
                     <label htmlFor="name">{t("Заголовок")}</label>
                     <input 
                         type="text" 
@@ -63,7 +63,7 @@ export default function AddNewPostIntoGroupForm(props: {
                     />
                     {errors.name ? <span>{errors.name.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="description">{t("Описание публикации")}</label>
                     <textarea
                         id="description"
@@ -73,7 +73,7 @@ export default function AddNewPostIntoGroupForm(props: {
                         })}/>
                     {errors.description ? <span>{errors.description.message}</span> : null}
                 </div>
-                <div>
+                <div className="field">
                     <label htmlFor="media">{t("Медиа-контент")}</label>
                     <input
                         multiple

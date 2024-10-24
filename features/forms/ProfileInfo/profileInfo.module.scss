@@ -3,10 +3,14 @@
     margin-top: 10px;
     margin-bottom: 10px;
     color: green;
-    padding: 5px;
-    width: 96%;
+    padding: 5px 10px 5px 10px;
+    width: max-content;
     border-radius: 5px;
     background-color: rgba($color: green, $alpha: 0.3);
+}
+
+.group {
+    display: grid;
 }
 
 .unSuccessActionDiv {

@@ -23,7 +23,7 @@ export default function ManageAccountForm(): JSX.Element {
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeAccount)}>
-                <div> 
+                <div className={s.group}> 
                     <label htmlFor="email">{t("Ваш Email")}</label>
                     <input type="text" id="email"
                         defaultValue={user?.email}
@@ -32,7 +32,7 @@ export default function ManageAccountForm(): JSX.Element {
                     />
                     {errors.email ? <span>{errors.email.message}</span> : null}
                 </div>
-                <div>
+                <div className={s.group}>
                     <label htmlFor="password">{t("Пароль")}</label>
                     <input 
                         type="password" 
@@ -43,7 +43,7 @@ export default function ManageAccountForm(): JSX.Element {
                     />
                     {errors.password ? <span>{errors.password.message}</span> : null}
                 </div>
-                <div>
+                <div className={s.group}>
                     <label htmlFor="login">{t("Адрес аккаунта")}</label>
                     <input type="text" id="address"
                         defaultValue={user?.login}
