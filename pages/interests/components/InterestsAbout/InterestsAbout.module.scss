@@ -1,0 +1,45 @@
+.interestsAbout {
+    font-size: 16px;
+    .title {
+        background-color: var(--bg-color-block);
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .description {
+        padding: 10px;
+        text-align: justify;
+        width: 75%;
+        a {
+            text-decoration: underline;
+            &:hover {
+                color: var(--default-color);
+            }
+        }
+        .example {
+            display: flex;
+            column-gap: 5px;
+            align-items: center;
+            margin: 15px 0px 15px 0px;
+            .interestActive {
+                border: 2px solid var(--default-color);
+                padding: 5px;
+                border-radius: 7px;
+            }
+            .interestInactive {
+                border: 2px solid green;
+                padding: 5px;
+                border-radius: 7px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .interestsAbout {
+        .description {
+            width: 100%;
+        }
+    }
+}

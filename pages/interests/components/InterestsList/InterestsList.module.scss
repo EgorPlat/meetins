@@ -1,0 +1,18 @@
+.interestsList {
+    font-size: 16px;
+    display: grid;
+    align-items: center;
+    row-gap: 10px;
+    max-height: 500px;
+    overflow-y: scroll;
+    .listElem {
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+        max-height: 300px;
+        transition: 1s;
+        display: flex;
+        align-items: center;
+        background-color: var(--bg-color-block);
+    }
+}

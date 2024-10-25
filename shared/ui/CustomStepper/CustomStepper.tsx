@@ -20,6 +20,10 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
     const { props: CustomComponentProps } = activeStep;
     const { t } = useTranslation();
 
+    const handleChooseStep = (step: IStep) => {
+        setActiveStep(step);
+    };
+
     useEffect(() => {
         steps.map(el => {
             if (el.title === activeStep.title) {
@@ -37,7 +41,7 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
                         <div
                             key={step.title}
                             className={step.title === activeStep?.title ? s.activeStep : s.commonStep}
-                            onClick={() => setActiveStep(step)}
+                            onClick={() => handleChooseStep(step)}
                         >
                             {t(step.title)}
                         </div>

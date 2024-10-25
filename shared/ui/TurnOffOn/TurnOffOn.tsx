@@ -1,14 +1,23 @@
 import { useState } from "react";
 import s from "./TurnOffOn.module.scss";
 
-export default function TurnOffOn (props: {
+interface IFullProps {
     inithialStatus: boolean,
     onChange: (status: boolean) => void
-}) {
+    readOnly: boolean
+}
+interface IReadOnlyProps {
+    inithialStatus: boolean,
+    readOnly: boolean
+}
+export default function TurnOffOn (props: IFullProps | IReadOnlyProps) {
     const [animation, setAnimation] = useState<boolean>(props.inithialStatus);
 
     const handleChangeStatus = () => {
-        props.onChange(!animation);
+        if (props.readOnly) return;
+        if ("onChange" in props) {
+            props?.onChange(!animation);
+        }
         setAnimation((prev) => !prev);
     };
 
