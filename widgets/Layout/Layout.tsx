@@ -70,13 +70,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
     else if (isMobile$ === false) {
         return (
-            <div className={`${s.container} ${background}`}>
+            <div className={`${s.container}`}>
                 {isNeededRouteToShowMenu && <Header />}
-                {
-                    <div className={s.main}>
-                        {children}
-                    </div>
-                }
+                <div className={s.desktopMain}>
+                    {children}
+                </div>
             </div>
         )
     } else {

@@ -4,7 +4,7 @@ body {
 }
 [data-theme="white"] {
 	--border-color: #1C1E22;
-    --bg-color: rgb(241, 241, 241);
+    --bg-color: rgba(224, 224, 224, 0.203);
     --text-color: black;
 	--h4BG-color: rgba(176, 176, 176, 0.326);
 	--inp-text-color: black;

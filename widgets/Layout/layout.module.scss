@@ -3,9 +3,17 @@
 	justify-content: center;
 	min-height: 100vh;
 }
+.desktopMain {
+	max-width: 1600px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
 .container {
-	display: grid;
-	grid-template-rows: 1fr;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .loginPage {
 	background-image: url('../../public/images/background-login.jpg');

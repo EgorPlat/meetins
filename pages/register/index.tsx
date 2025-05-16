@@ -6,7 +6,6 @@ import femaleIcon from "../../public/images/female.svg"
 import maleIcon from "../../public/images/male.svg"
 import s from "../../styles/pageStyles/auth.module.scss"
 import logo from "../../public/images/logo.svg";
-
 import {
     isEmail,
     validateEmailOrPhone,
