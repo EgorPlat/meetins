@@ -25,7 +25,7 @@ export default function EventInfo(): JSX.Element {
     const { query } = useRouter();
 
     const addUserEventHandler = (id: number) => {
-        if (authedUser$.events?.includes(String(currentEventById$.id))) {
+        if (authedUser$?.events?.includes(String(currentEventById$?.id))) {
             addNotification({ text: "Уже есть в вашем списке", time: 3000, type: "warning", textColor: "black" });
             return;
         }

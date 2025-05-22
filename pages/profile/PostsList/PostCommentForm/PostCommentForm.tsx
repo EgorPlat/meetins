@@ -16,7 +16,8 @@ export default function PostCommentForm(props: {
             return;
         }
         props.onSubmitComment(commentText);
-    }
+    };
+    
     return (
         <div className={s.postCommentForm}>
             <input

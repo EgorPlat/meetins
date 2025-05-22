@@ -9,17 +9,19 @@ import CustomButton from "../../../../shared/ui/CustomButton/CustomButton";
 
 export default function AddingPosts(): JSX.Element {
 
-    const ref = useRef(null);
+    const ref = useRef<HTMLInputElement>(null);
     const { t } = useTranslation();
-    const [postFormData, setPostFormData] = useState({ title: "", description: "", currentFiles: null });
+    const [postFormData, setPostFormData] = useState<any>({ title: "", description: "", currentFiles: null });
     const isMobile$ = useUnit(isMobile);
 
     const chooseFile = () => {
-        ref.current.click();
+        if (ref.current) {
+            ref.current.click();
+        } 
     };
 
     const sendNewPost = () => {
-        if (validatePost(postFormData)) {
+        if (postFormData.currentFiles && validatePost(postFormData)) {
             const formData = validateFilesFromInputAndStructuring(postFormData.currentFiles).dataForServer;
             formData.append("title", postFormData.title);
             formData.append("description", postFormData.description);

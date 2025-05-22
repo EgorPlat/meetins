@@ -77,7 +77,7 @@ export default function Settings(): JSX.Element {
                         </div>
                         <div className={s.filter}>
                             <TurnOffOn
-                                inithialStatus={user$?.isFilter}
+                                inithialStatus={Boolean(user$?.isFilter)}
                                 onChange={handleChangeStatus}
                             />
                         </div>

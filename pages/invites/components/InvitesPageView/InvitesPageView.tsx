@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import CustomLoader from "../../../../shared/ui/CustomLoader/CustomLoader";
 import CustomStepper from "../../../../shared/ui/CustomStepper/CustomStepper";
-import { IInnerInvites, User } from "../../../../entities";
+import { IInnerInvites } from "../../../../entities";
 import { IUnitedInvitesEvent } from "../../../../entities/events";
 
 const InnerInvites = dynamic(() => import("../InnerInvites/InnerInvites"), { loading: () => <CustomLoader /> });
@@ -9,7 +9,6 @@ const OuterInvites = dynamic(() => import("../OuterInvites/OuterInvites"), { loa
 import s from "./InvitesPageView.module.scss";
 
 interface IInvitesPageView {
-    authedUser: User,
     unitedEventsInfo: IUnitedInvitesEvent,
     loadedStatus: boolean,
     handleWatch: (eventId: number) => void,
@@ -17,7 +16,6 @@ interface IInvitesPageView {
     handleVisit: (login: number) => void
 }
 export default function InvitesPageView({
-    authedUser,
     handleWatch,
     loadedStatus,
     unitedEventsInfo,

@@ -32,7 +32,7 @@ export default function ProfileView(props: {
     isEditTagOpen: boolean,
     currentUserPlaces: string[],
     isCurrentUserOnline: boolean,
-    newAvatarForCrop: string,
+    newAvatarForCrop: string | null,
     handleSaveNewStatus: (status: string) => void,
     changeAddingImageStatus: (status: boolean) => void,
     onChangeInputImage: (event: any) => void,
@@ -227,7 +227,7 @@ export default function ProfileView(props: {
             >
                 <Suspense fallback={<CustomLoader />}>
                     <ImageCropper 
-                        imageForCrop={props.newAvatarForCrop}
+                        imageForCrop={props.newAvatarForCrop || ""}
                         handleGetCropperImageBlob={props.handleGetCroppedAvatar}
                     />
                 </Suspense>

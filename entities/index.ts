@@ -91,7 +91,7 @@ export interface IPeople {
 export interface Params {
     gender: string,
     age: number,
-    event: number
+    event: number | null
 }
 export interface IParams {
     gender?: string,

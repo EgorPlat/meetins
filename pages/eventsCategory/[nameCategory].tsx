@@ -12,7 +12,7 @@ export default function CategoryEventInfo({ events }): JSX.Element {
 
     const router = useRouter();
     const { nameCategory } = router.query;
-    const categoryName = getCategoryName(nameCategory?.toString());
+    const categoryName = getCategoryName(nameCategory?.toString() || "");
     
     useEffect(() => {
         setCurrentEvents(events);

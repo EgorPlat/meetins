@@ -14,8 +14,7 @@
         font-size: 24px;
         padding: 20px;
         border-radius: 5px;
-        max-height: 620px;
-        width: 500px;
+        width: 600px;
         background-color: var(--bg-color-block);
         & .customModalTitle {
             display: grid;
@@ -44,7 +43,7 @@
             }
         }
         & .customModalChildrenContent {
-            max-height: 450px;
+            max-height: 80vh;
             width: 100%;
             padding-right: 10px;
             font-size: 16px;
@@ -83,25 +82,6 @@
     }
 }
 
-/*@media screen and (max-width: 1920px) {
-    .customModal {
-        & .customModalContent {
-            width: 700px;
-            font-size: 22px;
-            & .customModalTitle {
-                font-size: 26px;
-                & .customModalClose {
-                    text-align: right;
-                    & button {
-                        width: 25px;
-                        height: 25px;
-                        font-size: 16px;
-                    }
-                }
-            }
-        }
-    }
-}*/
 @media screen and (max-width: 1536px) {
     .customModal {
         & .customModalContent {

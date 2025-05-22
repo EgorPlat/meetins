@@ -3,13 +3,18 @@ import { $currentInterestsList, getInterests } from "../../../../global/store/st
 import s from "./ChangingInterests.module.scss";
 import { useUnit } from "effector-react";
 import { useTranslation } from "react-i18next";
+import { IInterest } from "../../../../entities/interest";
+
+type ISelectedInterests = IInterest & {
+    selected: boolean
+}
 
 export default function ChangingInterests(props: {
     currentInterests: string[],
     handleSaveClick: (interestList) => void
 }) {
 
-    const [interestsList, setInterestsList] = useState([]);
+    const [interestsList, setInterestsList] = useState<ISelectedInterests[]>([]);
     const currentInterests = useUnit($currentInterestsList);
     const { t } = useTranslation();
 

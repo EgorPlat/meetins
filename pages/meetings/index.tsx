@@ -33,7 +33,6 @@ export default function Meetings() {
                 furtherMeetings={furtherMeetings}
                 myMeetings={myMeetings}
                 completedMeetings={completedMeetings}
-                authedUser={authedUser$}
             />
         </PageContainer>
     )

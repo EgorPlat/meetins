@@ -14,7 +14,7 @@ export const setUserEvents = createEvent<IShortEventInfo[]>();
 export const userEvents = createStore<IShortEventInfo[]>([]).on(setUserEvents, (_, newUserEvents) => {
     return newUserEvents;
 });
-export const setCurrentEventById = createEvent<IEventInfoCard>();
+export const setCurrentEventById = createEvent<IEventInfoCard | null>();
 export const currentEventById = createStore<IEventInfoCard | null>(null).on(setCurrentEventById, (_, currentEvent) => {
     return currentEvent;
 });

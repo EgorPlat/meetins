@@ -19,10 +19,10 @@ import dynamic from "next/dynamic";
 import CustomLoader from "../../shared/ui/CustomLoader/CustomLoader";
 import { addNotification } from "../../global/store/notifications_model";
 
-const AddMusic = dynamic(() => import("../../features/forms/AddMusic/Index"), { loading: () => <CustomLoader />})
-const StatsView = dynamic(() => import("./components/StatsView/StatsView"), { loading: () => <CustomLoader />});
-const StatsTimeView = dynamic(() => import("./components/StatsTimeView/StatsTimeView"), { loading: () => <CustomLoader />});
-const StatsGeoView = dynamic(() => import("./components/StatsGeoView/StatsGeoView"), { loading: () => <CustomLoader />});
+const AddMusic = dynamic(() => import("../../features/forms/AddMusic/Index"), { loading: () => <CustomLoader /> })
+const StatsView = dynamic(() => import("./components/StatsView/StatsView"), { loading: () => <CustomLoader /> });
+const StatsTimeView = dynamic(() => import("./components/StatsTimeView/StatsTimeView"), { loading: () => <CustomLoader /> });
+const StatsGeoView = dynamic(() => import("./components/StatsGeoView/StatsGeoView"), { loading: () => <CustomLoader /> });
 
 export default function Music() {
 

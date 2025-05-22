@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import ChangingInterests from "./ChangingInterests/ChangingInterests";
 import s from "./interests.module.scss";
 import CustomModal from "../../../shared/ui/CustomModal/CustomModal";
+import { IInterest } from "../../../entities/interest";
 
 export default function Interests(props: {
     user: User,
@@ -68,7 +69,7 @@ export default function Interests(props: {
                             <ChangingInterests currentInterests={props.authedUser.interests} handleSaveClick={handleSaveClick} />
                         </CustomModal>
                         : isCurrentInterestsAvailable
-                            ? currentUserInterests.map((elem) =>
+                            ? currentUserInterests.map((elem: IInterest) =>
                                 <button type="button" className={`${s.interest}`} key={elem.title}>{elem.title}</button>
                             )
                             : <p>{t("Хобби пока нет")}.</p>

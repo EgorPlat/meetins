@@ -38,7 +38,7 @@ function Profile(): JSX.Element {
     const [isInviteModal, setIsInviteModal] = useState<boolean>(false);
     const [choosedEventForInvite, setChoosedEventForInvite] = useState<number>();
     const [isEditTagOpen, setIsEditTagOpen] = useState<boolean>(false);
-    const [newAvatarForCrop, setNewAvatarForCrop] = useState<string>(null);
+    const [newAvatarForCrop, setNewAvatarForCrop] = useState<string | null>(null);
     
     const isCurrentUserOnline = onlineUsers.filter(el => el.userId === currentUser.userId).length !== 0;
 
@@ -49,8 +49,10 @@ function Profile(): JSX.Element {
     };
 
     const onChangeInputImage = (event: ChangeEvent<HTMLInputElement>) => {
-        const imgForCrop = URL.createObjectURL(event.target.files[0]);
-        setNewAvatarForCrop(imgForCrop);
+        if (event.target.files) {
+            const imgForCrop = URL.createObjectURL(event.target.files[0]);
+            setNewAvatarForCrop(imgForCrop);
+        }
     };
 
     const handleGetCroppedAvatar = (blob: Blob) => {
@@ -78,12 +80,15 @@ function Profile(): JSX.Element {
     };
 
     const handleSendInvite = () => {
-        sendInviteToUser({ userToId: currentUser.userId, eventId: choosedEventForInvite });
+        sendInviteToUser({ 
+            userToId: currentUser.userId, 
+            eventId: String(choosedEventForInvite)
+        });
         setIsInviteModal(false);
     };
 
     const handleAddUserIntoMarked = () => {
-        if (authedUser.markedUsers.includes(currentUser.userId)) {
+        if (authedUser?.markedUsers.includes(currentUser.userId)) {
             addNotification({
                 textColor: "white",
                 type: "warning",
@@ -96,7 +101,7 @@ function Profile(): JSX.Element {
     };
 
     const handleSwapEditTag = (status: boolean) => {
-        if (authedUser.userId === currentUser.userId) setIsEditTagOpen(status);
+        if (authedUser?.userId === currentUser.userId) setIsEditTagOpen(status);
     };
 
     const handleShowUserStatistic = () => {
@@ -132,7 +137,7 @@ function Profile(): JSX.Element {
         }
     }, [currentUser.userId]);
 
-    if (currentUserLoaded) {
+    if (currentUserLoaded && authedUser) {
         return (
             <PageContainer>
                 <ProfileView

@@ -93,7 +93,7 @@ export default function Groups() {
         setModals({ ...modals, isMembersListOpen: true });
     };
     const handleLikePost = (post: IGroupPost, groupId: number) => {
-        if (post.likes.includes(authedUser$.userId)) {
+        if (authedUser$ && post.likes.includes(authedUser$.userId)) {
             unlikePostInGroup({ groupId: groupId, postId: post.id });
         } else {
             likePostInGroup({ groupId: groupId, postId: post.id });
@@ -112,7 +112,7 @@ export default function Groups() {
         <PageContainer>
             <>
                 {
-                    isGroupInfoLoaded$ ?
+                    isGroupInfoLoaded$ && authedUser$ ?
                         <GroupInfoPageView
                             authedUser={authedUser$}
                             groupInfo={groupInfo$}

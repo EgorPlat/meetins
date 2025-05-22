@@ -15,7 +15,7 @@ export default function MeetingsRoom() {
     const [isAddCommentModal, setIsAddCommentModal] = useState<boolean>(false);
     const [isOpenAllFilesModal, setIsOpenAllFilesModal] = useState<boolean>(false);
     const user$ = useUnit($user);
-    const isUserInParticipants = selectedMeeting$?.participants.filter(el => el.userId === user$.userId).length !== 0;
+    const isUserInParticipants = selectedMeeting$?.participants.filter(el => el.userId === user$?.userId).length !== 0;
 
     const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
         uploadFileToMediaMeeting({

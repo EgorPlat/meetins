@@ -7,7 +7,6 @@ import {
     loadedStatus,
     declineInnerInvite
 } from "../../global/store/events_model";
-import { $user } from "../../global/store/store";
 import { useRouter } from "next/router";
 import { IInnerInvites } from "../../entities";
 import PageContainer from "../../widgets/PageContainer/pageContainer";
@@ -15,7 +14,6 @@ import InvitesPageView from "./components/InvitesPageView/InvitesPageView";
 
 export default function Invites() {
 
-    const authedUser$ = useUnit($user);
     const unitedEventsInfo$ = useUnit(unitedInviteEvents);
     const loadedStatus$ = useUnit(loadedStatus);
     const router = useRouter();
@@ -43,7 +41,6 @@ export default function Invites() {
                 handleWatch={handleWatch}
                 handleDecline={handleDecline}
                 handleVisit={handleVisit}
-                authedUser={authedUser$}
                 unitedEventsInfo={unitedEventsInfo$}
                 loadedStatus={loadedStatus$}
             />

@@ -7,8 +7,6 @@ import { customizeDateToYYYYMMDDFormat } from "../../../../shared/functions/getD
 import { useTranslation } from "react-i18next";
 import CustomDatePicker from "../../../../shared/ui/CustomDatePicker/CustomDatePicker";
 import { Rating } from "@mui/material";
-import style from "styled-jsx/style";
-import { IoMdStarOutline } from "react-icons/io";
 
 export default function EventsList(props: {
     categoryName: string,

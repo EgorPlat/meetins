@@ -4,7 +4,7 @@ import s from "./TurnOffOn.module.scss";
 interface IFullProps {
     inithialStatus: boolean,
     onChange: (status: boolean) => void
-    readOnly: boolean
+    readOnly?: boolean
 }
 interface IReadOnlyProps {
     inithialStatus: boolean,

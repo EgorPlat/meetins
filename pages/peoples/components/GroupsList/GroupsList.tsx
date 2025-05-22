@@ -19,7 +19,7 @@ export default function GroupsList () {
     const user$ = useUnit($user);
 
     const handleJoinToGroup = (group: IGroup) => {
-        if (!group.membersId.includes(user$.userId)) {
+        if (user$ && !group.membersId.includes(user$.userId)) {
             joinToGroup(group.groupId);
         }
         router.push(`/groups/${group.groupId}`);

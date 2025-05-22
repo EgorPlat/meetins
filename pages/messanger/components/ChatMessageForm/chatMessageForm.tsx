@@ -17,7 +17,7 @@ export default function ChatMessageForm(
     }
 ): JSX.Element {
 
-    const messageRef = useRef<HTMLTextAreaElement>();
+    const messageRef = useRef<HTMLTextAreaElement>(null);
     const [isMediaRecorderActive, setIsMediaRecorderActive] = useState<boolean>(false);
     const { t } = useTranslation();
     const { handleActivateMedia, mediaChunks } = useUserMediaTracks({
@@ -27,12 +27,16 @@ export default function ChatMessageForm(
     });
 
     const sendForm = () => {
-        props.onClickForm(messageRef.current.value);
-        messageRef.current.value = "";
+        if (messageRef.current) {
+            props.onClickForm(messageRef.current.value);
+            messageRef.current.value = "";
+        }
     };
 
     const addSmileHandler = (emoji) => {
-        messageRef.current.value = messageRef.current.value + emoji;
+        if (messageRef.current) {
+            messageRef.current.value = messageRef.current.value + emoji;
+        }
     };
 
     const handleMediaRecorder = () => {
@@ -51,7 +55,7 @@ export default function ChatMessageForm(
 
     const onSendNewFile = (event: ChangeEvent<HTMLInputElement>) => {
         if (props.isChatExists) {
-            const file = event.target.files[0];
+            const file = event.target.files && event.target.files[0];
             createdSendFileAndUploadActiveChat(file);
         } else {
             addNotification({
