@@ -2,18 +2,18 @@
 import { useForm } from "react-hook-form";
 import { useUnit } from "effector-react";
 import { useTranslation } from "react-i18next";
+import { FaUnlock, FaUser } from "react-icons/fa6";
+import { JSX } from "react";
+import { $loginLoading, sendLogData } from "@/global/store/login_model";
+import { addNotification } from "@/global/store/notifications_model";
+import { isEmail } from "@/shared/helpers/validate";
+import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
+import Input from "@/shared/ui/Input/Input";
 import Head from "next/head";
 import Link from "next/link";
 import logo from "../../../public/images/logo.svg";
 import Image from "next/image";
 import s from "./page.module.scss";
-import { FaUnlock, FaUser } from "react-icons/fa6";
-import { JSX } from "react";
-import { $loginLoading, sendLogData } from "@/global/store/login_model";
-import { addNotification } from "@/global/store/notifications_model";
-import Input from "@/shared/ui/Input/Input";
-import { isEmail } from "@/shared/helpers/validate";
-import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 
 export default function Login(): JSX.Element {
 

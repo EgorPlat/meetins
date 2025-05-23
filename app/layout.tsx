@@ -51,6 +51,7 @@ export default function RootLayout({
     
     useEffect(() => {
         setRouter({ ...router, asPath: pathName });
+        localStorage.setItem("previousPage", pathName);
     }, [pathName]);
 
     useEffect(() => {
