@@ -174,7 +174,7 @@ export const getUserData = createEffect(async () => {
 
 export const getInitialUserDataAndCheckAuth = createEffect(() => {
     const instanseRouter$ = instanseRouter.getState();
-    const savedRoute = localStorage.getItem("previousPage") || "/";
+    const savedRoute = localStorage.getItem("previousPage") || "/auth/login";
     setIsUserLoaded(false);
     setIsInithialDataLoaded(false);
     getUserData().then((res) => {

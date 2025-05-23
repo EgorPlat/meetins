@@ -9,7 +9,13 @@ type LoginDetailsType = {
 } | null
 
 export const sendLogData = createEffect((async (logDetails: LoginDetailsType) => {
-    const response = await instance.post("auth/login", logDetails);
+    const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(logDetails)
+    });
     return response;
 }));
 export const handleLogOut = createEffect((async () => {
@@ -36,9 +42,10 @@ export const handlePushUserToLoginPage = createEffect((params: { router: any, da
     params.router.push("/auth/login");
 })
 
-export const saveDataAfterLogin = createEffect((params: { router: any, data: any }) => {
-    setUser(params.data.profile.user);
-    params.router.push(`/profile/${params.data.profile.user.login}`);
+export const saveDataAfterLogin = createEffect(async (params: { router: any, response: any }) => {
+    const data = await params.response.json();
+    setUser(data.profile.user);
+    params.router.push(`/profile/${data.profile.user.login}`);
 });
 
 sample({
@@ -57,7 +64,7 @@ sample({
     source: { router: instanseRouter },
     clock: sendLogData.doneData,
     filter: (router, response) => response.status <= 201,
-    fn: (routerState, response) => { return { router: routerState.router, data: response.data } },
+    fn: (routerState, response) => { return { router: routerState.router, response: response } },
     target: saveDataAfterLogin
 });
 
