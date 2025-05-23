@@ -1,5 +1,5 @@
 import { useUnit } from "effector-react";
-import React from "react";
+import React, { JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { isPhoneNumber } from "../../../shared/helpers/validate";
@@ -10,9 +10,15 @@ import { customizeDateToInputFormatFromDBFormat } from "../../../shared/helpers/
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 
+interface IProfileInfoForm {
+    name: string, 
+    birthDate: string, 
+    phoneNumber: string
+};
+
 export default function ProfileInfoForm(): JSX.Element {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<IProfileInfoForm>();
     const isUpdated: boolean | null = useUnit(isProfileUpdated);
     const user = useUnit($user);
     const { t } = useTranslation();

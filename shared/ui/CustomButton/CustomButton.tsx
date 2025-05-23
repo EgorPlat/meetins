@@ -1,3 +1,4 @@
+"use client";
 import s from "./CustomButton.module.scss";
 
 interface ICustomButtonProps {

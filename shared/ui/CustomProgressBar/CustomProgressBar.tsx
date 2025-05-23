@@ -1,3 +1,4 @@
+"use client";
 import s from "./CustomProgressBar.module.scss";
 
 export default function CustomProgressBar(props: {

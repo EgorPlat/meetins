@@ -1,13 +1,14 @@
+"use client";
 import { IoPeopleSharp } from "react-icons/io5";
 import MobileNavMenu from "../MobileNavMenu/MobileNavMenu";
 import s from "./MobileBottomMenu.module.scss";
 import { MdSettings } from "react-icons/md";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { User } from "../../entities";
 import { GoPersonFill } from "react-icons/go";
 
 interface IMobileBottomMenuProps {
-    authedUser: User
+    authedUser: User | null
 }
 
 export default function MobileBottomMenu({ authedUser }: IMobileBottomMenuProps) {

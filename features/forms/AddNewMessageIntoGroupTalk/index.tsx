@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
@@ -12,7 +12,7 @@ export default function AddNewMessageIntoGroupTalk(props: {
     onSaveMessage: (res: IGroupTalkMessage) => void
 }): JSX.Element {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<{ text: string }>();
     const { t } = useTranslation();
     
     const handleCreateNewMessage = (data: { text: string }) => {

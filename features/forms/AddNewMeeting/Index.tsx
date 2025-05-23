@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
@@ -10,7 +10,7 @@ export default function AddNewMeetingForm({ handleCloseForm }: {
     handleCloseForm: () => void
 }): JSX.Element {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<ICreateMeeting>();
     const { t } = useTranslation();
     
     const onChangeMeeting = (data: ICreateMeeting) => {

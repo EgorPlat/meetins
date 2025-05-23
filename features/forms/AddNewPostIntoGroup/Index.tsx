@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { validateFilesFromInputAndStructuring } from "../../../shared/helpers/helper";
@@ -6,17 +6,23 @@ import { createNewPostInGroup } from "../../../global/store/groups_model";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 import { isTypeOfFileAreNotVideoOrImageOrAudio } from "../../../shared/helpers/validate";
- 
+
+interface IAddNewPostIntoGroupForm {
+    name: string, 
+    description: string, 
+    media: File[]
+}
+
 export default function AddNewPostIntoGroupForm(props: { 
     groupId: string,
     handleCloseModal: () => void
 }): JSX.Element {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<IAddNewPostIntoGroupForm>();
     const { t } = useTranslation();
     const [selectedMediaContent, setSelectedMediaContent] = useState<{ file: File, blob: string }[]>([]);
     
-    const onChangePost = (data: {name: string, description: string, media: File[]}) => {
+    const onChangePost = (data: IAddNewPostIntoGroupForm) => {
         const filesFromInput = selectedMediaContent.map(el => { 
             return el.file;
         });

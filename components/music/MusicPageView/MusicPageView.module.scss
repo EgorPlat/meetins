@@ -1,0 +1,162 @@
+.music {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    & .musicSearch {
+        display: flex;
+        column-gap: 10px;
+        row-gap: 5px;
+        & .musicSearchInp {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        & .musicSearchBtn {
+            font-size: 18px;
+            background-color: var(--default-color);
+            border: none;
+            border-radius: 5px;
+        }
+        & .musicSearchBtn:hover {
+            color: black;
+            background-color: rgba(255, 251, 29, 0.952);
+        }
+    }
+    & .addMusic {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        position: relative;
+        & .myStatistic {
+            position: absolute;
+            right: 0;
+        }
+        & :hover {
+            color: var(--default-color);
+        }
+    }
+    & .musicContent {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
+        & .moreInfo {
+            border-radius: 10px;
+            font-size: 17px;
+            padding: 10px;
+            height: min-content;
+            & .title {
+                margin-bottom: 10px;
+            }
+            & .matches {
+                margin-top: 20px;
+                & .title {
+                    margin-bottom: 10px;
+                }
+                & .desk {
+                    display: grid;
+                    column-gap: 10px;
+                    row-gap: 10px;
+                    grid-template-columns: 1fr;
+                    justify-content: center;
+                    & .card {
+                        background-size: 100% 100%;
+                        min-width: 200px;
+                        max-height: 200px;
+                        background-color: var(--bg-color-block);
+                        border-radius: 20px;
+                        & .topContent {
+                            display: flex;
+                            & .avatar {
+                                margin: 10px;
+                                background-size: 100% 100%;
+                                border-radius: 15px;
+                                width: 65px;
+                                height: 65px;
+                            }
+                            & .title {
+                                font-size: 16px;
+                                margin: 10px 0 0 0;
+                                & .matchData {
+                                    font-size: 12px;
+                                    display: flex;
+                                    column-gap: 5px;
+                                    align-items: center;
+                                    & .count {
+                                        color: rgba(255, 83, 20, 0.949);
+                                        font-weight: 700;
+                                        font-size: 15px;
+                                    }
+                                    & a {
+                                        color: rgb(0, 157, 255);
+                                    }
+                                    & a:hover {
+                                        color: yellow;
+                                    }
+                                }
+                            }
+                        }
+                        & .bottomContent {
+                            padding: 0px 10px 10px 10px;
+                            font-size: 12px;
+                            & .compositions {
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+            }
+            & .songer {
+                font-size: 16px;
+                & .name {
+                    color: rgb(32, 173, 255);
+                }
+                & .mapBtn:hover {
+                    cursor: pointer;
+                    color: rgb(255, 157, 0);
+                }
+            }
+            & .info {
+                margin-top: 20px;
+                font-size: 15px;
+                text-align: justify;
+                text-align: justify;
+                & .termin {
+                    color: rgb(255, 117, 48);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .music {
+        & .musicContent {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .music {
+        & .addMusic {
+            font-size: 17px;
+            & .controls {
+                font-size: 28px;
+            }
+        }
+        & .musicContent {
+            & .moreInfo {
+                & .matches {
+                    & .desk {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -16,7 +16,7 @@ export default function CustomDatePicker({ maxDate, minDate, handleChangeDate }:
     useEffect(() => {
         let dateStart = new Date(minDate).getTime();
         const dateEnd = new Date(maxDate).getTime();
-        let genereatedDates = [];
+        let genereatedDates: { day: number, month: string }[] = [];
 
         while (dateStart <= dateEnd) {
             const currentDate = new Date(dateStart);

@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useState } from "react";
 import s from "./CustomVideoPlayer.module.scss";
 import { IoIosPlay } from "react-icons/io";

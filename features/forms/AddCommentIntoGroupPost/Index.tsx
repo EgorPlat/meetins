@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useUnit } from "effector-react";

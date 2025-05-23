@@ -8,17 +8,17 @@ i18n
         lng: "ru",
         resources: {
             en: {
-                translations: require("./public/locales/en/translation.json")
+                translations: import("./public/locales/en/translation.json")
             },
             ru: {
-                translations: require("./public/locales/ru/translation.json")
+                translations: import("./public/locales/ru/translation.json")
             }
         },
         ns: ["translations"],
         defaultNS: "translations",
         react: {
-            useSuspense: false
-        }
+            useSuspense: false,
+        },
     })
 i18n.languages = ["ru", "en"];
 export default i18n;

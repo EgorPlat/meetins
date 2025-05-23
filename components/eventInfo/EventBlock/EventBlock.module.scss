@@ -1,0 +1,126 @@
+.eventBlockContent {
+    padding-bottom: 20px;
+    & .eventBlockTitle {
+        font-size: 18px;
+        margin-bottom: 15px;
+        background-color: #3db1ff49;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    & .eventBlockMainInfo {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        & .eventInfo {
+
+        }
+        & .help {
+            font-size: 18px;
+            margin-top: 15px;
+            & .description {
+                text-align: justify;
+            }
+            & .actions {
+                margin-bottom: 15px;
+                button {
+                    background-color: #3DB2FF;
+                    color: white;
+                    width: 49%;
+                    margin-right: 0.5%;
+                    border: none;
+                    border-radius: 5px;
+                }
+                button:hover {
+                    background-color: rgb(255, 197, 88);
+                    color: black;
+                }
+            }
+        }
+    }
+    & .fullDescription {
+        font-size: 16px;
+        text-align: justify;
+    }
+    & .rolesTitle {
+        font-size: 20px;
+        text-align: center;
+    }
+    & .actorsInfo {
+        display: flex;
+        column-gap: 10px;
+        row-gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        justify-content: center;
+        justify-items: center;
+        & .actor {
+            width: 100px;
+            height: 140px;
+            font-size: 15px;
+            display: grid;
+            text-align: center;
+            & .avatar {
+                & .image {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+            & .name {
+                cursor: pointer;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; // количество строк
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }:hover {
+                color: orange;
+            }
+        }
+    }
+    & .commentsWrapper {
+        text-align: center;
+        display: grid;
+        row-gap: 5px;
+        flex-wrap: wrap;
+        font-size: 20px;
+        & .wrapper {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: var(--bg-color-block);
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            column-gap: 5px;
+            & .userInfo {
+                & .avatar {
+                    border-radius: 5px;
+                }
+            }
+            & .commentInfo {
+                display: grid;
+                & .name {
+                    text-align: left;
+                    font-size: 17px;
+                }
+                & .text {
+                    padding-right: 10px;
+                    text-align: justify;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1320px) {
+    .eventBlockContent {
+        & .eventBlockTitle {
+            text-align: center;
+        }
+        & .eventBlockMainInfo {
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            grid-template-columns: 100%;
+        }
+    }
+}

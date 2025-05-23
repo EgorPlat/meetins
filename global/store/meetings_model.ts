@@ -18,15 +18,18 @@ export const currentUserPlaces$ = createStore<string[]>([]).on(setUserPlaces, (_
 
 export const setSelectedMeeting = createEvent<IMeeting>();
 export const addCommentToSelectedMeeting = createEvent<MeetingComment>();
-export const selectedMeeting = createStore<IMeeting>(null)
+export const selectedMeeting = createStore<IMeeting | null>(null)
     .on(setSelectedMeeting, (_, meeting) => {
         return meeting;
     })
 selectedMeeting.on(addCommentToSelectedMeeting, (meeting, comment) => {
-    return {
-        ...meeting,
-        comments: [...meeting.comments, comment]
+    if (meeting) {
+        return {
+            ...meeting,
+            comments: [...meeting?.comments, comment]
+        }
     }
+    return meeting;
 })
 
 export const getAllMeetings = createEffect(async () => {
@@ -39,13 +42,15 @@ export const uploadFileToMediaMeeting = createEffect(async (params: {
     meetingId: string
 }
 ) => {
-    const file = params.event.target.files[0];
-    const formData = new FormData();
-    formData.append("uploadedFile", file);
-    formData.append("meetingId", params.meetingId)
+    const file = params.event.target.files && params.event.target.files[0];
+    if (file) {
+        const formData = new FormData();
+        formData.append("uploadedFile", file);
+        formData.append("meetingId", params.meetingId)
 
-    const response = await instance.post<IMeeting>("/meetings/upload-media", formData);
-    return response;
+        const response = await instance.post<IMeeting>("/meetings/upload-media", formData);
+        return response;
+    }
 });
 
 export const handleCreateNewMeeting = createEffect(async (meeting: ICreateMeeting) => {
@@ -82,8 +87,8 @@ sample({
 
 sample({
     clock: uploadFileToMediaMeeting.doneData,
-    filter: (res) => res.status <= 217,
-    fn: (res) => res.data,
+    filter: (res: any) => res.status <= 217,
+    fn: (res: any) => res.data,
     target: setSelectedMeeting
 });
 
@@ -112,7 +117,7 @@ sample({
     clock: getAllMeetings.doneData,
     filter: (res) => res.status === 200,
     fn: (res) => {
-        let splitedMeetings = { previousMeetings: [], furtherMeetings: [] };
+        let splitedMeetings: any = { previousMeetings: [], furtherMeetings: [] };
         res.data.map((el: IMeeting) => {
             if (new Date(el.date).getTime() > new Date(Date.now()).getTime()) {
                 splitedMeetings = {

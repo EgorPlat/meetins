@@ -1,0 +1,50 @@
+.places {
+    font-family: Nunito;
+    font-size: 18px;
+    & .title {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        margin-bottom: 10px;
+    }
+    & .list {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 5px;
+        row-gap: 5px;
+        font-size: 18px;
+        margin-top: 15px;
+        & .item {
+            min-height: 35px;
+            padding: 3px;
+            border: 2px solid rgb(255, 162, 63);
+            border-radius: 10px;
+            float: left;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+.hint {
+    font-family: Nunito;
+    color: gray;
+    font-size: 18px;
+}
+@media screen and (max-width: 1720px) {
+    .places {
+        & .title {
+            font-size: 19px;
+        }
+        & .list {
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .places {
+        & .list {
+            font-size: 15px;
+        }
+    }
+}

@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import s from "./CustomStepper.module.scss";
 import { useTranslation } from "react-i18next";

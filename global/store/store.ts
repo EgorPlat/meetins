@@ -7,8 +7,8 @@ import { addNotification } from "./notifications_model";
 import { IInterest } from "../../entities/interest";
 import { INotification } from "../../entities/notification";
 
-export const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
-export const peerURL = process.env.NEXT_PUBLIC_BASE_PEER_SERVER_URL;
+export const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL || "";
+export const peerURL = process.env.NEXT_PUBLIC_BASE_PEER_SERVER_URL || "";
 
 export const instance = axios.create({
     baseURL: baseURL,
@@ -30,8 +30,8 @@ instance.interceptors.response.use((response) => {
         handleLogOut();
         setIsInithialDataLoaded(true);
     }
-    if (ers >= 400 && ers <= 499) {
-        const { message } = error.response.data;
+    if (ers && ers >= 400 && ers <= 499) {
+        const { message } = error.response?.data;
         if (message) {
             addNotification({
                 text: message,
@@ -121,7 +121,7 @@ export const $isInithialUserDataLoaded = createStore<boolean>(false).on(setIsIni
 })
 
 
-export const getUserInterests = createEffect(async (userInterests) => {
+export const getUserInterests = createEffect(async (userInterests: string[]) => {
     const response = await instance.post("interests/get-ineterests-by-id", JSON.stringify({ interests: userInterests }));
     if (response.status <= 217) {
         return response.data;
@@ -174,7 +174,7 @@ export const getUserData = createEffect(async () => {
 
 export const getInitialUserDataAndCheckAuth = createEffect(() => {
     const instanseRouter$ = instanseRouter.getState();
-    const savedRoute = localStorage.getItem("previousPage");
+    const savedRoute = localStorage.getItem("previousPage") || "/";
     setIsUserLoaded(false);
     setIsInithialDataLoaded(false);
     getUserData().then((res) => {
@@ -182,14 +182,14 @@ export const getInitialUserDataAndCheckAuth = createEffect(() => {
             setIsInithialDataLoaded(true);
             setIsUserLoaded(true); 
             if (
-                instanseRouter$.asPath.includes("login") ||
-				instanseRouter$.asPath.includes("register") ||
-				instanseRouter$.asPath === "/"
+                instanseRouter$?.asPath.includes("/auth/login") ||
+				instanseRouter$?.asPath.includes("/auth/register") ||
+				instanseRouter$?.asPath === "/"
             ) {
                 instanseRouter$?.push(savedRoute);
             }
         } else {
-            instanseRouter$?.push("/login");
+            instanseRouter$?.push("/auth/login");
         }
     })
 });

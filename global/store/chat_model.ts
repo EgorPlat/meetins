@@ -12,11 +12,11 @@ export const myDialogs = createStore<IMyDialog[] | null>(null).on(setMyDialogs, 
     return newMyDialogs;
 })
 
-const handleIsUserUnReadMessagesExists = createEffect((params: { myDialogs: IMyDialog[], authedUser: User }) => {
+const handleIsUserUnReadMessagesExists = createEffect((params: { myDialogs: IMyDialog[] | null, authedUser: User  | null }) => {
     setIsUserUnReadMessagesExists(false);
-    params.myDialogs.map(dialog => {
+    params.myDialogs?.map(dialog => {
         dialog.messages.map(message => {
-            if (!message.isRead && params.authedUser.userId !== message.senderId) {
+            if (!message.isRead && params.authedUser?.userId !== message.senderId) {
                 setIsUserUnReadMessagesExists(true);
                 return;
             }
@@ -73,20 +73,22 @@ export const sendMessageAndUploadActiveChat = createEffect((params: { message: s
                 setActiveChat({ ...actualActiveChat, messages: [...actualActiveChat.messages, response?.data], content: params.message });
             })
         } else {
-            startNewDialog({ userId: actualActiveChat.userId, messageContent: params.message }).then((response) => {
-                setActiveChat({
-                    userLogin: actualActiveChat.userLogin,
-                    dialogId: response?.data.dialogId,
-                    userName: actualActiveChat.userName,
-                    userAvatar: actualActiveChat.userAvatar,
-                    isRead: true,
-                    content: params.message,
-                    messages: [response?.data],
-                    status: true,
-                    userId: actualActiveChat.userId
+            if (actualActiveChat.userId) {
+                startNewDialog({ userId: actualActiveChat.userId, messageContent: params.message }).then((response) => {
+                    setActiveChat({
+                        userLogin: actualActiveChat.userLogin,
+                        dialogId: response?.data.dialogId,
+                        userName: actualActiveChat.userName,
+                        userAvatar: actualActiveChat.userAvatar,
+                        isRead: true,
+                        content: params.message,
+                        messages: [response?.data],
+                        status: true,
+                        userId: actualActiveChat.userId
+                    });
+                    getMyDialogs(false);
                 });
-                getMyDialogs(false);
-            });
+            }
         }
     }
 });
@@ -201,8 +203,8 @@ export const startNewDialog = createEffect(async (newDialog: INewDialog) => {
 
 sample({
     clock: getDialogMessages.doneData,
-    filter: response => response.status === 200,
-    fn: response => response.data[0].dialogId,
+    filter: response => response?.status === 200,
+    fn: response => response?.data[0].dialogId,
     target: updatedIsReadMessagesInActiveDialog
 })
 sample({
@@ -213,7 +215,7 @@ sample({
 })
 sample({
     clock: getMyDialogs.doneData,
-    filter: response => response.status === 200,
-    fn: response => response.data,
+    filter: response => response?.status === 200,
+    fn: response => response?.data,
     target: setMyDialogs
 })

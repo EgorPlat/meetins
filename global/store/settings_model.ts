@@ -32,8 +32,7 @@ export const deleteUserAccount = async () => {
     const response = await instance.delete("/user/delete-user");
     return response;
 }
-export const updateUserAvatar = createEffect();
-updateUserAvatar.use(async (blob: Blob) => {
+export const updateUserAvatar = createEffect(async (blob: Blob) => {
     const formData = new FormData();
     const image = new File([blob], "image.jpeg", { type: "image/jpeg" });
     
@@ -43,20 +42,18 @@ updateUserAvatar.use(async (blob: Blob) => {
     if (response.status <= 200) {
         return response.data;
     }
-})
+});
 
-export const updateUserStatus = createEffect();
-updateUserStatus.use(async (userStatus) => {
+export const updateUserStatus = createEffect(async (userStatus: string) => {
     const response = await instance.post<User>("settings/update-status", { status: userStatus });
     if (response.status === 200) {
         return response.data;
     }
-})
+});
 
-export const updateUserFilterStatus = createEffect();
-updateUserFilterStatus.use(async (userFilterStatus: boolean) => {
+export const updateUserFilterStatus = createEffect(async (userFilterStatus: boolean) => {
     const response = await instance.post<User>("settings/update-filter-status", { isFilter: userFilterStatus });
     if (response.status === 200) {
         return response.data;
     }
-})
+});

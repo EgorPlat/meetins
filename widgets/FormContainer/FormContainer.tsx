@@ -1,10 +1,11 @@
-import { ReactChild } from "react";
+import { ReactNode } from "react";
+import s from "./FormContainer.module.scss";
 
 export default function FormContainer(props: {
-    children: ReactChild,
+    children: ReactNode,
 }) {
     return (
-        <div className="formContainer">
+        <div className={s.formContainer}>
             {props.children}
         </div>
     )

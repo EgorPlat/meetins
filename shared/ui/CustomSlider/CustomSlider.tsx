@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import s from "./CustomSlider.module.scss";
 import { useUnit } from "effector-react";

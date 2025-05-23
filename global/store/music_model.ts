@@ -62,7 +62,7 @@ export const authorsStatistic = createStore<IMusicAuthorsStatistics[]>([]).on(
 
 export const setActiveMusic = createEvent<IActiveMusic>();
 export const setActiveMusicCurrentTime = createEvent<number>();
-export const activeMusic = createStore<IActiveMusic>(null).on(
+export const activeMusic = createStore<IActiveMusic | null>(null).on(
     setActiveMusic,
     (_, newActiveMusic) => {
         return newActiveMusic;
@@ -70,7 +70,7 @@ export const activeMusic = createStore<IActiveMusic>(null).on(
 );
 
 export const setActiveMusicId = createEvent<number>();
-export const activeMusicId = createStore<number>(null).on(
+export const activeMusicId = createStore<number | null>(null).on(
     setActiveMusicId,
     (_, id) => {
         return id;
@@ -78,7 +78,10 @@ export const activeMusicId = createStore<number>(null).on(
 );
 
 activeMusic.on(setActiveMusicCurrentTime, (prevActiveMusic, currentTime) => {
-    return { ...prevActiveMusic, currentTime }
+    if (prevActiveMusic) {
+        return { ...prevActiveMusic, currentTime }
+    }
+    return prevActiveMusic;
 })
 
 export const addNewMusic = createEffect(async (data: FormData) => {
