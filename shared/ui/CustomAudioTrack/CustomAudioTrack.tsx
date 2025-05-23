@@ -1,3 +1,4 @@
+"use client";
 import s from "./CustomAudioTrack.module.scss";
 import { IoIosPlay } from "react-icons/io";
 import { TbPlayerPauseFilled } from "react-icons/tb";
@@ -9,7 +10,7 @@ export default function CustomAudioTrack(props) {
     const [timeData, setTimeData] = useState<{ currentTime: number, duration: number }>(
         { currentTime: 0, duration: 0 }
     );
-    const audioRef = useRef<HTMLAudioElement>();
+    const audioRef = useRef<HTMLAudioElement>(null);
     
     const handleUpdateTimeData = (audio) => {
         if (audioRef.current) {

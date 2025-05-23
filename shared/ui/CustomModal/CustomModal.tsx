@@ -1,10 +1,11 @@
-import React, { ReactChild } from "react";
+"use client";
+import React, { JSX, ReactNode } from "react";
 import s from "./CustomModal.module.scss";
 import { useTranslation } from "react-i18next";
 import { createPortal } from "react-dom";
 
 const CustomModal = (props: {
-    children: ReactChild, 
+    children: ReactNode, 
     isDisplay: boolean, 
     changeModal: (status: boolean) => void
     actionConfirmed: (status: boolean) => void,
@@ -18,11 +19,11 @@ const CustomModal = (props: {
     if(!props.isDisplay) {
         return null;
     }
-    return createPortal(
+    return (
         <div className={s.customModal}>
             <div className={`${s.customModalContent} customModal`}>
                 <div className={s.customModalTitle}>
-                    <p>{t(props.title)}</p>
+                    <div>{t(props.title)}</div>
                     <div className={s.customModalClose} onClick={() => props.changeModal(false)}>
                         x
                     </div>
@@ -52,7 +53,7 @@ const CustomModal = (props: {
                 </div>
             </div>
         </div>
-        , document.body)
+    )
 }
 
 export default CustomModal;

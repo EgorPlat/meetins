@@ -11,14 +11,14 @@ export const connection = createStore<Socket | null>(null).on(
         return newConnection
     }
 );
-export const connectionWatcher = createEffect((obj: { connection: Socket, activeChat: IMyDialog }) => {
-    obj.connection.removeAllListeners();
-    obj.connection.on("message", (message: any) => {
-        if (message.dialogId === obj.activeChat.dialogId) {
-            if (obj.activeChat.userName === message.senderName) {
+export const connectionWatcher = createEffect((obj: { connection: Socket | null, activeChat: IMyDialog | null }) => {
+    obj.connection?.removeAllListeners();
+    obj.connection?.on("message", (message: any) => {
+        if (message.dialogId === obj.activeChat?.dialogId) {
+            if (obj.activeChat && obj.activeChat?.userName === message.senderName) {
                 setActiveChat({
                     ...obj.activeChat,
-                    messages: [...obj.activeChat.messages, message]
+                    messages: [...(obj.activeChat?.messages || []), message]
                 });
                 updatedIsReadMessagesInActiveDialog(message.dialogId);
             }
@@ -26,10 +26,10 @@ export const connectionWatcher = createEffect((obj: { connection: Socket, active
             setIsUserUnReadMessagesExists(true);
         }
     });
-    obj.connection.on("updateUsers", (message: any) => {
+    obj.connection?.on("updateUsers", (message: any) => {
         setOnlineUsers(message.users);
     });
-    obj.connection.on("connect", () => {
+    obj.connection?.on("connect", () => {
         console.log("Successfully connected to socket");
     });
 })

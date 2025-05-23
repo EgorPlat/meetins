@@ -1,8 +1,9 @@
+"use client";
 import { useEffect, useState } from "react";
-import s from "./CustomButtonWithHint.module.scss";
 import { isMobile, setIsScrollPageBlocked } from "../../../global/store/store";
 import { useTranslation } from "react-i18next";
 import { useUnit } from "effector-react";
+import s from "./CustomButtonWithHint.module.scss";
 
 interface IHintProps {
     title: string | React.ReactElement,
@@ -15,10 +16,6 @@ export default function CustomButtonWithHint({ title, hintTitle, fontSize, borde
 
     const [isHint, setIsHint] = useState<boolean>(false);
     const isMobile$ = useUnit(isMobile);
-
-    const blurBlockHeight = !isMobile$ 
-        ? document.getElementsByTagName("body")[0].clientHeight
-        : document.getElementById("mobileMainContent")?.scrollHeight;
 
     const { t } = useTranslation();
     
@@ -43,7 +40,6 @@ export default function CustomButtonWithHint({ title, hintTitle, fontSize, borde
                     <>
                         <div 
                             className={s.bluredBlock}
-                            style={{ height: blurBlockHeight }}
                             onClick={() => setIsHint(prev => !prev)}
                         ></div>
                         <div className={s.hint}>

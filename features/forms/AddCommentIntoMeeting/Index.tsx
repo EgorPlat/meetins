@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useUnit } from "effector-react";
@@ -8,7 +8,7 @@ import FormContainer from "../../../widgets/FormContainer/FormContainer";
  
 export default function AddCommentIntoMeeting(): JSX.Element {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<{ text: string }>();
     const { t } = useTranslation();
     const selectedMeeting$ = useUnit(selectedMeeting);
 
@@ -16,7 +16,8 @@ export default function AddCommentIntoMeeting(): JSX.Element {
         text: string, 
     }) => {
         handleSendCommentIntoMeeting({ meetingId: selectedMeeting$.meetingId, text: data.text })
-    }
+    };
+
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeComment)}>

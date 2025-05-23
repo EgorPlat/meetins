@@ -1,3 +1,4 @@
+"use client";
 import s from "./CustomTimer.module.scss";
 import { useCountDown } from "../../../shared/hooks/useCountDown";
 import { useEffect, useState } from "react";

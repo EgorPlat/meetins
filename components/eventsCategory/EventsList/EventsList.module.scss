@@ -1,0 +1,150 @@
+.content {
+    & .topMenu {
+        display: grid;
+        row-gap: 10px;
+        font-size: 18px;
+        margin: 10px 0 0 0;
+        background-color: var(--bg-color-block);
+        padding: 20px;
+        border-radius: 10px;
+        & .title {
+            
+        }
+    }
+    & .list {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-bottom: 20px;
+        & .eventBody {
+            background-color: var(--bg-color-block);
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            min-height: 150px;
+            margin-top: 10px;
+            column-gap: 10px;
+            border-radius: 10px;
+            & .eventImage {
+                position: relative;
+                min-height: 200px;
+                & img {
+                    border-radius: 10px;
+                }
+            }
+            & .eventDescription {
+                display: grid;
+                row-gap: 5px;
+                font-size: 18px;
+                & .eventTitle {
+                    display: flex;
+                    align-items: center;
+                    color: var(--text-color);
+                    font-size: 17px;
+                    text-transform: uppercase;
+                    text-align: justify;
+                    margin-bottom: 10px;
+                }
+                & .eventPrice {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 10px;
+                    & .free {
+                        display: flex;
+                        align-items: center;
+                        padding: 0px 5px 0px 5px;
+                        font-size: 15px;
+                        border: none;
+                        border-radius: 100px;
+                        background-color: rgba(43, 255, 43, 0.697);
+                    }
+                    & .notFree {
+                        max-width: 200px;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow-x: hidden;
+
+                        display: flex;
+                        align-items: center;
+                        padding: 0px 5px 0px 5px;
+                        font-size: 15px;
+                        border: none;
+                        border-radius: 100px;
+                        background-color: rgba(59, 160, 255, 0.695);
+                    }
+                }
+                & .eventAge {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 10px;
+                    & .age {
+                        display: flex;
+                        align-items: center;
+                        font-size: 15px;
+                        min-width: 40px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        color: black;
+                        background-color: rgb(255, 229, 127);
+                        border-radius: 100px;
+                        text-align: center;
+                    }
+                }
+                & .eventRating {
+                    display: flex;
+                    column-gap: 5px;
+                    & .icon {
+                        color: var(--default-color);
+                        stroke: var(--default-color);
+                        stroke-width: 0.5px;
+                    }
+                }
+                & .eventDates {
+                    display: flex;
+                    align-content: center;
+                    column-gap: 5px;
+                    & .date {
+                        display: flex;
+                        align-items: center;
+                        font-size: 16px;
+                        //background-color: rgba(11, 125, 212, 0.586);
+                        //padding: 0px 10px 0px 10px;
+                        //border-radius: 100px;
+                    }
+                }
+                & .eventActions {
+                    display: flex;
+                    justify-content: right;
+                    & a {
+                        color: var(--default-color);
+                    }
+                    & a:hover {
+                        color: orange;
+                    }
+                }
+            }
+        }
+        & .eventBody:hover {
+            cursor: pointer;
+        }
+    }
+    
+    & .errorMessage {
+        font-size: 18px;
+        text-align: center;
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content {
+        & .list {
+            & .eventBody {
+                grid-template-columns: 1fr;
+                row-gap: 10px;
+                & .eventDescription {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}

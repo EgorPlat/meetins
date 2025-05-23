@@ -1,3 +1,4 @@
+"use client";
 import React, { ChangeEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import s from "./InputFile.module.scss";

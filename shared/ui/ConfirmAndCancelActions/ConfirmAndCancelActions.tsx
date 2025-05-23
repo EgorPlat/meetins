@@ -1,3 +1,4 @@
+"use client";
 import s from "./ConfirmAndCancelActions.module.scss";
 
 export default function ConfirmAndCancelActions(props: {

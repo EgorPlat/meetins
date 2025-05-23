@@ -1,4 +1,4 @@
-import { IInnerInvites, IInvitedUsers, IOuterInvites } from "."
+import { IInnerInvites, IOuterInvites } from ".";
 
 export interface IShortEventInfo {
     id: number,

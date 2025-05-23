@@ -33,12 +33,12 @@ export const $loginLoading = createStore<boolean>(false).on(
 )
 
 export const handlePushUserToLoginPage = createEffect((params: { router: any, data: any }) => {
-    params.router.push("/login");
+    params.router.push("/auth/login");
 })
 
 export const saveDataAfterLogin = createEffect((params: { router: any, data: any }) => {
     setUser(params.data.profile.user);
-    params.router.push(`profile/${params.data.profile.user.login}`);
+    params.router.push(`/profile/${params.data.profile.user.login}`);
 });
 
 sample({

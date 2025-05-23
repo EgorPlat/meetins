@@ -1,6 +1,6 @@
 import { CATEGORY_NAMES } from "./constants";
 import { IMyActiveDialogMessage, User } from "../../entities";
-import { IGroup } from "../../entities/groups";
+import { IGroup, IGroupFile } from "../../entities/groups";
 
 export default function calculateCountOfUnredMessageInDialog (messages: IMyActiveDialogMessage[], authedUser: User) {
     if (!messages) return;
@@ -76,7 +76,7 @@ export const getTimeDataString = (currentTime: number, duration: number) => {
 
 export const destrucutreFilesInGroupPost = (groupInfo: IGroup) => {
 
-    let mainInfo = {
+    let mainInfo: any = {
         images: [],
         videos: [],
         attachments: []
@@ -85,7 +85,7 @@ export const destrucutreFilesInGroupPost = (groupInfo: IGroup) => {
     if (!groupInfo.posts) return mainInfo;
 
     groupInfo?.posts?.map(post => {
-        post.files.map(file => {
+        post.files.map((file) => {
             if (file.type.includes("image")) {
                 mainInfo = {
                     ...mainInfo,

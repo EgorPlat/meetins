@@ -1,21 +1,23 @@
-import React from "react";
+import React, { JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import { useUnit } from "effector-react";
 import { $user, updateUserTag } from "../../../global/store/store";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
- 
+
+interface IEditUserTagForm {
+    color: string,    
+    title: string
+};
+
 export default function EditUserTag(): JSX.Element {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<IEditUserTagForm>();
     const { t } = useTranslation();
     const user$ = useUnit($user);
 
-    const onChangeTag = (data: {
-        color: string,    
-        title: string
-    }) => {
+    const onChangeTag = (data: IEditUserTagForm) => {
         updateUserTag(data);
     }
     return (
@@ -24,7 +26,7 @@ export default function EditUserTag(): JSX.Element {
                 <div className="field">
                     <label htmlFor="title">{t("Содержимое")}</label>
                     <input
-                        defaultValue={user$.tag.title}
+                        defaultValue={user$?.tag.title}
                         type="text" 
                         id="title"
                         placeholder={t("Содержимое")} 
@@ -39,7 +41,7 @@ export default function EditUserTag(): JSX.Element {
                 <div className="field">
                     <label htmlFor="color">{t("Цвет фона")}</label>
                     <input 
-                        defaultValue={user$.tag.color}
+                        defaultValue={user$?.tag.color}
                         type="color" 
                         id="color" 
                         {...register("color", { required: false })} 

@@ -1,5 +1,5 @@
 import { useUnit } from "effector-react";
-import React from "react";
+import React, { JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { isAccountUpdated, updateUserAccountData } from "../../../global/store/settings_model";
@@ -8,14 +8,20 @@ import s from "./manageAccount.module.scss";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 
+interface IManageAccountForm {
+    email: string, 
+    password: string,
+    login: string
+}
+
 export default function ManageAccountForm(): JSX.Element {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<IManageAccountForm>();
     const user = useUnit($user);
     const isUpdated: boolean | null = useUnit(isAccountUpdated);
     const { t } = useTranslation();
 
-    const onChangeAccount = (data: {email: string, password: string, login: string}) => {
+    const onChangeAccount = (data: IManageAccountForm) => {
         if (data.password.length !== 0 && data.login.length !== 0) {
             updateUserAccountData(data);
         }

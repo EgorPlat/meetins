@@ -1,6 +1,7 @@
+"use client";
 import { useUnit } from "effector-react";
 import Link from "next/link";
-import React from "react";
+import React, { JSX } from "react";
 import { useTranslation } from "react-i18next";
 import s from "./LeftNavMenu.module.scss";
 import { isMobile } from "../../global/store/store";

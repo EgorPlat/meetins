@@ -1,9 +1,9 @@
-import { ReactChild, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import s from "./InfinityScroll.module.scss";
 
 interface IInfinityScrollProps {
     maxPage: number,
-    children: ReactChild,
+    children: ReactNode,
     handleIncreaseCurrentPage: () => void,
     handleUpdateCurrentPage: (newPage: number) => void,
 };

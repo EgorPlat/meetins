@@ -1,7 +1,8 @@
+"use client"
 import { useUnit } from "effector-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { JSX, useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import s from "./mainNavbar.module.scss"; 
@@ -9,7 +10,9 @@ import { useTranslation } from "react-i18next";
 import { $user, baseURL } from "../../global/store/store";
 import { connection, setNewConnection } from "../../global/store/connection_model";
 import { handleLogOut } from "../../global/store/login_model";
-import CustomButtonWithHint from "../../shared/ui/CustomButtonWithHint/CustomButtonWithHint";
+import dynamic from "next/dynamic";
+
+const CustomButtonWithHint = dynamic(() => import("../../shared/ui/CustomButtonWithHint/CustomButtonWithHint"));
 
 export default function MainNavbar(): JSX.Element {
 
@@ -18,14 +21,16 @@ export default function MainNavbar(): JSX.Element {
     const [select, setSelect] = useState<string>("");
     const user = useUnit($user);
     const router = useRouter();
-    const ref = useRef<any>();
+    const ref = useRef<any>(null);
     const userAvatar = user?.avatar || "no-avatar.jpg";
     const connection$ = useUnit(connection);
 
     const handleAvatarClick = () => {
-        setSelect("");
-        ref.current.selectedIndex = ref.current.options[0];
-        router.push(`/profile/${user.login}`);
+        if (user) {
+            setSelect("");
+            ref.current.selectedIndex = ref.current.options[0];
+            router.push(`/profile/${user.login}`);
+        }
     };
 
     useEffect(() => {
@@ -35,7 +40,7 @@ export default function MainNavbar(): JSX.Element {
                 if (connection$) {
                     connection$.disconnect();
                 }
-                router.push("/login");
+                router.push("/auth/login");
                 setNewConnection(null);	
             }
             if( select === "settings" ) {

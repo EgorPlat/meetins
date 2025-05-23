@@ -7,9 +7,8 @@
 	grid-template-columns: 15% 85%;
 	padding-bottom: 10px;
 	padding-top: 10px;
-	padding-left: 2.5%;
 	justify-content: center;
-	max-width: 1600px;
+	max-width: 1300px;
 	width: 100%;
 	& .logo {
 		margin-bottom: 15px;
@@ -18,18 +17,5 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-	}
-}
-@media screen  and (max-width: 1250px) {
-	.header {
-		grid-template-columns: 25% 75%;
-	}
-}
-@media screen  and (max-width: 1070px) {
-	.header {
-		grid-template-columns: 100%;
-		& .logo {
-			margin-top: 10px;
-		}
 	}
 }

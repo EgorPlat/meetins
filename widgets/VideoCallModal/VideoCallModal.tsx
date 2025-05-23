@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { $user, baseURL, peerIDForCall, peerURL, setIsVideoCallOpened, setPeerIDForCall } from "../../global/store/store";
+import { $user, peerIDForCall, peerURL, setIsVideoCallOpened, setPeerIDForCall } from "../../global/store/store";
 import { connection } from "../../global/store/connection_model";
 import { useUnit } from "effector-react";
 import { FaCamera, FaMicrophone } from "react-icons/fa6";
@@ -66,10 +66,10 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             video: video ? { width: 200, height: 200 } : false
         }).then((stream) => {
             peerCall.peerConnection.getSenders().forEach((sender: RTCRtpSender) => {
-                if(sender.track.kind === "audio" && stream.getAudioTracks().length > 0){
+                if(sender.track?.kind === "audio" && stream.getAudioTracks().length > 0){
                     sender.replaceTrack(stream.getAudioTracks()[0]);
                 }
-                if (sender.track.kind === "video" && stream.getVideoTracks().length > 0) {
+                if (sender.track?.kind === "video" && stream.getVideoTracks().length > 0) {
                     sender.replaceTrack(stream.getVideoTracks()[0]);
                 }
             });
@@ -170,7 +170,7 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             });
 
             newPeer.on("open", function(peerID) {
-                connection$?.emit("send-peer-id", { userId: authedUser$.userId, peerID: peerID })
+                connection$?.emit("send-peer-id", { userId: authedUser$?.userId, peerID: peerID })
             });
             newPeer.on("call", function(call: MediaConnection) {
                 const isUserConfirmedCall = confirm("Входящий звонок от пользователя. Принять?");

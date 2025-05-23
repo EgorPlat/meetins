@@ -17,9 +17,13 @@ const ImageCropper = ({
     const cropperRef = useRef<Cropper>(null);
 
     const handleSaveCroppedImage = () => {
-        cropperRef.current.getCroppedCanvas().toBlob((blob: Blob) => {
-            handleGetCropperImageBlob(blob);   
-        })
+        if (cropperRef.current) {
+            cropperRef.current.getCroppedCanvas().toBlob((blob: Blob | null) => {
+                if (blob) {
+                    handleGetCropperImageBlob(blob);
+                }
+            })
+        }
     };
 
     useEffect(() => {

@@ -1,0 +1,87 @@
+.settings {
+    font-family: Nunito;
+    font-size: 16px;
+    padding-bottom: 5px;
+    & .formAndInfo {
+        font-size: 18px;
+        font-family: Nunito;
+        & .title {
+            background-color: var(--bg-color-block);
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            height: 40px;
+        }
+        & .filters {
+            & .filter {
+                padding: 0px 10px 0px 10px;
+                margin: 10px 0px 10px 0px;
+                display: flex;
+                column-gap: 5px;
+            }
+        }
+        & .locale {
+            cursor: pointer;
+            & .locales {
+                padding-left: 10px;
+                display: flex;
+                column-gap: 15px;
+                margin: 10px 0px 10px 0px;
+                & .localeImg {
+                    width: 60px;
+                    height: 50px;
+                    & img {
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+        & .themes {
+            cursor: pointer;
+            & .swipeTheme {
+                margin: 10px 0 10px 10px;
+                background-color: transparent;
+                border-radius: 5px;
+                min-height: 30px;
+                cursor: pointer;
+                font-size: 18px;
+                font-family: Nunito;
+            }
+            & .swipeTheme:hover {
+                background-color: rgb(255, 208, 0);
+                color: black;
+            }
+        }
+        & .info {
+            & .profileForm {
+                padding: 0px 10px 0px 10px;
+            }
+        }
+        & .management {
+            margin: 10px 0px 10px 0px;
+            & .accountForm {
+                padding: 0px 10px 0px 10px;
+            }
+            & .updateSatus {
+                color: green;
+                background-color: rgba(65, 223, 86, 0.3);
+                padding: 5px;
+                width: 50%;
+                margin-top: 2px;
+            }
+            & .infoText {
+                margin-top: 10px;
+                & .description {
+                    padding: 0px 10px 0px 10px;
+                    text-align: justify;
+                    font-size: 16px;
+                    margin: 10px 0px 10px 0px;
+                    & .actions {
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

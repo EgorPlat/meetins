@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { JSX, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
@@ -8,18 +8,20 @@ import { validateFilesFromInputAndStructuring } from "../../../shared/helpers/he
 import { useUnit } from "effector-react";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 
+interface IAddMusicForm {
+    name: string,
+    composition: File[],
+    description: string,
+    title: string
+};
+
 export default function AddMusic(): JSX.Element {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<IAddMusicForm>();
     const { t } = useTranslation();
     const currentAuthorName$ = useUnit(currentAuthorName);
 
-    const onChangeMusic = (data: {
-        name: string,
-        composition: File[],
-        description: string,
-        title: string
-    }) => {
+    const onChangeMusic = (data: IAddMusicForm) => {
         if (
             data.composition.length > 2 ||
             data.composition.length < 2

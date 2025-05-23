@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { JSX } from "react";
 import s from "./CustomLoader.module.scss";
 
 export default function CustomLoader(props: {

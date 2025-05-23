@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import s from "./CustomSplitedInput.module.scss";
 import React from "react";

@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactElement } from "react"
 import { UseFormRegisterReturn } from "react-hook-form"
 import s from "./input.module.scss"

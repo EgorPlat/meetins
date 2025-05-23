@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode, useEffect, useState } from "react"
 import s from "./CustomShowUpComponent.module.scss";
 import { useInView } from "react-intersection-observer";

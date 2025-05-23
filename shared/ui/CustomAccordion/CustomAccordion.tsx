@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import s from "./CustomAccordion.module.scss";
 

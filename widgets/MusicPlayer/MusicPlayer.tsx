@@ -16,7 +16,7 @@ export const MusicPlayer = (props: {
     const [isMusicSelected, setIsMusicSelected] = useState<boolean>(false);
     const [musicTimeData, setMusicTimeData] = useState<{ currentTime: number, duration: number }>({ currentTime: 0, duration: 0 });
     const musicFullTimer = getTimerFromSeconds(+musicTimeData?.duration);
-    const audioRef = useRef<HTMLAudioElement>();
+    const audioRef = useRef<HTMLAudioElement>(null);
 
     const handleTimeUpdate = (audio) => {
         if (audioRef.current) {
@@ -48,11 +48,13 @@ export const MusicPlayer = (props: {
     };
 
     const handleStopMusic = () => {
-        setIsMusicSelected(false);
-        audioRef.current.currentTime = 0;
-        audioRef.current.pause();
-        audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
-        setActiveMusic(null);
+        if (audioRef.current) {
+            setIsMusicSelected(false);
+            audioRef.current.currentTime = 0;
+            audioRef.current.pause();
+            audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+            setActiveMusic(null);
+        }
     };
 
     useEffect(() => {

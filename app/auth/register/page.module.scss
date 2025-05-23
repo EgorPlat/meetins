@@ -1,0 +1,142 @@
+.cardWrapper {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+	& .card {
+		font-family: Nunito;
+		display: grid;
+		grid-template-columns: 1fr;
+		justify-items: center;
+		align-items: center;
+		background: rgba(0, 0, 0, 0.6);
+		border-radius: 16px;
+		width: 550px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		& h1 {
+			color: #ffffff;
+			font-size: 36px;
+		}
+		& .submitBtn {
+			margin-top: 20px;
+			width: 100%;
+			background-color: rgb(75, 125, 235);
+			border-radius: 50px;
+			height: 70px;
+			font-size: 30px;
+			color: white;
+		}
+		& .submitBtn:hover {
+			background-color: rgb(221, 185, 24);
+			color: black;
+		}
+		& a {
+			color: white;
+			margin-bottom: 90px;
+		}
+		& a:hover {
+			color: rgb(75, 125, 235);
+		}
+		& .gender {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+	
+			margin-top: 35px;
+	
+			padding: 0 60px;
+			& span {
+				flex: 0.5;
+				font-family: Nunito;
+	
+				color: #ffedda;
+			}
+			& label {
+				height: 62px;
+				width: 62px;
+				background-color: white;
+				border-radius: 50%;
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				&:focus {
+					background-color: black;
+				}
+	
+				& ~ input {
+					display: none;
+				}
+				&.checked {
+					background-color: rgb(94, 94, 255);
+					color: white;
+				}
+			}
+		}
+	}
+}
+.navActions {
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+}
+.errorSpan {
+	color: rgb(255, 80, 80);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	word-break: break-all;
+	max-width: 300px;
+	margin-left: 15px;
+}
+.errorBlock {
+	margin-top: 3%;
+	background-color: rgba(255, 147, 139, 0.1);
+	color: white;
+	padding: 10px;
+	text-align: center;
+}
+.errorBorder {
+	border: 2px solid red;
+}
+
+@media screen  and (max-width: 551px){
+	.cardWrapper {
+		& .card {
+			width: 450px;
+		}
+	}
+}
+@media screen  and (max-width: 451px){
+	.cardWrapper {
+		& .card {
+			width: 400px;
+		}
+	}
+}
+@media screen  and (max-width: 400px){
+	.cardWrapper {
+		& .card {
+			width: 380px;
+		}
+	}
+}
+@media screen  and (max-width: 380px){
+	.cardWrapper {
+		& .card {
+			width: 360px;
+		}
+	}
+}
+
+@media screen  and (max-width: 360px){
+	.cardWrapper {
+		& .card {
+			width: 340px;
+		}
+	}
+}
