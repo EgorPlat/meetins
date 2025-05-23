@@ -7,13 +7,14 @@ import useDebounce from "@/shared/hooks/useDebounce";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import CustomModal from "@/shared/ui/CustomModal/CustomModal";
 import CustomStepper from "@/shared/ui/CustomStepper/CustomStepper";
-import MusicPageView from "./components/MusicPageView/MusicPageView";
+
 import dynamic from "next/dynamic";
+import MusicPageView from "@/components/music/MusicPageView/MusicPageView";
 
 const AddMusic = dynamic(() => import("../../../features/forms/AddMusic/Index"), { loading: () => <CustomLoader />, ssr: false })
-const StatsView = dynamic(() => import("./components/StatsView/StatsView"), { loading: () => <CustomLoader />, ssr: false });
-const StatsTimeView = dynamic(() => import("./components/StatsTimeView/StatsTimeView"), { loading: () => <CustomLoader />, ssr: false });
-const StatsGeoView = dynamic(() => import("./components/StatsGeoView/StatsGeoView"), { loading: () => <CustomLoader />, ssr: false});
+const StatsView = dynamic(() => import("../../../components/music/StatsView/StatsView"), { loading: () => <CustomLoader />, ssr: false });
+const StatsTimeView = dynamic(() => import("../../../components/music/StatsTimeView/StatsTimeView"), { loading: () => <CustomLoader />, ssr: false });
+const StatsGeoView = dynamic(() => import("../../../components/music/StatsGeoView/StatsGeoView"), { loading: () => <CustomLoader />, ssr: false});
 
 export default function Music() {
 

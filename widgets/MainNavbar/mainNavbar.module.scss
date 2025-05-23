@@ -1,12 +1,12 @@
 .link {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: calc(100% - 300px) 300px;
 	& .navBlock {
 		font-family: Nunito;
 		display: flex;
 		flex-wrap: wrap;
 		column-gap: 3%;
-		justify-content: flex-end;
+		justify-content: center;
 		align-items: center;
 		justify-items: center;
 		& a {
