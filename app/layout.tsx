@@ -59,7 +59,7 @@ export default function RootLayout({
     }, [isMobile, isUnAdaptive]);
 
     return (
-        <html lang="en">
+        <html lang="en" data-theme="black">
             <body>
                 {children}
                 { currentNotifications$.length !== 0 && <NotificationBlock /> }

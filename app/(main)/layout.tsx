@@ -1,17 +1,17 @@
 "use client";
 import { ReactNode } from "react";
-import s from "./layout.module.scss";
-import dynamic from "next/dynamic";
-import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import { useUnit } from "effector-react";
 import { $user, baseURL, isMobile } from "@/global/store/store";
-import Image from "next/image";
-import logo from "../../public/images/logo.svg";
 import { useRouter } from "next/navigation";
 import MobileBottomMenu from "@/widgets/MobileBottomMenu/MobileBottomMenu";
-import LeftNavMenu from "@/widgets/LeftNavMenu/LeftNavMenu";
+import Image from "next/image";
+import logo from "../../public/images/logo.svg";
+import dynamic from "next/dynamic";
+import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
+import s from "./layout.module.scss";
 
 const Header = dynamic(() => import("@/widgets/Header"), { ssr: false, loading: () => <CustomLoader /> });
+const LeftNavMenu = dynamic(() => import("@/widgets/LeftNavMenu/LeftNavMenu"), { ssr: false, loading: () => <CustomLoader /> });
 
 interface IMainLayoutProps {
     children: ReactNode

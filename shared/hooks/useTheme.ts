@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export const useTheme = () => {
     
-    const [currentTheme, setCurrentTheme] = useState<string>("");
+    const [currentTheme, setCurrentTheme] = useState<string>("black");
     
     useEffect(() => {
         if (localStorage.getItem("data-theme") === "white") {

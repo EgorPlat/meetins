@@ -11,13 +11,16 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 
 const SearchingPeople = dynamic(() => import("../../../components/peoples/SearchingPeople/SearchingPeople"), {
-    loading: () => <CustomLoader />
+    loading: () => <CustomLoader />,
+    ssr: false
 });
 const GroupsList = dynamic(() => import("../../../components/peoples/GroupsList/GroupsList"), {
-    loading: () => <CustomLoader />
+    loading: () => <CustomLoader />,
+    ssr: false
 });
 const LentaList = dynamic(() => import("../../../components/peoples/LentaList/LentaList"), {
-    loading: () => <CustomLoader />
+    loading: () => <CustomLoader />,
+    ssr: false
 });
 
 export default function Peoples(): JSX.Element {
