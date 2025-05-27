@@ -36,7 +36,7 @@
             }
             & .musicContentElementInfoProgressElem::-webkit-progress-bar {
                 border-radius: 100px;
-                background-color:gray;
+                background-color: var(--bg-audio-track);
             }
             & .musicContentElementInfoProgressElem::-webkit-progress-value {
                 border-radius: 100px;

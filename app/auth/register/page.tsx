@@ -65,9 +65,9 @@ export default function Register(): JSX.Element {
             password: passwordWOSpace,
             gender: data.gender,
             city: data.city
-        }).then( (res: any) => {
+        }).then( (res: Response) => {
             setIsLoading(false);
-            if(res.data?.statusCode <= 217) {
+            if(res.status <= 217) {
                 setEmailForConfirmation(email);
                 router.push("/auth/confirmation");
             }
@@ -221,7 +221,7 @@ export default function Register(): JSX.Element {
                         }
                     </button>
                     <div className={s.navActions}>
-                        <Link href="/login">Уже есть аккаунт?</Link>
+                        <Link href="/auth/login">Уже есть аккаунт?</Link>
                     </div>
                 </form>
             </div>

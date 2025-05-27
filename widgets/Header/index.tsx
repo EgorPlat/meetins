@@ -1,29 +1,20 @@
 "use client";
-import s from "./header.module.scss"
+import { useRouter } from "next/navigation"
+import { JSX, Suspense } from "react";
 import Image from "next/image"
 import logo from "../../public/images/full-new-logo.svg";
-import MainNavbar from "../MainNavbar"
-import { useUnit } from "effector-react"
-import { useRouter } from "next/navigation"
-import { $currentPage } from "../../global/store/store"
-import { JSX } from "react";
+import dynamic from "next/dynamic";
+import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
+import s from "./header.module.scss"
+
+const MainNavbar = dynamic(() => import("../MainNavbar"), { loading: () => <CustomLoader />, ssr: false });
 
 export default function Header(): JSX.Element {
 	
-    const currentPage = useUnit($currentPage);
     const router = useRouter();
-	
-    let headerBgClass
-    if (currentPage === "/") {
-        headerBgClass = s.headerMainPage
-    } else if (currentPage === "/auth/login" || currentPage === "/auth/register") {
-        headerBgClass = s.headerAuthPage
-    } else if (currentPage === "/profile") {
-        headerBgClass = s.headerProfilePage
-    }
 
     return (   
-        <div className={`${s.header} ${headerBgClass}`}>
+        <div className={`${s.header}`}>
             <div className={s.logo}>
                 <Image
                     onClick={() => router.push("/about")}
@@ -33,7 +24,9 @@ export default function Header(): JSX.Element {
                     width={190}
                 />
             </div>
-            <MainNavbar />
+            <Suspense fallback={<CustomLoader />}>
+                <MainNavbar />
+            </Suspense>
         </div>
     )
 }

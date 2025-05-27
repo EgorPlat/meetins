@@ -1,11 +1,12 @@
 import { getTimerFromSeconds } from "../../shared/helpers/helper";
-import s from "./MusicPlayer.module.scss";
 import { IMusic, IMusicAuthors } from "../../entities/music";
 import { baseURL } from "../../global/store/store";
 import { useEffect, useRef, useState } from "react";
-import { setActiveMusic, setActiveMusicId, setIsMusicNeededOnBackground } from "../../global/store/music_model";
+import { activeMusicId, setActiveMusic, setActiveMusicId } from "../../global/store/music_model";
 import { FaPlay } from "react-icons/fa6";
 import { FaPause } from "react-icons/fa";
+import { useUnit } from "effector-react";
+import s from "./MusicPlayer.module.scss";
 
 export const MusicPlayer = (props: {
     musicInfo: IMusic,
@@ -13,6 +14,7 @@ export const MusicPlayer = (props: {
     isStopNeeded: boolean
 }) => {
     
+    const activeMusicId$ = useUnit(activeMusicId);
     const [isMusicSelected, setIsMusicSelected] = useState<boolean>(false);
     const [musicTimeData, setMusicTimeData] = useState<{ currentTime: number, duration: number }>({ currentTime: 0, duration: 0 });
     const musicFullTimer = getTimerFromSeconds(+musicTimeData?.duration);
@@ -38,7 +40,6 @@ export const MusicPlayer = (props: {
 
     const handleStartMusic = () => {
         setActiveMusicId(props.musicInfo.id);
-        setIsMusicNeededOnBackground(false);
         if (audioRef.current) {
             setIsMusicSelected(true);
             audioRef.current.currentTime = 0;
@@ -54,12 +55,12 @@ export const MusicPlayer = (props: {
             audioRef.current.pause();
             audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
             setActiveMusic(null);
+            setActiveMusicId(null);
         }
     };
 
     useEffect(() => {
         return () => {
-            setIsMusicNeededOnBackground(true);
             audioRef.current?.removeEventListener("timeupdate", handleTimeUpdate);
         }
     }, []);

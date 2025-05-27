@@ -14,16 +14,6 @@
 .mainLayoutMobile {
     display: grid;
     grid-template-rows: 60px calc(100dvh - 130px) 70px;
-    .mainLayoutMobileHeader {
-        display: grid;
-		grid-template-columns: 40px calc(100% - 120px) 40px;
-		column-gap: 10px;
-		justify-items: center;
-		padding-left: 10px;
-		align-items: center;
-        box-sizing: border-box;
-        background-color: var(--bg-color-mobile-menu);
-    }
     .mainLayoutMobileContent {
         background-color: var(--bg-color);
 		position: relative;

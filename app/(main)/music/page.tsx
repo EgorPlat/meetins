@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
-import { musicList, authorsStatistic, matchesList, activeMusicId, getAllMusic, getAuthorsStatistic, getMatchesList, setMusicList } from "@/global/store/music_model";
+import { musicList, authorsStatistic, matchesList, activeMusicId, getAllMusic, getAuthorsStatistic, getMatchesList, setMusicList, setIsMusicNeededOnBackground } from "@/global/store/music_model";
 import { addNotification } from "@/global/store/notifications_model";
 import useDebounce from "@/shared/hooks/useDebounce";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";

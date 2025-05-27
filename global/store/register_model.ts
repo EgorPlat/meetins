@@ -1,5 +1,4 @@
-import { instance, setUser } from "./store"
-import { createEffect, createEvent, createStore, sample } from "effector"
+import { createEffect, createEvent, createStore } from "effector"
 
 type RegisterDetailsType = {
 	name: string
@@ -29,24 +28,22 @@ export const $emailForConfirmation = createStore<string>("").on(
 )
 
 export const sendRegData = createEffect(async (regDetails: RegisterDetailsType) => {
-    const response = await instance.post("auth/registrationWithConfirmation", regDetails)
+    const response = fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(regDetails)
+    });
     return response;
 })
 export const sendConfirmationCodeForAccept = createEffect(async (confirmationData: ConfirmationData) => {
-    const response = await instance.post("auth/acceptUserAccount", {
-        email: confirmationData.email,
-        code: +confirmationData.code
-    })
+    const response = await fetch("/api/auth/confirmation", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(confirmationData)
+    });
     return response;
-})
-
-const saveDataAfterRegsiter = createEffect((data: any) => {
-    setUser(data.profile.user);
-})
-
-sample({
-    clock: sendConfirmationCodeForAccept.doneData,
-    filter: response => response.status <= 217,
-    fn: response => response.data,
-    target: saveDataAfterRegsiter
 })

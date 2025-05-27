@@ -16,6 +16,7 @@ import Interests from "../Interests/interests";
 import PostsList from "../PostsList/PostsList";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import CustomModal from "@/shared/ui/CustomModal/CustomModal";
+import Image from "next/image";
 
 const EditUserTag = React.lazy(() => import("../../../features/forms/EditUserTag/Index"));
 const ChoosingEvents = React.lazy(() => import("../СhoosingEvents/choosingEvents"));
@@ -72,11 +73,13 @@ export default React.memo(function ProfileView(props: {
                             <div className={`${s.avatarInfo}`}>
                                 {
                                     !props.addingImageStatus && activeUser.avatar ?
-                                        <img 
+                                        <Image 
                                             onMouseEnter={() => props.changeAddingImageStatus(true)}
                                             src={baseURL + activeUser.avatar}
                                             alt="Аватарка" 
                                             className={`${s.avatar}`}
+                                            width={190}
+                                            height={190}
                                         /> : 
                                         <InputFile 
                                             onChange={(event) => props.onChangeInputImage(event)} 
