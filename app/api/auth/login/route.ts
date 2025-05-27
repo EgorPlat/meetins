@@ -15,12 +15,12 @@ export async function POST(request: NextRequest) {
     
     const responseData = await authResponse.json();
 
-    const cookies = authResponse.headers.get('set-cookie');
+    const cookies = authResponse.headers.get("set-cookie");
 
     const response = NextResponse.json(responseData);
 
     if (cookies) {
-        response.headers.set('Set-Cookie', cookies);
+        response.headers.set("Set-Cookie", cookies);
     }
 
     return response;

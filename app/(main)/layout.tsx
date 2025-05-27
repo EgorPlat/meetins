@@ -1,28 +1,25 @@
-"use client";
 import { ReactNode } from "react";
-import s from "./layout.module.scss";
+import { headers } from "next/headers";
+import MobileBottomMenu from "@/widgets/MobileBottomMenu/MobileBottomMenu";
 import dynamic from "next/dynamic";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
-import { useUnit } from "effector-react";
-import { $user, baseURL, isMobile } from "@/global/store/store";
-import Image from "next/image";
-import logo from "../../public/images/logo.svg";
-import { useRouter } from "next/navigation";
-import MobileBottomMenu from "@/widgets/MobileBottomMenu/MobileBottomMenu";
-import LeftNavMenu from "@/widgets/LeftNavMenu/LeftNavMenu";
+import MobileHeader from "@/widgets/MobileHeader/MobileHeader";
+import s from "./layout.module.scss";
+import { isMobileDevice } from "@/shared/helpers/helper";
 
-const Header = dynamic(() => import("@/widgets/Header"), { ssr: false, loading: () => <CustomLoader /> });
+
+const Header = dynamic(() => import("@/widgets/Header"), { loading: () => <CustomLoader /> });
+const LeftNavMenu = dynamic(() => import("@/widgets/LeftNavMenu/LeftNavMenu"), { loading: () => <CustomLoader /> });
 
 interface IMainLayoutProps {
     children: ReactNode
 }
 
-export default function MainLayout({ children }: IMainLayoutProps) {
+export default async function MainLayout({ children }: IMainLayoutProps) {
 
-    const isMobile$ = useUnit(isMobile);
-    const router = useRouter();
-    const authedUser$ = useUnit($user);
-    
+    const awaitedHeaders = await headers();
+    const isMobile$ = isMobileDevice(awaitedHeaders.get("user-agent") || "");
+
     if (!isMobile$) {
         return (
             <div className={s.mainLayout}>
@@ -40,27 +37,10 @@ export default function MainLayout({ children }: IMainLayoutProps) {
     } else {
         return (
             <div className={s.mainLayoutMobile}>
-                <header className={s.mainLayoutMobileHeader}>
-                    <Image 
-                        width={40} 
-                        height={40} 
-                        src={logo} 
-                        alt="Логотип"
-                        onClick={() => router.push("/about")}
-                    />
-                    <div className={s.title}>Meetins</div>
-                    <Image 
-                        className={s.avatar} 
-                        width={40} 
-                        height={40} 
-                        src={baseURL + authedUser$?.avatar} 
-                        alt="Аватар"
-                        onClick={() => router.push(`/profile/${authedUser$?.login}`)}
-                    />
-                </header>
+                <MobileHeader />
                 <main className={s.mainLayoutMobileContent} id="mobileMainContent">{children}</main>
                 <footer className={s.mainLayoutMobileFooter}>
-                    <MobileBottomMenu authedUser={authedUser$} />
+                    <MobileBottomMenu />
                 </footer>
             </div>
         )

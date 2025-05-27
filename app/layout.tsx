@@ -41,6 +41,7 @@ export default function RootLayout({
     useBlockBodyScroll(isScrollPageBlocked);
 
     useEffect(() => {
+        setRouter({ ...router, asPath: pathName });
         getMyDialogs(true);
         getInitialUserDataAndCheckAuth();
         i18n.changeLanguage(detectUserLanguage());
@@ -51,7 +52,9 @@ export default function RootLayout({
     
     useEffect(() => {
         setRouter({ ...router, asPath: pathName });
-        localStorage.setItem("previousPage", pathName);
+        if (pathName !== "/") {
+            localStorage.setItem("previousPage", pathName);
+        }
     }, [pathName]);
 
     useEffect(() => {
@@ -59,7 +62,7 @@ export default function RootLayout({
     }, [isMobile, isUnAdaptive]);
 
     return (
-        <html lang="en">
+        <html lang="en" data-theme="black">
             <body>
                 {children}
                 { currentNotifications$.length !== 0 && <NotificationBlock /> }

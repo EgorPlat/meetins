@@ -1,7 +1,7 @@
 "use client"
 import { useUnit } from "effector-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { JSX, useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
@@ -11,6 +11,7 @@ import { $user, baseURL } from "../../global/store/store";
 import { connection, setNewConnection } from "../../global/store/connection_model";
 import { handleLogOut } from "../../global/store/login_model";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const CustomButtonWithHint = dynamic(() => import("../../shared/ui/CustomButtonWithHint/CustomButtonWithHint"));
 
@@ -21,8 +22,8 @@ export default function MainNavbar(): JSX.Element {
     const [select, setSelect] = useState<string>("");
     const user = useUnit($user);
     const router = useRouter();
+    const pathName = usePathname();
     const ref = useRef<any>(null);
-    const userAvatar = user?.avatar || "no-avatar.jpg";
     const connection$ = useUnit(connection);
 
     const handleAvatarClick = () => {
@@ -47,7 +48,7 @@ export default function MainNavbar(): JSX.Element {
                 router.push("/settings");
             }
             if(select === "name" && user) {
-                if (router.asPath !== `/profile/${user?.login}`) router.push(`/profile/${user.login}`);
+                if (pathName !== `/profile/${user?.login}`) router.push(`/profile/${user.login}`);
             }
             if(select === "comeBack" && user) {
                 router.push(`/profile/${user.login}`);
@@ -73,12 +74,12 @@ export default function MainNavbar(): JSX.Element {
                         t("Вы можете приглашать пользователей на мерпориятия которые есть в ваших закладках, для этого перейдите к ним в профиль и нажмите кнопку 'Пригласить'")
                     } 
                 />
-                <img 
-                    src={baseURL + userAvatar} 
+                <Image 
+                    src={baseURL + user?.avatar} 
                     className={s.round} 
                     alt="Аватарка" 
-                    width={70} 
-                    height={70} 
+                    width={60} 
+                    height={60} 
                     onClick={handleAvatarClick}
                 />
                 <select className={s.customSelect} ref={ref} onChange={(event) => setSelect(event.target.value)}>

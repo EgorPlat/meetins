@@ -117,7 +117,6 @@ function Profile(): JSX.Element {
 
     useEffect(() => {
         if (params.id) {
-            console.log(params.id)
             getDataForProfilePage(String(params.id));
         }
     }, [params.id]);

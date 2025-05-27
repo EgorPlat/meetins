@@ -1,6 +1,6 @@
 import { CATEGORY_NAMES } from "./constants";
 import { IMyActiveDialogMessage, User } from "../../entities";
-import { IGroup, IGroupFile } from "../../entities/groups";
+import { IGroup } from "../../entities/groups";
 
 export default function calculateCountOfUnredMessageInDialog (messages: IMyActiveDialogMessage[], authedUser: User) {
     if (!messages) return;
@@ -106,4 +106,10 @@ export const destrucutreFilesInGroupPost = (groupInfo: IGroup) => {
 
 export const getCategoryName = (categoryName: string) => {
     return CATEGORY_NAMES.filter(category => category.en === categoryName)[0]?.ru;
+}
+
+export function isMobileDevice(userAgent: string): boolean {
+    return /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+        userAgent
+    );
 }

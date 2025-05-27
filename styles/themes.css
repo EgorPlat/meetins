@@ -12,6 +12,7 @@ body {
 	--bg-color-block: white;
 	--bg-color-block-light: white;
 	--bg-color-mobile-menu: rgb(249, 249, 249);
+	--bg-audio-track: rgb(219, 219, 219);
 }
   
 [data-theme="black"] {
@@ -24,6 +25,7 @@ body {
 	--bg-color-block: rgb(37, 37, 37);
 	--bg-color-block-light: rgb(53, 53, 53);
 	--bg-color-mobile-menu: rgb(37, 39, 51);
+	--bg-audio-track: rgb(54, 54, 54);
 	::-webkit-calendar-picker-indicator {
 		filter: invert(1);
 	}
