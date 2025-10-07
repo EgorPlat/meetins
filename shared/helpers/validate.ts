@@ -54,6 +54,7 @@ export const isTypeOfFileAreNotVideoOrImageOrAudio = (value: string) => {
 };
 
 export const validatePost = (post: { title: string, description: string, currentFiles: any }) => {
+    console.log(post.currentFiles);
     if (post.currentFiles === null) {
         addNotification({ text: "Минимум 1 файл", time: 3000, type: "warning", textColor: "black" });
         return false;

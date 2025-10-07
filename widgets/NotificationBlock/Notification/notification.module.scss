@@ -19,10 +19,12 @@
 }
 
 .eachError {
+    background-color: var(--bg-color-block);
+    color: var(--text-color);
     padding: 5px;
-    color: black;
     border-radius: 3px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 30px calc(100% - 30px);
     align-items: center;
     justify-content: center;
     justify-items: center;

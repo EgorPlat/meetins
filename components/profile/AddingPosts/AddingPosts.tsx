@@ -11,7 +11,7 @@ export default React.memo(function AddingPosts(): JSX.Element {
 
     const ref = useRef<HTMLInputElement>(null);
     const { t } = useTranslation();
-    const [postFormData, setPostFormData] = useState<any>({ title: "", description: "", currentFiles: null });
+    const [postFormData, setPostFormData] = useState({ title: "", description: "", currentFiles: null });
     const isMobile$ = useUnit(isMobile);
 
     const chooseFile = () => {
@@ -21,7 +21,7 @@ export default React.memo(function AddingPosts(): JSX.Element {
     };
 
     const sendNewPost = () => {
-        if (postFormData.currentFiles && validatePost(postFormData)) {
+        if (validatePost(postFormData)) {
             const formData = validateFilesFromInputAndStructuring(postFormData.currentFiles).dataForServer;
             formData.append("title", postFormData.title);
             formData.append("description", postFormData.description);

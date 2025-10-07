@@ -1,12 +1,11 @@
 import { ReactNode } from "react";
 import { headers } from "next/headers";
+import { isMobileDevice } from "@/shared/helpers/helper";
 import MobileBottomMenu from "@/widgets/MobileBottomMenu/MobileBottomMenu";
 import dynamic from "next/dynamic";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import MobileHeader from "@/widgets/MobileHeader/MobileHeader";
 import s from "./layout.module.scss";
-import { isMobileDevice } from "@/shared/helpers/helper";
-
 
 const Header = dynamic(() => import("@/widgets/Header"), { loading: () => <CustomLoader /> });
 const LeftNavMenu = dynamic(() => import("@/widgets/LeftNavMenu/LeftNavMenu"), { loading: () => <CustomLoader /> });

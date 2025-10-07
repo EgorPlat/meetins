@@ -1,6 +1,9 @@
-import { instanseRouter } from "./router_model";
+import { Router } from "next/router";
+import { ExtendedRouter, instanseRouter } from "./router_model";
 import { instance, setUser } from "./store"
 import { createEffect, createEvent, createStore, sample } from "effector"
+import { addNotification } from "./notifications_model";
+import { INotification } from "@/entities/notification";
 
 
 type LoginDetailsType = {
@@ -38,11 +41,11 @@ export const $loginLoading = createStore<boolean>(false).on(
     }
 )
 
-export const handlePushUserToLoginPage = createEffect((params: { router: any, data: any }) => {
+export const handlePushUserToLoginPage = createEffect((params: { router: ExtendedRouter, data: any }) => {
     params.router.push("/auth/login");
 })
 
-export const saveDataAfterLogin = createEffect(async (params: { router: any, response: any }) => {
+export const saveDataAfterLogin = createEffect(async (params: { router: ExtendedRouter, response: Response }) => {
     const data = await params.response.json();
     setUser(data.profile.user);
     params.router.push(`/profile/${data.profile.user.login}`);
@@ -66,6 +69,22 @@ sample({
     filter: (router, response) => response.status <= 201,
     fn: (routerState, response) => { return { router: routerState.router, response: response } },
     target: saveDataAfterLogin
+});
+
+sample({
+    source: { router: instanseRouter },
+    clock: sendLogData.doneData,
+    filter: (router, response) => response.status === 400,
+    fn: () => {
+        const notification: INotification = { 
+            text: "Произошла ошибка при попытке входа", 
+            time: 3000, 
+            type: "warning", 
+            textColor: "white" 
+        };
+        return notification
+    },
+    target: addNotification
 });
 
 sample({

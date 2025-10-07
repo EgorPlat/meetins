@@ -17,7 +17,9 @@ export async function POST(request: NextRequest) {
 
     const cookies = authResponse.headers.get("set-cookie");
 
-    const response = NextResponse.json(responseData);
+    const response = NextResponse.json(responseData, {
+        status: authResponse.status
+    });
 
     if (cookies) {
         response.headers.set("Set-Cookie", cookies);

@@ -1,3 +1,5 @@
+import { RiErrorWarningLine } from "react-icons/ri";
+
 export interface INotification {
     text: string,
     time: number,
@@ -6,10 +8,22 @@ export interface INotification {
 };
 
 export const NOTIFICATION_COLOR_TYPES = {
-    success: "rgb(155, 255, 109)",
-    warning: "rgb(245, 255, 109)",
-    error: "rgb(255, 128, 109)",
-    info: "rgb(109, 206, 255)"
+    success: {
+        icon: RiErrorWarningLine,
+        color: "green"
+    },
+    warning: {
+        icon: RiErrorWarningLine,
+        color: "orange"
+    },
+    error: {
+        icon: RiErrorWarningLine,
+        color: "red"
+    },
+    info: {
+        icon: RiErrorWarningLine,
+        color: "blue"
+    }
 };
 
 export interface ICreatedNotification {
