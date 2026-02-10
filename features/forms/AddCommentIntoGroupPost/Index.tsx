@@ -5,6 +5,8 @@ import { useUnit } from "effector-react";
 import { addNewCommentIntoGroupPost, groupInfo } from "../../../global/store/groups_model";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
 import FormContainer from "../../../widgets/FormContainer/FormContainer";
+import CustomInput from "@/shared/ui/CustomInput/CustomInput";
+import { IoSend } from "react-icons/io5";
  
 export default function AddCommentIntoGroupPost(props: {
     postId: number
@@ -23,7 +25,7 @@ export default function AddCommentIntoGroupPost(props: {
         <FormContainer>
             <form onSubmit={handleSubmit(onChangeComment)}>
                 <div className="field">
-                    <input  
+                    <CustomInput
                         type="text" 
                         id="text"
                         placeholder={t("Введите комментарий")}
@@ -32,10 +34,10 @@ export default function AddCommentIntoGroupPost(props: {
                                 ? t("Не менее 5-ти и не более 600 символов")
                                 : true,
                         })}
+                        postFix={<IoSend fontSize={24} />}
                     />
-                    {errors.text ? <span>{errors.text.message}</span> : null}
+                    <span>{ errors.text && errors.text.message }</span>
                 </div>
-                <CustomButton type="submit" text={t("Добавить комментарий")} />
             </form>
         </FormContainer>
     )

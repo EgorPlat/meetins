@@ -2,7 +2,7 @@ import { useUnit } from "effector-react";
 import React, { JSX, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MdOutlineOndemandVideo } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import { IMyDialog } from "@/entities";
 import { defaultDialog } from "@/global/mock/defaultDialog";
@@ -40,10 +40,11 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
 
     const router = useRouter();
+    const pathname = usePathname();
     const isUserOnline = onlineUsers.filter(el => el.userId === activeChat$.userId).length !== 0;
     const { t } = useTranslation();
 
-    const { handleActivateMedia, mediaChunks } = useUserMediaTracks({
+    const { handleActivateMedia, mediaChunks, mediaAvailable } = useUserMediaTracks({
         video: { width: 200, height: 200 },
         audio: true,
         htmlElementIdForStopMedia: "videoMessageStop"
@@ -84,7 +85,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
 
     const handleVideoMessageConfirmed = () => {
         setShowVideoModal(false);
-        if (activeChat$.dialogId !== "none") {
+        if (activeChat$.dialogId !== "none" && mediaAvailable.video) {
             setVideoMessageActive(true);
             handleActivateMedia((stream: MediaStream) => {
                 if (videoMessageStreamRef.current) {
@@ -111,6 +112,12 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
             createdSendFileAndUploadActiveChat(blob);
         }
     }, [mediaChunks]);
+
+    useEffect(() => {
+        return () => {
+            setActiveChat(null);
+        }
+    }, [])
     
     if (activeChat$) {
         return (

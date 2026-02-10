@@ -1,17 +1,17 @@
 "use client"
-import { useUnit } from "effector-react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import React, { JSX, useState } from "react";
+import { useUnit } from "effector-react";
+import { usePathname, useRouter } from "next/navigation";
 import { useRef } from "react";
 import { useEffect } from "react";
-import s from "./mainNavbar.module.scss"; 
 import { useTranslation } from "react-i18next";
 import { $user, baseURL } from "../../global/store/store";
 import { connection, setNewConnection } from "../../global/store/connection_model";
 import { handleLogOut } from "../../global/store/login_model";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import s from "./mainNavbar.module.scss"; 
 
 const CustomButtonWithHint = dynamic(() => import("../../shared/ui/CustomButtonWithHint/CustomButtonWithHint"));
 

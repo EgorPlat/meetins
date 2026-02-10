@@ -4,7 +4,7 @@ import { IGroup, IGroupMembersInfo, IGroupPost, IGroupFile } from "@/entities/gr
 import { baseURL } from "@/global/store/store";
 import { customizeDateToYYYYMMDDHHMMFormat } from "@/shared/functions/getDateInYYYYMMDDHHFormat";
 import { AiOutlineVideoCamera, AiFillHeart, AiOutlineEye } from "react-icons/ai";
-import { BiPhotoAlbum, BiComment } from "react-icons/bi";
+import { BiPhotoAlbum, BiComment, BiSolidMessageRounded } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 import { ImAttachment } from "react-icons/im";
 import { RiDiscussLine } from "react-icons/ri";
@@ -139,11 +139,9 @@ export default function GroupInfoPageView(props: {
                                         </div>
                                         <div className={s.comments} onClick={() => props.handleOpenComments(post.id)}>
                                             {post.comments.length}
-                                            <BiComment fontSize={25} />
-                                            Комментарии
+                                            <BiSolidMessageRounded fontSize={25} />
                                         </div>
                                         <div className={s.views}>
-                                            Просм.
                                             <AiOutlineEye fontSize={25} />
                                             1.728
                                         </div>

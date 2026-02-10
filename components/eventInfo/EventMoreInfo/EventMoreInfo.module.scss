@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 15px;
-    margin: 15px;
     & .eventMoreInfoData {
         display: flex;
         row-gap: 10px;
@@ -21,7 +20,6 @@
     & .eventMoreInfoTags {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
         column-gap: 5px;
         row-gap: 5px;
         & .tag {

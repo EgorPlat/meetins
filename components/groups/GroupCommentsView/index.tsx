@@ -31,6 +31,13 @@ export default function GroupCommentsView(props: {
                         </div>
                     ))
                 }
+                {
+                    comments.length === 0 && (
+                        <div className={s.noGroupComments}>
+                            Комментариев не найдено.
+                        </div>
+                    )
+                }
                 <AddCommentIntoGroupPost
                     postId={props.activePostId}
                 />

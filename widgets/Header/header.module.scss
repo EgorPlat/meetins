@@ -4,7 +4,7 @@
 	min-height: 60px;
 	display: grid;
 	align-items: center;
-	grid-template-columns: 15% 85%;
+	grid-template-columns: 70px calc(100% - 70px);
 	padding-bottom: 10px;
 	padding-top: 10px;
 	justify-content: center;

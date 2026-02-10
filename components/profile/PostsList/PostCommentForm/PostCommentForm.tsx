@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import s from "./PostCommentForm.module.scss";
 import { addNotification } from "../../../../global/store/notifications_model";
+import CustomInput from "@/shared/ui/CustomInput/CustomInput";
+import { IoMdSend } from "react-icons/io";
 
 export default function PostCommentForm(props: {
     onSubmitComment: (commentText: string) => void
@@ -20,12 +22,12 @@ export default function PostCommentForm(props: {
     
     return (
         <div className={s.postCommentForm}>
-            <input
+            <CustomInput
                 type="text"
                 placeholder={t("Введите текст комментария")}
                 onChange={(e) => setCommentText(e.target.value)}
+                postFix={<IoMdSend fontSize={24} onClick={handleSubmit} />}
             />
-            <button onClick={handleSubmit}>{">"}</button>
         </div>
     )
 }

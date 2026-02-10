@@ -1,27 +1,29 @@
 .user {
-    width: 98%;
-    height: 120px;
+    width: 100%;
     display: grid;
-    grid-template-columns: 110px 1fr;
+    grid-template-columns: 70px 1fr;
     align-items: center;
     column-gap: 10px;
+    padding: 5px;
     & .image {
-        width: 110px;
-        height: 110px;
+        width: 70px;
+        height: 70px;
         border: 1px solid black;
         border-radius: 50%;
         background-size: 100% 100%;
+        position: relative;
         & .round {
-            margin-left: 80px;
-            margin-top: 80px;
-            width: 20px;
-            height: 20px;
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 13px;
+            height: 13px;
             background-color: rgb(147, 224, 147);
             border: 1px solid white;
             border-radius: 50%;
         }
     }
-    & .image>img {
+    & .image > img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
@@ -31,7 +33,7 @@
         padding-left: 20px;
         & .tag {
             border-radius: 100px;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 300;
             color: black;
             padding: 0px 10px 0px 10px;

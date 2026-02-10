@@ -3,6 +3,7 @@ import s from "./InfinityScroll.module.scss";
 
 interface IInfinityScrollProps {
     maxPage: number,
+    maxHeight?: number,
     children: ReactNode,
     handleIncreaseCurrentPage: () => void,
     handleUpdateCurrentPage: (newPage: number) => void,
@@ -11,6 +12,7 @@ interface IInfinityScrollProps {
 export default function InfinityScroll({
     maxPage,
     children,
+    maxHeight,
     handleIncreaseCurrentPage,
     handleUpdateCurrentPage
 }: IInfinityScrollProps) {
@@ -48,7 +50,11 @@ export default function InfinityScroll({
     }, []);
   
     return (
-        <div className={s.infinityWrapper} ref={scrollRef}>
+        <div 
+            className={s.infinityWrapper} 
+            ref={scrollRef}
+            style={{ maxHeight: maxHeight ? `${maxHeight}px` : "500px" }}
+        >
             {children}
         </div>
     );

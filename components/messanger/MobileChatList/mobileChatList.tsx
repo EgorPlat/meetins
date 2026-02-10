@@ -29,28 +29,14 @@ export default function MobileChatList(): JSX.Element {
         <div className={s.mobileChatList} ref={ref}>
             {isLoaded$ && myDialogs$
                 ? 
-                myDialogs$.map( dialog => {
-                    const lastMessage = dialog.messages[dialog.messages?.length - 1];
-                    const isUnreadMessageMy = lastMessage.senderId === authedUser$?.userId;
+                myDialogs$.map(dialog => {
                     return (
-                        <div className={s.mobileUserChatCard} key={dialog.dialogId}>
+                        <div className={s.mobileUserChatCard} key={dialog.dialogId} onClick={() => handleGetDialogMessages(dialog)}>
                             <UserChatCard
                                 key={dialog.userAvatar}
                                 dialog={dialog}
                                 authedUser={authedUser$}
                             />
-                            <div 
-                                className={s.mobileUserChatCardLastMessage} 
-                                onClick={() => handleGetDialogMessages(dialog)}
-                            >
-                                <div>
-                                    {!lastMessage.isRead && isUnreadMessageMy && <div className={s.mobileNotMyChatRound}></div> }
-                                    {!lastMessage.isRead && !isUnreadMessageMy && <div className={s.mobileMyChatRound}></div> }
-                                </div>
-                                <div className={s.mobileLastMessage}>
-                                    {dialog.messages[dialog.messages?.length - 1].content}
-                                </div>
-                            </div>
                         </div>
                     )
                 }) 

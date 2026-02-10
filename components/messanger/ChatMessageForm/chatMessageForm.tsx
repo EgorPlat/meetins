@@ -1,6 +1,6 @@
 import React, { ChangeEvent, JSX, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CiFileOn, CiMicrophoneOn } from "react-icons/ci";
+import { CiFileOn, CiMicrophoneOff, CiMicrophoneOn } from "react-icons/ci";
 import { VscSend } from "react-icons/vsc";
 import { createdSendFileAndUploadActiveChat } from "@/global/store/chat_model";
 import { addNotification } from "@/global/store/notifications_model";
@@ -20,7 +20,7 @@ export default function ChatMessageForm(
     const messageRef = useRef<HTMLTextAreaElement>(null);
     const [isMediaRecorderActive, setIsMediaRecorderActive] = useState<boolean>(false);
     const { t } = useTranslation();
-    const { handleActivateMedia, mediaChunks } = useUserMediaTracks({
+    const { handleActivateMedia, mediaChunks, mediaAvailable } = useUserMediaTracks({
         video: false,
         audio: true,
         htmlElementIdForStopMedia: "audioMessageStop"
@@ -40,7 +40,7 @@ export default function ChatMessageForm(
     };
 
     const handleMediaRecorder = () => {
-        if (!props.isChatExists) {
+        if (!props.isChatExists && mediaAvailable.audio) {
             addNotification({
                 text: "Медиа-файлы можно отправлять только если в диалоге есть текстовые сообщения",
                 type: "info",
@@ -106,7 +106,13 @@ export default function ChatMessageForm(
                             onClick={handleMediaRecorder}
                         />
                         :
-                        <span id="audioMessageStop">Stop</span>
+                        <CiMicrophoneOff
+                            id="audioMessageStop"
+                            className={s.audioIcon}
+                            color="var(--default-color)"
+                            fontSize={32}
+                            onClick={handleMediaRecorder}
+                        />
                 }
                 {
                     props.isLoaded

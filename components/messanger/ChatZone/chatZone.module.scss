@@ -15,6 +15,7 @@
     display: grid;
     grid-template-rows: 85px calc(100% - 165px) 70px;
     row-gap: 5px;
+    box-sizing: border-box;
     & .notificationMessage {
         margin-top: 15px;
         text-align: center;
@@ -80,7 +81,7 @@
                 justify-items: right;
                 justify-content: right;
                 & .myMessage {
-                    border-radius: 10px 0 10px 10px;
+                    border-radius: 10px 2px 10px 10px;
                     @extend .message;
                     background-color: #77ff97;
                 }
@@ -90,7 +91,7 @@
                 justify-items: left;
                 justify-content: left;
                 & .notMyMessage {
-                    border-radius: 0 10px 10px 10px;
+                    border-radius: 2px 10px 10px 10px;
                     margin-left: 10px;
                     @extend .message;
                     background-color: #76d4ff;
@@ -110,14 +111,18 @@
             }
             & .messageInfo {
                 display: grid;
+                align-items: flex-end;
                 grid-template-columns: 1fr 1fr;
                 column-gap: 5px;
+                margin-top: 5px;
                 & .messageTime {
                     font-size: 12px;
                     color: rgb(32, 32, 32);
                 }
                 & .messageReadStatus {
-                    text-align: right;
+                    display: grid;
+                    align-items: flex-end;
+                    justify-content: right;
                 }
             }
             & .messageWithFile {

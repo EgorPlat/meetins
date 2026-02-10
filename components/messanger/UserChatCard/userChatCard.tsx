@@ -16,9 +16,16 @@ export default function UserChatCard(props: { dialog: IMyDialog, authedUser: Use
     return(
         <div className={s.chat} onClick={chooseChat}>
             <div className={s.avatar} style={{ backgroundImage: `url('${baseURL + props.dialog?.userAvatar}')` }}></div>
-            <div className={s.name}>
+            <div className={s.info}>
                 {props.dialog?.userName}
-                {countUnrededMessageInDialog !== 0 && <div className={s.unreadMessagesCounter}>{countUnrededMessageInDialog}</div>}
+                <div className={s.lastMessage}>
+                    {
+                        countUnrededMessageInDialog !== 0 
+                            ? <div className={s.unreadMessagesCounter}>{countUnrededMessageInDialog}</div>
+                            : <div className={s.readMessage}></div>
+                    }    
+                    <span className={s.message}>{props.dialog.messages[props.dialog.messages.length - 1].content}</span>
+                </div>
             </div>
         </div>
     )

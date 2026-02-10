@@ -5,6 +5,8 @@ import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import { createNewMessageInGroupTalk } from "../../../global/store/groups_model";
 import { IGroupTalkMessage } from "../../../entities/groups";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
+import CustomInput from "@/shared/ui/CustomInput/CustomInput";
+import { IoSend } from "react-icons/io5";
  
 export default function AddNewMessageIntoGroupTalk(props: {
     groupId: number,
@@ -29,19 +31,19 @@ export default function AddNewMessageIntoGroupTalk(props: {
         <FormContainer>
             <form onSubmit={handleSubmit(handleCreateNewMessage)}>
                 <div className="field">
-                    <input 
+                    <CustomInput
                         type="text" 
-                        id="title"
-                        placeholder="Текст сообщения" 
+                        id="text"
+                        placeholder={t("Введите комментарий")}
                         {...register("text", { required: false, validate: (value) => 
                             value.length >= 200 || value.length <= 5
-                                ? "Не менее 5-ти и не более 200-та символов"
+                                ? t("Не менее 5-ти и не более 200 символов")
                                 : true,
                         })}
+                        postFix={<IoSend fontSize={24} />}
                     />
                     {errors.text ? <span>{errors.text.message}</span> : null}
                 </div>
-                <CustomButton type="submit" text={t("Отправить сообщение")} />
             </form>
         </FormContainer>
     )

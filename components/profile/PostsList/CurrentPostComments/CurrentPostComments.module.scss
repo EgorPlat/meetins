@@ -2,6 +2,8 @@
     width: 100%;
     min-height: 40px;
     margin-bottom: 15px;
+    display: grid;
+    align-items: center;
     & .noComments {
         color: gray;
         text-align: center;
@@ -10,16 +12,16 @@
         width: 100%;
         padding: 5px;
         display: grid;
+        align-items: flex-start;
         grid-template-columns: 10% 90%;
         grid-column-gap: 10px;
         margin-top: 5px;
         cursor: pointer;
         & .commentAvatar {
             & img {
-                width: 100%;
-                height: 100%;
-                max-width: 45px;
-                max-height: 45px;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
             }
         }
         & .commentContent {
@@ -40,6 +42,7 @@
                 }
             }
             & .commentText {
+                margin-top: 5px;
                 width: 95%;
                 text-transform: lowercase;
                 word-wrap: break-word;

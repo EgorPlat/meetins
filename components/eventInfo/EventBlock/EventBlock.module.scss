@@ -9,17 +9,27 @@
     }
     & .eventBlockMainInfo {
         display: grid;
-        grid-template-columns: 30% 70%;
+        gap: 15px;
+        position: relative;
+        grid-template-columns: 30% calc(70% - 15px);
         & .eventInfo {
-
+            
         }
         & .help {
             font-size: 18px;
-            margin-top: 15px;
             & .description {
                 text-align: justify;
             }
+            & .moreInfo {
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
             & .actions {
+                display: flex;
+                gap: 10px;
+                width: 300px;
+                position: absolute;
+                bottom: 35px;
                 margin-bottom: 15px;
                 button {
                     background-color: #3DB2FF;

@@ -4,15 +4,20 @@ body {
 }
 [data-theme="white"] {
 	--border-color: #1c1e228e;
-    --bg-color: rgba(224, 224, 224, 0.203);
+    --bg-color: rgb(246, 246, 246);
     --text-color: black;
 	--h4BG-color: rgba(176, 176, 176, 0.326);
 	--inp-text-color: black;
 	--default-color: #3db2ff;
-	--bg-color-block: white;
+	--bg-color-block: rgb(255, 255, 255);
 	--bg-color-block-light: white;
 	--bg-color-mobile-menu: rgb(249, 249, 249);
 	--bg-audio-track: rgb(219, 219, 219);
+	--hover-color: #3db1ffab;
+
+	/**
+		Ant Design Components (White theme)
+	**/
 }
   
 [data-theme="black"] {
@@ -26,8 +31,26 @@ body {
 	--bg-color-block-light: rgb(53, 53, 53);
 	--bg-color-mobile-menu: rgb(37, 39, 51);
 	--bg-audio-track: rgb(54, 54, 54);
+	--hover-color: #3db1ffab;
 	::-webkit-calendar-picker-indicator {
 		filter: invert(1);
+	}
+
+	/**
+		Ant Design Components (Black theme)
+	**/
+
+	.ant-select {
+		background-color: var(--bg-color-block-light) !important;
+		border: 1px solid var(--border-color);
+		outline: none;
+	}
+	.ant-select-input, .ant-select-placeholder, .ant-select-item {
+		color: var(--text-color) !important;	
+	}
+	.ant-select-dropdown {
+		background-color: var(--bg-color-block-light);
+		color: var(--text-color);
 	}
 }
 
@@ -44,7 +67,9 @@ textarea {
 	background-color: transparent;
 }
 button {
-	color: var(--text-color);;
+	color: var(--text-color);
+	border-color: transparent;
+	cursor: pointer;
 }
 a {
 	text-decoration: none;

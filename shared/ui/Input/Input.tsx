@@ -26,7 +26,7 @@ export default function Input({
 	register: UseFormRegisterReturn
 	children?: ReactElement<any, any>
 	autocomplete?: "off" | "on"
-}): JSX.Element {
+}) {
 
     const handleKeyDown = (e) => {
         if (e.code === "Space") e.preventDefault();

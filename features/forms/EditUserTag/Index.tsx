@@ -1,10 +1,11 @@
 import React, { JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import FormContainer from "../../../widgets/FormContainer/FormContainer";
 import { useUnit } from "effector-react";
 import { $user, updateUserTag } from "../../../global/store/store";
 import CustomButton from "../../../shared/ui/CustomButton/CustomButton";
+import FormContainer from "../../../widgets/FormContainer/FormContainer";
+import s from "./index.module.scss";
 
 interface IEditUserTagForm {
     color: string,    
@@ -44,7 +45,8 @@ export default function EditUserTag(): JSX.Element {
                         defaultValue={user$?.tag.color}
                         type="color" 
                         id="color" 
-                        {...register("color", { required: false })} 
+                        {...register("color", { required: false })}
+                        className={s.colorPicker}
                     />
                     {errors.color ? <span>{errors.color.message}</span> : null}
                 </div>

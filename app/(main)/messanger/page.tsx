@@ -14,31 +14,29 @@ export default function Messanger(): JSX.Element {
     const isMobile$ = useUnit(isMobile);
     const isChatNeededToShow = Boolean(activeChat$?.userId);
 
-    return (
-        <>
-            {!isMobile$
-                ?
-                <div className={s.messangerContent}>
-                    <div className={`${s.chatList}`}>
-                        <ChatList />
-                    </div>
-                    <div className={`${s.chatZone}`}>
-                        {isChatNeededToShow ? <ChatZone activeChat$={activeChat$} /> :
-                            <div className={s.noChat}>
-                                <h5 className={s.alert}>Выберите диалог...</h5>
-                            </div>
-                        }
-                    </div>
-                </div>
-                :
-                <div className={s.mobileMessangerContent}>
-                    {
-                        !isChatNeededToShow
-                            ? <MobileChatList />
-                            : <ChatZone activeChat$={activeChat$} />
-                    }
-                </div>
-            }
-        </>
-    )
+    if (isMobile$) {
+        return (
+            <div className={s.mobileMessangerContent}>
+                {
+                    !isChatNeededToShow
+                        ? <MobileChatList />
+                        : <ChatZone activeChat$={activeChat$} />
+                }
+            </div>
+        )
+    } else {
+        return (
+            <div className={s.messangerContent}>
+                {
+                    isChatNeededToShow 
+                        ? <div className={s.chatZone}>
+                            <ChatZone activeChat$={activeChat$} />
+                        </div>
+                        : <div className={s.chatList}>
+                            <ChatList />
+                        </div>
+                }
+            </div>
+        )
+    }
 }

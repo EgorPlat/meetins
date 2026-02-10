@@ -1,35 +1,15 @@
-.eachFilterListElem {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    font-size: 18px;
-    padding-left: 10px;
-}
-
 .eachFilterBlock {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: var(--bg-color-block);
-    border-radius: 15px;
-    padding: 15px;
-    height: 400px; 
-}
-
-.eachFilterListBlock {
     display: grid;
-    row-gap: 10px;
-    max-height: 320px; 
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.eachElemListButtonHover {
-    cursor: pointer;
-    background-color: var(--default-color);
+    gap: 10px;
+    padding: 10px;
     border-radius: 5px;
+    height: min-content;
+    background-color: var(--bg-color-block);
 }
-
+.filterSelect {
+    width: 100%;
+    max-width: 248px;
+}
 .searching {
     display: grid;
     grid-auto-rows: min-content;
@@ -41,61 +21,18 @@
         column-gap: 5px;
         row-gap: 5px;
         & .gender {
-            @extend .eachFilterBlock; 
-            & button {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                border: 1px solid var(--default-color);
-                background-color: transparent;
-                margin-right: 10px;
-            }
-            & button:hover {
-                transition: 0.5s;
-                @extend .eachElemListButtonHover;
-            }
+            @extend .eachFilterBlock;
         }
         & .goal {
-            @extend .eachFilterBlock; 
-            & .list {
-                @extend .eachFilterListBlock;
-            }
-            & .eachGoal {
-                @extend .eachFilterListElem;
-            }
-            & .eachGoal:hover {
-                @extend .eachElemListButtonHover;
-            }
+            @extend .eachFilterBlock;
         }
 
         & .events {
-            @extend .eachFilterBlock; 
-            & .list {
-                @extend .eachFilterListBlock;
-            }
-            & .eachEvent {
-                @extend .eachFilterListElem;
-            }
-            & .eachEvent:hover {
-                @extend .eachElemListButtonHover;
-            }
-            & .warning {
-                color: gray;
-                font-size: 18px
-            }
+            @extend .eachFilterBlock;
         }
 
         & .interests {
-            @extend .eachFilterBlock; 
-            & .list {
-                @extend .eachFilterListBlock;
-            }
-            & .eachPopular {
-                @extend .eachFilterListElem;
-            }
-            & .eachPopular:hover {
-                @extend .eachElemListButtonHover;
-            }
+            @extend .eachFilterBlock;
         }
     }
     & .result {
@@ -110,6 +47,7 @@
             }
             & .nothingFound {
                 display: flex;
+                align-items: center;
                 column-gap: 10px;
             }
         }
@@ -133,6 +71,5 @@
     }
     .eachFilterListElem {
         font-size: 16px;
-        padding-left: 5px;
     }
 }

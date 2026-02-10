@@ -34,7 +34,6 @@ export default React.memo(function About(props: {
         return (
             <div className={s.about}>
                 <div className={s.title}>
-                    <TbInfoSquareFilled fontSize={34} />
                     <b>{t("О себе")}</b>
                     {isAuthedProfile && <span onClick={() => newChangeSatus(true)} className={s.changeSpan}>{t("Изменить")}</span>}
                     {isAuthedProfile && authedUser.status === null || authedUser.status === ""

@@ -44,10 +44,11 @@
             }
         }
         & .customModalChildrenContent {
-            max-height: 600px;
+            max-height: 70vh;
             width: 100%;
             font-size: 16px;
-            overflow-y: auto;
+            min-height: 20px;
+            overflow-y: scroll;
             margin: 10px 0;
             box-sizing: border-box;
             overflow-x: hidden;

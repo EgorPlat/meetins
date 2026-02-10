@@ -60,6 +60,11 @@ export default function MusicPageView({
                             })
                         })
                     }
+                    {
+                        musicList.length === 0 && (
+                            <span>Не найдено ни одной композиции или автора.</span>
+                        )
+                    }
                 </div>
                 <div className={s.moreInfo}>
                     <div className={s.title}>{t("Статистика исполнителей")}:</div>

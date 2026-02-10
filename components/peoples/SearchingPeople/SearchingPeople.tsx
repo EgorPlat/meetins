@@ -8,6 +8,7 @@ import { userEvents, currentEventsInfoLoaded, getUserEventsInfo } from "@/global
 import { maxPageOfPeople, allPeoples, filterParams, isPagePending, setFilterParams, fullUpdatePeoples, setMaxPageOfPeople, getAllPeoplesByPageNumber } from "@/global/store/peoples_model";
 import { $currentInterestsList } from "@/global/store/store";
 import { GOALS } from "@/shared/helpers/constants";
+import { AutoComplete } from 'antd';
 import CustomButton from "@/shared/ui/CustomButton/CustomButton";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import InfinityScroll from "@/widgets/InfinityScroll/InfinityScroll";
@@ -76,80 +77,63 @@ export default function SearchingPeople(): JSX.Element {
         <div className={s.searching}>
             <div className={s.params}>
                 <div className={s.gender}>
-                    <div className={s.part}>
-                        <h3>Пол</h3>
-                        <button onClick={() => updateFilters("gender", "male")}>М</button>
-                        <button onClick={() => updateFilters("gender", "female")}>Ж</button>
-                    </div>
-                    <div className={s.part}>
-                        <h3 className={s.title}>Возраст</h3>
-                        <Slider
-                            style={{ color: "var(--default-color)" }}
-                            onChangeCommitted={(event, newValue) => updateFilters("age", newValue)}
-                            defaultValue={50}
-                            aria-label="Default"
-                            valueLabelDisplay="auto"
-                        />
-                    </div>
-                    <div className={s.part}>
-                        <h3>Расстояние</h3>
-                        <Slider 
-                            defaultValue={10} 
-                            max={150} 
-                            aria-label="Default" 
-                            valueLabelDisplay="auto" 
-                            style={{ color: "var(--default-color)" }}
-                        />
-                    </div>
+                    <h3 className={s.title}>Основное</h3>
+                    <AutoComplete
+                        className={s.filterSelect}
+                        showSearch={{ onSearch: (value) => console.log(value) }}
+                        placeholder="Выберите пол..."
+                        allowClear
+                        options={[
+                            { label: "Мужской", value: "male" },
+                            { label: "Женский", value: "female" }
+                        ]}
+                        onChange={(value) => updateFilters("gender", value)}
+                        tagRender={(el) => <div>{el.label}</div>}
+                    />
                 </div>
                 <div className={s.goal}>
                     <h3 className={s.title}>Цель</h3>
-                    {GOALS
-                        .map((goal) => 
-                            <div onClick={() => updateFilters("goal", goal)} className={s.eachGoal} key={goal}>{goal}</div>
-                        )}
+                    <AutoComplete
+                        className={s.filterSelect}
+                        showSearch={{ onSearch: (value) => console.log(value) }}
+                        placeholder="Выберите цель..."
+                        allowClear
+                        options={GOALS.map(el => {
+                            return { label: el, value: el }
+                        })}
+                    />
                 </div>
                 <div className={s.events}>
                     <h3 className={s.title}>События</h3>
-                    {
-                        !currentEventsInfoLoaded$ && <CustomLoader />
-                    }
-                    {
-                        currentEventsInfoLoaded$ &&
-                        <div className={s.list}>
-                            {events$.map((event) =>
-                                <div
-                                    onClick={() => updateFilters("event", event.id)}
-                                    className={s.eachEvent}
-                                    key={event.id}
-                                >{event.title}</div>
-                            )}
-                        </div>
-                    }
-                    {
-                        currentEventsInfoLoaded$ && 
-                            events$.length === 0 && <span className={s.warning}>У вас нет событий в закладках.</span>
-                    }
+                    <AutoComplete
+                        className={s.filterSelect}
+                        showSearch={{ onSearch: (value) => console.log(value) }}
+                        placeholder="Выберите событие..."
+                        allowClear
+                        onChange={(value) => updateFilters("event", value)}
+                        options={events$.map(el => {
+                            return { label: el.title, value: el.title }
+                        })}
+                    />
                 </div>
                 <div className={s.interests}>
                     <h3 className={s.title}>Интересы</h3>
-                    <div className={s.list}>
-                        {
-                            interests$.map((interest) => (
-                                <div
-                                    onClick={() => updateFilters("interests", interest.title)}
-                                    className={s.eachPopular}
-                                    key={interest.interestId}
-                                >{interest.title}</div>
-                            ))
-                        }
-                    </div>
+                    <AutoComplete
+                        className={s.filterSelect}
+                        showSearch={{ onSearch: (value) => console.log(value) }}
+                        placeholder="Выберите интерес..."
+                        allowClear
+                        options={interests$.map(el => {
+                            return { label: el.title, value: el.title }
+                        })}
+                    />
                 </div>
             </div>
             <div className={s.result}>
                 <div className={s.users}>
                     <div className={s.usersList}>
                         <InfinityScroll
+                            maxHeight={700}
                             maxPage={maxPage$}
                             handleIncreaseCurrentPage={handleIncreaseCurrentPage}
                             handleUpdateCurrentPage={handleUpdateCurrentPage}

@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
-import s from "./EventBlock.module.scss";
-import Image from "next/image";
 import { useUnit } from "effector-react";
-import EventMoreInfo from "../EventMoreInfo/EventMoreInfo";
 import { IEventComments, IEventInfoCard } from "@/entities/events";
 import { JSX } from "react";
 import { baseURL, isMobile } from "@/global/store/store";
 import CustomSlider from "@/shared/ui/CustomSlider/CustomSlider";
 import CustomButton from "@/shared/ui/CustomButton/CustomButton";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
+import EventMoreInfo from "../EventMoreInfo/EventMoreInfo";
+import Image from "next/image";
+import s from "./EventBlock.module.scss";
 
 export default function EventBlock(props: {
     currentEventById: IEventInfoCard,
@@ -35,19 +35,21 @@ export default function EventBlock(props: {
                                     type: "image"
                                 };
                             })}
-                            width={isMobile$ ? "100%" : "85%"}
+                            width={isMobile$ ? "100%" : "100%"}
                             height="300px"
                         />
                     </div>
                     <div className={s.help}>
                         <div>{event.title}, {event.age_restriction}+</div>
                         <div dangerouslySetInnerHTML={{ __html: event.description }} className={s.description} />
-                        <EventMoreInfo
-                            price={event.price}
-                            tags={event.tags}
-                            siteUrl={event.site_url}
-                            favoritesCount={event.favorites_count}
-                        />
+                        <div className={s.moreInfo}>
+                            <EventMoreInfo
+                                price={event.price}
+                                tags={event.tags}
+                                siteUrl={event.site_url}
+                                favoritesCount={event.favorites_count}
+                            />
+                        </div>
                         <div className={s.actions}>
                             <CustomButton onClick={() => props.addUserEvent(event.id)} text={t("Я пойду")!} />
                             <CustomButton text={t("Понравилось")!} />
