@@ -113,12 +113,6 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
         }
     }, [mediaChunks]);
 
-    useEffect(() => {
-        return () => {
-            setActiveChat(null);
-        }
-    }, [])
-    
     if (activeChat$) {
         return (
             <div className={s.chat}>

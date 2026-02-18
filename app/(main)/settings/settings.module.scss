@@ -8,8 +8,9 @@
         & .title {
             background-color: var(--bg-color-block);
             display: flex;
+            gap: 5px;
             align-items: center;
-            padding: 10px;
+            padding: 5px 10px;
             border-radius: 10px;
             height: 40px;
         }
@@ -47,6 +48,8 @@
                 cursor: pointer;
                 font-size: 18px;
                 font-family: Nunito;
+                border: 1px solid gray;
+                padding: 5px;
             }
             & .swipeTheme:hover {
                 background-color: rgb(255, 208, 0);

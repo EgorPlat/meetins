@@ -1,5 +1,4 @@
 "use client";
-import { Slider } from "@mui/material";
 import { useUnit } from "effector-react";
 import React, { JSX, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -10,7 +9,6 @@ import { $currentInterestsList } from "@/global/store/store";
 import { GOALS } from "@/shared/helpers/constants";
 import { AutoComplete } from 'antd';
 import CustomButton from "@/shared/ui/CustomButton/CustomButton";
-import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import InfinityScroll from "@/widgets/InfinityScroll/InfinityScroll";
 import UserList from "../UserList/UserList";
 import s from "./SearchingPeople.module.scss";

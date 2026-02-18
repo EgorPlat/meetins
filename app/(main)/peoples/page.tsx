@@ -1,5 +1,5 @@
 "use client";
-import React, { JSX, useEffect } from "react";
+import React, { JSX, useCallback, useEffect, useMemo } from "react";
 import { useUnit } from "effector-react";
 import { useRouter } from "next/navigation";
 import { addNotification } from "@/global/store/notifications_model";
@@ -9,19 +9,22 @@ import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import CustomStepper from "@/shared/ui/CustomStepper/CustomStepper";
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import SearchingPeople from "@/components/peoples/SearchingPeople/SearchingPeople";
+import GroupsList from "@/components/peoples/GroupsList/GroupsList";
+import LentaList from "@/components/peoples/LentaList/LentaList";
 
-const SearchingPeople = dynamic(() => import("../../../components/peoples/SearchingPeople/SearchingPeople"), {
-    loading: () => <CustomLoader />,
-    ssr: false
-});
-const GroupsList = dynamic(() => import("../../../components/peoples/GroupsList/GroupsList"), {
-    loading: () => <CustomLoader />,
-    ssr: false
-});
-const LentaList = dynamic(() => import("../../../components/peoples/LentaList/LentaList"), {
-    loading: () => <CustomLoader />,
-    ssr: false
-});
+// const SearchingPeople = dynamic(() => import("../../../components/peoples/SearchingPeople/SearchingPeople"), {
+//     loading: () => <CustomLoader />,
+//     ssr: false
+// });
+// const GroupsList = dynamic(() => import("../../../components/peoples/GroupsList/GroupsList"), {
+//     loading: () => <CustomLoader />,
+//     ssr: false
+// });
+// const LentaList = dynamic(() => import("../../../components/peoples/LentaList/LentaList"), {
+//     loading: () => <CustomLoader />,
+//     ssr: false
+// });
 
 export default function Peoples(): JSX.Element {
 
@@ -29,22 +32,38 @@ export default function Peoples(): JSX.Element {
     const router = useRouter();
     const isMobile$ = useUnit(isMobile);
 
-    const handleGoToLink = (isGroup: boolean, linkId: number) => {
+    const handleGoToLink = useCallback((isGroup: boolean, linkId: number) => {
         if (isGroup) {
             router.push(`/groups/${linkId}`);
         } else {
             router.push(`/profile/${linkId}`);
         }
-    };
+    }, [router]);
 
-    const handleDontGetNotification = () => {
+    const handleDontGetNotification = useCallback(() => {
         addNotification({ 
             time: 3000,
             type: "info",
             text: "В скором времени Вы перестанете получать уведомления из этого источника",
             textColor: "white"
         })
-    };
+    }, []);
+
+    const steps = useMemo(() => {
+        return [
+            { title: "Поиск людей", component: SearchingPeople },
+            { title: "Сообщества", component: GroupsList },
+            { 
+                title: "Новости",
+                component: LentaList,
+                props: { 
+                    wallPosts: currentWall,
+                    handleGoToLink: handleGoToLink,
+                    handleDontGetNotification: handleDontGetNotification
+                }
+            }
+        ]
+    }, [currentWall, handleGoToLink, handleDontGetNotification])
 
     useEffect(() => {
         getCurrentWall();
@@ -67,19 +86,7 @@ export default function Peoples(): JSX.Element {
             </Head>
             <CustomStepper
                 center={isMobile$}
-                steps={[
-                    { title: "Поиск людей", component: SearchingPeople },
-                    { title: "Сообщества", component: GroupsList },
-                    { 
-                        title: "Новости",
-                        component: LentaList,
-                        props: { 
-                            wallPosts: currentWall,
-                            handleGoToLink: handleGoToLink,
-                            handleDontGetNotification: handleDontGetNotification
-                        }
-                    }
-                ]}
+                steps={steps}
             />
         </div>
     )

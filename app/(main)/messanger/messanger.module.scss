@@ -7,7 +7,7 @@
         height: calc(100dvh - 120px);
     }
     & .chatZone {
-        height: calc(100dvh - 140px);
+        height: calc(100dvh - 120px);
         & .noChat {
             display: grid;
             grid-template-columns: 1fr;
@@ -22,7 +22,7 @@
 }
 
 .mobileMessangerContent {
-    height: calc(100dvh - 150px);
+    height: calc(100dvh - 140px);
 }
 
 .notificationModalText {

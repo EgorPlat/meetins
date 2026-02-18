@@ -52,6 +52,43 @@ body {
 		background-color: var(--bg-color-block-light);
 		color: var(--text-color);
 	}
+	.ant-picker {
+		background-color: var(--bg-color-block-light);
+		border-color: var(--border-color);
+	}
+	.ant-picker .ant-picker-input > input {
+		color: var(--text-color) !important;
+		&::placeholder {
+			color: var(--text-color);
+		}
+	}
+	.ant-picker .ant-picker-separator, .ant-picker-suffix {
+		color: gray;
+	}
+	.ant-picker-panel-container {
+		background-color: var(--bg-color-block-light);
+	}
+	.ant-picker-content >th,td,tr {
+		color: var(--text-color) !important;
+	}
+	.ant-picker-header >tr,th {
+		color: var(--text-color) !important;
+	}
+	.ant-picker-header {
+		color: var(--text-color) !important;
+	}
+	.ant-picker-content > tbody > tr > td[class="ant-picker-cell ant-picker-cell-in-range ant-picker-cell-in-view"]::before {
+		background-color: gray !important;
+	}
+	.ant-picker-content > tbody > tr > td[class="ant-picker-cell ant-picker-cell-range-end ant-picker-cell-in-view"]::before {
+		background-color: gray !important;
+	}
+	.ant-picker-content > tbody > tr > td[class="ant-picker-cell ant-picker-cell-range-start ant-picker-cell-in-view"]::before {
+		background-color: gray !important;
+	}
+	.ant-picker-content > tbody > tr > td[class="ant-picker-cell ant-picker-cell-in-range ant-picker-cell-in-view ant-picker-cell-today"]::before {
+		background-color: gray !important;
+	}
 }
 
 input {

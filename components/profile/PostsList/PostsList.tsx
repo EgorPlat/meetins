@@ -100,7 +100,6 @@ export default React.memo(function PostsList(props: { currentUser: User, authedU
                                 </div>
                                 <div className={s.postActionsComments} onClick={() => handleComments(el)}>
                                     <FaComments />
-                                    <span>{t("Комментарии")}</span>
                                 </div>
                                 <div className={s.postActionsViews}>
                                     <AiOutlineEye />

@@ -17,7 +17,7 @@ import NotificationBlock from "@/widgets/NotificationBlock/notificationBlock";
 import VideoCallModal from "@/widgets/VideoCallModal/VideoCallModal";
 import i18n from "../i18n";
 import "../styles/themes.css";
-import "../node_modules/reseter.css/css/reseter.min.css";
+//import "../node_modules/reseter.css/css/reseter.min.css";
 import "../styles/global.scss";
 
 export default function RootLayout({

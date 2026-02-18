@@ -24,7 +24,7 @@ export default function UserChatCard(props: { dialog: IMyDialog, authedUser: Use
                             ? <div className={s.unreadMessagesCounter}>{countUnrededMessageInDialog}</div>
                             : <div className={s.readMessage}></div>
                     }    
-                    <span className={s.message}>{props.dialog.messages[props.dialog.messages.length - 1].content}</span>
+                    <div className={s.message}>{props.dialog.messages[props.dialog.messages.length - 1].content}</div>
                 </div>
             </div>
         </div>

@@ -4,8 +4,9 @@ import { Rating } from "@mui/material";
 import { JSX } from "react";
 import { IShortEventInfo } from "@/entities/events";
 import { customizeDateToYYYYMMDDFormat } from "@/shared/functions/getDateInYYYYMMDDFormat";
+import { DatePicker } from 'antd';
+const { RangePicker } = DatePicker;
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
-import CustomDatePicker from "@/shared/ui/CustomDatePicker/CustomDatePicker";
 import s from "./EventsList.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -25,11 +26,7 @@ export default function EventsList(props: {
             <div className={s.topMenu}>
                 <div className={s.title}>{t("Текущая категория")}: {categoryName}</div>
                 <div className={s.filters}>
-                    <CustomDatePicker 
-                        minDate={Date.now()} 
-                        maxDate={Date.now() + 30*24*60*60*1000 } 
-                        handleChangeDate={() => console.log()} 
-                    />
+                    <RangePicker />
                 </div>
             </div>
             <div className={s.list}>

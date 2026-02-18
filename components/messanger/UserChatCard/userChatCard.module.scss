@@ -23,9 +23,16 @@
         align-items: flex-start;
         gap: 10px;
         & .lastMessage {
-            display: flex;
+            display: grid;
+            grid-template-columns: 10px calc(100% - 30px);
             align-items: center;
             gap: 10px;
+            & .message {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                width: 100%;
+            }
             & .unreadMessagesCounter {
                 width: 10px;
                 height: 10px;

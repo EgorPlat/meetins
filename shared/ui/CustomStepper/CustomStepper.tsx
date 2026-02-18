@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
-import s from "./CustomStepper.module.scss";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import React from "react";
+import s from "./CustomStepper.module.scss";
 
 interface IStep { 
     title: string,
@@ -14,7 +15,7 @@ interface ICustomStepperProps {
     center?: boolean
 };
 
-export default function CustomStepper({ steps, center }: ICustomStepperProps) {
+function CustomStepper({ steps, center }: ICustomStepperProps) {
 
     const [activeStep, setActiveStep] = useState<IStep>(steps[0]);
     const { component: CustomComponent } = activeStep;
@@ -49,7 +50,7 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
                     ))
                 }
             </div>
-            <div className={s.activeStepContent}>
+            <div className={s.activeStepContent} key={activeStep.title}>
                 {
                     !CustomComponentProps 
                         ? <CustomComponent />
@@ -59,3 +60,5 @@ export default function CustomStepper({ steps, center }: ICustomStepperProps) {
         </div>
     )
 }
+
+export default React.memo(CustomStepper)
