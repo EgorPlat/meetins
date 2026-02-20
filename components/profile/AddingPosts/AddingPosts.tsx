@@ -6,6 +6,7 @@ import { isMobile, sendNewUserPost } from "@/global/store/store";
 import { validatePost } from "@/shared/helpers/validate";
 import { validateFilesFromInputAndStructuring } from "@/shared/helpers/helper";
 import CustomButton from "@/shared/ui/CustomButton/CustomButton";
+import FormContainer from "@/widgets/FormContainer/FormContainer";
 
 export default React.memo(function AddingPosts(): JSX.Element {
 
@@ -30,43 +31,43 @@ export default React.memo(function AddingPosts(): JSX.Element {
     };
 
     return (
-        <div className={s.addingPosts}>
-            {
-                <div className={s.addingPostsForm}>
-                    <div className={s.addingPostsFormMain}>
-                        <label htmlFor="addPostUserTitle">Заголовок</label>
-                        <input
-                            id="addPostUserTitle"
-                            type="text"
-                            placeholder={t("Название поста")}
-                            onChange={(e) => setPostFormData({ ...postFormData, title: e.target.value })}
-                        />
+        <FormContainer>
+            <div className="field">
+                <label htmlFor="addPostUserTitle">Заголовок</label>
+                <input
+                    id="addPostUserTitle"
+                    type="text"
+                    placeholder={t("Название поста")}
+                    onChange={(e) => setPostFormData({ ...postFormData, title: e.target.value })}
+                />
+            </div>
+            <div className="field">
+                <input
+                    id="addPostUserFiles"
+                    ref={ref}
+                    type="file"
+                    accept=".png, .jpeg, .mp4, .mp3, .jpg"
+                    multiple
+                    onChange={(e) => setPostFormData({ ...postFormData, currentFiles: e.target.files })}
+                    style={{ display: "none" }}
+                />
+                <label>Медиа</label>
+                <a onClick={chooseFile} className="link">
+                    <div>
+                        {!isMobile$ ? t("Добавить изображение к публикации") : t("Добавить изображение")} 
+                        ({postFormData.currentFiles?.length ? postFormData.currentFiles?.length : 0} / 5)
                     </div>
-                    <div className={s.addingPostsUploadFiles}>
-                        <a className={s.addingPostsFormMainFile} onClick={chooseFile}>
-                            <span>{!isMobile$ ? t("Добавить изображение к публикации") : t("Добавить изображение")} </span>
-                            <span>({postFormData.currentFiles?.length ? postFormData.currentFiles?.length : 0} / 5)</span>
-                            <input
-                                id="addPostUserFiles"
-                                ref={ref}
-                                type="file"
-                                accept=".png, .jpeg, .mp4, .mp3, .jpg"
-                                multiple
-                                onChange={(e) => setPostFormData({ ...postFormData, currentFiles: e.target.files })}
-                            />
-                        </a>
-                    </div>
-                    <div className={s.addingPostsFormDescription}>
-                        <label htmlFor="addPostUserDescription">Описание</label>
-                        <textarea
-                            id="addPostUserDescription"
-                            placeholder={t("Введите описание к посту")}
-                            onChange={(e) => setPostFormData({ ...postFormData, description: e.target.value })}
-                        />
-                        <CustomButton onClick={sendNewPost} text={t("Добавить")} />
-                    </div>
-                </div>
-            }
-        </div>
+                </a>
+            </div>
+            <div className="field">
+                <label htmlFor="addPostUserDescription">Описание</label>
+                <textarea
+                    id="addPostUserDescription"
+                    placeholder={t("Введите описание к посту")}
+                    onChange={(e) => setPostFormData({ ...postFormData, description: e.target.value })}
+                />
+                <CustomButton onClick={sendNewPost} text={t("Добавить")} />
+            </div>
+        </FormContainer>
     )
 })

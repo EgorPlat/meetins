@@ -12,7 +12,7 @@ export default function UserChatCard(props: { dialog: IMyDialog, authedUser: Use
     const chooseChat = () => {
         getDialogMessages(props.dialog);
     };
-
+    
     return(
         <div className={s.chat} onClick={chooseChat}>
             <div className={s.avatar} style={{ backgroundImage: `url('${baseURL + props.dialog?.userAvatar}')` }}></div>

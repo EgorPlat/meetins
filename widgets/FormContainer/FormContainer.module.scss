@@ -1,4 +1,5 @@
 .formContainer {
+    width: 100%;
     & .field {
         display: flex;
         flex-direction: column;
@@ -21,6 +22,7 @@
         border-radius: 8px;
         border: 1px solid var(--border-color);
         padding: 5px;
+        box-sizing: border-box;
     }
     & input:-internal-autofill-selected {
         background-color: transparent !important;
@@ -42,6 +44,7 @@
         padding: 5px;
         font-size: 15px;
         border: 1px solid var(--border-color);
+        box-sizing: border-box;
     }
     & button {
         margin-top: 10px;
@@ -54,7 +57,10 @@
         color: red;
         font-size: 14px;
     }
-
+    & a {
+        color: var(--default-color);
+        cursor: pointer;
+    }
     & select {
         width: 100%;
         padding: 5px;

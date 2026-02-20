@@ -4,6 +4,7 @@
     grid-template-columns: calc(100% - 35px) 35px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
+    box-sizing: border-box;
     .postFix {
         display: flex;
         align-items: center;
@@ -13,5 +14,6 @@
     & > input {
         padding-left: 5px;
         border: none;
+        box-sizing: border-box;
     }
 }

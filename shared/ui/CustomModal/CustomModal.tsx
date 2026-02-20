@@ -16,15 +16,23 @@ const CustomModal = (props: {
 
     const { t } = useTranslation();
 
+    const handleCloseModal = (e) => {
+        props.changeModal(false);
+    };
+
+    const handleConfirmAction = () => {
+        props.changeModal(true);
+    }
+
     if(!props.isDisplay) {
         return null;
     }
     return (
-        <div className={s.customModal}>
-            <div className={`${s.customModalContent} customModal`}>
+        <div className={s.customModal} onClick={handleCloseModal}>
+            <div className={`${s.customModalContent} customModal`} onClick={(e) => e.stopPropagation()}>
                 <div className={s.customModalTitle}>
                     <div>{t(props.title)}</div>
-                    <div className={s.customModalClose} onClick={() => props.changeModal(false)}>
+                    <div className={s.customModalClose} onClick={handleCloseModal}>
                         x
                     </div>
                 </div>
@@ -36,8 +44,8 @@ const CustomModal = (props: {
                         props.typeOfActions === "default" 
                         &&
                         <>
-                            <button className={s.confirmBtn} onClick={() => props.actionConfirmed(true)}>{t("Подтвердить")}</button>
-                            <button className={s.cancelBtn} onClick={() => props.changeModal(false)}>{t("Закрыть")}</button>
+                            <button className={s.confirmBtn} onClick={handleConfirmAction}>{t("Подтвердить")}</button>
+                            <button className={s.cancelBtn} onClick={handleCloseModal}>{t("Закрыть")}</button>
                         </>
                     }
                     {

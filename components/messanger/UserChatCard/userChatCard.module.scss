@@ -1,7 +1,6 @@
 .chat {
     padding: 10px;
     box-sizing: border-box;
-    width: 100%;
     background-color: var(--bg-color-block);
     border-radius: 5px;
     display: grid;
@@ -10,6 +9,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 5px;
+    width: 100%;
     & .avatar {
         border: 1px solid gray;
         border-radius: 50%;
@@ -24,9 +24,10 @@
         gap: 10px;
         & .lastMessage {
             display: grid;
-            grid-template-columns: 10px calc(100% - 30px);
+            grid-template-columns: 10px calc(100% - 40px);
             align-items: center;
             gap: 10px;
+            width: 100%;
             & .message {
                 white-space: nowrap;
                 text-overflow: ellipsis;

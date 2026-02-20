@@ -185,6 +185,7 @@
             border-radius: 10px;
             width: 245px;
             padding: 10px;
+            box-sizing: border-box;
 
             & .title {
                 display: grid;
@@ -249,7 +250,6 @@
             }
             & .leftInfo {
                 grid-row: 1;
-                width: 100%;
             }
         }
     }

@@ -1,22 +1,26 @@
 .groupAttachments {
     & .attachmentList {
-        display: flex;
+        /*display: flex;
         justify-content: center;
         flex-wrap: wrap;
         row-gap: 10px;
-        column-gap: 10px;
-        & .image {
-            width: 100px;
-            height: 100px;
-            border: 1px solid var(--border-color);
+        column-gap: 10px;*/
+        display: grid;
+        gap: 10px;
+        & .elem {
+            display: grid;
+            grid-template-columns: 25px calc(100% - 70px) 25px;
+            gap: 10px;
             padding: 5px;
-        }
-        & .video {
-            outline: none;
-            width: 220px;
-            height: 150px;
-            border: 1px solid var(--border-color);
-            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgba(128, 128, 128, 0.185);
+            & .image {
+                width: 25px;
+                height: 25px;
+                border-radius: 5px;
+            }
         }
         & .warning {
             color: gray;

@@ -13,14 +13,12 @@
 
 .postsList {
     margin-top: 10px;
-    display: grid;
-    justify-content: center;
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 1fr;
     font-family: Nunito;
 
     & .post {
-        width: 50%;
         display: grid;
         grid-template-columns: 1fr;
 
@@ -94,6 +92,7 @@
         margin-bottom: 10px;
         background-color: var(--bg-color-block);
         border-radius: 10px;
+        box-sizing: border-box;
     }
 }
 

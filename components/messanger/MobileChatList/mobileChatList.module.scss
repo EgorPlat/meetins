@@ -14,7 +14,7 @@
         & .mobileUserChatCardLastMessage {
             font-size: 16px;
             display: grid;
-            grid-template-columns: 10px calc(100% - 10px);
+            grid-template-columns: 10px calc(100% - 15px);
             column-gap: 5px;
             align-items: center;
             & .mobileNotMyChatRound {
