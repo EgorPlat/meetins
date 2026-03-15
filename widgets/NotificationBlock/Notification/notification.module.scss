@@ -31,7 +31,8 @@
     margin-top: 5px;
     width: 100%;
     min-height: 30px;
-    font-size: 14px
+    font-size: 14px;
+    position: relative;
 }
 
 .errorShowUp {
@@ -44,4 +45,20 @@
     @extend .eachError;
     animation: hide 1s;
     animation-fill-mode: forwards;
+}
+
+@keyframes smoothWidthLessen {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+.notificationTimer {
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 2px;
+    left: 0px;
 }

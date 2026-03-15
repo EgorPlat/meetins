@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { IShortEventInfo } from "@/entities/events";
 import { setCurrentEventById, deleteUserEvent } from "@/global/store/events_model";
 import s from "./markedEventInfo.module.scss";
+import { Tooltip } from "antd";
+import { FaEnvelopeCircleCheck, FaTrash } from "react-icons/fa6";
 
 export default function MarkedEventInfo(props: { event: IShortEventInfo }): JSX.Element {
 
@@ -19,7 +21,7 @@ export default function MarkedEventInfo(props: { event: IShortEventInfo }): JSX.
 
     return (
         <div className={s.markedEventInfo}>
-            {props.event &&
+            {/*props.event &&
                 <div className={s.markedEventInfoContent}>
                     <div className={s.image} onClick={goToEventInfo}>
                         <img src={props.event?.images[0].image} />
@@ -32,7 +34,21 @@ export default function MarkedEventInfo(props: { event: IShortEventInfo }): JSX.
                         <button onClick={handleDeleteUserEvent}>Уже сходили.</button>
                     </div>
                 </div>
-            }
+            */}
+            <img src={props.event?.images[0].image} className={s.image} />
+            <div className={s.info}>
+                <div className={s.title}>{props.event?.title}</div>
+                <div className={s.description} dangerouslySetInnerHTML={{ __html: props.event?.description }}></div>
+            </div>
+            <div className={s.actions}>
+                <Tooltip title="Не пойду">
+                    <FaTrash 
+                        className={s.action} 
+                        fontSize={18}
+                        onClick={handleDeleteUserEvent}
+                    />
+                </Tooltip>
+            </div>
         </div>
     )
 }

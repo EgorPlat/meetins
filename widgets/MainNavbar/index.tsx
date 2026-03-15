@@ -12,6 +12,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import s from "./mainNavbar.module.scss"; 
+import { MusicControlBlock } from "../MusicControlBlock/musicControlBlock";
 
 const CustomButtonWithHint = dynamic(() => import("../../shared/ui/CustomButtonWithHint/CustomButtonWithHint"));
 
@@ -61,10 +62,7 @@ export default function MainNavbar(): JSX.Element {
     return(
         <div className={s.link}>
             <div className={s.navBlock}>
-                <Link href="/peoples">{t("Люди")}</Link>
-                <Link href="/events">{t("События")}</Link>
-                <Link href="/interests">{t("Интересы")}</Link>
-                <Link href="/meetings">{t("Встречи")}</Link>
+                <MusicControlBlock />
             </div>
             <div className={s.userBlock}>
                 <CustomButtonWithHint
@@ -78,8 +76,8 @@ export default function MainNavbar(): JSX.Element {
                     src={baseURL + user?.avatar} 
                     className={s.round} 
                     alt="Аватарка" 
-                    width={60} 
-                    height={60} 
+                    width={50} 
+                    height={50} 
                     onClick={handleAvatarClick}
                 />
                 <select className={s.customSelect} ref={ref} onChange={(event) => setSelect(event.target.value)}>

@@ -4,9 +4,11 @@ import { IUnitedInvitesEvent } from "@/entities/events";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import CustomStepper from "@/shared/ui/CustomStepper/CustomStepper";
 import s from "./InvitesPageView.module.scss";
+import InnerInvites from "../InnerInvites/InnerInvites";
+import OuterInvites from "../OuterInvites/OuterInvites";
 
-const InnerInvites = dynamic(() => import("../InnerInvites/InnerInvites"), { loading: () => <CustomLoader /> });
-const OuterInvites = dynamic(() => import("../OuterInvites/OuterInvites"), { loading: () => <CustomLoader /> });
+//const InnerInvites = dynamic(() => import("../InnerInvites/InnerInvites"), { loading: () => <CustomLoader /> });
+//const OuterInvites = dynamic(() => import("../OuterInvites/OuterInvites"), { loading: () => <CustomLoader /> });
 
 
 

@@ -3,7 +3,7 @@ body {
     color: var(--text-color);
 }
 [data-theme="white"] {
-	--border-color: #1c1e228e;
+	--border-color: #1c1e223f;
     --bg-color: rgb(246, 246, 246);
     --text-color: black;
 	--h4BG-color: rgba(176, 176, 176, 0.326);
@@ -31,7 +31,7 @@ body {
 	--bg-color-block-light: rgb(53, 53, 53);
 	--bg-color-mobile-menu: rgb(37, 39, 51);
 	--bg-audio-track: rgb(54, 54, 54);
-	--hover-color: #3db1ffab;
+	--hover-color: #3db1ff46;
 	::-webkit-calendar-picker-indicator {
 		filter: invert(1);
 	}

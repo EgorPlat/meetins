@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { IActiveMusic } from "../../../entities/music";
 import s from "./MusicControlBlockView.module.scss";
+import { MusicPlayer } from "@/widgets/MusicPlayer/MusicPlayer";
 
 export const MusicControlBlockView = (
     { 
@@ -13,6 +14,7 @@ export const MusicControlBlockView = (
 
     useEffect(() => {
         if (audioRef.current) {
+            audioRef.current.volume = 0.5;
             audioRef.current.currentTime = activeMusic.currentTime;
             audioRef.current.play();
         }

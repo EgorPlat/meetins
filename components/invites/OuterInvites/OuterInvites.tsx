@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import { IOuterInviteEvent } from "@/entities/events";
 import { baseURL } from "@/global/store/store";
 import s from "./OuterInvites.module.scss";
+import { Tooltip } from "antd";
+import { FaEnvelopeCircleCheck, FaTrash } from "react-icons/fa6";
 
 interface IOuterInviteWrapperProps {
     invites: IOuterInviteEvent[],
@@ -22,37 +24,21 @@ export default function OuterInvites(props: IOuterInviteWrapperProps) {
                 {
                     invites.map(invite => (
                         <div className={s.wrapper} key={invite.id}>
-                            <div className={s.content}>
-                                <div className={s.image}>
-                                    <img src={invite?.images[0].image} />
-                                </div>
-                                <div className={s.mainInfo}>
-                                    <div className={s.eventTitle}>{t("Мероприятие")}: {invite.title}</div>
-                                    <div className={s.eventDescription} dangerouslySetInnerHTML={
-                                        { __html: invite.description }
-                                    }>
-                                    </div>
-                                    <div className={s.eventSender}>
-                                        {t("Отправлено к")}:
-                                        {
-                                            invite.inviteInfo.invitedUsers.map(user => (                                    
-                                                <div className={s.eventSender} key={user.login}>
-                                                    <div className={s.eventSenderAvatar} onClick={() => props.handleVisit(user.login)}>
-                                                        <img className={s.avatar} src={baseURL + user.avatar} />
-                                                    </div>
-                                                    <div className={s.eventSenderName}>
-                                                        <span>{user.name}</span>
-                                                    </div>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
+                            <img src={invite.images[0].image} className={s.image} />
+                            <div className={s.info}>
+                                <div className={s.title}>{invite.title}</div>
+                                <div className={s.persons}>
+                                    Вы пригласили {invite.inviteInfo.invitedUsers.length} человек(а)
                                 </div>
                             </div>
                             <div className={s.actions}>
-                                <button className={s.action} onClick={() => props.handleWatch(invite.id)}>Посмотреть</button>
-                                <button className={s.action}>Отменить</button>
-                            </div> 
+                                <Tooltip title="Отменить приглашения">
+                                    <FaTrash 
+                                        className={s.action} 
+                                        fontSize={18}
+                                    />
+                                </Tooltip>
+                            </div>
                         </div>
                     ))
                 }

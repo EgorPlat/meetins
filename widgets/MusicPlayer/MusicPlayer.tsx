@@ -2,10 +2,9 @@ import { getTimerFromSeconds } from "../../shared/helpers/helper";
 import { IMusic, IMusicAuthors } from "../../entities/music";
 import { baseURL } from "../../global/store/store";
 import { useEffect, useRef, useState } from "react";
-import { activeMusicId, setActiveMusic, setActiveMusicId } from "../../global/store/music_model";
+import { setActiveMusic, setActiveMusicId } from "../../global/store/music_model";
 import { FaPlay } from "react-icons/fa6";
 import { FaPause } from "react-icons/fa";
-import { useUnit } from "effector-react";
 import s from "./MusicPlayer.module.scss";
 
 export const MusicPlayer = (props: {
@@ -14,12 +13,13 @@ export const MusicPlayer = (props: {
     isStopNeeded: boolean
 }) => {
     
-    const activeMusicId$ = useUnit(activeMusicId);
     const [isMusicSelected, setIsMusicSelected] = useState<boolean>(false);
     const [musicTimeData, setMusicTimeData] = useState<{ currentTime: number, duration: number }>({ currentTime: 0, duration: 0 });
     const musicFullTimer = getTimerFromSeconds(+musicTimeData?.duration);
     const audioRef = useRef<HTMLAudioElement>(null);
 
+    console.log(props.isStopNeeded, props.musicInfo.title);
+    
     const handleTimeUpdate = (audio) => {
         if (audioRef.current) {
             setActiveMusic({
@@ -87,7 +87,7 @@ export const MusicPlayer = (props: {
                     <span style={{color: "gray"}}> (3:36) </span> 
                     <span className={s.authorName}>{props.authorInfo.name} </span>
                 </div>
-                <div>
+                <div className={s.musicContentElementDescription}>
                     {props.musicInfo.description}
                 </div>
                 <div className={s.musicContentElementInfoProgress}>
@@ -108,8 +108,8 @@ export const MusicPlayer = (props: {
                         isMusicSelected &&
                         <span>
                             {getTimerFromSeconds(+musicTimeData?.currentTime) 
-                        + "/" + 
-                        musicFullTimer
+                                + "/" + 
+                                musicFullTimer
                             }
                         </span>
                     }

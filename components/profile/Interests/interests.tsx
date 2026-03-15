@@ -57,7 +57,7 @@ export default React.memo(function Interests(props: {
                 </div>
                 {
                     isChangeMode
-                        ?
+                        &&
                         <CustomModal
                             title="Изменить интересы"
                             isDisplay={isChangeMode}
@@ -67,12 +67,17 @@ export default React.memo(function Interests(props: {
                         >
                             <ChangingInterests currentInterests={props.authedUser.interests} handleSaveClick={handleSaveClick} />
                         </CustomModal>
-                        : isCurrentInterestsAvailable
-                            ? currentUserInterests.map((elem: IInterest) =>
-                                <button type="button" className={`${s.interest}`} key={elem.title}>{elem.title}</button>
-                            )
-                            : <p>{t("Хобби пока нет")}.</p>
                 }
+                <div className={s.list}>
+                {
+                    currentUserInterests.length !== 0 
+                    ?
+                    currentUserInterests.map((elem: IInterest) =>
+                        <div className={`${s.item}`} key={elem.title}>{elem.title}</div>
+                    )
+                    : <p>{t("Хобби пока нет")}.</p>
+                }
+            </div>
             </div>
         </>
     )

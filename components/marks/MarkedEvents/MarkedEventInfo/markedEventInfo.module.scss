@@ -1,56 +1,36 @@
 .markedEventInfo {
-    width: 300px;
-    min-height: 300px;
+    width: 100%;
     border-radius: 5px;
     background-color: var(--bg-color-block);
-    padding: 20px;
-
-    & .markedEventInfoContent {
-        display: grid;
-        row-gap: 10px;
-
-        & .image {
-            display: flex;
-            justify-content: center;
-
-            & img {
-                width: 100%;
-                height: 270px;
-                border-radius: 5px;
-            }
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 100px calc(100% - 145px) 25px;
+    gap: 10px;
+    & .image {
+        width: 100%;
+    }
+    & .info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        & .title {
+            font-size: 14px;
         }
-
-        & .name {
-            font-size: 13px;
-        }
-
-        & .actions {
-            display: flex;
-            column-gap: 5px;
-
-            button {
-                font-size: 13px;
-                background-color: #3DB2FF;
-                color: white;
-                width: 49%;
-                border: none;
-                border-radius: 5px;
-            }
-
-            button:hover {
-                background-color: rgb(255, 197, 88);
-                color: black;
-            }
+        & .description {
+            font-size: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Число строк */
+            -webkit-box-orient: vertical;
+            overflow: hidden; /* Скрывает лишний текст */
+            text-overflow: ellipsis; /* Добавляет точки */
+            line-height: 1.2em; /* Опционально: задает высоту строки */
+            max-height: 2.4em;
         }
     }
-
-    & .markedEventInfoContent:hover {
+    & .actions {
+        display: flex;
+        align-items: center;
+        gap: 5px;
         cursor: pointer;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .markedEventInfo {
-        width: 98%;
     }
 }

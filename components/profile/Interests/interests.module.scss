@@ -1,6 +1,6 @@
 .interests {
     font-family: Nunito;
-    font-size: 18px;
+    font-size: 16px;
     & .title {
         display: flex;
         align-items: center;
@@ -11,19 +11,28 @@
             cursor: pointer;
             & .change {
                 margin-left: 5px;
-                font-size: 16px;
+                font-size: 14px;
                 color: gray;
             }
         }
     }
 
-    & .interest {
-        font-family: Nunito;
-        min-height: 35px;
-        border-radius: 5px;
-        font-size: 18px;
-        padding: 3px;
-        border: 1px solid rgb(44, 142, 255);
+    & .list {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 5px;
+        row-gap: 5px;
+        font-size: 14px;
+        margin-top: 15px;
+        & .item {
+            display: flex;
+            align-items: center;
+            font-family: Nunito;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 3px;
+            border: 1px solid var(--default-color);
+        }
     }
 
     button {

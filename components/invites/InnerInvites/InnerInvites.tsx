@@ -4,6 +4,8 @@ import { IInnerInviteEvent } from "@/entities/events";
 import { baseURL } from "@/global/store/store";
 import { customizeDateToYYYYMMDDHHMMFormat } from "@/shared/functions/getDateInYYYYMMDDHHFormat";
 import s from "./InnerInvites.module.scss";
+import { FaEnvelopeCircleCheck, FaTrash } from "react-icons/fa6";
+import { Tooltip } from "antd";
 
 interface IInnerInvitesProps {
     invites: IInnerInviteEvent[],
@@ -25,32 +27,34 @@ export default function InnerInvites(props: IInnerInvitesProps) {
                 {
                     invites.map(invite => (
                         <div className={s.wrapper} key={invite.id}>
-                            <div className={s.content}>
-                                <div className={s.image}>
-                                    <img src={invite?.images[0].image} />
-                                </div>
-                                <div className={s.mainInfo}>
-                                    <div className={s.eventTitle}>Мероприятие: {invite.title}</div>
-                                    <div className={s.eventDescription} dangerouslySetInnerHTML={
-                                        { __html: invite.description }
-                                    }>
-                                    </div>
-                                    <div className={s.inviteDate}>
-                                        <span>Дата приглашения: </span>
-                                        <span>{ customizeDateToYYYYMMDDHHMMFormat(invite.inviteInfo.dateOfSending) }</span>
-                                    </div>
-                                    <div className={s.eventSender}>
-                                        <div className={s.eventSenderName}>Отправитель: {invite.inviteInfo.name}</div>
-                                        <div className={s.eventSenderAvatar} onClick={() => props.handleVisit(invite.inviteInfo.login)}>
-                                            <img className={s.avatar} src={baseURL + invite.inviteInfo.avatar} />
-                                        </div>
-                                    </div>
+                            <img className={s.image} src={invite.images[0].image} />
+                            <div className={s.info}>
+                                <span className={s.title}>{invite.title}</span>
+                                <div className={s.user}>
+                                    <img className={s.avatar} src={baseURL + invite.inviteInfo.avatar} />
+                                    <span className={s.name} onClick={() => props.handleVisit(invite.inviteInfo.login)}>
+                                        {invite.inviteInfo.name} пригласил(а) Ваc
+                                        <span className={s.date}>
+                                            {` ${customizeDateToYYYYMMDDHHMMFormat(invite.inviteInfo.dateOfSending)}`}
+                                        </span>
+                                    </span>
                                 </div>
                             </div>
                             <div className={s.actions}>
-                                <button className={s.action} onClick={() => props.handleWatch(invite.id)}>Посмотреть</button>
-                                <button className={s.action} onClick={() => props.handleDecline(invite.inviteInfo)}>Отклонить</button>
-                            </div> 
+                                <Tooltip title="Принять">
+                                    <FaEnvelopeCircleCheck 
+                                        className={s.action} 
+                                        fontSize={25}
+                                    />
+                                </Tooltip>
+                                <Tooltip title="Удалить">
+                                    <FaTrash 
+                                        className={s.action} 
+                                        fontSize={18}
+                                        onClick={() => props.handleDecline(invite.inviteInfo)}
+                                    />
+                                </Tooltip>
+                            </div>
                         </div>
                     ))
                 }

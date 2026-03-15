@@ -50,11 +50,18 @@ export default function Music() {
 
     useEffect(() => {
         if (debouncedSearchMusic.length === 0) {
-            getAllMusic()
+            getAllMusic();
         } else {
             setMusicList(musicList$.filter(el => el.name.toLowerCase().includes(debouncedSearchMusic.toLowerCase())));
         }
     }, [debouncedSearchMusic]);
+
+    useEffect(() => {
+        setIsMusicNeededOnBackground(false);
+        return () => {
+            setIsMusicNeededOnBackground(true);
+        }
+    }, [])
 
     return (
         <>

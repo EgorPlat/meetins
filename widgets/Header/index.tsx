@@ -21,7 +21,7 @@ export default function Header(): JSX.Element {
                     className={s.logoImage}
                     src={logo}
                     alt='company logo'
-                    width={70}
+                    width={50}
                 />
             </div>
             <Suspense fallback={<CustomLoader />}>

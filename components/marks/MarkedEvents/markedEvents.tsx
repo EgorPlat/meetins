@@ -4,8 +4,9 @@ import { useTranslation } from "react-i18next";
 import { userEvents } from "@/global/store/events_model";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import s from "./markedEvents.module.scss";
+import MarkedEventInfo from "./MarkedEventInfo/markedEventInfo";
 
-const MarkedEventInfo = React.lazy(() => import("./MarkedEventInfo/markedEventInfo"));
+//const MarkedEventInfo = React.lazy(() => import("./MarkedEventInfo/markedEventInfo"));
 
 export default function MarkedEvents(): JSX.Element {
 

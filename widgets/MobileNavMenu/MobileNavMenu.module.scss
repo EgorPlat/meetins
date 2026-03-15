@@ -17,7 +17,8 @@
         & .mobileMenuWrapperShown {
             width: 250px;
             height: 100%;
-            background-color: var(--bg-color-mobile-menu);
+            //background-color: var(--bg-color-mobile-menu);
+            background-color: var(--bg-color-block);
             animation: showUp 0.5s forwards;
             display: flex;
             flex-direction: column;

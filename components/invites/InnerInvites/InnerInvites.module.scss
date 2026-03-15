@@ -2,75 +2,53 @@
     display: grid;
     row-gap: 10px;
     & .wrapper {
-        background-size: 100% 100%;
-        border-radius: 5px;
-        width: 100%;
-        margin-bottom: 10px;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 100px calc(100% - 170px) 50px;
         background-color: var(--bg-color-block);
         padding: 10px;
-        & .content {
-            display: flex;
-            column-gap: 10px;
+        gap: 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        & .image {
             width: 100%;
-            border-radius: 10px;
-            & .image {
-                & img {
-                    width: 250px;
-                    height: 100%;
-                    border-radius: 10px;
-                }
+            border-radius: 3px;
+        }
+        & .info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            & .title {
+                font-size: 14px;
             }
-            & .mainInfo {
-                margin-top: 10px;
+            & .user {
                 display: flex;
-                flex-direction: column;
-                row-gap: 10px;
-                font-size: 16px;
-                & .eventTitle {
-                    text-align: justify;
-                    text-transform: uppercase;
+                align-items: center;
+                gap: 10px;
+                & .avatar {
+                    width: 30px;
+                    border-radius: 5px;
                 }
-                & .inviteDate {
-
-                }
-                & .eventDescription {
-
-                    text-align: justify;
-                }
-                & .eventSender {
-                    display: flex;
-                    align-items: center;
-                    & .eventSenderName {
-    
+                & .name {
+                    font-size: 13px;
+                    &:hover {
+                        color:  var(--default-color);
                     }
-                    & .eventSenderAvatar {
-                        margin-left: 10px;
-                        & .avatar {
-                            width: 30px;
-                            height: 30px;
-                            border-radius: 5px;
-                        }
+                    & .date {
+                        color: rgba(128, 128, 128, 0.638);
                     }
                 }
             }
         }
         & .actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            column-gap: 10px;
-            width: 250px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
             & .action {
-                font-size: 16px;
-                margin-top: 10px;
-                border-radius: 5px;
-                outline: none;
-                font-weight: 500;
-                border: none;
-                background-color: var(--default-color);
-            }
-            & .action:hover {
-                background-color: orange;
-                color: black;
+                cursor: pointer;
+                &:hover {
+                    color: var(--hover-color);
+                }
             }
         }
     }
@@ -89,16 +67,7 @@
 @media screen and (max-width: 700px) {
     .list {
         & .wrapper {
-            & .content {
-                display: grid;
-                grid-template-columns: 1fr;
-                & .image {
-                    & img {
-                        max-height: 250px;
-                        width: 100%;
-                    }
-                }
-            }
+            
         }
     }
 }

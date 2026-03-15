@@ -24,14 +24,22 @@ export const Notification = (props: {
             clearTimeout(visibleTimeout);
         }
     }, []);
-
+    console.log(notification.time / 1000);
+    
     return (
         <div
             className={`${visible ? s.errorShowUp : s.errorHide}`}
-            style={{ border: `1px solid ${NOTIFICATION_COLOR_TYPES[notification.type].color}`}}
+            style={{ border: `1px solid var(--border-color)`}}
         >
             <Icon color={NOTIFICATION_COLOR_TYPES[notification.type].color} fontSize={24} />
             {notification.text}
+            <div 
+                className={s.notificationTimer}
+                style={{ 
+                    animation: `${s.smoothWidthLessen} ${notification.time / 1000}s forwards linear`,
+                    backgroundColor: NOTIFICATION_COLOR_TYPES[notification.type].color
+                }}
+            ></div>
         </div>
     )
 }

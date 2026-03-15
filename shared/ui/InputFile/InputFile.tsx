@@ -17,9 +17,9 @@ export default function InputFile(props: {
             <label className={s.label}>
                 <input 
                     ref={ref} 
-                    type="file" 
+                    type="file"
                     className={s.inputTypeFile} 
-                    onChange={(event) => props.onChange(event)} accept=".jpg,.jpeg,.png,.gif"
+                    onChange={(event) => props.onChange(event)} accept=".jpg,.jpeg,.png,.gif,.jfif"
                 />
             </label>
         </div>

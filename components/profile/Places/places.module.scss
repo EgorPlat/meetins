@@ -1,6 +1,6 @@
 .places {
     font-family: Nunito;
-    font-size: 18px;
+    font-size: 16px;
     & .title {
         display: flex;
         align-items: center;
@@ -12,16 +12,16 @@
         flex-wrap: wrap;
         column-gap: 5px;
         row-gap: 5px;
-        font-size: 18px;
+        font-size: 14px;
         margin-top: 15px;
         & .item {
-            min-height: 35px;
-            padding: 0px 3px;
-            border: 1px solid rgb(255, 162, 63);
-            border-radius: 5px;
-            float: left;
             display: flex;
             align-items: center;
+            font-family: Nunito;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 3px;
+            border: 1px solid orange;
         }
     }
 }

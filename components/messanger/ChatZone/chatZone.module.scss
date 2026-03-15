@@ -13,25 +13,26 @@
 .chat {
     height: 100%;
     display: grid;
-    grid-template-rows: 85px calc(100% - 165px) 70px;
-    row-gap: 5px;
+    grid-template-rows: 85px calc(100% - 155px) 70px;
     box-sizing: border-box;
     & .notificationMessage {
         margin-top: 15px;
         text-align: center;
     }
     & .block {
-        border-radius: 10px;
         background-color: var(--bg-color-block);
     }
     & .user {
         display: grid;
-        grid-template-columns: 65px calc(100% - 105px) 30px;
+        grid-template-columns: 45px calc(100% - 85px) 30px;
         align-items: center;
         padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.09);
         & .avatar {
-            width: 100%;
-            height: 100%;
+            width: 45px;
+            height: 45px;
             border: 1px solid gray;
             border-radius: 50%;
             background-size: 100% 100%;
@@ -42,10 +43,10 @@
                 display: flex;
                 align-items: center;
                 column-gap: 5px;
-                font-size: 20px;
+                font-size: 16px;
             }
             & .status {
-                font-size: 16px;
+                font-size: 14px;
                 color: grey;
             }
             & .statusOnline {
@@ -136,6 +137,9 @@
         align-items: center;
         padding-left: 5px;
         padding-right: 5px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top: 1px solid rgba(128, 128, 128, 0.09);
     }
 }
 
@@ -205,7 +209,7 @@
 }
 @media screen and (max-width: 500px) {
     .chat {
-        grid-template-rows: 75px calc(100% - 155px) 70px;
+        grid-template-rows: 75px calc(100% - 145px) 70px;
         & .user {
             grid-template-columns: 55px calc(100% - 95px) 30px;
             & .userTextInfo {

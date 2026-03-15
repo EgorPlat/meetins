@@ -4,18 +4,19 @@
 	min-height: 60px;
 	display: grid;
 	align-items: center;
-	grid-template-columns: 70px calc(100% - 70px);
-	padding-bottom: 10px;
-	padding-top: 10px;
+	grid-template-columns: 50px calc(100% - 50px);
 	justify-content: center;
-	max-width: 1300px;
+	max-width: 1100px;
 	width: 100%;
+	background-color: var(--bg-color-block);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-sizing: border-box;
+	padding: 10px;
 	& .logo {
-		margin-bottom: 15px;
 		max-height: 60px;
-		display: grid;
+		display: flex;
 		align-items: center;
-		justify-content: center;
 		cursor: pointer;
 	}
 }
