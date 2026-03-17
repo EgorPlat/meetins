@@ -19,6 +19,7 @@ import i18n from "../i18n";
 import "../styles/themes.css";
 //import "../node_modules/reseter.css/css/reseter.min.css";
 import "../styles/global.scss";
+import { setIsMusicNeededOnBackground } from "@/global/store/music_model";
 
 export default function RootLayout({
     children,
@@ -54,6 +55,11 @@ export default function RootLayout({
         setRouter({ ...router, asPath: pathName });
         if (pathName !== "/") {
             localStorage.setItem("previousPage", pathName);
+        }
+        if (pathName !== "/music") {
+            setIsMusicNeededOnBackground(true);
+        } else {
+            setIsMusicNeededOnBackground(false);
         }
     }, [pathName]);
 

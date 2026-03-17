@@ -10,6 +10,7 @@ import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import s from "./EventsList.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function EventsList(props: {
     categoryName: string,
@@ -19,7 +20,12 @@ export default function EventsList(props: {
     
     const { categoryName, currentEvents, loadedStatus } = props;
     const { t } = useTranslation();
-    
+    const router = useRouter();
+
+    const handleGoToEventPage = (event: IShortEventInfo) => {
+        router.push(`/eventInfo/${event.id}`);
+    };
+
     if (!currentEvents) return <CustomLoader />
     return (
         <div className={s.content}>
@@ -37,6 +43,7 @@ export default function EventsList(props: {
                                 <div 
                                     className={s.eventBody} 
                                     key={event.id}
+                                    onClick={() => handleGoToEventPage(event)}
                                 >
                                     <div className={s.eventImage}>
                                         <Image
@@ -49,29 +56,28 @@ export default function EventsList(props: {
                                     
                                     <div className={s.eventDescription}>
                                         <div className={s.eventTitle}>{event.title}</div>
-                                        <div className={s.eventPrice}>
-                                            <p>Примерная цена:</p>
-                                            <p className={event.price.length > 0 ? s.notFree : s.free}>
-                                                {event.price.length > 0 ? event.price : "Бесплатно"}
-                                            </p>
-                                        </div>
-                                        <div className={s.eventAge}>
-                                            <p>Возраст для посещения: </p>
-                                            <p className={s.age}>
-                                                {event.age_restriction || "0+"} лет
-                                            </p>
-                                        </div>
-                                        <div className={s.eventRating}>
-                                            <p>Рейтинг мероприятия: </p>
-                                            <p className={s.rate}>
-                                                <Rating
-                                                    readOnly
-                                                    name="half-rating" 
-                                                    defaultValue={2.5} 
-                                                    precision={0.5}
-                                                    className={s.icon}
-                                                />
-                                            </p>
+                                        <div className={s.shortInfo}>
+                                            <div className={s.eventPrice}>
+                                                <p className={event.price.length > 0 ? s.notFree : s.free}>
+                                                    {event.price.length > 0 ? event.price : "Бесплатно"}
+                                                </p>
+                                            </div>
+                                            <div className={s.eventAge}>
+                                                <p className={s.age}>
+                                                    {event.age_restriction || "0+"} лет
+                                                </p>
+                                            </div>
+                                            <div className={s.eventRating}>
+                                                <p className={s.rate}>
+                                                    <Rating
+                                                        readOnly
+                                                        name="half-rating" 
+                                                        defaultValue={2.5} 
+                                                        precision={0.5}
+                                                        className={s.icon}
+                                                    />
+                                                </p>
+                                            </div>
                                         </div>
                                         {
                                             event.dates[event.dates.length - 2] &&
@@ -82,9 +88,9 @@ export default function EventsList(props: {
                                                 </p>
                                             </div>
                                         }
-                                        <div className={s.eventActions}>
+                                        {/*<div className={s.eventActions}>
                                             <Link href={`/eventInfo/${event.id}`}>Посмотреть</Link>
-                                        </div>
+                                        </div>*/}
                                     </div>
                                 </div>
                             ))

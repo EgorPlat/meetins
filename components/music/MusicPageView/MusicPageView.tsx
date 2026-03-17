@@ -49,6 +49,8 @@ export default function MusicPageView({
                     {
                         musicList?.map(author => {
                             return author.compositions.map(music => {
+                                console.log(music.title, music.id, activeMusicId);
+                                
                                 return (
                                     <MusicPlayer
                                         isStopNeeded={activeMusicId !== music.id}

@@ -17,11 +17,9 @@ export const MusicPlayer = (props: {
     const [musicTimeData, setMusicTimeData] = useState<{ currentTime: number, duration: number }>({ currentTime: 0, duration: 0 });
     const musicFullTimer = getTimerFromSeconds(+musicTimeData?.duration);
     const audioRef = useRef<HTMLAudioElement>(null);
-
-    console.log(props.isStopNeeded, props.musicInfo.title);
     
     const handleTimeUpdate = (audio) => {
-        if (audioRef.current) {
+        if (!audioRef.current.paused) {
             setActiveMusic({
                 title: props.musicInfo.title,
                 image: baseURL + props.musicInfo.imageSrc,
@@ -49,11 +47,20 @@ export const MusicPlayer = (props: {
     };
 
     const handleStopMusic = () => {
-        if (audioRef.current) {
+        if (audioRef.current && !audioRef.current.paused) {
             setIsMusicSelected(false);
+            audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
             audioRef.current.currentTime = 0;
             audioRef.current.pause();
+        }
+    };
+
+    const handleStopMusicManualy = () => {
+        if (audioRef.current && !audioRef.current.paused) {
+            setIsMusicSelected(false);
             audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+            audioRef.current.currentTime = 0;
+            audioRef.current.pause();
             setActiveMusic(null);
             setActiveMusicId(null);
         }
@@ -128,7 +135,7 @@ export const MusicPlayer = (props: {
                         <FaPause
                             className={s.controls}
                             fontSize={20}
-                            onClick={handleStopMusic}
+                            onClick={handleStopMusicManualy}
                         />
                 }
             </div>

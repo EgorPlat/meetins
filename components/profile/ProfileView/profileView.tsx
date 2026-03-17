@@ -17,6 +17,9 @@ import PostsList from "../PostsList/PostsList";
 import CustomLoader from "@/shared/ui/CustomLoader/CustomLoader";
 import CustomModal from "@/shared/ui/CustomModal/CustomModal";
 import Image from "next/image";
+import CustomInput from "@/shared/ui/CustomInput/CustomInput";
+import { IoAddCircle, IoSearchCircle } from "react-icons/io5";
+import { Tooltip } from "antd";
 
 const EditUserTag = React.lazy(() => import("../../../features/forms/EditUserTag/Index"));
 const ChoosingEvents = React.lazy(() => import("../СhoosingEvents/choosingEvents"));
@@ -180,7 +183,22 @@ export default React.memo(function ProfileView(props: {
                         {
                             activeUser.login === props.authedUser.login &&
                             <div className={s.addingPosts}>
-                                <CustomButton text={t("Добавить новую запись")} onClick={() => props.setIsAddPostModal(true)} />
+                                <CustomInput
+                                    bordered={false}
+                                    className={s.searchPost}
+                                    placeholder="Поиск постов на стене..."
+                                    postFix={
+                                        <>
+                                            <Tooltip title="Добавить пост">
+                                                <IoAddCircle 
+                                                    fontSize={24} 
+                                                    onClick={() => props.setIsAddPostModal(true)} 
+                                                />
+                                            </Tooltip>
+                                            <IoSearchCircle fontSize={25} />
+                                        </>
+                                    }
+                                />
                             </div>
                         }
                         <div className={s.postsList}>

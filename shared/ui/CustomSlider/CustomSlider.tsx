@@ -66,71 +66,69 @@ export default function CustomSlider({ files, width, height, autoSwapTime }: ICu
     }, [activeImageId, autoSwapTime]);
 
     return (
-        <div className={s.wrapper}>
+        <div className={s.wrapper} style={{ height: height }}>
             <div className={s.slider} style={isMobile$ ? { width: "100%" } : { width }}>
                 <div className={s.slides}>
-                    <>
-                        {
-                            files.map(file => {
-                                const style = {
-                                    transform: `translateX(-${activeImageId * 100}%)`,
-                                    transition: "0.5s",
-                                };
-                                const key = file.src;
+                    {
+                        files.map(file => {
+                            const style = {
+                                transform: `translateX(-${activeImageId * 100}%)`,
+                                transition: "0.5s",
+                            };
+                            const key = file.src;
 
-                                if (file.type.includes("image")) {
-                                    return (
-                                        <div className={s.slide} key={key} style={style}>
-                                            <img
-                                                src={file.src}
-                                                alt={`Изображение ${file.src}`}
-                                                onTouchStart={handleTouchStart}
-                                                onTouchEnd={handleTouchEnd}
-                                                onClick={(e) => e.preventDefault()}
-                                            />
-                                        </div>
-                                    )
-                                }
-                                if (file.type.includes("video")) {
-                                    return (
-                                        <div className={s.slide} key={key} style={style}>
-                                            <div
-                                                className={s.videoWrapper}
-                                                onTouchStart={handleTouchStart}
-                                                onTouchEnd={handleTouchEnd}
-                                            >
-                                                <CustomVideoPlayer src={file.src} />
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                                if (file.type.includes("audio")) {
-                                    return (
-                                        <div className={s.slide} key={key} style={style}>
-                                            <audio
-                                                src={file.src}
-                                                onTouchStart={handleTouchStart}
-                                                onTouchEnd={handleTouchEnd}
-                                                controls
-                                            />
-                                        </div>
-                                    )
-                                }
+                            if (file.type.includes("image")) {
+                                return (
+                                    <div className={s.slide} key={key} style={style}>
+                                        <img
+                                            src={file.src}
+                                            alt={`Изображение ${file.src}`}
+                                            onTouchStart={handleTouchStart}
+                                            onTouchEnd={handleTouchEnd}
+                                            onClick={(e) => e.preventDefault()}
+                                        />
+                                    </div>
+                                )
+                            }
+                            if (file.type.includes("video")) {
                                 return (
                                     <div className={s.slide} key={key} style={style}>
                                         <div
-                                            className={s.addition}
+                                            className={s.videoWrapper}
                                             onTouchStart={handleTouchStart}
                                             onTouchEnd={handleTouchEnd}
                                         >
-                                            <div>Вложение (файл) - {file.type}</div>
-                                            <a href={file.src} target='__blank'>Скачать</a>
+                                            <CustomVideoPlayer src={file.src} />
                                         </div>
                                     </div>
                                 )
-                            })
-                        }
-                    </>
+                            }
+                            if (file.type.includes("audio")) {
+                                return (
+                                    <div className={s.slide} key={key} style={style}>
+                                        <audio
+                                            src={file.src}
+                                            onTouchStart={handleTouchStart}
+                                            onTouchEnd={handleTouchEnd}
+                                            controls
+                                        />
+                                    </div>
+                                )
+                            }
+                            return (
+                                <div className={s.slide} key={key} style={style}>
+                                    <div
+                                        className={s.addition}
+                                        onTouchStart={handleTouchStart}
+                                        onTouchEnd={handleTouchEnd}
+                                    >
+                                        <div>Вложение (файл) - {file.type}</div>
+                                        <a href={file.src} target='__blank'>Скачать</a>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
                 <div className={s.actions}>
                     {

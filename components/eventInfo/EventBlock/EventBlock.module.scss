@@ -1,7 +1,7 @@
 .eventBlockContent {
     padding-bottom: 20px;
     & .eventBlockTitle {
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 15px;
         background-color: #3db1ff49;
         border-radius: 5px;
@@ -11,12 +11,12 @@
         display: grid;
         gap: 15px;
         position: relative;
-        grid-template-columns: 30% calc(70% - 15px);
+        grid-template-columns: 300px calc(100% - 315px);
         & .eventInfo {
-            
+            height: min-content;
         }
         & .help {
-            font-size: 18px;
+            font-size: 15px;
             & .description {
                 text-align: justify;
             }
@@ -28,8 +28,6 @@
                 display: flex;
                 gap: 10px;
                 width: 300px;
-                position: absolute;
-                bottom: 35px;
                 margin-bottom: 15px;
                 button {
                     background-color: #3DB2FF;
@@ -92,6 +90,7 @@
         row-gap: 5px;
         flex-wrap: wrap;
         font-size: 20px;
+        font-size: 15px;
         & .wrapper {
             width: 100%;
             padding: 5px;
@@ -121,7 +120,7 @@
     }
 }
 
-@media screen and (max-width: 1320px) {
+@media screen and (max-width: 720px) {
     .eventBlockContent {
         & .eventBlockTitle {
             text-align: center;

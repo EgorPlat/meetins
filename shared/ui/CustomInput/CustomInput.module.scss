@@ -1,7 +1,7 @@
 .customInputWrapper {
     width: 100%;
     display: grid;
-    grid-template-columns: calc(100% - 35px) 35px;
+    grid-template-columns: 1fr auto;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     box-sizing: border-box;
@@ -10,6 +10,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        width: max-content;
     }
     & > input {
         padding-left: 5px;

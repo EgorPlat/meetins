@@ -3,6 +3,9 @@ import { useUnit } from "effector-react";
 import { useTranslation } from "react-i18next";
 import { $markedUsersInfo, baseURL, removeUserFromMarkedList } from "@/global/store/store";
 import s from "./markedUsers.module.scss";
+import { FaTrash } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
+import { Tooltip } from "antd";
 
 export default function MarkedUsers() {
 
@@ -34,13 +37,15 @@ export default function MarkedUsers() {
                 {
                     markedUsersInfo$?.map(el => (
                         <div className={s.markedUser} key={el.userId} >
-                            <img src={baseURL + el.avatar} className={s.avatar} onClick={() => handleGoToUser(el.login)} />
+                            <img src={baseURL + el.avatar} className={s.avatar} />
                             <div className={s.name}>{el.name}</div>
                             <div className={s.actions} >
-                                <button
-                                    className={s.actionRemove}
-                                    onClick={(e) => handleRemoveUser(e, el.userId)}
-                                >x</button>
+                                <Tooltip title="Перейти в профиль">
+                                    <FaUser onClick={() => handleGoToUser(el.login)} />
+                                </Tooltip>
+                                <Tooltip title="Убрать из закладок">
+                                    <FaTrash onClick={(e) => handleRemoveUser(e, el.userId)} />
+                                </Tooltip>
                             </div>
                         </div>
                     ))

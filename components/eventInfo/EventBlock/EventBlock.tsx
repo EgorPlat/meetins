@@ -36,7 +36,7 @@ export default function EventBlock(props: {
                                 };
                             })}
                             width={isMobile$ ? "100%" : "100%"}
-                            height="300px"
+                            height="100%"
                         />
                     </div>
                     <div className={s.help}>

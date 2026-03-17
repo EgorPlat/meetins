@@ -6,7 +6,7 @@ export const MusicControlBlock = () => {
 
     const activeMusic$ = useUnit(activeMusic); 
     const isMusicNeededOnBackground$ = useUnit(isMusicNeededOnBackground);
-
+    
     if (activeMusic$ && isMusicNeededOnBackground$) {
         return (
             <MusicControlBlockView

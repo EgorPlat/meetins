@@ -16,14 +16,12 @@
         border-radius: 9px 0 10px 0;
         background-color: rgba(71, 71, 71, 0.592);
     }
-    &:hover {
-        border-color: 1px solid black;
-        cursor: pointer;
-    }    
+    border: 3px solid transparent;
 }
 
 .card:hover {
     transform: perspective(1000px) rotateY(10deg);
     transition: transform .3s;
     border: 3px solid var(--default-color);
+    cursor: pointer;
 }

@@ -8,7 +8,7 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: calc(100% - 50px) 50px;
-        height: 350px;
+        height: 100%;
         & .slides {
             display: flex;
             overflow: hidden;

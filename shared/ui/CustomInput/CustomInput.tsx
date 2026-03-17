@@ -3,10 +3,11 @@ import s from "./CustomInput.module.scss";
 
 interface ICustomInputProps {
     [key: string]: any,
-    postFix?: ReactElement
+    postFix?: ReactElement,
+    bordered: boolean
 }
 
-export default function CustomInput({ postFix, ...restProps }: ICustomInputProps) {
+export default function CustomInput({ postFix, bordered, ...restProps }: ICustomInputProps) {
 
     const handleKeyDown = (e: any) => {
         if (e.key === "Enter" && restProps.onClick) {
@@ -15,7 +16,7 @@ export default function CustomInput({ postFix, ...restProps }: ICustomInputProps
     };
 
     return (
-        <div className={s.customInputWrapper}>
+        <div className={s.customInputWrapper} style={{ border: bordered ? "1px solid var(--border-color)" : "none" }}>
             <input placeholder="" {...restProps} onKeyDown={handleKeyDown} />
             <div className={s.postFix}>
                 { postFix }

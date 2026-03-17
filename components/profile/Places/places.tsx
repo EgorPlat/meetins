@@ -16,7 +16,7 @@ export default React.memo(function Places(props: {places: string[]}): JSX.Elemen
                 { props.places && props.places.length !== 0 
                     ? props.places.map((elem, index) => 
                         <div className={s.item} key={elem}> {elem}</div>
-                    ) : <span>Вы пока не посещали никакие встречи.</span>}
+                    ) : <span className={s.noPlaces}>Пока не посещал(а) никакие встречи.</span>}
             </div>
         </div>
     )

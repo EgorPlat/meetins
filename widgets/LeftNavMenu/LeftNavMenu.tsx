@@ -49,10 +49,14 @@ export default function LeftNavMenu(): JSX.Element {
                 <TiPointOfInterestOutline />
                 <Link href="/interests">{t("Интересы")}</Link>
             </div>
-            <div className={s.link}>
-                <FaMeetup />
-                <Link href="/meetings">{t("Встречи")}</Link>
-            </div>
+            {
+                /**
+                 *  <div className={s.link}>
+                        <FaMeetup />
+                        <Link href="/meetings">{t("Встречи")}</Link>
+                    </div>
+                 */
+            }
         </div> 
     )
 }
