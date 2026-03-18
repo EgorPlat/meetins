@@ -62,7 +62,6 @@ export default React.memo(function Interests(props: {
                             title="Изменить интересы"
                             isDisplay={isChangeMode}
                             changeModal={setIsChangeMode}
-                            actionConfirmed={setIsChangeMode}
                             typeOfActions="none"
                         >
                             <ChangingInterests currentInterests={props.authedUser.interests} handleSaveClick={handleSaveClick} />

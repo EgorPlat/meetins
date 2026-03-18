@@ -209,7 +209,6 @@ export default React.memo(function ProfileView(props: {
             <CustomModal 
                 isDisplay={props.isAddPostModal} 
                 changeModal={props.onAddingModalClick} 
-                actionConfirmed={props.onAddingModalClick}
                 title="Добавить новую запись"
                 typeOfActions="none"
             >
@@ -220,7 +219,6 @@ export default React.memo(function ProfileView(props: {
             <CustomModal 
                 isDisplay={props.isInviteModal} 
                 changeModal={props.setIsInviteModal} 
-                actionConfirmed={props.handleSendInvite}
                 title="Выберите событие"
                 typeOfActions="default"
             >
@@ -231,7 +229,6 @@ export default React.memo(function ProfileView(props: {
             <CustomModal 
                 isDisplay={props.isEditTagOpen} 
                 changeModal={props.handleSwapEditTag} 
-                actionConfirmed={props.handleSwapEditTag}
                 title="Настройте Ваш тэг"
                 typeOfActions="none"
             >
@@ -242,7 +239,6 @@ export default React.memo(function ProfileView(props: {
             <CustomModal 
                 isDisplay={props.newAvatarForCrop ? true : false} 
                 changeModal={() => props.setNewAvatarForCrop(null)} 
-                actionConfirmed={() => props.setNewAvatarForCrop(null)}
                 title="Настройте Ваше фото"
                 typeOfActions="none"
             >

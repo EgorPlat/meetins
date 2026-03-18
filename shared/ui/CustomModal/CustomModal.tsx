@@ -8,7 +8,6 @@ const CustomModal = (props: {
     children: ReactNode, 
     isDisplay: boolean, 
     changeModal: (status: boolean) => void
-    actionConfirmed: (status: boolean) => void,
     title: string,
     typeOfActions: "default" | "none" | "custom"
     actionsComponent?: any,

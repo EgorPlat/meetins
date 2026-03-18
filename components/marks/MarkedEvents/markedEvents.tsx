@@ -15,7 +15,7 @@ export default function MarkedEvents(): JSX.Element {
 
     if (markedEventsInfo$?.length === 0) {
         return (
-            <div className={s.notify}>
+            <div className={s.warning}>
                 <h5 className={s.title}>{t("У вас пока нет событий в закладках")}</h5>
                 <div className={s.subTitle}>
                     {t("Если Вы хотите сохранить событие в закладках, перейдите на страницу 'События', выберите категорию мероприятия и само мероприятие из списка и нажмите на кнопку 'Я пойду'")}

@@ -7,6 +7,9 @@ import { TbInfoSquareFilled } from "react-icons/tb";
 import { User } from "@/entities";
 import { $user } from "@/global/store/store";
 import CustomButton from "@/shared/ui/CustomButton/CustomButton";
+import CustomInput from "@/shared/ui/CustomInput/CustomInput";
+import { MdCancel } from "react-icons/md";
+import { FaCircleCheck } from "react-icons/fa6";
 
 export default React.memo(function About(props: {
     user: User,
@@ -36,35 +39,26 @@ export default React.memo(function About(props: {
                 <div className={s.title}>
                     <b>{t("О себе")}</b>
                     {isAuthedProfile && <span onClick={() => newChangeSatus(true)} className={s.changeSpan}>{t("Изменить")}</span>}
-                    {isAuthedProfile && authedUser.status === null || authedUser.status === ""
-                        ? <p style={{ color: "grey" }} onClick={() => newChangeSatus(true)}>{t("Введите ваш статус")}...</p>
-                        : null
-                    }
                 </div>
-                {changingStatus
-                    ?
-                    <div>
-                        <textarea 
-                            autoFocus 
-                            className={s.textChange} 
-                            placeholder={t("Введите текст")}
-                            defaultValue={props.user.status} 
-                            onChange={(event) => setUserStatus(event.target.value)}
-                        ></textarea>
-                        <div className={s.actions}>
-                            <CustomButton 
-                                text={t("Сохранить")} 
-                                onClick={saveNewStatus} 
-                            />
-                            <CustomButton 
-                                text={t("Отменить")} 
-                                style={{ backgroundColor: "rgb(64, 80, 81)" }} 
-                                onClick={() => newChangeSatus(false)} 
-                            />
-                        </div>
-                    </div>
-                    : <p className={s.status}>{props.user.status}</p>
-                }
+                <CustomInput 
+                    className={s.textChange}
+                    bordered={changingStatus}
+                    placeholder={
+                        isAuthedProfile && authedUser.status === null || authedUser.status === "" 
+                        ? t("Введите ваш статус") 
+                        : t("Введите текст")
+                    }
+                    defaultValue={props.user.status}
+                    onChange={(event) => setUserStatus(event.target.value)}
+                    postFix={
+                        changingStatus && (
+                            <>
+                                <FaCircleCheck fontSize={20} onClick={saveNewStatus} />
+                                <MdCancel fontSize={24} onClick={() => newChangeSatus(false)} />
+                            </>
+                        )
+                    }
+                />
             </div>
         )
     } else {

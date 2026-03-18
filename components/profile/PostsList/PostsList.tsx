@@ -114,7 +114,6 @@ export default React.memo(function PostsList(props: { currentUser: User, authedU
                 <CustomModal
                     isDisplay={isCommentsOpen}
                     changeModal={handleModalAction}
-                    actionConfirmed={handleModalAction}
                     title={`Комментарии к - ${currentPost.title}`}
                     typeOfActions="custom"
                     actionsComponent={

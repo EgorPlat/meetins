@@ -11,6 +11,8 @@
         justify-content: center;
         cursor: pointer;
         width: max-content;
+        padding-right: 5px;
+        box-sizing: border-box;
     }
     & > input {
         padding-left: 5px;

@@ -56,7 +56,6 @@ export default function GroupsList () {
                 <CustomModal
                     isDisplay={isCreateModalOpen}
                     changeModal={setIsCreateModalOpen}
-                    actionConfirmed={setIsCreateModalOpen}
                     title="Создать новую группу"
                     typeOfActions='none'
                 >

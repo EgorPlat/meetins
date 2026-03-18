@@ -26,6 +26,7 @@
         position: absolute;
         bottom: 0px;
         padding: 5px;
+        box-sizing: border-box;
         & .fullScreen {
             display: flex;
             justify-content: center;

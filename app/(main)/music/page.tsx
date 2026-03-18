@@ -72,7 +72,6 @@ export default function Music() {
             <CustomModal
                 isDisplay={showMyStatistic}
                 changeModal={setShowMyStatistic}
-                actionConfirmed={setShowMyStatistic}
                 typeOfActions="none"
                 title="Статистика"
             >
@@ -87,7 +86,6 @@ export default function Music() {
             <CustomModal 
                 isDisplay={addMusicModal} 
                 changeModal={(status) => handleSwapMusicModal(status)} 
-                actionConfirmed={() => handleSwapMusicModal(true)}
                 title='Добавить новую композицию'
                 typeOfActions="none"
             >

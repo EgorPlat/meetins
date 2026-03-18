@@ -142,7 +142,6 @@ export default function Settings(): JSX.Element {
                 title="Удаление аккаунта"
                 isDisplay={isModal}
                 changeModal={changeModal}
-                actionConfirmed={deleteAccount}
                 typeOfActions="default"
             >
                 <div className={s.confirmDeletingContent}>{t("Подвердите действие - Удаление аккаунта")}.</div>

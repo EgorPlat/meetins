@@ -21,6 +21,8 @@ import CustomModal from "@/shared/ui/CustomModal/CustomModal";
 import CustomVideoPlayer from "@/shared/ui/CustomVideoPlayer/CustomVideoPlayer";
 import ChatMessageForm from "../ChatMessageForm/chatMessageForm";
 import s from "./chatZone.module.scss";
+import CustomButton from "@/shared/ui/CustomButton/CustomButton";
+import { FaCircleChevronDown } from "react-icons/fa6";
 
 
 interface IChatZoneProps {
@@ -40,7 +42,6 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     const videoMessageStreamRef = useRef<HTMLVideoElement>(null);
 
     const router = useRouter();
-    const pathname = usePathname();
     const isUserOnline = onlineUsers.filter(el => el.userId === activeChat$.userId).length !== 0;
     const { t } = useTranslation();
 
@@ -84,6 +85,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
     };
 
     const handleVideoMessageConfirmed = () => {
+        console.log("teeeeeeest")
         setShowVideoModal(false);
         if (activeChat$.dialogId !== "none" && mediaAvailable.video) {
             setVideoMessageActive(true);
@@ -226,6 +228,7 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                         : <CustomLoader />
                     }
                     <div ref={messagesEndRef}></div>
+                    {/*<FaCircleChevronDown className={s.scrollLastMassage} />*/}
                 </div>
                 <div className={`${s.form} ${s.block}`}>
                     <ChatMessageForm
@@ -240,9 +243,11 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                     <CustomModal
                         isDisplay={showVideoModal}
                         title="Подтвердите действие"
-                        typeOfActions="default"
+                        typeOfActions="custom"
                         changeModal={setShowVideoModal}
-                        actionConfirmed={handleVideoMessageConfirmed}
+                        actionsComponent={
+                            <CustomButton text={t("Подтвердить")} onClick={handleVideoMessageConfirmed} />
+                        }
                     >
                         Хотите записать видео-сообщение?
                     </CustomModal>
@@ -254,7 +259,6 @@ export default function ChatZone({ activeChat$ }: IChatZoneProps): JSX.Element {
                         title="Видео-сообщение"
                         typeOfActions="none"
                         changeModal={() => null}
-                        actionConfirmed={setVideoMessageActive}
                     >
                         <div className={s.videoMessageWrapper}>
                             <video

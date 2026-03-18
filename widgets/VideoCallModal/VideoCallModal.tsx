@@ -196,7 +196,6 @@ export default function VideoCallModal({ isOpen }: IVideoCallModalProps) {
             title='Видеозвонок'
             isDisplay={isOpen}
             changeModal={handleCallClose}
-            actionConfirmed={handleConfirmVideoCall}
             typeOfActions='custom'
             actionsComponent={
                 <div className={s.modalActions}>

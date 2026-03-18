@@ -11,7 +11,7 @@
         border-radius: 10px;
         display: grid;
         row-gap: 15px;
-
+        box-sizing: border-box;
         & .postAuthor {
             display: grid;
             grid-template-columns: 50px calc(100% - 100px) 30px;

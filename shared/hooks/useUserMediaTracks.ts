@@ -33,11 +33,6 @@ export const useUserMediaTracks = ({
                 currentStream.getTracks().forEach(track => {
                     track.stop();
                 });
-                setTimeout(() => {
-                    console.log(
-                        currentStream.getAudioTracks()[0]?.readyState
-                    );
-                }, 1000);
             }
 
             document.getElementById(htmlElementIdForStopMedia)?.addEventListener("click", () => {

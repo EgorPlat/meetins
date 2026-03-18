@@ -67,7 +67,6 @@ export default function MeetingsRoom() {
             <CustomModal
                 isDisplay={isAddCommentModal}
                 changeModal={setIsAddCommentModal}
-                actionConfirmed={setIsAddCommentModal}
                 typeOfActions="none"
                 title="Добавить комментарий"
             >
@@ -76,7 +75,6 @@ export default function MeetingsRoom() {
             <CustomModal
                 isDisplay={isOpenAllFilesModal}
                 changeModal={setIsOpenAllFilesModal}
-                actionConfirmed={setIsOpenAllFilesModal}
                 typeOfActions="none"
                 title="Все медиа файлы со встречи"
             >

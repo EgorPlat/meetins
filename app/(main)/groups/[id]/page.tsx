@@ -123,7 +123,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isSettingsGroupOpen}
                 changeModal={(status) => setModals({ ...modals, isSettingsGroupOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isSettingsGroupOpen: status })}
                 typeOfActions="none"
                 title="Управление сообществом"
             >
@@ -132,7 +131,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isCommentsModalOpen}
                 changeModal={(status) => setModals({ ...modals, isCommentsModalOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isCommentsModalOpen: status })}
                 typeOfActions="none"
                 title="Комментарии"
             >
@@ -144,7 +142,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isAddingPostModalOpen}
                 changeModal={(status) => setModals({ ...modals, isAddingPostModalOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isAddingPostModalOpen: status })}
                 typeOfActions="none"
                 title="Добавить публикацию"
             >
@@ -153,7 +150,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isTalksOpen}
                 changeModal={(status) => setModals({ ...modals, isTalksOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isTalksOpen: status })}
                 typeOfActions="none"
                 title="Обсуждения"
             >
@@ -167,7 +163,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isTalkMessagesOpen}
                 changeModal={(status) => setModals({ ...modals, isTalkMessagesOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isTalkMessagesOpen: status })}
                 typeOfActions="custom"
                 actionsComponent={
                     <AddNewMessageIntoGroupTalk
@@ -186,7 +181,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isTalkCreationOpen}
                 changeModal={(status) => setModals({ ...modals, isTalkCreationOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isTalkCreationOpen: status })}
                 typeOfActions="none"
                 title="Создать обсуждение"
             >
@@ -198,7 +192,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isPhotosOpen}
                 changeModal={(status) => setModals({ ...modals, isPhotosOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isPhotosOpen: status })}
                 typeOfActions="none"
                 title="Фотографии в сообществе"
             >
@@ -207,7 +200,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isVideosOpen}
                 changeModal={(status) => setModals({ ...modals, isVideosOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isVideosOpen: status })}
                 typeOfActions="none"
                 title="Видео в сообществе"
             >
@@ -216,7 +208,6 @@ export default function Groups() {
             <CustomModal
                 isDisplay={modals.isMembersListOpen}
                 changeModal={(status) => setModals({ ...modals, isMembersListOpen: status })}
-                actionConfirmed={(status) => setModals({ ...modals, isMembersListOpen: status })}
                 typeOfActions="none"
                 title="Список участников"
             >

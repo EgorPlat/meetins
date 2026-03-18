@@ -6,15 +6,24 @@
     margin-top: 5px;
     width: 100%;
 }
-.notify {
-    margin-top: 50px;
+.warning {
+    width: 100%;
+    background-color: var(--bg-color-block);
+    border-radius: 10px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
     & .title {
-        text-align: center;
+    
     }
     & .subTitle {
-        text-align: center;
-        font-size: 14px;
         color: gray;
+        font-size: 14px;
     }
 }
 
