@@ -18,7 +18,7 @@ export default function LentaList(props: {
         <div className={s.lentaList}>
             {
                 props.wallPosts?.map(el => (
-                    <LazyLoad key={el.postDate} once height="100px">
+                    <LazyLoad key={el.postDate} height="100px">
                         <div className={s.wallPost}>
                             <div className={s.postAuthor}>
                                 <img src={baseURL + el.avatar} className={s.avatar} />

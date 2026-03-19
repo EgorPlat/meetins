@@ -25,10 +25,11 @@ type LazyLoadProps = {
 };
 
 const LazyLoad = (props: LazyLoadProps) => {
-  
+
     const childRef = useRef<HTMLDivElement>(null);
     const [isIntersecting, setIntersecting] = useState(false);
-
+    const [contentHeight, setContentHeight] = useState<number>(0);
+    
     useEffect(() => {
         const child = childRef.current as HTMLDivElement;
       
@@ -42,7 +43,24 @@ const LazyLoad = (props: LazyLoadProps) => {
 
         observer.observe(child);
 
-        return () => observer.unobserve(child);
+
+        const element = childRef.current;
+
+        const resizeObserver = new ResizeObserver((entries) => {
+            const entry = entries[0];
+            const currHeight = entry.contentRect.height;
+            setContentHeight(prev => {
+                if (prev < currHeight) return currHeight;
+                return prev;
+            });
+        });
+
+        resizeObserver.observe(element);
+
+        return () => {
+            observer.unobserve(child);
+            resizeObserver.disconnect();
+        };
     }, []);
 
     if (props.once && isIntersecting) return props.children;
@@ -52,7 +70,7 @@ const LazyLoad = (props: LazyLoadProps) => {
             {isIntersecting ? (
                 props.children
             ) : (
-                <Placeholder width={props.width} height={props.height} />
+                <Placeholder width={props.width} height={contentHeight ? contentHeight : props.height} />
             )}
         </div>
     );
